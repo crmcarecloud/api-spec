@@ -10,7 +10,7 @@ properties:
     type: string
     readOnly: false
     description: External order number. If not set, internal order number will be set
-    example:
+    example: "A3NKI89NFDS82434B"
   customer_id:
     type: string
     readOnly: false
@@ -52,7 +52,27 @@ properties:
     type: string
     readOnly: false
     description: Customer’s note for the merchant
-    example:
+    example: "Have a nice day!"
+  order_status:
+    type: string
+    readOnly: true
+    description: Text representation of the order status
+    exaple: "New Uncomfirmed"
+  shipping_date:
+    type: string
+    readOnly: true
+    description: Date of the order shipping. If the date is in future, order should be shipped in this date
+    example: "2019-07-19 17:26:34"
+  program_ranking:
+    type: integer
+    readOnly: true
+    description: Rank of order in case of the series of multiple orders
+    example: 4
+  payment_status:
+    type: string
+    readOnly: true
+    description: Text representation of the payment status
+    exaple: "Unpaid"
   last_change:
     type: string
     readOnly: true

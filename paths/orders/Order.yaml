@@ -1,17 +1,22 @@
-post:
+get:
   tags:
-    - Tokens
-  summary: Logout from the application
-  description: Logout of a customer account to client's application
-  operationId: postTokenLogout
+    - Orders
+  summary: Get an order
+  description: Get information about a specific order
+  operationId: getOrder
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/token_id_path'
-  requestBody:
-    required: true
+    - $ref: '../../parameters/_index.yaml#/order_id_path'
   responses:
-    '204':
-      description: No Content
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/Order'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

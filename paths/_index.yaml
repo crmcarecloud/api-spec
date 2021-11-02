@@ -168,6 +168,8 @@
 # Orders
 /orders:
   $ref: "./orders/Orders.yaml"
+/orders/{order_id}:
+  $ref: "./orders/Order.yaml"
 
 # Partners
 /partners:

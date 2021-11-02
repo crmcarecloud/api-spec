@@ -4085,6 +4085,56 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /orders:
+    get:
+      tags:
+        - Orders
+      summary: Get all orders
+      description: Get information about all customer's orders
+      operationId: getOrders
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/state'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      orders:
+                        type: array
+                        description: Collection of the customer orders
+                        items:
+                          $ref: '#/components/schemas/Order'
+                      total_items:
+                        type: integer
+                        description: Count of all found customer orders
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
     post:
       tags:
         - Orders
@@ -4119,6 +4169,42 @@ paths:
                         type: string
                         description: The unique id of the order
                         example: 80af8a5dcc0702daf336f4de41
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/orders/{order_id}':
+    get:
+      tags:
+        - Orders
+      summary: Get an order
+      description: Get information about a specific order
+      operationId: getOrder
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/order_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Order'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -8385,6 +8471,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/token_id_path'
+      requestBody:
+        required: false
       responses:
         '204':
           description: No Content
@@ -10857,7 +10945,7 @@ components:
           type: string
           readOnly: false
           description: 'External order number. If not set, internal order number will be set'
-          example: null
+          example: A3NKI89NFDS82434B
         customer_id:
           type: string
           readOnly: false
@@ -10899,7 +10987,27 @@ components:
           type: string
           readOnly: false
           description: Customer’s note for the merchant
-          example: null
+          example: Have a nice day!
+        order_status:
+          type: string
+          readOnly: true
+          description: Text representation of the order status
+          exaple: New Uncomfirmed
+        shipping_date:
+          type: string
+          readOnly: true
+          description: 'Date of the order shipping. If the date is in future, order should be shipped in this date'
+          example: '2019-07-19 17:26:34'
+        program_ranking:
+          type: integer
+          readOnly: true
+          description: Rank of order in case of the series of multiple orders
+          example: 4
+        payment_status:
+          type: string
+          readOnly: true
+          description: Text representation of the payment status
+          exaple: Unpaid
         last_change:
           type: string
           readOnly: true
@@ -13638,6 +13746,14 @@ components:
         type: string
       allowReserved: true
       example: '2015-01-05 23:59:00'
+    order_id_path:
+      name: order_id
+      in: path
+      description: The unique id of the order
+      required: true
+      schema:
+        type: string
+      example: 8bed991c68a470e7aabed9e048
     partner_id_path:
       name: partner_id
       in: path
