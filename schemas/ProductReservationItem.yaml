@@ -1,0 +1,29 @@
+type: object
+description: External code resource
+properties:
+  reservable_product_id:
+    type: string
+    readOnly: false
+    description: The unique id of the reservable product in CareCloud
+    example: 85aee4e91a07d60626f7abcb21
+  amount:
+    type: number
+    format: float
+    readOnly: false
+    description: Number of the reserved products
+    example: 3
+  unit_price:
+    type: number
+    format: float
+    readOnly: false
+    description: Unit price of the reserved product. If vat_rate is set, than unit_price is mandatory
+    example: 23
+  vat_rate:
+    type: number
+    format: float
+    readOnly: false
+    description: The rate of the VAT of the reserved product. If unit_price is set, than vat_rate is mandatory
+    example: 5
+required:
+  - reservable_product_id
+  - amount

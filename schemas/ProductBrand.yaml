@@ -1,0 +1,21 @@
+type: object
+description: Product brand resource
+properties:
+  product_brand_id:
+    type: string
+    readOnly: true
+    description: The unique id of the product brand
+    example: '83d1d11ea3884a5d33253fe214'
+  name:
+    type: string
+    readOnly: false
+    description: Name of the product brand
+    example: "The best brand"
+  external_id:
+    type: string
+    readOnly: false
+    description: The external unique id of the product brand
+    example: 'a5d332'
+required:
+  - name
+  - external_id

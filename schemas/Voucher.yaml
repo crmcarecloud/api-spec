@@ -1,0 +1,77 @@
+type: object
+description: Customer's voucher
+properties:
+  voucher_id:
+    type: string
+    readOnly: true
+    description: The unique id of the voucher
+    example: 8bb7345976bbc9ed20e5083dd6
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id of the customer.
+    example: 81ceb8582e2d8dbb7e71b7273b
+  store_id:
+    type: string
+    readOnly: false
+    description: The unique id of the store where voucher was applied
+    example: 86e05affc7a7abefcd513ab400
+  code:
+    type: string
+    readOnly: false
+    description: Code of the voucher
+    example: "w7TU7KfeE"
+  value:
+    type: number
+    format: float
+    readOnly: false
+    description: Value of the voucher when applied by the purchase
+    example: 3.49
+  applied_date:
+    type: string
+    readOnly: false
+    description: Voucher application date *(YYYY-MM-DD HH:MM:SS)*
+    example: "2013-07-24 21:33:13"
+  valid_from:
+    type: string
+    readOnly: false
+    description: Date from the voucher is valid *(YYYY-MM-DD HH:MM:SS)*
+    example:
+  valid_to:
+    type: string
+    readOnly: false
+    description: Date to the voucher is valid *(YYYY-MM-DD HH:MM:SS)*
+    example:
+  reward_group:
+    type: string
+    readOnly: false
+    description: The unique id of the reward group
+    example: 83cfee22eabfbbb15a14815e30
+  reward:
+    $ref: '../schemas/_index.yaml#/Reward'
+    readOnly: false
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2013-07-24 21:33:33'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the voucher
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - voucher_id
+  - customer_id
+  - store_id
+  - code
+  - value
+  - valid_from
+  - reward_group
+  - reward

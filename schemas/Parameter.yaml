@@ -1,0 +1,16 @@
+type: object
+description: Parameter resource
+properties:
+  parameter_name:
+    type: string
+    readOnly: false
+    description: Name of the paramter
+    example:
+  value:
+    type: string
+    readOnly: false
+    description: Value of the paramter
+    example:
+required:
+  - parameter_name
+  - value

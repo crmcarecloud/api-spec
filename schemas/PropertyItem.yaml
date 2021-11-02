@@ -1,0 +1,24 @@
+type: object
+description: Property item structure
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: The unique id of the property item
+    example: 8fd73167342d0689c4c015320
+  name:
+    type: string
+    readOnly: false
+    description: Name of the property item
+    example: '{"en":"evening","cz":"vecer"}'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the property item
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1

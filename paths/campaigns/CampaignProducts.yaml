@@ -1,0 +1,107 @@
+get:
+  tags:
+    - Campaign products
+  summary: Collection of campaign products
+  description: Get information about all available campaign products
+  operationId: getCampaignProducts
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/product_code'
+    - $ref: '../../parameters/_index.yaml#/display_in'
+    - $ref: '../../parameters/_index.yaml#/type_id'
+    - $ref: '../../parameters/_index.yaml#/campaign_store_id'
+    - $ref: '../../parameters/_index.yaml#/value_type_id'
+    - $ref: '../../parameters/_index.yaml#/is_valid'
+    - $ref: '../../parameters/_index.yaml#/valid_from_full'
+    - $ref: '../../parameters/_index.yaml#/valid_to_full'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  campaign_products:
+                    type: array
+                    description: List of the campaign products
+                    items:
+                      $ref: '../../schemas/_index.yaml#/CampaignProduct'
+                  total_items:
+                    type: integer
+                    description: Count of all found campaign products
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+post:
+  tags:
+    - Campaign products
+  summary: Create a campaign product
+  description: Add a new campaign product
+  operationId: postCampaignProduct
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            campaign_product:
+              $ref: '../../schemas/_index.yaml#/CampaignProduct'
+          required:
+            - campaign_product
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  campaign_product_id:
+                    type: string
+                    description: The unique id for the campaign product
+                    example: 8bed991c68a470e7aaeff
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

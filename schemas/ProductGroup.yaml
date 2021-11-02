@@ -1,0 +1,52 @@
+type: object
+description: Product group resource
+properties:
+  product_group_id:
+    type: string
+    readOnly: true
+    description: The unique id of the product group
+    example: '83d1d11ea3884a5d33253fe214'
+  name:
+    type: string
+    readOnly: false
+    description: Name of the product group
+    example: "The best brand"
+  parent_product_group_id:
+    type: string
+    readOnly: false
+    description: The unique id for the parent product group
+    example:
+  code:
+    type: string
+    readOnly: false
+    description: Code of the product group
+    example:
+  external_id:
+    type: string
+    readOnly: false
+    description: The external unique id of the product group
+    example: '53'
+  store_id:
+    type: string
+    readOnly: false
+    description: The unique id for the store where the product group is valid. The product group is global if this value is not set
+    example: 83d1d11ea3884a5d33253fe214
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-02-08 15:35:09"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the product group
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - name
+  - external_id

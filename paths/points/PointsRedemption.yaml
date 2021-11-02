@@ -1,0 +1,54 @@
+post:
+  tags:
+    - Points
+  summary: Points redemption
+  description: |
+    New point redemption record is created
+
+    <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
+  operationId: postPointsRedemption
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+              format: float
+              description: Number of redeemed points.
+              example: '1000'
+            customer_id:
+              type: string
+              description: The unique id for the customer.
+              example: '81ceb8582e28dbb7e71b7273b'
+            partner_id:
+              type: string
+              readOnly: false
+              description: The unique id of the partner.
+              example: '86e05affc7a7abefcd513ab400'
+          required:
+            - amount
+            - customer_id
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

@@ -1,0 +1,35 @@
+type: object
+description: |
+  Customer source structure
+
+  *Structure is dedicated for resource customer-sources.*
+properties:
+  customer_source_id:
+    type: string
+    readOnly: false
+    description: The unique id of the customer source
+    example: 86e05affc7a7abefcd513ab400
+  name:
+    type: string
+    readOnly: false
+    description: Name of the customer source
+    example: All resources
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-01-08 18:34:07"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the customer source
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - customer_source_id
+  - name

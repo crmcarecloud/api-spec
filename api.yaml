@@ -1,0 +1,265 @@
+openapi: 3.0.2
+info:
+  title: CRM CareCloud REST API
+  version: 1.0.0
+  x-logo:
+    url: "https://www.crmcarecloud.com/wp-content/uploads/2020/04/LogoCareCloud_fial_sede.png"
+    altText: 'CRM CareCloud'
+  description:
+    $ref: "./description.md"
+  contact:
+    email: support@carecloud.cz
+tags:
+  - name: Agreements
+    description: You can get the list of the available customer agreements here.
+  - name: Campaigns
+  - name: Campaign products
+    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in CRM CareCloud directly or via CareCloud API.
+  - name: Cards
+    description: The Customer can be identified by different unique identificators - cards related to the account. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of unique personal ID or any other identification method like barcode, QR code or any other key can be used. All the unique customer cards (identificators) related to the Customer account can be processed by this resource.
+  - name: Card types
+    description: Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
+  - name: Countries
+    description: Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.
+  - name: Currencies
+    description: Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.
+  - name: Customers
+    description: CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.
+  - name: Customers actions
+    description: Action methods for resource customers.
+  - name: Customer types
+    description: You can get the list of the available customer types here.
+  - name: Customer external applications
+    description: You can get the list of the available customer external applications here.
+  - name: Customer properties
+    description: Customer properties are list of available properties for customers resource.
+  - name: Customer relation types
+    description: You can get the list of the available customer relation types here.
+  - name: Customer sources
+    description: Customer account can be created and tied to different sources, like online registration form, e-shop, mobile app, POS, booking system, web microsite, campaign or any other source. This source of the customer account is related to the account and can be managed by this resource.
+  - name: Customer source records
+    description: This resource cointains all records of customers and customer sources.
+  - name: Events
+    description: |
+      Marketing automation events.
+
+      **Scheme of the MA related resources and their relations**
+      <img src="https://imgur.com/0Bu8zWI.jpeg">
+  - name: Event groups
+    description: |
+      List of a marketing automation event groups.
+
+      **Scheme of the MA related resources and their relations**
+      <img src="https://imgur.com/0Bu8zWI.jpeg">
+  - name: Event properties
+    description: Event properties are list of available properties for events resource.
+  - name: Event types
+    description: |
+      List of a marketing automation event types.
+
+      **Scheme of the MA related resources and their relations**
+      <img src="https://imgur.com/0Bu8zWI.jpeg">
+  - name: Interests
+    description: There are different areas that customers are interested in, that they enjoy, that they like or prefer. Resource interests can be used to manage all this customer project specific preferences, personal interests, passions or hobbies.
+  - name: Languages
+    description: Some data, especially Customer accounts or Tokens are tied to a Language, which is listed in CRM CareCloud. You can get here the list of languages available.
+  - name: Messages
+  - name: Message templates
+  - name: Orders
+  - name: Partners
+  - name: Points
+    description: If there is a Loyalty program managed by CRM CareCloud based on points collection to a customer account, the points transactions and records like points collection and points redemption can be managed by this resource.
+  - name: Point reservation
+    description: If there is a Loyalty program managed by CRM CareCloud based on points collection to a customer account, the point reservations can be managed by this resource.
+  - name: Point types
+  - name: Products
+    description: Products used in CareCloud.
+  - name: Product brands
+    description: List of product brands.
+  - name: Product groups
+    description: List of product groups.
+  - name: Product properties
+    description: Product properties are list of available properties for products resource.
+  - name: Product reservations
+    description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
+  - name: Product reservation sources
+    description: You can get the list of the available product reservation sources here.
+  - name: Reservable products
+    description: The set of Products that could be reserved can be limited. We call this group Reservable Products. You can get the details of Reservable Products and search within this group by this resource.
+  - name: Purchases
+    description: There are the purchases tied to customer accounts stored in CRM CareCloud. The purchases are saved online when closing the bill or imported by the offline web service after the purchase. There are many parameters that specifies the purchase like bill items and its prices, date and time of the purchase, store, where purchase was made or loyalty card number. All this data are used for segmentation or voucher creation.
+  - name: Purchase item types
+    description: You can get the list of the available purchase item types here.
+  - name: Purchase types
+    description: You can get the list of the available purchase types here.
+  - name: Recommendations
+    description: There is the possibility to recommend the customers a product, a service or just an information in CRM CareCloud based on customer purchasing behavior and many other criteria. All recommendations can be viewed by this resource.
+  - name: Recommendation engine
+    description: The recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behaviour. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app etc.
+  - name: Rewards
+    description: Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features is a pattern for creation of individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by a set of parameters like Reward validity, prioroty or number of points, that will be spent by application and many other. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.
+  - name: Reward properties
+    description: Reward properties are list of available properties for rewards resource.
+  - name: Segments
+    description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
+  - name: Skipasses
+  - name: Statuses
+    description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.
+  - name: Stores
+    description: You can manage the network of stores (company branches) via this resource. Many properties as address, GPS coordinates, opening hours or contact details can be synchronized with any other system.
+  - name: Store groups
+    description: List of store groups.
+  - name: Store properties
+    description: Store properties are list of available properties for store resource.
+  - name: Tokens
+    description: >
+      Management of token resources. Tokens are used for identification of the application installation on a device and for setup of basic application parameters (permissions, language, notification identification).
+      <p class="warning">⚠️ Warning: Tokens resource is available only in Customer interface.</p>
+      <p class="warning">Note: The process of authentication and login to customer account using the HTTP methods  /tokens and  /tokens/{token_id}/actions/login is desribed in the section <a href="#section/Use-cases/Authentication-and-login-process-for-customer-interface">Use cases</a>.</p>
+  - name: Users
+    description: '<p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>'
+  - name: User roles
+    description: '<p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>'
+  - name: Vouchers
+    description: Vouchers are generated by the Rewards for a specific Customer account and they are applied during the purchasing process. They are defined by its value, validity and related Reward. Vouchers can be managed by this resource.
+  - name: Wallet
+x-tagGroups:
+  - name: Agreements
+    tags:
+      - Agreements
+  - name: Campaigns
+    tags:
+      - Campaigns
+      - Campaign products
+  - name: Cards
+    tags:
+      - Cards
+      - Card types
+  - name: Countries
+    tags:
+      - Countries
+  - name: Currencies
+    tags:
+      - Currencies
+  - name: Customers
+    tags:
+      - Customers
+      - Customers actions
+      - Customer types
+      - Customer external applications
+      - Customer properties
+      - Customer relation types
+      - Customer sources
+      - Customer source records
+  - name: Events
+    tags:
+      - Events
+      - Event groups
+      - Event properties
+      - Event types
+  - name: Interests
+    tags:
+      - Interests
+  - name: Languages
+    tags:
+      - Languages
+  - name: Messages
+    tags:
+      - Messages
+      - Message templates
+  - name: Orders
+    tags:
+      - Orders
+  - name: Partners
+    tags:
+      - Partners
+  - name: Points
+    tags:
+      - Points
+      - Point reservation
+      - Point types
+  - name: Products
+    tags:
+      - Products
+      - Product brands
+      - Product groups
+      - Product properties
+      - Product reservations
+      - Product reservation sources
+      - Reservable products
+
+  - name: Purchases
+    tags:
+      - Purchases
+      - Purchase item types
+      - Purchase types
+  - name: Recommendations
+    tags:
+      - Recommendations
+      - Recommendation engine
+  - name: Rewards
+    tags:
+      - Rewards
+      - Reward properties
+  - name: Segments
+    tags:
+      - Segments
+  - name: Skipasses
+    tags:
+      - Skipasses
+  - name: Statuses
+    tags:
+      - Statuses
+  - name: Stores
+    tags:
+      - Stores
+      - Store groups
+      - Store properties
+  - name: Tokens
+    tags:
+      - Tokens
+  - name: Users
+    tags:
+      - Users
+      - User roles
+  - name: Vouchers
+    tags:
+      - Vouchers
+  - name: Wallet
+    tags:
+      - Wallet
+servers:
+  - url: https://<projectURL>/enterprise-interface/v1.0
+    description: The **Enterprise API**. More in [Domain structure](#section/Getting-started/Domain-structure)
+  - url: https://<projectURL>/customer-interface/v1.0
+    description: The **Customer API**. More in [Domain structure](#section/Getting-started/Domain-structure)
+#  - url: https://<projectURL>/{API type}/v1.0
+#    variables:
+#      API type:
+#        enum:
+#          - customer-interface
+#          - enterprise-interface
+#        default: customer-interface
+paths:
+  $ref: "./paths/_index.yaml"
+security:
+  - bearerAuth: []
+  - basicAuth: []
+components:
+  responses:
+    $ref: "./responses/_index.yaml"
+  schemas:
+    $ref: "./schemas/_index.yaml"
+  parameters:
+    $ref: "./parameters/_index.yaml"
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description:
+        $ref: "./bearerAuth.md"
+    basicAuth:
+      type: http
+      scheme: basic
+      description:
+        $ref: "./basicAuth.md"

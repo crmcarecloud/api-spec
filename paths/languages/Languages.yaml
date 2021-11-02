@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Languages
+  summary: Get all languages
+  description: Get a list of all languages accepted in CRM CareCloud
+  operationId: getLanguages
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  languages:
+                    type: array
+                    description: List of the language codes by ISO 639-1
+                    items:
+                      $ref: '../../schemas/_index.yaml#/Language'
+                  total_items:
+                    type: integer
+                    description: Count of all found languages
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

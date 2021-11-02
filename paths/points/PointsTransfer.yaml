@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Points
+  summary: Transfer points
+  description: |
+    Transfers points from one customer to another
+
+    <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
+  operationId: postPointsTransfer
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            original_customer_id:
+              type: string
+              description: Id of the original points holder.
+              example: '86ae806b9ae10r9c233bf2a5f5'
+            new_customer_id:
+              type: string
+              description: Id of the new points holder.
+              example: '83aa5f5ba88er59c8b9a4e6ba3'
+            amount:
+              type: number
+              format: float
+              description: The number of transfered points.
+              example: '50'
+            point_type_id:
+              type: string
+              readOnly: false
+              description: Type of the transfered points.
+              example: '8acbd017407b60e201rf931e94'
+          required:
+            - original_customer_id
+            - new_customer_id
+            - amount
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

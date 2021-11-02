@@ -1,0 +1,57 @@
+post:
+  tags:
+    - Rewards
+  summary: Create a new voucher
+  description: Create a new voucher for a specific customer based on a reward features definition
+  operationId: postRewardCreateVoucher
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/reward_id_path'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique id of the customer.
+              example: 81ceb8582e2d8dbb7e71b7273b
+            code:
+              type: string
+              description: Code of the voucher
+              example: "w7TU7KfeE"
+          required:
+            - customer_id
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  voucher_id:
+                    type: string
+                    description: The unique id of the voucher
+                    example: 8bb7345976bbc9ed20e5083dd6
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Point reservation
+  summary: Create point reservation
+  description: New point reservation is created.
+  operationId: postPointReservationCreate
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+           #$ref: '../../schemas/_index.yaml#/PointReservation'
+          properties:
+            external_id:
+              type: string
+              readOnly: false
+              description: The external unique id of the product brand
+              example: '123459'
+            customer_id:
+              type: string
+              readOnly: false
+              description: The unique id for the customer.
+              example: 81ceb8582e28dbb7e71b7273b
+            amount:
+              type: number
+              format: float
+              readOnly: false
+              description: The number of reserved points
+              example: 11
+            expiration_time:
+              type: string
+              readOnly: false
+              description: Date and time of the point reservation expiration *(YYYY-MM-DD HH:MM:SS)*
+              example: "2019-10-31 00:00:00"
+          required:
+            - customer_id
+            - external_id
+            - amount
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

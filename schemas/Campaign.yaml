@@ -1,0 +1,41 @@
+type: object
+description: Campaign resource
+properties:
+  idcampaign:
+    type: string
+    readOnly: true
+    description: The unique id of the campaign
+    example: 8edebb6b9d299c59804b2aa812
+  external_id:
+    type: string
+    readOnly: false
+    description: The external id of the campaign
+    example: 288684441
+  parent_id:
+    type: string
+    readOnly: false
+    description: Id of the parent campaign
+    example: 8fd17bf437555cf56a6ecf05fc
+  name:
+    type: string
+    readOnly: false
+    description: Name of the campaign
+    example: REST campaign
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-10-24 19:09:30"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the campaign
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - name

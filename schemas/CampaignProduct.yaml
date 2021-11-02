@@ -1,0 +1,87 @@
+type: object
+description: Campaign product structure
+properties:
+  campaign_product_id:
+    type: string
+    readOnly: true
+    description: The unique id for the campaign product
+    example: 8bed991c68a470e7aaeff
+  product_id:
+    type: string
+    readOnly: false
+    description: The unique id for the product
+    example: 80bfce6e94829c8df40
+  currency_id:
+    type: string
+    readOnly: false
+    description: The unique id for the currency
+    example: 86e05affc7a7abefc
+  campaign_id:
+    type: string
+    readOnly: false
+    description: The unique id for the campaign
+    example: 8bed991c68a470e7aaeffbf048
+  value:
+    type: number
+    format: float
+    readOnly: false
+    description: Value of the product
+    example: 100
+  value_type_id:
+    type: integer
+    enum:
+      - 1
+      - 2
+    readOnly: false
+    description: Type of value (1 - percentage discount value, 2 - final price)
+    example: 2
+  valid_from:
+    type: string
+    readOnly: false
+    description: Valid from *(YYYY-MM-DD HH:MM:SS)*
+    example: "2018-11-19 00:00:00"
+  valid_to:
+    type: string
+    readOnly: false
+    description: Valid to *(YYYY-MM-DD HH:MM:SS)*
+    example: "2020-01-05 23:59:59"
+  display_in:
+    type: array
+    items:
+      type: string
+    readOnly: false
+    description: List of possible display places
+    example: [ "cash_desk", "web" ]
+  type_id:
+    type: string
+    readOnly: false
+    description: Type of a campaign product
+    example: 81eaeea13b8984a169c490a325
+  presentation_data:
+    type: object
+    $ref: '../schemas/_index.yaml#/CampaignPresentationData'
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: 2013-08-19 16:28:03.978165
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: true
+    description: |
+      State of the card
+      *Possible values are: 0 - blocked / 1 - active*
+    example: 1
+required:
+  - product_id
+  - currency_id
+  - campaign_id
+  - value
+  - value_type_id
+  - valid_from
+  - valid_to
+  - type_id
+  - presentation_data

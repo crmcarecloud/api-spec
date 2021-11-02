@@ -1,0 +1,63 @@
+post:
+  tags:
+    - Customers actions
+  summary: Verify auth token
+  description: |
+    Method verifies authentication token created by a specified application. There is the unique id of the customer as a response.
+
+    <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
+  operationId: postCustomersVerifyAuthToken
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            application_id:
+              type: string
+              description: 'Id of the application. Application is the source of the token'
+              example: self_order_kiosk
+            token:
+              type: string
+              description: 'Authentication token'
+              example: a78e11e774f7f
+            token_request_id:
+              type: string
+              description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
+              example: e11e7a7f7f610ea8e11e774
+          required:
+            - application_id
+            - token
+            - token_request_id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  customer_id:
+                    type: string
+                    description: The unique id of the customer
+                    example: 8ea6abece4cd0a4ded0a29f093
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

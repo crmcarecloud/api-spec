@@ -1,0 +1,25 @@
+type: object
+description: Segment structure
+properties:
+  segment_id:
+    type: string
+    readOnly: true
+    description: The unique id of the segment
+    example: 8dc1e66b44796af5cd377910e1
+  name:
+    type: string
+    readOnly: false
+    description: Name of the segment
+    example: readers
+  note:
+    type: string
+    readOnly: false
+    description: Short description of the segment
+    example: "Customers that like to read more than 1 book a month"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2019-08-29 13:04:45'
+required:
+  - name

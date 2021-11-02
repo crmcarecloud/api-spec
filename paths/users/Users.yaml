@@ -1,0 +1,53 @@
+get:
+  tags:
+    - Users
+  summary: Get all users
+  description: Get a list of all users in CareCloud
+  operationId: getUsers
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/email'
+    - $ref: '../../parameters/_index.yaml#/phone'
+    - $ref: '../../parameters/_index.yaml#/login'
+    - $ref: '../../parameters/_index.yaml#/first_name'
+    - $ref: '../../parameters/_index.yaml#/last_name'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    description: Array of users
+                    items:
+                      $ref: '../../schemas/_index.yaml#/User'
+                  total_items:
+                    type: integer
+                    description: Count of all found users
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

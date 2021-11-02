@@ -1,0 +1,62 @@
+get:
+  tags:
+    - Rewards
+  summary: Get all rewards
+  description: |
+    Get information about rewards as a list of all rewards
+
+    <p class="warning">⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.</p>
+
+  operationId: getRewards
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/reward_store_id'
+    - $ref: '../../parameters/_index.yaml#/is_valid'
+    - $ref: '../../parameters/_index.yaml#/valid_from'
+    - $ref: '../../parameters/_index.yaml#/valid_to'
+    - $ref: '../../parameters/_index.yaml#/reward_code'
+    - $ref: '../../parameters/_index.yaml#/is_automated'
+    - $ref: '../../parameters/_index.yaml#/reward_group'
+    - $ref: '../../parameters/_index.yaml#/customer_type_id_arr'
+    - $ref: '../../parameters/_index.yaml#/without_stores'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  rewards:
+                    type: array
+                    description: List of all rewards
+                    items:
+                      $ref: '../../schemas/_index.yaml#/Reward'
+                  total_items:
+                    type: integer
+                    description: Count of all found rewards
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

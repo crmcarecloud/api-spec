@@ -1,0 +1,21 @@
+type: object
+description: Message detail resource
+properties:
+  plain_text_body:
+    type: string
+    readOnly: true
+    description: Plain text body of the message
+    example: "Text orci lorem, maximus ac tortor at, feugiat libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nDonec quam augue, gravida vitae imperdiet a, fermentum et est. Sed sit amet sem pharetra, porta ipsum vel, hendrerit diam. \nNunc orci lorem, maximus ac tortor at, feugiat vestibulum libero. Sed vestibulum leo at odio varius, ut hendrerit ante viverra.\nNunc orci lorem, maximus ac tortor at, feugiat vestibulum libero. Sed vestibulum leo at odio varius, ut hendrerit ante viverra.\nLorem ipsum dolor sit amet libero."
+  html_body:
+    type: string
+    readOnly: true
+    description: HTML body of the message
+    example: ""
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-05 14:00:41"
+required:
+  - plain_text_body
+  - html_body

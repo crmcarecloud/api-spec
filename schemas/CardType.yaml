@@ -1,0 +1,21 @@
+type: object
+description: CardType resource
+properties:
+  card_type_id:
+    type: string
+    readOnly: true
+    description: The unique id for the card type.
+    example: "8fd17bf437555cf56a6ecf05fc"
+  name:
+    type: string
+    readOnly: false
+    description: Name of the card type
+    example: "REST API card type"
+  prefix:
+    type: string
+    readOnly: false
+    description: Prefix of the specific card type cards
+    example: "12"
+required:
+  - name
+  - prefix

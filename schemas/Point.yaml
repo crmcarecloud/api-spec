@@ -1,0 +1,55 @@
+type: object
+description: Customer point
+properties:
+  point_id:
+    type: string
+    readOnly: true
+    description: The unique id for the point record
+    example: 84cae7e5cbba16e31b0fc5ef1c
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the customer.
+    example: 81ceb8582e28dbb7e71b7273b
+  assigned_points:
+    type: number
+    format: float
+    readOnly: true
+    description: The number of earned points
+    example: 1208
+  available_points:
+    type: number
+    format: float
+    readOnly: true
+    description: The number of points available actually taking into account the eventual points redemption
+    example: 700
+  point_type_id:
+    type: string
+    readOnly: false
+    description: Type of the point record
+    example: 86e05affc7a7abefcd513ab400
+  partner_id:
+    type: string
+    readOnly: false
+    description: The unique id for the partner company
+    example: 86e05affc7a7abefcd513ab400
+  valid_to:
+    type: string
+    readOnly: false
+    description: Date and time of the point record validity to *(YYYY-MM-DD HH:MM:SS)*
+    example:
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the point record
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - customer_id
+  - point_type_id
+  - partner_id

@@ -1,0 +1,42 @@
+get:
+  tags:
+    - Customers actions
+  summary: Search customers
+  description: |
+    Search all customers matching for parameters
+
+    <p class="warning">⚠️ Action method for search customers is available only in Enterprise interface.</p>
+  operationId: getCustomerSearch
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/first_name'
+    - $ref: '../../parameters/_index.yaml#/last_name'
+    - $ref: '../../parameters/_index.yaml#/birthdate'
+    - $ref: '../../parameters/_index.yaml#/card_number'
+    - $ref: '../../parameters/_index.yaml#/searchMode'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/CustomerSearchResult'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

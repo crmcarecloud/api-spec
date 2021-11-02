@@ -1,0 +1,201 @@
+AcceptedPayment:
+  $ref: "./AcceptedPayment.yaml"
+Address:
+  $ref: "./Address.yaml"
+Agreement:
+  $ref: "./Agreement.yaml"
+AgreementList:
+  $ref: "./AgreementList.yaml"
+Bill:
+  $ref: "./Bill.yaml"
+BillItem:
+  $ref: "./BillItem.yaml"
+Campaign:
+  $ref: "./Campaign.yaml"
+CampaignProduct:
+  $ref: "./CampaignProduct.yaml"
+CampaignPresentationData:
+  $ref: "./CampaignPresentationData.yaml"
+CampaignProductStoreRecord:
+  $ref: "./CampaignProductStoreRecord.yaml"
+Card:
+  $ref: "./Card.yaml"
+CardType:
+  $ref: "./CardType.yaml"
+CashierMessage:
+  $ref: "./CashierMessage.yaml"
+Currency:
+  $ref: "./Currency.yaml"
+CustomAgreements:
+  $ref: "./CustomAgreements.yaml"
+Customer:
+  $ref: "./Customer.yaml"
+CustomerResult:
+  $ref: "./CustomerResult.yaml"
+CustomerRelationType:
+  $ref: "./CustomerRelationType.yaml"
+CustomerSearchResult:
+  $ref: "./CustomerSearchResult.yaml"
+CustomerSource:
+  $ref: "./CustomerSource.yaml"
+CustomerSourceRecord:
+  $ref: "./CustomerSourceRecord.yaml"
+Customer-type:
+  $ref: "./CustomerType.yaml"
+Device:
+  $ref: "./Device.yaml"
+DiscountItem:
+  $ref: "./DiscountItem.yaml"
+Event:
+  $ref: "./Event.yaml"
+EventGroup:
+  $ref: "./EventGroup.yaml"
+EventType:
+  $ref: "./EventType.yaml"
+ExternalApplication:
+  $ref: "./ExternalApplication.yaml"
+ExternalCode:
+  $ref: "./ExternalCode.yaml"
+FinalBill:
+  $ref: "./FinalBill.yaml"
+Flag:
+  $ref: "./Flag.yaml"
+GPSCoordinates:
+  $ref: "./GPSCoordinates.yaml"
+Interest:
+  $ref: "./Interest.yaml"
+InterestRecord:
+  $ref: "./InterestRecord.yaml"
+Language:
+  $ref: "./Language.yaml"
+Message:
+  $ref: "./Message.yaml"
+MessageDetail:
+  $ref: "./MessageDetail.yaml"
+MessageTemplate:
+  $ref: "./MessageTemplate.yaml"
+OpeningDay:
+  $ref: "./OpeningDay.yaml"
+Order:
+  $ref: "./Order.yaml"
+OrderInvoicing:
+  $ref: "./OrderInvoicing.yaml"
+OrderItem:
+  $ref: "./OrderItem.yaml"
+OrderShipping:
+  $ref: "./OrderShipping.yaml"
+Parameter:
+  $ref: "./Parameter.yaml"
+Partner:
+  $ref: "./Partner.yaml"
+PaymentRecap:
+  $ref: "./PaymentRecap.yaml"
+PaymentVoucher:
+  $ref: "./PaymentVoucher.yaml"
+PersonalInformation:
+  $ref: "./PersonalInformation.yaml"
+PluId:
+  $ref: "./PluId.yaml"
+Point:
+  $ref: "./Point.yaml"
+PointReservation:
+  $ref: "./PointReservation.yaml"
+PointType:
+  $ref: "./PointType.yaml"
+Product:
+  $ref: "./Product.yaml"
+ProductBrand:
+  $ref: "./ProductBrand.yaml"
+ProductGroup:
+  $ref: "./ProductGroup.yaml"
+ProductReservation:
+  $ref: "./ProductReservation.yaml"
+ProductReservationItem:
+  $ref: "./ProductReservationItem.yaml"
+ProductReservationSource:
+  $ref: "./ProductReservationSource.yaml"
+Property:
+  $ref: "./Property.yaml"
+PropertyItem:
+  $ref: "./PropertyItem.yaml"
+PropertyRecord:
+  $ref: "./PropertyRecord.yaml"
+Purchase:
+  $ref: "./Purchase.yaml"
+Purchase-item-type:
+  $ref: "./Purchase-item-type.yaml"
+Purchase-type:
+  $ref: "./Purchase-type.yaml"
+PurchaseConditions:
+  $ref: "./PurchaseConditions.yaml"
+PurchaseItem:
+  $ref: "./PurchaseItem.yaml"
+QualificationTurnover:
+  $ref: "./QualificationTurnover.yaml"
+Recommendation:
+  $ref: "./Recommendation.yaml"
+RecommendedReward:
+  $ref: "./RecommendedReward.yaml"
+Reward:
+  $ref: "./Reward.yaml"
+RewardProperties:
+  $ref: "./RewardProperties.yaml"
+SearchResult:
+  $ref: "./SearchResult.yaml"
+Segment:
+  $ref: "./Segment.yaml"
+SegmentRecord:
+  $ref: "./SegmentRecord.yaml"
+Setup:
+  $ref: "./Setup.yaml"
+Skipass:
+  $ref: "./Skipass.yaml"
+SocialNetworkCredentials:
+  $ref: "./SocialNetworkCredentials.yaml"
+Status:
+  $ref: "./Status.yaml"
+StatusRecord:
+  $ref: "./StatusRecord.yaml"
+Store:
+  $ref: "./Store.yaml"
+StoreGroup:
+  $ref: "./StoreGroup.yaml"
+StoreGroupRecord:
+  $ref: "./StoreGroupRecord.yaml"
+TimeInterval:
+  $ref: "./TimeInterval.yaml"
+User:
+  $ref: "./User.yaml"
+UserRole:
+  $ref: "./UserRole.yaml"
+UTM:
+  $ref: "./UTM.yaml"
+Voucher:
+  $ref: "./Voucher.yaml"
+
+BasicError:
+  type: object
+  required:
+    - type
+    - exception
+    - title
+    - detail
+  properties:
+    type:
+      type: string
+      example: "about:blank"
+    exception:
+      type: string
+      readOnly: false
+      description: Content of the exception
+      example: "error_exception"
+    title:
+      type: string
+      readOnly: false
+      description: The title of the error
+      example: "Error title"
+    detail:
+      type: string
+      readOnly: false
+      description: The details of the error message
+      example:

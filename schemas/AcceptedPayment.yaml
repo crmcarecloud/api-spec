@@ -1,0 +1,57 @@
+type: object
+description: The structure contains values for applied rewards, vouchers, discounts, and other benefits
+properties:
+  recommended_discounts:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/DiscountItem'
+    readOnly: true
+    description: The list of offered discounts excludes rewards (Loyalty Status Discount)
+  credit_points:
+    type: number
+    format: float
+    readOnly: true
+    description: Amount of used points
+    example: 0
+  price_of_credit_points:
+    type: number
+    format: float
+    readOnly: true
+    description: Amount of money corresponding to the number of used points
+    example: 0
+  credit:
+    type: number
+    format: float
+    readOnly: true
+    description: Amount of used credits
+    example: 0
+  benefit_codes:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PaymentVoucher'
+    readOnly: true
+    description: List of applied vouchers on the current bill (includes the value of discount) independent of DiscountItem
+  credit_points_of_this_transaction:
+    type: number
+    format: float
+    readOnly: true
+    description: Sum of points gained from this transaction
+    example: 0
+  total_credit_points:
+    type: number
+    format: float
+    readOnly: true
+    description: Amount of the points on the customer account (after the recent purchase is closed)
+    example: 0
+  total_credit:
+    type: number
+    format: float
+    readOnly: true
+    description: Amount of the credits on the customer account (after the recent purchase is closed)
+    example: 960
+  messages:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/CashierMessage'
+    readOnly: true
+    description: A recommendation messages for the cashier in his language localization

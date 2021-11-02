@@ -1,0 +1,45 @@
+post:
+  tags:
+    - Users
+  summary: User logout
+  description: User logout from external application
+  operationId: postUserLogout
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            user_external_application_id:
+              type: string
+              description: Id of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications)
+              example: 89d1a6111b3fb6e74665d948
+            bearer_token:
+              type: string
+              description: Autentication bearer token for an user.
+              example: 09359095c5da43c7ae11e710eabce49418715a6a
+          required:
+            - user_external_application_id
+            - bearer_token
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

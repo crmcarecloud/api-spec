@@ -1,0 +1,30 @@
+type: object
+description: Customer source
+properties:
+  customer_source_record_id:
+    type: string
+    description: The unique id of the customer source record.
+    readOnly: true
+    example: 8fdce3475560d56e95a6ab035r
+  customer_source_id:
+    type: string
+    description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+    readOnly: false
+    example: 8fdce3475560d56e95a6ab035r
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer
+    example: 8ea6abece4cd0a4ded0a29f093
+  external_id:
+    type: string
+    description: The unique external id of the customer. It may be id from the other system
+    readOnly: false
+    example:
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    example: '2019-06-23 11:47:22'
+required:
+  - customer_source_id

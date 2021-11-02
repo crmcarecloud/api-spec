@@ -1,0 +1,135 @@
+type: object
+description: Reward structure
+properties:
+  reward_id:
+    type: string
+    readOnly: true
+    description: The unique id of the reward
+    example: 83cfee22eabfbbb15a14815e30
+  code:
+    type: string
+    readOnly: false
+    description: Code of the reward
+    example:
+  name:
+    type: string
+    readOnly: false
+    description: Name of the reward
+    example: Dessert+Caffe
+  note:
+    type: string
+    readOnly: false
+    description: Additional text
+    example: ""
+  subtitle:
+    type: string
+    readOnly: false
+    description: Text of subtitle
+    example:
+  points_cost:
+    type: number
+    format: float
+    readOnly: false
+    description: Number of points, that will be spent by the voucher redemption
+    example: 200
+  valid_time_from:
+    type: string
+    readOnly: false
+    description: Time the reward is valid from *(HH:MM:SS)*
+    example:
+  valid_time_to:
+    type: string
+    readOnly: false
+    description: Time the reward is valid to *(HH:MM:SS)*
+    example:
+  reward_group:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: false
+    description: |
+      The unique id of the reward group
+      *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher*
+    example: 0
+  store_list:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Store'
+    readOnly: false
+    description: List of the stores where the reward can be redeemed
+  additional_properties:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
+    readOnly: false
+    description: Additional properties
+  priority:
+    type: integer
+    enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+    readOnly: false
+    description: Priority of the reward *1 is the highest priority*
+    example:
+  image_urls:
+    type: array
+    items:
+      type: string
+      example:
+    readOnly: true
+    description: List of reward image URL addresses
+  reward_external_url:
+    type: string
+    readOnly: true
+    description: External URL addresses
+    example:
+  has_product_condition:
+    type: boolean
+    readOnly: true
+    description: Parameter says, if there is product condition on reward
+    example: false
+  has_group_condition:
+    type: boolean
+    readOnly: true
+    description: Parameter says, if there is group condition on reward
+    example: true
+  has_brand_condition:
+    type: boolean
+    readOnly: true
+    description: Parameter says, if there is brand condition on reward
+    example: false
+  is_automated:
+    type: boolean
+    readOnly: false
+    description: Parameter says, if reward is automated or not. If reward is automated, means it's applied by rules of the reward. Otherwise have to be applied manually
+    example: false
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2013-07-24 21:33:33'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the reward
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - code
+  - name
+  - reward_group
+  - store_list

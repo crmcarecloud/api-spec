@@ -1,0 +1,1 @@
+docker run --rm -v $(dirname $(dirname $(readlink -f "$0"))):/data jeanberu/swagger-cli swagger-cli bundle /data/api.yaml --outfile /data/_build/openapi.yaml --type yaml

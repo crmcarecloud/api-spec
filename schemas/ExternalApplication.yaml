@@ -1,0 +1,32 @@
+type: object
+description: External application structure
+properties:
+  external_application_id:
+    type: string
+    readOnly: false
+    description: The unique id of the client external application
+    example: 89d1a6111b3fb6e74665d948
+  name:
+    type: string
+    readOnly: false
+    description: The name of the external application
+    example: mobile app
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2020-07-01 14:04:25'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the external application
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - external_application_id
+  - name

@@ -1,0 +1,87 @@
+type: object
+description: Message resource
+properties:
+  message_id:
+    type: string
+    readOnly: true
+    description: The unique id of the message
+    example: 89ce2a1b9b01f5c939fb1e20cd
+  status:
+    type: string
+    enum:
+      - 0
+      - 1
+      - -1
+      - 2
+      - 4
+    readOnly: true
+    description: |
+      The status id of the message.
+      *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
+    example: 1
+  message_template_id:
+    type: string
+    readOnly: false
+    description: The unique id of the message_template
+    example: 8cbb5886e1d68e07a6e0e393a0
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the card holder.
+    example: 81ceb8582e2d8dbb7e71b7273b
+  contact:
+    type: string
+    readOnly: false
+    description: Email address or phone number of customer in case of send message to different contact than customer has in database
+    example: "happy_customer@crmcarecloud.com"
+  title:
+    type: string
+    readOnly: true
+    description: Subject of the email message/ Title of notification message / Preview of the text message . Mandatory only in case of email template
+    example: "Newsletter no. 30"
+  send_time:
+    type: string
+    readOnly: true
+    description: Date and time when message was send from server to recipient *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-05 11:24:12"
+  opened_time:
+    type: string
+    readOnly: true
+    description: Date and time when message was opened by recipient *(YYYY-MM-DD HH:MM:SS)*
+    example:
+  mail_client_user_agent:
+    type: string
+    readOnly: true
+    description: User agent of the mail client application where message was opened
+    example:
+  mail_client_language:
+    type: string
+    readOnly: true
+    description: Language of the mail client application where message was opened
+    example:
+  communication_channel_id:
+    type: string
+    enum:
+      - 1
+      - 2
+      - 4
+      - 5
+    readOnly: false
+    description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+    example: 1
+  message_data:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Parameter'
+    readOnly: false
+    description: Message data could contains array of customized paramteres. They may have influence on message display or add values to message
+    #example: []
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-05 11:24:12"
+required:
+  - message_template_id
+  - customer_id
+  - communication_channel_id

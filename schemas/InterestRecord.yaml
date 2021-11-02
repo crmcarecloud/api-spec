@@ -1,0 +1,26 @@
+type: object
+description: Customer interest record
+properties:
+  interest_record_id:
+    type: string
+    readOnly: true
+    description: The unique id for the interest record
+    example: 87d934c86a6303f5fb4d1214fb
+  interest_id:
+    type: string
+    readOnly: false
+    description: The unique id of the interest
+    example: 81eaeea13b8984a169c490a325
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id of the customer
+    example: 89ac83ca207a820c62c79bf03a
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2020-08-06 10:31:09'
+required:
+  - interest_id
+  - customer_id

@@ -1,0 +1,105 @@
+BadRequest:
+  description: Bad input parameter. Error message specifies the detail
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            allOf:
+              - $ref: '../schemas/_index.yaml#/BasicError'
+              - type: object
+                properties:
+                  error_data:
+                    type: object
+                    description: Data in case of an exception
+                    properties:
+                      invalid_params:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: "event_id_event_type_id_customer_id_external_id_secondary_external_id"
+                            reason:
+                              type: string
+                              example: "relation_already_exists"
+                            value:
+                              type: string
+                              example: ""
+                            message:
+                              type: string
+                              example: "Relation for this combination of event type, customer id and external ids already exists"
+Unauthorized:
+  description: The client has invalid credentials or auth token
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            allOf:
+              - $ref: '../schemas/_index.yaml#/BasicError'
+              - type: object
+                properties:
+                  error_data:
+                    type: object
+                    description: Data in case of an exception
+                    example:
+Forbidden:
+  description: The client does not exist or the client tried to access non authorized property/resource
+NotFound:
+  description: The resource was not found
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            allOf:
+              - $ref: '../schemas/_index.yaml#/BasicError'
+              - type: object
+                properties:
+                  error_data:
+                    type: object
+                    description: Data in case of an exception
+                    properties:
+                      resource_name:
+                        type: string
+                        example: "events"
+                      resource_id:
+                        type: string
+                        example: "84b5e55448fbd6c0b22b4d"
+NotAllowed:
+  description: The resource does not support the specified HTTP method
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            allOf:
+              - $ref: '../schemas/_index.yaml#/BasicError'
+              - type: object
+                properties:
+                  error_data:
+                    type: object
+                    description: Data in case of an exception
+                    properties:
+                      http_method:
+                        type: string
+                        example: "DELETE"
+TooManyRequests:
+  description: Too many requests - more than the resource limit
+InternalServerError:
+  description: Server is not working as expected
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            $ref: '../schemas/_index.yaml#/BasicError'
+ServiceUnavailable:
+  description: Temporary state when the service is temporarily unavailable, overloaded or there is a maintenance window

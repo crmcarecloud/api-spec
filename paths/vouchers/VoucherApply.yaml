@@ -1,0 +1,45 @@
+post:
+  tags:
+    - Vouchers
+  summary: Application of a voucher
+  description: Sets a voucher as applied
+  operationId: postVoucherApply
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/voucher_id_path'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            store_id:
+              type: string
+              description: The unique id of the store where voucher was applied
+              example: 86e05affc7a7abefcd513ab400
+            date_applied:
+              type: string
+              description: Date (ISO 8601) of voucher application *(YYYY-MM-DD HH:MM:SS)*
+              example: '2020-12-10 10:00:00'
+          required:
+            - date_applied
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

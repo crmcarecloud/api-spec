@@ -1,0 +1,19 @@
+type: object
+description: Properties of the reward
+properties:
+  image:
+    type: string
+    format: byte
+    readOnly: true
+    description: Image of the reward encoded in BASE64
+    example: ""
+  valid_time_from:
+    type: string
+    readOnly: true
+    description: Time the reward is valid from *(HH:MM:SS)*
+    example: "00:00:00"
+  valid_time_to:
+    type: string
+    readOnly: true
+    description: Time the reward is valid to *(HH:MM:SS)*
+    example: "00:00:00"

@@ -1,0 +1,77 @@
+type: object
+description: Bill item structure
+properties:
+  plu_ids:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PluId'
+    readOnly: false
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id for every product across all POS systems))
+  plu_name:
+    type: string
+    readOnly: false
+    description: Product name
+    example: qwer
+  category_plu_id:
+    type: string
+    readOnly: false
+    description: Product category ID from Global product list (consist cleaned data - unique id for every category across all POS systems)
+    example: 8fbea1c1ea8edda5e67f27Q
+  vat_rate:
+    type: number
+    format: float
+    readOnly: false
+    description: VAT rate of the item
+    example: 4
+  quantity:
+    type: number
+    format: float
+    readOnly: false
+    description: Quantity of product
+    example: 2
+  paid_amount:
+    type: number
+    format: float
+    readOnly: false
+    description: Real money value (unit price * quantity) paid by the customer (The value for a pharmaceutical client could have a copayment for drug prescription or money value of drugs not covered by an insurer).
+    example: 6
+  price:
+    type: number
+    format: float
+    readOnly: false
+    description: Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer's health insurance.
+    example: 4
+  bill_item_id:
+    type: string
+    readOnly: false
+    description: ID of the bill item
+    example: 6fd73167342d6899c415320
+  loyalty_off:
+    type: boolean
+    enum:
+      - true
+      - false
+    readOnly: false
+    description: Switch off all loyalty benefits (points, discounts- instant and campaign prices, vouchers) on the item
+    example: true
+  purchase_item_type_id:
+    type: string
+    readOnly: false
+    description: Type of the purchase item from resource [purchase-item-types](#tag/Purchase-item-types)
+    example: 89d3d433c86ec59fe51b18a
+  customer_id:
+    type: string
+    readOnly: false
+    description: The ID of the customer
+    example: 89ac83ca207a820c62c79bf03a
+required:
+  - plu_ids
+  - plu_name
+  - category_plu_id
+  - vat_rate
+  - quantity
+  - paid_amount
+  - price
+  - bill_item_id
+  - loyalty_off
+  - purchase_item_type_id

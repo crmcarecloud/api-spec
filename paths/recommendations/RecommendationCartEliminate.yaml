@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Recommendation engine
+  summary: Get the best recommendation with elimination for shopping cart
+  description: It selects the best products from an initial list for the customer shopping cart. Eliminates all products that don't match future customer preferences (depends on other customers' shopping behavior with the same products). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
+  operationId: getRecommendationCartEliminate
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_required'
+    - $ref: '../../parameters/_index.yaml#/cart_product_ids'
+    - $ref: '../../parameters/_index.yaml#/product_id_list'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  recommended_products_list:
+                    type: array
+                    description: List of the recommended product ids.
+                    items:
+                      type: string
+                    example: [ "80af10a712ce31a8ed0e2f68a0", "8bb7f47a2743d4a7494dfee1c0" ]
+                  total_items:
+                    type: integer
+                    description: Count of all found product ids.
+                    example: 2
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

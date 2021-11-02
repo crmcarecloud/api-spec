@@ -1,0 +1,60 @@
+get:
+  tags:
+    - Skipasses
+  summary: Get all skipasses
+  description: Get a list of skipasses in CRM CareCloud
+  operationId: getSkipasses
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/pos_id'
+    - $ref: '../../parameters/_index.yaml#/external_order_id'
+    - $ref: '../../parameters/_index.yaml#/skipass_name'
+    - $ref: '../../parameters/_index.yaml#/resort_name'
+    - $ref: '../../parameters/_index.yaml#/customer_category_name'
+    - $ref: '../../parameters/_index.yaml#/skipass_card_id'
+    - $ref: '../../parameters/_index.yaml#/customer_id'
+    - $ref: '../../parameters/_index.yaml#/skipass_type_id'
+    - $ref: '../../parameters/_index.yaml#/skipass_state'
+    - $ref: '../../parameters/_index.yaml#/external_skipass_id'
+    - $ref: '../../parameters/_index.yaml#/is_valid'
+    - $ref: '../../parameters/_index.yaml#/is_cancelled'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  skipasses:
+                    type: array
+                    description: List of available skipasses
+                    items:
+                      $ref: '../../schemas/_index.yaml#/Skipass'
+                  total_items:
+                    type: integer
+                    description: Count of all found skipasses
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

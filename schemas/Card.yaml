@@ -1,0 +1,57 @@
+type: object
+description: Card resource
+properties:
+  card_id:
+    type: string
+    readOnly: true
+    description: The unique id for the card
+    example: 81a94c48474bc45c03d41f7016
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the card holder.
+    example: 81ceb8582e2d8dbb7e71b7273b
+  card_type_id:
+    type: string
+    readOnly: false
+    description: The unique id for the card type.
+    example: 8bed991c68a470e7aaeffbf048
+  card_number:
+    type: string
+    readOnly: false
+    description: Card number
+    example: 200120000290
+  valid_from:
+    type: string
+    readOnly: false
+    description: Card validity from *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-07-05"
+  valid_to:
+    type: string
+    readOnly: false
+    description: Card validity to *(YYYY-MM-DD HH:MM:SS)*
+    example: "2059-07-05"
+  store_id:
+    type: string
+    readOnly: false
+    description: The unique id for the store, where the card was assigned to a customer
+    example:
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-07-15 17:26:34"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      State of the card
+      *Possible values are: 0 - blocked / 1 - active*
+    example: 1
+required:
+  - card_type_id
+  - card_number
+  - state

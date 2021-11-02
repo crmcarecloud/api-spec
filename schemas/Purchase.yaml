@@ -1,0 +1,80 @@
+type: object
+description: Purchase
+properties:
+  purchase_id:
+    type: string
+    readOnly: true
+    description: The unique id of the purchase
+    example: 85c763ebcec2fa488f8857bee
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the customer.
+    example: 81ceb8582e28dbb7e71b7273b
+  store_id:
+    type: string
+    readOnly: false
+    description: The unique id of the store in CareCloud
+    example: 8fd7316732d06899c4c015320
+  external_purchase_id:
+    type: string
+    readOnly: false
+    description: The external unique id of the purchase
+    example: 2364
+  payment_time:
+    type: string
+    readOnly: false
+    description: Date and time of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
+    example: '2012-11-22 20:57:04'
+  items_count:
+    type: integer
+    readOnly: false
+    description: Count of the purchase items
+    example: 10
+  purchase_items:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PurchaseItem'
+    readOnly: true
+    description: List of all items of the purchase. Data is returned if query parameter purchase_items_extension has value true in the query string of the request.
+  type_id:
+    type: string
+    readOnly: false
+    description: Purchase type
+    example: 86e05affc7a7abefd513ab400
+  total_price:
+    type: number
+    format: float
+    readOnly: false
+    description: Total price of the purchase
+    example: 60.51
+  currency_id:
+    type: string
+    readOnly: false
+    description: The unique id of the currency
+    example: 86e05affc77abefcd513ab400
+  card_number:
+    type: string
+    readOnly: false
+    description: Purchasing customer card number
+    example: 200190002218
+  cashdesk_number:
+    type: string
+    readOnly: false
+    description: Number of the cashdesk
+    example: 2
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2012-11-22 20:56:05.333756'
+required:
+  - customer_id
+  - store_id
+  - external_purchase_id
+  - payment_time
+  - items_count
+  - type_id
+  - total_price
+  - currency_id
+  - cashdesk_number

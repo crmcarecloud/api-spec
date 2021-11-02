@@ -1,0 +1,58 @@
+type: object
+description: Event resource
+properties:
+  event_id:
+    type: string
+    readOnly: true
+    description: The unique id of the event
+    example: 8bed991c68a470e7aaeffbf048
+  event_type_id:
+    type: string
+    readOnly: false
+    description: The unique id of the event type
+    example: 8bed991c68a470e7aaeffbf048
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the card holder.
+    example: 81ceb8582e2d8dbb7e71b7273b
+  external_id:
+    type: string
+    readOnly: false
+    description: The unique external id of the event. It may be id from other system
+    example: 157613
+  data:
+    anyOf:
+      - type: string
+      - type: array
+        items:
+          type: string
+      - type: object
+    readOnly: false
+    description: Additional data of the event. Serialized data in JSON
+    example: '{"test":10,"test2":20}'
+  created_at:
+    type: string
+    readOnly: false
+    description: Date and time of the event *(YYYY-MM-DD HH:MM:SS)*
+    example: "2017-06-20 16:59:49"
+  secondary_external_id:
+    type: string
+    readOnly: false
+    description: Additional external id of the event. It's used in case, when differentiation of external_id needed
+    example:
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the event type
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - event_type_id
+  - customer_id
+  - external_id

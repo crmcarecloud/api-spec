@@ -1,0 +1,68 @@
+post:
+  tags:
+    - Tokens
+  summary: Create a token
+  description: >
+    Create a token and setup of the client's application
+    <p class="warning">Note: When creating a new token, HTTP header doesn't contain token_id in authentication part.</p>
+    <p class="warning">⚠️ Warning: We highly recommend filling all identifications in tokens resource (device and application) to avoid problems if multiple applications use CareCloud REST API on one device.</p>
+    <p class="warning">The creation of a token is different from other API calls. HTTP Authorization header contains only a login name and no token. See [Use cases](#section/Use-cases/Authentication-and-login-process-for-customer-interface).</p>
+  operationId: postToken
+  security:
+    - basicAuth: [ ]
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            device:
+              $ref: '../../schemas/_index.yaml#/Device'
+            setup:
+              $ref: '../../schemas/_index.yaml#/Setup'
+            external_application_id:
+              type: string
+              description: Id of the [customer-external-application resource](#tag/Customer-external-applications)
+              example: 86e05affc7a7abefcd513ab400
+            push_token:
+              type: string
+              description: Push notification token (Apple or Google)
+              example: 4f7f658bfa7a5959e093590
+          required:
+            - device
+            - setup
+            - external_application_id
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  token_id:
+                    type: string
+                    description: Client's application token
+                    example: c5a67da2c3a874f7f658bfa7a5959e09359095c5da43c7a78e11e710eabce49418715a6a
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

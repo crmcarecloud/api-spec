@@ -1,0 +1,16 @@
+type: object
+description: Flag resource
+properties:
+  name:
+    type: string
+    readOnly: false
+    description: Name of the flag
+    example:
+  text_id:
+    type: string
+    readOnly: false
+    description: The unique id for the flag
+    example:
+required:
+  - name
+  - text_id

@@ -1,0 +1,256 @@
+get:
+  tags:
+    - Customers
+  summary: Get information about a customer
+  description: Get information about a specific customer account
+  operationId: getCustomer
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/Customer'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CareCloud\ApiException;
+        use CareCloud\SDK\Config;
+        use CareCloud\SDK\CareCloud;
+
+        require_once '../vendor/autoload.php';
+        require_once 'config.php';
+
+        $config = new Config($projectUri, $login, $password, $externalAppId, $authType);
+        $careCloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'cs'; // string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set path parameter
+        $customer_id     = '87af991126405bf8e7dfb36045'; // string | The unique id for the customer
+
+        // Call endpoint and get data
+        try {
+            $getCustomer = $careCloud->customersApi()->getCustomer($customer_id, $accept_language);
+            $customer    = $getCustomer->getData();
+        } catch (ApiException $e) {
+            die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }
+    - lang: PHP
+      label: CareCloud Client
+      source: |
+        require_once(__DIR__ . '/vendor/autoload.php');
+        // Configure HTTP basic authorization: basicAuth
+        $config = CareCloud\Configuration::getDefaultConfiguration()
+                      ->setUsername('YOUR_USERNAME')
+                      ->setPassword('YOUR_PASSWORD');
+            // Configure HTTP bearer authorization: bearerAuth
+            $config = CareCloud\Configuration::getDefaultConfiguration()
+            ->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+        $apiInstance = new CareCloud\Api\CustomersApi(
+            // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+            // This is optional, `GuzzleHttp\Client` will be used as default.
+            new GuzzleHttp\Client(),
+            $config
+        );
+        $customer_id = "87af991126405bf8e7dfb36045"; // string | The unique id for the customer
+        $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+
+        try {
+            $result = $apiInstance->getCustomer($customer_id, $accept_language);
+            print_r($result);
+        } catch (Exception $e) {
+            echo 'Exception when calling CustomersApi->getCustomer: ', $e->getMessage(), PHP_EOL;
+        }
+
+put:
+  tags:
+    - Customers
+  summary: Update a customer
+  description: Update the information on a specific customer account
+  operationId: putCustomer
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer:
+              $ref: '../../schemas/_index.yaml#/Customer'
+            password:
+              type: string
+              format: password
+              description: 'Password of customer.'
+              example: "fbsdfbkjebf$2,4d4fnb#,ds4@fnm,2dsf6sa"
+            social_network_credentials:
+              $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
+          required:
+            - customer
+            - autologin
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CareCloud\ApiException;
+        use CareCloud\Model\Address;
+        use CareCloud\Model\Agreement;
+        use CareCloud\Model\CustomAgreements;
+        use CareCloud\Model\Customer;
+        use CareCloud\Model\CustomersCustomerIdBody;
+        use CareCloud\Model\PersonalInformation;
+        use CareCloud\Model\SocialNetworkCredentials;
+        use CareCloud\SDK\Config;
+        use CareCloud\SDK\CareCloud;
+
+        require_once '../vendor/autoload.php';
+        require_once 'config.php';
+
+        $config = new Config($projectUri, $login, $password, $externalAppId, $authType);
+        $careCloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'cs'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set path parameter
+        $customer_id     = '87af991126405bf8e7dfb36045'; // string | The unique id for the customer
+
+        // Set address of customer
+        $address = new Address();
+        $address->setAddress1('Old Town Square') // string | Street name of the address
+                ->setAddress2('34') // string | Street number (Land registry number)
+                ->setAddress3('12') // string | House number
+                ->setZip('11000') // string | ZIP code
+                ->setCity('Prague 1') // string | City
+                ->setCountryCode('cz'); // string | ISO code of the country Possible values de / gb / us / it / cz / etc.
+
+        // Set custom agreements of customer
+        $custom_agreement1 = new CustomAgreements();
+        $custom_agreement1->setAgreementId('custom_agreement_id') // string | The unique id of the agreement in CareCloud
+                          ->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
+        $custom_agreement2 = new CustomAgreements();
+        $custom_agreement2->setAgreementId('second_custom_agreement_id') // string | The unique id of the agreement in CareCloud
+                          ->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
+
+        $custom_agreements = [
+          $custom_agreement1,
+          $custom_agreement2
+        ];
+
+        // Set agreement of customer
+        $agreement = new Agreement();
+        $agreement->setAgreementGtc(1) // integer | Consent to General Terms & Conditions Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
+                  ->setAgreementProfiling(1) // integer | Consent to profiling Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
+                  ->setAgreementMarketingCommunication(0) // integer | Consent to marketing communication Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
+                  ->setCustomAgreements($custom_agreements);
+
+        // Set personal information of customer
+        $personal_information = new PersonalInformation();
+        $personal_information->setGender(1) // integer | Gender of the customer Possible values: 1 - male, 2 - female
+                             ->setFirstName('John') // string | First name of the customer
+                             ->setLastName('Smith') // string | Last name of the customer
+                             ->setBirthdate('1985-02-12') // string <date> | Customer's date of birth (YYYY-MM-DD)
+                             ->setEmail('happy_customer@crmcarecloud.com') // string | Email of the customer
+                             ->setPhone('420523828931') // string | Phone number of the customer with international prefix (420000000000)
+                             ->setLanguageId('cs') // string | The unique id for the language by ISO 639 code
+                             ->setStoreId('8bed991c68a4') // string | The unique id for the original customer account store of registration
+                             ->setPhotoUrl(null) // string | URL address of the customer photo. If customer has no photo, this parameter is not send
+                             ->setAddress($address)
+                             ->setAgreement($agreement);
+
+        $customer = new Customer();
+        $customer->setPersonalInformation($personal_information);
+
+        // Set customer Social network credentials
+        $social_network_credentials = new SocialNetworkCredentials();
+        $social_network_credentials->setSocialNetworkId('twitter') // string | The unique id of the social network
+        ->setSocialNetworkToken('38e123j1jedu12d1jnjqwd'); // string | Social network customer's token
+
+        // Set basic information about customer
+        $body = new CustomersCustomerIdBody();
+        $body->setCustomer($customer)
+             ->setPassword('fO7mrC7spZjr') // string | Password of the customer.
+             ->setSocialNetworkCredentials($social_network_credentials);
+
+        // Call endpoint and get data
+        try {
+          $putCustomer = $careCloud->customersApi()->putCustomer( $body, $customer_id, $accept_language );
+        } catch (ApiException $e) {
+          die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }
+    - lang: PHP
+      label: CareCloud Client
+      source: |
+        require_once(__DIR__ . '/vendor/autoload.php');
+        // Configure HTTP basic authorization: basicAuth
+        $config = CareCloud\Configuration::getDefaultConfiguration()
+                      ->setUsername('YOUR_USERNAME')
+                      ->setPassword('YOUR_PASSWORD');
+            // Configure HTTP bearer authorization: bearerAuth
+            $config = CareCloud\Configuration::getDefaultConfiguration()
+            ->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+        $apiInstance = new CareCloud\Api\CustomersApi(
+            // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+            // This is optional, `GuzzleHttp\Client` will be used as default.
+            new GuzzleHttp\Client(),
+            $config
+        );
+        $body = new \CareCloud\Model\CustomersCustomerIdBody(); // \CareCloud\Model\CustomersCustomerIdBody |
+        $customer_id = "customer_id_example"; // string | The unique id for the customer
+        $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+
+        try {
+            $apiInstance->putCustomer($body, $customer_id, $accept_language);
+        } catch (Exception $e) {
+            echo 'Exception when calling CustomersApi->putCustomer: ', $e->getMessage(), PHP_EOL;
+        }

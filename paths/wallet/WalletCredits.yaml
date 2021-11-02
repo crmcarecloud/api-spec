@@ -1,0 +1,53 @@
+get:
+  tags:
+    - Wallet
+  summary: Get credits overview
+  description: Get information about credits overview of the customer in the time interval
+  operationId: getWalletCredits
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_required'
+    - $ref: '../../parameters/_index.yaml#/date_from'
+    - $ref: '../../parameters/_index.yaml#/date_to'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  earned_credits:
+                    type: number
+                    format: float
+                    description: Amount of earned credits in time interval
+                    example: 100
+                  redeemed_credits:
+                    type: number
+                    format: float
+                    description: Amount of redeemed credits in time interval
+                    example: 20.5
+                  available_credits:
+                    type: number
+                    format: float
+                    description: Amount of available credits in the moment. Time interval has no influence to the result
+                    example: 79.5
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

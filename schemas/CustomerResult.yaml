@@ -1,0 +1,13 @@
+type: object
+description: Search results for strict mode
+properties:
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer
+    example: 8ea6abece4cd0a4ded0a29f093
+  match:
+    type: integer
+    readOnly: true
+    description: Percentage of match of the search parameters
+    example: 100

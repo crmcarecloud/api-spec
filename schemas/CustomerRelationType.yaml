@@ -1,0 +1,31 @@
+type: object
+description: Customer relation type structure
+properties:
+  customer_relation_type_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer relation type
+    example: 8bed991c68a470e7aaefff048
+  name:
+    type: string
+    readOnly: false
+    description: Name of the customer relation type
+    example: Family
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2021-03-03 18:07:14"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the customer relation type
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - name

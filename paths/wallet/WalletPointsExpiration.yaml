@@ -1,0 +1,50 @@
+get:
+  tags:
+    - Wallet
+  summary: Get points expiration overview
+  description: Get information about points expiration overview of the customer
+  operationId: getWalletPointsExpiration
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_required'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  next_amount:
+                    type: number
+                    format: float
+                    description: Date (ISO 8601) when first points will expire
+                    example: 77.36
+                  next_date:
+                    type: string
+                    description: Amount of redeemed points in time interval *(YYYY-MM-DD)*
+                    example: '2022-01-01'
+                  current_month_amount:
+                    type: number
+                    format: float
+                    description: Amount of points that will expire in current month
+                    example: 0
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

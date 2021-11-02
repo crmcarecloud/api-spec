@@ -1,0 +1,17 @@
+type: object
+description: Qualification turnover
+properties:
+  currency_id:
+    type: string
+    readOnly: false
+    description: The unique id of the currency
+    example: 86e05affc7a7abefcd513ab400
+  value:
+    type: number
+    format: float
+    readOnly: false
+    description: Value of turnover in the currency
+    example: 1500
+required:
+  - currency_id
+  - value

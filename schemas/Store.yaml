@@ -1,0 +1,112 @@
+type: object
+description: Store structure
+properties:
+  store_id:
+    type: string
+    readOnly: true
+    description: The unique id of the store in CareCloud
+    example: 86e05affc7a7abefcd513ab400
+  store_code:
+    type: string
+    readOnly: false
+    description: External code of the store
+    example: ""
+  name:
+    type: string
+    readOnly: false
+    description: Name of the store
+    example: Great Pub
+  store_address:
+    $ref: '../schemas/_index.yaml#/Address'
+  contact_email:
+    type: string
+    readOnly: false
+    description: Contact email of the store
+    example: ""
+  manager_name:
+    type: string
+    readOnly: false
+    description: Name of the store manager
+    example: ""
+  phone_number:
+    type: string
+    readOnly: false
+    description: Phone number of the store with international prefix (420000000)
+    example: ""
+  partner_id:
+    type: string
+    readOnly: false
+    description: The unique id for the partner
+    example: 86e05affc7a7abefcd513ab400
+  system_id:
+    type: string
+    readOnly: false
+    description: The external unique id of the store in external system
+    example: 2375303497
+  gps_coordinates:
+    $ref: '../schemas/_index.yaml#/GPSCoordinates'
+  url_address:
+    type: string
+    readOnly: false
+    description: URL address of the store
+    example: ""
+  opening:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/OpeningDay'
+    readOnly: false
+    description: List of opening days
+  image_urls:
+    type: array
+    items:
+      type: string
+      example:
+    readOnly: true
+    description: A list of image URL addresses
+  visibility_for_customer:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: true
+    description: |
+      State of the visibility for the customer
+      *Possible values are: 0 - invisible / 1- visible*
+    example: 1
+  short_description:
+    type: string
+    readOnly: false
+    description: Short description of the store
+    example: fdsfdsfds
+  description:
+    type: string
+    readOnly: false
+    description: Long description of the store
+    example:
+  registration_id:
+    type: string
+    readOnly: false
+    description: Legal registration number of the store
+    example: 123
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2018-12-19 16:12:56'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the store
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - store_id
+  - store_code
+  - name
+  - partner_id
+  - system_id

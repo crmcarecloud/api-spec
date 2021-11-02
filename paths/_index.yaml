@@ -1,0 +1,434 @@
+# Agreements
+/agreements:
+  $ref: "./agreements/Agreements.yaml"
+/agreements/{agreement_id}:
+  $ref: "./agreements/Agreement.yaml"
+
+# Campaigns
+/campaigns:
+  $ref: "./campaigns/Campaigns.yaml"
+/campaigns/{campaign_id}:
+  $ref: "./campaigns/Campaign.yaml"
+# Campaign products
+/campaign-products:
+  $ref: "./campaigns/CampaignProducts.yaml"
+/campaign-products/{campaign_product_id}:
+  $ref: "./campaigns/CampaignProduct.yaml"
+# Sub-resources
+/campaign-products/{campaign_product_id}/campaign-product-store-records:
+  $ref: "./campaigns/SubCampaignProductStoreRecords.yaml"
+
+# Cards
+/cards:
+  $ref: "./cards/Cards.yaml"
+/cards/{card_id}:
+  $ref: "./cards/Card.yaml"
+# Actions
+/cards/actions/assign-free-card:
+  $ref: "./cards/CardAssign.yaml"
+/cards/actions/generate-digital-card-file:
+  $ref: "./cards/CardGenerateDigital.yaml"
+# Card types
+/card-types:
+  $ref: "./cards/CardTypes.yaml"
+/card-types/{card_type_id}:
+  $ref: "./cards/CardType.yaml"
+# Sub-resources
+/card-types/{card_type_id}/cards:
+  $ref: "./cards/SubCardTypeCards.yaml"
+
+# Countries
+/countries:
+  $ref: "./countries/Countries.yaml"
+
+# Currencies
+/currencies:
+  $ref: "./currencies/Currencies.yaml"
+/currencies/{currency_id}:
+  $ref: "./currencies/Currency.yaml"
+
+# Customers
+/customers:
+  $ref: "./customers/Customers.yaml"
+/customers/{customer_id}:
+  $ref: "./customers/Customer.yaml"
+# Sub-resources
+/customers/{customer_id}/purchases:
+  $ref: "./customers/SubCustomerPurchases.yaml"
+/customers/{customer_id}/points:
+  $ref: "./customers/SubCustomerPoints.yaml"
+/customers/{customer_id}/vouchers:
+  $ref: "./customers/SubCustomerVouchers.yaml"
+/customers/{customer_id}/rewards:
+  $ref: "./customers/SubCustomerRewards.yaml"
+/customers/{customer_id}/cards:
+  $ref: "./customers/SubCustomerCards.yaml"
+/customers/{customer_id}/segment-records:
+  $ref: "./customers/SubCustomerSegment.yaml"
+/customers/{customer_id}/status-records:
+  $ref: "./customers/SubCustomerStatus.yaml"
+/customers/{customer_id}/recommendation-records:
+  $ref: "./customers/SubCustomerRecommendation.yaml"
+/customers/{customer_id}/customer-source-records:
+  $ref: "./customers/SubCustomerSource.yaml"
+/customers/{customer_id}/property-records:
+  $ref: "./customers/SubCustomerProperties.yaml"
+/customers/{customer_id}/property-records/{property_record_id}:
+  $ref: "./customers/SubCustomerProperty.yaml"
+/customers/{customer_id}/interest-records/:
+  $ref: "./customers/SubCustomerInterests.yaml"
+/customers/{customer_id}/interest-records/{interest_record_id}:
+  $ref: "./customers/SubCustomerInterest.yaml"
+# Actions
+/customers/actions/verify-credentials:
+  $ref: "./customers/CustomerVerifyCredentials.yaml"
+/customers/actions/verify-social-network-credentials:
+  $ref: "./customers/CustomerVerifySocialNetworkCredentials.yaml"
+/customers/actions/search-customers:
+  $ref: "./customers/CustomersSearch.yaml"
+/customers/actions/verify-auth-token:
+  $ref: "./customers/CustomerVerifyAuthToken.yaml"
+# Customer types
+/customer-types:
+  $ref: "./customers/CustomerTypes.yaml"
+/customer-types/{customer_type_id}:
+  $ref: "./customers/CustomerType.yaml"
+# Customer external applications
+/customer-external-applications:
+  $ref: "./customers/CustomerExternalApps.yaml"
+/customer-external-applications/{customer_external_application_id}:
+  $ref: "./customers/CustomerExternalApp.yaml"
+# Customer properties
+/customer-properties:
+  $ref: "./customers/CustomerProperties.yaml"
+/customer-properties/{customer_property_id}:
+  $ref: "./customers/CustomerProperty.yaml"
+# Customer relation types
+/customer-relation-types:
+  $ref: "./customers/CustomerRelationTypes.yaml"
+/customer-relation-types/{customer_relation_type_id}:
+  $ref: "./customers/CustomerRelationType.yaml"
+# Customer sources
+/customer-sources:
+  $ref: "./customers/CustomerSources.yaml"
+# Customer source records
+/customer-source-records:
+  $ref: "./customers/CustomerSourceRecord.yaml"
+
+# Events
+/events:
+  $ref: "./events/Events.yaml"
+/events/{event_id}:
+  $ref: "./events/Event.yaml"
+/events/{event_id}/property-records:
+  $ref: "./events/SubEventProperties.yaml"
+# Event groups
+/event-groups:
+  $ref: "./events/EventGroups.yaml"
+/event-groups/{event_group_id}:
+  $ref: "./events/EventGroup.yaml"
+# Event properties
+/event-properties:
+  $ref: "./events/EventProperties.yaml"
+/event-properties/{event_property_id}:
+  $ref: "./events/EventProperty.yaml"
+# Event types
+/event-types:
+  $ref: "./events/EventTypes.yaml"
+/event-types/{event_type_id}:
+  $ref: "./events/EventType.yaml"
+
+# Interests
+/interests:
+  $ref: "./interests/Interests.yaml"
+/interests/{interest_id}:
+  $ref: "./interests/Interest.yaml"
+
+# Languages
+/languages:
+  $ref: "./languages/Languages.yaml"
+
+# Messages
+/messages:
+  $ref: "./messages/Messages.yaml"
+/messages/{message_id}:
+  $ref: "./messages/Message.yaml"
+# Sub-resources
+/messages/{message_id}/detail:
+  $ref: "./messages/SubMessageDetail.yaml"
+# Actions
+/messages/actions/send-message:
+  $ref: "./messages/MessageSend.yaml"
+# Message templates
+/message-templates:
+  $ref: "./messages/MessageTemplates.yaml"
+/message-templates/{message_template_id}:
+  $ref: "./messages/MessageTemplate.yaml"
+
+# Orders
+/orders:
+  $ref: "./orders/Orders.yaml"
+
+# Partners
+/partners:
+  $ref: "./partners/Partners.yaml"
+/partners/{partner_id}:
+  $ref: "./partners/Partner.yaml"
+
+# Points
+/points:
+  $ref: "./points/Points.yaml"
+/points/{point_id}:
+  $ref: "./points/Point.yaml"
+# Sub-resources
+/points/{point_id}/purchases:
+  $ref: "./points/SubPointPurchases.yaml"
+# Actions
+/points/actions/reduce-points:
+  $ref: "./points/PointsRedemption.yaml"
+/points/actions/assign-points:
+  $ref: "./points/PointsAssign.yaml"
+/points/actions/transfer-points:
+  $ref: "./points/PointsTransfer.yaml"
+# Point reservation
+/point-reservations:
+  $ref: "./points/PointReservations.yaml"
+/point-reservations/{point_reservation_id}:
+  $ref: "./points/PointReservation.yaml"
+# Actions
+/point-reservations/actions/reserve-points:
+  $ref: "./points/PointReservationCreate.yaml"
+/point-reservations/actions/free-points:
+  $ref: "./points/PointReservationRelease.yaml"
+# Point types
+/point-types:
+  $ref: "./points/PointTypes.yaml"
+/point-types/{point_type_id}:
+  $ref: "./points/PointType.yaml"
+
+# Products
+/products:
+  $ref: "./products/Products.yaml"
+/products/{product_id}:
+  $ref: "./products/Product.yaml"
+# Product brands
+/product-brands:
+  $ref: "./products/ProductBrands.yaml"
+/product-brands/{product_brand_id}:
+  $ref: "./products/ProductBrand.yaml"
+# Product groups
+/product-groups:
+  $ref: "./products/ProductGroups.yaml"
+/product-groups/{product_group_id}:
+  $ref: "./products/ProductGroup.yaml"
+# Product properties
+/product-properties:
+  $ref: "./products/ProductProperties.yaml"
+/product-properties/{product_property_id}:
+  $ref: "./products/ProductProperty.yaml"
+# Product reservations
+/product-reservations:
+  $ref: "./products/ProductReservations.yaml"
+/product-reservations/{product_reservation_id}:
+  $ref: "./products/ProductReservation.yaml"
+#  Actions
+/product-reservations/{product_reservation_id}/actions/cancel-reservation:
+  $ref: "./products/ProductReservationCancel.yaml"
+# Product reservation sources
+/product-reservation-sources:
+  $ref: "./products/ProductReservationSources.yaml"
+/product-reservation-sources/{product_reservation_source_id}:
+  $ref: "./products/ProductReservationSource.yaml"
+# Reservable products
+/reservable-products:
+  $ref: "./products/ReservableProducts.yaml"
+/reservable-products/{reservable_product_id}:
+  $ref: "./products/ReservableProduct.yaml"
+#  Actions
+/reservable-products/actions/search-reservable-products:
+  $ref: "./products/ReservableProductsSearch.yaml"
+
+#  Purchases
+/purchases:
+  $ref: "./purchases/Purchases.yaml"
+/purchases/{purchase_id}:
+  $ref: "./purchases/Purchase.yaml"
+#  Sub-resources of purchases
+/purchases/{purchase_id}/purchase-items:
+  $ref: "./purchases/SubPurchaseItems.yaml"
+/purchases/{purchase_id}/vouchers:
+  $ref: "./purchases/SubPurchaseVouchers.yaml"
+/purchases/{purchase_id}/points:
+  $ref: "./purchases/SubPurchasePoints.yaml"
+#  Actions
+/purchases/{purchase_id}/actions/payment-summary:
+  $ref: "./purchases/PurchasePaymentSummary.yaml"
+/purchases/actions/recommended-best-rewards:
+  $ref: "./purchases/PurchaseRecommendedRewards.yaml"
+/purchases/actions/accept-payment:
+  $ref: "./purchases/PurchaseAcceptPayment.yaml"
+/purchases/actions/send-purchase:
+  $ref: "./purchases/PurchaseSend.yaml"
+/purchases/actions/assign-customer:
+  $ref: "./purchases/PurchaseAssignCustomer.yaml"
+#  Purchase item types
+/purchase-item-types:
+  $ref: "./purchases/PurchaseItemTypes.yaml"
+#  Purchase types
+/purchase-types:
+  $ref: "./purchases/PurchaseTypes.yaml"
+
+#  Recommendations
+/recommendations:
+  $ref: "./recommendations/Recommendations.yaml"
+/recommendations/{recommendation_id}:
+  $ref: "./recommendations/Recommendation.yaml"
+#  Recommendation engine
+/recommendation-engine/product/actions/eliminate:
+  $ref: "./recommendations/RecommendationProductEliminate.yaml"
+/recommendation-engine/product/actions/order:
+  $ref: "./recommendations/RecommendationProductOrder.yaml"
+/recommendation-engine/product/actions/combined:
+  $ref: "./recommendations/RecommendationProductCombined.yaml"
+/recommendation-engine/shopping-cart/actions/eliminate:
+  $ref: "./recommendations/RecommendationCartEliminate.yaml"
+/recommendation-engine/shopping-cart/actions/order:
+  $ref: "./recommendations/RecommendationCartOrder.yaml"
+/recommendation-engine/shopping-cart/actions/combined:
+  $ref: "./recommendations/RecommendationCartCombined.yaml"
+
+#  Rewards
+/rewards:
+  $ref: "./rewards/Rewards.yaml"
+/rewards/{reward_id}:
+  $ref: "./rewards/Reward.yaml"
+#  Sub-resources of rewards
+/rewards/{reward_id}/vouchers:
+  $ref: "./rewards/SubRewardVouchers.yaml"
+/rewards/{reward_id}/products:
+  $ref: "./rewards/SubRewardProducts.yaml"
+/rewards/{reward_id}/product-groups:
+  $ref: "./rewards/SubRewardProductGroups.yaml"
+/rewards/{reward_id}/product-brands:
+  $ref: "./rewards/SubRewardProductBrands.yaml"
+/rewards/{reward_id}/stores:
+  $ref: "./rewards/SubRewardStores.yaml"
+#  Actions
+/rewards/{reward_id}/actions/create-voucher:
+  $ref: "./rewards/RewardCreateVoucher.yaml"
+#  Reward properties
+/reward-properties:
+  $ref: "./rewards/RewardProperties.yaml"
+/reward-properties/{reward_property_id}:
+  $ref: "./rewards/RewardProperty.yaml"
+
+#  Segments
+/segments:
+  $ref: "./segments/Segments.yaml"
+/segments/{segment_id}:
+  $ref: "./segments/Segment.yaml"
+#  Sub-resources of segments
+/segments/{segment_id}/segment-records:
+  $ref: "./segments/SubSegmentRecords.yaml"
+#  Actions
+/segments/{segment_id}/actions/add-customer:
+  $ref: "./segments/SegmentAddCustomer.yaml"
+/segments/{segment_id}/actions/remove-customer:
+  $ref: "./segments/SegmentRemoveCustomer.yaml"
+
+#  Skipasses
+/skipasses:
+  $ref: "./skipasses/Skipasses.yaml"
+/skipasses/{skipass_id}:
+  $ref: "./skipasses/Skipass.yaml"
+#  Actions
+/skipasses/actions/overview:
+  $ref: "./skipasses/SkipassesOverview.yaml"
+
+#  Statuses
+/statuses:
+  $ref: "./statuses/Statuses.yaml"
+/statuses/{status_id}:
+  $ref: "./statuses/Status.yaml"
+
+#  Stores
+/stores:
+  $ref: "./stores/Stores.yaml"
+/stores/{store_id}:
+  $ref: "./stores/Store.yaml"
+#  Sub-resources of stores
+/stores/{store_id}/property-records:
+  $ref: "./stores/SubStoreProperties.yaml"
+/stores/{store_id}/store-group-records:
+  $ref: "./stores/SubStoreGroups.yaml"
+/stores/{store_id}/property-records/{property_record_id}:
+  $ref: "./stores/SubStoreProperty.yaml"
+#  Store groups
+/store-groups:
+  $ref: "./stores/StoreGroups.yaml"
+/store-groups/{store_group_id}:
+  $ref: "./stores/StoreGroup.yaml"
+#  Store properties
+/store-properties:
+  $ref: "./stores/StoreProperties.yaml"
+/store-properties/{store_property_id}:
+  $ref: "./stores/StoreProperty.yaml"
+
+#  Tokens
+/tokens:
+  $ref: "./tokens/Tokens.yaml"
+/tokens/{token_id}:
+  $ref: "./tokens/Token.yaml"
+#  Actions
+/tokens/{token_id}/actions/login:
+  $ref: "./tokens/TokenLogin.yaml"
+/tokens/{token_id}/actions/logout:
+  $ref: "./tokens/TokenLogout.yaml"
+/tokens/{token_id}/actions/social-network-login:
+  $ref: "./tokens/TokenSocialLogin.yaml"
+/tokens/{token_id}/actions/send-password-setup-email:
+  $ref: "./tokens/TokenSendPasswordSetup.yaml"
+/tokens/{token_id}/actions/auth-token:
+  $ref: "./tokens/TokenAuthentication.yaml"
+
+#  Users
+/users:
+  $ref: "./users/Users.yaml"
+/users/{user_id}:
+  $ref: "./users/User.yaml"
+#  Actions
+/users/actions/verify-auth-token:
+  $ref: "./users/UserVerifyAuthToken.yaml"
+/users/actions/login:
+  $ref: "./users/UserLogin.yaml"
+/users/actions/sso-login:
+  $ref: "./users/UserSsoLogin.yaml"
+/users/actions/logout:
+  $ref: "./users/UserLogout.yaml"
+#  User roles
+/user-roles:
+  $ref: "./users/UserRoles.yaml"
+/user-roles/{user_role_id}:
+  $ref: "./users/UserRole.yaml"
+
+#  Vouchers
+/vouchers:
+  $ref: "./vouchers/Vouchers.yaml"
+/vouchers/{voucher_id}:
+  $ref: "./vouchers/Voucher.yaml"
+#  Actions
+/vouchers/{voucher_id}/actions/apply-voucher:
+  $ref: "./vouchers/VoucherApply.yaml"
+
+#  Wallet
+#  Actions
+/wallet/actions/sales-turnover:
+  $ref: "./wallet/WalletSalesTurnover.yaml"
+/wallet/actions/points-overview:
+  $ref: "./wallet/WalletPoints.yaml"
+/wallet/actions/credits-overview:
+  $ref: "./wallet/WalletCredits.yaml"
+/wallet/actions/points-expiration-overview:
+  $ref: "./wallet/WalletPointsExpiration.yaml"
+/wallet/actions/credits-expiration-overview:
+  $ref: "./wallet/WalletCreditsExpiration.yaml"

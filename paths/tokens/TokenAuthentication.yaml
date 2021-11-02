@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Tokens
+  summary: Get authentication token
+  description: Returns authentication token for specific external application
+  operationId: getTokenAuthentication
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/token_id_path'
+    - $ref: '../../parameters/_index.yaml#/external_application_id'
+    - $ref: '../../parameters/_index.yaml#/token_type'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: 'Authentication token for external application'
+                    example: LQ55EH
+                  token_request_id:
+                    type: string
+                    description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
+                    example: 76951b4a90626f3635990330ec487e32c539c74
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

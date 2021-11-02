@@ -1,0 +1,27 @@
+type: object
+description: Basic information about a customer
+properties:
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer
+    example: 8ea6abece4cd0a4ded0a29f093
+  personal_information:
+    type: object
+    $ref: '../schemas/_index.yaml#/PersonalInformation'
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    example: '2019-06-23 11:47:22'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: 'State of the customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+    example: 1
+required:
+  - personal_information

@@ -1,0 +1,92 @@
+type: object
+description: Final bill structure
+properties:
+  fiscal:
+    type: boolean
+    enum:
+      - true
+      - false
+    readOnly: false
+    description: Information, whether it is a fiscal bill
+    example: true
+  purchase_type_id:
+    type: integer
+    readOnly: false
+    description: Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types)
+    example: 86e05affc7a7abefzcd513ab00
+  canceled:
+    type: boolean
+    enum:
+      - true
+      - false
+    readOnly: false
+    description: Information, whether it is the cancellation of the purchase. It is the only parameter that identifies the canceled purchase. All other values are the same as in the original bill. No different values like totalPrice, quantity, paidAmount, and itemPrice are changed nor inverted.
+    example: false
+  payment_type:
+    type: string
+    enum:
+      - S
+      - P
+      - C
+      - D
+    readOnly: false
+    description: |
+      The method of the bill closure.
+      *Possible values are: “S” - standard / “P”- use points for payment / “C” - use credits for payment / “D”- use discount now*
+    example: S
+  payment_recap:
+    type: object
+    $ref: '../schemas/_index.yaml#/PaymentRecap'
+    readOnly: false
+  bill_id:
+    type: string
+    readOnly: false
+    description: Identification number of the bill (must be unique in POS, use prefix 'C' for a canceled bill)
+    example: 8fbea1c1eaa8edd35e7f278
+  bill_number:
+    type: string
+    readOnly: false
+    description: Alternative identification of the bill. In the case of cancelation, there should be bill_id from the original bill.
+    example:
+  payment_time:
+    type: string
+    readOnly: false
+    description: "Date and time of bill creation *Possible value: 2016-06-30T15:51:49+02:00*"
+    example: "2016-06-30T15:5:49+02:00"
+  created_by:
+    type: string
+    readOnly: false
+    description: Name of the user who created a bill
+    example:
+  currency_id:
+    type: string
+    readOnly: false
+    description: Id of the currency from resource [currencies](#tag/Currencies)
+    example: 8bed991c6a470eaaffbf048
+  total_price:
+    type: number
+    format: float
+    readOnly: false
+    description: The total price of the bill as a sum of all items
+    example: '700'
+  utm:
+    type: object
+    $ref: '../schemas/_index.yaml#/UTM'
+    readOnly: false
+    description: UTM structure for data from email campaign
+  bill_items:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/BillItem'
+    readOnly: false
+    description: List of bill items
+required:
+  - bill_id
+  - payment_time
+  - currency_id
+  - total_price
+  - bill_items
+  - fiscal
+  - purchase_type_id
+  - canceled
+  - payment_type

@@ -1,0 +1,20 @@
+type: object
+description: Structure contains purchase conditions of the status record
+properties:
+  keep_status_turnover:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/QualificationTurnover'
+    readOnly: true
+    description: Missing turnover to keep current status in every active currency
+  next_status_turnover:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/QualificationTurnover'
+    readOnly: true
+    description: Missing turnover to the next status in every active currency
+  next_status_id:
+    type: string
+    readOnly: true
+    description: Id of the following status.
+    example: 83d1d11ea3884a5d33253fe214

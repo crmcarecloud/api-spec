@@ -1,0 +1,16 @@
+type: object
+description: Customer segment record
+properties:
+  segment_id:
+    type: string
+    readOnly: false
+    description: The unique id of the segment
+    example: 83caed4c60c6be7e4392cc25ed
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id of the customer
+    example: 89ac83ca207a820c62c79bf03a
+required:
+  - segment_id
+  - customer_id

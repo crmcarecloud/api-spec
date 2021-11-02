@@ -1,0 +1,16 @@
+type: object
+description: PLU Id structure
+properties:
+  list_code:
+    type: string
+    readOnly: false
+    description: Code of the particular product list (basic is code of Global product list (consist cleaned data - unique id for every product across all POS systems)). For example, “GLOBAL”, “SKU”, “PLU”, etc.
+    example: GLOBAL
+  code:
+    type: string
+    readOnly: false
+    description: Code of product from the product list (basic is Product ID from Global product list (consist cleaned data - unique id for every product across all POS systems))
+    example: abc
+required:
+  - list_code
+  - code

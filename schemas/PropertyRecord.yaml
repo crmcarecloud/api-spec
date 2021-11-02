@@ -1,0 +1,38 @@
+type: object
+description: Property record
+properties:
+  property_record_id:
+    type: string
+    readOnly: true
+    description: The unique id of the property record
+    example: contact_person:8aa2049ac2f84952014d96bb23
+  property_id:
+    type: string
+    readOnly: false
+    description: The unique id of the property
+    example: contact_person
+  property_name:
+    type: string
+    readOnly: false
+    description: Name of the property
+    example: Project contact person
+  property_value:
+    anyOf:
+      - type: string
+      - type: number
+      - type: integer
+      - type: boolean
+      - type: array
+        items: { }
+      - type: object
+    readOnly: false
+    description: Value of the property
+    example: []
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example:
+required:
+  - property_id
+  - property_value

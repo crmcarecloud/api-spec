@@ -1,0 +1,50 @@
+post:
+  tags:
+    - Users
+  summary: Verify user auth token
+  description: Verification of the user auth token
+  operationId: postUserVerifyAuthToken
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            auth_token:
+              type: string
+              description: Authentication token for user verification
+              example: 95d22b814d9495b4e723e7a17ee104319
+          required:
+            - auth_token
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    description: The unique id of the user
+                    example: 838b73aacb5ac326cec4030c80
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

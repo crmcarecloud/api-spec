@@ -1,0 +1,50 @@
+type: object
+description: Points reservation resource
+properties:
+  points_reservation_id:
+    type: string
+    readOnly: true
+    description: The unique id of the point reservation record
+    example: 88c1e91444434b0243d94b40cd
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the customer.
+    example: 81ceb8582e28dbb7e71b7273b
+  external_id:
+    type: string
+    readOnly: false
+    description: The external unique id of the product brand
+    example: '123459'
+  quantity:
+    type: number
+    format: float
+    readOnly: false
+    description: The number of reserved points
+    example: 11
+  partner_id:
+    type: string
+    readOnly: false
+    description: The unique id for the partner company
+    example: 86e05affc7a7abefcd513ab400
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the point record
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active(expired)*
+    example: 1
+  expiration:
+    type: string
+    readOnly: false
+    description: Date and time of the point reservation expiration *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-10-31 00:00:00"
+required:
+  - customer_id
+  - external_id
+  - quantity
+  - partner_id

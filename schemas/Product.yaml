@@ -1,0 +1,59 @@
+type: object
+description: Product resource
+properties:
+  product_id:
+    type: string
+    readOnly: true
+    description: The unique id of the product
+    example: '89bdacbffb5c82f2c52cb9ae8f'
+  name:
+    type: string
+    readOnly: false
+    description: Name of the product
+    example: "Vodka tonic"
+  code:
+    type: string
+    readOnly: false
+    description: Code of the product
+    example: '649'
+  external_id:
+    type: string
+    readOnly: false
+    description: The external unique id of the product
+    example: '668'
+  product_group_id:
+    type: string
+    readOnly: false
+    description: The unique id for the product group
+    example: '85cfc89601efa1ba2c2aa3b6a0'
+  product_brand_id:
+    type: string
+    readOnly: false
+    description: The unique id for the product brand
+    example:
+  additional_properties:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
+    readOnly: false
+    description: List of additional properties
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2012-12-18 11:55:07"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the product
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - name
+  - code
+  - external_id

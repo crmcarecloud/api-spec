@@ -1,0 +1,111 @@
+type: object
+description: Skipass structure
+properties:
+  skipass_id:
+    type: string
+    readOnly: false
+    description: The unique id of the skipass
+    example: 80a7be2e78aabc1454ca817265
+  name:
+    type: string
+    readOnly: true
+    description: Name of the skipass
+    example: 1 Dňový Skipas - Akcia 7.1. - 22.1.2015
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer
+    example:
+  resort_name:
+    type: string
+    readOnly: true
+    description: Name of the resort where is a skipass charged
+    example:
+  customer_category_name:
+    type: string
+    readOnly: true
+    description: Name of the customer category
+    example:
+  external_order_id:
+    type: string
+    readOnly: true
+    description: Id of an external order creaded in POS system
+    example: "d03df0e0-959a-11e4-a6ce-0050569b002b"
+  external_skipass_id:
+    type: string
+    readOnly: true
+    description: External id of skipass. Structure can be different depends of POS system, that created skipass
+    example: "1-1760-61-107788"
+  skipass_type_id:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: false
+    description: 'Type of the skipass *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*'
+    example: 1
+  order_item_id:
+    type: string
+    readOnly: true
+    description: Order id item represents relation between skipass and order item from carecloud e-shop
+    example: "84947e1aa1ad6982cc8188d15c"
+  card_id:
+    type: string
+    readOnly: false
+    description: Id of card used for charge skipasses
+    example: "8c9fd120242ef646f477a5ed80"
+  created_at:
+    type: string
+    readOnly: true
+    description: Date and time whe skipass was created in CareCloud *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-06 12:54:46"
+  cancelled_at:
+    type: string
+    readOnly: true
+    description: Date and time whe skipass was cancelled in CareCloud *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-09 22:38:48.088"
+  charged_price:
+    type: number
+    format: float
+    readOnly: true
+    description: Price charged to POS system
+    example:
+  product_id:
+    type: string
+    readOnly: true
+    description: The unique id of the product
+    example:
+  charge_date:
+    type: string
+    readOnly: true
+    description: Date and time when skipass will be charged to the POS system *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-10 00:00:00"
+  valid_from:
+    type: string
+    readOnly: true
+    description: Date of the first day when customer can use skipass *(YYYY-MM-DD)*
+    example:
+  valid_to:
+    type: string
+    readOnly: true
+    description: Date of the last day when customer can use skipass *(YYYY-MM-DD)*
+    example:
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2019-08-29 13:04:45'
+  state:
+    type: string
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: 'State of the event type *Possible values are: 0 - cancelled / 1- active*'
+    example: 1
+required:
+  - skipass_id
+  - skipass_type_id
+  - card_id
+  - state

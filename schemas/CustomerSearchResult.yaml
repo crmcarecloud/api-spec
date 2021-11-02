@@ -1,0 +1,8 @@
+type: object
+description: Result of the search
+properties:
+  strict:
+    type: array
+    description: Search results for strict mode
+    items:
+      $ref: '../schemas/_index.yaml#/CustomerResult'

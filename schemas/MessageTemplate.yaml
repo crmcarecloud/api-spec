@@ -1,0 +1,68 @@
+type: object
+description: Message template resource
+properties:
+  message_template_id:
+    type: string
+    readOnly: true
+    description: The unique id of the message_template
+    example: 8cbb5886e1d68e07a6e0e393a0
+  consent_free_template:
+    type: boolean
+    enum:
+      - true
+      - false
+    readOnly: false
+    description: If true, customer can recieve message without any consent(GDPR, etc.)
+    example: false
+  subject:
+    type: string
+    readOnly: true
+    description: Subject of the message template. Mandatory only in case of email template
+    example: Hotels
+  sender:
+    type: string
+    readOnly: true
+    description: Sender of the message template
+    example: "<info@crmcarecloud.com>"
+  name:
+    type: string
+    readOnly: true
+    description: Name of the message template
+    example: Náezv
+  message_template_group_id:
+    type: string
+    enum:
+      - 1
+      - 2
+      - 3
+    readOnly: true
+    description: "The unique id of the message template group. *Possible values are: 1 - newsletter template / 2- system template(registration message, order summary message, etc.) / 3 - transactional communication(for hotel, traveling,...)*"
+    example: 1
+  comunication_channel_id:
+    type: string
+    enum:
+      - 1
+      - 2
+      - 4
+      - 5
+    readOnly: true
+    description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+    example: 1
+  template_data:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Parameter'
+    readOnly: false
+    description: Template data could contains array of customized paramteres. They may have influence on template display or add values to template
+    #example: []
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2016-05-04 11:29:10"
+required:
+  - subject
+  - sender
+  - name
+  - message_template_group_id
+  - comunication_channel_id

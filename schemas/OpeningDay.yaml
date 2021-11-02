@@ -1,0 +1,17 @@
+type: object
+description: Opening day structure
+properties:
+  day_id:
+    type: string
+    readOnly: false
+    description: The unique id of the day of the week
+    example: MON
+  time_intervals:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/TimeInterval'
+    readOnly: false
+    description: List of time Intervals
+required:
+  - day_id
+  - time_intervals

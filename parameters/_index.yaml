@@ -1,0 +1,1170 @@
+# Header parameters
+Accept-Language:
+  name: Accept-Language
+  in: header
+  description: The unique id of the language code by ISO 639-1
+  required: false
+  schema:
+    type: string
+    default: 'cs, en-gb;q=0.8'
+
+# Universal parameters
+count:
+  name: count
+  in: query
+  description: The number of records to return.
+  required: false
+  schema:
+    type: integer
+    default: 100
+    minimum: 1
+  example: 1
+offset:
+  name: offset
+  in: query
+  description: The number of records from a collection to skip.
+  required: false
+  schema:
+    type: integer
+    default: 0
+  example: 2
+sort_field:
+  name: sort_field
+  in: query
+  description:  One of the query string parameters for sorting. *Response is sorted by the specified field.*
+  required: false
+  schema:
+    type: string
+  example: field_name
+sort_direction:
+  name: sort_direction
+  in: query
+  description: 'Direction of sorting the response list.'
+  required: false
+  schema:
+    type: string
+    enum:
+      - ASC
+      - DESC
+  example: ASC
+searchMode:
+  name: mode
+  in: query
+  description: |
+    Mode of search results.
+
+    *Possible values are: strict - return only 100% matching results*
+
+    <p class="warning">⚠️ Caution: Strict mode makes all path parameters as required. For succesful result you have to set all parameters.</p>
+  required: false
+  schema:
+    type: string
+    enum:
+      - strict
+  example: strict
+last_change:
+  name: last_change
+  in: query
+  description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: '2018-05-07 14:26:19.215774'
+is_valid:
+  name: is_valid
+  in: query
+  description: "*in validity range - true / before or after validity range - false / no value - all*"
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+valid_from:
+  name: valid_from
+  in: query
+  description: Date from where is valid already. *(YYYY-MM-DD)*
+  required: false
+  schema:
+    type: string
+  example: '2018-05-07'
+valid_from_full:
+  name: valid_from
+  in: query
+  description: Date and time from where is valid already. *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: '2018-05-07 23:59:59'
+valid_to:
+  name: valid_to
+  in: query
+  description: Date to where is valid still. *(YYYY-MM-DD)*
+  required: false
+  schema:
+    type: string
+  example: '2020-11-19'
+valid_to_full:
+  name: valid_to
+  in: query
+  description: Date and time to where is valid still. *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  example: '2022-01-05 23:59:59'
+valid_now:
+  name: valid_now
+  in: query
+  description: |
+    Status validity. Just one status can be valid in the time.
+    *Possible values are: True for valid status / False for status not valid*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+date_from:
+  name: date_from
+  in: query
+  description: Date (ISO 8601) start of the time interval *(YYYY-MM-DD)*
+  required: false
+  schema:
+    type: string
+  example: '2020-05-07'
+date_to:
+  name: date_to
+  in: query
+  description: Date (ISO 8601) end of the time interval *(YYYY-MM-DD)*
+  required: false
+  schema:
+    type: string
+  example: '2021-05-07'
+name:
+  name: name
+  in: query
+  description: 'Search record by name or a part of the name'
+  required: false
+  schema:
+    type: string
+  example: Name
+value_type_id:
+  name: value_type_id
+  in: query
+  description: Type of value (1 - percentage discount value, 2 - final price)
+  required: false
+  schema:
+    type: integer
+    enum:
+      - 1
+      - 2
+  example: 2
+
+# Personal parameters
+user_id_path:
+  name: user_id
+  in: path
+  required: true
+  description: The unique id of the user
+  schema:
+    type: string
+  example: 838b73aacb5ac326cec4030c80
+user_role_id_path:
+  name: user_role_id
+  in: path
+  required: true
+  description: The unique id of the user role
+  schema:
+    type: string
+  example: 8bd4811006496e0b1788109b8
+email:
+  name: email
+  in: query
+  description: 'Search by email'
+  required: false
+  schema:
+    type: string
+  example: happy_customer@crmcarecloud.com
+phone:
+  name: phone
+  in: query
+  description: 'Phone number with international prefix (420000000)'
+  required: false
+  schema:
+    type: string
+  example: 420523828931
+login:
+  name: login
+  in: query
+  description: 'Search by login.'
+  required: false
+  schema:
+    type: string
+  example: happy_user
+first_name:
+  name: first_name
+  in: query
+  description: 'Search by first name'
+  required: false
+  schema:
+    type: string
+  example: John
+last_name:
+  name: last_name
+  in: query
+  description: 'Search by last name'
+  required: false
+  schema:
+    type: string
+  example: Smith
+birthdate:
+  name: birthdate
+  in: query
+  description: "Customer's date of birth. *Possible values are: YYYY-MM-DD / DD.MM.YYYY*"
+  required: false
+  schema:
+    type: string
+  example: 985-02-12
+
+# Agreement parameters
+agreement_id_path:
+  name: agreement_id
+  in: path
+  required: true
+  description: The unique id of an agreement in CareCloud
+  schema:
+    type: string
+  example: 81eaeea13b8984a169c490a325
+
+# Customer parameters
+customer_id_path:
+  name: customer_id
+  in: path
+  required: true
+  description: The unique id for the customer
+  schema:
+    type: string
+  example: 89ac83ca207a820c62c79bf03a
+customer_id:
+  name: customer_id
+  in: query
+  required: false
+  description: The unique id for the customer
+  schema:
+    type: string
+  example: 89ac83ca207a820c62c79bf03a
+customer_id_required:
+  name: customer_id
+  in: query
+  required: true
+  description: The unique id for the customer
+  schema:
+    type: string
+  example: 89ac83ca207a820c62c79bf03a
+external_id:
+  name: external_id
+  in: query
+  required: false
+  description: The unique external id. It may be id from the other system
+  schema:
+    type: string
+  example: externalid
+customer_source_id:
+  name: customer_source_id
+  in: query
+  required: false
+  description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+  schema:
+    type: string
+  example: 8fdce3475560d56e95a6ab035r
+customer_type_id_arr:
+  name: customer_type_id
+  in: query
+  required: false
+  description: 	Select by list of customer types from customer-types resource. Logic OR is used between values
+  schema:
+    type: array
+    items:
+      type: string
+customer_type_id_path:
+  name: customer_type_id
+  in: path
+  required: true
+  description: 	The unique id of a customer type in CareCloud
+  schema:
+    type: string
+  example: 86e05afc7a7abefcd513ab400
+
+# Card
+card_id_path:
+  name: card_id
+  in: path
+  description: The unique id for the card
+  required: true
+  schema:
+    type: string
+  example: 81a94c48474bc45c03d41f7016
+card_type_id_path:
+  name: card_type_id
+  in: path
+  description: The unique id for the card type
+  required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
+card_number:
+  name: card_number
+  in: query
+  description: Number of the customer card
+  required: false
+  schema:
+    type: string
+  example: 200120000290
+card_id:
+  name: card_id
+  in: query
+  description: The unique id for the card
+  required: false
+  schema:
+    type: string
+  example: 81a94c48474bc45c03d41f7016
+card_type_id:
+  name: card_type_id
+  in: query
+  description: The unique id for the card type
+  required: false
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
+state:
+  name: state
+  in: query
+  description: |
+    State of the card
+    *Possible values are: 0 - blocked / 1 - active*
+  required: false
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+  example: 1
+
+# Property
+property_record_id_path:
+  name: property_record_id
+  in: path
+  required: true
+  description: The unique id for the property record
+  schema:
+    type: string
+  allowReserved: true
+  example: contact_person:8aa2049ac2f84952014d96bb23
+
+# Interest
+interest_record_id_path:
+  name: interest_record_id
+  in: path
+  required: true
+  description: The unique id for the interest record
+  schema:
+    type: string
+  example: 87d934c86a6303f5fb4d1214fb
+
+# Voucher
+voucher_id_path:
+  name: voucher_id
+  in: path
+  description: The unique id for the voucher
+  required: true
+  schema:
+    type: string
+  example: 8fbccbdba315e6240b07f239ba
+is_applied:
+  name: is_applied
+  in: query
+  description: |
+    Filter by voucher application and reservation.
+    *Possible values: true - all applied or reserved vouchers / false - all vouchers that have not been applied yet or that are not reserved actually / no value - all vouchers*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+voucher_code:
+  name: code
+  in: query
+  description: Unique code of the voucher
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: w7TU7KfeE
+
+# Reward
+reward_id_path:
+  name: reward_id
+  in: path
+  description: The unique id for the reward
+  required: true
+  schema:
+    type: string
+  example:
+reward_property_id_path:
+  name: reward_property_id
+  in: path
+  description: The unique id for the reward property
+  required: true
+  schema:
+    type: string
+  allowReserved: true
+  example: subtitle
+reward_code:
+  name: code
+  in: query
+  description: Code of the reward
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example:
+is_automated:
+  name: is_automated
+  in: query
+  description: |
+    Filter of the automated rewards
+    *Possible values: true - returns all automated rewards / false - returns all non automated rewards / no value - all rewards(filter is not applied)*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+reward_group:
+  name: reward_group
+  in: query
+  description: |
+    The unique id for the reward group
+    *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward*
+  required: false
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+  example: 1
+without_stores:
+  name: without_stores
+  in: query
+  description: If true, resource call returns rewards without list of stores. If false, or not set resource returns default strucutre.
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+reward_store_id:
+  name: store_id
+  in: query
+  description: The unique id for the store where customer can apply the reward
+  required: false
+  schema:
+    type: string
+  example: 8fd7316732d06899c4c015320
+
+# Customer External applications
+customer_external_application_id_path:
+  name: customer_external_application_id
+  in: path
+  description: The unique id of a customer external application in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 81eaeea13b894a169c490a325
+
+# Customer Property
+customer_property_id_path:
+  name: customer_property_id
+  in: path
+  description: The unique id for the customer property
+  required: true
+  schema:
+    type: string
+  example: profession
+
+# Customer relation type
+customer_relation_type_id_path:
+  name: customer_relation_type_id
+  in: path
+  description: The unique id of a customer relation type in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaefff048
+
+# Campaigns
+campaign_id_path:
+  name: campaign_id
+  in: path
+  description: The unique id for the campaign in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 81eaeea13b8984a169c490a325
+display_in:
+  name: display_in
+  in: query
+  description: Place to display campaign product.
+  required: false
+  schema:
+    type: string
+    enum:
+      - web
+      - cash desk
+      - api
+  example:
+type_id:
+  name: type_id
+  in: query
+  description: Type of the customer for a campaign product.
+  required: false
+  schema:
+    type: array
+    items:
+      type: string
+  example:
+campaign_store_id:
+  name: store_id
+  in: query
+  description: Parameter filters all campaig products from [store](#tag/Stores) by store id
+  required: false
+  schema:
+    type: string
+  example: 8fd7316732d06899c4c015320
+campaign_product_id_path:
+  name: campaign_product_id
+  in: path
+  description: The unique id for the campaign product in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 81eaeea13b8984a169c
+
+# Currencies
+currency_id_path:
+  name: currency_id
+  in: path
+  description: The unique id of a currency in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+
+# Events
+event_id_path:
+  name: event_id
+  in: path
+  description: The unique id for the event
+  required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
+event_type_id:
+  name: event_type_id
+  in: query
+  description: The unique id of the event type
+  required: false
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
+text_id:
+  name: text_id
+  in: query
+  description: Text id of an event group
+  required: false
+  schema:
+    type: string
+  example: shopping_cart
+event_group_id_path:
+  name: event_group_id
+  in: path
+  description: The unique id of the event group
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+event_property_id_path:
+  name: event_property_id
+  in: path
+  description: The unique id for the event property
+  required: true
+  schema:
+    type: string
+  example: account_registration_contact_source
+event_type_id_path:
+  name: event_type_id
+  in: path
+  description: The unique id for the event type
+  required: true
+  schema:
+    type: string
+  example: 81dcd5807157297ad7d668e61
+
+# Interests
+interest_id_path:
+  name: interest_id
+  in: path
+  description: The unique id for the interest
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+
+# Messages
+message_id_path:
+  name: message_id
+  in: path
+  description: The unique id of the message
+  required: true
+  schema:
+    type: string
+  example: 89ce2a1b9b01f5c939fb1e20cd
+message_template_id_path:
+  name: message_template_id
+  in: path
+  description: The unique id for the message template
+  required: true
+  schema:
+    type: string
+  example: 82de12eb8b138791e678fd11c3
+contact:
+  name: contact
+  in: query
+  description: Email of phone number that was used as a contact in message
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "happy_customer@crmcarecloud.com"
+communication_channel_id:
+  name: communication_channel_id
+  in: query
+  description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+  required: false
+  schema:
+    type: string
+    enum:
+      - 1
+      - 2
+      - 4
+      - 5
+  example: 1
+send_time_from:
+  name: send_time_from
+  in: query
+  description: "Start date and time of the time interval *YYYY-MM-DD HH:MM:SS*"
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "2015-01-05 1:00:00"
+send_time_to:
+  name: send_time_to
+  in: query
+  description: "End date and time of the time interval *YYYY-MM-DD HH:MM:SS*"
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "2015-01-05 23:59:00"
+
+# Partner
+partner_id_path:
+  name: partner_id
+  in: path
+  description: The unique id for the partner
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+
+# Points
+point_id_path:
+  name: point_id
+  in: path
+  description: The unique id for the point record
+  required: true
+  schema:
+    type: string
+  example: 8bcd4f6d0e1432tfc472632e1d
+point_reservation_id_path:
+  name: point_reservation_id
+  in: path
+  description: The unique id of the point reservations
+  required: true
+  schema:
+    type: string
+  example: 8bcd4f6d0e1432tfc472632e1d
+point_type_id_path:
+  name: point_type_id
+  in: path
+  description: The unique id of a point type
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+point_type_id:
+  name: point_type_id
+  in: query
+  description: The unique id of a point type
+  required: false
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+create_point_time_from:
+  name: create_point_time_from
+  in: query
+  description: Date and time from of the create point record *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example:
+create_point_time_to:
+  name: create_point_time_to
+  in: query
+  description: Date and time to of the create point record *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example:
+pointRes_external_id:
+  name: external_id
+  in: query
+  description: The external id of the point reservation
+  required: false
+  schema:
+    type: string
+  example: 123459
+
+# Product
+product_id_path:
+  name: product_id
+  in: path
+  description: The unique id for the product
+  required: true
+  schema:
+    type: string
+  example: 89bdacbffb5c82f2c52cb9ae8f
+reservable_product_id_path:
+  name: reservable_product_id
+  in: path
+  description: The unique id for the reservable product
+  required: true
+  schema:
+    type: string
+  example: 89bdacbffb5c82f2c52cb9ae8f
+product_brand_id_path:
+  name: product_brand_id
+  in: path
+  description: The unique id for the product brand
+  required: true
+  schema:
+    type: string
+  example: 83d1d11ea3884a5d33253fe214
+product_group_id_path:
+  name: product_group_id
+  in: path
+  description: The unique id for the product group
+  required: true
+  schema:
+    type: string
+  example: 87c4c16c6d82d44ab7f50d537e
+product_property_id_path:
+  name: product_property_id
+  in: path
+  description: The unique id for the product group
+  required: true
+  schema:
+    type: string
+  example: 87c4c16c6d82d44ab7f50d537e
+product_reservation_id_path:
+  name: product_reservation_id
+  in: path
+  description: The unique id for a product reservation
+  required: true
+  schema:
+    type: string
+  example: 81d503b99cc748b3ca189383ad
+product_reservation_source_id_path:
+  name: product_reservation_source_id
+  in: path
+  description: The unique id of an product reservation source in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
+product_code:
+  name: code
+  in: query
+  description: Code of the product
+  required: false
+  schema:
+    type: string
+  example: 649
+product_group_code:
+  name: code
+  in: query
+  description: Code of the product group
+  required: false
+  schema:
+    type: string
+  example: 649
+external_type_code:
+  name: external_type_code
+  in: query
+  description: Every product can have more than one external id depends of the bussiness requirements. This paramter allows to pick from witch list of external ids you want to choose. For the list of external type codes please contact you account manager. If the parameter is not set, API uses as a default value GLOBAL
+  required: false
+  schema:
+    type: string
+    default: GLOBAL
+reservation_code:
+  name: reservation_code
+  in: query
+  description: Code of the reservation
+  required: false
+  schema:
+    type: string
+  example: 10
+reservation_state:
+  name: reservation_state
+  in: query
+  description: |
+    Actual state of the product reservation.
+    *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
+  required: false
+  schema:
+    type: string
+    enum:
+      - 0
+      - 1
+      - 2
+      - 2
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+  example: 2
+
+# Purchase
+purchase_id_path:
+  name: purchase_id
+  in: path
+  description: The unique id for the purchase
+  required: true
+  schema:
+    type: string
+  example: 8bc3btbb6f14765b3025cea06c
+purchase_type_id:
+  name: type_id
+  in: query
+  description: Purchase type
+  required: false
+  schema:
+    type: string
+  example: 86e05affc7a7abefd513ab400
+payment_time_from:
+  name: payment_time_from
+  in: query
+  description: Date and time from of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "2021-01-05 00:00:00"
+payment_time_to:
+  name: payment_time_to
+  in: query
+  description: Date and time to of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "2021-10-01 23:59:00"
+purchase_items_extension:
+  name: purchase_items_extension
+  in: query
+  description: If true, resource returns extended response with purchase items. If false, the resource won't be extended. If the parameter is not set, the default value is false
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+    default: false
+
+# Recommendation
+recommendation_id_path:
+  name: recommendation_id
+  in: path
+  description: The unique id for a recommendation
+  required: true
+  schema:
+    type: string
+  example: 8ad8b2b701199684f1222961d6
+product_id_list:
+  name: product_id_list
+  in: query
+  required: false
+  description: List of the product ids. Initial products for the recommendation engine.
+  schema:
+    type: array
+    items:
+      type: string
+cart_product_ids:
+  name: cart_product_ids
+  in: query
+  required: false
+  description: List of the product ids in customer's shopping cart
+  schema:
+    type: array
+    items:
+      type: string
+cart_product_ids_required:
+  name: cart_product_ids
+  in: query
+  required: true
+  description: List of the product ids in customer's shopping cart
+  schema:
+    type: array
+    items:
+      type: string
+
+# Segment
+segment_id_path:
+  name: segment_id
+  in: path
+  required: true
+  description: The unique id for the segment
+  schema:
+    type: string
+  example: 8dc1e66b44796af5cd377910e1
+
+# Skipasses
+skipass_id_path:
+  name: skipass_id
+  in: path
+  description: The unique id of the skipass
+  required: true
+  schema:
+    type: string
+  example: 80a7be2e78aabc1454ca817265
+pos_id:
+  name: pos_id
+  in: query
+  required: false
+  description:  'Id of POS system for ski tickets. *Possible values are: skidata - 6 / axess - 9 / base - 11*'
+  schema:
+    type: integer
+    enum:
+      - 6
+      - 9
+      - 11
+external_order_id:
+  name: external_order_id
+  in: query
+  required: false
+  description:  string	Id of an external order creaded in POS system
+  schema:
+    type: string
+  example:
+skipass_name:
+  name: name
+  in: query
+  required: false
+  description:  name string	Name of the charged skipass (product name is used from resource products)
+  schema:
+    type: string
+  example:
+resort_name:
+  name: resort_name
+  in: query
+  required: false
+  description:  string	Name of the resort where is a skipass charged
+  schema:
+    type: string
+  example:
+customer_category_name:
+  name: customer_category_name
+  in: query
+  required: false
+  description:  Name of the customer category
+  schema:
+    type: string
+  example:
+skipass_card_id:
+  name: card_id
+  in: query
+  required: false
+  description: Id of card used for charge skipasses
+  schema:
+    type: string
+  example: 8c97533b621490a0b211419086
+skipass_type_id:
+  name: skipass_type_id
+  in: query
+  required: false
+  description: |
+    Type of the skipass
+    *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+  example: 1
+skipass_state:
+  name: state
+  in: query
+  required: false
+  description: 'State of the skipass *Possible values are: canceled skipass - 0 / valid skipass -1*'
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+  example: 1
+external_skipass_id:
+  name: external_skipass_id
+  in: query
+  required: false
+  description: External id of skipass. Structure can be different depends of POS system, that created skipass
+  schema:
+    type: string
+  example:
+is_cancelled:
+  name: is_cancelled
+  in: query
+  required: false
+  description: |
+    Filter for canceled skipasses.
+    *Possible values: true - all cancelled skipasses / false - all non cancelled skipasses / no value - all skipasses*
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: false
+
+# Statuses
+status_id_path:
+  name: status_id
+  in: path
+  description: The unique id for the status
+  required: true
+  schema:
+    type: string
+  example: 86e05affc77abefc513ab400
+
+# Store
+store_id_path:
+  name: store_id
+  in: path
+  description: The unique id of the store in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 8fd7316732d06899c4c015320
+store_group_id_path:
+  name: store_group_id
+  in: path
+  description: The unique id for the store group
+  required: true
+  schema:
+    type: string
+  example: 8bed991c6a470e7aaeffbf048
+store_property_id_path:
+  name: store_property_id
+  in: path
+  description: The unique id for the store property
+  required: true
+  schema:
+    type: string
+  example: provided_services
+store_id:
+  name: store_id
+  in: query
+  description: The unique id of the store in CareCloud
+  required: false
+  schema:
+    type: string
+  example: 8fd7316732d06899c4c015320
+visible_for_customer:
+  name: visible_for_customer
+  in: query
+  description: "State of the visibility for the customer *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*"
+  required: false
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+  example: 1
+property_id:
+  name: property_id
+  in: query
+  required: false
+  description: Store property id from resource [store-properties](#tag/Store-properties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+  schema:
+    type: string
+  example: provided_services
+property_value:
+  name: property_value
+  in: query
+  required: false
+  description: Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values . Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
+  schema:
+    type: string
+  example:
+
+# Tokens
+token_id_path:
+  name: token_id
+  in: path
+  description: Client's application token
+  required: true
+  schema:
+    type: string
+  example: d9aacfc5eebfae1e9fdc7f20694c2ca105dff986f1b8176a6740c027db56a325913f
+external_application_id:
+  name: external_application_id
+  in: query
+  required: true
+  description: Id of external application. For id of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications)
+  schema:
+    type: string
+  example: 89d1a6111b3fb6e74665d948
+token_type:
+  name: token_type
+  in: query
+  required: true
+  description: 'Parameter set witch token type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
+  schema:
+    type: string
+    enum:
+      - 1
+      - 2
+    default: 1
+  example: 2

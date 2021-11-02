@@ -1,0 +1,64 @@
+post:
+  tags:
+    - Purchases
+  summary: Send purchase
+  description: The method sends the final closed bill to CareCloud. It returns info about success/failure in the response
+  operationId: postPurchaseSend
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            store_id:
+              type: string
+              description: Id of store
+              example: 8fd73167342d06899c15320
+            cashdesk_number:
+              type: string
+              description: Number of the cashdesk in store
+              example: 1
+            card_number:
+              type: string
+              description: A customer's card number
+              example: 200120000290
+            bill:
+              $ref: '../../schemas/_index.yaml#/FinalBill'
+          required:
+            - store_id
+            - cashdesk_number
+            - bill
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  purchase_id:
+                    type: string
+                    description: The unique id of the purchase
+                    example: 85c763ebcec2fa488f8857bee
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

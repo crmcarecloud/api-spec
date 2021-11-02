@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Countries
+  summary: Get all countries
+  description: Get a list of countries accepted in CRM CareCloud
+  operationId: getCountries
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  countries:
+                    type: array
+                    description: List of the countries
+                    items:
+                      type: object
+                      properties:
+                        country_id:
+                          type: string
+                          description: The unique id of the country as ISO code
+                          example: cz
+                        state:
+                          type: integer
+                          enum:
+                            - 0
+                            - 1
+                            - 2
+                          description: |
+                            State of the country
+                            *Possible values are: 0 - deleted / 1- active / 2 - non active*
+                          example: 1
+                  total_items:
+                    type: integer
+                    description: Count of all found countries
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

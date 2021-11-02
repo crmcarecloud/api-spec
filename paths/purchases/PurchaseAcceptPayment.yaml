@@ -1,0 +1,84 @@
+post:
+  tags:
+    - Purchases
+  summary: Accept payment
+  description: The method processes bill closure requests. CareCloud returns information about discounts, applied vouchers, and points used for payment that change the bill's final price.
+  operationId: postPurchaseAcceptPayment
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            store_id:
+              type: string
+              description: Id of store
+              example: 8fd73167342d06899c15320
+            cashdesk_number:
+              type: string
+              description: Number of the cashdesk in store
+              example: 1
+            card_number:
+              type: string
+              description: A customer's card number
+              example: 200120000290
+            payment_type:
+              type: string
+              enum:
+                - S
+                - D
+              description: |
+                Method of the bill closure
+                *Possible values: “S”-standard / “D”- use discount now*
+              example: "S"
+            max_points:
+              type: string
+              description: Amount of points to be redeemed
+              example: 4
+            max_credit:
+              type: string
+              description: Amount of credits to be used
+              example: 7
+            benefit_codes:
+              type: array
+              items:
+                type: string
+              description: The bill closure will use present codes and recommend discounts
+              example: [ ]
+            bill:
+              $ref: '../../schemas/_index.yaml#/Bill'
+          required:
+            - store_id
+            - cashdesk_number
+            - payment_type
+            - bill
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/AcceptedPayment'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

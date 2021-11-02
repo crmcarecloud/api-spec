@@ -1,0 +1,53 @@
+get:
+  tags:
+    - Skipasses
+  summary: Get skipasses overview
+  description: Get information about skipasses in time interval
+  operationId: getSkipassesOverview
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/valid_from'
+    - $ref: '../../parameters/_index.yaml#/valid_to'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  active_skipasses:
+                    type: integer
+                    description: Amount of active skipasses in date range. Active skipasses can be used by customers in their validity range
+                    example: 113655
+                  canceled_skipasses:
+                    type: integer
+                    description: Amount of canceled skipasses in date range. Canceled skipasses in production systems and in CareCloud. Customers cannot use them anymore
+                    example: 446
+                  deactivated_skipasses:
+                    type: integer
+                    description: Amount of deactivated skipasses in date range. Skipasses deactivated in CareCloud only. These skipasses are usually not sent to production systems. Deactivation have been done in system CareCloud
+                    example: 233834
+                  sold_skipasses:
+                    type: integer
+                    description: Amount of sold skipasses in date range. Skipasses deactivated in CareCloud only. These skipasses are usually not sent to production systems. Deactivation have been done in system CareCloud
+                    example: 347489
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

@@ -1,0 +1,43 @@
+get:
+  tags:
+    - Wallet
+  summary: Get sales turnover
+  description: Get information about sales turnover of the customer in time interval
+  operationId: getWalletSalesTurnover
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_required'
+    - $ref: '../../parameters/_index.yaml#/date_from'
+    - $ref: '../../parameters/_index.yaml#/date_to'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  turnover:
+                    type: array
+                    description: List of all turnover by currency in time interval
+                    items:
+                      $ref: '../../schemas/_index.yaml#/QualificationTurnover'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
