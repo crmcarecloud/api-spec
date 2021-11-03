@@ -8472,7 +8472,7 @@ paths:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/token_id_path'
       requestBody:
-        required: false
+        required: true
       responses:
         '204':
           description: No Content
@@ -14244,7 +14244,7 @@ components:
         Accept-Language: cs, en-gb;q=0.8
 
         {
-          "user_external_application_id ": "4d9495b4e723e7a",
+          "user_external_application_id": "4d9495b4e723e7a",
           "login": "example@crmcarecloud.com",
           "password": "password_example"
         }

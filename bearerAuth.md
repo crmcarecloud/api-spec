@@ -21,7 +21,7 @@ Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 
 {
-  "user_external_application_id ": "4d9495b4e723e7a",
+  "user_external_application_id": "4d9495b4e723e7a",
   "login": "example@crmcarecloud.com",
   "password": "password_example"
 }
