@@ -57,7 +57,7 @@ properties:
     type: string
     readOnly: true
     description: Text representation of the order status
-    exaple: "New Uncomfirmed"
+    example: "New Uncomfirmed"
   shipping_date:
     type: string
     readOnly: true
@@ -72,7 +72,7 @@ properties:
     type: string
     readOnly: true
     description: Text representation of the payment status
-    exaple: "Unpaid"
+    example: "Unpaid"
   last_change:
     type: string
     readOnly: true

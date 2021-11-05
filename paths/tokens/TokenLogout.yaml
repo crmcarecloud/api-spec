@@ -7,8 +7,6 @@ post:
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/token_id_path'
-  requestBody:
-    required: true
   responses:
     '204':
       description: No Content
