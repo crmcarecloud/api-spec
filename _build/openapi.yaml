@@ -5988,7 +5988,7 @@ paths:
               properties:
                 store_id:
                   type: string
-                  description: Id of the store
+                  description: Id of store
                   example: 8fd73167342d06899c15320
                 cashdesk_number:
                   type: string
@@ -5996,7 +5996,7 @@ paths:
                   example: 1
                 card_number:
                   type: string
-                  description: The customer's card number
+                  description: A customer's card number
                   example: 200120000290
                 reward_list_type:
                   type: string
@@ -6158,7 +6158,7 @@ paths:
                   example: 8fd73167342d06899c15320
                 cashdesk_number:
                   type: string
-                  description: Number of the cashdesk in the store
+                  description: Number of the cashdesk in store
                   example: 1
                 card_number:
                   type: string
@@ -11021,6 +11021,11 @@ components:
           readOnly: true
           description: Text representation of the payment status
           example: Unpaid
+        invoice_document_url:
+          type: string
+          readOnly: true
+          description: URL address with the invoice PDF
+          example: 'https://example.crmcarecloud.com/invoices/1c68a470eaaeff'
         last_change:
           type: string
           readOnly: true
