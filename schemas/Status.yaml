@@ -63,7 +63,7 @@ properties:
     readOnly: false
     description: |
       The status achieving principle
-      *(1 - after creation of the account / 2 - manually / 3 - after the defined conditions are met)*
+      *(0 - after creation of the account / 1 - manually / 2 - after the defined conditions are met)*
     example: 1
   discount:
     type: integer

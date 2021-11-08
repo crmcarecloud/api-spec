@@ -7,7 +7,7 @@ properties:
     description: The unique id of the message
     example: 89ce2a1b9b01f5c939fb1e20cd
   status:
-    type: string
+    type: integer
     enum:
       - 0
       - 1
@@ -60,7 +60,7 @@ properties:
     description: Language of the mail client application where message was opened
     example:
   communication_channel_id:
-    type: string
+    type: integer
     enum:
       - 1
       - 2

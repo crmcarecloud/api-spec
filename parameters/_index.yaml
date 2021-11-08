@@ -245,7 +245,7 @@ customer_id_path:
   name: customer_id
   in: path
   required: true
-  description: The unique id for the customer
+  description: The unique id of the customer
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
@@ -253,7 +253,7 @@ customer_id:
   name: customer_id
   in: query
   required: false
-  description: The unique id for the customer
+  description: The unique id of the customer
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
@@ -261,7 +261,7 @@ customer_id_required:
   name: customer_id
   in: query
   required: true
-  description: The unique id for the customer
+  description: The unique id of the customer
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
@@ -324,14 +324,6 @@ card_number:
   schema:
     type: string
   example: 200120000290
-card_id:
-  name: card_id
-  in: query
-  description: The unique id for the card
-  required: false
-  schema:
-    type: string
-  example: 81a94c48474bc45c03d41f7016
 card_type_id:
   name: card_type_id
   in: query
@@ -661,7 +653,7 @@ communication_channel_id:
   description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
   required: false
   schema:
-    type: string
+    type: integer
     enum:
       - 1
       - 2
@@ -864,7 +856,7 @@ reservation_state:
     *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
   required: false
   schema:
-    type: string
+    type: integer
     enum:
       - 0
       - 1
@@ -1172,7 +1164,7 @@ token_type:
   required: true
   description: 'Parameter set witch token type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
   schema:
-    type: string
+    type: integer
     enum:
       - 1
       - 2
