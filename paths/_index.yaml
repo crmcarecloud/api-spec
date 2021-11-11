@@ -75,7 +75,7 @@
   $ref: "./customers/SubCustomerProperties.yaml"
 /customers/{customer_id}/property-records/{property_record_id}:
   $ref: "./customers/SubCustomerProperty.yaml"
-/customers/{customer_id}/interest-records/:
+/customers/{customer_id}/interest-records:
   $ref: "./customers/SubCustomerInterests.yaml"
 /customers/{customer_id}/interest-records/{interest_record_id}:
   $ref: "./customers/SubCustomerInterest.yaml"

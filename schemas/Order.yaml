@@ -73,6 +73,11 @@ properties:
     readOnly: true
     description: Text representation of the payment status
     example: "Unpaid"
+  invoice_document_url:
+      type: string
+      readOnly: true
+      description: URL address with the invoice PDF
+      example: "https://example.crmcarecloud.com/invoices/1c68a470eaaeff"
   last_change:
     type: string
     readOnly: true

@@ -82,7 +82,7 @@ properties:
     readOnly: false
     description: UTM structure for data from email campaign
   actual_state:
-    type: string
+    type: integer
     enum:
       - 0
       - 1

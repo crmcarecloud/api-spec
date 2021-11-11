@@ -30,7 +30,7 @@ properties:
     description: Name of the message template
     example: Náezv
   message_template_group_id:
-    type: string
+    type: integer
     enum:
       - 1
       - 2
@@ -39,7 +39,7 @@ properties:
     description: "The unique id of the message template group. *Possible values are: 1 - newsletter template / 2- system template(registration message, order summary message, etc.) / 3 - transactional communication(for hotel, traveling,...)*"
     example: 1
   comunication_channel_id:
-    type: string
+    type: integer
     enum:
       - 1
       - 2

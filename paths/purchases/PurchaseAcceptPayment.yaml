@@ -15,15 +15,15 @@ post:
           properties:
             store_id:
               type: string
-              description: Id of store
+              description: Id of the store
               example: 8fd73167342d06899c15320
             cashdesk_number:
               type: string
-              description: Number of the cashdesk in store
+              description: Number of the cashdesk in the store
               example: 1
             card_number:
               type: string
-              description: A customer's card number
+              description: The customer's card number
               example: 200120000290
             payment_type:
               type: string

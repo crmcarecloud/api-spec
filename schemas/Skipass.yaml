@@ -97,7 +97,7 @@ properties:
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
     example: '2019-08-29 13:04:45'
   state:
-    type: string
+    type: integer
     enum:
       - 0
       - 1
