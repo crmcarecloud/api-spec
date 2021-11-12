@@ -1,0 +1,10 @@
+stages:
+  - validate
+
+lint_api_yaml:
+  image:
+    name: redocly/openapi-cli:latest
+    entrypoint: [""]
+  stage: validate
+  script:
+    - openapi lint $CI_PROJECT_DIR/_build/openapi.yaml
