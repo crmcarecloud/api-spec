@@ -6,7 +6,7 @@ info:
     name: EULA
     url: https://www.crmcarecloud.com/
   x-logo:
-    url: "https://www.crmcarecloud.com/wp-content/uploads/2020/04/LogoCareCloud_fial_sede.png"
+    url: "https://cdn.carecloud.cz/static/carecloud_blue.svg"
     altText: 'CRM CareCloud'
   description:
     $ref: "./description.md"
