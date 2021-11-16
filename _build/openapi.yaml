@@ -10900,7 +10900,7 @@ components:
           readOnly: true
           description: 'The unique id of the message template group. *Possible values are: 1 - newsletter template / 2- system template(registration message, order summary message, etc.) / 3 - transactional communication(for hotel, traveling,...)*'
           example: 1
-        comunication_channel_id:
+        communication_channel_id:
           type: integer
           enum:
             - 1
@@ -10926,7 +10926,7 @@ components:
         - sender
         - name
         - message_template_group_id
-        - comunication_channel_id
+        - communication_channel_id
     OpeningDay:
       type: object
       description: Opening day structure
