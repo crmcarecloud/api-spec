@@ -1,8 +1,8 @@
-Learn here the basics of the CRM CareCloud API, from authentication to available resources. Learn about the CRM CareCloud REST API, which can be used to connect CRM CareCloud to other systems like e-shops, POS, kiosks, booking and other similar production systems, which process the customer data sets with its relationships or end user applications like mobile Android and iOS APPs or web customer microsites which needs to get the unique customer data.
+Learn here the basics of the Customer Data Platform CareCloud API, from authentication to usage of available resources. Learn about the CDP CareCloud REST API, which Systems can use API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other similar production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need to get the unique customer data.
 
 #### [Getting started](#section/Getting-started)
 
-This is the description of the basics of the CRM CareCloud API. It is desribed here the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between  Enterprise  and  Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
+This is the description of the basics of the CDP CareCloud API. It is desribed here the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between  Enterprise  and  Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
 
 #### [CRM CareCloud API Reference](#section/CRM-CareCloud-API-Reference)
 
@@ -524,6 +524,145 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
       },
        ...
 ```
+
+## Assign a free card to the existing customer
+This use case describes the process of assigning free cards to the existing customer. In this case, the customer holds the card and knows the number of the card. It covers only cards that exist in the database already, and they are ready to be used.
+
+1. Find a free card that it could be assigned to the customer by the card number. To do that, you have to filter cards.
+   Use parameters `card_number` to filter a card that the customer holds.
+
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/cards?card_number=2001900627
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+```json
+{
+  "data": {
+    "cards": [
+      {
+        "card_id": "8ecdd31720a5de8af85e1c566",
+        "customer_id": null,
+        "card_type_id": "86e05affc7a7abcd513ab400",
+        "card_number": "2001900627",
+        "state": 1,
+        "valid_from": null,
+        "valid_to": null,
+        "store_id": null,
+        "last_change": "2012-08-21 14:25:13.821752"
+      }
+    ],
+    "total_items": 35415
+  }
+}
+```
+2. If you got a successful result, that means the card you are looking for exists in the database. The next step is to check the card's parameters to confirm it is free to use.
+   You need to check parameter `customer_id` (should have value `null`) to filter only cards without a relation to the customer.
+
+3. You need to add customer identification when you find a free card by parameters from the previous point.
+   With the following API call from resource [PUT /cards](#operation/putCard).
+   Set parameter `customer_id` like in example `e05affc7a7abefc513ab` with the customer id. Other parameters stay unchanged.
+
+```http request
+PUT <projectURL>/webservice/rest-api/enterprise-interface/v1.0/cards/8ecdd31720a5de8af85e1c566
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+```json
+{
+    "card": 
+      {
+        "card_id": "8ecdd31720a5de8af85e1c566",
+        "customer_id": "e05affc7a7abefc513ab",
+        "card_type_id": "86e05affc7a7abcd513ab400",
+        "card_number": "2001900627",
+        "state": 1,
+        "valid_from": null,
+        "valid_to": null,
+        "store_id": null,
+      }
+}
+
+```
+
+4. After the successful API call, the card has been assigned to the customer, and it's ready to be used.
+   In case of any error, please follow the error message to find the solution.
+
+5. If you didn't find any card, the card you were looking for is not in the system. In this case, you should insert a new card into the system.
+   There is a way how to do it through API. Otherwise, you have to import cards manually to the system via CDP administration.
+   If you decide to use an API solution, you can create a new card. For that, you need to know a card type.
+   If you don't know card type, you can select a card type from the resource [GET /card-types](#operation/getCardTypes):
+
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/card-types
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+Response:
+
+```json
+{
+  "data": {
+    "card_types": [
+      {
+        "card_type_id": "8bd48117006496e01788109b8",
+        "name": "Business card",
+        "prefix": "12"
+      },
+      {
+        "card_type_id": "85d85ccae1fbb739f0a6db02b",
+        "name": "REST API card type",
+        "prefix": ""
+      }
+    ],
+    "total_items": 2
+  }
+}
+```
+
+6. Now you know the card type, card number, and customer id. You can create a new card in the system.
+   For that, you will use the resource [POST /cards](#operation/postCard).
+
+```http request
+
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/cards/
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+```json
+{
+    "card": 
+      {
+        "customer_id": "e05affc7a7abefc513ab",
+        "card_type_id": "8bd48117006496e01788109b8",
+        "card_number": "2001900627",
+        "state": 1,
+        "valid_from": null,
+        "valid_to": null,
+        "store_id": null,
+      }
+}
+
+```
+
+7. If you have done everything right, you will get a card id in the response.
+
+```json
+
+{
+  "data": {
+    "customer_id": "82c973544d6279113f387bc"
+  }
+}
+```
+8. In case of any error, please follow the error message to find a solution.
 
 # CRM CareCloud API Reference
 

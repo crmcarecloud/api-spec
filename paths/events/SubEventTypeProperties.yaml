@@ -1,12 +1,16 @@
 get:
   tags:
-    - Events
-  summary: Get a collection of event properties records
-  description: Get information about all property records on an event
-  operationId: getSubEventProperties
+    - Event types
+  summary: Get a collection of event type properties
+  description: Get information about all properties of event type
+  operationId: getSubEventTypeProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/event_id_path'
+    - $ref: '../../parameters/_index.yaml#/event_type_id_path'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
   responses:
     '200':
       description: OK
@@ -18,14 +22,14 @@ get:
               data:
                 type: object
                 properties:
-                  property_records:
+                  event-properties:
                     type: array
-                    description: List of property records
+                    description: List of event properties
                     items:
-                      $ref: '../../schemas/_index.yaml#/PropertyRecord'
+                      $ref: '../../schemas/_index.yaml#/Property'
                   total_items:
                     type: integer
-                    description: Count of all found event property records
+                    description: Count of all found event properties
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

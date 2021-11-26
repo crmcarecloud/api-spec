@@ -137,6 +137,8 @@
   $ref: "./events/EventTypes.yaml"
 /event-types/{event_type_id}:
   $ref: "./events/EventType.yaml"
+/event-types/{event_type_id}/event-properties:
+  $ref: "./events/SubEventTypeProperties.yaml"
 
 # Interests
 /interests:

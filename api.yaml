@@ -14,14 +14,13 @@ info:
     email: support@carecloud.cz
 tags:
   - name: Agreements
-    description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer's consent (agreement). You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project.
-      You can get the list of the available customer consents (agreements) here.
+    description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer's consent (agreement). You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.
   - name: Campaigns
-    description: You can use and coordinate a multitude of communication channels to deliver effective results within a personalized omnichannel marketing campaign in CareCloud platform.
+    description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
     description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in CRM CareCloud directly or via CareCloud API.
   - name: Cards
-    description: The Customer can be identified by different unique identificators - cards related to the account. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of unique personal ID or any other identification method like barcode, QR code or any other key can be used. All the unique customer cards (identificators) related to the Customer account can be processed by this resource.
+    description: The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.
   - name: Card types
     description: Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
   - name: Countries
@@ -47,69 +46,66 @@ tags:
   - name: Events
     description: |
       Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
-
       **Scheme of the MA related resources and their relations**
       <img src="https://imgur.com/0Bu8zWI.jpeg">
   - name: Event groups
     description: |
-      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event groups bellow.
-
+      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event groups below.
       **Scheme of the MA related resources and their relations**
       <img src="https://imgur.com/0Bu8zWI.jpeg">
   - name: Event properties
-    description: Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of available properties for events resource bellow.
+    description: Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of available properties for the events resource below.
   - name: Event types
     description: |
-      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event types bellow.
-
+      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event types below.
       **Scheme of the MA related resources and their relations**
       <img src="https://imgur.com/0Bu8zWI.jpeg">
   - name: Interests
     description: There are different areas that customers are interested in, that they enjoy, that they like or prefer. You can use resource interests to manage all of this customer project-specific preferences, personal interests, passions, or hobbies.
   - name: Languages
-    description: Some data, especially Customer accounts or Tokens are tied to a Language, which is listed in CRM CareCloud. You can get here the list of languages available.
+    description: Some data, especially Customer accounts or Tokens, are tied to a Language listed in CRM CareCloud. You can get here the list of languages available.
   - name: Messages
-    description: You can create and manage a multitude of different messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all message details and deliver the messages to customers via this resource.
+    description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message details and deliver the messages to customers through this resource.
   - name: Message templates
-    description: You can create and manage a multitude of different messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all message template details via this resource.
+    description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message template details through this resource.
   - name: Orders
     description: Orders are expressions of intentions to purchase products, i.e., requests to buy something. They may refer to products, services or even experiences. The order becomes a contract (spoken, written or electronic) between the business and the customer. The customer commits to receive the product and to pay for it. Orders can be managed here.
   - name: Partners
     description: A Partner is an entity that owns and manages a defined group of customer data in the CareCloud platform based on consent to the processing of personal data. The users of a specific Partner have no access to the customer data of another Partner. Each user is linked to a particular Partner. You can get here the list of Partners available.
   - name: Points
-    description: If there is a Loyalty program managed by CRM CareCloud based on points collection to a customer account, the points transactions and records like points collection and points redemption can be managed by this resource.
+    description: If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.
   - name: Point reservation
-    description: If there is a Loyalty program managed by CRM CareCloud based on points collection to a customer account, the point reservations can be managed by this resource.
+    description: When CRM CareCloud manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.
   - name: Point types
-    description: You can create different types of loyalty points in CareCloud platform and get the details of loyalty point types in this resource.
+    description: You can create different types of loyalty points in the CareCloud platform and get the details of loyalty point types in this resource.
   - name: Products
-    description: A Product is an item offered for sale to the customers. The Product could be goods, a service or even an experience. You can manage all different Product types and their properties in the CareCloud platform, define product brands and classify Products into product groups. You get the list of Products and it's properties in this resource.
+    description: A Product is an item offered for sale to the customers. The Product could be goods, a service, a ticket, or even an experience. You can manage all different Product types and their properties in the CareCloud platform, define product brands and classify Products into product groups. You get the list of Products and it's properties in this resource.
   - name: Product brands
     description: You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product brands and it's properties in this resource.
   - name: Product groups
     description: You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product groups in this resource.
   - name: Product properties
-    description: Product properties are list of available properties for products resource.
+    description: Product properties are list of available properties for the products resource.
   - name: Product reservations
     description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
   - name: Product reservation sources
     description: You can get the list of the available product reservation sources here.
-  - name: Reservable products
-    description: The set of Products that could be reserved can be limited. We call this group Reservable Products. You can get the details of Reservable Products and search within this group by this resource.
   - name: Purchases
-    description: There are the purchases tied to customer accounts stored in CRM CareCloud. The purchases are saved online when closing the bill or imported by the offline web service after the purchase. There are many parameters that specifies the purchase like bill items and its prices, date and time of the purchase, store, where purchase was made or loyalty card number. All this data are used for segmentation or voucher creation.
+    description: There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
   - name: Recommendations
-    description: There is the possibility to recommend the customers a product, a service or just an information in CRM CareCloud based on customer purchasing behavior and many other criteria. All recommendations can be viewed by this resource.
+    description: There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all recommendations.
   - name: Recommendation engine
-    description: The recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behaviour. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app etc.
+    description: There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.
+  - name: Reservable products
+    description: The set of Products that could be reserved can be limited. We call this group Reservable Products. You can get the details of Reservable Products and search within this group by this resource.
   - name: Rewards
-    description: Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features is a pattern for creation of individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by a set of parameters like Reward validity, prioroty or number of points, that will be spent by application and many other. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.
+    description: Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.
   - name: Reward properties
-    description: Reward properties are list of available properties for rewards resource.
+    description: Reward properties are list of the available properties for the rewards resource.
   - name: Segments
     description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
   - name: Skipasses
@@ -117,7 +113,7 @@ tags:
   - name: Statuses
     description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.
   - name: Stores
-    description: You can manage the network of stores (company branches) via this resource. Many properties as address, GPS coordinates, opening hours or contact details can be synchronized with any other system.
+    description: A store is a building, part of a building, or a virtual place where products are sold. You can manage the network of your business units (shops, stores, company branches, warehouses, kiosks, e-shops, mobile, or any other applications) via this resource. Many properties like an address, GPS coordinates, opening hours, or contact details can be synchronized with any other system.
   - name: Store groups
     description: List of store groups.
   - name: Store properties
@@ -128,13 +124,17 @@ tags:
       <p class="warning">⚠️ Warning: Tokens resource is available only in Customer interface.</p>
       <p class="warning">Note: The process of authentication and login to customer account using the HTTP methods  /tokens and  /tokens/{token_id}/actions/login is desribed in the section <a href="#section/Use-cases/Authentication-and-login-process-for-customer-interface">Use cases</a>.</p>
   - name: Users
-    description: '<p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>'
+    description: >
+      A user is a person who utilizes an Application, a computer or network service. A user has a user account and is identified to the system by a username and password. The user is assigned a user role and user permissions in the Application.
+      <br/><p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>
   - name: User roles
-    description: '<p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>'
+    description: >
+      User role is a permission set that controls access to Applications, actions and features within the CareCloud Platform. Each User account requires a User role assignment.
+      <br/><p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>
   - name: Vouchers
     description: Vouchers are generated by the Rewards for a specific Customer account and they are applied during the purchasing process. They are defined by its value, validity and related Reward. Vouchers can be managed by this resource.
   - name: Wallet
-    description: Customer's money/points/credits balance resource
+    description: The Wallet in the CareCloud platform contains Rewards Points and Credits. It is assigned to each customer on his customer account. The content of the wallet is available in the Customer 360 View App. You get the Wallet content details included expirations, here.
 x-tagGroups:
   - name: Agreements
     tags:

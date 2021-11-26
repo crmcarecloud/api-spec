@@ -9,9 +9,50 @@ Authorization: Bearer <token>
 
 As described below, for authentication through HTTP Bearer, you will need a bearer token.
 
-In REST API, you can get this token as a response from a successful call of [user login action method](#operation/postUserLogin).
+In REST API, you can get this token as a response from a successful call of [the user login action method](#operation/postUserLogin).
 
-For a successful login, you will need the ID of the external application and user credentials. If you miss any of these, please contact your account manager.
+
+For a successful login, you will need the ID of the external application and user credentials.
+If you already have all information, you can continue to [Authentication process](#authentication-process). If you miss any parameters, please check [User credential](#user-credentials) and [External applications](#external-applications) sections.
+
+
+#### User credentials
+
+If you miss user credentials, you can create or get them in section Users of CDP administration.
+Complete user setup is located in:
+```text
+System configuration > User authorization > Users
+```
+
+<img src="img/user_add.png">
+
+If you want to use a user from CDP CareCloud, you need to set the 'User Group' option in the user form to value `webservice`.
+
+#### External applications
+The external application represents an application that wants to/ already communicate with CPD CareCloud REST API. Every system needs to be identified, and that's why we need to know the external application ID.
+It could be one of the following examples:
+- a mobile app for the customer's purchase overview
+- e-shop that uses customers data
+- production system that wants to synchronize customer purchases
+
+If you need an external application ID, you can get it in CDP administration in the section External applications
+```text
+System configuration > External applications
+```
+
+<img src="img/external_app_overview.png"> <br/>
+
+
+Or you can also add a new external application to the system by the following form in the same section:
+
+
+<img src="img/external_app_add.png"> <br/>
+
+
+For CDP REST API use, please get an Encoded ID.
+
+#### Authentication process
+If you have all mandatory parameters, you can continue with the user login API call.
 
 User login request :
 
@@ -27,7 +68,7 @@ Accept-Language: cs, en-gb;q=0.8
 }
 ```
 
-Bearer token in response of the method:
+Bearer token in response to the method:
 
 ```json
 {
@@ -38,10 +79,10 @@ Bearer token in response of the method:
 ```
 
 
-After you successfully got your bearer token, please add it to every REST API call in the Enterprise interface with the following syntax:
+After you successfully get your bearer token, please add it to every REST API calls in the Enterprise interface with the following syntax:
 
 ```http request
-GET http:<projectURL>/rest-api/customer-interface/v1.0/customers
+GET https://<projectURL>/rest-api/customer-interface/v1.0/customers
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 Authorization: Bearer 09359095c5da43c7ae11e710eabce49
@@ -49,11 +90,13 @@ Authorization: Bearer 09359095c5da43c7ae11e710eabce49
 
 Response:
 
-```json
+```http request
 HTTP/1.1 200 OK
 Date: Mon, 22 Jul 2019 11:54:39 GMT
 Content-Type: application/json; charset=utf-8
+```
 
+```json
 {
     "data": {
         "customers": [
