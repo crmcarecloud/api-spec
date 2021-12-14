@@ -10,7 +10,7 @@ Authorization: Bearer <token>
 As described below, for authentication through HTTP Bearer, you will need a bearer token.
 
 In REST API, you can get this token as a response from a successful call of [the user login action method](#operation/postUserLogin).
-
+<p class="warning">⚠️ Bearer token validity has a default value of 7 hours. Every project can customize the validity of the bearer token.</p>
 
 For a successful login, you will need the ID of the external application and user credentials.
 If you already have all information, you can continue to [Authentication process](#authentication-process). If you miss any parameters, please check [User credential](#user-credentials) and [External applications](#external-applications) sections.

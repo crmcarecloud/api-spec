@@ -25,6 +25,10 @@ post:
               type: string
               description: The customer's card number
               example: 200120000290
+            customer_id:
+              type: string
+              description: Id of the customer that made the purchase. You can search customers by plenty parameter in resource customers
+              example: 6734267342d0689d06899c
             payment_type:
               type: string
               enum:
