@@ -215,16 +215,25 @@
   $ref: "./products/Products.yaml"
 /products/{product_id}:
   $ref: "./products/Product.yaml"
+# Batch
+/products/batch:
+  $ref: "./products/ProductsBatch.yaml"
 # Product brands
 /product-brands:
   $ref: "./products/ProductBrands.yaml"
 /product-brands/{product_brand_id}:
   $ref: "./products/ProductBrand.yaml"
+# Batch
+/product-brands/batch:
+  $ref: "./products/ProductBrandsBatch.yaml"
 # Product groups
 /product-groups:
   $ref: "./products/ProductGroups.yaml"
 /product-groups/{product_group_id}:
   $ref: "./products/ProductGroup.yaml"
+# Batch
+/product-groups/batch:
+  $ref: "./products/ProductGroupsBatch.yaml"
 # Product properties
 /product-properties:
   $ref: "./products/ProductProperties.yaml"

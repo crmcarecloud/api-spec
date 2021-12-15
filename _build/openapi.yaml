@@ -5042,6 +5042,48 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /products/batch:
+    post:
+      tags:
+        - Products
+      summary: Create a batch of products
+      description: Batch process helps to add multiple products in one request. <p class="warning">⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.</p>
+      operationId: postBulkProducts
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  description: List of the CareCloud products
+                  items:
+                    $ref: '#/components/schemas/ProductBatch'
+              required:
+                - products
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /product-brands:
     get:
       tags:
@@ -5112,6 +5154,48 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/ProductBrand'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /product-brands/batch:
+    post:
+      tags:
+        - Product brands
+      summary: Create a batch of product brands
+      description: Batch process helps to add multiple product brands in one request
+      operationId: postBulkProductBrands
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_brands:
+                  type: array
+                  description: List of the CareCloud product brands
+                  items:
+                    $ref: '#/components/schemas/ProductBrand'
+              required:
+                - product_brands
+      responses:
+        '204':
+          description: No Content
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -5200,6 +5284,48 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/ProductGroup'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /product-groups/batch:
+    post:
+      tags:
+        - Product groups
+      summary: Create a batch of product groups
+      description: Batch process helps to add multiple product groups in one request
+      operationId: postBulkProductGroups
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_groups:
+                  type: array
+                  description: List of the CareCloud product groups
+                  items:
+                    $ref: '#/components/schemas/ProductGroup'
+              required:
+                - product_groups
+      responses:
+        '204':
+          description: No Content
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -6037,7 +6163,7 @@ paths:
               properties:
                 store_id:
                   type: string
-                  description: Id of store
+                  description: ID of the store
                   example: 8fd73167342d06899c15320
                 cashdesk_number:
                   type: string
@@ -6045,11 +6171,11 @@ paths:
                   example: 1
                 card_number:
                   type: string
-                  description: A customer's card number
+                  description: Cusomer card number
                   example: 200120000290
                 customer_id:
                   type: string
-                  description: Id of the customer that made the purchase. You can search customers by plenty parameter in resource customers
+                  description: Id of the customer that made the purchase. You can search customers by plenty parameter in the resource customers
                   example: 6734267342d0689d06899c
                 reward_list_type:
                   type: string
@@ -6060,13 +6186,12 @@ paths:
                   description: |
                     Type of the rewards
                     *Possible values: F - full (all manual rewards available and valid for the specific POS)/ C -condensed (only manual rewards corresponding to items on the bill - maxCount not equals zero)/ A - all rewards list including automatic apply this is only for the DATA CUBE*
-                  example: F
+                  example: A
                 bill:
                   $ref: '#/components/schemas/Bill'
               required:
                 - store_id
                 - cashdesk_number
-                - card_number
                 - reward_list_type
                 - bill
       responses:
@@ -11577,6 +11702,45 @@ components:
         - name
         - code
         - external_id
+    ProductBatch:
+      type: object
+      description: Product resource for the batch processing
+      properties:
+        product_id:
+          type: string
+          readOnly: true
+          description: The unique id of the product
+          example: 89bdacbffb5c82f2c52cb9ae8f
+        name:
+          type: string
+          readOnly: false
+          description: Name of the product
+          example: Vodka tonic
+        code:
+          type: string
+          readOnly: false
+          description: Code of the product
+          example: '649'
+        plu_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/PluId'
+          readOnly: false
+          description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id for every product across all POS systems))
+        product_group_id:
+          type: string
+          readOnly: false
+          description: The unique id for the product group
+          example: 85cfc89601efa1ba2c2aa3b6a0
+        product_brand_id:
+          type: string
+          readOnly: false
+          description: The unique id for the product brand
+          example: null
+      required:
+        - name
+        - code
+        - plu_ids
     ProductBrand:
       type: object
       description: Product brand resource
