@@ -11730,13 +11730,23 @@ components:
         product_group_id:
           type: string
           readOnly: false
-          description: The unique id for the product group
+          description: 'The unique id for the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.'
           example: 85cfc89601efa1ba2c2aa3b6a0
+        product_group_external_id:
+          type: string
+          readOnly: false
+          description: 'The unique external id for the product group. If `product_group_id` is also set, both parameters have to represent the same product group.'
+          example: '23'
         product_brand_id:
           type: string
           readOnly: false
-          description: The unique id for the product brand
-          example: null
+          description: 'The unique id for the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.'
+          example: 1efa11efa1b2efa1ba2c2aa3ba2
+        product_brand_external_id:
+          type: string
+          readOnly: false
+          description: 'The unique external id for the product brand. If `product_brand_id` is also set, both parameters have to represent the same product brand.'
+          example: '71'
       required:
         - name
         - code
@@ -11780,18 +11790,23 @@ components:
         parent_product_group_id:
           type: string
           readOnly: false
-          description: The unique id for the parent product group
-          example: null
+          description: 'The unique id for the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.'
+          example: 1884a5d11ea3884a5d332534a5f
+        parent_external_id:
+          type: string
+          readOnly: false
+          description: 'The unique external id for the parent product group. If `parent_product_group_id` is also set, both parameters have to represent the same product group.'
+          example: '678'
         code:
           type: string
           readOnly: false
           description: Code of the product group
-          example: null
+          example: '567829'
         external_id:
           type: string
           readOnly: false
           description: The external unique id of the product group
-          example: '53'
+          example: '953'
         store_id:
           type: string
           readOnly: false
