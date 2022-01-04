@@ -1,7 +1,5 @@
 Learn here the basics of the Customer Data Platform CareCloud API, from authentication to usage of available resources. Learn about the CDP CareCloud REST API, which Systems can use API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other similar production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need to get the unique customer data.
 
-#### [Getting started](#section/Getting-started)
-
 This is the description of the basics of the CDP CareCloud API. It is desribed here the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between  Enterprise  and  Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
 
 #### [CRM CareCloud API Reference](#section/CRM-CareCloud-API-Reference)
@@ -12,13 +10,21 @@ This is the description of the basics of the CDP CareCloud API. It is desribed h
 
 CRM CareCloud REST API allows you to create and manage the customer accounts and related resources like countries, languages, currencies, sources or customer account statuses. You can use the API for management of vouchers, rewards, customer cards, segments and other structures related to customer account.
 
-## Domain structure
+
+## What is the best interface for my use case?
+<img src="img/customer_enterprise.png">
+
+Now, when it is all clear, let's continue with API call structure
+
+## API call structure
+
+### Domain structure
 
 The domain structure is like  `<projectURL>`/customer-interface/v1.0/customers where  `<projectURL>`  corresponds to the specific URL of your project. For example for project of company called Cortex, the  `<projectURL>`  could be https://cortex.crmcarecloud.com/webservice/rest-api/ or local URL https://project.carecloud.cz/webservice/rest-api/ or any other similar URL. REST API is available only through secure protocol HTTPS.
 
 We have created and described two API types, where the main difference is the authentication method and the purpose of the systems for which the API is created.
 
-### Enterprise API
+#### Enterprise API
 
 The  Enterprise interface client authenticates with login and password. The Enterprise API is mainly created for e-shops, POS, kiosks, booking and other similar production systems which needs to get the data lists.
 The domain structure for Enterprise interface API is like  `<projectURL>`/enterprise-interface/v1.0/customers, where :
@@ -28,7 +34,7 @@ The domain structure for Enterprise interface API is like  `<projectURL>`/enterp
 -   `v1.0`  is the version of the API (this is only example, please the check actual version with your integration support)
 -   `customers`  is an example of the resource. List of resources is available in  CRM CareCloud API Reference
 
-### Customer API
+#### Customer API
 
 The  Customer interface client authenticates  with user name and token. The Customer API is created and used mainly for end user applications like mobile Android and iOS APPs or web customer microsites which needs to get the unique customer data.
 The domain structure for the Customer interface API is like  `<projectURL>`/customer-interface/v1.0/customers
@@ -39,7 +45,7 @@ Where :
 -   `v1.0`  is the version of the API (this is only example, please check the actual version with your integration support)
 -   `customers`  is an example of the resource. List of resources is available in  CRM CareCloud API Reference
 
-## API call parameters
+### API call parameters
 
 Every API call has the following parameters:
 
@@ -48,7 +54,7 @@ Every API call has the following parameters:
 -   Request body - contains structures for methods POST, PUT
 -   Response body - contains all result data (resources or error information) in  standard response structure
 
-## HTTPS Methods
+### HTTPS Methods
 
 REST API is available only through the secure protocol HTTPS. CRM CareCloud REST API uses selection of the basic HTTP methods:
 
@@ -60,7 +66,7 @@ Make a `GET ` request to retrieve data depending on URI and query string
 
 Method `DELETE` removes a resource specified by the unique id. This method is provided just by some specific resources.
 
-## API versioning
+### API versioning
 
 Versioning of the API has the following pattern:
 `<vX.Y>`
@@ -71,7 +77,7 @@ where:
 
 If developers fix issues in the API a changelog report is published. Changelog contains a version of the API, date and description of the fix.
 
-## Actions
+### Actions
 
 In special cases, if it is not possible to follow the RESTful way, we use the procedural call. We call it Action. It is possible the Action to be called by existing resources as in the example below.
 
@@ -83,7 +89,7 @@ This is the example of the action “add customer” by resource segments:
 
 POST  `<projectURL>`/customer-interface/v1.0/segments/{segment_id}/actions/add-customer
 
-## Status codes
+### Status codes
 
 Status codes represent a status of the API response.
 
@@ -104,7 +110,7 @@ Status codes represent a status of the API response.
 | 500 Internal Server Error | Server is not working as expected |
 | 503 Service Unavailable | Temporary state when the service is temporarily unavailable, overloaded or there is a maintenance window |
 
-## Language version
+### Language version
 
 It is used, when the integrator needs to get the right language version of the requested information (like name, description or note). To be able to identify the language version it is necessary to set HTTP header field accept-language.
 
@@ -114,11 +120,11 @@ Host: project.crmcarecloud.com
 Accept-Language: cs
 ```
 
-## Read-only parameters
+### Read-only parameters
 
 These kinds of parameters are used only in response to API calls, and they should not be set in the request body of the API call. Please avoid using them during use POST or PUT HTTP method. Every data structure parameter is marked in documentation, so you can see if parameter is read only or not.
 
-## Mandatory parameters
+### Mandatory parameters
 
 If a parameter is marked as mandatory in the documentation, it has to be used in API calls. If a parent structure is not mandatory and you won't use it, child parameters of that structure won't be required. If you use the parent structure in the API call, all child parameters that are marked as mandatory will be required. Every data structure parameter is marked in the documentation, so you can see if the parameter is mandatory or not.
 
@@ -646,7 +652,7 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
         "state": 1,
         "valid_from": null,
         "valid_to": null,
-        "store_id": null,
+        "store_id": null
       }
 }
 
@@ -663,6 +669,331 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 }
 ```
 8. In case of any error, please follow the error message to find a solution.
+
+
+## Bill Closure with rewards application
+
+### Use Case workflow:
+
+1. User clicks on the Loyalty program button in the POS system.
+2. The User inserts the Customer Card Number into the specified field on POS using a barcode reader or manual input. The User can identify a customer with other parameters like email, phone, or name. If so, the User should collect these parameters from the Customer and get `customer id` with API call [GET /customers?parameter=value](#operation/getCustomers).
+3. POS system verifies the validity of the Loyalty Card with API call [GET /cards?cardnumber=12345678](#operation/getCards). This step is optional, and you can skip it if you don't want to verify a card number.
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/cards?card_number=100000047
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+Response:
+
+```json
+{
+  "data": {
+    "cards": [
+      {
+        "card_id": "83d1d11ea3884a5d33253fe214",
+        "customer_id": "84b9167cff007d98e1633",
+        "card_type_id": "8bed991c68a470e7aabf048",
+        "card_number": "100000047",
+        "state": 1,
+        "valid_from": null,
+        "valid_to": null,
+        "store_id": null,
+        "last_change": "2021-04-14 16:00:42"
+      }
+    ],
+    "total_items": 1
+  }
+}
+
+```
+4. The result shows that the example card doesn't have a validity date, and `state` has value 1. That means this card is good to use. Also, you can see if the card is assigned to the customer or not depending on the parameter `customer_id`.
+
+5. In the next step the user loads a list of rewards [POST /purchases/action/recommend-best-rewards](#operation/postPurchaseRecommendedRewards).
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/purchases/action/recommend-best-rewards
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+```json    
+{
+    "store_id": "81eaeea13984a169c490a325",
+    "cashdesk_number": 2,
+    "card_number": "100000047",
+    "bill": {
+        "bill_id": "15",
+        "payment_time": "2021-12-12 15:32:33",
+        "currency_id": "8bed991ca470e7aaeffbf048",
+        "total_price": 1400,
+        "bill_items": [
+            {
+                "plu_ids": [
+                    {
+                        "list_code": "GLOBAL",
+                        "code": "p2"
+                    }
+                ],
+                "plu_name": "Apple iPhone 12 Pro 128GB",
+                "category_plu_id": "",
+                "vat_rate": 21,
+                "quantity": 2,
+                "paid_amount": 1400,
+                "price": 1400,
+                "bill_item_id": "123",
+                "loyalty_off": false,
+                "purchase_item_type_id": "86e05affc7befcd513ab400"
+            }
+        ]
+    },
+    "reward_list_type": "C"
+}
+
+```
+Response to the request above:
+```json
+{
+    "data": {
+        "recommended_best_rewards": [
+            {
+                "code": "PTV2",
+                "name": "Apple Iphone for 590 EUR",
+                "reward_priority": 1,
+                "max_count": 0,
+                "description": "Iphone 12 sale",
+                "reward_properties": {
+                    "image": "",
+                    "valid_time_from": "0000-00-00 00:00:00",
+                    "valid_time_to": "0000-00-00 00:00:00"
+                }
+            },
+            {
+                "code": "PTV3",
+                "name": "Samsung brand campaign - second Samsung device for 590 EUR",
+                "reward_priority": 2,
+                "max_count": 0,
+                "description": "Samsung sale",
+                "reward_properties": {
+                    "image": "",
+                    "valid_time_from": "0000-00-00 00:00:00",
+                    "valid_time_to": "0000-00-00 00:00:00"
+                }
+            }
+        ],
+        "total_items": 2
+    }
+}
+```
+6. The User chooses specific rewards and sets the amount of use.
+7. The User clicks on the Bill Closure button on POS.
+8. The POS system adds selected rewards from [ POST /purchases/action/recommend-best-rewards](#operation/postPurchaseRecommendedRewards) and sends request Bill Closure to CareCloud REST API [POST /purchases/actions/accept-payment](#operation/postPurchaseAcceptPayment).
+   Based on the Customer id (or Card Number) and Bill Items, CareCloud calculates all available discounts. CareCloud applies all selected rewards too.
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/purchases/action/accept-payment
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+
+```
+
+```json
+{
+    "store_id": "81eaeea13984a169c490a325",
+    "cashdesk_number": 1,
+    "payment_type": "S",
+    "card_number": "100000047",
+    "benefit_codes": [
+        "PTV2"
+    ],
+    "bill": {
+        "bill_id": "15",
+        "payment_time": "2021-12-12 15:32:33",
+        "currency_id": "8bed991ca470e7aaeffbf048",
+        "total_price": 1400,
+        "bill_items": [
+            {
+                "plu_ids": [
+                    {
+                        "list_code": "GLOBAL",
+                        "code": "p2"
+                    }
+                ],
+                "plu_name": "Apple iPhone 12 Pro 128GB",
+                "category_plu_id": "",
+                "vat_rate": 21,
+                "quantity": 3,
+                "paid_amount": 1400,
+                "price": 1400,
+                "bill_item_id": "123",
+                "loyalty_off": false,
+                "purchase_item_type_id": "86e05affc7befcd513ab400"
+            }
+        ]
+    }
+}
+```
+9. CareCloud sends a list of all recommended discounts related to bill items and/or all selected rewards to the POS system.
+```json
+{
+  "data": {
+    "recommended_discounts": [],
+    "credit_points": 0,
+    "price_of_credit_points": 0,
+    "credit": 0,
+    "vouchers": [
+      {
+        "code": "PTV2-1-1-1",
+        "name": "Apple Iphone for 590 EUR",
+        "discount_value": 171.67,
+        "discount_percent": 36.79,
+        "bill_item_id": "123"
+      },
+      {
+        "code": "PTV2-1-2-1",
+        "name": "Apple Iphone for 590 EUR",
+        "discount_value": 171.67,
+        "discount_percent": 36.79,
+        "bill_item_id": "123"
+      }
+    ],
+    "credit_points_of_this_transaction": 0,
+    "total_credit_points": 0,
+    "total_credit": 0,
+    "messages": []
+  }
+}
+```
+10. Optionally, POS can display recommendation messages from parameter `messages` for cashiers. These contain sale recommendations for cashiers. Example: _Add a Teddy bear to the Bill, and the customer gets it free._
+11. POS should add all discounts and rewards to the Bill(into structure `payment_recap`). POS has to add all discounted items as bill items with a negative value and reduce the final price.
+12. The User checks the correctness and confirms by clicking on the Bill Payment button for final closure of the Bill or returns to Bill Closure
+13. User confirms payment of the Bill.
+    POS system saves and sends all details of the final Bill and applied rewards to CareCloud [POST /purchases/actions/send-purchase](#operation/postPurchaseSend). The detail of that part of the process you can find in the following use case.
+
+##  Send paid purchase
+This Use case describes sending of paid purchases to CareCloud. POS system asynchronously sends the finished purchases. All purchases that have not been sent yet are sent at a defined time interval (one minute). In case of unsuccessful data transfer, the purchase is sent later on (approx. five attempts, interval 10 minutes in between) and then marked to manual transfer. The possibility of manual transfer to CareCloud should be implemented on POS. This method is not supposed to be used with paid bills transmission to CareCloud via a data warehouse.
+
+### Use Case workflow
+1. POS system sends a final paid purchase [POST /purchases/actions/send-purchase](#operation/postPurchaseSend).
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/purchases/action/send-purchase
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+
+```
+
+```json
+
+{
+  "store_id": "81eaeea13984a169c490a325",
+  "cashdesk_number": 1,
+  "card_number": "100000047",
+  "bill": {
+    "fiscal": true,
+    "purchase_type_id": "86e05affa7abefcd513ab400",
+    "canceled": false,
+    "payment_recap": {
+      "credit_points": 0,
+      "amount_for_credit": 0,
+      "vouchers": [
+        {
+          "code": "PTV2-1-1-1",
+          "name": "Apple Iphone for 590 EUR",
+          "discount_value": 171.67,
+          "discount_percent": 36.79,
+          "bill_item_id": "123"
+        },
+        {
+          "code": "PTV2-1-2-1",
+          "name": "Apple Iphone for 590 EUR",
+          "discount_value": 171.67,
+          "discount_percent": 36.79,
+          "bill_item_id": "123"
+        }
+      ]
+    },
+    "payment_type": "S",
+    "payment_time": "2020-09-14 00:00:00",
+    "bill_id": "15",
+    "bill_number": "15_external_id",
+    "create_date_time": "2021-09-14",
+    "created_by": "operator1",
+    "currency_id": "8bed991ca470e7aaeffbf048",
+    "total_price": 1400,
+    "bill_items": [
+      {
+        "plu_ids": [
+          {
+            "list_code": "GLOBAL",
+            "code": "p2"
+          }
+        ],
+        "plu_name": "Apple iPhone 12 Pro 128GB",
+        "category_plu_id": "",
+        "vat_rate": 21,
+        "quantity": 3,
+        "paid_amount": 1400,
+        "price": 1400,
+        "bill_item_id": "123",
+        "loyalty_off": false,
+        "purchase_item_type_id": "86e05affc7befcd513ab400"
+      },
+      {
+        "plu_ids": [
+          {
+            "list_code": "GLOBAL",
+            "code": "p2"
+          }
+        ],
+        "plu_name": "Apple Iphone for 590 EUR",
+        "category_plu_id": "",
+        "vat_rate": 21,
+        "quantity": 1,
+        "paid_amount": -171.67,
+        "price": -171.67,
+        "bill_item_id": "124",
+        "loyalty_off": false,
+        "purchase_item_type_id": "86e05affc7befcd513ab400"
+      },
+      {
+        "plu_ids": [
+          {
+            "list_code": "GLOBAL",
+            "code": "p2"
+          }
+        ],
+        "plu_name": "Apple Iphone for 590 EUR",
+        "category_plu_id": "",
+        "vat_rate": 21,
+        "quantity": 1,
+        "paid_amount": -171.67,
+        "price": -171.67,
+        "bill_item_id": "125",
+        "loyalty_off": false,
+        "purchase_item_type_id": "86e05affc7befcd513ab400"
+      }
+    ],
+    "utm": {
+      "utm_source": "newsletter",
+      "utm_medium": "email",
+      "utm_campaign": "winter_campaign_2021"
+    }
+  }
+}
+```
+2. CareCloud receives the purchase, saves it, and executes all necessary designated processes (system CareCloud set points for User, applies rewards, spent points, actives card, and others).
+3. CareCloud confirms the execution of the purchase.
+```json
+{
+    "data": {
+        "purchase_id": "83d42b956cae0982696e425"
+    }
+}
+```
+4. POS system marks the purchase as successfully transferred to CareCloud.
+
 
 # CRM CareCloud API Reference
 
