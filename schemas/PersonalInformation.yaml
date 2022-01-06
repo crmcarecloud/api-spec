@@ -1,6 +1,11 @@
 type: object
 description: Personal information of the customer
 properties:
+  salutation:
+    type: string
+    readOnly: false
+    description: Customer's salutation. If it is not set in POST or PUT calls, it will be generated automatically.
+    example: Dear Mr. Smith
   gender:
     type: integer
     enum:

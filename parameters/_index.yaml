@@ -163,6 +163,14 @@ value_type_id:
       - 1
       - 2
   example: 2
+external_id:
+  name: external_id
+  in: query
+  required: false
+  description: The unique external id. It may be id from the other system
+  schema:
+    type: string
+  example: externalid
 
 # Personal parameters
 user_id_path:
@@ -265,14 +273,14 @@ customer_id_required:
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
-external_id:
+customer_external_id:
   name: external_id
   in: query
   required: false
-  description: The unique external id. It may be id from the other system
+  description: The parameter contains a unique ID from an external system (POS, webshop,  mobile app, ERP, and others ). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).
   schema:
     type: string
-  example: externalid
+  example: A798274529
 customer_source_id:
   name: customer_source_id
   in: query
