@@ -1,0 +1,34 @@
+type: object
+description: Information about a tag structure
+properties:
+  tag_id:
+    type: string
+    readOnly: true
+    description: The unique id of the tag
+    example: 838b73aacb5ac326cec4030c80
+  name:
+    type: string
+    readOnly: true
+    description: Name of the tag in language from the HTTP header
+    example: Recommended
+  text_id:
+    type: string
+    readOnly: true
+    description: Text id of the tag
+    example: recommended_tag
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the tag
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2019-01-04 10:31:56'

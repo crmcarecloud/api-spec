@@ -164,6 +164,8 @@ StoreGroup:
   $ref: "./StoreGroup.yaml"
 StoreGroupRecord:
   $ref: "./StoreGroupRecord.yaml"
+Tag:
+  $ref: "./Tag.yaml"
 TimeInterval:
   $ref: "./TimeInterval.yaml"
 User:

@@ -326,6 +326,8 @@
   $ref: "./rewards/SubRewardProductBrands.yaml"
 /rewards/{reward_id}/stores:
   $ref: "./rewards/SubRewardStores.yaml"
+/rewards/tags:
+  $ref: "./rewards/SubRewardTags.yaml"  
 #  Actions
 /rewards/{reward_id}/actions/create-voucher:
   $ref: "./rewards/RewardCreateVoucher.yaml"

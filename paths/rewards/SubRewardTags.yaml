@@ -1,18 +1,17 @@
 get:
   tags:
-    - Customers
-  summary: Get customer source records
-  description: Get information about all customer account source records.
-  operationId: getSubCustomerSource
+    - Rewards
+  summary: Get all tags for resource rewards
+  description: Get information as a list of all tags of resource rewards. Tags from the list could be use for reward filtering.
+  operationId: getSubRewardTags
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/customer_id_path'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_external_id'
-    - $ref: '../../parameters/_index.yaml#/customer_source_id'
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/text_id'
   responses:
     '200':
       description: OK
@@ -26,12 +25,12 @@ get:
                 properties:
                   tags:
                     type: array
-                    description: List of the tag records
+                    description: List of the all tags assigned to the resource rewards.
                     items:
                       $ref: '../../schemas/_index.yaml#/Tag'
                   total_items:
                     type: integer
-                    description: Count of all found tag records
+                    description: Count of all found tags
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

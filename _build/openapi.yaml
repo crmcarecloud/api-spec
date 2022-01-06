@@ -2186,66 +2186,15 @@ paths:
                   data:
                     type: object
                     properties:
-                      customer_source_records:
+                      tags:
                         type: array
-                        description: List of the customer source records
+                        description: List of the tag records
                         items:
-                          $ref: '#/components/schemas/CustomerSourceRecord'
+                          $ref: '#/components/schemas/Tag'
                       total_items:
                         type: integer
-                        description: Count of all found customer source records
+                        description: Count of all found tag records
                         example: 1
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-    post:
-      tags:
-        - Customers
-      summary: Add a source to a customer
-      description: 'Add one of the [customer sources](#tag/Customer-sources) to a customer account'
-      operationId: postSubCustomerSource
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_path'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                customer_source_record:
-                  $ref: '#/components/schemas/CustomerSourceRecord'
-              required:
-                - customer_source_record
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      customer_source_record_id:
-                        type: string
-                        description: The unique id for the property record
-                        example: 88c4e13a765584e8e322390798
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -6962,6 +6911,7 @@ paths:
         - $ref: '#/components/parameters/reward_group'
         - $ref: '#/components/parameters/customer_type_id_arr'
         - $ref: '#/components/parameters/without_stores'
+        - $ref: '#/components/parameters/tag_id_arr'
       responses:
         '200':
           description: OK
@@ -7270,6 +7220,57 @@ paths:
                       total_items:
                         type: integer
                         description: Count of all found stores
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /rewards/tags:
+    get:
+      tags:
+        - Rewards
+      summary: Get all tags for resource rewards
+      description: Get information as a list of all tags of resource rewards. Tags from the list could be use for reward filtering.
+      operationId: getSubRewardTags
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/text_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      tags:
+                        type: array
+                        description: List of the all tags assigned to the resource rewards.
+                        items:
+                          $ref: '#/components/schemas/Tag'
+                      total_items:
+                        type: integer
+                        description: Count of all found tags
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -12593,6 +12594,12 @@ components:
           readOnly: false
           description: 'Parameter says, if reward is automated or not. If reward is automated, means it''s applied by rules of the reward. Otherwise have to be applied manually'
           example: false
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          readOnly: true
+          description: List of the tags assigned to the reward.
         last_change:
           type: string
           readOnly: true
@@ -13150,6 +13157,41 @@ components:
       required:
         - store_id
         - store_group_id
+    Tag:
+      type: object
+      description: Information about a tag structure
+      properties:
+        tag_id:
+          type: string
+          readOnly: true
+          description: The unique id of the tag
+          example: 838b73aacb5ac326cec4030c80
+        name:
+          type: string
+          readOnly: true
+          description: Name of the tag in language from the HTTP header
+          example: Recommended
+        text_id:
+          type: string
+          readOnly: true
+          description: Text id of the tag
+          example: recommended_tag
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the tag
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-01-04 10:31:56'
     TimeInterval:
       type: object
       description: Time interval structure
@@ -13524,6 +13566,15 @@ components:
       schema:
         type: string
       example: externalid
+    tag_id_arr:
+      name: tag_ids
+      in: query
+      required: false
+      description: Parameter filters values by a list of tag ids. Logic OR is used between values.
+      schema:
+        type: array
+        items:
+          type: string
     user_id_path:
       name: user_id
       in: path

@@ -171,6 +171,15 @@ external_id:
   schema:
     type: string
   example: externalid
+tag_id_arr:
+  name: tag_ids
+  in: query
+  required: false
+  description: 	Parameter filters values by a list of tag ids. Logic OR is used between values.
+  schema:
+    type: array
+    items:
+      type: string
 
 # Personal parameters
 user_id_path:

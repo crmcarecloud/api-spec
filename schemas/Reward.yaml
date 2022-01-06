@@ -112,6 +112,12 @@ properties:
     readOnly: false
     description: Parameter says, if reward is automated or not. If reward is automated, means it's applied by rules of the reward. Otherwise have to be applied manually
     example: false
+  tags:
+    type: array
+    items:
+        $ref: '../schemas/_index.yaml#/Tag'
+    readOnly: true
+    description: List of the tags assigned to the reward.
   last_change:
     type: string
     readOnly: true
