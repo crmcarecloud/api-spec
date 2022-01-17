@@ -241,11 +241,11 @@ x-tagGroups:
     tags:
       - Wallet
 servers:
-  - url: https://<projectURL>/enterprise-interface/v1.0
+  - url: https://<projectURL>/webservice/rest-api/enterprise-interface/v1.0
     description: The **Enterprise API**. More in [Domain structure](#section/Getting-started/Domain-structure)
-  - url: https://<projectURL>/customer-interface/v1.0
+  - url: https://<projectURL>/webservice/rest-api/customer-interface/v1.0
     description: The **Customer API**. More in [Domain structure](#section/Getting-started/Domain-structure)
-#  - url: https://<projectURL>/{API type}/v1.0
+#  - url: https://<projectURL>/webservice/rest-api/{API type}/v1.0
 #    variables:
 #      API type:
 #        enum:

@@ -25,6 +25,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/reward_group'
     - $ref: '../../parameters/_index.yaml#/customer_type_id_arr'
     - $ref: '../../parameters/_index.yaml#/without_stores'
+    - $ref: '../../parameters/_index.yaml#/tag_id_arr'
   responses:
     '200':
       description: OK

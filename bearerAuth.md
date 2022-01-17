@@ -57,7 +57,7 @@ If you have all mandatory parameters, you can continue with the user login API c
 User login request :
 
 ```http request
-POST https://<projectURL>/rest-api/enterprise-interface/v1.0/users/actions/login
+POST https://<projectURL>/webservice/rest-api/enterprise-interface/v1.0/users/actions/login
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 
@@ -82,7 +82,7 @@ Bearer token in response to the method:
 After you successfully get your bearer token, please add it to every REST API calls in the Enterprise interface with the following syntax:
 
 ```http request
-GET https://<projectURL>/rest-api/customer-interface/v1.0/customers
+GET https://<projectURL>/webservice/rest-api/customer-interface/v1.0/customers
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 Authorization: Bearer 09359095c5da43c7ae11e710eabce49

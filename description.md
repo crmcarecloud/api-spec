@@ -1,6 +1,7 @@
-Learn here the basics of the Customer Data Platform CareCloud API, from authentication to usage of available resources. Learn about the CDP CareCloud REST API, which Systems can use API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other similar production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need to get the unique customer data.
+Learn here the basics of the Customer Data Platform CareCloud API, from authentication to usage of available resources. Learn about the CDP CareCloud REST API, which Systems can use API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other similar production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need to get the unique customer data.  
 
-This is the description of the basics of the CDP CareCloud API. It is desribed here the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between  Enterprise  and  Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
+This is the description of the basics of the CDP CareCloud API. It is described here the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between  Enterprise  and  Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
+If you need to make your integration a little easier, please look at our toolkit in [Tools](#section/Tools).
 
 #### [CRM CareCloud API Reference](#section/CRM-CareCloud-API-Reference)
 
@@ -20,14 +21,14 @@ Now, when it is all clear, let's continue with API call structure
 
 ### Domain structure
 
-The domain structure is like  `<projectURL>`/customer-interface/v1.0/customers where  `<projectURL>`  corresponds to the specific URL of your project. For example for project of company called Cortex, the  `<projectURL>`  could be https://cortex.crmcarecloud.com/webservice/rest-api/ or local URL https://project.carecloud.cz/webservice/rest-api/ or any other similar URL. REST API is available only through secure protocol HTTPS.
+The domain structure is like  `<projectURL>/webservice/rest-api/customer-interface/v1.0/customers` where  `<projectURL>`  corresponds to the specific URL of your project. For example for project of company called Cortex, the  `<projectURL>`  could be `https://cortex.crmcarecloud.com/` or  `https://project.carecloud.cz/` or any other URL. REST API is available only through secure protocol HTTPS.
 
 We have created and described two API types, where the main difference is the authentication method and the purpose of the systems for which the API is created.
 
 #### Enterprise API
 
 The  Enterprise interface client authenticates with login and password. The Enterprise API is mainly created for e-shops, POS, kiosks, booking and other similar production systems which needs to get the data lists.
-The domain structure for Enterprise interface API is like  `<projectURL>`/enterprise-interface/v1.0/customers, where :
+The domain structure for Enterprise interface API is like  `<projectURL>/webservice/rest-api/enterprise-interface/v1.0/customers`, where :
 
 -   `<projectURL>`  the specific URL of your project
 -   `enterprise-interface`  represents the type of API
@@ -37,7 +38,7 @@ The domain structure for Enterprise interface API is like  `<projectURL>`/enterp
 #### Customer API
 
 The  Customer interface client authenticates  with user name and token. The Customer API is created and used mainly for end user applications like mobile Android and iOS APPs or web customer microsites which needs to get the unique customer data.
-The domain structure for the Customer interface API is like  `<projectURL>`/customer-interface/v1.0/customers
+The domain structure for the Customer interface API is like  `<projectURL>/webservice/rest-api/customer-interface/v1.0/customers`
 Where :
 
 -   `<projectURL>`  the specific URL of your project
@@ -49,7 +50,7 @@ Where :
 
 Every API call has the following parameters:
 
--   Path - contains domain, version, resource, identifier of resource, subresource and the subresource unique id: https://project.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0/resource-name/resource_id/actions/action_id
+-   Path - contains domain, version, resource, identifier of resource, subresource and the subresource unique id: `https://project.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0/resource-name/resource_id/actions/action_id`
 -   Query string - uses as filter for results, pagination and limitation of results
 -   Request body - contains structures for methods POST, PUT
 -   Response body - contains all result data (resources or error information) in  standard response structure
@@ -81,13 +82,13 @@ If developers fix issues in the API a changelog report is published. Changelog c
 
 In special cases, if it is not possible to follow the RESTful way, we use the procedural call. We call it Action. It is possible the Action to be called by existing resources as in the example below.
 
-POST  `<projectURL>`/customer-interface/v1.0/resource-name/resource_id/actions/action_id
+POST  `<projectURL>/webservice/rest-api/customer-interface/v1.0/resource-name/resource_id/actions/action_id`
 
-Where ‘resource-name’ represents a resource with its unique id - resource_id. Keyword actions identifies an action call and action_id is a unique id of the action that is represented by name of the action. Action name is unique across the API.
+Where `resource-name` represents a resource with its unique id - resource_id. Keyword actions identifies an action call and action_id is a unique id of the action that is represented by name of the action. Action name is unique across the API.
 
 This is the example of the action “add customer” by resource segments:
 
-POST  `<projectURL>`/customer-interface/v1.0/segments/{segment_id}/actions/add-customer
+POST  `<projectURL>/webservice/rest-api/customer-interface/v1.0/segments/{segment_id}/actions/add-customer`
 
 ### Status codes
 
@@ -128,7 +129,26 @@ These kinds of parameters are used only in response to API calls, and they shoul
 
 If a parameter is marked as mandatory in the documentation, it has to be used in API calls. If a parent structure is not mandatory and you won't use it, child parameters of that structure won't be required. If you use the parent structure in the API call, all child parameters that are marked as mandatory will be required. Every data structure parameter is marked in the documentation, so you can see if the parameter is mandatory or not.
 
-# Authorization
+
+# Tools
+We try to make your life easier all the time. And one of these things that might make integration easier is our toolkit.
+It contains support tools for PHP developers but also platform-independent tools.
+
+## SDK
+The SDK for the CareCloud REST API contains a list of resources and uses them with the best practices. That should make your integration easier. SDK was created for PHP developers only, and you can find it with its documentation on our GitHub:<br/>
+[https://github.com/crmcarecloud/api-php-sdk](https://github.com/crmcarecloud/api-php-sdk)
+
+## REST API Client
+REST API client was built for developers who don't want to spend time writing their own classes but need different access to API resources than SDK. The REST API client is built in PHP, and you can find it on our GitHub:<br/>
+[https://github.com/crmcarecloud/api-php-client](https://github.com/crmcarecloud/api-php-client)
+
+## Open API 3.0 specification
+We published the Open API 3.0 specification of the CareCloud REST API because we understand all developers need to have a tool for easier and faster integration with CareCloud REST API. The specification is available on our GitHub:<br/>
+[https://github.com/crmcarecloud/api-spec](https://github.com/crmcarecloud/api-spec)<br/>
+You can generate not only API clients in several languages. But also use it with plenty of tools that support many platforms and programming languages. Please look at the list of available generators and find there your platform:<br/>
+[https://openapi.tools/](https://openapi.tools/)
+
+# Authentication
 
 <!-- ReDoc-Inject: <security-definitions> -->
 
@@ -145,7 +165,7 @@ If a parameter is marked as mandatory in the documentation, it has to be used in
 Value of HTTP header Authentication contains BASE64 encoded string `<user name>:`. The request looks like this:
 
 ```http request
-POST <projectURL>/rest-api/customer-interface/v1.0/tokens
+POST <projectURL>/webservice/rest-api/customer-interface/v1.0/tokens
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOiA=
@@ -190,7 +210,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOiA=
 
 1. You should know all the values for the required/optional customer account parameters before creating a customer account by [[POST] /customers](#operation/postCustomer). Use any available resource you need to get the lists of actual values. We will use resource stores in this example. To get all options for `store_id` you should call [[GET] /stores](#operation/getStores). Parameter `store_id` will be set during the customer account creation process.
 ```http request
-GET <projectURL>/rest-api/customer-interface/v1.0/stores
+GET <projectURL>/webservice/rest-api/customer-interface/v1.0/stores
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<token>
@@ -247,7 +267,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
    Use the method [[POST] /customers](#operation/postCustomer) to create a customer account and set `store_id` as the registration branch of a customer account.
    </br>Header:
 ```http request
-POST <projectURL>/rest-api/customer-interface/v1.0/customers
+POST <projectURL>/webservice/rest-api/customer-interface/v1.0/customers
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<token>
@@ -317,7 +337,7 @@ Request body:
 5. Customers subresources can be set during the process of a customer account creation. Customer's interests and properties will be set in the next steps. Lists of all available interests and properties are available using the [[GET] /interests](#operation/getInterests) and [[GET] /customer-properties](#operation/getCustomerProperties).
 6. To save a value of interest on a customer account use the interest-records subresource [[POST] /customers/{customer_id}/interest-records/](#operation/postSubCustomerInterest) as follows:
 ```http request
-POST <projectURL>/rest-api/customer-interface/v1.0/customers/89ac83ca207a820c62c79bf03a/interst-records
+POST <projectURL>/webservice/rest-api/customer-interface/v1.0/customers/89ac83ca207a820c62c79bf03a/interst-records
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<token>
@@ -343,7 +363,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 
 7. Use a similar process to set a property value on a customer account. Use subresource property-records [[POST] /customers/{customer_id}/property-records](#operation/postSubCustomerProperties) as follows:
 ```http request
-POST <projectURL>/rest-api/customer-interface/v1.0/customers/89ac83ca207a820c62c79bf03a/property-records
+POST <projectURL>/webservice/rest-api/customer-interface/v1.0/customers/89ac83ca207a820c62c79bf03a/property-records
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<token>
@@ -402,7 +422,7 @@ Marketing Automation Events has the following structure of resources:
 2. First, you have to decide what event type you want to use to create an event. To help you decide, you might select an event type depends on the event group. List of the groups you can list with API call of resource [[GET] /event-groups](#operation/getEventGroups):
 
 ```http request
-GET <projectURL>/rest-api/enterprise-interface/v1.0/event-groups
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-groups
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<password>
@@ -411,7 +431,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 
 Depends on the results, you can select a list of event types that fits your event group or use other criteria from an [event-types resource documentation](#tag/Event-types):
 ```http request
-GET <projectURL>/rest-api/enterprise-interface/v1.0/event-types?event_group_id=8bdf68d3838b4e009991
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-types?event_group_id=8bdf68d3838b4e009991
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<password>
@@ -421,7 +441,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 3. If you decided on an event type that fits your use case, you could check if you need to use any of the available [event properties](#tag/Event-properties):
 
 ```http request
-GET <projectURL>/rest-api/enterprise-interface/v1.0/event-properties
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-properties
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<password>
@@ -431,7 +451,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 4. Now is the time to create an event for a specific customer. Call the method [[POST] /events](#operation/postEvent) with parameters:
 
 ```http request
-POST <projectURL>/rest-api/enterprise-interface/v1.0/events
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<password>
@@ -461,7 +481,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
    If you want to see a list of events, call the method [[GET] /events](#operation/getEvents) with query params:
 
 ```http request
-GET <projectURL>/rest-api/enterprise-interface/v1.0/events
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<password>
@@ -471,7 +491,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 6. If you need to see property values of the event, please call subresource of events - [[GET] /events/{event_id}/property-records](#operation/getSubEventProperties):
 
 ```http request
-GET <projectURL>/rest-api/enterprise-interface/v1.0/events/85bc5819e09dab9/property-records
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events/85bc5819e09dab9/property-records
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<password>
@@ -496,7 +516,7 @@ Use case covers update of customer's password through REST API. It includes send
 
 3. API call of the resource [[GET] /rewards](#operation/getRewards) can show us all properties and the values of that resource:
 ```http request
-POST <projectURL>/rest-api/customer-interface/v1.0/rewards
+POST <projectURL>/webservice/rest-api/customer-interface/v1.0/rewards
 Content-Type: application/json
 Accept-Language: cs, en-gb;q=0.8
 #<user name>:<token>
