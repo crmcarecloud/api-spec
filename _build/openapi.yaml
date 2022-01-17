@@ -67,6 +67,8 @@ tags:
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message details and deliver the messages to customers through this resource.
   - name: Message templates
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message template details through this resource.
+  - name: One Time Password
+    description: 'One Time Password resource provides a complete service of creating and validating one-use passwords. You can use OTP to validate any customer''s operation through email, SMS, or phone notification.'
   - name: Orders
     description: 'Orders are expressions of intentions to purchase products, i.e., requests to buy something. They may refer to products, services or even experiences. The order becomes a contract (spoken, written or electronic) between the business and the customer. The customer commits to receive the product and to pay for it. Orders can be managed here.'
   - name: Partners
@@ -174,6 +176,9 @@ x-tagGroups:
     tags:
       - Messages
       - Message templates
+  - name: One Time Password
+    tags:
+      - One Time Password
   - name: Orders
     tags:
       - Orders
@@ -4080,6 +4085,148 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/MessageTemplate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /one-time-password/actions/send:
+    post:
+      tags:
+        - One Time Password
+      summary: Send a one-time password to a communication channel
+      description: |
+        Action method sends generated password to the selected communication channel and provides validation string
+        Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+      operationId: postSendOtp
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                external_application_id:
+                  description: 'Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)'
+                  type: string
+                  example: 89d1a6111b3fb6e74665d948
+                communication_channel_id:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                    - 4
+                    - 5
+                  description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*'
+                  example: 1
+                recipient:
+                  type: string
+                  description: 'Recipient of the message with OTP. The parameter could contain email, phone number or other identifier of the message recipient.'
+                  example: 420123321123
+                otp_type:
+                  type: integer
+                  description: 'Parameter sets witch OTP type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
+                  enum:
+                    - 1
+                    - 2
+                  default: 1
+                  example: 2
+              required:
+                - communication_channel_id
+                - recipient
+                - external_application_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      request_id:
+                        type: string
+                        description: 'The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/validate](#operation/postValidateOtp)'
+                        example: 76951b4a90626f3635990330ec487e32c539c74
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /one-time-password/actions/validate:
+    post:
+      tags:
+        - One Time Password
+      summary: Validate a one-time password
+      description: |
+        Action method validate one time password. Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+      operationId: postValidateOtp
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validation_code:
+                  type: string
+                  description: 'Validation code from email, SMS or notification provided by recipient'
+                  example: N12B2FD67
+                request_id:
+                  type: string
+                  description: 'The parameter specifies the request that caused the OTP to be created. Request id was created in the action method [/one-time-password/actions/send](#operation/postSendOtp)'
+                  example: 76951b4a90626f3635990330ec487e32c539c74
+                external_application_id:
+                  type: string
+                  description: 'Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)'
+                  example: 89d1a6111b3fb6e74665d948
+              required:
+                - validation_code
+                - request_id
+                - external_application_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      is_valid:
+                        type: boolean
+                        description: Result of the OTP validation
+                        example: true
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':

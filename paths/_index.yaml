@@ -167,6 +167,13 @@
 /message-templates/{message_template_id}:
   $ref: "./messages/MessageTemplate.yaml"
 
+# One Time Password
+#Actions
+/one-time-password/actions/send:
+    $ref: "./otp/OTPSend.yaml"
+/one-time-password/actions/validate:
+  $ref: "./otp/OTPValidate.yaml"
+
 # Orders
 /orders:
   $ref: "./orders/Orders.yaml"

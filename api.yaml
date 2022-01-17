@@ -68,6 +68,8 @@ tags:
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message details and deliver the messages to customers through this resource.
   - name: Message templates
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message template details through this resource.
+  - name: One Time Password
+    description: One Time Password resource provides a complete service of creating and validating one-use passwords. You can use OTP to validate any customer's operation through email, SMS, or phone notification.
   - name: Orders
     description: Orders are expressions of intentions to purchase products, i.e., requests to buy something. They may refer to products, services or even experiences. The order becomes a contract (spoken, written or electronic) between the business and the customer. The customer commits to receive the product and to pay for it. Orders can be managed here.
   - name: Partners
@@ -179,6 +181,9 @@ x-tagGroups:
     tags:
       - Messages
       - Message templates
+  - name: One Time Password
+    tags:
+      - One Time Password
   - name: Orders
     tags:
       - Orders

@@ -1,0 +1,77 @@
+post:
+  tags:
+    - One Time Password
+  summary: Send a one-time password to a communication channel
+  description: |
+    Action method sends generated password to the selected communication channel and provides validation string
+    Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+  operationId: postSendOtp
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            external_application_id:
+              description: Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)
+              type: string
+              example: 89d1a6111b3fb6e74665d948
+            communication_channel_id:
+              type: integer
+              enum:
+                - 1
+                - 2
+                - 4
+                - 5
+              description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+              example: 1
+            recipient:
+              type: string
+              description: Recipient of the message with OTP. The parameter could contain email, phone number or other identifier of the message recipient.
+              example: +420123321123
+            otp_type:
+              type: integer
+              description: 'Parameter sets witch OTP type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
+              enum:
+                - 1
+                - 2
+              default: 1
+              example: 2
+          required:
+            - communication_channel_id
+            - recipient
+            - external_application_id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    description: The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/validate](#operation/postValidateOtp)
+                    example: 76951b4a90626f3635990330ec487e32c539c74
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

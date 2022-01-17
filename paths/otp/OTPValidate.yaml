@@ -1,0 +1,63 @@
+post:
+  tags:
+    - One Time Password
+  summary: Validate a one-time password
+  description: |
+    Action method validate one time password. Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+  operationId: postValidateOtp
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            validation_code:
+              type: string
+              description: Validation code from email, SMS or notification provided by recipient
+              example: N12B2FD67
+            request_id:
+              type: string
+              description: The parameter specifies the request that caused the OTP to be created. Request id was created in the action method [/one-time-password/actions/send](#operation/postSendOtp)
+              example: 76951b4a90626f3635990330ec487e32c539c74
+            external_application_id:
+              type: string
+              description: Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)
+              example: 89d1a6111b3fb6e74665d948
+          required:
+            - validation_code
+            - request_id
+            - external_application_id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  is_valid:
+                    type: boolean
+                    description: Result of the OTP validation
+                    example: true
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
