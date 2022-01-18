@@ -152,6 +152,29 @@ You can generate not only API clients in several languages. But also use it with
 
 <!-- ReDoc-Inject: <security-definitions> -->
 
+
+# FAQ
+The section will answer all the questions you have about using and integrating CareCloud REST API.
+
+## What interface is the best to use for my use cases?
+CareCloud REST API has two kinds of interface:
+- customer interface
+- enterprise interface
+
+The best way to decide what interface use is to look at the [following section](#section/Getting-started/What-is-the-best-interface-for-my-use-case).
+
+## I don't know what an external application is and where I can find it. Could you explain?
+External application is your identification for us. It helps us to know which application uses REST API. Because as an integrator, you could integrate more applications to one installation of our REST API.<br/>
+You have to use `external_application_id` in multiple resources around REST API. The important information is External application is not a resource, and you can find or create id for your application in CareCloud administration.<br/>
+If you don't know how to find it, here is [a guide](#section/Authentication) for you to get, create or manage existing applications.
+
+## What kind of authentication should I use for the REST API enterprise interface?
+Please use [HTTP Bearer authentication](#section/Authentication). If you already use HTTP Basic, we recommend you change it to HTTP Bearer because HTTP Basic is deprecated in the current version of REST API.
+
+## I want to use an update on a resource. What can happen with my data?
+Just a friendly reminder, all our update methods use HTTP PUT. This HTTP verb updates the whole structure, so make sure you have all the necessary data to avoid losing any.
+HTTP PUT doesn't support updating a single parameter. You need to send the whole data set. For more information read this [article](https://www.geeksforgeeks.org/difference-between-put-and-patch-request/).
+
 # Use cases
 
 ## Authentication and login process for customer interface

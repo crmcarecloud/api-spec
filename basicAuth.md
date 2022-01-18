@@ -45,20 +45,33 @@ string(64) "c0c0d92061deb13bf34570e513229368979708efcdbc80b8d881e7ef03461a6c"
 
 ### Customer interface authentication
 
-User name and token (provided by resource tokens) are used for Customer interface client authentication. Credentials are BASE64 encoded. HTTP header will look like the example below.
-
-Before BASE64 encoding:
+1. Get `<user name>` from your account manager. It is usually `customer_interface` for the customer interface, but it might be different depending on the project.<br/>
+2. Create a token using the method  [[POST] /tokens](#operation/postToken).
+   The creation of a token is different from other API calls.  HTTP Authorization header contains only a login name and no token (because it doesn't exist yet).
+```http request
+<user name>:
+ ```
+Value of HTTP header Authentication contains BASE64 encoded string `<user name>:`. The request looks like this:
 
 ```http request
-GET / HTTP/1.1
-Host: project.carecloud.cz
-Authorization: Basic <user name>:69dfa909171f15783d92877d86d114f8c49a50a8e15bdf4c280ba46cdb3a3d49c1288218
+POST <projectURL>/webservice/rest-api/customer-interface/v1.0/tokens
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOiA=
 ```
-
-After BASE64 encoding:
-
+3. You will get a token_id as a response.
+```json
+{
+  "data":{
+    "token_id":<token_id>
+  }
+}
+```
+4. The next step is to put together the user name and token in the HTTP Authorization header. The value of the header has to be BASE 64 encoded.
 ```http request
-GET / HTTP/1.1
-Host: project.carecloud.cz
-Authorization: Basic Zm9vOmJhcg==
+<user name>:<token_id>
+```
+HTTP Authorization header looks similar to:
+```http request
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOiA=
 ```
