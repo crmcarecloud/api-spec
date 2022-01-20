@@ -171,8 +171,8 @@
 #Actions
 /one-time-password/actions/send:
     $ref: "./otp/OTPSend.yaml"
-/one-time-password/actions/validate:
-  $ref: "./otp/OTPValidate.yaml"
+/one-time-password/actions/verify:
+  $ref: "./otp/OTPVerify.yaml"
 
 # Orders
 /orders:

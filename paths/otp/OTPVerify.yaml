@@ -1,10 +1,10 @@
 post:
   tags:
     - One Time Password
-  summary: Validate a one-time password
+  summary: Verify a one-time password
   description: |
-    Action method validate one time password. Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
-  operationId: postValidateOtp
+    Action method verify one time password. Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+  operationId: postVerifyOtp
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
   requestBody:
@@ -14,9 +14,9 @@ post:
         schema:
           type: object
           properties:
-            validation_code:
+            verification_code:
               type: string
-              description: Validation code from email, SMS or notification provided by recipient
+              description: Verification code from email, SMS or notification provided by recipient
               example: N12B2FD67
             request_id:
               type: string
@@ -27,7 +27,7 @@ post:
               description: Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)
               example: 89d1a6111b3fb6e74665d948
           required:
-            - validation_code
+            - verification_code
             - request_id
             - external_application_id
   responses:
@@ -43,7 +43,7 @@ post:
                 properties:
                   is_valid:
                     type: boolean
-                    description: Result of the OTP validation
+                    description: Result of the OTP verification
                     example: true
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

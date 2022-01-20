@@ -713,10 +713,127 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 ```
 8. In case of any error, please follow the error message to find a solution.
 
+## One Time Password processes
 
-## Bill Closure with rewards application
+### Customer's phone validation in a store
+Use case covers scenario when cashier/operator has to validate phone number ownership. It includes two REST API calls for send OTP [/one-time-password/actions/send](#operation/postSendOtp) and verify it [/one-time-password/actions/verify](#operation/postVerifyOtp).
 
-### Use Case workflow:
+<img src="img/otp-customer-phone-validation.png">
+
+You can use the same REST API action methods without customer identification to verify a phone number or email ownership in any process.
+
+## Purchase closure rewards application
+
+### Product group, product brand, and product synchronization
+The best practice is to synchronize with all three resources before you start using the purchase closure process with the rewards application.
+That means CareCloud will know your product structure, and you can set up reward conditions for any product group, product brand, or product from your production system.
+For synchronization, please follow these steps:
+
+1. The best practice is to start with the synchronization of product brands and product groups before products. CareCloud has available batch synchronization so that you can limit the number of API calls. <p class="notice">Please consider adjust batch sizes based on processing times. We recommended using a maximum amount of 1000 records per batch. If API takes a long time to respond to or an error message, please make your batch size even smaller.</p>
+2. In this use case, we start first with the synchronization of product brands. CareCloud API offers resource [/product-brands/batch](#operation/postBulkProductBrands). And assemble your request like the following example:
+
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/product-brands/batch
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+
+```json
+{
+    "product_brands": [
+        {
+            "name": "Samsung",
+            "external_id": "8FDT9FD"
+        },
+        {
+            "name": "Apple",
+            "external_id": "9DFYF0S"
+        }
+    ]
+}
+```
+3. Following with synchronization of product groups. CareCloud API offers resource [/product-groups/batch](#operation/postBulkProductGroups):
+
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/product-groups/batch
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+
+```json
+{
+  "product_groups": [
+    {
+      "name": "Cell phones",
+      "code": "CP",
+      "external_id": "08FDSYF34",
+      "store_id": "W50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjN"
+    },
+    {
+      "name": "Water resist",
+      "code": "WR",
+      "parent_external_id": "08FDSYF34",
+      "external_id": "LSA60MVX",
+      "store_id": "W50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjN"
+    }
+  ]
+}
+```
+As you can see in the example, you can synchronize `product-groups` in a tree structure with the help of the parameter `parent_external_id` that points to the parent group of the currently synchronized group.
+
+4. The last resource in synchronization is products. CareCloud API offers batch endpoint [/products/batch](#operation/postBulkProducts):
+
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/products/batch
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+
+```json
+{
+  "products": [
+    {
+      "name": "Apple iPhone 13",
+      "code": "AiP13",
+      "plu_ids": [
+        {
+          "list_code": "GLOBAL",
+          "code": "KO0D2"
+        }
+      ],
+      "product_group_external_id": "08FDSYF34",
+      "product_brand_external_id": "9DFYF0S"
+    },
+    {
+      "name": "Samsung Galaxy",
+      "code": "SG0",
+      "plu_ids": [
+        {
+          "list_code": "GLOBAL",
+          "code": "D5A70AV"
+        },
+        {
+          "list_code": "local_code",
+          "code": "768430"
+        }
+      ],
+      "product_group_external_id": "08FDSYF34",
+      "product_brand_external_id": "8FDT9FD"
+    }
+  ]
+}
+```
+In the example, you can see two important things:
+- The external ids or the CareCloud REST API ids can establish a relationship between the product and its group or brand.
+- You can use multiple product lists if you identify a product with more than one code. You need to change list_code from value `GLOBAL` to other contained in CarCloud administration.
+
+### Bill Closure with rewards application
 
 1. User clicks on the Loyalty program button in the POS system.
 2. The User inserts the Customer Card Number into the specified field on POS using a barcode reader or manual input. The User can identify a customer with other parameters like email, phone, or name. If so, the User should collect these parameters from the Customer and get `customer id` with API call [GET /customers?parameter=value](#operation/getCustomers).
@@ -914,10 +1031,9 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 13. User confirms payment of the Bill.
     POS system saves and sends all details of the final Bill and applied rewards to CareCloud [POST /purchases/actions/send-purchase](#operation/postPurchaseSend). The detail of that part of the process you can find in the following use case.
 
-##  Send paid purchase
+###  Send paid purchase
 This Use case describes sending of paid purchases to CareCloud. POS system asynchronously sends the finished purchases. All purchases that have not been sent yet are sent at a defined time interval (one minute). In case of unsuccessful data transfer, the purchase is sent later on (approx. five attempts, interval 10 minutes in between) and then marked to manual transfer. The possibility of manual transfer to CareCloud should be implemented on POS. This method is not supposed to be used with paid bills transmission to CareCloud via a data warehouse.
 
-### Use Case workflow
 1. POS system sends a final paid purchase [POST /purchases/actions/send-purchase](#operation/postPurchaseSend).
 ```http request
 POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/purchases/action/send-purchase
