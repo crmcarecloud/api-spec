@@ -3,7 +3,7 @@ post:
     - One Time Password
   summary: Send a one-time password to a communication channel
   description: |
-    Action method sends generated password to the selected communication channel and provides validation string
+    Action method sends generated password to the selected communication channel and provides verification string
     Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
   operationId: postSendOtp
   parameters:
@@ -57,7 +57,7 @@ post:
                 properties:
                   request_id:
                     type: string
-                    description: The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/validate](#operation/postValidateOtp)
+                    description: The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp)
                     example: 76951b4a90626f3635990330ec487e32c539c74
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
