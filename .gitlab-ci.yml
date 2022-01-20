@@ -1,5 +1,14 @@
+.set_up_ssh_agent_before_script: &set_up_ssh_agent_before_script
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$DEPLOY_DEVELOPERS_PRIVATE_KEY") > /dev/null
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
 stages:
   - validate
+  - deploy
 
 lint_api_yaml:
   image:
@@ -8,3 +17,15 @@ lint_api_yaml:
   stage: validate
   script:
     - openapi lint $CI_PROJECT_DIR/_build/openapi.yaml
+
+deploy_web_01:
+  image:
+    name: gitlab.gts.cortex.cz:5050/docker/php-server/gitlab-ci-php:7.4
+  stage: deploy
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  <<: *set_up_ssh_agent_before_script
+  script:
+    - bash ci/deploy_web_01.sh
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'

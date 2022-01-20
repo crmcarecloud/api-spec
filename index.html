@@ -22,6 +22,7 @@
             --error-color: #f26d65;
             --success-color: #56c2b9;
             --warnning-color: #f5b35b;
+            --fial-color: #967fa9;
         }
 
         body {
@@ -145,7 +146,7 @@
             color: var(--primary-color)!important;
         }
 
-        .emjsJn a, .emjsJn a:visited {
+        .emjsJn a, .emjsJn a:visited, .bYGras a, a, a:visited {
             color: var(--primary-color)!important;
         }
 
@@ -167,16 +168,16 @@
         }
 
         .warning::after {
-            background-color: var(--warnning-color)
+            background-color: var(--warnning-color)!important;
         }
-        .notice::after {
-            background-color: var(--primary-color)
+        .notice::after, .juglBf.post, .ewkxcg {
+            background-color: var(--primary-color)!important;
         }
         .error::after {
-            background-color: var(--error-color)
+            background-color: var(--error-color)!important;
         }
-        .success::after {
-            background-color: var(--success-color)
+        .success::after, .juglBf.get, .bqPUda {
+            background-color: var(--success-color)!important;
         }
 
         .warning {
@@ -198,10 +199,37 @@
             border-left: solid 4px var(--success-color);
             padding: 1em;
         }
+
+        .juglBf.put, .fBYFeD {
+            background-color: var(--fial-color)!important;
+        }
+
+        .krMnBk > ul > li.tab-error, .dMfJLW, .jsdzMI, .imjMKL {
+            color: var(--error-color)!important;
+        }
+
+        .auVrF polygon {
+            fill: var(--error-color)!important;
+        }
+
+        .juJubY, .fpBWtm {
+            color: var(--success-color)!important;
+        }
+
+        .gDqeGV polygon {
+            fill: var(--success-color)!important;
+        }
+        
+        /* Logo */
+        .bFgzLZ {
+            cursor: pointer;
+            cursor: hand;
+        }
+
     </style>
 </head>
 <body>
-<redoc spec-url='openapi.yaml'></redoc>
+<redoc spec-url='_build/openapi.yaml'></redoc>
 <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
 <script src="https://cdn.carecloud.cz/static/wsmx/js/jquery.initialize.min.js"> </script>
