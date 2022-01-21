@@ -156,24 +156,34 @@ You can generate not only API clients in several languages. But also use it with
 # FAQ
 The section will answer all the questions you have about using and integrating CareCloud REST API.
 
-## What interface is the best to use for my use cases?
+## What is the purpose of the CareCloud platform REST API, and the REST API documentation?
+You can integrate the external applications with the CareCloud platform via the documented CareCloud REST API. The integration enables data exchange between the CareCloud platform and an integrated external application.<br/>
+Through the CareCloud REST API, you can integrate applications designed for CareCloud platform users (POS and EPOS systems, e-shops, kiosks, BI, accounting systems, and more) or external applications designed for customers, i.e., mobile applications, customer portals, and customer microsites.<br/>
+The CareCloud REST API documentation describes the individual data resources, explains their use through the examples and use cases, and answers basic questions in the FAQ section.
+
+## What interface is the best to use?
 CareCloud REST API has two kinds of interface:
 - customer interface
 - enterprise interface
 
 The best way to decide what interface use is to look at the [following section](#section/Getting-started/What-is-the-best-interface-for-my-use-case).
 
-## I don't know what an external application is and where I can find it. Could you explain?
-External application is your identification for us. It helps us to know which application uses REST API. Because as an integrator, you could integrate more applications to one installation of our REST API.<br/>
+## What is an external application?
+External application is your identification for CareCloud REST API. It helps us to know which application uses REST API. Because as an integrator, you could integrate more applications to one installation of our REST API.<br/>
 You have to use `external_application_id` in multiple resources around REST API. The important information is External application is not a resource, and you can find or create id for your application in CareCloud administration.<br/>
 If you don't know how to find it, here is [a guide](#section/Authentication) for you to get, create or manage existing applications.
 
-## What kind of authentication should I use for the REST API enterprise interface?
+## What authentication use for the REST API enterprise interface?
 Please use [HTTP Bearer authentication](#section/Authentication). If you already use HTTP Basic, we recommend you change it to HTTP Bearer because HTTP Basic is deprecated in the current version of REST API.
 
-## I want to use an update on a resource. What can happen with my data?
+## How exactly PUT verb works in CareCloud REST API?
 Just a friendly reminder, all our update methods use HTTP PUT. This HTTP verb updates the whole structure, so make sure you have all the necessary data to avoid losing any.
 HTTP PUT doesn't support updating a single parameter. You need to send the whole data set. For more information read this [article](https://www.geeksforgeeks.org/difference-between-put-and-patch-request/).
+
+## How do I create a customer account?
+
+In the CareCloud platform, each customer has their customer account, to which all data related to this customer are assigned. The customer's account can be found and identified by any unique identifier (such as a customer card) associated with that account.
+You can create a customer account using the method [[POST] /customers](#operation/postCustomer) as described [here](#section/Use-cases/Creation-of-a-customer-account-process).
 
 # Use cases
 
@@ -715,12 +725,14 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 
 ## One Time Password processes
 
-### Customer's phone validation in a store
-Use case covers scenario when cashier/operator has to validate phone number ownership. It includes two REST API calls for send OTP [/one-time-password/actions/send](#operation/postSendOtp) and verify it [/one-time-password/actions/verify](#operation/postVerifyOtp).
+### Phone validation
+Use case covers scenario when cashier/operator has to verify phone number ownership. It includes two REST API calls for send OTP [/one-time-password/actions/send](#operation/postSendOtp) and verify it [/one-time-password/actions/verify](#operation/postVerifyOtp).
 
 <img src="img/otp-customer-phone-validation.png">
 
-You can use the same REST API action methods without customer identification to verify a phone number or email ownership in any process.
+You can use the same REST API action methods without customer identification to verify a phone number or email ownership in any process. In the diagram below, you can see an online registration of new customer process with phone verification.
+
+<img src="img/otp-phone-validation.png">
 
 ## Purchase closure rewards application
 
