@@ -156,7 +156,7 @@ You can generate not only API clients in several languages. But also use it with
 # FAQ
 The section will answer all the questions you have about using and integrating CareCloud REST API.
 
-## What is the purpose of the CareCloud platform REST API, and the REST API documentation?
+## What is the purpose of CareCloud REST API?
 You can integrate the external applications with the CareCloud platform via the documented CareCloud REST API. The integration enables data exchange between the CareCloud platform and an integrated external application.<br/>
 Through the CareCloud REST API, you can integrate applications designed for CareCloud platform users (POS and EPOS systems, e-shops, kiosks, BI, accounting systems, and more) or external applications designed for customers, i.e., mobile applications, customer portals, and customer microsites.<br/>
 The CareCloud REST API documentation describes the individual data resources, explains their use through the examples and use cases, and answers basic questions in the FAQ section.
@@ -732,7 +732,7 @@ Use case covers scenario when cashier/operator has to verify phone number owners
 
 You can use the same REST API action methods without customer identification to verify a phone number or email ownership in any process. In the diagram below, you can see an online registration of new customer process with phone verification.
 
-<img src="img/otp-phone-validation.png">
+<img src="img/otp-phone-verification.png">
 
 ## Purchase closure rewards application
 
