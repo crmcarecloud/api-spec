@@ -1,0 +1,45 @@
+post:
+  tags:
+    - Customers actions
+  summary: Upload customer's profile photo
+  description: |
+    Method uploads cusomer's profile photo. In case customer already has a photo, new photo will replace the old one. Maximum size of picture is 2 MB. <br/>
+    Available formats: `.jpg, .jpeg, .png`
+  operationId: postCustomersUploadPhoto
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique id of the customer
+              example: 8ea6abece4cd0a4ded0a29f093
+            data:
+              type: string
+              description: Base 64 encoded image data
+              example: YTc4ZTExZTc3NGY3Zmh1b3dmamZram5sam5kZmpuZm5mIGRzbiBzZGpuc2Rsam5kc2Y=
+          required:
+            - customer_id
+            - data
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

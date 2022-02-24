@@ -88,6 +88,9 @@
   $ref: "./customers/CustomersSearch.yaml"
 /customers/actions/verify-auth-token:
   $ref: "./customers/CustomerVerifyAuthToken.yaml"
+/customers/actions/upload-customer-photo:
+  $ref: "./customers/CustomerUploadPhoto.yaml"
+
 # Customer types
 /customer-types:
   $ref: "./customers/CustomerTypes.yaml"
