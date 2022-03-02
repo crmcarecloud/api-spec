@@ -15,6 +15,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/reward_store_id'
     - $ref: '../../parameters/_index.yaml#/is_valid'
     - $ref: '../../parameters/_index.yaml#/is_applied'
+    - $ref: '../../parameters/_index.yaml#/without_stores'
   responses:
     '200':
       description: OK

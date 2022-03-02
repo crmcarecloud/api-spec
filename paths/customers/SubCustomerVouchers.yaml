@@ -11,9 +11,11 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/voucher_code'
     - $ref: '../../parameters/_index.yaml#/reward_store_id'
     - $ref: '../../parameters/_index.yaml#/is_valid'
     - $ref: '../../parameters/_index.yaml#/is_applied'
+    - $ref: '../../parameters/_index.yaml#/without_stores'
   responses:
     '200':
       description: OK
