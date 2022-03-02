@@ -232,6 +232,9 @@ x-tagGroups:
       - Stores
       - Store groups
       - Store properties
+  - name: Tests
+    tags:
+      - Tests
   - name: Tokens
     tags:
       - Tokens

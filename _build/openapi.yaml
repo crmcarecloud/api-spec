@@ -226,6 +226,9 @@ x-tagGroups:
       - Stores
       - Store groups
       - Store properties
+  - name: Tests
+    tags:
+      - Tests
   - name: Tokens
     tags:
       - Tokens
@@ -1860,9 +1863,11 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/voucher_code'
         - $ref: '#/components/parameters/reward_store_id'
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/is_applied'
+        - $ref: '#/components/parameters/without_stores'
       responses:
         '200':
           description: OK
@@ -8682,6 +8687,46 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /tests/connection:
+    get:
+      tags:
+        - Tests
+      summary: Connection test
+      description: 'If you need test REST API availability, please use this resource'
+      operationId: getTestsConnection
+      parameters:
+        - $ref: '#/components/parameters/test_string'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      test_string:
+                        type: string
+                        description: Reverted value of input parameters
+                        example: '!dlroW olleH'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /tokens:
     post:
       tags:
@@ -9479,6 +9524,7 @@ paths:
         - $ref: '#/components/parameters/reward_store_id'
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/is_applied'
+        - $ref: '#/components/parameters/without_stores'
       responses:
         '200':
           description: OK
@@ -14091,7 +14137,7 @@ components:
     without_stores:
       name: without_stores
       in: query
-      description: 'If true, resource call returns rewards without list of stores. If false, or not set resource returns default strucutre.'
+      description: 'If true, the data will not contain information about business units (stores). If false, or not set resource returns default strucutre.'
       required: false
       schema:
         type: boolean
@@ -14739,6 +14785,14 @@ components:
       schema:
         type: string
       example: null
+    test_string:
+      name: test_string
+      in: query
+      required: false
+      description: Test string send to REST API. Correct result should reverted string
+      schema:
+        type: string
+      example: Hello World!
     token_id_path:
       name: token_id
       in: path

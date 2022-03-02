@@ -473,7 +473,7 @@ reward_group:
 without_stores:
   name: without_stores
   in: query
-  description: If true, resource call returns rewards without list of stores. If false, or not set resource returns default strucutre.
+  description: If true, the data will not contain information about business units (stores). If false, or not set resource returns default strucutre.
   required: false
   schema:
     type: boolean
@@ -1157,6 +1157,16 @@ property_value:
   schema:
     type: string
   example:
+
+#Tests
+test_string:
+  name: test_string
+  in: query
+  required: false
+  description: Test string send to REST API. Correct result should reverted string
+  schema:
+    type: string
+  example: 'Hello World!'
 
 # Tokens
 token_id_path:
