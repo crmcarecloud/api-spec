@@ -185,6 +185,10 @@ HTTP PUT doesn't support updating a single parameter. You need to send the whole
 In the CareCloud platform, each customer has their customer account, to which all data related to this customer are assigned. The customer's account can be found and identified by any unique identifier (such as a customer card) associated with that account.
 You can create a customer account using the method [[POST] /customers](#operation/postCustomer) as described [here](#section/Use-cases/Creation-of-a-customer-account-process).
 
+## How does the authentication process work in the customer interface?
+Customer interface authentication identifies the application(Google maps) on the device(John's iPhone 12) with a token. The customer doesn't need to be logged in. You get more details [here](#section/Use-cases/Authentication-and-login-process-for-customer-interface).
+
+
 # Use cases
 
 ## Authentication and login process for customer interface
@@ -430,106 +434,6 @@ For more information, please look at the picture below:
 
 <img src="img/login_between_two_apps_with_auth_token-3.png">
 
-## How to create a Marketing Automation Event?
-
-Marketing automation events are used to launch a scenario connected to an event. The scenario covers any available automation in CareCloud platform.
-
-Marketing Automation Events has the following structure of resources:
-
-<img src="https://imgur.com/0Bu8zWI.jpeg">
-
-**Event group:** groups divide event types into administrator-defined categories. An administrator can add, edit or delete event groups from the administration environment of the CareCloud platform.
-
-**Event type:** It is a general definition of an event. As an administrator, you can define event types that describe the behavior and structure of following events.
-
-**Event properties:** It is a list of properties defined with the connected event type. It is a good way how to extend event type possibilities.
-
-**Event:** It is a resource that allows you to create an event for a specific customer. The event starts a Marketing Automation scenario. It can transfer data to the scenario. Marketing automation scenarios can use the data to make better decisions during their run.
-
-**Event property record:** It contains values of property that is connected with an event.
-
-### Create an event
-
-1. If you want to create an event through CareCloud REST API, make sure you know what type of event you wish to create. Correctly set it up, and check if it contains all necessary properties. If you need to create a new event group, you can do it in the events section of the CareCloud administration. You can also create a new event type or property there. When everything is set up in CareCloud administration, we can go to the next step.
-
-2. First, you have to decide what event type you want to use to create an event. To help you decide, you might select an event type depends on the event group. List of the groups you can list with API call of resource [[GET] /event-groups](#operation/getEventGroups):
-
-```http request
-GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-groups
-Content-Type: application/json
-Accept-Language: cs, en-gb;q=0.8
-#<user name>:<password>
-Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
-```
-
-Depends on the results, you can select a list of event types that fits your event group or use other criteria from an [event-types resource documentation](#tag/Event-types):
-```http request
-GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-types?event_group_id=8bdf68d3838b4e009991
-Content-Type: application/json
-Accept-Language: cs, en-gb;q=0.8
-#<user name>:<password>
-Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
-```
-
-3. If you decided on an event type that fits your use case, you could check if you need to use any of the available [event properties](#tag/Event-properties):
-
-```http request
-GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-properties
-Content-Type: application/json
-Accept-Language: cs, en-gb;q=0.8
-#<user name>:<password>
-Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
-```
-
-4. Now is the time to create an event for a specific customer. Call the method [[POST] /events](#operation/postEvent) with parameters:
-
-```http request
-POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events
-Content-Type: application/json
-Accept-Language: cs, en-gb;q=0.8
-#<user name>:<password>
-Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
-```
-```json
-{
-   "event": {
-      "event_type_id": "8bed991c68a470e7aaeffbf048",
-      "customer_id": "81ceb8582e2d8dbb7e71b7273b",
-      "external_id": 157613,
-      "data": "{\"test\":10,\"test2\":20}",
-      "created_at": "2017-06-20 16:59:49",
-      "secondary_external_id": null
-   },
-   "property_records": [
-      {
-         "property_id": "contact_person",
-         "property_name": "Project contact person",
-         "property_value": [ ]
-      }
-   ]
-}
-```
-
-5. As you can see, the creation of events also contains values of properties. You set property records in events resource because we need to have all data available for the MA scenario in one API call to start immediately after.
-   If you want to see a list of events, call the method [[GET] /events](#operation/getEvents) with query params:
-
-```http request
-GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events
-Content-Type: application/json
-Accept-Language: cs, en-gb;q=0.8
-#<user name>:<password>
-Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
-```
-
-6. If you need to see property values of the event, please call subresource of events - [[GET] /events/{event_id}/property-records](#operation/getSubEventProperties):
-
-```http request
-GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events/85bc5819e09dab9/property-records
-Content-Type: application/json
-Accept-Language: cs, en-gb;q=0.8
-#<user name>:<password>
-Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
-```
 
 ## Update of a forgotten password - customer
 
@@ -540,6 +444,17 @@ Use case covers update of customer's password through REST API. In this case, an
 Use case covers update of customer's password through REST API. It includes sending a forgotten password email to the customer.
 
 <img src="img/forgotten_password_rest_api-send-fp-email.png">
+
+
+## Newsletter sign-up
+CDP CareCloud creates a customer account if it doesn't exist. And add a customer source dedicated to newsletters. This use case covers existing customers, customers signed to the newsletter, and new customers.
+Customer source identifies the source of the customer (email, Facebook, registration, campaign summer 2021). It will tell you what the source of sign-up or registration is. Customers can have multiple sources.
+List of available customer sources is available in resource [[GET] /cusomer-sources](/#tag/Customer-sources). If you want to create a new customer source for an existing customer, you can do it at [[POST] /customers/{cusomer_id}/customer-source-records](#operation/postSubCustomerSource). If you're going to add a customer source to the customer while registering, you can do it right at [[POST] /customers](#operation/postCustomer).
+Following flowchart covers all three states of the customer:
+<br/>
+<img src="img/customer_sign_up_for_newsletter.svg">
+
+If it's a customer already signed up for the newsletter and wants to registred. You don't have to worry. Just follow the use case below. CPD CareCloud will handle this situation. You need to create a new customer with [[POST] /customers](#operation/postCustomer). In the end, you will have a customer with newsletter and registration sources.
 
 ## Use of the resource properties
 
@@ -733,6 +648,108 @@ Use case covers scenario when cashier/operator has to verify phone number owners
 You can use the same REST API action methods without customer identification to verify a phone number or email ownership in any process. In the diagram below, you can see an online registration of new customer process with phone verification.
 
 <img src="img/otp-phone-verification.png">
+
+## How to create a Marketing Automation Event?
+
+Marketing automation events are used to launch a scenario connected to an event. The scenario covers any available automation in CareCloud platform.
+
+Marketing Automation Events has the following structure of resources:
+
+<img src="https://imgur.com/0Bu8zWI.jpeg">
+
+**Event group:** groups divide event types into administrator-defined categories. An administrator can add, edit or delete event groups from the administration environment of the CareCloud platform.
+
+**Event type:** It is a general definition of an event. As an administrator, you can define event types that describe the behavior and structure of following events.
+
+**Event properties:** It is a list of properties defined with the connected event type. It is a good way how to extend event type possibilities.
+
+**Event:** It is a resource that allows you to create an event for a specific customer. The event starts a Marketing Automation scenario. It can transfer data to the scenario. Marketing automation scenarios can use the data to make better decisions during their run.
+
+**Event property record:** It contains values of property that is connected with an event.
+
+### Create an event
+
+1. If you want to create an event through CareCloud REST API, make sure you know what type of event you wish to create. Correctly set it up, and check if it contains all necessary properties. If you need to create a new event group, you can do it in the events section of the CareCloud administration. You can also create a new event type or property there. When everything is set up in CareCloud administration, we can go to the next step.
+
+2. First, you have to decide what event type you want to use to create an event. To help you decide, you might select an event type depends on the event group. List of the groups you can list with API call of resource [[GET] /event-groups](#operation/getEventGroups):
+
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-groups
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+#<user name>:<password>
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+Depends on the results, you can select a list of event types that fits your event group or use other criteria from an [event-types resource documentation](#tag/Event-types):
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-types?event_group_id=8bdf68d3838b4e009991
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+#<user name>:<password>
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+3. If you decided on an event type that fits your use case, you could check if you need to use any of the available [event properties](#tag/Event-properties):
+
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/event-properties
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+#<user name>:<password>
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+4. Now is the time to create an event for a specific customer. Call the method [[POST] /events](#operation/postEvent) with parameters:
+
+```http request
+POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+#<user name>:<password>
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+```json
+{
+   "event": {
+      "event_type_id": "8bed991c68a470e7aaeffbf048",
+      "customer_id": "81ceb8582e2d8dbb7e71b7273b",
+      "external_id": 157613,
+      "data": "{\"test\":10,\"test2\":20}",
+      "created_at": "2017-06-20 16:59:49",
+      "secondary_external_id": null
+   },
+   "property_records": [
+      {
+         "property_id": "contact_person",
+         "property_name": "Project contact person",
+         "property_value": [ ]
+      }
+   ]
+}
+```
+
+5. As you can see, the creation of events also contains values of properties. You set property records in events resource because we need to have all data available for the MA scenario in one API call to start immediately after.
+   If you want to see a list of events, call the method [[GET] /events](#operation/getEvents) with query params:
+
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+#<user name>:<password>
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
+6. If you need to see property values of the event, please call subresource of events - [[GET] /events/{event_id}/property-records](#operation/getSubEventProperties):
+
+```http request
+GET <projectURL>/webservice/rest-api/enterprise-interface/v1.0/events/85bc5819e09dab9/property-records
+Content-Type: application/json
+Accept-Language: cs, en-gb;q=0.8
+#<user name>:<password>
+Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3YjdhOTUxZTk=
+```
+
 
 ## Purchase closure rewards application
 
