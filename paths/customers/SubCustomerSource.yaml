@@ -24,15 +24,67 @@ get:
               data:
                 type: object
                 properties:
-                  tags:
+                  customer_source_records:
                     type: array
-                    description: List of the tag records
+                    description: List of the customer source records
                     items:
-                      $ref: '../../schemas/_index.yaml#/Tag'
+                      $ref: '../../schemas/_index.yaml#/CustomerSourceRecord'
                   total_items:
                     type: integer
-                    description: Count of all found tag records
+                    description: Count of all found customer source records
                     example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+
+post:
+  tags:
+    - Customers
+  summary: Add an customer source record to a customer
+  description: Add one of the [customer sources](/#tag/Customer-sources) to a customer account
+  operationId: postSubCustomerSource
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_source_record:
+              $ref: '../../schemas/_index.yaml#/CustomerSourceRecord'
+          required:
+            - customer_source_record
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  customer_source_record_id:
+                    type: string
+                    description: The unique id of the customer source record
+                    example: 87d934c86a6303f5fb4d1214fb
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

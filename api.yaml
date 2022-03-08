@@ -283,3 +283,7 @@ components:
       scheme: basic
       description:
         $ref: "./basicAuth.md"
+    none:
+      type: http
+      scheme: none
+      description : "Publicly accessible (no authentication needed)."
