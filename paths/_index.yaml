@@ -319,6 +319,9 @@
   $ref: "./recommendations/RecommendationCartOrder.yaml"
 /recommendation-engine/shopping-cart/actions/combined:
   $ref: "./recommendations/RecommendationCartCombined.yaml"
+# Batch
+/third-party-recommendations/batch:
+  $ref: "./recommendations/ThirdPartyRecommendationsBatch.yaml"
 
 #  Rewards
 /rewards:

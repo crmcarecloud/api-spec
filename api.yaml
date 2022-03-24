@@ -98,7 +98,7 @@ tags:
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
-  - name: Recommendations
+  - name: Non automatic recommendations
     description: There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all recommendations.
   - name: Recommendation engine
     description: There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.
@@ -212,7 +212,7 @@ x-tagGroups:
       - Purchase types
   - name: Recommendations
     tags:
-      - Recommendations
+      - Non automatic recommendations
       - Recommendation engine
   - name: Rewards
     tags:
