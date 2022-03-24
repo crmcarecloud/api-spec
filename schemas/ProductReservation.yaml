@@ -12,7 +12,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: 	The unique id of the customer, owner of the product reservation
+    description:   The unique id of the customer, owner of the product reservation
     example: '8eae20da24332e84611849f5cd'
   store_id:
     type: string
@@ -31,7 +31,7 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/ExternalCode'
     readOnly: false
-    description: List of external id codes. Id codes can have different sources. For the list of id sources please contact your account manager.
+    description: List of external id codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
   benefit_codes:
     type: array
     items:
@@ -95,23 +95,21 @@ properties:
       - 8
     readOnly: true
     description: |
-      Actual state of the product reservation.
+      Current progress of the product reservation.
       *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
     example: 5
-  states:
+  reservation_progress_history:
     type: array
     items:
-      type: string
+      $ref: '../schemas/_index.yaml#/ProductReservationProgress'
     readOnly: true
-    description: History of the state values. States are sorted in descending order by time
-    example: [ ]
+    description: History of the product reservation progress. Product reservation progress is sorted in descending order by time
   comments:
     type: array
     items:
-      type: string
+      $ref: '../schemas/_index.yaml#/ProductReservationComment'
     readOnly: true
-    description: Reservation comments. Comments are sorted in descending order by time
-    example: [ "test", "test" ]
+    description: Product reservation comments. Comments are sorted in descending order by time
   last_change:
     type: string
     readOnly: true

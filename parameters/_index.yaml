@@ -820,7 +820,7 @@ product_property_id_path:
 product_reservation_id_path:
   name: product_reservation_id
   in: path
-  description: The unique id for a product reservation
+  description: The unique id of the product reservation
   required: true
   schema:
     type: string
@@ -828,7 +828,7 @@ product_reservation_id_path:
 product_reservation_source_id_path:
   name: product_reservation_source_id
   in: path
-  description: The unique id of an product reservation source in CareCloud
+  description: The unique id of the product reservation source in CareCloud
   required: true
   schema:
     type: string
@@ -869,7 +869,7 @@ reservation_state:
   name: reservation_state
   in: query
   description: |
-    Actual state of the product reservation.
+    Current state of the product reservation.
     *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
   required: false
   schema:

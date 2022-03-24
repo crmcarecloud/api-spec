@@ -97,7 +97,7 @@ tags:
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
-  - name: Recommendations
+  - name: Non automatic recommendations
     description: 'There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all recommendations.'
   - name: Recommendation engine
     description: 'There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.'
@@ -206,7 +206,7 @@ x-tagGroups:
       - Purchase types
   - name: Recommendations
     tags:
-      - Recommendations
+      - Non automatic recommendations
       - Recommendation engine
   - name: Rewards
     tags:
@@ -6747,7 +6747,7 @@ paths:
   /recommendations:
     get:
       tags:
-        - Recommendations
+        - Non automatic recommendations
       summary: Get all recommendations
       description: Get the information as a list of all recommendations.
       operationId: getRecommendations
@@ -6797,7 +6797,7 @@ paths:
   '/recommendations/{recommendation_id}':
     get:
       tags:
-        - Recommendations
+        - Non automatic recommendations
       summary: Get a recommendation
       description: Get information about a specific recommendation
       operationId: getRecommendation
@@ -7123,6 +7123,48 @@ paths:
                         type: integer
                         description: Count of all found product ids.
                         example: 2
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /third-party-recommendations/batch:
+    post:
+      tags:
+        - Recommendation engine
+      summary: Create a batch of the third party recommendations
+      description: Batch process helps to add multiple third party reccomendations in one request
+      operationId: postBulkThirdPartyRecommendations
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                third_party_recommendations:
+                  type: array
+                  description: List of the Recommendations from third party system
+                  items:
+                    $ref: '#/components/schemas/ThirdPartyRecommendation'
+              required:
+                - third_party_recommendations
+      responses:
+        '204':
+          description: No Content
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -12212,7 +12254,7 @@ components:
           items:
             $ref: '#/components/schemas/ExternalCode'
           readOnly: false
-          description: List of external id codes. Id codes can have different sources. For the list of id sources please contact your account manager.
+          description: List of external id codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
         benefit_codes:
           type: array
           items:
@@ -12278,25 +12320,21 @@ components:
             - 8
           readOnly: true
           description: |
-            Actual state of the product reservation.
+            Current progress of the product reservation.
             *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
           example: 5
-        states:
+        reservation_progress_history:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ProductReservationProgress'
           readOnly: true
-          description: History of the state values. States are sorted in descending order by time
-          example: []
+          description: History of the product reservation progress. Product reservation progress is sorted in descending order by time
         comments:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ProductReservationComment'
           readOnly: true
-          description: Reservation comments. Comments are sorted in descending order by time
-          example:
-            - test
-            - test
+          description: Product reservation comments. Comments are sorted in descending order by time
         last_change:
           type: string
           readOnly: true
@@ -12347,6 +12385,39 @@ components:
       required:
         - reservable_product_id
         - amount
+    ProductReservationProgress:
+      type: object
+      description: Product reservation progress history structure
+      properties:
+        reservation_progress_id:
+          type: integer
+          readOnly: true
+          description: Id of the product reservation progress
+          example: 4
+        reservation_progress_text:
+          type: string
+          readOnly: true
+          description: String of the product reservation progress
+          example: Delivered
+        reservation_progress_time:
+          type: string
+          readOnly: true
+          description: 'Date and time of the change of the product reservation progress *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2012-11-22 20:57:04'
+    ProductReservationComment:
+      type: object
+      description: Product reservation comment structure
+      properties:
+        comment_text:
+          type: string
+          readOnly: true
+          description: Text of the product reservation comment
+          example: The customer will pick up the reservation tonight.
+        comment_time:
+          type: string
+          readOnly: true
+          description: 'Date and time of the product reservation comment *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2012-11-22 20:57:04'
     ProductReservationSource:
       type: object
       description: Product reservation source resource
@@ -13547,6 +13618,62 @@ components:
       required:
         - from
         - to
+    ThirdPartyRecommendation:
+      type: object
+      description: Information about a third party recommendation structure
+      properties:
+        third_party_recommendation_id:
+          type: string
+          readOnly: true
+          description: The unique id of the third party recommendation
+          example: 838b73aacb5ac326cec4030c80
+        customer_id:
+          type: string
+          readOnly: false
+          description: The unique id of the CareCloud customer
+          example: 8ea6abece4cd0a4ded0a29f093
+        product_id:
+          type: string
+          readOnly: false
+          description: The unique id of the CareCloud product
+          example: 89bdacbffb5c82f2c52cb9ae8f
+        recommended_product_id:
+          type: string
+          readOnly: false
+          description: The unique id of the recommended CareCloud product
+          example: 89bdacbffb5c82f2c52cb9ae8f
+        recommendation_system_id:
+          type: string
+          readOnly: false
+          description: The unique id of the third party recommendation system from resource recommendation systems
+          example: 89bdac89bdacbfbffb5c82f2c52c
+        recommendation_system_dataset_id:
+          type: string
+          readOnly: false
+          description: The unique id of the third party recommendation system dataset
+          example: 89bffb5c82f2c529bdacbfbff
+        score:
+          type: number
+          format: float
+          readOnly: false
+          description: Score of the recommendation. Depends of score we will pick products to recommendation. Higher score means better results.
+          example: 0.87
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the recommendation
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-01-04 10:31:56'
     User:
       type: object
       description: Information about logged in user
@@ -14513,7 +14640,7 @@ components:
     product_reservation_id_path:
       name: product_reservation_id
       in: path
-      description: The unique id for a product reservation
+      description: The unique id of the product reservation
       required: true
       schema:
         type: string
@@ -14521,7 +14648,7 @@ components:
     product_reservation_source_id_path:
       name: product_reservation_source_id
       in: path
-      description: The unique id of an product reservation source in CareCloud
+      description: The unique id of the product reservation source in CareCloud
       required: true
       schema:
         type: string
@@ -14562,7 +14689,7 @@ components:
       name: reservation_state
       in: query
       description: |
-        Actual state of the product reservation.
+        Current state of the product reservation.
         *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
       required: false
       schema:

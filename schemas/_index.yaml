@@ -114,6 +114,10 @@ ProductReservation:
   $ref: "./ProductReservation.yaml"
 ProductReservationItem:
   $ref: "./ProductReservationItem.yaml"
+ProductReservationProgress:
+  $ref: "./ProductReservationProgress.yaml"
+ProductReservationComment:
+  $ref: "./ProductReservationComment.yaml"
 ProductReservationSource:
   $ref: "./ProductReservationSource.yaml"
 Property:
@@ -168,6 +172,8 @@ Tag:
   $ref: "./Tag.yaml"
 TimeInterval:
   $ref: "./TimeInterval.yaml"
+ThirdPartyRecommendation:
+  $ref: "./ThirdPartyRecommendation.yaml"
 User:
   $ref: "./User.yaml"
 UserRole:

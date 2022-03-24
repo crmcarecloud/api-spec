@@ -1,0 +1,41 @@
+post:
+  tags:
+    - Recommendation engine
+  summary: Create a batch of the third party recommendations
+  description: Batch process helps to add multiple third party reccomendations in one request
+  operationId: postBulkThirdPartyRecommendations
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            third_party_recommendations:
+              type: array
+              description: List of the Recommendations from third party system
+              items:
+                $ref: '../../schemas/_index.yaml#/ThirdPartyRecommendation'
+          required:
+            - third_party_recommendations
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
