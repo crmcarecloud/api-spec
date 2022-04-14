@@ -104,6 +104,8 @@ PointType:
   $ref: "./PointType.yaml"
 Product:
   $ref: "./Product.yaml"
+ProductIdentification:
+  $ref: "./ProductIdentification.yaml"
 ProductBatch:
   $ref: "./ProductBatch.yaml"
 ProductBrand:

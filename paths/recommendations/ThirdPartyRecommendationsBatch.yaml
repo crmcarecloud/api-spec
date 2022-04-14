@@ -1,6 +1,6 @@
 post:
   tags:
-    - Recommendation engine
+    - Product recommendation engine
   summary: Create a batch of the third party recommendations
   description: Batch process helps to add multiple third party reccomendations in one request
   operationId: postBulkThirdPartyRecommendations

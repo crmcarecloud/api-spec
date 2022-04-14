@@ -1,6 +1,6 @@
 get:
   tags:
-    - Recommendation engine
+    - Product recommendation engine
   summary: Get the best recommendation with elimination for shopping cart
   description: It selects the best products from an initial list for the customer shopping cart. Eliminates all products that don't match future customer preferences (depends on other customers' shopping behavior with the same products). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
   operationId: getRecommendationCartEliminate

@@ -42,7 +42,11 @@ properties:
     readOnly: false
     description: The unique external id for the product brand. If `product_brand_id` is also set, both parameters have to represent the same product brand.
     example: '71'
+  store_id:
+    type: string
+    readOnly: false
+    description: The unique id for the store where the product group is valid. The product group is global if this value is not set
+    example: '83d1d11ea3884a5d33253fe214'
 required:
   - name
-  - code
   - plu_ids

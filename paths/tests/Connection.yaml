@@ -6,8 +6,7 @@ get:
   operationId: getTestsConnection
   parameters:
     - $ref: '../../parameters/_index.yaml#/test_string'
-  security:
-    - none: []
+  security: []
   responses:
     '200':
       description: OK

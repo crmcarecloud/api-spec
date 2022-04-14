@@ -1,6 +1,6 @@
 get:
   tags:
-    - Recommendation engine
+    - Product recommendation engine
   summary: Order products for the best recommendation.
   description: The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer and his previous shopping behavior. If needed, the initial parameter might define the number of results.
   operationId: getRecommendationProductOrder

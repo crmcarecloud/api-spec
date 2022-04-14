@@ -9,18 +9,16 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the CareCloud customer
+    description: The unique id of the CareCloud customer. Required only if `product_id` is not set.
     example: 8ea6abece4cd0a4ded0a29f093
-  product_id:
-    type: string
-    readOnly: false
-    description: The unique id of the CareCloud product
-    example: '89bdacbffb5c82f2c52cb9ae8f'
-  recommended_product_id:
-    type: string
-    readOnly: false
-    description: The unique id of the recommended CareCloud product
-    example: '89bdacbffb5c82f2c52cb9ae8f'
+  product:
+    type: object
+    $ref: '../schemas/_index.yaml#/ProductIdentification'
+    description: Structure contains product identification. Product structure is required only if the parameter `customer_id` is not set.
+  recommended_product:
+    type: object
+    $ref: '../schemas/_index.yaml#/ProductIdentification'
+    description: Structure contains recommended product identification.
   recommendation_system_id:
     type: string
     readOnly: false
@@ -53,3 +51,8 @@ properties:
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
     example: '2019-01-04 10:31:56'
+required:
+  - recommended_product_id
+  - recommendation_system_id
+  - recommendation_system_dataset_id
+  - score
