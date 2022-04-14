@@ -1,6 +1,6 @@
 get:
   tags:
-    - Non automatic recommendations
+    - Hints
   summary: Get a recommendation
   description: Get information about a specific recommendation
   operationId: getRecommendation

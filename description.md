@@ -864,6 +864,8 @@ In the example, you can see two important things:
 
 ### Bill Closure with rewards application
 
+<img src="img/checkout_with_reward_application.png">
+
 1. User clicks on the Loyalty program button in the POS system.
 2. The User inserts the Customer Card Number into the specified field on POS using a barcode reader or manual input. The User can identify a customer with other parameters like email, phone, or name. If so, the User should collect these parameters from the Customer and get `customer id` with API call [GET /customers?parameter=value](#operation/getCustomers).
 3. POS system verifies the validity of the Loyalty Card with API call [GET /cards?cardnumber=12345678](#operation/getCards). This step is optional, and you can skip it if you don't want to verify a card number.
@@ -975,10 +977,10 @@ Response to the request above:
     }
 }
 ```
-6. The User chooses specific rewards and sets the amount of use.
-7. The User clicks on the Bill Closure button on POS.
-8. The POS system adds selected rewards from [ POST /purchases/action/recommend-best-rewards](#operation/postPurchaseRecommendedRewards) and sends request Bill Closure to CareCloud REST API [POST /purchases/actions/accept-payment](#operation/postPurchaseAcceptPayment).
-   Based on the Customer id (or Card Number) and Bill Items, CareCloud calculates all available discounts. CareCloud applies all selected rewards too.
+6. The User chooses rewards and sets the amount of use.
+7. The User clicks on the Bill Closure button in POS.
+8. The POS system adds selected rewards from [ POST /purchases/action/recommend-best-rewards](#operation/postPurchaseRecommendedRewards) and sends request Bill Closure to CareCloud REST API [POST /purchases/actions/accept-payment](#operation/postPurchaseAcceptPayment). Based on the Customer id (or Card Number) and Bill Items, CareCloud calculates all available discounts. CareCloud applies all selected rewards too.
+
 ```http request
 POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/purchases/action/accept-payment
 Content-Type: application/json

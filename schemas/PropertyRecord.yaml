@@ -13,7 +13,7 @@ properties:
     example: contact_person
   property_name:
     type: string
-    readOnly: false
+    readOnly: true
     description: Name of the property
     example: Project contact person
   property_value:
@@ -26,6 +26,7 @@ properties:
         items: { }
       - type: object
     readOnly: false
+    nullable: true
     description: Value of the property
     example: []
   last_change:
@@ -35,4 +36,3 @@ properties:
     example:
 required:
   - property_id
-  - property_value
