@@ -9709,6 +9709,11 @@ paths:
                         format: float
                         description: Amount of available points in the moment. Time interval has no influence to the result
                         example: 79.5
+                      available_points_money_value:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/MoneyValue'
+                        description: Parameter shows money representation of the 'available_points' parameter. CareCloud calculates money value for every system currency. The calculation is available only if the customer's status allows a point payment. This setup is possible in CareCloud administration.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -11017,7 +11022,7 @@ components:
           description: 'Information, whether it is a fiscal bill'
           example: true
         purchase_type_id:
-          type: integer
+          type: string
           readOnly: false
           description: 'Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types)'
           example: 86e05affc7a7abefzcd513ab00
@@ -11381,6 +11386,21 @@ components:
         - name
         - message_template_group_id
         - communication_channel_id
+    MoneyValue:
+      type: object
+      description: Money value in specified currency
+      properties:
+        currency_id:
+          type: string
+          readOnly: true
+          description: The unique id of the currency
+          example: 86e05affc7a7abefcd513ab400
+        value:
+          type: number
+          format: float
+          readOnly: true
+          description: Money value
+          example: 3472
     OpeningDay:
       type: object
       description: Opening day structure

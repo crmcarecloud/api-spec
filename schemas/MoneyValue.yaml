@@ -1,0 +1,14 @@
+type: object
+description: Money value in specified currency
+properties:
+  currency_id:
+    type: string
+    readOnly: true
+    description: The unique id of the currency
+    example: 86e05affc7a7abefcd513ab400
+  value:
+    type: number
+    format: float
+    readOnly: true
+    description: Money value
+    example: 3472

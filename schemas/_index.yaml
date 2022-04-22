@@ -74,6 +74,8 @@ MessageDetail:
   $ref: "./MessageDetail.yaml"
 MessageTemplate:
   $ref: "./MessageTemplate.yaml"
+MoneyValue:
+  $ref: "./MoneyValue.yaml"
 OpeningDay:
   $ref: "./OpeningDay.yaml"
 Order:

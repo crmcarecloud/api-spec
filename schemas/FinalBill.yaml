@@ -10,7 +10,7 @@ properties:
     description: Information, whether it is a fiscal bill
     example: true
   purchase_type_id:
-    type: integer
+    type: string
     readOnly: false
     description: Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types)
     example: 86e05affc7a7abefzcd513ab00
