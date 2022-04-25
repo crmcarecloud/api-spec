@@ -452,7 +452,7 @@ Customer source identifies the source of the customer (email, Facebook, registra
 List of available customer sources is available in resource [[GET] /cusomer-sources](/#tag/Customer-sources). If you want to create a new customer source for an existing customer, you can do it at [[POST] /customers/{cusomer_id}/customer-source-records](#operation/postSubCustomerSource). If you're going to add a customer source to the customer while registering, you can do it right at [[POST] /customers](#operation/postCustomer).
 Following flowchart covers all three states of the customer:
 <br/>
-<img src="img/customer_sign_up_for_newsletter.svg">
+<img src="img/customer_sign_up_for_newsletter.png">
 
 If it's a customer already signed up for the newsletter and wants to registred. You don't have to worry. Just follow the use case below. CPD CareCloud will handle this situation. You need to create a new customer with [[POST] /customers](#operation/postCustomer). In the end, you will have a customer with newsletter and registration sources.
 
