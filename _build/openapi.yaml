@@ -2035,7 +2035,7 @@ paths:
                   data:
                     type: object
                     properties:
-                      recommendation_records:
+                      recommendations:
                         type: array
                         description: List of Recomendation records
                         items:
