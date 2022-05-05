@@ -5,26 +5,26 @@ properties:
     type: string
     readOnly: false
     description: Code of a reward or a voucher used in purchase
-    example:
+    example: "PTV123"
   name:
     type: string
     readOnly: false
     description: Name of the reward
-    example:
+    example: "10% off your first purchase"
   discount_value:
     type: number
     format: float
     readOnly: false
     description: Value of discount in the currency of the bill
-    example:
+    example: 70
   discount_percent:
     type: number
     format: float
     readOnly: false
     description: Value of discount in percent
-    example:
+    example: 10
   bill_item_id:
     type: string
     readOnly: false
     description: ID of the related bill item
-    example:
+    example: "6fd73167342d6899c415320"

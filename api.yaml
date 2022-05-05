@@ -78,6 +78,8 @@ tags:
     description: A Partner is an entity that owns and manages a defined group of customer data in the CareCloud platform based on consent to the processing of personal data. The users of a specific Partner have no access to the customer data of another Partner. Each user is linked to a particular Partner. You can get here the list of Partners available.
   - name: Points
     description: If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.
+  - name: Point history
+    description: If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions like points collection and points redemption is listed in point history resource.
   - name: Point reservation
     description: When CRM CareCloud manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.
   - name: Point types

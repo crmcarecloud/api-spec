@@ -204,6 +204,9 @@
   $ref: "./points/PointsAssign.yaml"
 /points/actions/transfer-points:
   $ref: "./points/PointsTransfer.yaml"
+#Point history
+/point-history:
+  $ref: "./points/PointHistory.yaml"
 # Point reservation
 /point-reservations:
   $ref: "./points/PointReservations.yaml"

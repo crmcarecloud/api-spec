@@ -1,0 +1,39 @@
+type: object
+description: Point history record
+properties:
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer.
+    example: 81ceb8582e28dbb7e71b7273b
+  amount:
+    type: number
+    format: float
+    readOnly: true
+    description: The number of points used in the point operation record
+    example: 700
+  point_operation_type:
+    type: string
+    readOnly: true
+    description: Type of the point operation record
+    example: "Voucher purchase"
+  point_operation_note:
+    type: string
+    readOnly: true
+    description: Note of the point operation record
+    example: "Free one day parking"
+  partner_id:
+    type: string
+    readOnly: false
+    description: The unique id of the partner company
+    example: 86e05affc7a7abefcd513ab400
+  store_id:
+    type: string
+    readOnly: true
+    description: The unique id of the store in CareCloud
+    example: 86e05affc7a7abefcd513ab400
+  point_history_record_time:
+    type: string
+    readOnly: true
+    description: Date and time of the point record from the point history *(YYYY-MM-DD HH:MM:SS)*
+    example: '2012-11-22 20:57:04'

@@ -1,19 +1,23 @@
 get:
   tags:
-    - Points
-  summary: Get all point records
-  description: Get a list of all point transactions and their current values.
-  operationId: getPoints
+    - Point history
+  summary: Get point transaction history
+  description: Get a list of point transactions of the customer
+  operationId: getPointHistory
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_id'
-    - $ref: '../../parameters/_index.yaml#/point_type_id'
-    - $ref: '../../parameters/_index.yaml#/create_point_time_from'
-    - $ref: '../../parameters/_index.yaml#/create_point_time_to'
+    - $ref: '../../parameters/_index.yaml#/customer_id_required'
+    - $ref: '../../parameters/_index.yaml#/store_id'
+    - $ref: '../../parameters/_index.yaml#/partner_id'
+    - $ref: '../../parameters/_index.yaml#/time_from_full'
+    - $ref: '../../parameters/_index.yaml#/time_to_full'
+    - $ref: '../../parameters/_index.yaml#/point_operation_type'
+    - $ref: '../../parameters/_index.yaml#/point_operation_note'
+
   responses:
     '200':
       description: OK
@@ -25,14 +29,14 @@ get:
               data:
                 type: object
                 properties:
-                  points:
+                  point_history:
                     type: array
-                    description: List of the point records
+                    description: List of the point history records
                     items:
-                      $ref: '../../schemas/_index.yaml#/Point'
+                      $ref: '../../schemas/_index.yaml#/PointHistoryRecord'
                   total_items:
                     type: integer
-                    description: Count of all found point records
+                    description: Count of all found point history records
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

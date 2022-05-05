@@ -180,6 +180,24 @@ tag_id_arr:
     type: array
     items:
       type: string
+time_from_full:
+  name: time_from
+  in: query
+  description: Filter results on the start of the time interval. *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: '2018-05-07 23:59:59'
+time_to_full:
+  name: time_to
+  in: query
+  description: Filter results on the end of the time interval. *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: '2018-05-07 23:59:59'
 
 # Personal parameters
 user_id_path:
@@ -484,7 +502,7 @@ without_stores:
 reward_store_id:
   name: store_id
   in: query
-  description: The unique id for the store where customer can apply the reward
+  description: The unique id of the store where customer can apply the reward
   required: false
   schema:
     type: string
@@ -504,7 +522,7 @@ customer_external_application_id_path:
 customer_property_id_path:
   name: customer_property_id
   in: path
-  description: The unique id for the customer property
+  description: The unique id of the customer property
   required: true
   schema:
     type: string
@@ -524,7 +542,7 @@ customer_relation_type_id_path:
 campaign_id_path:
   name: campaign_id
   in: path
-  description: The unique id for the campaign in CareCloud
+  description: The unique id of the campaign in CareCloud
   required: true
   schema:
     type: string
@@ -562,7 +580,7 @@ campaign_store_id:
 campaign_product_id_path:
   name: campaign_product_id
   in: path
-  description: The unique id for the campaign product in CareCloud
+  description: The unique id of the campaign product in CareCloud
   required: true
   schema:
     type: string
@@ -582,7 +600,7 @@ currency_id_path:
 event_id_path:
   name: event_id
   in: path
-  description: The unique id for the event
+  description: The unique id of the event
   required: true
   schema:
     type: string
@@ -614,7 +632,7 @@ event_group_id_path:
 event_property_id_path:
   name: event_property_id
   in: path
-  description: The unique id for the event property
+  description: The unique id of the event property
   required: true
   schema:
     type: string
@@ -622,7 +640,7 @@ event_property_id_path:
 event_type_id_path:
   name: event_type_id
   in: path
-  description: The unique id for the event type
+  description: The unique id of the event type
   required: true
   schema:
     type: string
@@ -632,7 +650,7 @@ event_type_id_path:
 interest_id_path:
   name: interest_id
   in: path
-  description: The unique id for the interest
+  description: The unique id of the interest
   required: true
   schema:
     type: string
@@ -650,7 +668,7 @@ message_id_path:
 message_template_id_path:
   name: message_template_id
   in: path
-  description: The unique id for the message template
+  description: The unique id of the message template
   required: true
   schema:
     type: string
@@ -710,17 +728,24 @@ order_id_path:
 partner_id_path:
   name: partner_id
   in: path
-  description: The unique id for the partner
+  description: The unique id of the partner
   required: true
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
-
+partner_id:
+  name: partner_id
+  in: query
+  required: false
+  description: The unique id of the partner
+  schema:
+    type: string
+  example: 89ac83ca207a820c62c79bf03a
 # Points
 point_id_path:
   name: point_id
   in: path
-  description: The unique id for the point record
+  description: The unique id of the point record
   required: true
   schema:
     type: string
@@ -775,12 +800,28 @@ pointRes_external_id:
   schema:
     type: string
   example: 123459
+point_operation_type:
+  name: point_operation_type
+  in: query
+  description: 'Search record by the operation type name or a part of the operation type name'
+  required: false
+  schema:
+    type: string
+  example: "Voucher purch"
+point_operation_note:
+  name: point_operation_note
+  in: query
+  description: 'Search record by the operation note or a part of the operation note'
+  required: false
+  schema:
+    type: string
+  example: "Free one day"
 
 # Product
 product_id_path:
   name: product_id
   in: path
-  description: The unique id for the product
+  description: The unique id of the product
   required: true
   schema:
     type: string
@@ -788,7 +829,7 @@ product_id_path:
 reservable_product_id_path:
   name: reservable_product_id
   in: path
-  description: The unique id for the reservable product
+  description: The unique id of the reservable product
   required: true
   schema:
     type: string
@@ -796,7 +837,7 @@ reservable_product_id_path:
 product_brand_id_path:
   name: product_brand_id
   in: path
-  description: The unique id for the product brand
+  description: The unique id of the product brand
   required: true
   schema:
     type: string
@@ -804,7 +845,7 @@ product_brand_id_path:
 product_group_id_path:
   name: product_group_id
   in: path
-  description: The unique id for the product group
+  description: The unique id of the product group
   required: true
   schema:
     type: string
@@ -812,7 +853,7 @@ product_group_id_path:
 product_property_id_path:
   name: product_property_id
   in: path
-  description: The unique id for the product group
+  description: The unique id of the product group
   required: true
   schema:
     type: string
@@ -890,7 +931,7 @@ reservation_state:
 purchase_id_path:
   name: purchase_id
   in: path
-  description: The unique id for the purchase
+  description: The unique id of the purchase
   required: true
   schema:
     type: string
@@ -946,7 +987,7 @@ product_id_list:
   name: product_id_list
   in: query
   required: false
-  description: List of the product ids. Initial products for the recommendation engine.
+  description: List of the product ids. Initial products of the recommendation engine.
   schema:
     type: array
     items:
@@ -975,7 +1016,7 @@ segment_id_path:
   name: segment_id
   in: path
   required: true
-  description: The unique id for the segment
+  description: The unique id of the segment
   schema:
     type: string
   example: 8dc1e66b44796af5cd377910e1
@@ -1091,7 +1132,7 @@ is_cancelled:
 status_id_path:
   name: status_id
   in: path
-  description: The unique id for the status
+  description: The unique id of the status
   required: true
   schema:
     type: string
@@ -1109,7 +1150,7 @@ store_id_path:
 store_group_id_path:
   name: store_group_id
   in: path
-  description: The unique id for the store group
+  description: The unique id of the store group
   required: true
   schema:
     type: string
@@ -1117,7 +1158,7 @@ store_group_id_path:
 store_property_id_path:
   name: store_property_id
   in: path
-  description: The unique id for the store property
+  description: The unique id of the store property
   required: true
   schema:
     type: string
@@ -1133,7 +1174,7 @@ store_id:
 visible_for_customer:
   name: visible_for_customer
   in: query
-  description: "State of the visibility for the customer *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*"
+  description: "State of the visibility of the customer *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*"
   required: false
   schema:
     type: integer
