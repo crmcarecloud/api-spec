@@ -77,6 +77,8 @@ tags:
     description: A Partner is an entity that owns and manages a defined group of customer data in the CareCloud platform based on consent to the processing of personal data. The users of a specific Partner have no access to the customer data of another Partner. Each user is linked to a particular Partner. You can get here the list of Partners available.
   - name: Points
     description: 'If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.'
+  - name: Point history
+    description: 'If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions like points collection and points redemption is listed in point history resource.'
   - name: Point reservation
     description: 'When CRM CareCloud manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.'
   - name: Point types
@@ -4466,7 +4468,7 @@ paths:
       tags:
         - Points
       summary: Get all point records
-      description: 'Get a list of all point transactions, point collections and redemptions'
+      description: Get a list of all point transactions and their current values.
       operationId: getPoints
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4760,6 +4762,62 @@ paths:
       responses:
         '204':
           description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /point-history:
+    get:
+      tags:
+        - Point history
+      summary: Get point transaction history
+      description: Get a list of point transactions of the customer
+      operationId: getPointHistory
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_id_required'
+        - $ref: '#/components/parameters/store_id'
+        - $ref: '#/components/parameters/partner_id'
+        - $ref: '#/components/parameters/time_from_full'
+        - $ref: '#/components/parameters/time_to_full'
+        - $ref: '#/components/parameters/point_operation_type'
+        - $ref: '#/components/parameters/point_operation_note'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      point_history:
+                        type: array
+                        description: List of the point history records
+                        items:
+                          $ref: '#/components/schemas/PointHistoryRecord'
+                      total_items:
+                        type: integer
+                        description: Count of all found point history records
+                        example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -10025,12 +10083,12 @@ components:
           readOnly: true
           description: Amount of used credits
           example: 0
-        benefit_codes:
+        vouchers:
           type: array
           items:
             $ref: '#/components/schemas/PaymentVoucher'
           readOnly: true
-          description: List of applied vouchers on the current bill (includes the value of discount) independent of DiscountItem
+          description: List of applied rewards/vouchers on the current bill (includes the value of discount) independent of DiscountItem
         credit_points_of_this_transaction:
           type: number
           format: float
@@ -11705,29 +11763,29 @@ components:
           type: string
           readOnly: false
           description: Code of a reward or a voucher used in purchase
-          example: null
+          example: PTV123
         name:
           type: string
           readOnly: false
           description: Name of the reward
-          example: null
+          example: 10% off your first purchase
         discount_value:
           type: number
           format: float
           readOnly: false
           description: Value of discount in the currency of the bill
-          example: null
+          example: 70
         discount_percent:
           type: number
           format: float
           readOnly: false
           description: Value of discount in percent
-          example: null
+          example: 10
         bill_item_id:
           type: string
           readOnly: false
           description: ID of the related bill item
-          example: null
+          example: 6fd73167342d6899c415320
     PersonalInformation:
       type: object
       description: Personal information of the customer
@@ -11869,6 +11927,46 @@ components:
         - customer_id
         - point_type_id
         - partner_id
+    PointHistoryRecord:
+      type: object
+      description: Point history record
+      properties:
+        customer_id:
+          type: string
+          readOnly: true
+          description: The unique id of the customer.
+          example: 81ceb8582e28dbb7e71b7273b
+        amount:
+          type: number
+          format: float
+          readOnly: true
+          description: The number of points used in the point operation record
+          example: 700
+        point_operation_type:
+          type: string
+          readOnly: true
+          description: Type of the point operation record
+          example: Voucher purchase
+        point_operation_note:
+          type: string
+          readOnly: true
+          description: Note of the point operation record
+          example: Free one day parking
+        partner_id:
+          type: string
+          readOnly: false
+          description: The unique id of the partner company
+          example: 86e05affc7a7abefcd513ab400
+        store_id:
+          type: string
+          readOnly: true
+          description: The unique id of the store in CareCloud
+          example: 86e05affc7a7abefcd513ab400
+        point_history_record_time:
+          type: string
+          readOnly: true
+          description: 'Date and time of the point record from the point history *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2012-11-22 20:57:04'
     PointReservation:
       type: object
       description: Points reservation resource
@@ -13974,6 +14072,24 @@ components:
         type: array
         items:
           type: string
+    time_from_full:
+      name: time_from
+      in: query
+      description: 'Filter results on the start of the time interval. *(YYYY-MM-DD HH:MM:SS)*'
+      required: false
+      schema:
+        type: string
+      allowReserved: true
+      example: '2018-05-07 23:59:59'
+    time_to_full:
+      name: time_to
+      in: query
+      description: 'Filter results on the end of the time interval. *(YYYY-MM-DD HH:MM:SS)*'
+      required: false
+      schema:
+        type: string
+      allowReserved: true
+      example: '2018-05-07 23:59:59'
     user_id_path:
       name: user_id
       in: path
@@ -14262,7 +14378,7 @@ components:
     reward_store_id:
       name: store_id
       in: query
-      description: The unique id for the store where customer can apply the reward
+      description: The unique id of the store where customer can apply the reward
       required: false
       schema:
         type: string
@@ -14278,7 +14394,7 @@ components:
     customer_property_id_path:
       name: customer_property_id
       in: path
-      description: The unique id for the customer property
+      description: The unique id of the customer property
       required: true
       schema:
         type: string
@@ -14294,7 +14410,7 @@ components:
     campaign_id_path:
       name: campaign_id
       in: path
-      description: The unique id for the campaign in CareCloud
+      description: The unique id of the campaign in CareCloud
       required: true
       schema:
         type: string
@@ -14332,7 +14448,7 @@ components:
     campaign_product_id_path:
       name: campaign_product_id
       in: path
-      description: The unique id for the campaign product in CareCloud
+      description: The unique id of the campaign product in CareCloud
       required: true
       schema:
         type: string
@@ -14348,7 +14464,7 @@ components:
     event_id_path:
       name: event_id
       in: path
-      description: The unique id for the event
+      description: The unique id of the event
       required: true
       schema:
         type: string
@@ -14380,7 +14496,7 @@ components:
     event_property_id_path:
       name: event_property_id
       in: path
-      description: The unique id for the event property
+      description: The unique id of the event property
       required: true
       schema:
         type: string
@@ -14388,7 +14504,7 @@ components:
     event_type_id_path:
       name: event_type_id
       in: path
-      description: The unique id for the event type
+      description: The unique id of the event type
       required: true
       schema:
         type: string
@@ -14396,7 +14512,7 @@ components:
     interest_id_path:
       name: interest_id
       in: path
-      description: The unique id for the interest
+      description: The unique id of the interest
       required: true
       schema:
         type: string
@@ -14412,7 +14528,7 @@ components:
     message_template_id_path:
       name: message_template_id
       in: path
-      description: The unique id for the message template
+      description: The unique id of the message template
       required: true
       schema:
         type: string
@@ -14468,15 +14584,23 @@ components:
     partner_id_path:
       name: partner_id
       in: path
-      description: The unique id for the partner
+      description: The unique id of the partner
       required: true
       schema:
         type: string
       example: 86e05affc7a7abefcd513ab400
+    partner_id:
+      name: partner_id
+      in: query
+      required: false
+      description: The unique id of the partner
+      schema:
+        type: string
+      example: 89ac83ca207a820c62c79bf03a
     point_id_path:
       name: point_id
       in: path
-      description: The unique id for the point record
+      description: The unique id of the point record
       required: true
       schema:
         type: string
@@ -14531,10 +14655,26 @@ components:
       schema:
         type: string
       example: 123459
+    point_operation_type:
+      name: point_operation_type
+      in: query
+      description: Search record by the operation type name or a part of the operation type name
+      required: false
+      schema:
+        type: string
+      example: Voucher purch
+    point_operation_note:
+      name: point_operation_note
+      in: query
+      description: Search record by the operation note or a part of the operation note
+      required: false
+      schema:
+        type: string
+      example: Free one day
     product_id_path:
       name: product_id
       in: path
-      description: The unique id for the product
+      description: The unique id of the product
       required: true
       schema:
         type: string
@@ -14542,7 +14682,7 @@ components:
     reservable_product_id_path:
       name: reservable_product_id
       in: path
-      description: The unique id for the reservable product
+      description: The unique id of the reservable product
       required: true
       schema:
         type: string
@@ -14550,7 +14690,7 @@ components:
     product_brand_id_path:
       name: product_brand_id
       in: path
-      description: The unique id for the product brand
+      description: The unique id of the product brand
       required: true
       schema:
         type: string
@@ -14558,7 +14698,7 @@ components:
     product_group_id_path:
       name: product_group_id
       in: path
-      description: The unique id for the product group
+      description: The unique id of the product group
       required: true
       schema:
         type: string
@@ -14566,7 +14706,7 @@ components:
     product_property_id_path:
       name: product_property_id
       in: path
-      description: The unique id for the product group
+      description: The unique id of the product group
       required: true
       schema:
         type: string
@@ -14642,7 +14782,7 @@ components:
     purchase_id_path:
       name: purchase_id
       in: path
-      description: The unique id for the purchase
+      description: The unique id of the purchase
       required: true
       schema:
         type: string
@@ -14696,7 +14836,7 @@ components:
       name: product_id_list
       in: query
       required: false
-      description: List of the product ids. Initial products for the recommendation engine.
+      description: List of the product ids. Initial products of the recommendation engine.
       schema:
         type: array
         items:
@@ -14723,7 +14863,7 @@ components:
       name: segment_id
       in: path
       required: true
-      description: The unique id for the segment
+      description: The unique id of the segment
       schema:
         type: string
       example: 8dc1e66b44796af5cd377910e1
@@ -14835,7 +14975,7 @@ components:
     status_id_path:
       name: status_id
       in: path
-      description: The unique id for the status
+      description: The unique id of the status
       required: true
       schema:
         type: string
@@ -14851,7 +14991,7 @@ components:
     store_group_id_path:
       name: store_group_id
       in: path
-      description: The unique id for the store group
+      description: The unique id of the store group
       required: true
       schema:
         type: string
@@ -14859,7 +14999,7 @@ components:
     store_property_id_path:
       name: store_property_id
       in: path
-      description: The unique id for the store property
+      description: The unique id of the store property
       required: true
       schema:
         type: string
@@ -14875,7 +15015,7 @@ components:
     visible_for_customer:
       name: visible_for_customer
       in: query
-      description: 'State of the visibility for the customer *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*'
+      description: 'State of the visibility of the customer *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*'
       required: false
       schema:
         type: integer

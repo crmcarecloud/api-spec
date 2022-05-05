@@ -25,12 +25,12 @@ properties:
     readOnly: true
     description: Amount of used credits
     example: 0
-  benefit_codes:
+  vouchers:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PaymentVoucher'
     readOnly: true
-    description: List of applied vouchers on the current bill (includes the value of discount) independent of DiscountItem
+    description: List of applied rewards/vouchers on the current bill (includes the value of discount) independent of DiscountItem
   credit_points_of_this_transaction:
     type: number
     format: float
