@@ -6319,7 +6319,7 @@ paths:
                   description: ID of the store
                   example: 8fd73167342d06899c15320
                 cashdesk_number:
-                  type: string
+                  type: integer
                   description: Number of the cashdesk in store
                   example: 1
                 card_number:
@@ -6404,7 +6404,7 @@ paths:
                   description: Id of the store
                   example: 8fd73167342d06899c15320
                 cashdesk_number:
-                  type: string
+                  type: integer
                   description: Number of the cashdesk in the store
                   example: 1
                 card_number:
@@ -6492,7 +6492,7 @@ paths:
                   description: Id of the store
                   example: 8fd73167342d06899c15320
                 cashdesk_number:
-                  type: string
+                  type: integer
                   description: Number of the cashdesk in store
                   example: 1
                 card_number:
@@ -9100,6 +9100,10 @@ paths:
                         type: string
                         description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
                         example: 76951b4a90626f3635990330ec487e32c539c74
+                      valid_to:
+                        type: string
+                        description: 'Date and time of the token validity   *(YYYY-MM-DD HH:MM:SS)*'
+                        example: '2019-01-04 10:31:56'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -10252,11 +10256,6 @@ components:
           readOnly: false
           description: The total price of the bill as a sum of all items
           example: '700'
-        utm:
-          type: object
-          $ref: '#/components/schemas/UTM'
-          readOnly: false
-          description: UTM structure for data from email campaign
         bill_items:
           type: array
           items:
@@ -13370,6 +13369,14 @@ components:
           readOnly: false
           description: The basic loyalty discount
           example: 0
+        overall_discount_on_discounted_purchase_items:
+          type: boolean
+          enum:
+            - true
+            - false
+          readOnly: true
+          description: 'If true, overall discounts can be applied on already discounted purchase items in purchase checkout process'
+          example: true
         last_change:
           type: string
           readOnly: true
@@ -13954,15 +13961,6 @@ components:
         enum:
           - strict
       example: strict
-    last_change:
-      name: last_change
-      in: query
-      description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-      required: false
-      schema:
-        type: string
-      allowReserved: true
-      example: '2018-05-07 14:26:19.215774'
     is_valid:
       name: is_valid
       in: query
@@ -15164,7 +15162,7 @@ components:
         After you successfully get your bearer token, please add it to every REST API calls in the Enterprise interface with the following syntax:
 
         ```http request
-        GET https://<projectURL>/webservice/rest-api/customer-interface/v1.0/customers
+        GET https://<projectURL>/webservice/rest-api/enterprise-interface/v1.0/customers
         Content-Type: application/json
         Accept-Language: cs, en-gb;q=0.8
         Authorization: Bearer 09359095c5da43c7ae11e710eabce49

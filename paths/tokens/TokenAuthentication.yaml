@@ -28,6 +28,10 @@ get:
                     type: string
                     description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
                     example: 76951b4a90626f3635990330ec487e32c539c74
+                  valid_to:
+                    type: string
+                    description: Date and time of the token validity   *(YYYY-MM-DD HH:MM:SS)*
+                    example: '2019-01-04 10:31:56'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

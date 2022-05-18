@@ -32,11 +32,6 @@ properties:
     readOnly: false
     description: The total price of the bill as a sum of all items
     example: '700'
-  utm:
-    type: object
-    $ref: '../schemas/_index.yaml#/UTM'
-    readOnly: false
-    description: UTM structure for data from email campaign
   bill_items:
     type: array
     items:
