@@ -62,15 +62,6 @@ searchMode:
     enum:
       - strict
   example: strict
-last_change:
-  name: last_change
-  in: query
-  description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-  required: false
-  schema:
-    type: string
-  allowReserved: true
-  example: '2018-05-07 14:26:19.215774'
 is_valid:
   name: is_valid
   in: query

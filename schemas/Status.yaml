@@ -70,6 +70,14 @@ properties:
     readOnly: false
     description: The basic loyalty discount
     example: 0
+  overall_discount_on_discounted_purchase_items:
+    type: boolean
+    enum:
+      - true
+      - false
+    readOnly: true
+    description: If true, overall discounts can be applied on already discounted purchase items in purchase checkout process
+    example: true
   last_change:
     type: string
     readOnly: true

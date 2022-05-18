@@ -18,7 +18,7 @@ post:
               description: ID of the store
               example: 8fd73167342d06899c15320
             cashdesk_number:
-              type: string
+              type: integer
               description: Number of the cashdesk in store
               example: 1
             card_number:
