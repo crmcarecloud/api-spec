@@ -26,13 +26,13 @@ properties:
     type: string
     enum:
       - S
-      - P
+      - A
       - C
       - D
     readOnly: false
     description: |
-      The method of the bill closure.
-      *Possible values are: “S” - standard / “P”- use points for payment / “C” - use credits for payment / “D”- use discount now*
+      Payment type changes the checkout process depending on the value of the parameter you can allow/deny the use of benefits.
+      *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup*
     example: S
   payment_recap:
     type: object
