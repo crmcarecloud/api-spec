@@ -405,6 +405,38 @@
 /store-properties/{store_property_id}:
   $ref: "./stores/StoreProperty.yaml"
 
+#  Tasks
+/tasks:
+  $ref: "./tasks/Tasks.yaml"
+/tasks/{task_id}:
+  $ref: "./tasks/Task.yaml"
+#  Sub-resources of tasks
+/tasks/{task_id}/task-comments:
+  $ref: "./tasks/SubTaskComments.yaml"
+/tasks/{task_id}/task-comments/{task_comment_id}:
+  $ref: "./tasks/SubTaskComment.yaml"
+/tasks/{task_id}/assignees:
+  $ref: "./tasks/SubTaskAssignees.yaml"
+/tasks/{task_id}/assignees/{assignee_id}:
+  $ref: "./tasks/SubTaskAssignee.yaml"
+# Task types
+/task-types:
+  $ref: "./tasks/TaskTypes.yaml"
+/task-types/{task_type_id}:
+  $ref: "./tasks/TaskType.yaml"
+# Task states
+/task-states:
+  $ref: "./tasks/TaskStates.yaml"
+/task-states/{task_state_id}:
+  $ref: "./tasks/TaskState.yaml"
+#Task properties
+/task-properties:
+  $ref: "./tasks/TaskProperties.yaml"
+/task-properties/{task_property_id}:
+  $ref: "./tasks/TaskProperty.yaml"
+#Task properties records
+/tasks/{task_id}/property-records:
+  $ref: "./tasks/SubTaskProperties.yaml"
 #  Tests
 /tests/connection:
   $ref: "./tests/Connection.yaml"

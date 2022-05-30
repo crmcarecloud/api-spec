@@ -1,0 +1,101 @@
+get:
+  tags:
+    - Tasks
+  summary: Get all task comments
+  description: Get information as a list of all task comments.
+  operationId: getTaskComments
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/task_id_path'
+    - $ref: '../../parameters/_index.yaml#/task_comment_text'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  task_comments:
+                    type: array
+                    description: List of all task comments
+                    items:
+                      $ref: '../../schemas/_index.yaml#/TaskComment'
+                  total_items:
+                    type: integer
+                    description: Count of all found task comments
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+post:
+  tags:
+    - Tasks
+  summary: Create a task comment
+  description: Add a new comment to the task
+  operationId: postTaskComment
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/task_id_path'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            task_comment:
+              $ref: '../../schemas/_index.yaml#/TaskComment'
+          required:
+            - task_comment
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  task_comment_id:
+                    type: string
+                    description: The unique id of the task comment in CareCloud
+                    example: 86e05affc7a7abefcd513ab400
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

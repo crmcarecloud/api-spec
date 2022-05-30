@@ -1,0 +1,32 @@
+type: object
+description: Task state resource
+properties:
+  task_state_id:
+    type: string
+    readOnly: true
+    description: The unique id of the task state
+    example: 8bed991c68a470e7aaeffbf048
+  name:
+    type: string
+    readOnly: false
+    description: Name of the task state
+    example: "Cancelled"
+  text_id:
+    type: string
+    readOnly: true
+    description: Text id of the task state
+    example: "cancelled"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the event type
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - name
+  - text_id

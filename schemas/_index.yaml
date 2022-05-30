@@ -176,6 +176,16 @@ StoreGroupRecord:
   $ref: "./StoreGroupRecord.yaml"
 Tag:
   $ref: "./Tag.yaml"
+Task:
+  $ref: "./Task.yaml"
+TaskAssignee:
+  $ref: "./TaskAssignee.yaml"
+TaskComment:
+  $ref: "./TaskComment.yaml"
+TaskState:
+  $ref: "./TaskState.yaml"
+TaskType:
+  $ref: "./TaskType.yaml"
 TimeInterval:
   $ref: "./TimeInterval.yaml"
 ThirdPartyRecommendation:
