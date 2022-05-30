@@ -6419,10 +6419,12 @@ paths:
                   type: string
                   enum:
                     - S
+                    - A
+                    - C
                     - D
                   description: |
-                    Method of the bill closure
-                    *Possible values: “S”-standard / “D”- use discount now*
+                    Payment type changes the checkout process depending on the value of the parameter you can allow/deny the use of benefits.
+                    *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup*
                   example: S
                 max_points:
                   type: string
@@ -8712,6 +8714,805 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/Property'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /tasks:
+    get:
+      tags:
+        - Tasks
+      summary: Get all tasks
+      description: Get information as a list of all tasks.
+      operationId: getTasks
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/task_type_id'
+        - $ref: '#/components/parameters/task_state_id'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/task_priority'
+        - $ref: '#/components/parameters/task_due_date'
+        - $ref: '#/components/parameters/task_title'
+        - $ref: '#/components/parameters/task_note'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      tasks:
+                        type: array
+                        description: List of all tasks
+                        items:
+                          $ref: '#/components/schemas/Task'
+                      total_items:
+                        type: integer
+                        description: Count of all found tasks
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Tasks
+      summary: Create a task
+      description: Add a new task
+      operationId: postTasks
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  $ref: '#/components/schemas/Task'
+                property_records:
+                  type: array
+                  description: List of an task property records
+                  items:
+                    $ref: '#/components/schemas/PropertyRecord'
+                assignees:
+                  type: array
+                  description: List of an task assignees
+                  items:
+                    $ref: '#/components/schemas/TaskAssignee'
+              required:
+                - task
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_id:
+                        type: string
+                        description: The unique id of the task in CareCloud
+                        example: 86e05affc7a7abefcd513ab400
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/tasks/{task_id}':
+    get:
+      tags:
+        - Tasks
+      summary: Get a task
+      description: Get information about a specific task resource.
+      operationId: getTask
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    put:
+      tags:
+        - Tasks
+      summary: Update a task
+      description: This method updates a specific task resource.
+      operationId: putTask
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  $ref: '#/components/schemas/Task'
+              required:
+                - task
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/tasks/{task_id}/task-comments':
+    get:
+      tags:
+        - Tasks
+      summary: Get all task comments
+      description: Get information as a list of all task comments.
+      operationId: getTaskComments
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/task_id_path'
+        - $ref: '#/components/parameters/task_comment_text'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_comments:
+                        type: array
+                        description: List of all task comments
+                        items:
+                          $ref: '#/components/schemas/TaskComment'
+                      total_items:
+                        type: integer
+                        description: Count of all found task comments
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Tasks
+      summary: Create a task comment
+      description: Add a new comment to the task
+      operationId: postTaskComment
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_comment:
+                  $ref: '#/components/schemas/TaskComment'
+              required:
+                - task_comment
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_comment_id:
+                        type: string
+                        description: The unique id of the task comment in CareCloud
+                        example: 86e05affc7a7abefcd513ab400
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/tasks/{task_id}/task-comments/{task_comment_id}':
+    get:
+      tags:
+        - Tasks
+      summary: Get a task comment
+      description: Get a specific task comment.
+      operationId: getTaskComment
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_comment_id_path'
+        - $ref: '#/components/parameters/task_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TaskComment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/tasks/{task_id}/assignees':
+    get:
+      tags:
+        - Tasks
+      summary: Get all task assignees
+      description: Get information as a list of all task assignees.
+      operationId: getTaskAssignees
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/task_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_assignees:
+                        type: array
+                        description: List of all task assignees
+                        items:
+                          $ref: '#/components/schemas/TaskAssignee'
+                      total_items:
+                        type: integer
+                        description: Count of all found task assignees
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Tasks
+      summary: Create a task assignee
+      description: Add a new assignee to the task
+      operationId: postTaskAssignee
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_assignee:
+                  $ref: '#/components/schemas/TaskAssignee'
+              required:
+                - task_assignee
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_assignee_id:
+                        type: string
+                        description: The unique id of the task assignee in CareCloud
+                        example: 86e05affc7a7abefcd513ab400
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/tasks/{task_id}/assignees/{assignee_id}':
+    get:
+      tags:
+        - Tasks
+      summary: Get a task assignee
+      description: Get a specific task assignee.
+      operationId: getTaskAssignee
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_assignee_id_path'
+        - $ref: '#/components/parameters/task_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TaskAssignee'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      tags:
+        - Tasks
+      summary: Delete a task assignee from the task
+      description: Delete a new assignee from the task
+      operationId: deleteSubTasksAssignee
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_id_path'
+        - $ref: '#/components/parameters/task_assignee_id_path'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /task-types:
+    get:
+      tags:
+        - Tasks
+      summary: Get all task types
+      description: Get information as a list of all task types.
+      operationId: getTaskTypes
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_types:
+                        type: array
+                        description: List of all task types
+                        items:
+                          $ref: '#/components/schemas/TaskType'
+                      total_items:
+                        type: integer
+                        description: Count of all found task types
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/task-types/{task_type_id}':
+    get:
+      tags:
+        - Tasks
+      summary: Get a task type
+      description: Get information about a specific task type resource.
+      operationId: getTaskType
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_type_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TaskType'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /task-states:
+    get:
+      tags:
+        - Tasks
+      summary: Get all task states
+      description: Get information as a list of all task states.
+      operationId: getTaskStates
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_states:
+                        type: array
+                        description: List of all task states
+                        items:
+                          $ref: '#/components/schemas/TaskState'
+                      total_items:
+                        type: integer
+                        description: Count of all found task states
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/task-states/{task_state_id}':
+    get:
+      tags:
+        - Tasks
+      summary: Get a task state
+      description: Get information about a specific task state resource.
+      operationId: getTaskState
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_state_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TaskState'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /task-properties:
+    get:
+      tags:
+        - Task properties
+      summary: Get all task properties
+      description: Get information about task properties
+      operationId: getTaskProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      task_properties:
+                        type: array
+                        description: List of all task properties
+                        items:
+                          $ref: '#/components/schemas/Property'
+                      total_items:
+                        type: integer
+                        description: Count of all found task properties
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/task-properties/{task_property_id}':
+    get:
+      tags:
+        - Task properties
+      summary: Get a task property
+      description: Get information about a specific task property
+      operationId: getTaskProperty
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_property_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Property'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/tasks/{task_id}/property-records':
+    get:
+      tags:
+        - Tasks
+      summary: Get a collection of task properties records
+      description: Get information about all property records on a task
+      operationId: getSubTaskProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/task_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      property_records:
+                        type: array
+                        description: List of property records
+                        items:
+                          $ref: '#/components/schemas/PropertyRecord'
+                      total_items:
+                        type: integer
+                        description: Count of all found task property records
+                        example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -11095,13 +11896,13 @@ components:
           type: string
           enum:
             - S
-            - P
+            - A
             - C
             - D
           readOnly: false
           description: |
-            The method of the bill closure.
-            *Possible values are: “S” - standard / “P”- use points for payment / “C” - use credits for payment / “D”- use discount now*
+            Payment type changes the checkout process depending on the value of the parameter you can allow/deny the use of benefits.
+            *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup*
           example: S
         payment_recap:
           type: object
@@ -12599,7 +13400,7 @@ components:
           readOnly: false
           nullable: true
           description: Value of the property
-          example: []
+          example: Arthur Dent
         last_change:
           type: string
           readOnly: true
@@ -13637,6 +14438,208 @@ components:
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
           example: '2019-01-04 10:31:56'
+    Task:
+      type: object
+      description: Task resource
+      properties:
+        task_id:
+          type: string
+          readOnly: true
+          description: The unique id of the task
+          example: 8bed991c68a470e7aaeffbf048
+        task_type_id:
+          type: string
+          readOnly: false
+          description: The unique id of the task type
+          example: 8bed991c68a470e7aaeffbf048
+        task_state_id:
+          type: string
+          readOnly: false
+          description: The unique id of the task state
+          example: 8bed991c68a470e7aaeffbf048
+        customer_id:
+          type: string
+          readOnly: false
+          description: The unique id of the customer.
+          example: 81ceb8582e2d8dbb7e71b7273b
+        task_note:
+          type: string
+          readOnly: false
+          description: Text note of the task
+          example: Could you please send me last invoice to my email?.
+        task_title:
+          type: string
+          readOnly: false
+          description: Title of the task
+          example: Customer invoice
+        task_priority:
+          readOnly: false
+          description: 'The parameter filters tasks by their priority. *Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor.*'
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+          example: 3
+        due_date:
+          type: string
+          format: date
+          readOnly: false
+          description: Due date of the task (YYYY-MM-DD)
+          example: '2023-02-12'
+        created_at:
+          type: string
+          readOnly: true
+          description: 'Date and time when task was created *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2021-06-20 16:59:49'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the event type
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+      required:
+        - task_type_id
+        - task_state_id
+        - customer_id
+        - task_title
+        - task_priority
+    TaskAssignee:
+      type: object
+      description: Task comment
+      properties:
+        task_assignee_id:
+          type: string
+          readOnly: true
+          description: The unique id of the task assignee
+          example: 8bed991c68a470e7aaeffbf048
+        user_id:
+          type: string
+          readOnly: false
+          description: The unique id of the assigned user
+          example: 8bed991c68a470e7aaeffbf048
+        name:
+          type: string
+          readOnly: true
+          description: Name of the assigned user
+          example: Arthur Dent
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last comment change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2021-06-20 16:59:49'
+      required:
+        - user_id
+    TaskComment:
+      type: object
+      description: Task comment
+      properties:
+        task_comment_id:
+          type: string
+          readOnly: true
+          description: The unique id of the task comment
+          example: 8bed991c68a470e7aaeffbf048
+        task_id:
+          type: string
+          readOnly: true
+          description: The unique id of the task
+          example: 8bed991c68a470e7aaeffbf048
+        text:
+          type: string
+          readOnly: false
+          description: Text of the comment
+          example: Could you please send me last invoice to my email?.
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last comment change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2021-06-20 16:59:49'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the event type
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+      required:
+        - task_id
+        - text
+    TaskState:
+      type: object
+      description: Task state resource
+      properties:
+        task_state_id:
+          type: string
+          readOnly: true
+          description: The unique id of the task state
+          example: 8bed991c68a470e7aaeffbf048
+        name:
+          type: string
+          readOnly: false
+          description: Name of the task state
+          example: Cancelled
+        text_id:
+          type: string
+          readOnly: true
+          description: Text id of the task state
+          example: cancelled
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the event type
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+      required:
+        - name
+        - text_id
+    TaskType:
+      type: object
+      description: Task type resource
+      properties:
+        task_type_id:
+          type: string
+          readOnly: true
+          description: The unique id of the task type
+          example: 8bed991c68a470e7aaeffbf048
+        name:
+          type: string
+          readOnly: false
+          description: Name of the task type
+          example: Customer care
+        text_id:
+          type: string
+          readOnly: true
+          description: Text id of the task type
+          example: customer_care
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the event type
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+      required:
+        - name
+        - text_id
     TimeInterval:
       type: object
       description: Time interval structure
@@ -13930,7 +14933,7 @@ components:
     sort_field:
       name: sort_field
       in: query
-      description: One of the query string parameters for sorting. *Response is sorted by the specified field.*
+      description: Name of the sorting parameter. You can sort by any of the first level parameters from the resource response. *Response is sorted by the specified field.*
       required: false
       schema:
         type: string
@@ -15037,6 +16040,115 @@ components:
       schema:
         type: string
       example: null
+    task_id_path:
+      name: task_id
+      in: path
+      required: true
+      description: The unique id of the task in CareCloud
+      schema:
+        type: string
+        example: ca105dff90694c2ca105dff986f1b
+    task_type_id_path:
+      name: task_type_id
+      in: path
+      required: true
+      description: The unique id of the task type in CareCloud
+      schema:
+        type: string
+        example: ca105dff90694c2ca105dff986f1b
+    task_state_id_path:
+      name: task_state_id
+      in: path
+      required: true
+      description: The unique id of the task state in CareCloud
+      schema:
+        type: string
+        example: ca105dff90694c2ca105dff986f1b
+    task_assignee_id_path:
+      name: assignee_id
+      in: path
+      required: true
+      description: The unique id of the task assignee in CareCloud
+      schema:
+        type: string
+        example: ca105dff90694c2ca105dff986f1b
+    task_state_id:
+      name: task_state_id
+      in: query
+      required: false
+      description: 'Task state id from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.'
+      schema:
+        type: string
+        example: 40c027db56a325913fca105dff9
+    task_type_id:
+      name: task_type_id
+      in: query
+      required: false
+      description: 'Task type id from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.'
+      schema:
+        type: string
+        example: 40c027db56a32591ca105dff93f
+    task_priority:
+      name: priority
+      in: query
+      required: false
+      description: 'The parameter filters tasks by their priority. *Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor.*'
+      schema:
+        type: integer
+        enum:
+          - 1
+          - 2
+          - 3
+          - 4
+      example: 3
+    task_due_date:
+      name: due_date
+      in: query
+      description: Date (ISO 8601) when the task due *(YYYY-MM-DD)*
+      required: false
+      schema:
+        type: string
+      example: '2021-05-07'
+    task_note:
+      name: task_note
+      in: query
+      description: Search record by the task note or a part of the task note
+      required: false
+      schema:
+        type: string
+      example: Customer needs his invoice for last purchase.
+    task_title:
+      name: task_title
+      in: query
+      description: Search record by the task summary or a part of the task summary
+      required: false
+      schema:
+        type: string
+      example: Customer invoice
+    task_comment_text:
+      name: task_comment_text
+      in: query
+      description: Search record by the task comment text or a part of the task comment text.
+      required: false
+      schema:
+        type: string
+      example: Could you please confirm your choice?.
+    task_comment_id_path:
+      name: task_comment_id
+      in: path
+      required: true
+      description: The unique id of the task comment in CareCloud
+      schema:
+        type: string
+        example: ca105dff90694c2ca105dff986f1b
+    task_property_id_path:
+      name: task_property_id
+      in: path
+      description: The unique id of the task property
+      required: true
+      schema:
+        type: string
+      example: contact_information
     test_string:
       name: test_string
       in: query

@@ -28,7 +28,7 @@ properties:
     readOnly: false
     nullable: true
     description: Value of the property
-    example: []
+    example: "Arthur Dent"
   last_change:
     type: string
     readOnly: true

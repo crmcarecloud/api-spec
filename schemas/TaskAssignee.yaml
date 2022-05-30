@@ -1,0 +1,25 @@
+type: object
+description: Task comment
+properties:
+  task_assignee_id:
+    type: string
+    readOnly: true
+    description: The unique id of the task assignee
+    example: 8bed991c68a470e7aaeffbf048
+  user_id:
+    type: string
+    readOnly: false
+    description: The unique id of the assigned user
+    example: 8bed991c68a470e7aaeffbf048
+  name:
+    type: string
+    readOnly: true
+    description: Name of the assigned user
+    example: "Arthur Dent"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last comment change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2021-06-20 16:59:49"
+required:
+  - user_id

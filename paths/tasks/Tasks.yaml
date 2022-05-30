@@ -1,0 +1,115 @@
+get:
+  tags:
+    - Tasks
+  summary: Get all tasks
+  description: Get information as a list of all tasks.
+  operationId: getTasks
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/task_type_id'
+    - $ref: '../../parameters/_index.yaml#/task_state_id'
+    - $ref: '../../parameters/_index.yaml#/customer_id'
+    - $ref: '../../parameters/_index.yaml#/task_priority'
+    - $ref: '../../parameters/_index.yaml#/task_due_date'
+    - $ref: '../../parameters/_index.yaml#/task_title'
+    - $ref: '../../parameters/_index.yaml#/task_note'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    description: List of all tasks
+                    items:
+                      $ref: '../../schemas/_index.yaml#/Task'
+                  total_items:
+                    type: integer
+                    description: Count of all found tasks
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+post:
+  tags:
+    - Tasks
+  summary: Create a task
+  description: Add a new task
+  operationId: postTasks
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            task:
+              $ref: '../../schemas/_index.yaml#/Task'
+            property_records:
+              type: array
+              description: List of an task property records
+              items:
+                $ref: '../../schemas/_index.yaml#/PropertyRecord'
+            assignees:
+              type: array
+              description: List of an task assignees
+              items:
+                $ref: '../../schemas/_index.yaml#/TaskAssignee'
+          required:
+            - task
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  task_id:
+                    type: string
+                    description: The unique id of the task in CareCloud
+                    example: 86e05affc7a7abefcd513ab400
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
