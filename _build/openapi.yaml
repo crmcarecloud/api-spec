@@ -30,8 +30,8 @@ tags:
     description: 'CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.'
   - name: Customers actions
     description: Action methods for resource customers.
-  - name: Customer types
-    description: You can get the list of the available customer types here.
+  - name: Customer address types
+    description: You can get the list of the available customer address types here.
   - name: Customer external applications
     description: 'An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.'
   - name: Customer properties
@@ -42,6 +42,8 @@ tags:
     description: 'Customer account can be created and tied to different sources, like online registration form, e-shop, mobile app, POS, booking system, web microsite, campaign or any other source. This source of the customer account is related to the account and can be managed by this resource.'
   - name: Customer source records
     description: This resource cointains all records of customers and customer sources.
+  - name: Customer types
+    description: You can get the list of the available customer types here.
   - name: Events
     description: |
       Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
@@ -1164,7 +1166,11 @@ paths:
                             country_id:
                               type: string
                               description: The unique id of the country as ISO code
-                              example: cz
+                              example: fi
+                            name:
+                              type: string
+                              description: Name of the country. Language depends on the `Accept-Language` header from the request.
+                              example: Finland
                             state:
                               type: integer
                               enum:
@@ -2499,6 +2505,57 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/addresses':
+    get:
+      tags:
+        - Customers
+      summary: Get all customer adresses
+      description: Get information about all customer addresses.
+      operationId: getSubCustomerAddresses
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_address_type_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      addresses:
+                        type: array
+                        description: Collection of customer addresses
+                        items:
+                          $ref: '#/components/schemas/Address'
+                      total_items:
+                        type: integer
+                        description: Count of all found customer addresses
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customers/actions/verify-credentials:
     post:
       tags:
@@ -2772,13 +2829,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  /customer-types:
+  /customer-address-types:
     get:
       tags:
-        - Customer types
-      summary: Get all customer types
-      description: Get a list of customer types accepted in CRM CareCloud
-      operationId: getCustomerTypes
+        - Customer address types
+      summary: Get all customer address types
+      description: Get a list of customer address types accepted in CRM CareCloud
+      operationId: getCustomerAddressTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/count'
@@ -2796,14 +2853,14 @@ paths:
                   data:
                     type: object
                     properties:
-                      customer_types:
+                      customer_address_types:
                         type: array
-                        description: List of the customer types
+                        description: List of the customer address types
                         items:
-                          $ref: '#/components/schemas/Customer-type'
+                          $ref: '#/components/schemas/CustomerAddressType'
                       total_items:
                         type: integer
-                        description: Count of all found customer types
+                        description: Count of all found customer address types
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -2821,16 +2878,16 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  '/customer-types/{customer_type_id}':
+  '/customer-address-types/{customer_address_type_id}':
     get:
       tags:
-        - Customer types
-      summary: Detail of a customer type
-      description: Get information about a specific customer type
-      operationId: getCustomerType
+        - Customer address types
+      summary: Detail of a customer address type
+      description: Get information about a specific customer address type
+      operationId: getCustomerAddressType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_type_id_path'
+        - $ref: '#/components/parameters/customer_address_type_id_path'
       responses:
         '200':
           description: OK
@@ -2840,7 +2897,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/Customer-type'
+                    $ref: '#/components/schemas/CustomerAddressType'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3198,6 +3255,91 @@ paths:
                         type: integer
                         description: Count of all found customer source records
                         example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /customer-types:
+    get:
+      tags:
+        - Customer types
+      summary: Get all customer types
+      description: Get a list of customer types accepted in CRM CareCloud
+      operationId: getCustomerTypes
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      customer_types:
+                        type: array
+                        description: List of the customer types
+                        items:
+                          $ref: '#/components/schemas/Customer-type'
+                      total_items:
+                        type: integer
+                        description: Count of all found customer types
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/customer-types/{customer_type_id}':
+    get:
+      tags:
+        - Customer types
+      summary: Detail of a customer type
+      description: Get information about a specific customer type
+      operationId: getCustomerType
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_type_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Customer-type'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -10962,6 +11104,10 @@ components:
           type: string
           description: ISO code of the country *Possible values de / gb / us / it / cz / etc.*
           example: cz
+        address_type:
+          type: string
+          description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
+          example: 8bed991c6a470eaaffbf048
     Agreement:
       type: object
       description: Customer's consents
@@ -11627,6 +11773,25 @@ components:
           readOnly: true
           description: Name of the customer type
           example: club
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2017-12-01 14:29:41'
+    CustomerAddressType:
+      type: object
+      description: Customer address type structure
+      properties:
+        address_type_id:
+          type: string
+          readOnly: true
+          description: The unique id of the customer address type
+          example: 86e05affc7a7abefcd513ab400
+        name:
+          type: string
+          readOnly: true
+          description: Name of the customer address type
+          example: Shipping
         last_change:
           type: string
           readOnly: true
@@ -14275,9 +14440,10 @@ components:
           example: ''
         phone_number:
           type: string
+          pattern: '^[1-9][0-9]*$'
           readOnly: false
-          description: Phone number of the store with international prefix (420000000)
-          example: ''
+          description: Phone number of the store with international prefix (420000000000)
+          example: 420523828931
         partner_id:
           type: string
           readOnly: false
@@ -14929,6 +15095,7 @@ components:
       schema:
         type: integer
         default: 0
+        minimum: 0
       example: 2
     sort_field:
       name: sort_field
@@ -15220,6 +15387,22 @@ components:
       schema:
         type: string
       example: 86e05afc7a7abefcd513ab400
+    customer_address_type_id_path:
+      name: customer_address_type_id
+      in: path
+      required: true
+      description: The unique id of a customer address type in CareCloud
+      schema:
+        type: string
+      example: 86e05afc7a7abefcd513ab400
+    customer_address_type_id:
+      name: customer_address_type_id
+      in: query
+      required: false
+      description: The unique id of the customer address type.
+      schema:
+        type: string
+      example: 8fdce3475560d56e95a6ab035
     card_id_path:
       name: card_id
       in: path

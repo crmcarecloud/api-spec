@@ -27,6 +27,7 @@ offset:
   schema:
     type: integer
     default: 0
+    minimum: 0
   example: 2
 sort_field:
   name: sort_field
@@ -324,6 +325,22 @@ customer_type_id_path:
   schema:
     type: string
   example: 86e05afc7a7abefcd513ab400
+customer_address_type_id_path:
+  name: customer_address_type_id
+  in: path
+  required: true
+  description: 	The unique id of a customer address type in CareCloud
+  schema:
+    type: string
+  example: 86e05afc7a7abefcd513ab400
+customer_address_type_id:
+  name: customer_address_type_id
+  in: query
+  required: false
+  description: The unique id of the customer address type.
+  schema:
+    type: string
+  example: 8fdce3475560d56e95a6ab035
 
 # Card
 card_id_path:

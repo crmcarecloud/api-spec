@@ -79,6 +79,8 @@
   $ref: "./customers/SubCustomerInterests.yaml"
 /customers/{customer_id}/interest-records/{interest_record_id}:
   $ref: "./customers/SubCustomerInterest.yaml"
+/customers/{customer_id}/addresses:
+  $ref: "./customers/SubCustomerAddresses.yaml"
 # Actions
 /customers/actions/verify-credentials:
   $ref: "./customers/CustomerVerifyCredentials.yaml"
@@ -90,12 +92,11 @@
   $ref: "./customers/CustomerVerifyAuthToken.yaml"
 /customers/actions/upload-customer-photo:
   $ref: "./customers/CustomerUploadPhoto.yaml"
-
-# Customer types
-/customer-types:
-  $ref: "./customers/CustomerTypes.yaml"
-/customer-types/{customer_type_id}:
-  $ref: "./customers/CustomerType.yaml"
+# Customer address types
+/customer-address-types:
+  $ref: "./customers/CustomerAddressTypes.yaml"
+/customer-address-types/{customer_address_type_id}:
+  $ref: "./customers/CustomerAddressType.yaml"
 # Customer external applications
 /customer-external-applications:
   $ref: "./customers/CustomerExternalApps.yaml"
@@ -117,6 +118,11 @@
 # Customer source records
 /customer-source-records:
   $ref: "./customers/CustomerSourceRecord.yaml"
+# Customer types
+/customer-types:
+  $ref: "./customers/CustomerTypes.yaml"
+/customer-types/{customer_type_id}:
+  $ref: "./customers/CustomerType.yaml"
 
 # Events
 /events:

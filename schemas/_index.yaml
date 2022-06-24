@@ -42,6 +42,8 @@ CustomerSourceRecord:
   $ref: "./CustomerSourceRecord.yaml"
 Customer-type:
   $ref: "./CustomerType.yaml"
+CustomerAddressType:
+  $ref: "./CustomerAddressType.yaml"
 Device:
   $ref: "./Device.yaml"
 DiscountItem:
