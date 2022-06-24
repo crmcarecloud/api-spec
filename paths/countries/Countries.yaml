@@ -26,7 +26,11 @@ get:
                         country_id:
                           type: string
                           description: The unique id of the country as ISO code
-                          example: cz
+                          example: fi
+                        name:
+                          type: string
+                          description: Name of the country. Language depends on the `Accept-Language` header from the request.
+                          example: "Finland"
                         state:
                           type: integer
                           enum:

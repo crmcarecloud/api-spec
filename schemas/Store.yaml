@@ -30,9 +30,10 @@ properties:
     example: ""
   phone_number:
     type: string
+    pattern: ^[1-9][0-9]*$
     readOnly: false
-    description: Phone number of the store with international prefix (420000000)
-    example: ""
+    description: Phone number of the store with international prefix (420000000000)
+    example: 420523828931
   partner_id:
     type: string
     readOnly: false

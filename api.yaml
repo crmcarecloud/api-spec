@@ -31,8 +31,8 @@ tags:
     description: CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.
   - name: Customers actions
     description: Action methods for resource customers.
-  - name: Customer types
-    description: You can get the list of the available customer types here.
+  - name: Customer address types
+    description: You can get the list of the available customer address types here.
   - name: Customer external applications
     description: An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.
   - name: Customer properties
@@ -43,6 +43,8 @@ tags:
     description: Customer account can be created and tied to different sources, like online registration form, e-shop, mobile app, POS, booking system, web microsite, campaign or any other source. This source of the customer account is related to the account and can be managed by this resource.
   - name: Customer source records
     description: This resource cointains all records of customers and customer sources.
+  - name: Customer types
+    description: You can get the list of the available customer types here.
   - name: Events
     description: |
       Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
