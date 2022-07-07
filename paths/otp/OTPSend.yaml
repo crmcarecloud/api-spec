@@ -38,8 +38,8 @@ post:
               enum:
                 - 1
                 - 2
-              default: 1
               example: 2
+              default: 1
             message_template_id:
               type: string
               description: The unique id of the message_template. If not set, CareCloud uses default value from the system configuration
