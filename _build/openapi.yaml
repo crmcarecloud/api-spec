@@ -4278,7 +4278,6 @@ paths:
                   enum:
                     - 1
                     - 2
-                  default: 1
                   example: 2
                 message_template_id:
                   type: string
