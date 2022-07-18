@@ -41,7 +41,3 @@ properties:
     type: string
     description: ISO code of the country *Possible values de / gb / us / it / cz / etc.*
     example: cz
-  address_type:
-    type: string
-    description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
-    example: 8bed991c6a470eaaffbf048

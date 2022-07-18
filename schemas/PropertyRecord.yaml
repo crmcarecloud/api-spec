@@ -17,7 +17,7 @@ properties:
     description: Name of the property
     example: Project contact person
   property_value:
-    anyOf:
+    oneOf:
       - type: string
       - type: number
       - type: integer

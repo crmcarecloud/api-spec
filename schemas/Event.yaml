@@ -22,7 +22,7 @@ properties:
     description: The unique external id of the event. It may be id from other system
     example: 157613
   data:
-    anyOf:
+    oneOf:
       - type: string
       - type: array
         items:
