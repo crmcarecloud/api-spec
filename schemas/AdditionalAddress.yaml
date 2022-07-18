@@ -1,0 +1,18 @@
+type: object
+description: Address resource
+properties:
+  additional_address_id:
+    type: string
+    description: Unique additional address ID
+    readOnly: true
+    example: 86e05affc7a7abefcd513ab00
+  address_type:
+    type: string
+    description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
+    example: 8bed991c6a470eaaffbf048
+  address:
+    type: object
+    $ref: '../schemas/_index.yaml#/Address'
+required:
+  - address_type
+  - address

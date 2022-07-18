@@ -2509,7 +2509,7 @@ paths:
     get:
       tags:
         - Customers
-      summary: Get all customer adresses
+      summary: Get all additional customer adresses
       description: Get information about all customer addresses.
       operationId: getSubCustomerAddresses
       parameters:
@@ -2535,11 +2535,139 @@ paths:
                         type: array
                         description: Collection of customer addresses
                         items:
-                          $ref: '#/components/schemas/Address'
+                          $ref: '#/components/schemas/AdditionalAddress'
                       total_items:
                         type: integer
                         description: Count of all found customer addresses
                         example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Customers
+      summary: Create an additional customer address
+      description: Add a new additional customer address
+      operationId: postSubCustomerAddress
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                additional_address:
+                  $ref: '#/components/schemas/AdditionalAddress'
+              required:
+                - additional_address
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      additional_address_id:
+                        type: string
+                        description: The unique id of the additional customer address
+                        example: 81a94c48474bc45c03d41f7016
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/addresses/{additional_customer_address_id_path}':
+    get:
+      tags:
+        - Customers
+      summary: Get an additional customer address
+      description: Get information about an additional customer address
+      operationId: getSubCustomerAddress
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/additional_customer_address_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/AdditionalAddress'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    put:
+      tags:
+        - Customers
+      summary: Update an additional customer address
+      description: Update a specific additional customer address
+      operationId: putSubCustomerAddress
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/additional_customer_address_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                additional_address:
+                  $ref: '#/components/schemas/AdditionalAddress'
+              required:
+                - additional_address
+      responses:
+        '204':
+          description: No Content
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4279,6 +4407,7 @@ paths:
                     - 1
                     - 2
                   example: 2
+                  default: 1
                 message_template_id:
                   type: string
                   description: 'The unique id of the message_template. If not set, CareCloud uses default value from the system configuration'
@@ -11103,10 +11232,6 @@ components:
           type: string
           description: ISO code of the country *Possible values de / gb / us / it / cz / etc.*
           example: cz
-        address_type:
-          type: string
-          description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
-          example: 8bed991c6a470eaaffbf048
     Agreement:
       type: object
       description: Customer's consents
@@ -11796,6 +11921,25 @@ components:
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
           example: '2017-12-01 14:29:41'
+    AdditionalAddress:
+      type: object
+      description: Address resource
+      properties:
+        additional_address_id:
+          type: string
+          description: Unique additional address ID
+          readOnly: true
+          example: 86e05affc7a7abefcd513ab00
+        address_type:
+          type: string
+          description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
+          example: 8bed991c6a470eaaffbf048
+        address:
+          type: object
+          $ref: '#/components/schemas/Address'
+      required:
+        - address_type
+        - address
     Device:
       type: object
       description: Structure describes client's device
@@ -11881,7 +12025,7 @@ components:
           description: The unique external id of the event. It may be id from other system
           example: 157613
         data:
-          anyOf:
+          oneOf:
             - type: string
             - type: array
               items:
@@ -13553,7 +13697,7 @@ components:
           description: Name of the property
           example: Project contact person
         property_value:
-          anyOf:
+          oneOf:
             - type: string
             - type: number
             - type: integer
@@ -15402,6 +15546,14 @@ components:
       schema:
         type: string
       example: 8fdce3475560d56e95a6ab035
+    additional_customer_address_id_path:
+      name: additional_customer_address_id_path
+      in: path
+      required: true
+      description: Unique ID of the customer additional address
+      schema:
+        type: string
+        example: 8fdce3475560d56e95a6ab035
     card_id_path:
       name: card_id
       in: path

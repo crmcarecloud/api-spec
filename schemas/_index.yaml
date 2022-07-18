@@ -44,6 +44,8 @@ Customer-type:
   $ref: "./CustomerType.yaml"
 CustomerAddressType:
   $ref: "./CustomerAddressType.yaml"
+AdditionalAddress:
+  $ref: "./AdditionalAddress.yaml"
 Device:
   $ref: "./Device.yaml"
 DiscountItem:

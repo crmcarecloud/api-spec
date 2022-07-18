@@ -1,17 +1,13 @@
 get:
   tags:
     - Customers
-  summary: Get all additional customer adresses
-  description: Get information about all customer addresses.
-  operationId: getSubCustomerAddresses
+  summary: Get an additional customer address
+  description: Get information about an additional customer address
+  operationId: getSubCustomerAddress
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/customer_id_path'
-    - $ref: '../../parameters/_index.yaml#/count'
-    - $ref: '../../parameters/_index.yaml#/offset'
-    - $ref: '../../parameters/_index.yaml#/sort_field'
-    - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_address_type_id'
+    - $ref: '../../parameters/_index.yaml#/additional_customer_address_id_path'
   responses:
     '200':
       description: OK
@@ -21,17 +17,7 @@ get:
             type: object
             properties:
               data:
-                type: object
-                properties:
-                  addresses:
-                    type: array
-                    description: Collection of customer addresses
-                    items:
-                      $ref: '../../schemas/_index.yaml#/AdditionalAddress'
-                  total_items:
-                    type: integer
-                    description: Count of all found customer addresses
-                    example: 1
+                $ref: '../../schemas/_index.yaml#/AdditionalAddress'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':
@@ -48,15 +34,16 @@ get:
       $ref: '../../api.yaml#/components/responses/InternalServerError'
     '503':
       $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
-post:
+put:
   tags:
     - Customers
-  summary: Create an additional customer address
-  description: Add a new additional customer address
-  operationId: postSubCustomerAddress
+  summary: Update an additional customer address
+  description: Update a specific additional customer address
+  operationId: putSubCustomerAddress
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/customer_id_path'
+    - $ref: '../../parameters/_index.yaml#/additional_customer_address_id_path'
   requestBody:
     required: true
     content:
@@ -69,20 +56,8 @@ post:
           required:
             - additional_address
   responses:
-    '201':
-      description: Created
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  additional_address_id:
-                    type: string
-                    description: The unique id of the additional customer address
-                    example: 81a94c48474bc45c03d41f7016
+    '204':
+      description: No Content
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -341,6 +341,14 @@ customer_address_type_id:
   schema:
     type: string
   example: 8fdce3475560d56e95a6ab035
+additional_customer_address_id_path:
+  name: additional_customer_address_id_path
+  in: path
+  required: true
+  description: Unique ID of the customer additional address
+  schema:
+    type: string
+    example: 8fdce3475560d56e95a6ab035
 
 # Card
 card_id_path:
