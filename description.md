@@ -150,8 +150,7 @@ You can generate not only API clients in several languages. But also use it with
 
 # Authentication
 
-<!-- ReDoc-Inject: <security-definitions> -->
-
+<SecurityDefinitions />
 
 # FAQ
 The section will answer all the questions you have about using and integrating CareCloud REST API.
