@@ -1,0 +1,35 @@
+type: object
+description: Booking ticket
+properties:
+  ticket_id:
+    type: string
+    readOnly: true
+    description: The unique id of the booking ticket
+    example: 89ce2a1b9b01f5c939fb1e20cd
+  name:
+    type: string
+    readOnly: false
+    description: Name of the booking ticket in language from request header
+    example: "Boat ride"
+  created_at:
+    type: string
+    readOnly: false
+    description: Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*
+    example: "2017-06-20 16:59:49"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      State of the booking ticket
+      *Possible values are: 0 - blocked / 1 - active*
+    example: 1
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2015-01-05 11:24:12"
+required:
+  - name

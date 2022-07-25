@@ -14,6 +14,12 @@ info:
 tags:
   - name: Agreements
     description: 'Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer''s consent (agreement). You can manage the content and status of Customers'' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.'
+  - name: Bookings
+    description: Service bookings
+  - name: Booking tickets
+    description: Service bookings
+  - name: Booking ticket properties
+    description: Service bookings
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
@@ -211,6 +217,412 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/AgreementList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /bookings:
+    get:
+      tags:
+        - Bookings
+      summary: Get all bookings
+      description: Get information about all bookings
+      operationId: getBookings
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/add_booking_items'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      bookings:
+                        type: array
+                        description: Collection of bookings
+                        items:
+                          $ref: '#/components/schemas/Booking'
+                      total_items:
+                        type: integer
+                        description: Count of all found bookings
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Bookings
+      summary: Create a new booking
+      description: Add a new booking
+      operationId: postBooking
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking:
+                  $ref: '#/components/schemas/Booking'
+              required:
+                - booking
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      card_id:
+                        type: string
+                        description: The unique id of the booking
+                        example: 81a94c48474bc45c03d41f7016
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/bookings/{booking_id}}':
+    get:
+      tags:
+        - Bookings
+      summary: Get a booking
+      description: Get information about a specific booking
+      operationId: getBooking
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/booking_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Booking'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    put:
+      tags:
+        - Bookings
+      summary: Update a booking
+      description: Update a specific booking
+      operationId: putBooking
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/booking_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking:
+                  $ref: '#/components/schemas/Booking'
+              required:
+                - booking
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /booking-tickets:
+    get:
+      tags:
+        - Booking Tickets
+      summary: Get all booking tickets
+      description: Get information about all booking tickets
+      operationId: getBookingTickets
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/state'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      booking_tickets:
+                        type: array
+                        description: Collection of booking tickets
+                        items:
+                          $ref: '#/components/schemas/BookingTicket'
+                      total_items:
+                        type: integer
+                        description: Count of all found booking tickets
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/booking-tickets/{booking_ticket_id}':
+    get:
+      tags:
+        - Booking tickets
+      summary: Get a booking ticket
+      description: Get information about a specific booking ticket
+      operationId: getBookingTicket
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/booking_ticket_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BookingTicket'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/booking-tickets/{booking_ticket_id}/time-slots':
+    get:
+      tags:
+        - Booking tickets
+      summary: Get a collection time slots depends on booking ticket
+      description: Get information about all time slots depends on booking ticket
+      operationId: getSubBookingTicketsTimeSlots
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/booking_ticket_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/free_capacity_only'
+        - $ref: '#/components/parameters/time_from_full'
+        - $ref: '#/components/parameters/time_to_full'
+        - $ref: '#/components/parameters/booking_ticket_property_id'
+        - $ref: '#/components/parameters/booking_ticket_property_value'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      time_slots:
+                        type: array
+                        description: List of booking time slots
+                        items:
+                          $ref: '#/components/schemas/TimeSlot'
+                      total_items:
+                        type: integer
+                        description: Count of all found time slots
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /booking-ticket-properties:
+    get:
+      tags:
+        - Booking ticket properties
+      summary: Get all booking ticket properties
+      description: Get information about booking ticket properties.
+      operationId: getBookingTicketProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      booking_ticket_properties:
+                        type: array
+                        description: List of all booking ticket properties
+                        items:
+                          $ref: '#/components/schemas/Property'
+                      total_items:
+                        type: integer
+                        description: Count of all found booking ticket properties
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/booking-ticket-properties/{booking_ticket_property_id}':
+    get:
+      tags:
+        - Booking ticket properties
+      summary: Get a booking ticket property
+      description: Get information about a specific booking ticket property
+      operationId: getBookingTicketProperty
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/booking_ticket_property_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Property'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -11417,6 +11829,174 @@ components:
         - bill_item_id
         - loyalty_off
         - purchase_item_type_id
+    Booking:
+      type: object
+      description: Booking structure
+      properties:
+        booking_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking
+          example: 83cfee22eabfbbb15a14815e30
+        customer_id:
+          type: string
+          description: The unique id of the customer that created the booking
+          example: 8ea6abece4cd0a4ded0a29f093
+        booking_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookingItem'
+          description: List of the booking items. Included only if query parameter `add_booking_items` is `true`
+        booking_status:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: false
+          description: |
+            Current status of the booking
+            *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
+          example: 0
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time of the booking *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2017-06-20 16:59:49'
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2013-07-24 21:33:33'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the booking record
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+      required:
+        - customer_id
+        - booking_items
+        - booking_status
+        - created_at
+    BookingItem:
+      type: object
+      description: Booking item structure
+      properties:
+        booking_item_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking item
+          example: 8fd73167342d0689c4c015320
+        customer_id:
+          type: string
+          readOnly: false
+          description: The unique id of the customer
+          example: 8ea6abece4cd0a4ded0a29f093
+        time_slot_id:
+          type: string
+          readOnly: false
+          description: The unique id of the booking time slot
+          example: 89ce2a1b9b01f5c939fb1e20cd
+        ticket_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking ticket
+          example: 89ce2a1b9b01f5c939fb1e20cd
+        valid_from:
+          type: string
+          readOnly: true
+          description: 'Date and time when time slot starts *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2022-01-09 22:00:00'
+        valid_to:
+          type: string
+          readOnly: true
+          description: 'Date and time when time slot ends *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2022-01-09 22:30:00'
+        capacity_taken:
+          type: integer
+          readOnly: false
+          description: 'How much capacity is taken by the booking item. If not set, value is 1'
+          default: 1
+          example: 2
+        booking_item_status:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: false
+          description: |
+            Current status of the booking item
+            *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
+          example: 0
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time of the boking item *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2017-06-20 16:59:49'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the booking item record
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2013-07-24 21:33:33'
+      required:
+        - customer_id
+        - time_slot_id
+        - booking_item_status
+        - created_at
+    BookingTicket:
+      type: object
+      description: Booking ticket
+      properties:
+        ticket_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking ticket
+          example: 89ce2a1b9b01f5c939fb1e20cd
+        name:
+          type: string
+          readOnly: false
+          description: Name of the booking ticket in language from request header
+          example: Boat ride
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2017-06-20 16:59:49'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+          readOnly: false
+          description: |
+            State of the booking ticket
+            *Possible values are: 0 - blocked / 1 - active*
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2015-01-05 11:24:12'
+      required:
+        - name
     Campaign:
       type: object
       description: Campaign resource
@@ -14966,6 +15546,65 @@ components:
       required:
         - from
         - to
+    TimeSlot:
+      type: object
+      description: Booking time slot
+      properties:
+        time_slot_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking time slot
+          example: 89ce2a1b9b01f5c939fb1e20cd
+        ticket_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking ticket
+          example: 89ce2a1b9b01f5c939fb1e20cd
+        valid_from:
+          type: string
+          readOnly: true
+          description: 'Date and time when time slot starts *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2022-01-09 22:00:00'
+        valid_to:
+          type: string
+          readOnly: true
+          description: 'Date and time when time slot ends *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2022-01-09 22:30:00'
+        total_capacity:
+          type: integer
+          readOnly: true
+          description: Total capacity of the time slot
+          example: 50
+        free_capacity:
+          type: integer
+          readOnly: true
+          description: Free capacity of the time slot
+          example: 20
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2017-06-20 16:59:49'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+          readOnly: false
+          description: |
+            State of the booking ticket
+            *Possible values are: 0 - blocked / 1 - active*
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2015-01-05 11:24:12'
+      required:
+        - ticket_id
+        - valid_from
+        - valid_to
+        - total_capacity
     ThirdPartyRecommendation:
       type: object
       description: Information about a third party recommendation structure
@@ -15473,6 +16112,75 @@ components:
       schema:
         type: string
       example: 81eaeea13b8984a169c490a325
+    booking_id_path:
+      name: booking_id
+      in: path
+      description: The unique id of the booking
+      required: true
+      schema:
+        type: string
+      allowReserved: true
+      example: 13b8984a16913b8984a169cc490a
+    booking_ticket_property_id_path:
+      name: booking_ticket_property_id
+      in: path
+      description: The unique id of the booking ticket property
+      required: true
+      schema:
+        type: string
+      allowReserved: true
+      example: place
+    booking_ticket_id_path:
+      name: booking_ticket_id
+      in: path
+      description: The unique id of the booking ticket
+      required: true
+      schema:
+        type: string
+      allowReserved: true
+      example: 13b8984a16913b8984a169cc490a
+    free_capacity_only:
+      name: free_only
+      in: query
+      description: |
+        Parameter defines what kind of time slots is going to be return depends on the capacity
+        *Possible values: true - returns all time slots with free capacity. / false - returns all occupied time slots. / no value - all time slots are returned (filter is not applied)*
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: true
+    add_booking_items:
+      name: add_booking_items
+      in: query
+      description: |
+        Booking items are going to be return depends on the parameter value
+        *Possible values: true - returns all booking items. / false - returns no booking items. / no value - return no booking items*
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: true
+    booking_ticket_property_id:
+      name: booking_ticket_property_id
+      in: query
+      required: false
+      description: 'Booking ticket property id from resource [booking-ticket-properties](#tag/Booking-ticket-properties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.'
+      schema:
+        type: string
+      example: store
+    booking_ticket_property_value:
+      name: booking_ticket_property_value
+      in: query
+      required: false
+      description: 'Booking ticket property record value from [booking-ticket-properties](#tag/Booking-ticket-properties) in case of datatype with multiple values. Parameter filters resources depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.'
+      schema:
+        type: string
+      example: 89ac83ca207a20c62c79bf
     customer_id_path:
       name: customer_id
       in: path
@@ -15557,7 +16265,7 @@ components:
     card_id_path:
       name: card_id
       in: path
-      description: The unique id for the card
+      description: The unique id of the card
       required: true
       schema:
         type: string
@@ -15565,7 +16273,7 @@ components:
     card_type_id_path:
       name: card_type_id
       in: path
-      description: The unique id for the card type
+      description: The unique id of the card type
       required: true
       schema:
         type: string
@@ -15581,7 +16289,7 @@ components:
     card_type_id:
       name: card_type_id
       in: query
-      description: The unique id for the card type
+      description: The unique id of the card type
       required: false
       schema:
         type: string
@@ -15603,7 +16311,7 @@ components:
       name: property_record_id
       in: path
       required: true
-      description: The unique id for the property record
+      description: The unique id of the property record
       schema:
         type: string
       allowReserved: true
@@ -15612,14 +16320,14 @@ components:
       name: interest_record_id
       in: path
       required: true
-      description: The unique id for the interest record
+      description: The unique id of the interest record
       schema:
         type: string
       example: 87d934c86a6303f5fb4d1214fb
     voucher_id_path:
       name: voucher_id
       in: path
-      description: The unique id for the voucher
+      description: The unique id of the voucher
       required: true
       schema:
         type: string
@@ -15649,7 +16357,7 @@ components:
     reward_id_path:
       name: reward_id
       in: path
-      description: The unique id for the reward
+      description: The unique id of the reward
       required: true
       schema:
         type: string
@@ -15657,7 +16365,7 @@ components:
     reward_property_id_path:
       name: reward_property_id
       in: path
-      description: The unique id for the reward property
+      description: The unique id of the reward property
       required: true
       schema:
         type: string
@@ -15689,7 +16397,7 @@ components:
       name: reward_group
       in: query
       description: |
-        The unique id for the reward group
+        The unique id of the reward group
         *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward*
       required: false
       schema:

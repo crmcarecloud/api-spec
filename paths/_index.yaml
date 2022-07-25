@@ -4,6 +4,24 @@
 /agreements/{agreement_id}:
   $ref: "./agreements/Agreement.yaml"
 
+#Bookings
+/bookings:
+  $ref: "./bookings/Bookings.yaml"
+/bookings/{booking_id}}:
+  $ref: "./bookings/Booking.yaml"
+#Booking tickets
+/booking-tickets:
+  $ref: "./bookings/BookingTickets.yaml"
+/booking-tickets/{booking_ticket_id}:
+  $ref: "./bookings/BookingTicket.yaml"
+# Sub-resources
+/booking-tickets/{booking_ticket_id}/time-slots:
+  $ref: "./bookings/SubBookingTicketsTimeSlots.yaml"
+#Booking ticket properties
+/booking-ticket-properties:
+  $ref: "./bookings/BookingTicketProperties.yaml"
+/booking-ticket-properties/{booking_ticket_property_id}:
+  $ref: "./bookings/BookingTicketProperty.yaml"
 # Campaigns
 /campaigns:
   $ref: "./campaigns/Campaigns.yaml"
@@ -28,6 +46,7 @@
   $ref: "./cards/CardAssign.yaml"
 /cards/actions/generate-digital-card-file:
   $ref: "./cards/CardGenerateDigital.yaml"
+
 # Card types
 /card-types:
   $ref: "./cards/CardTypes.yaml"
