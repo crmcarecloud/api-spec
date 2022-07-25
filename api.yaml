@@ -15,6 +15,12 @@ info:
 tags:
   - name: Agreements
     description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer's consent (agreement). You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.
+  - name: Bookings
+    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
+  - name: Booking tickets
+    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
+  - name: Booking ticket properties
+    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products

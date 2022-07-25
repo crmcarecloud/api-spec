@@ -10,6 +10,12 @@ Bill:
   $ref: "./Bill.yaml"
 BillItem:
   $ref: "./BillItem.yaml"
+Booking:
+  $ref: "./Booking.yaml"
+BookingItem:
+  $ref: "./BookingItem.yaml"
+BookingTicket:
+  $ref: "./BookingTicket.yaml"
 Campaign:
   $ref: "./Campaign.yaml"
 CampaignProduct:
@@ -192,6 +198,8 @@ TaskType:
   $ref: "./TaskType.yaml"
 TimeInterval:
   $ref: "./TimeInterval.yaml"
+TimeSlot:
+  $ref: "./TimeSlot.yaml"
 ThirdPartyRecommendation:
   $ref: "./ThirdPartyRecommendation.yaml"
 User:

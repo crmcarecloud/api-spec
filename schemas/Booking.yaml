@@ -1,0 +1,54 @@
+type: object
+description: Booking structure
+properties:
+  booking_id:
+    type: string
+    readOnly: true
+    description: The unique id of the booking
+    example: 83cfee22eabfbbb15a14815e30
+  customer_id:
+    type: string
+    description: The unique id of the customer that created the booking
+    example: 8ea6abece4cd0a4ded0a29f093
+  booking_items:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/BookingItem'
+    description: List of the booking items. Included only if query parameter `add_booking_items` is `true`
+  booking_status:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: false
+    description: |
+      Current status of the booking
+      *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
+    example: 0
+  created_at:
+    type: string
+    readOnly: false
+    description: Date and time of the booking *(YYYY-MM-DD HH:MM:SS)*
+    example: "2017-06-20 16:59:49"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2013-07-24 21:33:33'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the booking record
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - customer_id
+  - booking_items
+  - booking_status
+  - created_at

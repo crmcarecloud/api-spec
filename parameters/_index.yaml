@@ -267,6 +267,76 @@ agreement_id_path:
     type: string
   example: 81eaeea13b8984a169c490a325
 
+#Booking parameters
+booking_id_path:
+  name: booking_id
+  in: path
+  description: The unique id of the booking
+  required: true
+  schema:
+    type: string
+  allowReserved: true
+  example: 13b8984a16913b8984a169cc490a
+booking_ticket_property_id_path:
+  name: booking_ticket_property_id
+  in: path
+  description: The unique id of the booking ticket property
+  required: true
+  schema:
+    type: string
+  allowReserved: true
+  example: place
+booking_ticket_id_path:
+  name: booking_ticket_id
+  in: path
+  description: The unique id of the booking ticket
+  required: true
+  schema:
+    type: string
+  allowReserved: true
+  example: 13b8984a16913b8984a169cc490a
+free_capacity_only:
+  name: free_only
+  in: query
+  description: |
+    Parameter defines what kind of time slots is going to be return depends on the capacity
+    *Possible values: true - returns all time slots with free capacity. / false - returns all occupied time slots. / no value - all time slots are returned (filter is not applied)*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+add_booking_items:
+  name: add_booking_items
+  in: query
+  description: |
+    Booking items are going to be return depends on the parameter value
+    *Possible values: true - returns all booking items. / false - returns no booking items. / no value - return no booking items*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+booking_ticket_property_id:
+  name: booking_ticket_property_id
+  in: query
+  required: false
+  description: Booking ticket property id from resource [booking-ticket-properties](#tag/Booking-ticket-properties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+  schema:
+    type: string
+  example: store
+booking_ticket_property_value:
+  name: booking_ticket_property_value
+  in: query
+  required: false
+  description: Booking ticket property record value from [booking-ticket-properties](#tag/Booking-ticket-properties) in case of datatype with multiple values. Parameter filters resources depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
+  schema:
+    type: string
+  example: 89ac83ca207a20c62c79bf
 # Customer parameters
 customer_id_path:
   name: customer_id
@@ -354,7 +424,7 @@ additional_customer_address_id_path:
 card_id_path:
   name: card_id
   in: path
-  description: The unique id for the card
+  description: The unique id of the card
   required: true
   schema:
     type: string
@@ -362,7 +432,7 @@ card_id_path:
 card_type_id_path:
   name: card_type_id
   in: path
-  description: The unique id for the card type
+  description: The unique id of the card type
   required: true
   schema:
     type: string
@@ -378,7 +448,7 @@ card_number:
 card_type_id:
   name: card_type_id
   in: query
-  description: The unique id for the card type
+  description: The unique id of the card type
   required: false
   schema:
     type: string
@@ -402,7 +472,7 @@ property_record_id_path:
   name: property_record_id
   in: path
   required: true
-  description: The unique id for the property record
+  description: The unique id of the property record
   schema:
     type: string
   allowReserved: true
@@ -413,7 +483,7 @@ interest_record_id_path:
   name: interest_record_id
   in: path
   required: true
-  description: The unique id for the interest record
+  description: The unique id of the interest record
   schema:
     type: string
   example: 87d934c86a6303f5fb4d1214fb
@@ -422,7 +492,7 @@ interest_record_id_path:
 voucher_id_path:
   name: voucher_id
   in: path
-  description: The unique id for the voucher
+  description: The unique id of the voucher
   required: true
   schema:
     type: string
@@ -454,7 +524,7 @@ voucher_code:
 reward_id_path:
   name: reward_id
   in: path
-  description: The unique id for the reward
+  description: The unique id of the reward
   required: true
   schema:
     type: string
@@ -462,7 +532,7 @@ reward_id_path:
 reward_property_id_path:
   name: reward_property_id
   in: path
-  description: The unique id for the reward property
+  description: The unique id of the reward property
   required: true
   schema:
     type: string
@@ -494,7 +564,7 @@ reward_group:
   name: reward_group
   in: query
   description: |
-    The unique id for the reward group
+    The unique id of the reward group
     *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward*
   required: false
   schema:
