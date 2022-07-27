@@ -37,7 +37,7 @@ properties:
   partner_id:
     type: string
     readOnly: false
-    description: The unique id for the partner
+    description: The unique id of the partner
     example: 86e05affc7a7abefcd513ab400
   system_id:
     type: string

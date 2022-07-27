@@ -2,7 +2,7 @@ get:
   tags:
     - Events
   summary: Get information about all events
-  description: Get a list of agreements accepted in CRM CareCloud
+  description: Get a list of events in CRM CareCloud
   operationId: getEvents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -11,6 +11,8 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/event_type_id'
+    - $ref: '../../parameters/_index.yaml#/customer_id'
+    - $ref: '../../parameters/_index.yaml#/external_id'
   responses:
     '200':
       description: OK

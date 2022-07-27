@@ -354,6 +354,14 @@ customer_id:
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
+related_customer_id:
+  name: related_customer_id
+  in: query
+  required: false
+  description: The unique id of the related customer
+  schema:
+    type: string
+  example: 8fdce3475560d56e95a6ab035r
 customer_id_required:
   name: customer_id
   in: query
@@ -623,7 +631,14 @@ customer_relation_type_id_path:
   schema:
     type: string
   example: 8bed991c68a470e7aaefff048
-
+customer_relation_type_id:
+  name: customer_relation_type_id
+  in: query
+  description: The unique id of the customer relation type in CareCloud
+  required: false
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaefff048
 # Campaigns
 campaign_id_path:
   name: campaign_id

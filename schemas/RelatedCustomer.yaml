@@ -1,0 +1,51 @@
+type: object
+description: Basic information about a relation between customers
+properties:
+  related_customer_id:
+    type: string
+    readOnly: false
+    description: The unique id of the related customer
+    example: 8ea6abece4cd0a4ded0a29f093
+  short_name:
+    type: string
+    readOnly: true
+    description: Short name of the customer
+    example: Peter D.
+  customer_relation_type_id:
+    type: string
+    readOnly: false
+    description: The unique id of the customer relation type
+    example: 8ea6abece4cd038a6abece4cd0
+  is_leading:
+    type: boolean
+    readOnly: false
+    description: 'Parameter says, if related customer is a leader in their relationship. *Example: Parent is a leader, child is a follower*'
+    example: false
+  valid_from:
+    type: string
+    readOnly: true
+    description: Date and time when customer relation starts *(YYYY-MM-DD HH:MM:SS)*
+    example: "2022-01-09 22:00:00"
+  valid_to:
+    type: string
+    readOnly: true
+    description: Date and time when customer relation ends *(YYYY-MM-DD HH:MM:SS)*
+    example: "2022-01-09 22:30:00"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    example: '2022-06-23 11:47:22'
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: 'State of the related customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+    example: 1
+required:
+  - related_customer_id
+  - customer_relation_type_id
+  - is_leading

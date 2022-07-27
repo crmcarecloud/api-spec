@@ -158,6 +158,8 @@ Recommendation:
   $ref: "./Recommendation.yaml"
 RecommendedReward:
   $ref: "./RecommendedReward.yaml"
+RelatedCustomer:
+  $ref: "./RelatedCustomer.yaml"
 Reward:
   $ref: "./Reward.yaml"
 RewardProperties:
