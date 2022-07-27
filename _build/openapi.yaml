@@ -15,11 +15,11 @@ tags:
   - name: Agreements
     description: 'Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer''s consent (agreement). You can manage the content and status of Customers'' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.'
   - name: Bookings
-    description: Service bookings
+    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Booking tickets
-    description: Service bookings
+    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Booking ticket properties
-    description: Service bookings
+    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
@@ -413,7 +413,7 @@ paths:
   /booking-tickets:
     get:
       tags:
-        - Booking Tickets
+        - Booking tickets
       summary: Get all booking tickets
       description: Get information about all booking tickets
       operationId: getBookingTickets
@@ -3096,6 +3096,111 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/events':
+    get:
+      tags:
+        - Customers
+      summary: Get information about all customer's events
+      description: Get a list of customer's events in CRM CareCloud
+      operationId: getSubCustomerEvents
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/event_type_id'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/external_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      events:
+                        type: array
+                        description: Collection of all events
+                        items:
+                          $ref: '#/components/schemas/Event'
+                      total_items:
+                        type: integer
+                        description: Count of all found events
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/related_customers':
+    get:
+      tags:
+        - Customers
+      summary: Get information about all related customers
+      description: Get a list of related customers in CRM CareCloud
+      operationId: getSubCustomerRelatedCustomers
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/related_customer_id'
+        - $ref: '#/components/parameters/customer_relation_type_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      related_customers:
+                        type: array
+                        description: Collection of all related customers
+                        items:
+                          $ref: '#/components/schemas/RelatedCustomer'
+                      total_items:
+                        type: integer
+                        description: Count of all found related customers
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customers/actions/verify-credentials:
     post:
       tags:
@@ -3901,7 +4006,7 @@ paths:
       tags:
         - Events
       summary: Get information about all events
-      description: Get a list of agreements accepted in CRM CareCloud
+      description: Get a list of events in CRM CareCloud
       operationId: getEvents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3910,6 +4015,8 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/event_type_id'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/external_id'
       responses:
         '200':
           description: OK
@@ -14605,6 +14712,58 @@ components:
           $ref: '#/components/schemas/RewardProperties'
           readOnly: true
           description: Properties of the reward
+    RelatedCustomer:
+      type: object
+      description: Basic information about a relation between customers
+      properties:
+        related_customer_id:
+          type: string
+          readOnly: false
+          description: The unique id of the related customer
+          example: 8ea6abece4cd0a4ded0a29f093
+        short_name:
+          type: string
+          readOnly: true
+          description: Short name of the customer
+          example: Peter D.
+        customer_relation_type_id:
+          type: string
+          readOnly: false
+          description: The unique id of the customer relation type
+          example: 8ea6abece4cd038a6abece4cd0
+        is_leading:
+          type: boolean
+          readOnly: false
+          description: 'Parameter says, if related customer is a leader in their relationship. *Example: Parent is a leader, child is a follower*'
+          example: false
+        valid_from:
+          type: string
+          readOnly: true
+          description: 'Date and time when customer relation starts *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2022-01-09 22:00:00'
+        valid_to:
+          type: string
+          readOnly: true
+          description: 'Date and time when customer relation ends *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2022-01-09 22:30:00'
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change (YYYY-MM-DD HH:MM:SS)'
+          example: '2022-06-23 11:47:22'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: 'State of the related customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+          example: 1
+      required:
+        - related_customer_id
+        - customer_relation_type_id
+        - is_leading
     Reward:
       type: object
       description: Reward structure
@@ -15170,7 +15329,7 @@ components:
         partner_id:
           type: string
           readOnly: false
-          description: The unique id for the partner
+          description: The unique id of the partner
           example: 86e05affc7a7abefcd513ab400
         system_id:
           type: string
@@ -16197,6 +16356,14 @@ components:
       schema:
         type: string
       example: 89ac83ca207a820c62c79bf03a
+    related_customer_id:
+      name: related_customer_id
+      in: query
+      required: false
+      description: The unique id of the related customer
+      schema:
+        type: string
+      example: 8fdce3475560d56e95a6ab035r
     customer_id_required:
       name: customer_id
       in: query
@@ -16447,6 +16614,14 @@ components:
       in: path
       description: The unique id of a customer relation type in CareCloud
       required: true
+      schema:
+        type: string
+      example: 8bed991c68a470e7aaefff048
+    customer_relation_type_id:
+      name: customer_relation_type_id
+      in: query
+      description: The unique id of the customer relation type in CareCloud
+      required: false
       schema:
         type: string
       example: 8bed991c68a470e7aaefff048

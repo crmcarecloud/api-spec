@@ -1,17 +1,18 @@
 get:
   tags:
-    - Booking tickets
-  summary: Get all booking tickets
-  description: Get information about all booking tickets
-  operationId: getBookingTickets
+    - Customers
+  summary: Get information about all related customers
+  description: Get a list of related customers in CRM CareCloud
+  operationId: getSubCustomerRelatedCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_id'
-    - $ref: '../../parameters/_index.yaml#/state'
+    - $ref: '../../parameters/_index.yaml#/related_customer_id'
+    - $ref: '../../parameters/_index.yaml#/customer_relation_type_id'
   responses:
     '200':
       description: OK
@@ -23,14 +24,14 @@ get:
               data:
                 type: object
                 properties:
-                  booking_tickets:
+                  related_customers:
                     type: array
-                    description: Collection of booking tickets
+                    description: Collection of all related customers
                     items:
-                      $ref: '../../schemas/_index.yaml#/BookingTicket'
+                      $ref: '../../schemas/_index.yaml#/RelatedCustomer'
                   total_items:
                     type: integer
-                    description: Count of all found booking tickets
+                    description: Count of all found related customers
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

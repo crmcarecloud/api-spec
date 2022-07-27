@@ -1,17 +1,19 @@
 get:
   tags:
-    - Booking tickets
-  summary: Get all booking tickets
-  description: Get information about all booking tickets
-  operationId: getBookingTickets
+    - Customers
+  summary: Get information about all customer's events
+  description: Get a list of customer's events in CRM CareCloud
+  operationId: getSubCustomerEvents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/event_type_id'
     - $ref: '../../parameters/_index.yaml#/customer_id'
-    - $ref: '../../parameters/_index.yaml#/state'
+    - $ref: '../../parameters/_index.yaml#/external_id'
   responses:
     '200':
       description: OK
@@ -23,14 +25,14 @@ get:
               data:
                 type: object
                 properties:
-                  booking_tickets:
+                  events:
                     type: array
-                    description: Collection of booking tickets
+                    description: Collection of all events
                     items:
-                      $ref: '../../schemas/_index.yaml#/BookingTicket'
+                      $ref: '../../schemas/_index.yaml#/Event'
                   total_items:
                     type: integer
-                    description: Count of all found booking tickets
+                    description: Count of all found events
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

@@ -102,6 +102,10 @@
   $ref: "./customers/SubCustomerAddresses.yaml"
 /customers/{customer_id}/addresses/{additional_customer_address_id_path}:
   $ref: "./customers/SubCustomerAddress.yaml"
+/customers/{customer_id}/events:
+  $ref: "./customers/SubCustomerEvents.yaml"
+/customers/{customer_id}/related_customers:
+  $ref: "./customers/SubCustomerRelatedCustomers.yaml"
 # Actions
 /customers/actions/verify-credentials:
   $ref: "./customers/CustomerVerifyCredentials.yaml"
