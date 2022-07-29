@@ -527,7 +527,14 @@ voucher_code:
     type: string
   allowReserved: true
   example: w7TU7KfeE
-
+voucher_property_id_path:
+  name: voucher_property_id
+  in: path
+  description: The unique id of the voucher property
+  required: true
+  schema:
+    type: string
+  example: promotion
 # Reward
 reward_id_path:
   name: reward_id

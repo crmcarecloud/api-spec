@@ -516,10 +516,17 @@
   $ref: "./vouchers/Vouchers.yaml"
 /vouchers/{voucher_id}:
   $ref: "./vouchers/Voucher.yaml"
+/vouchers/{voucher_id}/property-records:
+  $ref: "./vouchers/SubVoucherProperties.yaml"
 #  Actions
 /vouchers/{voucher_id}/actions/apply-voucher:
   $ref: "./vouchers/VoucherApply.yaml"
 
+  #Voucher properties
+/voucher-properties:
+  $ref: "./vouchers/VoucherProperties.yaml"
+/voucher-properties/{voucher_property_id}:
+  $ref: "./vouchers/VoucherProperty.yaml"
 #  Wallet
 #  Actions
 /wallet/actions/sales-turnover:
