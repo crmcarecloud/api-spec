@@ -3,17 +3,15 @@ description: Booking item structure
 properties:
   booking_item_id:
     type: string
-    readOnly: true
     description: The unique id of the booking item
     example: 8fd73167342d0689c4c015320
   customer_id:
     type: string
-    readOnly: false
     description: The unique id of the customer
     example: 8ea6abece4cd0a4ded0a29f093
   time_slot_id:
     type: string
-    readOnly: false
+    readOnly: true
     description: The unique id of the booking time slot
     example: 89ce2a1b9b01f5c939fb1e20cd
   ticket_id:
@@ -48,6 +46,12 @@ properties:
       Current status of the booking item
       *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
     example: 0
+  additional_properties:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
+    readOnly: true
+    description: List of additional property records
   created_at:
     type: string
     readOnly: false
@@ -70,7 +74,6 @@ properties:
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
     example: '2013-07-24 21:33:33'
 required:
-  - customer_id
   - time_slot_id
   - booking_item_status
   - created_at

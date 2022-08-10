@@ -45,7 +45,7 @@ properties:
   language_id:
     type: string
     readOnly: false
-    description: The unique id for the language by ISO 639 code
+    description: The unique id for the language by ISO 639-1 code
     example: en
   store_id:
     type: string

@@ -1,0 +1,20 @@
+type: object
+description: Booking structure
+properties:
+  customer_id:
+    type: string
+    description: The unique id of the customer that created the booking
+    example: 8ea6abece4cd0a4ded0a29f093
+  booking_status:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: false
+    description: |
+      Current status of the booking
+      *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
+    example: 0
+required:
+  - booking_status

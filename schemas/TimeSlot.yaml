@@ -31,11 +31,6 @@ properties:
     readOnly: true
     description: Free capacity of the time slot
     example: 20
-  created_at:
-    type: string
-    readOnly: false
-    description: Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*
-    example: "2017-06-20 16:59:49"
   state:
     type: integer
     enum:

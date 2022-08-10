@@ -11,7 +11,6 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_id'
     - $ref: '../../parameters/_index.yaml#/free_capacity_only'
     - $ref: '../../parameters/_index.yaml#/time_from_full'
     - $ref: '../../parameters/_index.yaml#/time_to_full'

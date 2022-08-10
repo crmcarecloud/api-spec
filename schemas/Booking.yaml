@@ -48,7 +48,6 @@ properties:
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:
-  - customer_id
   - booking_items
   - booking_status
   - created_at

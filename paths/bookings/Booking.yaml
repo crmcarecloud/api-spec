@@ -50,9 +50,52 @@ put:
           type: object
           properties:
             booking:
-              $ref: '../../schemas/_index.yaml#/Booking'
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer that created the booking
+                  example: 8ea6abece4cd0a4ded0a29f093
+                booking_status:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                  readOnly: false
+                  description: |
+                    Current status of the booking
+                    *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
+                  example: 0
           required:
             - booking
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+delete:
+  tags:
+    - Bookings
+  summary: Delete a booking
+  description: Delete selected booking
+  operationId: deleteBooking
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/booking_id_path'
   responses:
     '204':
       description: No Content

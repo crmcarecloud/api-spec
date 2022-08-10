@@ -104,7 +104,7 @@
   $ref: "./customers/SubCustomerAddress.yaml"
 /customers/{customer_id}/events:
   $ref: "./customers/SubCustomerEvents.yaml"
-/customers/{customer_id}/related_customers:
+/customers/{customer_id}/related-customers:
   $ref: "./customers/SubCustomerRelatedCustomers.yaml"
 # Actions
 /customers/actions/verify-credentials:

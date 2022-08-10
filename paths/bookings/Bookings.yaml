@@ -11,7 +11,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/customer_id'
-    - $ref: '../../parameters/_index.yaml#/state'
+    - $ref: '../../parameters/_index.yaml#/booking_status'
     - $ref: '../../parameters/_index.yaml#/add_booking_items'
   responses:
     '200':
@@ -79,7 +79,7 @@ post:
               data:
                 type: object
                 properties:
-                  card_id:
+                  booking_id:
                     type: string
                     description: The unique id of the booking
                     example: 81a94c48474bc45c03d41f7016

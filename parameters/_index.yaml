@@ -313,14 +313,16 @@ add_booking_items:
   in: query
   description: |
     Booking items are going to be return depends on the parameter value
-    *Possible values: true - returns all booking items. / false - returns no booking items. / no value - return no booking items*
+    *Possible values: full - returns all booking items with their additional properties. / items-only - returns all booking items without additional properties. / none or no value - return no booking items*
   required: false
   schema:
-    type: boolean
+    type: string
     enum:
-      - true
-      - false
-  example: true
+      - full
+      - items-only
+      - none
+    default: none
+  example: items-only
 booking_ticket_property_id:
   name: booking_ticket_property_id
   in: query
@@ -337,6 +339,20 @@ booking_ticket_property_value:
   schema:
     type: string
   example: 89ac83ca207a20c62c79bf
+booking_status:
+  name: booking_status
+  in: query
+  required: false
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+  description: |
+    Current status of the booking
+    *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
+  example: 0
 # Customer parameters
 customer_id_path:
   name: customer_id
@@ -465,16 +481,15 @@ state:
   name: state
   in: query
   description: |
-    State of the card
-    *Possible values are: 0 - blocked / 1 - active*
+    State of the customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*
   required: false
   schema:
     type: integer
     enum:
       - 0
       - 1
+      - 2
   example: 1
-
 # Property
 property_record_id_path:
   name: property_record_id
@@ -580,7 +595,7 @@ reward_group:
   in: query
   description: |
     The unique id of the reward group
-    *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward*
+    *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward*
   required: false
   schema:
     type: integer
@@ -588,6 +603,7 @@ reward_group:
       - 0
       - 1
       - 2
+      - 4
   example: 1
 without_stores:
   name: without_stores
@@ -763,6 +779,21 @@ interest_id_path:
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
+
+# Languages
+language_list_type:
+  name: language_list_type
+  in: query
+  description: "Type of language list. All lists can be managed from the CareCloud administration interface. *Possible values: customer-communication - list of languages used for communication with the customer (emails, notifications or text messages) / web-portal - list of languages for CareCloud web portal / carecloud-api - languages supported by CareCloud REST API (API communicates in these languages).*"
+  required: false
+  schema:
+    type: string
+    enum:
+      - carecloud-api
+      - web-portal
+      - customer-communication
+    default: carecloud-api
+  example: customer-communication
 
 # Messages
 message_id_path:

@@ -22,6 +22,10 @@ post:
               type: string
               description: Code of the voucher
               example: "w7TU7KfeE"
+            note:
+              type: string
+              description: Voucher's note
+              example: "Contact before use"
           required:
             - customer_id
   responses:

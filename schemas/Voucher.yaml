@@ -47,6 +47,11 @@ properties:
     readOnly: false
     description: The unique id of the reward group
     example: 83cfee22eabfbbb15a14815e30
+  note:
+    type: string
+    readOnly: true
+    description: Voucher's note
+    example: "Contact before use"
   reward:
     $ref: '../schemas/_index.yaml#/Reward'
     readOnly: false
