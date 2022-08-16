@@ -3244,7 +3244,6 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/event_type_id'
-        - $ref: '#/components/parameters/customer_id'
         - $ref: '#/components/parameters/external_id'
       responses:
         '200':
