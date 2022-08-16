@@ -11,7 +11,7 @@ properties:
     example: 8ea6abece4cd0a4ded0a29f093
   time_slot_id:
     type: string
-    readOnly: true
+    readOnly: false
     description: The unique id of the booking time slot
     example: 89ce2a1b9b01f5c939fb1e20cd
   ticket_id:
@@ -36,16 +36,10 @@ properties:
     default: 1
     example: 2
   booking_item_status:
-    type: integer
-    enum:
-      - 0
-      - 1
-      - 2
+    type: string
     readOnly: false
-    description: |
-      Current status of the booking item
-      *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
-    example: 0
+    description: Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
+    example: e2a1b9b01fe2a1b9b01f5c9fb1
   additional_properties:
     type: array
     items:
@@ -75,5 +69,4 @@ properties:
     example: '2013-07-24 21:33:33'
 required:
   - time_slot_id
-  - booking_item_status
   - created_at

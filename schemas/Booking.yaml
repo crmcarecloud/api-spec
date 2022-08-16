@@ -16,16 +16,10 @@ properties:
       $ref: '../schemas/_index.yaml#/BookingItem'
     description: List of the booking items. Included only if query parameter `add_booking_items` is `true`
   booking_status:
-    type: integer
-    enum:
-      - 0
-      - 1
-      - 2
+    type: string
     readOnly: false
-    description: |
-      Current status of the booking
-      *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
-    example: 0
+    description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
+    example: cd0acd0a4ded4dedec
   created_at:
     type: string
     readOnly: false
@@ -49,5 +43,4 @@ properties:
     example: 1
 required:
   - booking_items
-  - booking_status
   - created_at

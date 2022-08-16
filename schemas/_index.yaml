@@ -16,6 +16,8 @@ BookingItem:
   $ref: "./BookingItem.yaml"
 BookingTicket:
   $ref: "./BookingTicket.yaml"
+BookingStatus:
+  $ref: "./BookingStatus.yaml"
 Campaign:
   $ref: "./Campaign.yaml"
 CampaignProduct:

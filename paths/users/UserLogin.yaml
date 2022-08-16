@@ -42,6 +42,10 @@ post:
                     type: string
                     description: Autentication bearer token for an user. Token can be used for autentication in REST API with Bearer Autentication (more information about it [here](#section/Authorization/bearerAuth))
                     example: "09359095c5da43c7ae11e710eabce49418715a6a"
+                  valid_to:
+                    type: string
+                    description: Date and time (local time zone of the project) of the token validity   *(YYYY-MM-DD HH:MM:SS)*
+                    example: '2019-01-04 10:31:56'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '403':

@@ -1,19 +1,15 @@
 get:
   tags:
-    - Booking tickets
-  summary: Get all booking tickets
-  description: Get information about all booking tickets
-  operationId: getBookingTickets
+    - Booking statuses
+  summary: Get all booking statuses
+  description: Get information about all booking statuses
+  operationId: getBookingStatuses
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_id'
-    - $ref: '../../parameters/_index.yaml#/valid_from_full'
-    - $ref: '../../parameters/_index.yaml#/valid_to_full'
-    - $ref: '../../parameters/_index.yaml#/valid_only'
   responses:
     '200':
       description: OK
@@ -25,14 +21,14 @@ get:
               data:
                 type: object
                 properties:
-                  booking_tickets:
+                  booking_statuses:
                     type: array
-                    description: Collection of booking tickets
+                    description: Collection of booking statuses
                     items:
-                      $ref: '../../schemas/_index.yaml#/BookingTicket'
+                      $ref: '../../schemas/_index.yaml#/BookingStatus'
                   total_items:
                     type: integer
-                    description: Count of all found booking tickets
+                    description: Count of all found booking statuses
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

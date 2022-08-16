@@ -77,7 +77,7 @@ is_valid:
 valid_from:
   name: valid_from
   in: query
-  description: Date from where is valid already. *(YYYY-MM-DD)*
+  description: Date from when is record already valid. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -85,7 +85,7 @@ valid_from:
 valid_from_full:
   name: valid_from
   in: query
-  description: Date and time from where is valid already. *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time from when is record already valid. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -94,7 +94,7 @@ valid_from_full:
 valid_to:
   name: valid_to
   in: query
-  description: Date to where is valid still. *(YYYY-MM-DD)*
+  description: Date to when is record still valid. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -102,7 +102,7 @@ valid_to:
 valid_to_full:
   name: valid_to
   in: query
-  description: Date and time to where is valid still. *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time to when is record still valid. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -113,6 +113,19 @@ valid_now:
   description: |
     Status validity. Just one status can be valid in the time.
     *Possible values are: True for valid status / False for status not valid*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
+valid_only:
+  name: valid_only
+  in: query
+  description: |
+    Time validity of the resource records.
+    *Possible values are: true - returns only records valid in current moment / false - returns all records of the resource without time validation*
   required: false
   schema:
     type: boolean
@@ -295,6 +308,15 @@ booking_ticket_id_path:
     type: string
   allowReserved: true
   example: 13b8984a16913b8984a169cc490a
+booking_status_id_path:
+  name: booking_status_id
+  in: path
+  description: The unique id of the booking status
+  required: true
+  schema:
+    type: string
+  allowReserved: true
+  example: 13b8984a16913b8984a169cc490a
 free_capacity_only:
   name: free_only
   in: query
@@ -344,15 +366,9 @@ booking_status:
   in: query
   required: false
   schema:
-    type: integer
-    enum:
-      - 0
-      - 1
-      - 2
-  description: |
-    Current status of the booking
-    *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
-  example: 0
+    type: string
+  description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)
+  example: a820c6a820c62c79b2c79b
 # Customer parameters
 customer_id_path:
   name: customer_id

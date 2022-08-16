@@ -16,6 +16,16 @@ properties:
     readOnly: false
     description: Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*
     example: "2017-06-20 16:59:49"
+  valid_from:
+    type: string
+    readOnly: false
+    description: Date and time from when is ticket valid already. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2018-06-20 16:59:49"
+  valid_to:
+    type: string
+    readOnly: false
+    description: Date and time to when is ticket still valid. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2018-07-20 16:59:49"
   state:
     type: integer
     enum:

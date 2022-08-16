@@ -20,6 +20,8 @@ tags:
     description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Booking ticket properties
     description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
+  - name: Booking statuses
+    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
@@ -469,6 +471,9 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/valid_from_full'
+        - $ref: '#/components/parameters/valid_to_full'
+        - $ref: '#/components/parameters/valid_only'
       responses:
         '200':
           description: OK
@@ -666,6 +671,91 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/Property'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /booking-statuses:
+    get:
+      tags:
+        - Booking statuses
+      summary: Get all booking statuses
+      description: Get information about all booking statuses
+      operationId: getBookingStatuses
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      booking_statuses:
+                        type: array
+                        description: Collection of booking statuses
+                        items:
+                          $ref: '#/components/schemas/BookingStatus'
+                      total_items:
+                        type: integer
+                        description: Count of all found booking statuses
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/booking-statuses/{booking_status_id}}':
+    get:
+      tags:
+        - Booking statuses
+      summary: Get a booking status
+      description: Get information about a specific booking status
+      operationId: getBookingStatus
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/booking_status_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BookingStatus'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -10985,6 +11075,10 @@ paths:
                         type: string
                         description: 'Autentication bearer token for an user. Token can be used for autentication in REST API with Bearer Autentication (more information about it [here](#section/Authorization/bearerAuth))'
                         example: 09359095c5da43c7ae11e710eabce49418715a6a
+                      valid_to:
+                        type: string
+                        description: 'Date and time (local time zone of the project) of the token validity   *(YYYY-MM-DD HH:MM:SS)*'
+                        example: '2019-01-04 10:31:56'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -11041,6 +11135,10 @@ paths:
                         type: string
                         description: 'Autentication bearer token for an user. Token can be used for autentication in REST API with Bearer Autentication (more information about it [here](#section/Authorization/bearerAuth))'
                         example: 09359095c5da43c7ae11e710eabce49418715a6a
+                      valid_to:
+                        type: string
+                        description: 'Date and time (local time zone of the project) of the token validity   *(YYYY-MM-DD HH:MM:SS)*'
+                        example: '2019-01-04 10:31:56'
                       user:
                         $ref: '#/components/schemas/User'
         '400':
@@ -12135,16 +12233,10 @@ components:
             $ref: '#/components/schemas/BookingItem'
           description: List of the booking items. Included only if query parameter `add_booking_items` is `true`
         booking_status:
-          type: integer
-          enum:
-            - 0
-            - 1
-            - 2
+          type: string
           readOnly: false
-          description: |
-            Current status of the booking
-            *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
-          example: 0
+          description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
+          example: cd0acd0a4ded4dedec
         created_at:
           type: string
           readOnly: false
@@ -12168,7 +12260,6 @@ components:
           example: 1
       required:
         - booking_items
-        - booking_status
         - created_at
     BookingItem:
       type: object
@@ -12184,7 +12275,7 @@ components:
           example: 8ea6abece4cd0a4ded0a29f093
         time_slot_id:
           type: string
-          readOnly: true
+          readOnly: false
           description: The unique id of the booking time slot
           example: 89ce2a1b9b01f5c939fb1e20cd
         ticket_id:
@@ -12209,16 +12300,10 @@ components:
           default: 1
           example: 2
         booking_item_status:
-          type: integer
-          enum:
-            - 0
-            - 1
-            - 2
+          type: string
           readOnly: false
-          description: |
-            Current status of the booking item
-            *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
-          example: 0
+          description: 'Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
+          example: e2a1b9b01fe2a1b9b01f5c9fb1
         additional_properties:
           type: array
           items:
@@ -12248,7 +12333,6 @@ components:
           example: '2013-07-24 21:33:33'
       required:
         - time_slot_id
-        - booking_item_status
         - created_at
     BookingTicket:
       type: object
@@ -12269,6 +12353,16 @@ components:
           readOnly: false
           description: 'Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*'
           example: '2017-06-20 16:59:49'
+        valid_from:
+          type: string
+          readOnly: false
+          description: 'Date and time from when is ticket valid already. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2018-06-20 16:59:49'
+        valid_to:
+          type: string
+          readOnly: false
+          description: 'Date and time to when is ticket still valid. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2018-07-20 16:59:49'
         state:
           type: integer
           enum:
@@ -12277,6 +12371,42 @@ components:
           readOnly: false
           description: |
             State of the booking ticket
+            *Possible values are: 0 - blocked / 1 - active*
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2015-01-05 11:24:12'
+      required:
+        - name
+    BookingStatus:
+      type: object
+      description: Booking status
+      properties:
+        booking_status_id:
+          type: string
+          readOnly: true
+          description: The unique id of the booking status
+          example: 89ce2a1b9b01f5c939fb1e20cd
+        name:
+          type: string
+          readOnly: false
+          description: Name of the booking status in language from request header
+          example: Cancelled
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time of booking status creation *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2017-06-20 16:59:49'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+          readOnly: false
+          description: |
+            State of the booking status
             *Possible values are: 0 - blocked / 1 - active*
           example: 1
         last_change:
@@ -16272,7 +16402,7 @@ components:
     valid_from:
       name: valid_from
       in: query
-      description: Date from where is valid already. *(YYYY-MM-DD)*
+      description: Date from when is record already valid. *(YYYY-MM-DD)*
       required: false
       schema:
         type: string
@@ -16280,7 +16410,7 @@ components:
     valid_from_full:
       name: valid_from
       in: query
-      description: 'Date and time from where is valid already. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Date and time from when is record already valid. *(YYYY-MM-DD HH:MM:SS)*'
       required: false
       schema:
         type: string
@@ -16289,7 +16419,7 @@ components:
     valid_to:
       name: valid_to
       in: query
-      description: Date to where is valid still. *(YYYY-MM-DD)*
+      description: Date to when is record still valid. *(YYYY-MM-DD)*
       required: false
       schema:
         type: string
@@ -16297,7 +16427,7 @@ components:
     valid_to_full:
       name: valid_to
       in: query
-      description: 'Date and time to where is valid still. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Date and time to when is record still valid. *(YYYY-MM-DD HH:MM:SS)*'
       required: false
       schema:
         type: string
@@ -16308,6 +16438,19 @@ components:
       description: |
         Status validity. Just one status can be valid in the time.
         *Possible values are: True for valid status / False for status not valid*
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: true
+    valid_only:
+      name: valid_only
+      in: query
+      description: |
+        Time validity of the resource records.
+        *Possible values are: true - returns only records valid in current moment / false - returns all records of the resource without time validation*
       required: false
       schema:
         type: boolean
@@ -16484,6 +16627,15 @@ components:
         type: string
       allowReserved: true
       example: 13b8984a16913b8984a169cc490a
+    booking_status_id_path:
+      name: booking_status_id
+      in: path
+      description: The unique id of the booking status
+      required: true
+      schema:
+        type: string
+      allowReserved: true
+      example: 13b8984a16913b8984a169cc490a
     free_capacity_only:
       name: free_only
       in: query
@@ -16533,15 +16685,9 @@ components:
       in: query
       required: false
       schema:
-        type: integer
-        enum:
-          - 0
-          - 1
-          - 2
-      description: |
-        Current status of the booking
-        *Possible values: 0 - created and not used / 1 - used / 2 - canceled*
-      example: 0
+        type: string
+      description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)'
+      example: a820c6a820c62c79b2c79b
     customer_id_path:
       name: customer_id
       in: path

@@ -22,6 +22,11 @@
   $ref: "./bookings/BookingTicketProperties.yaml"
 /booking-ticket-properties/{booking_ticket_property_id}:
   $ref: "./bookings/BookingTicketProperty.yaml"
+#Booking statuses
+/booking-statuses:
+  $ref: "./bookings/BookingStatuses.yaml"
+/booking-statuses/{booking_status_id}}:
+  $ref: "./bookings/BookingStatus.yaml"
 # Campaigns
 /campaigns:
   $ref: "./campaigns/Campaigns.yaml"

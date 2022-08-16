@@ -21,6 +21,8 @@ tags:
     description: Bookings of the services. Meetings, restaurant reservations, client appointments.
   - name: Booking ticket properties
     description: Bookings of the services. Meetings, restaurant reservations, client appointments.
+  - name: Booking statuses
+    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
