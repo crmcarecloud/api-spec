@@ -341,7 +341,7 @@ Request body:
             "agreement_marketing_communication": 1,
             "custom_agreements": [
                {
-                  "agreement_id": "custom_agreement_id",
+                  "agreement_id": "89ce2a1b9b01f5c939fb1e20cd",
                   "agreement_value": 2
                }
             ]

@@ -3,15 +3,15 @@ description: Custom agreements
 properties:
   agreement_id:
     type: string
-    description: 'The unique id of the agreement in CareCloud'
-    example: custom_agreement_id
+    description: The unique id of the agreement in CareCloud from [agreements](#tag/Agreements) resource
+    example: 89ce2a1b9b01f5c939fb1e20cd
   agreement_value:
     type: integer
     enum:
       - 0
       - 1
       - 2
-    description: 'Value of the specific agreement *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: "Value of the specific agreement *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*"
     example: 2
 required:
   - agreement_id

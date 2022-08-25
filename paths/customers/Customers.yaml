@@ -97,10 +97,10 @@ post:
 
         // Set custom agreements of new customer
         $custom_agreement1 = new CustomAgreements();
-        $custom_agreement1->setAgreementId('custom_agreement_id') // string | The unique id of the agreement in CareCloud
+        $custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd') // string | The unique id of the agreement in CareCloud
                           ->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
         $custom_agreement2 = new CustomAgreements();
-        $custom_agreement2->setAgreementId('second_custom_agreement_id') // string | The unique id of the agreement in CareCloud
+        $custom_agreement2->setAgreementId('8fd73167342d06899c4c015320') // string | The unique id of the agreement in CareCloud
                           ->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
 
         $custom_agreements = [
