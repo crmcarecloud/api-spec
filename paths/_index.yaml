@@ -402,7 +402,11 @@
   $ref: "./segments/SegmentAddCustomer.yaml"
 /segments/{segment_id}/actions/remove-customer:
   $ref: "./segments/SegmentRemoveCustomer.yaml"
-
+#Segment groups
+/segment-groups:
+  $ref: "./segments/SegmentGroups.yaml"
+/segment-groups/{segment_group_id}:
+  $ref: "./segments/SegmentGroup.yaml"
 #  Skipasses
 /skipasses:
   $ref: "./skipasses/Skipasses.yaml"

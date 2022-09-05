@@ -892,7 +892,7 @@ partner_id:
   name: partner_id
   in: query
   required: false
-  description: The unique id of the partner
+  description: Unique ID of the partner from the resource [GET /partners](/#tag/Partners)
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
@@ -1175,7 +1175,31 @@ segment_id_path:
   schema:
     type: string
   example: 8dc1e66b44796af5cd377910e1
-
+segment_group_id_path:
+  name: segment_group_id
+  in: path
+  required: true
+  description: The unique ID of the segment group
+  schema:
+    type: string
+  example: 8dc1e66b44796af5cd377910e1
+segment_group_ids:
+  name: segment_group_ids
+  in: query
+  required: true
+  description: List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).
+  schema:
+    type: array
+    items:
+      type: string
+segment_group_name:
+  name: name
+  in: query
+  required: false
+  description: Name of the segmnt group
+  schema:
+    type: string
+  example:  Badges
 # Skipasses
 skipass_id_path:
   name: skipass_id

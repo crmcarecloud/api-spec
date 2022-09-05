@@ -1,16 +1,16 @@
 get:
   tags:
     - Segments
-  summary: Get all segments
-  description: Get information about segments as a list of all segments
-  operationId: getSegments
+  summary: Get all segment groups
+  description: Get information about segment groups
+  operationId: getSegmentGroups
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/segment_group_ids'
+    - $ref: '../../parameters/_index.yaml#/segment_group_name'
   responses:
     '200':
       description: OK
@@ -22,11 +22,11 @@ get:
               data:
                 type: object
                 properties:
-                  segments:
+                  segment_groups:
                     type: array
-                    description: List of all segments
+                    description: List of all segment groups
                     items:
-                      $ref: '../../schemas/_index.yaml#/Segment'
+                      $ref: '../../schemas/_index.yaml#/SegmentGroup'
                   total_items:
                     type: integer
                     description: Count of all found segments

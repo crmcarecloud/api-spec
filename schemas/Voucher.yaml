@@ -55,6 +55,11 @@ properties:
   reward:
     $ref: '../schemas/_index.yaml#/Reward'
     readOnly: false
+  created_at:
+    type: string
+    readOnly: true
+    description: Date of the voucher creation *(YYYY-MM-DD HH:MM:SS)*
+    example:
   last_change:
     type: string
     readOnly: true

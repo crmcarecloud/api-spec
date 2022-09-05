@@ -8080,6 +8080,7 @@ paths:
         - $ref: '#/components/parameters/customer_type_id_arr'
         - $ref: '#/components/parameters/without_stores'
         - $ref: '#/components/parameters/tag_id_arr'
+        - $ref: '#/components/parameters/partner_id'
       responses:
         '200':
           description: OK
@@ -8617,6 +8618,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/segment_group_ids'
       responses:
         '200':
           description: OK
@@ -8803,6 +8805,92 @@ paths:
       responses:
         '204':
           description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /segment-groups:
+    get:
+      tags:
+        - Segments
+      summary: Get all segment groups
+      description: Get information about segment groups
+      operationId: getSegmentGroups
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/segment_group_name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      segment_groups:
+                        type: array
+                        description: List of all segment groups
+                        items:
+                          $ref: '#/components/schemas/SegmentGroup'
+                      total_items:
+                        type: integer
+                        description: Count of all found segments
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/segment-groups/{segment_group_id}':
+    get:
+      tags:
+        - Segments
+      summary: Get a segment group
+      description: Get information about a specific segment group
+      operationId: getSegmentGroup
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/segment_group_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SegmentGroup'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -12065,6 +12153,10 @@ components:
             $ref: '#/components/schemas/CustomAgreements'
           readOnly: false
           description: Custom agreements
+      required:
+        - agreement_marketing_communication
+        - agreement_profiling
+        - agreement_gtc
     AgreementList:
       type: object
       properties:
@@ -15278,11 +15370,47 @@ components:
           readOnly: false
           description: Name of the segment
           example: readers
+        segment_group_id:
+          type: string
+          readOnly: true
+          description: 'Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups)'
+          example: c1e66b44796af5cd377910ed37
         note:
           type: string
           readOnly: false
           description: Short description of the segment
           example: Customers that like to read more than 1 book a month
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-08-29 13:04:45'
+      required:
+        - name
+    SegmentGroup:
+      type: object
+      description: Segment group structure
+      properties:
+        segment_group_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the segment group
+          example: 8dc1e66b44796af5cd377910e1
+        name:
+          type: string
+          readOnly: false
+          description: Name of the segment group
+          example: Badges
+        parent_group_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the parent segment group
+          example: 80a7be2e78aabc1454ca817265
+        note:
+          type: string
+          readOnly: false
+          description: Short description of the segment group
+          example: Carecloud Badges for tagging customers
         last_change:
           type: string
           readOnly: true
@@ -16273,6 +16401,11 @@ components:
         reward:
           $ref: '#/components/schemas/Reward'
           readOnly: false
+        created_at:
+          type: string
+          readOnly: true
+          description: 'Date of the voucher creation *(YYYY-MM-DD HH:MM:SS)*'
+          example: null
         last_change:
           type: string
           readOnly: true
@@ -17180,7 +17313,7 @@ components:
       name: partner_id
       in: query
       required: false
-      description: The unique id of the partner
+      description: 'Unique ID of the partner from the resource [GET /partners](/#tag/Partners)'
       schema:
         type: string
       example: 89ac83ca207a820c62c79bf03a
@@ -17454,6 +17587,31 @@ components:
       schema:
         type: string
       example: 8dc1e66b44796af5cd377910e1
+    segment_group_id_path:
+      name: segment_group_id
+      in: path
+      required: true
+      description: The unique ID of the segment group
+      schema:
+        type: string
+      example: 8dc1e66b44796af5cd377910e1
+    segment_group_ids:
+      name: segment_group_ids
+      in: query
+      required: true
+      description: 'List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).'
+      schema:
+        type: array
+        items:
+          type: string
+    segment_group_name:
+      name: name
+      in: query
+      required: false
+      description: Name of the segmnt group
+      schema:
+        type: string
+      example: Badges
     skipass_id_path:
       name: skipass_id
       in: path

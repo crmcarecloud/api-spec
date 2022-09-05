@@ -1,0 +1,30 @@
+type: object
+description: Segment group structure
+properties:
+  segment_group_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the segment group
+    example: 8dc1e66b44796af5cd377910e1
+  name:
+    type: string
+    readOnly: false
+    description: Name of the segment group
+    example: Badges
+  parent_group_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the parent segment group
+    example: 80a7be2e78aabc1454ca817265
+  note:
+    type: string
+    readOnly: false
+    description: Short description of the segment group
+    example: "Carecloud Badges for tagging customers"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: '2019-08-29 13:04:45'
+required:
+  - name

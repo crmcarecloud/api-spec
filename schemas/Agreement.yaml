@@ -34,3 +34,7 @@ properties:
       $ref: '../schemas/_index.yaml#/CustomAgreements'
     readOnly: false
     description: Custom agreements
+required:
+  - agreement_marketing_communication
+  - agreement_profiling
+  - agreement_gtc

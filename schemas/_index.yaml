@@ -170,6 +170,8 @@ SearchResult:
   $ref: "./SearchResult.yaml"
 Segment:
   $ref: "./Segment.yaml"
+SegmentGroup:
+  $ref: "./SegmentGroup.yaml"
 SegmentRecord:
   $ref: "./SegmentRecord.yaml"
 Setup:
