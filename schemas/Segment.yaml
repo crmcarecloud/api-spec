@@ -16,6 +16,11 @@ properties:
     readOnly: true
     description: Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups)
     example: c1e66b44796af5cd377910ed37
+  segment_picture_url:
+    type: string
+    readOnly: true
+    description: URL of the picture assigned to the segment
+    example:
   note:
     type: string
     readOnly: false

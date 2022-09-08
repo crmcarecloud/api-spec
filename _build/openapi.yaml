@@ -2475,6 +2475,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/segment_group_ids'
       responses:
         '200':
           description: OK
@@ -15375,6 +15376,11 @@ components:
           readOnly: true
           description: 'Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups)'
           example: c1e66b44796af5cd377910ed37
+        segment_picture_url:
+          type: string
+          readOnly: true
+          description: URL of the picture assigned to the segment
+          example: null
         note:
           type: string
           readOnly: false
