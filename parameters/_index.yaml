@@ -1186,7 +1186,7 @@ segment_group_id_path:
 segment_group_ids:
   name: segment_group_ids
   in: query
-  required: true
+  required: false
   description: List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).
   schema:
     type: array

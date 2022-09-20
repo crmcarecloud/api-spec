@@ -474,6 +474,8 @@ paths:
         - $ref: '#/components/parameters/valid_from_full'
         - $ref: '#/components/parameters/valid_to_full'
         - $ref: '#/components/parameters/valid_only'
+        - $ref: '#/components/parameters/booking_ticket_property_id'
+        - $ref: '#/components/parameters/booking_ticket_property_value'
       responses:
         '200':
           description: OK
@@ -12370,11 +12372,10 @@ components:
           readOnly: false
           description: The unique id of the booking time slot
           example: 89ce2a1b9b01f5c939fb1e20cd
-        ticket_id:
-          type: string
-          readOnly: true
-          description: The unique id of the booking ticket
-          example: 89ce2a1b9b01f5c939fb1e20cd
+        booking_ticket:
+          type: object
+          description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
+          $ref: '#/components/schemas/BookingTicket'
         valid_from:
           type: string
           readOnly: true
@@ -17604,7 +17605,7 @@ components:
     segment_group_ids:
       name: segment_group_ids
       in: query
-      required: true
+      required: false
       description: 'List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).'
       schema:
         type: array
