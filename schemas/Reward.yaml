@@ -48,10 +48,11 @@ properties:
       - 0
       - 1
       - 2
+      - 4
     readOnly: false
     description: |
       The unique id of the reward group
-      *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher*
+      *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
     example: 0
   store_list:
     type: array

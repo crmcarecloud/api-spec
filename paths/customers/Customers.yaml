@@ -20,7 +20,7 @@ post:
             password:
               type: string
               format: password
-              description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum lenght of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345)'
+              description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum lenght of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345). If parameter `autologin=true`, password is required, otherwise is optional.'
               example: password_example
             autologin:
               type: boolean

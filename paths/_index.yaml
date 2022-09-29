@@ -350,14 +350,14 @@
   $ref: "./recommendations/RecommendationProductEliminate.yaml"
 /recommendation-engine/product/actions/order:
   $ref: "./recommendations/RecommendationProductOrder.yaml"
-/recommendation-engine/product/actions/combined:
-  $ref: "./recommendations/RecommendationProductCombined.yaml"
+/recommendation-engine/product/actions/combine:
+  $ref: "./recommendations/RecommendationProductCombine.yaml"
 /recommendation-engine/shopping-cart/actions/eliminate:
   $ref: "./recommendations/RecommendationCartEliminate.yaml"
 /recommendation-engine/shopping-cart/actions/order:
   $ref: "./recommendations/RecommendationCartOrder.yaml"
-/recommendation-engine/shopping-cart/actions/combined:
-  $ref: "./recommendations/RecommendationCartCombined.yaml"
+/recommendation-engine/shopping-cart/actions/combine:
+  $ref: "./recommendations/RecommendationCartCombine.yaml"
 # Batch
 /third-party-recommendations/batch:
   $ref: "./recommendations/ThirdPartyRecommendationsBatch.yaml"
@@ -407,14 +407,14 @@
   $ref: "./segments/SegmentGroups.yaml"
 /segment-groups/{segment_group_id}:
   $ref: "./segments/SegmentGroup.yaml"
-#  Skipasses
-/skipasses:
-  $ref: "./skipasses/Skipasses.yaml"
-/skipasses/{skipass_id}:
-  $ref: "./skipasses/Skipass.yaml"
+#  Charged entrances
+/entrances:
+  $ref: "./entrances/Entrances.yaml"
+/entrances/{entrance_id}:
+  $ref: "./entrances/Entrance.yaml"
 #  Actions
-/skipasses/actions/overview:
-  $ref: "./skipasses/SkipassesOverview.yaml"
+/entrances/actions/overview:
+  $ref: "./entrances/EntrancesOverview.yaml"
 
 #  Statuses
 /statuses:

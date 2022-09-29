@@ -31,6 +31,8 @@ tags:
     description: The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.
   - name: Card types
     description: Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
+  - name: Charged entrances
+    description: Customized resource cointains tickets charged in external production systems
   - name: Countries
     description: Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.
   - name: Currencies
@@ -122,8 +124,6 @@ tags:
     description: Reward properties are list of the available properties for the rewards resource.
   - name: Segments
     description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
-  - name: Skipasses
-    description: Customized resource cointains the skipass tickets
   - name: Statuses
     description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.
   - name: Stores

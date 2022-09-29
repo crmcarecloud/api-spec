@@ -24,6 +24,16 @@ properties:
     readOnly: false
     description: Last name of the customer
     example: Smith
+  pre_nominals:
+    type: string
+    readOnly: false
+    description: Academic degrees, academic titles, other titles of customer placed before name
+    example: Dr.
+  post_nominals:
+    type: string
+    readOnly: false
+    description: Academic degrees, academic titles, other titles of customer placed after name
+    example: Ph.D
   birthdate:
     type: string
     format: date

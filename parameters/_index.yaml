@@ -1192,6 +1192,7 @@ segment_group_ids:
     type: array
     items:
       type: string
+  example: "8bed991c68a470e7aaeffbf048"
 segment_group_name:
   name: name
   in: query
@@ -1200,11 +1201,11 @@ segment_group_name:
   schema:
     type: string
   example:  Badges
-# Skipasses
-skipass_id_path:
-  name: skipass_id
+# Charged entrances
+entrance_id_path:
+  name: entrance_id
   in: path
-  description: The unique id of the skipass
+  description: The unique id of the charged entrance
   required: true
   schema:
     type: string
@@ -1213,10 +1214,11 @@ pos_id:
   name: pos_id
   in: query
   required: false
-  description:  'Id of POS system for ski tickets. *Possible values are: skidata - 6 / axess - 9 / base - 11*'
+  description:  'Id of POS system for tickets. Required with path parameter entrance id *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
   schema:
     type: integer
     enum:
+      - 3
       - 6
       - 9
       - 11
@@ -1228,11 +1230,11 @@ external_order_id:
   schema:
     type: string
   example:
-skipass_name:
+entrance_name:
   name: name
   in: query
   required: false
-  description:  name string	Name of the charged skipass (product name is used from resource products)
+  description:  Name of the charged entrance (product name is used from resource products)
   schema:
     type: string
   example:
@@ -1240,7 +1242,7 @@ resort_name:
   name: resort_name
   in: query
   required: false
-  description:  string	Name of the resort where is a skipass charged
+  description:  string	Name of the resort where is an entrance charged
   schema:
     type: string
   example:
@@ -1252,20 +1254,20 @@ customer_category_name:
   schema:
     type: string
   example:
-skipass_card_id:
+entrance_card_id:
   name: card_id
   in: query
   required: false
-  description: Id of card used for charge skipasses
+  description: Id of card used for charging entrance
   schema:
     type: string
   example: 8c97533b621490a0b211419086
-skipass_type_id:
-  name: skipass_type_id
+entrance_type_id:
+  name: entrance_type_id
   in: query
   required: false
   description: |
-    Type of the skipass
+    Type of the entrance
     *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*
   schema:
     type: integer
@@ -1274,22 +1276,22 @@ skipass_type_id:
       - 1
       - 2
   example: 1
-skipass_state:
+entrance_state:
   name: state
   in: query
   required: false
-  description: 'State of the skipass *Possible values are: canceled skipass - 0 / valid skipass -1*'
+  description: 'State of the entrance *Possible values are: canceled entrance - 0 / valid entrance -1*'
   schema:
     type: integer
     enum:
       - 0
       - 1
   example: 1
-external_skipass_id:
-  name: external_skipass_id
+external_entrance_id:
+  name: external_entrance_id
   in: query
   required: false
-  description: External id of skipass. Structure can be different depends of POS system, that created skipass
+  description: External id of the entrance. Structure can be different depends of POS system, that created entrance
   schema:
     type: string
   example:
@@ -1298,8 +1300,8 @@ is_cancelled:
   in: query
   required: false
   description: |
-    Filter for canceled skipasses.
-    *Possible values: true - all cancelled skipasses / false - all non cancelled skipasses / no value - all skipasses*
+    Filter for canceled entrances.
+    *Possible values: true - all cancelled entrances / false - all non cancelled entrances / no value - all entrances*
   schema:
     type: boolean
     enum:

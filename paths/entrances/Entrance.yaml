@@ -1,12 +1,12 @@
 get:
   tags:
-    - Skipasses
-  summary: Get a skipass
-  description: Get information about a specific skipass resource.
-  operationId: getSkipass
+    - Charged entrances
+  summary: Get an entrance
+  description: Get information about a specific entrance resource.
+  operationId: getEntrance
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/skipass_id_path'
+    - $ref: '../../parameters/_index.yaml#/entrance_id_path'
   responses:
     '200':
       description: OK
@@ -16,7 +16,7 @@ get:
             type: object
             properties:
               data:
-                $ref: '../../schemas/_index.yaml#/Skipass'
+                $ref: '../../schemas/_index.yaml#/Entrance'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':
@@ -35,13 +35,13 @@ get:
       $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
 put:
   tags:
-    - Skipasses
-  summary: Update a skipass
-  description: This method updates a specific skipass resource.
-  operationId: putSkipass
+    - Charged entrances
+  summary: Update an entrance
+  description: This method updates a specific entrance resource.
+  operationId: putEntrance
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/skipass_id_path'
+    - $ref: '../../parameters/_index.yaml#/entrance_id_path'
   requestBody:
     required: true
     content:
@@ -49,10 +49,10 @@ put:
         schema:
           type: object
           properties:
-            skipass:
-              $ref: '../../schemas/_index.yaml#/Skipass'
+            entrance:
+              $ref: '../../schemas/_index.yaml#/Entrance'
           required:
-            - skipass
+            - entrance
   responses:
     '204':
       description: No Content

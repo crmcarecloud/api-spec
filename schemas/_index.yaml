@@ -176,8 +176,8 @@ SegmentRecord:
   $ref: "./SegmentRecord.yaml"
 Setup:
   $ref: "./Setup.yaml"
-Skipass:
-  $ref: "./Skipass.yaml"
+Entrance:
+  $ref: "./Entrance.yaml"
 SocialNetworkCredentials:
   $ref: "./SocialNetworkCredentials.yaml"
 Status:

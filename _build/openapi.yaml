@@ -30,6 +30,8 @@ tags:
     description: 'The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.'
   - name: Card types
     description: 'Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.'
+  - name: Charged entrances
+    description: Customized resource cointains tickets charged in external production systems
   - name: Countries
     description: 'Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.'
   - name: Currencies
@@ -121,8 +123,6 @@ tags:
     description: Reward properties are list of the available properties for the rewards resource.
   - name: Segments
     description: 'Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.'
-  - name: Skipasses
-    description: Customized resource cointains the skipass tickets
   - name: Statuses
     description: 'Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.'
   - name: Stores
@@ -1852,7 +1852,7 @@ paths:
                 password:
                   type: string
                   format: password
-                  description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum lenght of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345)'
+                  description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum lenght of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345). If parameter `autologin=true`, password is required, otherwise is optional.'
                   example: password_example
                 autologin:
                   type: boolean
@@ -7808,13 +7808,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  /recommendation-engine/product/actions/combined:
+  /recommendation-engine/product/actions/combine:
     get:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation
       description: 'It selects the best products from an initial list for the customer. Eliminates all products that don''t match future customer preferences (depends on his previous shopping behavior). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.'
-      operationId: getRecommendationProductCombined
+      operationId: getRecommendationProductCombine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/customer_id_required'
@@ -7962,7 +7962,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  /recommendation-engine/shopping-cart/actions/combined:
+  /recommendation-engine/shopping-cart/actions/combine:
     get:
       tags:
         - Product recommendation engine
@@ -8910,13 +8910,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  /skipasses:
+  /entrances:
     get:
       tags:
-        - Skipasses
-      summary: Get all skipasses
-      description: Get a list of skipasses in CRM CareCloud
-      operationId: getSkipasses
+        - Charged entrances
+      summary: Get all entrances
+      description: Get a list of entrances in CRM CareCloud
+      operationId: getEntrances
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/count'
@@ -8925,14 +8925,14 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/pos_id'
         - $ref: '#/components/parameters/external_order_id'
-        - $ref: '#/components/parameters/skipass_name'
+        - $ref: '#/components/parameters/entrance_name'
         - $ref: '#/components/parameters/resort_name'
         - $ref: '#/components/parameters/customer_category_name'
-        - $ref: '#/components/parameters/skipass_card_id'
+        - $ref: '#/components/parameters/entrance_card_id'
         - $ref: '#/components/parameters/customer_id'
-        - $ref: '#/components/parameters/skipass_type_id'
-        - $ref: '#/components/parameters/skipass_state'
-        - $ref: '#/components/parameters/external_skipass_id'
+        - $ref: '#/components/parameters/entrance_type_id'
+        - $ref: '#/components/parameters/entrance_state'
+        - $ref: '#/components/parameters/external_entrance_id'
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/is_cancelled'
       responses:
@@ -8946,14 +8946,14 @@ paths:
                   data:
                     type: object
                     properties:
-                      skipasses:
+                      entrances:
                         type: array
-                        description: List of available skipasses
+                        description: List of available entrances
                         items:
-                          $ref: '#/components/schemas/Skipass'
+                          $ref: '#/components/schemas/Entrance'
                       total_items:
                         type: integer
-                        description: Count of all found skipasses
+                        description: Count of all found entrances
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -8971,16 +8971,16 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  '/skipasses/{skipass_id}':
+  '/entrances/{entrance_id}':
     get:
       tags:
-        - Skipasses
-      summary: Get a skipass
-      description: Get information about a specific skipass resource.
-      operationId: getSkipass
+        - Charged entrances
+      summary: Get an entrance
+      description: Get information about a specific entrance resource.
+      operationId: getEntrance
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/skipass_id_path'
+        - $ref: '#/components/parameters/entrance_id_path'
       responses:
         '200':
           description: OK
@@ -8990,7 +8990,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/Skipass'
+                    $ref: '#/components/schemas/Entrance'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -9009,13 +9009,13 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
     put:
       tags:
-        - Skipasses
-      summary: Update a skipass
-      description: This method updates a specific skipass resource.
-      operationId: putSkipass
+        - Charged entrances
+      summary: Update an entrance
+      description: This method updates a specific entrance resource.
+      operationId: putEntrance
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/skipass_id_path'
+        - $ref: '#/components/parameters/entrance_id_path'
       requestBody:
         required: true
         content:
@@ -9023,10 +9023,10 @@ paths:
             schema:
               type: object
               properties:
-                skipass:
-                  $ref: '#/components/schemas/Skipass'
+                entrance:
+                  $ref: '#/components/schemas/Entrance'
               required:
-                - skipass
+                - entrance
       responses:
         '204':
           description: No Content
@@ -9046,13 +9046,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  /skipasses/actions/overview:
+  /entrances/actions/overview:
     get:
       tags:
-        - Skipasses
-      summary: Get skipasses overview
-      description: Get information about skipasses in time interval
-      operationId: getSkipassesOverview
+        - Charged entrances
+      summary: Get entrances overview
+      description: Get information about entrances in time interval
+      operationId: getEntrancesOverview
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/valid_from'
@@ -9068,21 +9068,21 @@ paths:
                   data:
                     type: object
                     properties:
-                      active_skipasses:
+                      active_entrances:
                         type: integer
-                        description: Amount of active skipasses in date range. Active skipasses can be used by customers in their validity range
+                        description: Amount of active entrances in date range. Active entrances can be used by customers in their validity range
                         example: 113655
-                      canceled_skipasses:
+                      canceled_entrances:
                         type: integer
-                        description: Amount of canceled skipasses in date range. Canceled skipasses in production systems and in CareCloud. Customers cannot use them anymore
+                        description: Amount of canceled entrances in date range. Canceled entrances in production systems and in CareCloud. Customers cannot use them anymore
                         example: 446
-                      deactivated_skipasses:
+                      deactivated_entrances:
                         type: integer
-                        description: Amount of deactivated skipasses in date range. Skipasses deactivated in CareCloud only. These skipasses are usually not sent to production systems. Deactivation have been done in system CareCloud
+                        description: Amount of deactivated entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud
                         example: 233834
-                      sold_skipasses:
+                      sold_entrances:
                         type: integer
-                        description: Amount of sold skipasses in date range. Skipasses deactivated in CareCloud only. These skipasses are usually not sent to production systems. Deactivation have been done in system CareCloud
+                        description: Amount of sold entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud
                         example: 347489
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -14013,6 +14013,16 @@ components:
           readOnly: false
           description: Last name of the customer
           example: Smith
+        pre_nominals:
+          type: string
+          readOnly: false
+          description: 'Academic degrees, academic titles, other titles of customer placed before name'
+          example: Dr.
+        post_nominals:
+          type: string
+          readOnly: false
+          description: 'Academic degrees, academic titles, other titles of customer placed after name'
+          example: Ph.D
         birthdate:
           type: string
           format: date
@@ -15224,10 +15234,11 @@ components:
             - 0
             - 1
             - 2
+            - 4
           readOnly: false
           description: |
             The unique id of the reward group
-            *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher*
+            *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
           example: 0
         store_list:
           type: array
@@ -15465,19 +15476,28 @@ components:
         - language_id
         - allowed_gps
         - allowed_notifications
-    Skipass:
+    Entrance:
       type: object
-      description: Skipass structure
+      description: Entrance structure
       properties:
-        skipass_id:
+        entrance_id:
           type: string
           readOnly: false
-          description: The unique id of the skipass
+          description: The unique id of the entrance
           example: 80a7be2e78aabc1454ca817265
+        pos_id:
+          readOnly: false
+          description: 'Id of POS system for tickets. Required with path parameter entrance id *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
+          type: integer
+          enum:
+            - 3
+            - 6
+            - 9
+            - 11
         name:
           type: string
           readOnly: true
-          description: Name of the skipass
+          description: Name of the entrance
           example: 1 Dňový Skipas - Akcia 7.1. - 22.1.2015
         customer_id:
           type: string
@@ -15487,7 +15507,7 @@ components:
         resort_name:
           type: string
           readOnly: true
-          description: Name of the resort where is a skipass charged
+          description: Name of the resort where is an entrance charged
           example: null
         customer_category_name:
           type: string
@@ -15499,29 +15519,29 @@ components:
           readOnly: true
           description: Id of an external order creaded in POS system
           example: d03df0e0-959a-11e4-a6ce-0050569b002b
-        external_skipass_id:
+        external_entrance_id:
           type: string
           readOnly: true
-          description: 'External id of skipass. Structure can be different depends of POS system, that created skipass'
+          description: 'External id of the entrance. Structure can be different depends of POS system, that created entrance'
           example: 1-1760-61-107788
-        skipass_type_id:
+        entrance_type_id:
           type: integer
           enum:
             - 0
             - 1
             - 2
           readOnly: false
-          description: 'Type of the skipass *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*'
+          description: 'Type of the entrance *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*'
           example: 1
         order_item_id:
           type: string
           readOnly: true
-          description: Order id item represents relation between skipass and order item from carecloud e-shop
+          description: Order id item represents relation between entrance and order item from carecloud e-shop
           example: 84947e1aa1ad6982cc8188d15c
         card_id:
           type: string
           readOnly: false
-          description: Id of card used for charge skipasses
+          description: Id of card used for charge entrance
           example: 8c9fd120242ef646f477a5ed80
         created_at:
           type: string
@@ -15539,7 +15559,7 @@ components:
           readOnly: true
           description: Price charged to POS system
           example: null
-        product_id:
+        product_ids:
           type: string
           readOnly: true
           description: The unique id of the product
@@ -15547,17 +15567,17 @@ components:
         charge_date:
           type: string
           readOnly: true
-          description: 'Date and time when skipass will be charged to the POS system *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time when entrance will be charged to the POS system *(YYYY-MM-DD HH:MM:SS)*'
           example: '2015-01-10 00:00:00'
         valid_from:
           type: string
           readOnly: true
-          description: Date of the first day when customer can use skipass *(YYYY-MM-DD)*
+          description: Date of the first day when customer can use entrance *(YYYY-MM-DD)*
           example: null
         valid_to:
           type: string
           readOnly: true
-          description: Date of the last day when customer can use skipass *(YYYY-MM-DD)*
+          description: Date of the last day when customer can use entrance *(YYYY-MM-DD)*
           example: null
         last_change:
           type: string
@@ -15573,10 +15593,11 @@ components:
           description: 'State of the event type *Possible values are: 0 - cancelled / 1- active*'
           example: 1
       required:
-        - skipass_id
-        - skipass_type_id
+        - entrance_id
+        - entrance_type_id
         - card_id
         - state
+        - pos_id
     SocialNetworkCredentials:
       type: object
       description: Customer Social network credentials
@@ -17611,6 +17632,7 @@ components:
         type: array
         items:
           type: string
+      example: 8bed991c68a470e7aaeffbf048
     segment_group_name:
       name: name
       in: query
@@ -17619,10 +17641,10 @@ components:
       schema:
         type: string
       example: Badges
-    skipass_id_path:
-      name: skipass_id
+    entrance_id_path:
+      name: entrance_id
       in: path
-      description: The unique id of the skipass
+      description: The unique id of the charged entrance
       required: true
       schema:
         type: string
@@ -17631,10 +17653,11 @@ components:
       name: pos_id
       in: query
       required: false
-      description: 'Id of POS system for ski tickets. *Possible values are: skidata - 6 / axess - 9 / base - 11*'
+      description: 'Id of POS system for tickets. Required with path parameter entrance id *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
       schema:
         type: integer
         enum:
+          - 3
           - 6
           - 9
           - 11
@@ -17646,11 +17669,11 @@ components:
       schema:
         type: string
       example: null
-    skipass_name:
+    entrance_name:
       name: name
       in: query
       required: false
-      description: "name string\tName of the charged skipass (product name is used from resource products)"
+      description: Name of the charged entrance (product name is used from resource products)
       schema:
         type: string
       example: null
@@ -17658,7 +17681,7 @@ components:
       name: resort_name
       in: query
       required: false
-      description: "string\tName of the resort where is a skipass charged"
+      description: "string\tName of the resort where is an entrance charged"
       schema:
         type: string
       example: null
@@ -17670,20 +17693,20 @@ components:
       schema:
         type: string
       example: null
-    skipass_card_id:
+    entrance_card_id:
       name: card_id
       in: query
       required: false
-      description: Id of card used for charge skipasses
+      description: Id of card used for charging entrance
       schema:
         type: string
       example: 8c97533b621490a0b211419086
-    skipass_type_id:
-      name: skipass_type_id
+    entrance_type_id:
+      name: entrance_type_id
       in: query
       required: false
       description: |
-        Type of the skipass
+        Type of the entrance
         *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*
       schema:
         type: integer
@@ -17692,22 +17715,22 @@ components:
           - 1
           - 2
       example: 1
-    skipass_state:
+    entrance_state:
       name: state
       in: query
       required: false
-      description: 'State of the skipass *Possible values are: canceled skipass - 0 / valid skipass -1*'
+      description: 'State of the entrance *Possible values are: canceled entrance - 0 / valid entrance -1*'
       schema:
         type: integer
         enum:
           - 0
           - 1
       example: 1
-    external_skipass_id:
-      name: external_skipass_id
+    external_entrance_id:
+      name: external_entrance_id
       in: query
       required: false
-      description: 'External id of skipass. Structure can be different depends of POS system, that created skipass'
+      description: 'External id of the entrance. Structure can be different depends of POS system, that created entrance'
       schema:
         type: string
       example: null
@@ -17716,8 +17739,8 @@ components:
       in: query
       required: false
       description: |
-        Filter for canceled skipasses.
-        *Possible values: true - all cancelled skipasses / false - all non cancelled skipasses / no value - all skipasses*
+        Filter for canceled entrances.
+        *Possible values: true - all cancelled entrances / false - all non cancelled entrances / no value - all entrances*
       schema:
         type: boolean
         enum:

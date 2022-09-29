@@ -1,9 +1,9 @@
 get:
   tags:
-    - Skipasses
-  summary: Get all skipasses
-  description: Get a list of skipasses in CRM CareCloud
-  operationId: getSkipasses
+    - Charged entrances
+  summary: Get all entrances
+  description: Get a list of entrances in CRM CareCloud
+  operationId: getEntrances
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
@@ -12,14 +12,14 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/pos_id'
     - $ref: '../../parameters/_index.yaml#/external_order_id'
-    - $ref: '../../parameters/_index.yaml#/skipass_name'
+    - $ref: '../../parameters/_index.yaml#/entrance_name'
     - $ref: '../../parameters/_index.yaml#/resort_name'
     - $ref: '../../parameters/_index.yaml#/customer_category_name'
-    - $ref: '../../parameters/_index.yaml#/skipass_card_id'
+    - $ref: '../../parameters/_index.yaml#/entrance_card_id'
     - $ref: '../../parameters/_index.yaml#/customer_id'
-    - $ref: '../../parameters/_index.yaml#/skipass_type_id'
-    - $ref: '../../parameters/_index.yaml#/skipass_state'
-    - $ref: '../../parameters/_index.yaml#/external_skipass_id'
+    - $ref: '../../parameters/_index.yaml#/entrance_type_id'
+    - $ref: '../../parameters/_index.yaml#/entrance_state'
+    - $ref: '../../parameters/_index.yaml#/external_entrance_id'
     - $ref: '../../parameters/_index.yaml#/is_valid'
     - $ref: '../../parameters/_index.yaml#/is_cancelled'
   responses:
@@ -33,14 +33,14 @@ get:
               data:
                 type: object
                 properties:
-                  skipasses:
+                  entrances:
                     type: array
-                    description: List of available skipasses
+                    description: List of available entrances
                     items:
-                      $ref: '../../schemas/_index.yaml#/Skipass'
+                      $ref: '../../schemas/_index.yaml#/Entrance'
                   total_items:
                     type: integer
-                    description: Count of all found skipasses
+                    description: Count of all found entrances
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

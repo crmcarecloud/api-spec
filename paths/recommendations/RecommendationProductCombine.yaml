@@ -3,7 +3,7 @@ get:
     - Product recommendation engine
   summary: Get the best recommendation
   description: It selects the best products from an initial list for the customer. Eliminates all products that don't match future customer preferences (depends on his previous shopping behavior). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.
-  operationId: getRecommendationProductCombined
+  operationId: getRecommendationProductCombine
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/customer_id_required'
