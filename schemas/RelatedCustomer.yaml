@@ -1,6 +1,11 @@
 type: object
 description: Basic information about a relation between customers
 properties:
+  customer_relation_id:
+    type: string
+    readOnly: true
+    description: The unique id of the customer's relation
+    example: 8ea6abece4cd0ad0a2ce4cd0a4ded09
   related_customer_id:
     type: string
     readOnly: false

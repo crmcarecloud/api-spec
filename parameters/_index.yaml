@@ -660,7 +660,15 @@ customer_property_id_path:
   schema:
     type: string
   example: profession
-
+#Customer relation
+customer_relation_id_path:
+  name: customer_relation_id
+  in: path
+  description: The unique id of relation between two customers in CareCloud
+  required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaefff048
 # Customer relation type
 customer_relation_type_id_path:
   name: customer_relation_type_id

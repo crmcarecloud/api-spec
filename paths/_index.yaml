@@ -111,6 +111,8 @@
   $ref: "./customers/SubCustomerEvents.yaml"
 /customers/{customer_id}/related-customers:
   $ref: "./customers/SubCustomerRelatedCustomers.yaml"
+/customers/{customer_id}/related-customers/{customer_relation_id}:
+  $ref: "./customers/SubCustomerRelatedCustomer.yaml"
 # Actions
 /customers/actions/verify-credentials:
   $ref: "./customers/CustomerVerifyCredentials.yaml"

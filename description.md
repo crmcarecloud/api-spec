@@ -299,8 +299,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 }
 ```
 
-3. You will get a response containing the list of stores and their unique IDs.
-   Use the method [[POST] /customers](#operation/postCustomer) to create a customer account and set `store_id` as the registration branch of a customer account.
+3. Use the method [[POST] /customers](#operation/postCustomer) to create a customer account and set `store_id` as the registration branch of a customer account.
    </br>Header:
 ```http request
 POST <projectURL>/webservice/rest-api/customer-interface/v1.0/customers

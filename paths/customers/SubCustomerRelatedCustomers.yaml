@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Get information about all related customers
-  description: Get a list of related customers in CRM CareCloud
+  description: Get a list of customer relations in CRM CareCloud
   operationId: getSubCustomerRelatedCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -33,6 +33,56 @@ get:
                     type: integer
                     description: Count of all found related customers
                     example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+post:
+  tags:
+    - Customers
+  summary: Create a customer relation
+  description: Add a new customer relation the customer account
+  operationId: postSubCustomerRelatedCustomers
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            related_customer:
+              $ref: '../../schemas/_index.yaml#/RelatedCustomer'
+          required:
+            - related_customer
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  customer_relation_id:
+                    type: string
+                    description: The unique id of customer's relation
+                    example: 8aa2049ac2f84952014d96bb23
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':
