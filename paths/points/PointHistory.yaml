@@ -17,6 +17,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/time_to_full'
     - $ref: '../../parameters/_index.yaml#/point_operation_type'
     - $ref: '../../parameters/_index.yaml#/point_operation_note'
+    - $ref: '../../parameters/_index.yaml#/point_type_id'
 
   responses:
     '200':

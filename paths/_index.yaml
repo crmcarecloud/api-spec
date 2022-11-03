@@ -64,6 +64,22 @@
 # Countries
 /countries:
   $ref: "./countries/Countries.yaml"
+# Credits
+/credits:
+  $ref: "./credits/Credits.yaml"
+/credits/{credit_id}:
+  $ref: "./credits/Credit.yaml"
+# Sub-resources
+/credits/{credit_id}/purchases:
+  $ref: "./credits/SubCreditPurchases.yaml"
+#Credit history
+/credit-history:
+  $ref: "./credits/CreditHistory.yaml"
+# Credit types
+/credit-types:
+  $ref: "./credits/CreditTypes.yaml"
+/credit-types/{credit_type_id}:
+  $ref: "./credits/CreditType.yaml"
 
 # Currencies
 /currencies:

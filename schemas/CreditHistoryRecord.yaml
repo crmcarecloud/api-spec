@@ -1,5 +1,5 @@
 type: object
-description: Point history record
+description: Credit history record
 properties:
   customer_id:
     type: string
@@ -10,23 +10,18 @@ properties:
     type: number
     format: float
     readOnly: true
-    description: The number of points used in the point operation record
+    description: The number of credits used in the credit operation record
     example: 700
-  point_operation_type:
+  credit_operation_type:
     type: string
     readOnly: true
-    description: Type of the point operation record
+    description: Type of the credit operation record
     example: "Voucher purchase"
-  point_operation_note:
+  credit_operation_note:
     type: string
     readOnly: true
-    description: Note of the point operation record
+    description: Note of the credit operation record
     example: "Free one day parking"
-  point_type_id:
-    type: string
-    readOnly: false
-    description: Type of the point record
-    example: 86e05affc7a7abefcd513ab400
   partner_id:
     type: string
     readOnly: false
@@ -37,8 +32,8 @@ properties:
     readOnly: true
     description: The unique id of the store in CareCloud
     example: 86e05affc7a7abefcd513ab400
-  point_history_record_time:
+  credit_history_record_time:
     type: string
     readOnly: true
-    description: Date and time of the point record from the point history *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the credit record from the credit history *(YYYY-MM-DD HH:MM:SS)*
     example: '2012-11-22 20:57:04'

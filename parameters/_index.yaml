@@ -54,14 +54,16 @@ searchMode:
   description: |
     Mode of search results.
 
-    *Possible values are: strict - return only 100% matching results*
+    *Possible values are: strict - return only 100% matching results / none - return results in strict mode*
 
-    <p class="warning">⚠️ Caution: Strict mode makes all path parameters as required. For succesful result you have to set all parameters.</p>
+    <p class="warning">⚠️ Caution: Strict mode makes all query parameters as required. For a successful result, you have to set all parameters.</p>
+    <p class="warning">⚠️ Caution: Currently, the whole resource is returning results only in strict mode.</p>
   required: false
   schema:
     type: string
     enum:
       - strict
+      - none
   example: strict
 is_valid:
   name: is_valid
@@ -369,6 +371,66 @@ booking_status:
     type: string
   description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)
   example: a820c6a820c62c79b2c79b
+# Credits
+credit_id_path:
+  name: credit_id
+  in: path
+  description: The unique id of the credit record
+  required: true
+  schema:
+    type: string
+  example: 8bcd4f6d0e1432tfc472632e1d
+credit_type_id_path:
+  name: credit_type_id
+  in: path
+  description: The unique id of a credit type
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+credit_type_id:
+  name: credit_type_id
+  in: query
+  description: The unique id of a credit type
+  required: false
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
+create_credit_time_from:
+  name: create_credit_time_from
+  in: query
+  description: Date and time from of the create credit record *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "2015-01-05 1:00:00"
+create_credit_time_to:
+  name: create_credit_time_to
+  in: query
+  description: Date and time to of the create credit record *(YYYY-MM-DD HH:MM:SS)*
+  required: false
+  schema:
+    type: string
+  allowReserved: true
+  example: "2020-01-05 1:00:00"
+credit_operation_type:
+  name: credit_operation_type
+  in: query
+  description: 'Search record by the operation type name or a part of the operation type name'
+  required: false
+  schema:
+    type: string
+  example: "Voucher purch"
+credit_operation_note:
+  name: credit_operation_note
+  in: query
+  description: 'Search record by the operation note or a part of the operation note'
+  required: false
+  schema:
+    type: string
+  example: "Free one day"
+
 # Customer parameters
 customer_id_path:
   name: customer_id
@@ -624,7 +686,7 @@ reward_group:
 without_stores:
   name: without_stores
   in: query
-  description: If true, the data will not contain information about business units (stores). If false, or not set resource returns default strucutre.
+  description: If true, the data will not contain information about business units (stores). If false, or not set resource returns default strucuture.
   required: false
   schema:
     type: boolean

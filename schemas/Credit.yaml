@@ -1,0 +1,55 @@
+type: object
+description: Customer's credit
+properties:
+  credit_id:
+    type: string
+    readOnly: true
+    description: The unique id for the credit record
+    example: 84cae7e5cbba16e31b0fc5ef1c
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique id for the customer.
+    example: 81ceb8582e28dbb7e71b7273b
+  assigned_credits:
+    type: number
+    format: float
+    readOnly: true
+    description: The number of earned credits in the record
+    example: 1208
+  available_credits:
+    type: number
+    format: float
+    readOnly: true
+    description: The number of avalilable credits from the record
+    example: 700
+  credit_type_id:
+    type: string
+    readOnly: false
+    description: Type of the credit record
+    example: 86e05affc7a7abefcd513ab400
+  partner_id:
+    type: string
+    readOnly: false
+    description: The unique id for the partner company
+    example: 86e05affc7a7abefcd513ab400
+  valid_to:
+    type: string
+    readOnly: false
+    description: Date and time of the credit record validity to *(YYYY-MM-DD HH:MM:SS)*
+    example:
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the credit record
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - customer_id
+  - credit_type_id
+  - partner_id

@@ -1,17 +1,22 @@
 get:
   tags:
-    - Customers
-  summary: Get all customer point records
-  description: Get information about all customer point records.
-  operationId: getSubCustomerPoints
+    - Credits
+  summary: Get a collection of purchases
+  description: Get information about all purchases by credit resource
+  operationId: getSubCreditPurchases
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+    - $ref: '../../parameters/_index.yaml#/credit_id_path'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/point_type_id'
+    - $ref: '../../parameters/_index.yaml#/store_id'
+    - $ref: '../../parameters/_index.yaml#/customer_id'
+    - $ref: '../../parameters/_index.yaml#/purchase_type_id'
+    - $ref: '../../parameters/_index.yaml#/payment_time_from'
+    - $ref: '../../parameters/_index.yaml#/payment_time_to'
+    - $ref: '../../parameters/_index.yaml#/purchase_items_extension'
   responses:
     '200':
       description: OK
@@ -23,14 +28,14 @@ get:
               data:
                 type: object
                 properties:
-                  points:
+                  purchases:
                     type: array
-                    description: List of the point records
+                    description: List of purchases
                     items:
-                      $ref: '../../schemas/_index.yaml#/Point'
+                      $ref: '../../schemas/_index.yaml#/Purchase'
                   total_items:
                     type: integer
-                    description: Count of all found point records
+                    description: Count of all found purchases
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

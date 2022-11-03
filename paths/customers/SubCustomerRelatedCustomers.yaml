@@ -57,6 +57,7 @@ post:
   operationId: postSubCustomerRelatedCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
   requestBody:
     required: true
     content:

@@ -22,7 +22,7 @@ get:
               data:
                 type: object
                 properties:
-                  event-properties:
+                  event_properties:
                     type: array
                     description: List of event properties
                     items:

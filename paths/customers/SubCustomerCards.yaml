@@ -11,7 +11,6 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/customer_id'
     - $ref: '../../parameters/_index.yaml#/card_number'
     - $ref: '../../parameters/_index.yaml#/card_type_id'
     - $ref: '../../parameters/_index.yaml#/is_valid'

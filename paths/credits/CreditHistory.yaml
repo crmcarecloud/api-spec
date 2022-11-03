@@ -1,17 +1,23 @@
 get:
   tags:
-    - Customers
-  summary: Get all customer point records
-  description: Get information about all customer point records.
-  operationId: getSubCustomerPoints
+    - Credit history
+  summary: Get credit transaction history
+  description: Get a list of credit transactions of the customer
+  operationId: getCreditHistory
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/customer_id_path'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/point_type_id'
+    - $ref: '../../parameters/_index.yaml#/customer_id_required'
+    - $ref: '../../parameters/_index.yaml#/store_id'
+    - $ref: '../../parameters/_index.yaml#/partner_id'
+    - $ref: '../../parameters/_index.yaml#/time_from_full'
+    - $ref: '../../parameters/_index.yaml#/time_to_full'
+    - $ref: '../../parameters/_index.yaml#/credit_operation_type'
+    - $ref: '../../parameters/_index.yaml#/credit_operation_note'
+
   responses:
     '200':
       description: OK
@@ -23,14 +29,14 @@ get:
               data:
                 type: object
                 properties:
-                  points:
+                  credit_history:
                     type: array
-                    description: List of the point records
+                    description: List of the credit history records
                     items:
-                      $ref: '../../schemas/_index.yaml#/Point'
+                      $ref: '../../schemas/_index.yaml#/CreditHistoryRecord'
                   total_items:
                     type: integer
-                    description: Count of all found point records
+                    description: Count of all found credit history records
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

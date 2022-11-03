@@ -1,17 +1,15 @@
 get:
   tags:
-    - Customers
-  summary: Get all customer point records
-  description: Get information about all customer point records.
-  operationId: getSubCustomerPoints
+    - Credit types
+  summary: Get all credit types
+  description: Get a list of all credit types
+  operationId: getCreditTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/customer_id_path'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/point_type_id'
   responses:
     '200':
       description: OK
@@ -23,14 +21,14 @@ get:
               data:
                 type: object
                 properties:
-                  points:
+                  credit_types:
                     type: array
-                    description: List of the point records
+                    description: List of the credit types
                     items:
-                      $ref: '../../schemas/_index.yaml#/Point'
+                      $ref: '../../schemas/_index.yaml#/CreditType'
                   total_items:
                     type: integer
-                    description: Count of all found point records
+                    description: Count of all found credit types
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

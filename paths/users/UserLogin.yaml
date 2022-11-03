@@ -46,6 +46,8 @@ post:
                     type: string
                     description: Date and time (local time zone of the project) of the token validity   *(YYYY-MM-DD HH:MM:SS)*
                     example: '2019-01-04 10:31:56'
+                  user:
+                    $ref: '../../schemas/_index.yaml#/User'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '403':

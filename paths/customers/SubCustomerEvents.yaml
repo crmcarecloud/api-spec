@@ -24,7 +24,7 @@ get:
               data:
                 type: object
                 properties:
-                  events:
+                  customer_events:
                     type: array
                     description: Collection of all events
                     items:

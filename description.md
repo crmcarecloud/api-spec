@@ -55,17 +55,18 @@ Every API call has the following parameters:
 -   Request body - contains structures for methods POST, PUT
 -   Response body - contains all result data (resources or error information) in  standard response structure
 
-### HTTPS Methods
+### HTTPS Verbs
 
-REST API is available only through the secure protocol HTTPS. CRM CareCloud REST API uses selection of the basic HTTP methods:
-
-Make a `GET ` request to retrieve data depending on URI and query string
-
-`POST ` is used to create new resources, we use it also for some action calls
-
-`PUT` method is used to update a resource specified by the unique id
-
-Method `DELETE` removes a resource specified by the unique id. This method is provided just by some specific resources.
+REST API is available only through the secure protocol HTTPS. CRM CareCloud REST API supports the following selection of HTTP verbs:
+- Make a `GET ` request to retrieve data depending on URI and query string <br>
+  Read more about GET here: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-get">RFC9110</a>
+- `POST ` is used to create new resource/resources, and CareCloud API uses the POST verb for action methods calls.
+  Read more about POST here: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-get">RFC9110</a>
+- `PUT` method is used to update an entire resource record specified by his unique ID.
+<p class="warning">Be Careful if you use the PUT method. You must update the entire resource record because you are updating the origin representation. Parameters that you skipped will be deleted in that record.<br/>
+Read more about PUT here: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-put">RFC9110</a><p>
+- Use the `DELETE` verb to remove a resource specified by the unique ID. This verb is used only by some resources.
+  Read more here: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-get">RFC9110</a>
 
 ### API versioning
 
