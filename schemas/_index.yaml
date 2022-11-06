@@ -32,6 +32,8 @@ CardType:
   $ref: "./CardType.yaml"
 CashierMessage:
   $ref: "./CashierMessage.yaml"
+CommunicationChannel:
+  $ref: "./CommunicationChannel.yaml"
 Credit:
   $ref: "./Credit.yaml"
 CreditHistoryRecord:

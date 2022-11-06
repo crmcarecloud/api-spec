@@ -1,7 +1,7 @@
 get:
   tags:
     - Event types
-  summary: Get a event type
+  summary: Get an event type
   description: Get information about a specific event type.
   operationId: getEventType
   parameters:

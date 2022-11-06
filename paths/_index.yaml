@@ -61,6 +61,12 @@
 /card-types/{card_type_id}/cards:
   $ref: "./cards/SubCardTypeCards.yaml"
 
+# Communication channels
+/communication-channels:
+  $ref: "./communication_channels/CommunicationChannels.yaml"
+/communication-channels/{communication_channel_id}:
+  $ref: "./communication_channels/CommunicationChannel.yaml"
+
 # Countries
 /countries:
   $ref: "./countries/Countries.yaml"

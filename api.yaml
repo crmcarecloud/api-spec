@@ -33,8 +33,16 @@ tags:
     description: Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
   - name: Charged entrances
     description: Customized resource cointains tickets charged in external production systems
+  - name: Communication channels
+    description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
   - name: Countries
     description: Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.
+  - name: Credits
+    description: Resource represents all credit records.
+  - name: Credit history
+    description: Resource represents credit operations history.
+  - name: Credit types
+    description: Credit can have multiple types. This resource contain all types of credit available in API.
   - name: Currencies
     description: Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.
   - name: Customers

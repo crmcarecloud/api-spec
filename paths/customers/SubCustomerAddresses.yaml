@@ -1,7 +1,7 @@
 get:
   tags:
     - Customers
-  summary: Get all additional customer adresses
+  summary: Get all additional customer addresses
   description: Get information about all customer addresses.
   operationId: getSubCustomerAddresses
   parameters:

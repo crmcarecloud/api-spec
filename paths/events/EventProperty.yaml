@@ -1,7 +1,7 @@
 get:
   tags:
     - Event properties
-  summary: Get a event property
+  summary: Get an event property
   description: Get information about a specific event property
   operationId: getEventProperty
   parameters:

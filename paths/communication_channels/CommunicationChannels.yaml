@@ -1,12 +1,11 @@
 get:
   tags:
-    - Event groups
-  summary: Get an event group
-  description: Get information about a specific event group.
-  operationId: getEventGroup
+    - Communication channels
+  summary: Get all communication channels
+  description: Get a list of communication channels accepted in CRM CareCloud
+  operationId: getCommunicationChannels
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/event_group_id_path'
   responses:
     '200':
       description: OK
@@ -16,7 +15,17 @@ get:
             type: object
             properties:
               data:
-                $ref: '../../schemas/_index.yaml#/EventGroup'
+                type: object
+                properties:
+                  communication_channels:
+                    type: array
+                    description: Structure of the communication channel
+                    items:
+                      $ref: '../../schemas/_index.yaml#/CommunicationChannel'
+                  total_items:
+                    type: integer
+                    description: Total count of found items of the resource communication channels
+                    example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

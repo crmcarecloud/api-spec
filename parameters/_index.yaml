@@ -371,6 +371,15 @@ booking_status:
     type: string
   description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)
   example: a820c6a820c62c79b2c79b
+#Communication channel
+communication_channel_id_path:
+  name: communication_channel_id
+  in: path
+  description: The unique id of the communication channel
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
 # Credits
 credit_id_path:
   name: credit_id
@@ -910,7 +919,7 @@ contact:
 communication_channel_id:
   name: communication_channel_id
   in: query
-  description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+  description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification/ 9 - Viber messages*"
   required: false
   schema:
     type: integer
@@ -919,6 +928,7 @@ communication_channel_id:
       - 2
       - 4
       - 5
+      - 9
   example: 1
 send_time_from:
   name: send_time_from

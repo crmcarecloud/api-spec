@@ -1,28 +1,22 @@
-post:
+get:
   tags:
-    - Point reservation
-  summary: Free points from reservation
-  description: Release reserved points.
-  operationId: postPointReservationRelease
+    - Communication channels
+  summary: Detail of a communication channel
+  description: Get information about a specific communication channel
+  operationId: getCommunicationChannel
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            external_id:
-              type: string
-              description: The external id of the point reservation.
-              example: '123455'
-          required:
-            - external_id
-
+    - $ref: '../../parameters/_index.yaml#/communication_channel_id_path'
   responses:
-    '204':
-      description: No Content
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/CommunicationChannel'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

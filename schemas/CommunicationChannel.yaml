@@ -1,0 +1,22 @@
+type: object
+description: Communication channel resource
+properties:
+  communication_channel_id:
+    type: string
+    readOnly: true
+    description: The unique id of the communication channel
+    example: 86e05affc7a7abefcd513ab400
+  name:
+    type: string
+    readOnly: false
+    description: Name of the communication channel
+    example: Viber
+  text_id:
+    type: string
+    readOnly: false
+    description: Text representation of communication channel ID
+    example: viber
+required:
+  - currency_id
+  - name
+  - text_id
