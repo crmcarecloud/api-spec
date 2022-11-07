@@ -32,8 +32,16 @@ tags:
     description: 'Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.'
   - name: Charged entrances
     description: Customized resource cointains tickets charged in external production systems
+  - name: Communication channels
+    description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
   - name: Countries
     description: 'Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.'
+  - name: Credits
+    description: Resource represents all credit records.
+  - name: Credit history
+    description: Resource represents credit operations history.
+  - name: Credit types
+    description: Credit can have multiple types. This resource contain all types of credit available in API.
   - name: Currencies
     description: 'Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.'
   - name: Customers
@@ -1664,6 +1672,87 @@ paths:
                         type: integer
                         description: Count of all found cards
                         example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /communication-channels:
+    get:
+      tags:
+        - Communication channels
+      summary: Get all communication channels
+      description: Get a list of communication channels accepted in CRM CareCloud
+      operationId: getCommunicationChannels
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      communication_channels:
+                        type: array
+                        description: Structure of the communication channel
+                        items:
+                          $ref: '#/components/schemas/CommunicationChannel'
+                      total_items:
+                        type: integer
+                        description: Total count of found items of the resource communication channels
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/communication-channels/{communication_channel_id}':
+    get:
+      tags:
+        - Communication channels
+      summary: Detail of a communication channel
+      description: Get information about a specific communication channel
+      operationId: getCommunicationChannel
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/communication_channel_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CommunicationChannel'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3338,7 +3427,7 @@ paths:
     get:
       tags:
         - Customers
-      summary: Get all additional customer adresses
+      summary: Get all additional customer addresses
       description: Get information about all customer addresses.
       operationId: getSubCustomerAddresses
       parameters:
@@ -4778,7 +4867,7 @@ paths:
     get:
       tags:
         - Event groups
-      summary: Get a event group
+      summary: Get an event group
       description: Get information about a specific event group.
       operationId: getEventGroup
       parameters:
@@ -4864,7 +4953,7 @@ paths:
     get:
       tags:
         - Event properties
-      summary: Get a event property
+      summary: Get an event property
       description: Get information about a specific event property
       operationId: getEventProperty
       parameters:
@@ -4950,7 +5039,7 @@ paths:
     get:
       tags:
         - Event types
-      summary: Get a event type
+      summary: Get an event type
       description: Get information about a specific event type.
       operationId: getEventType
       parameters:
@@ -6308,7 +6397,7 @@ paths:
     post:
       tags:
         - Point reservation
-      summary: Free points from reserevation
+      summary: Free points from reservation
       description: Release reserved points.
       operationId: postPointReservationRelease
       parameters:
@@ -13184,6 +13273,29 @@ components:
           readOnly: true
           description: Text of the message
           example: null
+    CommunicationChannel:
+      type: object
+      description: Communication channel resource
+      properties:
+        communication_channel_id:
+          type: string
+          readOnly: true
+          description: The unique id of the communication channel
+          example: 86e05affc7a7abefcd513ab400
+        name:
+          type: string
+          readOnly: false
+          description: Name of the communication channel
+          example: Viber
+        text_id:
+          type: string
+          readOnly: false
+          description: Text representation of communication channel ID
+          example: viber
+      required:
+        - currency_id
+        - name
+        - text_id
     Credit:
       type: object
       description: Customer's credit
@@ -14140,8 +14252,9 @@ components:
             - 2
             - 4
             - 5
+            - 9
           readOnly: true
-          description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*'
+          description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*'
           example: 1
         template_data:
           type: array
@@ -17376,6 +17489,14 @@ components:
         type: string
       description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)'
       example: a820c6a820c62c79b2c79b
+    communication_channel_id_path:
+      name: communication_channel_id
+      in: path
+      description: The unique id of the communication channel
+      required: true
+      schema:
+        type: string
+      example: 86e05affc7a7abefcd513ab400
     credit_id_path:
       name: credit_id
       in: path
@@ -17887,7 +18008,7 @@ components:
     communication_channel_id:
       name: communication_channel_id
       in: query
-      description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*'
+      description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification/ 9 - Viber messages*'
       required: false
       schema:
         type: integer
@@ -17896,6 +18017,7 @@ components:
           - 2
           - 4
           - 5
+          - 9
       example: 1
     send_time_from:
       name: send_time_from
