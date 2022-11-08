@@ -51,7 +51,7 @@ get:
         $accept_language = 'cs'; // string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id     = '87af991126405bf8e7dfb36045'; // string | The unique id for the customer
+        $customer_id     = '87af991126405bf8e7dfb36045'; // string | The unique id of the customer
 
         // Call endpoint and get data
         try {
@@ -79,7 +79,7 @@ get:
             new GuzzleHttp\Client(),
             $config
         );
-        $customer_id = "87af991126405bf8e7dfb36045"; // string | The unique id for the customer
+        $customer_id = "87af991126405bf8e7dfb36045"; // string | The unique id of the customer
         $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
 
         try {
@@ -161,7 +161,7 @@ put:
         $accept_language = 'cs'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id     = '87af991126405bf8e7dfb36045'; // string | The unique id for the customer
+        $customer_id     = '87af991126405bf8e7dfb36045'; // string | The unique id of the customer
 
         // Set address of customer
         $address = new Address();
@@ -200,8 +200,8 @@ put:
                              ->setBirthdate('1985-02-12') // string <date> | Customer's date of birth (YYYY-MM-DD)
                              ->setEmail('happy_customer@crmcarecloud.com') // string | Email of the customer
                              ->setPhone('420523828931') // string | Phone number of the customer with international prefix (420000000000)
-                             ->setLanguageId('cs') // string | The unique id for the language by ISO 639-1 code
-                             ->setStoreId('8bed991c68a4') // string | The unique id for the original customer account store of registration
+                             ->setLanguageId('cs') // string | The unique id of the language by ISO 639-1 code
+                             ->setStoreId('8bed991c68a4') // string | The unique id of the original customer account store of registration
                              ->setPhotoUrl(null) // string | URL address of the customer photo. If customer has no photo, this parameter is not send
                              ->setAddress($address)
                              ->setAgreement($agreement);
@@ -246,7 +246,7 @@ put:
             $config
         );
         $body = new \CareCloud\Model\CustomersCustomerIdBody(); // \CareCloud\Model\CustomersCustomerIdBody |
-        $customer_id = "customer_id_example"; // string | The unique id for the customer
+        $customer_id = "customer_id_example"; // string | The unique id of the customer
         $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
 
         try {

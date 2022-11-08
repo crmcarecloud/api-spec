@@ -23,7 +23,7 @@ post:
               example: '1000'
             customer_id:
               type: string
-              description: The unique id for the customer.
+              description: The unique id of the customer.
               example: '81ceb8582e28dbb7e71b7273b'
             partner_id:
               type: string

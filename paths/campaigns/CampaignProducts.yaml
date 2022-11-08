@@ -87,7 +87,7 @@ post:
                 properties:
                   campaign_product_id:
                     type: string
-                    description: The unique id for the campaign product
+                    description: The unique id of the campaign product
                     example: 8bed991c68a470e7aaeff
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

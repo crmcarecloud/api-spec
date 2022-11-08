@@ -1213,7 +1213,7 @@ purchase_items_extension:
 recommendation_id_path:
   name: recommendation_id
   in: path
-  description: The unique id for a recommendation
+  description: The unique id of a recommendation
   required: true
   schema:
     type: string

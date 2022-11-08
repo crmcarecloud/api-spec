@@ -9,7 +9,7 @@ properties:
   text_id:
     type: string
     readOnly: false
-    description: The unique id for the flag
+    description: The unique id of the flag
     example:
 required:
   - name

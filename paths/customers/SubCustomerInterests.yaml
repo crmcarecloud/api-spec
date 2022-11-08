@@ -76,7 +76,7 @@ post:
                 properties:
                   interest_record_id:
                     type: string
-                    description: The unique id for the interest record
+                    description: The unique id of the interest record
                     example: 87d934c86a6303f5fb4d1214fb
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

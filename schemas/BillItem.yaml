@@ -6,7 +6,7 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PluId'
     readOnly: false
-    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id for every product across all POS systems))
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id of every product across all POS systems))
   plu_name:
     type: string
     readOnly: false
@@ -15,7 +15,7 @@ properties:
   category_plu_id:
     type: string
     readOnly: false
-    description: Product category ID from Global product list (consist cleaned data - unique id for every category across all POS systems)
+    description: Product category ID from Global product list (consist cleaned data - unique id of every category across all POS systems)
     example: 8fbea1c1ea8edda5e67f27Q
   vat_rate:
     type: number

@@ -4,7 +4,7 @@ properties:
   card_type_id:
     type: string
     readOnly: true
-    description: The unique id for the card type.
+    description: The unique id of the card type.
     example: "8fd17bf437555cf56a6ecf05fc"
   name:
     type: string

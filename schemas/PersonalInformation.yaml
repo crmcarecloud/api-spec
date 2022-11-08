@@ -55,12 +55,12 @@ properties:
   language_id:
     type: string
     readOnly: false
-    description: The unique id for the language by ISO 639-1 code
+    description: The unique id of the language by ISO 639-1 code
     example: en
   store_id:
     type: string
     readOnly: false
-    description: The unique id for the original customer account store of registration
+    description: The unique id of the original customer account store of registration
     example: 8bed991c68a4
   photo_url:
     type: string

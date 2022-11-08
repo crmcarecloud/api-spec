@@ -4,17 +4,17 @@ properties:
   card_id:
     type: string
     readOnly: true
-    description: The unique id for the card
+    description: The unique id of the card
     example: 81a94c48474bc45c03d41f7016
   customer_id:
     type: string
     readOnly: false
-    description: The unique id for the card holder.
+    description: The unique id of the card holder.
     example: 81ceb8582e2d8dbb7e71b7273b
   card_type_id:
     type: string
     readOnly: false
-    description: The unique id for the card type.
+    description: The unique id of the card type.
     example: 8bed991c68a470e7aaeffbf048
   card_number:
     type: string
@@ -34,7 +34,7 @@ properties:
   store_id:
     type: string
     readOnly: false
-    description: The unique id for the store, where the card was assigned to a customer
+    description: The unique id of the store, where the card was assigned to a customer
     example:
   last_change:
     type: string

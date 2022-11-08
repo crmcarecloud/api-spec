@@ -4,22 +4,22 @@ properties:
   campaign_product_id:
     type: string
     readOnly: true
-    description: The unique id for the campaign product
+    description: The unique id of the campaign product
     example: 8bed991c68a470e7aaeff
   product_id:
     type: string
     readOnly: false
-    description: The unique id for the product
+    description: The unique id of the product
     example: 80bfce6e94829c8df40
   currency_id:
     type: string
     readOnly: false
-    description: The unique id for the currency
+    description: The unique id of the currency
     example: 86e05affc7a7abefc
   campaign_id:
     type: string
     readOnly: false
-    description: The unique id for the campaign
+    description: The unique id of the campaign
     example: 8bed991c68a470e7aaeffbf048
   value:
     type: number

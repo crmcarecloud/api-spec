@@ -4,7 +4,7 @@ properties:
   campaign_product_store_record_id:
     type: string
     readOnly: true
-    description: The unique id for the campaing product store record.
+    description: The unique id of the campaign product store record.
     example: 88c774183f5c3e413b3ba570f8
   store_id:
     type: string

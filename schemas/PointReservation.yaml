@@ -9,7 +9,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique id for the customer.
+    description: The unique id of the customer.
     example: 81ceb8582e28dbb7e71b7273b
   external_id:
     type: string
@@ -25,7 +25,7 @@ properties:
   partner_id:
     type: string
     readOnly: false
-    description: The unique id for the partner company
+    description: The unique id of the partner company
     example: 86e05affc7a7abefcd513ab400
   state:
     type: integer

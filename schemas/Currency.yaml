@@ -4,7 +4,7 @@ properties:
   currency_id:
     type: string
     readOnly: true
-    description: The unique id for the currency
+    description: The unique id of the currency
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string

@@ -21,7 +21,7 @@ post:
             customer_id:
               type: string
               readOnly: false
-              description: The unique id for the customer.
+              description: The unique id of the customer.
               example: 81ceb8582e28dbb7e71b7273b
             amount:
               type: number

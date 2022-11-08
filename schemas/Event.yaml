@@ -14,7 +14,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique id for the card holder.
+    description: The unique id of the card holder.
     example: 81ceb8582e2d8dbb7e71b7273b
   external_id:
     type: string

@@ -21,31 +21,31 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PluId'
     readOnly: false
-    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id for every product across all POS systems))
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id of every product across all POS systems))
   product_group_id:
     type: string
     readOnly: false
-    description: The unique id for the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.
+    description: The unique id of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.
     example: '85cfc89601efa1ba2c2aa3b6a0'
   product_group_external_id:
     type: string
     readOnly: false
-    description: The unique external id for the product group. If `product_group_id` is also set, both parameters have to represent the same product group.
+    description: The unique external id of the product group. If `product_group_id` is also set, both parameters have to represent the same product group.
     example: '23'
   product_brand_id:
     type: string
     readOnly: false
-    description: The unique id for the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.
+    description: The unique id of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.
     example: '1efa11efa1b2efa1ba2c2aa3ba2'
   product_brand_external_id:
     type: string
     readOnly: false
-    description: The unique external id for the product brand. If `product_brand_id` is also set, both parameters have to represent the same product brand.
+    description: The unique external id of the product brand. If `product_brand_id` is also set, both parameters have to represent the same product brand.
     example: '71'
   store_id:
     type: string
     readOnly: false
-    description: The unique id for the store where the product group is valid. The product group is global if this value is not set
+    description: The unique id of the store where the product group is valid. The product group is global if this value is not set
     example: '83d1d11ea3884a5d33253fe214'
 required:
   - name

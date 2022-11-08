@@ -4,7 +4,7 @@ properties:
   interest_id:
     type: string
     readOnly: true
-    description: The unique id for the interest
+    description: The unique id of the interest
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string

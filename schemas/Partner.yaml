@@ -18,12 +18,12 @@ properties:
   registration_id:
     type: string
     readOnly: false
-    description: Company registration number. National Registration unique id for the company.
+    description: Company registration number. National Registration unique id of the company.
     example: '123456789'
   vat_id:
     type: string
     readOnly: false
-    description: VAT registration number. Value Added Tax unique id for the company.
+    description: VAT registration number. Value Added Tax unique id of the company.
     example: '123456789'
   email:
     type: string

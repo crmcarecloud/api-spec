@@ -16,7 +16,7 @@ post:
           properties:
             customer_id:
               type: string
-              description: The unique id for the customer
+              description: The unique id of the customer
               example: 89ac83ca207a820c62c79bf03a
           required:
             - customer_id

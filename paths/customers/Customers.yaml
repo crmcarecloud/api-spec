@@ -123,8 +123,8 @@ post:
                              ->setBirthdate('1985-02-12') // string <date> | Customer's date of birth (YYYY-MM-DD)
                              ->setEmail('happy_customer@crmcarecloud.com') // string | Email of the customer
                              ->setPhone('420523828931') // string | Phone number of the customer with international prefix (420000000000)
-                             ->setLanguageId('cs') // string | The unique id for the language by ISO 639 code
-                             ->setStoreId('8bed991c68a4') // string | The unique id for the original customer account store of registration
+                             ->setLanguageId('cs') // string | The unique id of the language by ISO 639 code
+                             ->setStoreId('8bed991c68a4') // string | The unique id of the original customer account store of registration
                              ->setPhotoUrl(null) // string | URL address of the customer photo. If customer has no photo, this parameter is not send
                              ->setAddress($address)
                              ->setAgreement($agreement);

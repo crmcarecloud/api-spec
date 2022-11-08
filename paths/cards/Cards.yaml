@@ -83,7 +83,7 @@ post:
                 properties:
                   card_id:
                     type: string
-                    description: The unique id for the card
+                    description: The unique id of the card
                     example: 81a94c48474bc45c03d41f7016
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

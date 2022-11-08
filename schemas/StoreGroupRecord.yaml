@@ -4,7 +4,7 @@ properties:
   store_group_record_id:
     type: string
     readOnly: true
-    description: The unique id for the store group record.
+    description: The unique id of the store group record.
     example: '83d1d11ea3884a5d33253fe214'
   store_id:
     type: string

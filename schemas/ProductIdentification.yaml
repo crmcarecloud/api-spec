@@ -11,4 +11,4 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PluId'
     readOnly: false
-    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id for every product across all POS systems)).
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id of every product across all POS systems)).
