@@ -5439,6 +5439,7 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/communication_channel_id'
       responses:
         '200':
           description: OK
@@ -9039,7 +9040,7 @@ paths:
                   data:
                     type: object
                     properties:
-                      reward_properties:
+                      rewards_properties:
                         type: array
                         description: List of all reward properties
                         items:
@@ -18012,17 +18013,11 @@ components:
     communication_channel_id:
       name: communication_channel_id
       in: query
-      description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification/ 9 - Viber messages*'
+      description: 'The unique id of the communication channel. List of values is available in resource [GET /communication-channels](/#tag/Communication-channels)'
       required: false
       schema:
-        type: integer
-        enum:
-          - 1
-          - 2
-          - 4
-          - 5
-          - 9
-      example: 1
+        type: string
+      example: 86e05affc7a7abefcd513ab400
     send_time_from:
       name: send_time_from
       in: query

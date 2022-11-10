@@ -22,7 +22,7 @@ get:
               data:
                 type: object
                 properties:
-                  reward_properties:
+                  rewards_properties:
                     type: array
                     description: List of all reward properties
                     items:
