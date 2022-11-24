@@ -10,10 +10,11 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/reservation_code'
     - $ref: '../../parameters/_index.yaml#/customer_id'
     - $ref: '../../parameters/_index.yaml#/store_id'
     - $ref: '../../parameters/_index.yaml#/reservation_state'
+    - $ref: '../../parameters/_index.yaml#/external_reservation_list_type_id'
+    - $ref: '../../parameters/_index.yaml#/external_reservation_code'
   responses:
     '200':
       description: OK

@@ -54,6 +54,11 @@ properties:
       The unique id of the reward group
       *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
     example: 0
+  reward_type_id:
+    type: string
+    readOnly: true
+    description: "The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others."
+    example: 8fdd651ff3f615bcebebad87ce
   store_list:
     type: array
     items:

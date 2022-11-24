@@ -8,6 +8,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/valid_from'
     - $ref: '../../parameters/_index.yaml#/valid_to'
+    - $ref: '../../parameters/_index.yaml#/pos_id'
   responses:
     '200':
       description: OK

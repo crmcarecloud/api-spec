@@ -664,6 +664,22 @@ reward_code:
     type: string
   allowReserved: true
   example:
+reward_type_id:
+  name: reward_type_id
+  in: query
+  description: "The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others."
+  required: false
+  schema:
+    type: string
+  example: 8aa2049ac2f84952014d96bb23
+reward_type_id_path:
+  name: reward_type_id
+  in: path
+  description: The unique id of the reward
+  required: true
+  schema:
+    type: string
+  example:
 is_automated:
   name: is_automated
   in: query
@@ -1127,14 +1143,30 @@ external_type_code:
   schema:
     type: string
     default: GLOBAL
-reservation_code:
-  name: reservation_code
+external_reservation_code:
+  name: external_reservation_code
   in: query
-  description: Code of the reservation
+  description: Code of the reservation from external system (cashdesk, webshop, production system, others). If set, `external_reservation_list_type_id` has to be present in request too
   required: false
   schema:
     type: string
-  example: 10
+  example: XYSD78TFDA
+external_reservation_list_type_id:
+  name: external_reservation_list_type_id
+  in: query
+  description: Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.
+  required: false
+  schema:
+    type: string
+    example: "8bc3btbb6f14765b3025cea06c"
+product_reservation_external_list_type_id_path:
+  name: product_reservation_external_list_type_id
+  in: path
+  description: Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose.
+  required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
 reservation_state:
   name: reservation_state
   in: query

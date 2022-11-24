@@ -115,6 +115,8 @@ tags:
     description: 'There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.'
   - name: Product reservations
     description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
+  - name: Product reservation external list types
+    description: You can get the list of the available product reservation external list types here.
   - name: Product reservation sources
     description: You can get the list of the available product reservation sources here.
   - name: Purchases
@@ -129,6 +131,8 @@ tags:
     description: 'Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.'
   - name: Reward properties
     description: Reward properties are list of the available properties for the rewards resource.
+  - name: Reward types
+    description: Reward types represent list of all rewards types available in CareCloud.
   - name: Segments
     description: 'Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.'
   - name: Statuses
@@ -2234,6 +2238,11 @@ paths:
                   description: 'If true, password is required and customer is logged in. Otherwise password is optional'
                 social_network_credentials:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
+                property_records:
+                  type: array
+                  description: List of an customer property records
+                  items:
+                    $ref: '#/components/schemas/PropertyRecord'
               required:
                 - customer
                 - customer_source
@@ -7012,10 +7021,11 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
-        - $ref: '#/components/parameters/reservation_code'
         - $ref: '#/components/parameters/customer_id'
         - $ref: '#/components/parameters/store_id'
         - $ref: '#/components/parameters/reservation_state'
+        - $ref: '#/components/parameters/external_reservation_list_type_id'
+        - $ref: '#/components/parameters/external_reservation_code'
       responses:
         '200':
           description: OK
@@ -7249,6 +7259,91 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/ProductReservationSource'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /product-reservation-external-list-types:
+    get:
+      tags:
+        - Product reservation external list types
+      summary: Get all product reservation external list types
+      description: Get a list of product reservation external list types
+      operationId: getProductReservationExternalListTypes
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      product_reservation_external_list_types:
+                        type: array
+                        description: List of the product reservation external list types
+                        items:
+                          $ref: '#/components/schemas/ProductReservationExternalListType'
+                      total_items:
+                        type: integer
+                        description: Count of all found product reservation external list types
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/product-reservation-external-list-types/{product_reservation_external_list_type_id}':
+    get:
+      tags:
+        - Product reservation external list types
+      summary: Detail of an product reservation external list type
+      description: Get information about a specific product reservation external list type
+      operationId: getProductReservationExternalListType
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/product_reservation_external_list_type_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProductReservationExternalListType'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -8577,6 +8672,7 @@ paths:
         - $ref: '#/components/parameters/without_stores'
         - $ref: '#/components/parameters/tag_id_arr'
         - $ref: '#/components/parameters/partner_id'
+        - $ref: '#/components/parameters/reward_type_id'
       responses:
         '200':
           description: OK
@@ -9101,6 +9197,92 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /reward-types:
+    get:
+      tags:
+        - Reward types
+      summary: Get all reward types
+      description: Get information about reward types
+      operationId: getRewardTypes
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      rewards_types:
+                        type: array
+                        description: List of all reward types
+                        items:
+                          $ref: '#/components/schemas/RewardType'
+                      total_items:
+                        type: integer
+                        description: Count of all found reward types
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/reward-types/{reward_type_id}':
+    get:
+      tags:
+        - Reward types
+      summary: Get a reward type
+      description: Get information about a specific reward type
+      operationId: getRewardtype
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/reward_type_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/RewardType'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /segments:
     get:
       tags:
@@ -9550,6 +9732,7 @@ paths:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/valid_from'
         - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/pos_id'
       responses:
         '200':
           description: OK
@@ -13212,7 +13395,7 @@ components:
           type: string
           readOnly: false
           description: Card number
-          example: 200120000290
+          example: '200120000290'
         valid_from:
           type: string
           readOnly: false
@@ -14687,7 +14870,7 @@ components:
           example: 8bed991c68a4
         photo_url:
           type: string
-          readOnly: false
+          readOnly: true
           description: 'URL address of the customer photo. If customer has no photo, this parameter is not send'
           example: null
         address:
@@ -15124,7 +15307,7 @@ components:
           items:
             type: string
           readOnly: true
-          description: Ids of the reservation
+          description: Reservation codes of the reservation from CareCloud
           example:
             - 10
         external_reservation_codes:
@@ -15132,7 +15315,7 @@ components:
           items:
             $ref: '#/components/schemas/ExternalCode'
           readOnly: false
-          description: List of external id codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
+          description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
         benefit_codes:
           type: array
           items:
@@ -15326,6 +15509,20 @@ components:
             State of the product reservation source
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
+    ProductReservationExternalListType:
+      type: object
+      description: Product reservation external list type structure
+      properties:
+        product_reservation_external_list_type_id:
+          type: string
+          readOnly: true
+          description: The unique id of the external list type
+          example: 8bed991c68a470e7aaeffbf048
+        name:
+          type: string
+          readOnly: true
+          description: Name of the external list type
+          example: Webshop reservations
     Property:
       type: object
       description: Property structure
@@ -15884,6 +16081,11 @@ components:
             The unique id of the reward group
             *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
           example: 0
+        reward_type_id:
+          type: string
+          readOnly: true
+          description: 'The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others.'
+          example: 8fdd651ff3f615bcebebad87ce
         store_list:
           type: array
           items:
@@ -15990,6 +16192,27 @@ components:
           readOnly: true
           description: 'Time the reward is valid to *(HH:MM:SS)*'
           example: '00:00:00'
+    RewardType:
+      type: object
+      description: Reward type resource
+      properties:
+        reward_type_id:
+          type: string
+          readOnly: true
+          description: The unique id of the reward type.
+          example: 8fd17bf437555cf56a6ecf05fc
+        name:
+          type: string
+          readOnly: false
+          description: Name of the reward type
+          example: Percentage discount
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-07-15 17:26:34'
+      required:
+        - name
     SearchResult:
       type: object
       description: Search result resource
@@ -16094,9 +16317,20 @@ components:
           readOnly: false
           description: The unique id of the customer
           example: 89ac83ca207a820c62c79bf03a
+        created_at:
+          type: string
+          readOnly: true
+          description: 'Date and time when was the segment record created *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2021-06-20 16:59:49'
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-08-29 13:04:45'
       required:
         - segment_id
         - customer_id
+        - created_at
     Setup:
       type: object
       description: Setup of a client's device
@@ -16190,12 +16424,12 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: 'Date and time whe skipass was created in CareCloud *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time when entrance was created in CareCloud *(YYYY-MM-DD HH:MM:SS)*'
           example: '2015-01-06 12:54:46'
         cancelled_at:
           type: string
           readOnly: true
-          description: 'Date and time whe skipass was cancelled in CareCloud *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time when entrance was cancelled in CareCloud *(YYYY-MM-DD HH:MM:SS)*'
           example: '2015-01-09 22:38:48.088'
         charged_price:
           type: number
@@ -16211,7 +16445,7 @@ components:
         charge_date:
           type: string
           readOnly: true
-          description: 'Date and time when entrance will be charged to the POS system *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time when entrance will be/was charged to the POS system *(YYYY-MM-DD HH:MM:SS)*'
           example: '2015-01-10 00:00:00'
         valid_from:
           type: string
@@ -17775,6 +18009,22 @@ components:
         type: string
       allowReserved: true
       example: null
+    reward_type_id:
+      name: reward_type_id
+      in: query
+      description: 'The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others.'
+      required: false
+      schema:
+        type: string
+      example: 8aa2049ac2f84952014d96bb23
+    reward_type_id_path:
+      name: reward_type_id
+      in: path
+      description: The unique id of the reward
+      required: true
+      schema:
+        type: string
+      example: null
     is_automated:
       name: is_automated
       in: query
@@ -18214,14 +18464,30 @@ components:
       schema:
         type: string
         default: GLOBAL
-    reservation_code:
-      name: reservation_code
+    external_reservation_code:
+      name: external_reservation_code
       in: query
-      description: Code of the reservation
+      description: 'Code of the reservation from external system (cashdesk, webshop, production system, others). If set, `external_reservation_list_type_id` has to be present in request too'
       required: false
       schema:
         type: string
-      example: 10
+      example: XYSD78TFDA
+    external_reservation_list_type_id:
+      name: external_reservation_list_type_id
+      in: query
+      description: 'Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.'
+      required: false
+      schema:
+        type: string
+        example: 8bc3btbb6f14765b3025cea06c
+    product_reservation_external_list_type_id_path:
+      name: product_reservation_external_list_type_id
+      in: path
+      description: Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose.
+      required: true
+      schema:
+        type: string
+      example: 8bed991c68a470e7aaeffbf048
     reservation_state:
       name: reservation_state
       in: query

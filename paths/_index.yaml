@@ -325,6 +325,11 @@
   $ref: "./products/ProductReservationSources.yaml"
 /product-reservation-sources/{product_reservation_source_id}:
   $ref: "./products/ProductReservationSource.yaml"
+# Product reservation external list types
+/product-reservation-external-list-types:
+  $ref: "./products/ExternalProductReservationListTypes.yaml"
+/product-reservation-external-list-types/{product_reservation_external_list_type_id}:
+  $ref: "./products/ExternalProductReservationListType.yaml"
 # Reservable products
 /reservable-products:
   $ref: "./products/ReservableProducts.yaml"
@@ -412,6 +417,11 @@
   $ref: "./rewards/RewardProperties.yaml"
 /reward-properties/{reward_property_id}:
   $ref: "./rewards/RewardProperty.yaml"
+#Reward types
+/reward-types:
+  $ref: "./rewards/RewardTypes.yaml"
+/reward-types/{reward_type_id}:
+  $ref: "./rewards/RewardType.yaml"
 
 #  Segments
 /segments:

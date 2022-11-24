@@ -116,6 +116,8 @@ tags:
     description: There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.
   - name: Product reservations
     description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
+  - name: Product reservation external list types
+    description: You can get the list of the available product reservation external list types here.
   - name: Product reservation sources
     description: You can get the list of the available product reservation sources here.
   - name: Purchases
@@ -130,6 +132,8 @@ tags:
     description: Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.
   - name: Reward properties
     description: Reward properties are list of the available properties for the rewards resource.
+  - name: Reward types
+    description: Reward types represent list of all rewards types available in CareCloud.
   - name: Segments
     description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
   - name: Statuses

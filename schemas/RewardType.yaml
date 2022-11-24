@@ -1,0 +1,20 @@
+type: object
+description: Reward type resource
+properties:
+  reward_type_id:
+    type: string
+    readOnly: true
+    description: The unique id of the reward type.
+    example: "8fd17bf437555cf56a6ecf05fc"
+  name:
+    type: string
+    readOnly: false
+    description: Name of the reward type
+    example: "Percentage discount"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-07-15 17:26:34"
+required:
+  - name

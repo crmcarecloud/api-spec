@@ -67,12 +67,12 @@ properties:
   created_at:
     type: string
     readOnly: true
-    description: Date and time whe skipass was created in CareCloud *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when entrance was created in CareCloud *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-06 12:54:46"
   cancelled_at:
     type: string
     readOnly: true
-    description: Date and time whe skipass was cancelled in CareCloud *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when entrance was cancelled in CareCloud *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-09 22:38:48.088"
   charged_price:
     type: number
@@ -88,7 +88,7 @@ properties:
   charge_date:
     type: string
     readOnly: true
-    description: Date and time when entrance will be charged to the POS system *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when entrance will be/was charged to the POS system *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-10 00:00:00"
   valid_from:
     type: string

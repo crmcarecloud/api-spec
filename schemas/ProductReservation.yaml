@@ -24,14 +24,14 @@ properties:
     items:
       type: string
     readOnly: true
-    description: Ids of the reservation
+    description: Reservation codes of the reservation from CareCloud
     example: [10]
   external_reservation_codes:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/ExternalCode'
     readOnly: false
-    description: List of external id codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
+    description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
   benefit_codes:
     type: array
     items:

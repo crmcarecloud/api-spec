@@ -146,6 +146,8 @@ ProductReservationComment:
   $ref: "./ProductReservationComment.yaml"
 ProductReservationSource:
   $ref: "./ProductReservationSource.yaml"
+ProductReservationExternalListType:
+  $ref: "./ProductReservationExternalListType.yaml"
 Property:
   $ref: "./Property.yaml"
 PropertyItem:
@@ -174,6 +176,8 @@ Reward:
   $ref: "./Reward.yaml"
 RewardProperties:
   $ref: "./RewardProperties.yaml"
+RewardType:
+  $ref: "./RewardType.yaml"
 SearchResult:
   $ref: "./SearchResult.yaml"
 Segment:

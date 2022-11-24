@@ -27,6 +27,11 @@ post:
               description: If true, password is required and customer is logged in. Otherwise password is optional
             social_network_credentials:
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
+            property_records:
+              type: array
+              description: List of an customer property records
+              items:
+                $ref: '../../schemas/_index.yaml#/PropertyRecord'
           required:
             - customer
             - customer_source

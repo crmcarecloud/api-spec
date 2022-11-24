@@ -20,7 +20,7 @@ properties:
     type: string
     readOnly: false
     description: Card number
-    example: 200120000290
+    example: "200120000290"
   valid_from:
     type: string
     readOnly: false

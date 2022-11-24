@@ -1,13 +1,9 @@
 get:
   tags:
-    - Rewards
-  summary: Get all rewards
-  description: |
-    Get information about rewards as a list of all rewards
-
-    <p class="warning">⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.</p>
-
-  operationId: getRewards
+    - Reward types
+  summary: Get all reward types
+  description: Get information about reward types
+  operationId: getRewardTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
@@ -15,18 +11,6 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/name'
-    - $ref: '../../parameters/_index.yaml#/reward_store_id'
-    - $ref: '../../parameters/_index.yaml#/is_valid'
-    - $ref: '../../parameters/_index.yaml#/valid_from'
-    - $ref: '../../parameters/_index.yaml#/valid_to'
-    - $ref: '../../parameters/_index.yaml#/reward_code'
-    - $ref: '../../parameters/_index.yaml#/is_automated'
-    - $ref: '../../parameters/_index.yaml#/reward_group'
-    - $ref: '../../parameters/_index.yaml#/customer_type_id_arr'
-    - $ref: '../../parameters/_index.yaml#/without_stores'
-    - $ref: '../../parameters/_index.yaml#/tag_id_arr'
-    - $ref: '../../parameters/_index.yaml#/partner_id'
-    - $ref: '../../parameters/_index.yaml#/reward_type_id'
   responses:
     '200':
       description: OK
@@ -38,14 +22,14 @@ get:
               data:
                 type: object
                 properties:
-                  rewards:
+                  rewards_types:
                     type: array
-                    description: List of all rewards
+                    description: List of all reward types
                     items:
-                      $ref: '../../schemas/_index.yaml#/Reward'
+                      $ref: '../../schemas/_index.yaml#/RewardType'
                   total_items:
                     type: integer
-                    description: Count of all found rewards
+                    description: Count of all found reward types
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

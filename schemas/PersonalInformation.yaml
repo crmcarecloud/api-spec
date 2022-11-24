@@ -64,7 +64,7 @@ properties:
     example: 8bed991c68a4
   photo_url:
     type: string
-    readOnly: false
+    readOnly: true
     description: URL address of the customer photo. If customer has no photo, this parameter is not send
     example:
   address:
