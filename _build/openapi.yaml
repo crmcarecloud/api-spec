@@ -15647,8 +15647,8 @@ components:
             - type: array
               items: {}
             - type: object
+            - type: null
           readOnly: false
-          nullable: true
           description: Value of the property
           example: Arthur Dent
         last_change:
