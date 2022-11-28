@@ -26,7 +26,7 @@ get:
                     type: array
                     description: List of products tied to a reward
                     items:
-                      $ref: '../../schemas/_index.yaml#/Product'
+                      $ref: '../../schemas/_index.yaml#/RewardProduct'
                   total_items:
                     type: integer
                     description: Count of all found products

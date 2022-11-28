@@ -8826,7 +8826,7 @@ paths:
                         type: array
                         description: List of products tied to a reward
                         items:
-                          $ref: '#/components/schemas/Product'
+                          $ref: '#/components/schemas/RewardProduct'
                       total_items:
                         type: integer
                         description: Count of all found products
@@ -16172,6 +16172,17 @@ components:
         - name
         - reward_group
         - store_list
+    RewardProduct:
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+        - description: RewardProduct resource
+        - properties:
+            minimum_number_of_products:
+              type: integer
+              readOnly: true
+              description: A minimal amount of purchase products to apply reward
+              example: 2
     RewardProperties:
       type: object
       description: Properties of the reward
