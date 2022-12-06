@@ -1,8 +1,8 @@
 post:
   tags:
     - Cards
-  summary: Generate digital card file
-  description: Generate file with digital card. File can be generated as a PNG file or file for Apple Wallet.
+  summary: Generate virtual card file
+  description: Generate file with virtual card. File can be generated as a PNG file or file for Apple Wallet.
   operationId: postGenerateDigitalCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -39,7 +39,7 @@ post:
                 type: object
                 properties:
                   file_url:
-                    description: Url address of the final file with digital card
+                    description: Url address of the final file with virtual card
                     type: string
                     example: "https:\/\/dev-carecloud.cortex.cz\/\/crm\/scripts\/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8"
     '400':

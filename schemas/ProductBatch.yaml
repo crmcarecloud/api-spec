@@ -47,6 +47,12 @@ properties:
     readOnly: false
     description: The unique id of the store where the product group is valid. The product group is global if this value is not set
     example: '83d1d11ea3884a5d33253fe214'
+  property_records:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
+    readOnly: false
+    description: List of an additional properties
 required:
   - name
   - plu_ids

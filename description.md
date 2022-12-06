@@ -135,6 +135,9 @@ If a parameter is marked as mandatory in the documentation, it has to be used in
 We try to make your life easier all the time. And one of these things that might make integration easier is our toolkit.
 It contains support tools for PHP developers but also platform-independent tools.
 
+## POSTMAN collection 
+Easy way how to start using CareCloud API. Simply just download the collection and import it into your Postman installation. In matter of minutes you will be able to do API calls on your own.
+[https://github.com/crmcarecloud/postman-api-collection](https://github.com/crmcarecloud/postman-api-collection)
 ## SDK
 The SDK for the CareCloud REST API contains a list of resources and uses them with the best practices. That should make your integration easier. SDK was created for PHP developers only, and you can find it with its documentation on our GitHub:<br/>
 [https://github.com/crmcarecloud/api-php-sdk](https://github.com/crmcarecloud/api-php-sdk)
