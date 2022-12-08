@@ -51,7 +51,9 @@
   $ref: "./cards/CardAssign.yaml"
 /cards/actions/generate-digital-card-file:
   $ref: "./cards/CardGenerateDigital.yaml"
-
+# Batch
+/cards/batch:
+  $ref: "./cards/CardsBatch.yaml"
 # Card types
 /card-types:
   $ref: "./cards/CardTypes.yaml"
