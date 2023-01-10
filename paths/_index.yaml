@@ -7,7 +7,7 @@
 #Bookings
 /bookings:
   $ref: "./bookings/Bookings.yaml"
-/bookings/{booking_id}}:
+/bookings/{booking_id}:
   $ref: "./bookings/Booking.yaml"
 #Booking tickets
 /booking-tickets:
@@ -25,7 +25,7 @@
 #Booking statuses
 /booking-statuses:
   $ref: "./bookings/BookingStatuses.yaml"
-/booking-statuses/{booking_status_id}}:
+/booking-statuses/{booking_status_id}:
   $ref: "./bookings/BookingStatus.yaml"
 # Campaigns
 /campaigns:
@@ -123,6 +123,8 @@
   $ref: "./customers/SubCustomerProperties.yaml"
 /customers/{customer_id}/property-records/{property_record_id}:
   $ref: "./customers/SubCustomerProperty.yaml"
+/customers/{customer_id}/property-records/batch:
+  $ref: "./customers/SubCustomerPropertiesBatch.yaml"
 /customers/{customer_id}/interest-records:
   $ref: "./customers/SubCustomerInterests.yaml"
 /customers/{customer_id}/interest-records/{interest_record_id}:
@@ -137,6 +139,11 @@
   $ref: "./customers/SubCustomerRelatedCustomers.yaml"
 /customers/{customer_id}/related-customers/{customer_relation_id}:
   $ref: "./customers/SubCustomerRelatedCustomer.yaml"
+/customers/{customer_id}/partner-records:
+  $ref: "./customers/SubCustomerPartners.yaml"
+/customers/{customer_id}/partner-records/{partner_record_id}:
+  $ref: "./customers/SubCustomerPartner.yaml"
+
 # Actions
 /customers/actions/verify-credentials:
   $ref: "./customers/CustomerVerifyCredentials.yaml"
@@ -148,6 +155,8 @@
   $ref: "./customers/CustomerVerifyAuthToken.yaml"
 /customers/actions/upload-customer-photo:
   $ref: "./customers/CustomerUploadPhoto.yaml"
+/customers/actions/set-partners:
+  $ref: "./customers/CustomerSetPartners.yaml"
 # Customer address types
 /customer-address-types:
   $ref: "./customers/CustomerAddressTypes.yaml"

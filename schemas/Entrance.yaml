@@ -61,7 +61,7 @@ properties:
     example: "84947e1aa1ad6982cc8188d15c"
   card_id:
     type: string
-    readOnly: false
+    readOnly: true
     description: Id of card used for charge entrance
     example: "8c9fd120242ef646f477a5ed80"
   created_at:

@@ -351,7 +351,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  '/bookings/{booking_id}}':
+  '/bookings/{booking_id}':
     get:
       tags:
         - Bookings
@@ -746,7 +746,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-  '/booking-statuses/{booking_status_id}}':
+  '/booking-statuses/{booking_status_id}':
     get:
       tags:
         - Booking statuses
@@ -3311,6 +3311,49 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/property-records/batch':
+    post:
+      tags:
+        - Customers
+      summary: Create a batch of property records to a customer
+      description: 'Add a batch of customer property records to a customer account. In the case of an existing property record, CareCloud API will update this record. In case of error. CareCloud will cancel the whole transaction, and API will return error information.'
+      operationId: postSubCustomerPropertiesBatch
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property_records:
+                  type: array
+                  description: List of property records
+                  items:
+                    $ref: '#/components/schemas/PropertyRecord'
+              required:
+                - property_records
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/customers/{customer_id}/interest-records':
     get:
       tags:
@@ -3878,6 +3921,137 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/partner-records':
+    get:
+      tags:
+        - Customers
+      summary: Get information about all customer's partners
+      description: Get a list of customer's partners in CareCloud
+      operationId: getSubCustomerPartners
+      parameters:
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      partner_records:
+                        type: array
+                        description: Collection of all customer's partner records
+                        items:
+                          $ref: '#/components/schemas/PartnerRecord'
+                      total_items:
+                        type: integer
+                        description: Count of all found customer's partners
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Customers
+      summary: Add a partner to the customer
+      description: Add a new partner to the customer
+      operationId: postSubCustomerPartnerRecord
+      parameters:
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                partner_record:
+                  $ref: '#/components/schemas/PartnerRecord'
+              required:
+                - partner_id
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      partner_record_id:
+                        type: string
+                        description: The unique id of the partner record on the customer
+                        example: 8aa2049ac2f84952014d96bb23
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/customers/{customer_id}/partner-records/{partner_record_id}':
+    delete:
+      tags:
+        - Customers
+      summary: Delete a partner record from an account
+      description: Delete a specific customer partner record from a customer account
+      operationId: deleteSubCustomerPartner
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/partner_record_id_path'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customers/actions/verify-credentials:
     post:
       tags:
@@ -4132,6 +4306,53 @@ paths:
               required:
                 - customer_id
                 - data
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /customers/actions/set-partners:
+    post:
+      tags:
+        - Customers actions
+      summary: Set one or multiple partners to the customer
+      description: 'Set one or multiple partners to the customer. The method will set all the partners from the request available to the CareCloud API user and delete all that are not present in the request. If customer has a partner that is unavailable to the user, this partner is not going to be modified or deleted.'
+      operationId: postSubCustomerSetPartners
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea6abece4cd0a4ded0a29f093
+                partner_records:
+                  type: array
+                  description: Collection of all customer's partner records
+                  items:
+                    $ref: '#/components/schemas/PartnerRecord'
+              required:
+                - partner_records
+                - customer_id
       responses:
         '204':
           description: No Content
@@ -9652,6 +9873,9 @@ paths:
         - $ref: '#/components/parameters/external_entrance_id'
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/is_cancelled'
+        - $ref: '#/components/parameters/valid_from'
+        - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/product_id'
       responses:
         '200':
           description: OK
@@ -14786,6 +15010,27 @@ components:
           example: 1
       required:
         - name
+    PartnerRecord:
+      type: object
+      description: Partner record
+      properties:
+        partner_record_id:
+          type: string
+          readOnly: true
+          description: The unique id of the partner record
+          example: 8aa2049ac2f84952014d96bb23
+        partner_id:
+          type: string
+          readOnly: false
+          description: The unique id of the partner
+          example: 2f8aa204842f8495298aa20452
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
+          example: null
+      required:
+        - partner_id
     PaymentRecap:
       type: object
       description: Alternative payment methods summary
@@ -15066,11 +15311,6 @@ components:
           readOnly: false
           description: The number of reserved points
           example: 11
-        partner_id:
-          type: string
-          readOnly: false
-          description: The unique id of the partner company
-          example: 86e05affc7a7abefcd513ab400
         state:
           type: integer
           enum:
@@ -16477,7 +16717,7 @@ components:
           example: 84947e1aa1ad6982cc8188d15c
         card_id:
           type: string
-          readOnly: false
+          readOnly: true
           description: Id of card used for charge entrance
           example: 8c9fd120242ef646f477a5ed80
         created_at:
@@ -18369,6 +18609,14 @@ components:
       schema:
         type: string
       example: 89ac83ca207a820c62c79bf03a
+    partner_record_id_path:
+      name: partner_record_id
+      in: path
+      description: The unique id of the partner record from account
+      required: true
+      schema:
+        type: string
+      example: 86e05affc7a7abefcd513ab400
     point_id_path:
       name: point_id
       in: path
@@ -18496,6 +18744,14 @@ components:
       in: path
       description: The unique id of the product reservation source in CareCloud
       required: true
+      schema:
+        type: string
+      example: 8bed991c68a470e7aaeffbf048
+    product_id:
+      name: product_id
+      in: query
+      description: ID of the product
+      required: false
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048

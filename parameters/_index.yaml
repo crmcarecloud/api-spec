@@ -986,6 +986,14 @@ partner_id:
   schema:
     type: string
   example: 89ac83ca207a820c62c79bf03a
+partner_record_id_path:
+  name: partner_record_id
+  in: path
+  description: The unique id of the partner record from account
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
 # Points
 point_id_path:
   name: point_id
@@ -1116,6 +1124,14 @@ product_reservation_source_id_path:
   in: path
   description: The unique id of the product reservation source in CareCloud
   required: true
+  schema:
+    type: string
+  example: 8bed991c68a470e7aaeffbf048
+product_id:
+  name: product_id
+  in: query
+  description: ID of the product
+  required: false
   schema:
     type: string
   example: 8bed991c68a470e7aaeffbf048

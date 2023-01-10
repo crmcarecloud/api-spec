@@ -1,0 +1,101 @@
+get:
+  tags:
+    - Customers
+  summary: Get information about all customer's partners
+  description: Get a list of customer's partners in CareCloud
+  operationId: getSubCustomerPartners
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  partner_records:
+                    type: array
+                    description: Collection of all customer's partner records
+                    items:
+                      $ref: '../../schemas/_index.yaml#/PartnerRecord'
+                  total_items:
+                    type: integer
+                    description: Count of all found customer's partners
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+
+post:
+  tags:
+    - Customers
+  summary: Add a partner to the customer
+  description: Add a new partner to the customer
+  operationId: postSubCustomerPartnerRecord
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            partner_record:
+              $ref: '../../schemas/_index.yaml#/PartnerRecord'
+          required:
+            - partner_id
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  partner_record_id:
+                    type: string
+                    description: The unique id of the partner record on the customer
+                    example: 8aa2049ac2f84952014d96bb23
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

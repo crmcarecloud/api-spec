@@ -1,0 +1,46 @@
+post:
+  tags:
+    - Customers actions
+  summary: Set one or multiple partners to the customer
+  description: Set one or multiple partners to the customer. The method will set all the partners from the request available to the CareCloud API user and delete all that are not present in the request. If customer has a partner that is unavailable to the user, this partner is not going to be modified or deleted.
+  operationId: postSubCustomerSetPartners
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique id of the customer
+              example: 8ea6abece4cd0a4ded0a29f093
+            partner_records:
+              type: array
+              description: Collection of all customer's partner records
+              items:
+                $ref: '../../schemas/_index.yaml#/PartnerRecord'
+          required:
+            - partner_records
+            - customer_id
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

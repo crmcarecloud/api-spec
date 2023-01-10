@@ -110,6 +110,8 @@ Parameter:
   $ref: "./Parameter.yaml"
 Partner:
   $ref: "./Partner.yaml"
+PartnerRecord:
+  $ref: "./PartnerRecord.yaml"
 PaymentRecap:
   $ref: "./PaymentRecap.yaml"
 PaymentVoucher:

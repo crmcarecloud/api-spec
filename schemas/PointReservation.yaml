@@ -22,11 +22,6 @@ properties:
     readOnly: false
     description: The number of reserved points
     example: 11
-  partner_id:
-    type: string
-    readOnly: false
-    description: The unique id of the partner company
-    example: 86e05affc7a7abefcd513ab400
   state:
     type: integer
     enum:
