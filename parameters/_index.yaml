@@ -994,6 +994,15 @@ partner_record_id_path:
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
+#Payment types
+payment_type_id_path:
+  name: payment_type_id
+  in: path
+  description: The unique id of the payment type
+  required: true
+  schema:
+    type: string
+  example: 86e05affc7a7abefcd513ab400
 # Points
 point_id_path:
   name: point_id

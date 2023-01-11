@@ -95,6 +95,8 @@ tags:
     description: 'Orders are expressions of intentions to purchase products, i.e., requests to buy something. They may refer to products, services or even experiences. The order becomes a contract (spoken, written or electronic) between the business and the customer. The customer commits to receive the product and to pay for it. Orders can be managed here.'
   - name: Partners
     description: A Partner is an entity that owns and manages a defined group of customer data in the CareCloud platform based on consent to the processing of personal data. The users of a specific Partner have no access to the customer data of another Partner. Each user is linked to a particular Partner. You can get here the list of Partners available.
+  - name: Payment types
+    description: All payment types from CareCloud. Payment types can be used while creating an order.
   - name: Points
     description: 'If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.'
   - name: Point history
@@ -6136,6 +6138,91 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/Partner'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /payment-types:
+    get:
+      tags:
+        - Payment types
+      summary: Get all payment types
+      description: Get a list of payment types accepted in CRM CareCloud
+      operationId: getPaymentTypes
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      payment_types:
+                        type: array
+                        description: List of the payment types
+                        items:
+                          $ref: '#/components/schemas/PaymentType'
+                      total_items:
+                        type: integer
+                        description: Count of all found payment types
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/payment-types/{payment_type_id}':
+    get:
+      tags:
+        - Payment types
+      summary: Detail of an payment type
+      description: Get information about a specific payment type
+      operationId: getPaymentType
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/payment_type_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentType'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -14859,7 +14946,7 @@ components:
         payment_id:
           type: string
           readOnly: false
-          description: The unique id of the payment
+          description: 'The unique id of the payment type from resource [GET /payment-types]()'
           example: 8bd481170064960b1788109b8
         paid_date:
           type: string
@@ -15059,6 +15146,24 @@ components:
             $ref: '#/components/schemas/DiscountItem'
           readOnly: false
           description: List of applied discounts where the service did not use the voucher
+    PaymentType:
+      type: object
+      properties:
+        payment_type_id:
+          type: string
+          readOnly: true
+          description: The unique id of the payment type in CareCloud
+          example: 81eaeea13b8984a169c490a325
+        name:
+          type: string
+          readOnly: true
+          description: Name of the payment type in CareCloud
+          example: Google Pay
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change (YYYY-MM-DD HH:MM:SS)'
+          example: '2018-05-07 14:26:19.215774'
     PaymentVoucher:
       type: object
       description: Payment voucher structure
@@ -18613,6 +18718,14 @@ components:
       name: partner_record_id
       in: path
       description: The unique id of the partner record from account
+      required: true
+      schema:
+        type: string
+      example: 86e05affc7a7abefcd513ab400
+    payment_type_id_path:
+      name: payment_type_id
+      in: path
+      description: The unique id of the payment type
       required: true
       schema:
         type: string

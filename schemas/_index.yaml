@@ -114,6 +114,8 @@ PartnerRecord:
   $ref: "./PartnerRecord.yaml"
 PaymentRecap:
   $ref: "./PaymentRecap.yaml"
+PaymentType:
+  $ref: "./PaymentType.yaml"
 PaymentVoucher:
   $ref: "./PaymentVoucher.yaml"
 PersonalInformation:

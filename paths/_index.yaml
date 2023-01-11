@@ -260,6 +260,12 @@
 /partners/{partner_id}:
   $ref: "./partners/Partner.yaml"
 
+# Payment types
+/payment-types:
+  $ref: "./payment_types/PaymentTypes.yaml"
+/payment-types/{payment_type_id}:
+  $ref: "./payment_types/PaymentType.yaml"
+
 # Points
 /points:
   $ref: "./points/Points.yaml"

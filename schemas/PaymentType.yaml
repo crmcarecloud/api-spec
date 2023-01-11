@@ -1,0 +1,17 @@
+type: object
+properties:
+  payment_type_id:
+    type: string
+    readOnly: true
+    description: The unique id of the payment type in CareCloud
+    example: 81eaeea13b8984a169c490a325
+  name:
+    type: string
+    readOnly: true
+    description: Name of the payment type in CareCloud
+    example: Google Pay
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    example: '2018-05-07 14:26:19.215774'
