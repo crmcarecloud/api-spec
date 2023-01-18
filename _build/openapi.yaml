@@ -1830,6 +1830,12 @@ paths:
       operationId: getCountries
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/country_id'
+        - $ref: '#/components/parameters/country_name'
       responses:
         '200':
           description: OK
@@ -2180,6 +2186,12 @@ paths:
       operationId: getCurrencies
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/currency_name'
+        - $ref: '#/components/parameters/currency_code'
       responses:
         '200':
           description: OK
@@ -8295,7 +8307,7 @@ paths:
                   example: 4
                 max_credit:
                   type: string
-                  description: Amount of credits to be used
+                  description: Amount of credit customer wants to use in the purchase
                   example: 7
                 benefit_codes:
                   type: array
@@ -14946,7 +14958,7 @@ components:
         payment_id:
           type: string
           readOnly: false
-          description: 'The unique id of the payment type from resource [GET /payment-types]()'
+          description: 'The unique id of the payment type from resource [GET /payment-types](#tag/Payment-types)'
           example: 8bd481170064960b1788109b8
         paid_date:
           type: string
@@ -18140,6 +18152,22 @@ components:
       schema:
         type: string
       example: 86e05affc7a7abefcd513ab400
+    country_id:
+      name: country_id
+      in: query
+      description: The unique id of a country represented by ISO code
+      required: false
+      schema:
+        type: string
+      example: fi
+    country_name:
+      name: country_name
+      in: query
+      description: Name or part of the name of the country you looking for
+      required: false
+      schema:
+        type: string
+      example: Finland
     credit_id_path:
       name: credit_id
       in: path
@@ -18198,6 +18226,22 @@ components:
       schema:
         type: string
       example: Free one day
+    currency_code:
+      name: currency_code
+      in: query
+      description: The unique code of a currency represented by ISO code
+      required: false
+      schema:
+        type: string
+      example: USD
+    currency_name:
+      name: currency_name
+      in: query
+      description: Name or part of the name of the currency you looking for
+      required: false
+      schema:
+        type: string
+      example: United States dollar
     customer_id_path:
       name: customer_id
       in: path

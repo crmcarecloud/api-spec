@@ -380,6 +380,23 @@ communication_channel_id_path:
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
+#Countries
+country_id:
+  name: country_id
+  in: query
+  description: The unique id of a country represented by ISO code
+  required: false
+  schema:
+    type: string
+  example: fi
+country_name:
+  name: country_name
+  in: query
+  description: Name or part of the name of the country you looking for
+  required: false
+  schema:
+    type: string
+  example: Finland
 # Credits
 credit_id_path:
   name: credit_id
@@ -439,7 +456,23 @@ credit_operation_note:
   schema:
     type: string
   example: "Free one day"
-
+#Currencies
+currency_code:
+  name: currency_code
+  in: query
+  description: The unique code of a currency represented by ISO code
+  required: false
+  schema:
+    type: string
+  example: USD
+currency_name:
+  name: currency_name
+  in: query
+  description: Name or part of the name of the currency you looking for
+  required: false
+  schema:
+    type: string
+  example: United States dollar
 # Customer parameters
 customer_id_path:
   name: customer_id

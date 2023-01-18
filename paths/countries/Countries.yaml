@@ -6,6 +6,12 @@ get:
   operationId: getCountries
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/country_id'
+    - $ref: '../../parameters/_index.yaml#/country_name'
   responses:
     '200':
       description: OK
