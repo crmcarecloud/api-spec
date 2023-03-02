@@ -56,8 +56,8 @@ searchMode:
 
     *Possible values are: strict - return only 100% matching results / none - return results in strict mode*
 
-    <p class="warning">⚠️ Caution: Strict mode makes all query parameters as required. For a successful result, you have to set all parameters.</p>
-    <p class="warning">⚠️ Caution: Currently, the whole resource is returning results only in strict mode.</p>
+    <p class="warning">⚠️ Caution: Strict mode makes all query parameters required. For a successful result you have to set all parameters.</p>
+    <p class="warning">⚠️ Caution: Currently the whole resource is returning results only in strict mode.</p>
   required: false
   schema:
     type: string

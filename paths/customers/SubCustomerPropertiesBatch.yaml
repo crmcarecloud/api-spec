@@ -1,8 +1,8 @@
 post:
   tags:
     - Customers
-  summary: Create a batch of property records to a customer
-  description: Add a batch of customer property records to a customer account. In the case of an existing property record, CareCloud API will update this record. In case of error. CareCloud will cancel the whole transaction, and API will return error information.
+  summary: Create a batch of property records for a customer
+  description: Add a batch of customer property records to a customer account. In case of an existing property record, CareCloud API will update this record. In case of error, CareCloud will cancel the whole transaction, and API will return error information.
   operationId: postSubCustomerPropertiesBatch
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -32,7 +32,7 @@ tags:
   - name: Card types
     description: Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
   - name: Charged entrances
-    description: Customized resource cointains tickets charged in external production systems
+    description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
     description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
   - name: Countries
@@ -60,25 +60,26 @@ tags:
   - name: Customer sources
     description: Customer account can be created and tied to different sources, like online registration form, e-shop, mobile app, POS, booking system, web microsite, campaign or any other source. This source of the customer account is related to the account and can be managed by this resource.
   - name: Customer source records
-    description: This resource cointains all records of customers and customer sources.
+    description: This resource contains all records of customers and customer sources.
   - name: Customer types
     description: You can get the list of the available customer types here.
   - name: Events
     description: |
       Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
-      **Scheme of the MA related resources and their relations**
+      **Scheme of the MA related resources and their relations:**
+      <br />
       <img src="https://imgur.com/0Bu8zWI.jpeg">
   - name: Event groups
     description: |
       Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event groups below.
-      **Scheme of the MA related resources and their relations**
+      <br />**Scheme of the MA related resources and their relations:**<br />
       <img src="https://imgur.com/0Bu8zWI.jpeg">
   - name: Event properties
     description: Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of available properties for the events resource below.
   - name: Event types
     description: |
       Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event types below.
-      **Scheme of the MA related resources and their relations**
+      <br />**Scheme of the MA related resources and their relations:**<br />
       <img src="https://imgur.com/0Bu8zWI.jpeg">
   - name: Hints
     description: There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.

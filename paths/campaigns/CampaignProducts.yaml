@@ -55,6 +55,73 @@ get:
       $ref: '../../api.yaml#/components/responses/InternalServerError'
     '503':
       $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+        require_once '../vendor/autoload.php';
+
+        $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+        $login = 'login';
+        $password = 'password';
+        $external_app_id = 'application_id';
+        $auth_type = AuthTypes::BEARER_AUTH;
+
+        $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+        $care_cloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set query parameters
+        $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
+        $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
+        $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
+        $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
+        $name = null; // string | Search record by name or a part of the name (optional, default is null))
+        $code = null; // string | Code of the product (optional, default is null)
+        $display_in = null; // string | Place to display campaign product. (optional, default is null)
+        $type_id = null; // string[] | Type of the customer for a campaign product. (optional, default is null)
+        $store_id = null; // string | Parameter filters all campaign products from [store](#tag/Stores) by store id (optional, default is null)
+        $value_type_id = null; // integer | Type of value (1 - percentage discount value, 2 - final price) (optional, default is null)
+        $is_valid = null; // bool | *in validity range - true / before or after validity range - false / no value - all* (optional, default is null)
+        $valid_from = null; //string | Date and time from when is record already valid. *(YYYY-MM-DD HH:MM:SS)* (optional, default is null)
+        $valid_to = null; //string | Date and time to when is record still valid. *(YYYY-MM-DD HH:MM:SS)* (optional, default is null)
+
+        // Call endpoint and get data
+        try
+        {
+            $get_campaign_products = $care_cloud->campaignProductsApi()->getCampaignProducts(
+                $accept_language,
+                $count,
+                $offset,
+                $sort_field,
+                $sort_direction,
+                $name,
+                $code,
+                $display_in,
+                $type_id,
+                $store_id,
+                $value_type_id,
+                $is_valid,
+                $valid_from,
+                $valid_to
+            );
+            $campaign_products = $get_campaign_products->getData()->getCampaignProducts();
+            $total_items = $get_campaign_products->getData()->getTotalItems();
+            var_dump($campaign_products);
+            var_dump($total_items);
+        }
+        catch(ApiException $e)
+        {
+            die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }
 post:
   tags:
     - Campaign products
@@ -105,3 +172,66 @@ post:
       $ref: '../../api.yaml#/components/responses/InternalServerError'
     '503':
       $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\CampaignPresentationData;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\CampaignProduct;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\CampaignproductsBody;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+        require_once '../vendor/autoload.php';
+
+        $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+        $login = 'login';
+        $password = 'password';
+        $external_app_id = 'application_id';
+        $auth_type = AuthTypes::BEARER_AUTH;
+
+        $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+        $care_cloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set campaign presentation data details
+        $presentation_data = new CampaignPresentationData();
+        $presentation_data->setName('Macbook Air 13" M1 10% off'); // string | Name of the product
+        $presentation_data->setSubtitle('Discount only in following two days'); // string | Text of the campaign product subtitle (optional)
+        $presentation_data->setNote('This offer is limited');  // string | Text of the campaign product note (optional)
+        $presentation_data->setDescription(null); // string | Text of the campaign product description (optional)
+        $presentation_data->setImageUrl(null); // string | URL address of the image (optional)
+
+        // Set basic information about new campaign product
+        $campaign_product = new CampaignProduct();
+        $campaign_product->setProductId('8fd73167342d06899c4c015320'); // string | The unique id for the product
+        $campaign_product->setCurrencyId('8bed991c68a470e7aaeffbf048'); // string | The unique id for the currency
+        $campaign_product->setCampaignId('82db62087b0f79a6e14e5747e7'); // string | The unique id for the campaign
+        $campaign_product->setValue(100); // float | Value of the product
+        $campaign_product->setValueTypeId(2); // int | Type of value (1 - percentage discount value, 2 - final price)
+        $campaign_product->setValidFrom('2022-10-17 00:00:00'); // string | Valid from (YYYY-MM-DD HH:MM:SS)
+        $campaign_product->setValidTo('2022-10-19 00:00:00'); // string | Valid to (YYYY-MM-DD HH:MM:SS)
+        $campaign_product->setDisplayIn(array()); // string[] | List of possible display places (optional)
+        $campaign_product->setTypeId('86e05affc7a7abefcd513ab400'); // string | Type of the campaign product
+        $campaign_product->setPresentationData($presentation_data);
+
+        // Set information about new campaign product to the request body
+        $body = new CampaignproductsBody();
+        $body->setCampaignProduct($campaign_product);
+
+        // Call endpoint and post data
+        try
+        {
+            $new_campaign_product = $care_cloud->campaignProductsApi()->postCampaignProduct($body, $accept_language);
+            $new_campaign_product_id = $new_campaign_product->getData()->getCampaignProductId();
+            var_dump($new_campaign_product_id);
+        }
+        catch(ApiException $e)
+        {
+            die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }
