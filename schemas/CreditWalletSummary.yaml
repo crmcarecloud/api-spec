@@ -1,0 +1,23 @@
+type: object
+description: Customer's credit in the specific currency
+properties:
+  currency_id:
+    type: string
+    readOnly: true
+    description: The unique id of the currency from the API resource [GET /currencies](#tag/Currencies)
+    example: 86e05affc7a7abefcd513ab400
+  earned_credits:
+    type: number
+    format: float
+    description: Amount of earned credits in time interval
+    example: 100
+  redeemed_credits:
+    type: number
+    format: float
+    description: Amount of redeemed credits in time interval
+    example: 20.5
+  available_credits:
+    type: number
+    format: float
+    description: Amount of available credits in the moment. Time interval has no influence to the result
+    example: 79.5

@@ -40,6 +40,8 @@ CreditHistoryRecord:
   $ref: "./CreditHistoryRecord.yaml"
 CreditType:
   $ref: "./CreditType.yaml"
+CreditWalletSummary:
+  $ref: "./CreditWalletSummary.yaml"
 Currency:
   $ref: "./Currency.yaml"
 CustomAgreements:

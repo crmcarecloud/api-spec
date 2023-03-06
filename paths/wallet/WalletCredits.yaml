@@ -35,6 +35,11 @@ get:
                     format: float
                     description: Amount of available credits in the moment. Time interval has no influence to the result
                     example: 79.5
+                  split_by_currency:
+                    type: array
+                    items:
+                      $ref: '../../schemas/_index.yaml#/CreditWalletSummary'
+                    description: The credit overview split by currency
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

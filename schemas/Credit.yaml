@@ -38,6 +38,11 @@ properties:
     readOnly: false
     description: Date and time of the credit record validity to *(YYYY-MM-DD HH:MM:SS)*
     example:
+  currency_id:
+    type: string
+    readOnly: true
+    description: The unique id of the currency
+    example: 86e05affc7a7abefcd513ab400
   state:
     type: integer
     enum:

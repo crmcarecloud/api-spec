@@ -531,6 +531,14 @@ customer_type_id_arr:
     type: array
     items:
       type: string
+customer_source_id_path:
+  name: customer_source_id
+  in: path
+  required: true
+  description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+  schema:
+    type: string
+  example: 8fdce3475560d56e95a6ab035r
 customer_type_id_path:
   name: customer_type_id
   in: path

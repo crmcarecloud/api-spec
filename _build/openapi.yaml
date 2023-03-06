@@ -124,6 +124,15 @@ tags:
     description: You can get the list of the available product reservation sources here.
   - name: Purchases
     description: 'There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.'
+  - name: Purchase error examples
+    x-traitTag: true
+    description: |
+      Examples of the most occurred extended error codes from purchases resource endpoints and action methods: <p>
+        status code: 400 <br/>
+        exception: bad_request_exception <br/>
+        name: store_id <br/>
+        reason: not_found <br/>
+      <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: purchase_type_id <br/> reason: not_allowed_value <br/> <br/> status code: 400 <br/> exception: invalid_argument_exception <br/> expected_type: string <br/> actual_type: null <br/> parameter: payment_type <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: bill_item_id <br/> reason: item_price_lower_than_paid_amount <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: bill_id <br/> reason: already_exists <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: bill_item_id <br/> reason: required <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: payment_time <br/> reason: invalid_value_format <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: credit_points <br/> reason: not_enough_points_for_payment <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: max_number_of_voucher_exceeded <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: system_id <br/> reason: different_system_id <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_not_allowed_in_store <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: not_enough_items_for_voucher <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_condition_count_not_satisfied <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_bonus_count_not_satisfied <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: unauthorized_use_vouchers <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: not_enough_items_for_voucher <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: not_enough_points_for_voucher <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_cant_be_applied_by_date <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_cant_be_applied_by_time <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_cant_be_applied_by_validity_days <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_cant_be_applied_by_segment <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_cant_be_used_in_store <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_assigned_to_another_customer <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_already_used <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_already_applied <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_expired <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: insufficient_amount_of_purchase <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_invalid_type_of_usage <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: card_number <br/> reason: card_is_blocked <br/> <br/> status code: 400 <br/> exception: missing_argument_exception <br/> parameter: code <br/> object_of_parameter: PluId <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> title: 'Encoded store id is invalid.' <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: benefit_codes <br/> reason: voucher_invalid_type_of_usage <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: max_points <br/> reason: points_min_amount_of_purchase <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: max_points <br/> reason: customer_cant_pay_by_points <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: payment_type <br/> reason: customer_cant_pay_by_credits <br/> <br/> status code: 400 <br/> exception: bad_request_exception <br/> name: customer_id <br/> reason: customer_was_deleted <br/> <br/> </p>
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
@@ -180,6 +189,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/communication_channel_id'
       responses:
         '200':
           description: OK
@@ -3313,6 +3323,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
       responses:
         '200':
           description: OK
@@ -5111,6 +5125,42 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_customer_sources = $care_cloud->customerSourcesApi()->getCustomerSources(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $customer_sources = $get_customer_sources->getData()->getCustomerSources();\n    $total_items = $get_customer_sources->getData()->getTotalItems();\n    var_dump($customer_sources);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/customer-sources/{customer_source_id}':
+    get:
+      tags:
+        - Customer sources
+      summary: Detail of a customer source
+      description: Get information about a specific customer source
+      operationId: getCustomerSource
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_source_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerSource'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customer-source-records:
     get:
       tags:
@@ -13711,6 +13761,11 @@ paths:
                         format: float
                         description: Amount of available credits in the moment. Time interval has no influence to the result
                         example: 79.5
+                      split_by_currency:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CreditWalletSummary'
+                        description: The credit overview split by currency
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -14113,6 +14168,11 @@ components:
           readOnly: true
           description: Text of the agreement in CareCloud. Language version of text is returned by language setup in HTTP header of the request.
           example: '<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>'
+        communication_channel_id:
+          type: string
+          readOnly: true
+          description: 'The unique id of the communication channel from resource [GET /communication-channels](#tag/Communication-channels)'
+          example: 86e05affc7a7abefcd513ab400
         last_change:
           type: string
           readOnly: true
@@ -14782,6 +14842,11 @@ components:
           readOnly: false
           description: 'Date and time of the credit record validity to *(YYYY-MM-DD HH:MM:SS)*'
           example: null
+        currency_id:
+          type: string
+          readOnly: true
+          description: The unique id of the currency
+          example: 86e05affc7a7abefcd513ab400
         state:
           type: integer
           enum:
@@ -14827,6 +14892,11 @@ components:
           readOnly: false
           description: The unique id of the partner company
           example: 86e05affc7a7abefcd513ab400
+        currency_id:
+          type: string
+          readOnly: true
+          description: The unique id of the currency
+          example: 86e05affc7a7abefcd513ab400
         store_id:
           type: string
           readOnly: true
@@ -14856,6 +14926,30 @@ components:
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
           example: '2020-04-22 13:53:54'
+    CreditWalletSummary:
+      type: object
+      description: Customer's credit in the specific currency
+      properties:
+        currency_id:
+          type: string
+          readOnly: true
+          description: 'The unique id of the currency from the API resource [GET /currencies](#tag/Currencies)'
+          example: 86e05affc7a7abefcd513ab400
+        earned_credits:
+          type: number
+          format: float
+          description: Amount of earned credits in time interval
+          example: 100
+        redeemed_credits:
+          type: number
+          format: float
+          description: Amount of redeemed credits in time interval
+          example: 20.5
+        available_credits:
+          type: number
+          format: float
+          description: Amount of available credits in the moment. Time interval has no influence to the result
+          example: 79.5
     Currency:
       type: object
       description: Currency resource
@@ -19191,6 +19285,14 @@ components:
         type: array
         items:
           type: string
+    customer_source_id_path:
+      name: customer_source_id
+      in: path
+      required: true
+      description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+      schema:
+        type: string
+      example: 8fdce3475560d56e95a6ab035r
     customer_type_id_path:
       name: customer_type_id
       in: path

@@ -27,6 +27,11 @@ properties:
     readOnly: false
     description: The unique id of the partner company
     example: 86e05affc7a7abefcd513ab400
+  currency_id:
+    type: string
+    readOnly: true
+    description: The unique id of the currency
+    example: 86e05affc7a7abefcd513ab400
   store_id:
     type: string
     readOnly: true

@@ -180,6 +180,9 @@
 # Customer sources
 /customer-sources:
   $ref: "./customers/CustomerSources.yaml"
+/customer-sources/{customer_source_id}:
+  $ref: "./customers/CustomerSource.yaml"
+
 # Customer source records
 /customer-source-records:
   $ref: "./customers/CustomerSourceRecord.yaml"
