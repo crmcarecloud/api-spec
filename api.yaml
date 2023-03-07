@@ -128,189 +128,274 @@ tags:
   - name: Purchase error examples
     x-traitTag: true
     description: >
-      Examples of the most occurred extended error codes from purchases resource endpoints and action methods:
-      <p>
-        status code: 400 <br/>
-        exception: bad_request_exception <br/>
-        name: store_id <br/>
-        reason: not_found <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: purchase_type_id <br/>
-      reason: not_allowed_value <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: invalid_argument_exception <br/>
-      expected_type: string <br/>
-      actual_type: null <br/>
-      parameter: payment_type <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: bill_item_id <br/>
-      reason: item_price_lower_than_paid_amount <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: bill_id <br/>
-      reason: already_exists <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: bill_item_id <br/>
-      reason: required <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: payment_time <br/>
-      reason: invalid_value_format <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: credit_points <br/>
-      reason: not_enough_points_for_payment <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: max_number_of_voucher_exceeded <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: system_id <br/>
-      reason: different_system_id <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_not_allowed_in_store <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: not_enough_items_for_voucher <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_condition_count_not_satisfied <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_bonus_count_not_satisfied <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: unauthorized_use_vouchers <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: not_enough_items_for_voucher <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: not_enough_points_for_voucher <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_cant_be_applied_by_date <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_cant_be_applied_by_time <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_cant_be_applied_by_validity_days <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_cant_be_applied_by_segment <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_cant_be_used_in_store <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_assigned_to_another_customer <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_already_used <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_already_applied <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_expired <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: insufficient_amount_of_purchase <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_invalid_type_of_usage <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: card_number <br/>
-      reason: card_is_blocked <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: missing_argument_exception <br/>
-      parameter: code <br/>
-      object_of_parameter: PluId <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      title: 'Encoded store id is invalid.' <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: benefit_codes <br/>
-      reason: voucher_invalid_type_of_usage <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: max_points <br/>
-      reason: points_min_amount_of_purchase <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: max_points <br/>
-      reason: customer_cant_pay_by_points <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: payment_type <br/>
-      reason: customer_cant_pay_by_credits <br/>
-      <br/>
-      status code: 400 <br/>
-      exception: bad_request_exception <br/>
-      name: customer_id <br/>
-      reason: customer_was_deleted <br/>
-      <br/>
-      </p>
+      <p>Examples of the most occurred extended error codes from purchases resource endpoints and action methods:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>status code</th>
+            <th>exception</th>
+            <th>name</th>
+            <th>reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>store_id</td>
+            <td>not_found</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>purchase_type_id</td>
+            <td>not_allowed_value</td>
+          </tr> 
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>bill_item_id</td>
+            <td>item_price_lower_than_paid_amount</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>bill_id</td>
+            <td>already_exists</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>bill_item_id</td>
+            <td>required</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>payment_time</td>
+            <td>invalid_value_format</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>credit_points</td>
+            <td>not_enough_points_for_payment</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>max_number_of_voucher_exceeded</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>system_id</td>
+            <td>different_system_id</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_not_allowed_in_store</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>not_enough_items_for_voucher</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_condition_count_not_satisfied</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_bonus_count_not_satisfied</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>unauthorized_use_vouchers</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>not_enough_items_for_voucher</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>not_enough_points_for_voucher</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_cant_be_applied_by_date</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_cant_be_applied_by_time</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_cant_be_applied_by_validity_days</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_cant_be_applied_by_segment</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_cant_be_used_in_store</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_assigned_to_another_customer</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_already_used</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_already_applied</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_expired</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>insufficient_amount_of_purchase</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_invalid_type_of_usage</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>card_number</td>
+            <td>card_is_blocked</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>benefit_codes</td>
+            <td>voucher_invalid_type_of_usage</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>max_points</td>
+            <td>points_min_amount_of_purchase</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>max_points</td>
+            <td>customer_cant_pay_by_points</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>payment_type</td>
+            <td>customer_cant_pay_by_credits</td>
+          </tr>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>customer_id</td>
+            <td>customer_was_deleted</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>status code</th>
+            <th>exception</th>
+            <th>parameter</th>
+            <th>object_of_parameter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>400</td>
+            <td>missing_argument_exception</td>
+            <td>code</td>
+            <td>PluId</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>status code</th>
+            <th>exception</th>
+            <th>expected_type</th>
+            <th>actual_type</th>
+            <th>parameter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           <td>400</td>
+           <td>invalid_argument_exception</td>
+           <td>string</td>
+           <td>null</td>
+           <td>payment_type</td>
+         </tr>
+        </tbody>
+      </table>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>status code</th>
+            <th>exception</th>
+            <th>title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>400</td>
+            <td>bad_request_exception</td>
+            <td>'Encoded store id is invalid.'</td>
+          </tr>
+        </tbody>
+      </table>
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
