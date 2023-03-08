@@ -27,11 +27,26 @@ get:
                     type: array
                     description: Structure of currency
                     items:
-                      $ref: '../../schemas/_index.yaml#/Currency'
+                      - $ref: '../../schemas/_index.yaml#/Currency'
+                      - type: object
+                        description: Currency example
+                        properties:
+                          currency_id:
+                            type: string
+                            description: The unique id of the currency
+                            example: 8bed991c68a470e7aaeffbf048
+                          name:
+                            type: string
+                            description: Name of the currency
+                            example: EUR
+                          code:
+                            type: string
+                            description: International ISO code of the currency
+                            example: EUR
                   total_items:
                     type: integer
                     description: Total count of found items of resource currencies
-                    example: 1
+                    example: 2
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -4,19 +4,24 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the agreement in CareCloud
-    example: 81eaeea13b8984a169c490a325
+    example: 8fd73167342d06899c4c015320
   name:
     type: string
     readOnly: true
     description: Name of the agreement in CareCloud
-    example: GDPR agreement
+    example: Custom agreement
   text:
     type: string
     readOnly: true
     description: Text of the agreement in CareCloud. Language version of text is returned by language setup in HTTP header of the request.
-    example: '<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>'
+    example: Custom agreement text
+  communication_channel_id:
+    type: string
+    readOnly: true
+    description: 'The unique id of the communication channel. List of values is available in resource [GET /communication-channels](/#tag/Communication-channels)'
+    example: null
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
-    example: '2018-05-07 14:26:19.215774'
+    example: '2021-12-16 17:42:28.248955'

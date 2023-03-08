@@ -81,7 +81,7 @@ post:
                   campaign_product_store_record_id:
                     type: string
                     description: The unique id of the campaign product store record.
-                    example: 88c774183f5c3e413b3ba570f8
+                    example: 8bd253a890067595008f1d44aa
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

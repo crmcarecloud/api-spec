@@ -16,7 +16,7 @@ post:
             card_id:
               description: Id of the card. It will generates file from this card
               type: string
-              example: 81a94c48474bc45c03d41f7016
+              example: 8fd73167342d06899c4c015320
             file_type:
               description: "Type of the final file *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*"
               type: string

@@ -1,0 +1,20 @@
+type: object
+description: Campaign resource
+properties:
+  external_id:
+    type: string
+    readOnly: false
+    description: The external id of the campaign
+    example: 202303001
+  parent_id:
+    type: string
+    readOnly: false
+    description: Id of the parent campaign
+    example: 8bed991c68a470e7aaeffbf048
+  name:
+    type: string
+    readOnly: false
+    description: Name of the campaign
+    example: Spring standard campaign
+required:
+  - name

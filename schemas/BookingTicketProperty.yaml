@@ -1,21 +1,21 @@
 type: object
-description: Property structure
+description: Booking ticket property structure
 properties:
   property_id:
     type: string
     readOnly: true
     description: The unique id of the property
-    example: test
+    example: firstname
   name:
     type: string
     readOnly: false
     description: Name of the property
-    example: Test
+    example:
   description:
     type: string
     readOnly: false
     description: User defined description of the property
-    example: "test"
+    example:
   data_type:
     type: string
     readOnly: false
@@ -23,8 +23,6 @@ properties:
     example: string
   items:
     type: array
-    items:
-      $ref: '../schemas/_index.yaml#/PropertyItem'
     readOnly: false
     description: List of possible values. Used for multivalued data types (like enum, multiselect)
   is_required:
@@ -34,7 +32,7 @@ properties:
       - false
     readOnly: false
     description: The settings whether the property is a required parameter of the specific entity
-    example: false
+    example: true
   is_unique:
     type: boolean
     enum:
@@ -47,7 +45,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2019-06-20 14:48:09"
+    example: "2015-09-03 12:10:19"
   state:
     type: integer
     enum:

@@ -572,7 +572,7 @@ card_id_path:
   required: true
   schema:
     type: string
-  example: 81a94c48474bc45c03d41f7016
+  example: 81eaeea13b8984a169c490a325
 card_type_id_path:
   name: card_type_id
   in: path
@@ -588,7 +588,7 @@ card_number:
   required: false
   schema:
     type: string
-  example: 200120000290
+  example: 1000000000016
 card_type_id:
   name: card_type_id
   in: query
@@ -840,7 +840,7 @@ type_id:
 campaign_store_id:
   name: store_id
   in: query
-  description: Parameter filters all campaig products from [store](#tag/Stores) by store id
+  description: Parameter filters all campaign products from [store](#tag/Stores) by store id
   required: false
   schema:
     type: string
@@ -852,7 +852,7 @@ campaign_product_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c
+  example: 81eaeea13b8984a169c490a325
 
 # Currencies
 currency_id_path:
