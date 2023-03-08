@@ -4,8 +4,6 @@ post:
   summary: Transfer points
   description: |
     Transfers points from one customer to another
-
-    <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
   operationId: postPointsTransfer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

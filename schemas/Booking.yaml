@@ -14,7 +14,7 @@ properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/BookingItem'
-    description: List of the booking items. Included only if query parameter `add_booking_items` is `true`
+    description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`
   booking_status:
     type: string
     readOnly: false
