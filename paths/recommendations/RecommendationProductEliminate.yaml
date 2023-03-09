@@ -1,13 +1,30 @@
-get:
+post:
   tags:
     - Product recommendation engine
   summary: Get the best recommendation with an elimination
   description: It selects the best products from an initial list for the customer. Eliminates all products that don't match future customer preferences (depends on his previous shopping behavior). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
-  operationId: getRecommendationProductEliminate
+  operationId: postRecommendationProductEliminate
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/customer_id_required'
-    - $ref: '../../parameters/_index.yaml#/product_id_list'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique id of the customer
+              example: "8ea2591121e636086a4a9c0992"
+            product_id_list:
+              type: array
+              description: List of the product ids. Initial products of the recommendation engine
+              items:
+                type: string
+              example: [ "8fd73167342d0689c4c015320", "84aec0f62c76448621d68d343c" ]
+          required:
+            - customer_id
   responses:
     '200':
       description: OK

@@ -1,14 +1,34 @@
-get:
+post:
   tags:
     - Product recommendation engine
   summary: Get the best recommendation
   description: It selects the best products from an initial list for the customer. Eliminates all products that don't match future customer preferences (depends on his previous shopping behavior). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.
-  operationId: getRecommendationProductCombine
+  operationId: postRecommendationProductCombine
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/customer_id_required'
-    - $ref: '../../parameters/_index.yaml#/product_id_list'
-    - $ref: '../../parameters/_index.yaml#/count'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique id of the customer
+              example: "8ea2591121e636086a4a9c0992"
+            product_id_list:
+              type: array
+              description: List of the product ids. Initial products of the recommendation engine
+              items:
+                type: string
+              example: [ "89d88719b8b442de2d11b401a2", "88bb88399cc74d81edbe19d684" ]
+            count:
+              type: integer
+              description: The number of records to return
+              example: 5
+          required:
+            - customer_id
   responses:
     '200':
       description: OK

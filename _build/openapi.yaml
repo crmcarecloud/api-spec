@@ -9562,16 +9562,35 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$recommendation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the recommendation\n\n// Call endpoint and get data\ntry\n{\n    $get_recommendation = $care_cloud->hintApi()->getRecommendation($recommendation_id, $accept_language);\n    $recommendation = $get_recommendation->getData();\n    var_dump($recommendation);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /recommendation-engine/product/actions/eliminate:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation with an elimination
       description: It selects the best products from an initial list for the customer. Eliminates all products that don't match future customer preferences (depends on his previous shopping behavior). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
-      operationId: getRecommendationProductEliminate
+      operationId: postRecommendationProductEliminate
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/product_id_list'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9613,17 +9632,39 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/product/actions/order:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Order products for the best recommendation.
       description: 'The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer and his previous shopping behavior. If needed, the initial parameter might define the number of results.'
-      operationId: getRecommendationProductOrder
+      operationId: postRecommendationProductOrder
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9665,17 +9706,39 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/product/actions/combine:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation
       description: 'It selects the best products from an initial list for the customer. Eliminates all products that don''t match future customer preferences (depends on his previous shopping behavior). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.'
-      operationId: getRecommendationProductCombine
+      operationId: postRecommendationProductCombine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9717,17 +9780,43 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/shopping-cart/actions/eliminate:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation with elimination for shopping cart
       description: It selects the best products from an initial list for the customer shopping cart. Eliminates all products that don't match future customer preferences (depends on other customers' shopping behavior with the same products). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
-      operationId: getRecommendationCartEliminate
+      operationId: postRecommendationCartEliminate
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/cart_product_ids'
-        - $ref: '#/components/parameters/product_id_list'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                cart_product_ids:
+                  type: array
+                  description: List of the product ids in customer's shopping cart
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9768,17 +9857,43 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/shopping-cart/actions/order:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Order products for the best recommendation for a shopping cart
       description: 'The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer''s shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.'
-      operationId: getRecommendationCartOrder
+      operationId: postRecommendationCartOrder
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/cart_product_ids_required'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_product_ids:
+                  type: array
+                  description: List of the product ids in customer's shopping cart
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - cart_product_ids
       responses:
         '200':
           description: OK
@@ -9819,18 +9934,47 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/shopping-cart/actions/combine:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation for shopping cart
       description: 'It selects the best products from an initial list for the customer shopping cart. Eliminates all products that don''t match future customer preferences (depends on other customers'' shopping behavior with the same products). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.'
-      operationId: getRecommendationCartCombined
+      operationId: postRecommendationCartCombine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/cart_product_ids'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                cart_product_ids:
+                  type: array
+                  description: List of the product ids in customer's shopping cart
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9875,7 +10019,7 @@ paths:
       tags:
         - Product recommendation engine
       summary: Create a batch of the third party recommendations
-      description: Batch process helps to add multiple third party reccomendations in one request
+      description: Batch process helps to add multiple third party recommendations in one request
       operationId: postBulkThirdPartyRecommendations
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -20283,33 +20427,6 @@ components:
       schema:
         type: string
       example: 8ad8b2b701199684f1222961d6
-    product_id_list:
-      name: product_id_list
-      in: query
-      required: false
-      description: List of the product ids. Initial products of the recommendation engine.
-      schema:
-        type: array
-        items:
-          type: string
-    cart_product_ids:
-      name: cart_product_ids
-      in: query
-      required: false
-      description: List of the product ids in customer's shopping cart
-      schema:
-        type: array
-        items:
-          type: string
-    cart_product_ids_required:
-      name: cart_product_ids
-      in: query
-      required: true
-      description: List of the product ids in customer's shopping cart
-      schema:
-        type: array
-        items:
-          type: string
     segment_id_path:
       name: segment_id
       in: path
