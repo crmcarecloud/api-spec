@@ -26,7 +26,7 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PropertyItem'
     readOnly: false
-    description: List of possible values. Used for multivalued data types ( like enum, multiselect)
+    description: List of possible values. Used for multivalued data types (like enum, multiselect)
   is_required:
     type: boolean
     enum:

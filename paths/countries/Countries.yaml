@@ -27,26 +27,7 @@ get:
                     type: array
                     description: List of the countries
                     items:
-                      type: object
-                      properties:
-                        country_id:
-                          type: string
-                          description: The unique id of the country as ISO code
-                          example: fi
-                        name:
-                          type: string
-                          description: Name of the country. Language depends on the `Accept-Language` header from the request.
-                          example: "Finland"
-                        state:
-                          type: integer
-                          enum:
-                            - 0
-                            - 1
-                            - 2
-                          description: |
-                            State of the country
-                            *Possible values are: 0 - deleted / 1- active / 2 - non active*
-                          example: 1
+                      - $ref: '../../schemas/_index.yaml#/Country'
                   total_items:
                     type: integer
                     description: Count of all found countries

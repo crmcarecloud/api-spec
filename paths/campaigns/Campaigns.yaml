@@ -124,7 +124,7 @@ post:
                   campaign_id:
                     type: string
                     description: The unique id of the campaign
-                    example: 8edebb6b9d299c59804b2aa812
+                    example: 8ad8b2b701199684f1222961d6
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

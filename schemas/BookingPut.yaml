@@ -4,11 +4,11 @@ properties:
   customer_id:
     type: string
     description: The unique id of the customer that created the booking
-    example: 8ea6abece4cd0a4ded0a29f093
+    example: 85bc5819e09dab95437552ce79
   booking_status:
     type: string
     readOnly: false
     description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)
-    example: cd0acd0a4ded4dedec
+    example: 83d1d11ea3884a5d33253fe214
 required:
   - booking_status

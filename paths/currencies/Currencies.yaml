@@ -27,7 +27,7 @@ get:
                     type: array
                     description: Structure of currency
                     items:
-                      $ref: '../../schemas/_index.yaml#/Currency'
+                      - $ref: '../../schemas/_index.yaml#/Currency'
                   total_items:
                     type: integer
                     description: Total count of found items of resource currencies

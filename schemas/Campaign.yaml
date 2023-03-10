@@ -5,27 +5,27 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the campaign
-    example: 8edebb6b9d299c59804b2aa812
+    example: 8bed991c68a470e7aaeffbf048
   external_id:
     type: string
     readOnly: false
     description: The external id of the campaign
-    example: 288684441
+    example: 1
   parent_id:
     type: string
     readOnly: false
     description: Id of the parent campaign
-    example: 8fd17bf437555cf56a6ecf05fc
+    example: null
   name:
     type: string
     readOnly: false
     description: Name of the campaign
-    example: REST campaign
+    example: Standard campaign
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2019-10-24 19:09:30"
+    example: "2021-04-16 18:22:35.052987"
   state:
     type: integer
     enum:

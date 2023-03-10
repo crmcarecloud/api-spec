@@ -5,11 +5,11 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the booking
-    example: 83cfee22eabfbbb15a14815e30
+    example: 83d0ce2b5a1bc0dc8da01b13e7
   customer_id:
     type: string
     description: The unique id of the customer that created the booking
-    example: 8ea6abece4cd0a4ded0a29f093
+    example: 85bc5819e09dab95437552ce79
   booking_items:
     type: array
     items:
@@ -19,17 +19,17 @@ properties:
     type: string
     readOnly: false
     description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
-    example: cd0acd0a4ded4dedec
+    example: 81eaeea13b8984a169c490a325
   created_at:
     type: string
     readOnly: false
     description: Date and time of the booking *(YYYY-MM-DD HH:MM:SS)*
-    example: "2017-06-20 16:59:49"
+    example: "2022-08-11 11:15:33"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2013-07-24 21:33:33'
+    example: '2022-08-11 11:15:33'
   state:
     type: integer
     enum:

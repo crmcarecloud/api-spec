@@ -34,6 +34,8 @@ CashierMessage:
   $ref: "./CashierMessage.yaml"
 CommunicationChannel:
   $ref: "./CommunicationChannel.yaml"
+Country:
+  $ref: "./Country.yaml"
 Credit:
   $ref: "./Credit.yaml"
 CreditHistoryRecord:
