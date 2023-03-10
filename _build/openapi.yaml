@@ -16044,12 +16044,13 @@ components:
             - 0
             - 1
             - -1
+            - -2
             - 2
             - 4
           readOnly: true
           description: |
             The status id of the message.
-            *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
+            *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / -2 message was not recieved (soft bounce) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
           example: 1
         message_template_id:
           type: string
