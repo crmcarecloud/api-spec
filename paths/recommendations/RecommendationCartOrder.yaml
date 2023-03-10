@@ -1,14 +1,36 @@
-get:
+post:
   tags:
     - Product recommendation engine
   summary: Order products for the best recommendation for a shopping cart
   description: The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer's shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.
-  operationId: getRecommendationCartOrder
+  operationId: postRecommendationCartOrder
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/cart_product_ids_required'
-    - $ref: '../../parameters/_index.yaml#/product_id_list'
-    - $ref: '../../parameters/_index.yaml#/count'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cart_product_ids:
+              type: array
+              description: List of the product ids in customer's shopping cart
+              items:
+                type: string
+              example: [ "8fd73167342d0689c4c015320", "84aec0f62c76448621d68d343c" ]
+            product_id_list:
+              type: array
+              description: List of the product ids. Initial products of the recommendation engine
+              items:
+                type: string
+              example: [ "89d88719b8b442de2d11b401a2", "88bb88399cc74d81edbe19d684" ]
+            count:
+              type: integer
+              description: The number of records to return
+              example: 5
+          required:
+            - cart_product_ids
   responses:
     '200':
       description: OK

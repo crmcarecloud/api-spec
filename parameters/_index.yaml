@@ -1310,33 +1310,6 @@ recommendation_id_path:
   schema:
     type: string
   example: 8ad8b2b701199684f1222961d6
-product_id_list:
-  name: product_id_list
-  in: query
-  required: false
-  description: List of the product ids. Initial products of the recommendation engine.
-  schema:
-    type: array
-    items:
-      type: string
-cart_product_ids:
-  name: cart_product_ids
-  in: query
-  required: false
-  description: List of the product ids in customer's shopping cart
-  schema:
-    type: array
-    items:
-      type: string
-cart_product_ids_required:
-  name: cart_product_ids
-  in: query
-  required: true
-  description: List of the product ids in customer's shopping cart
-  schema:
-    type: array
-    items:
-      type: string
 
 # Segment
 segment_id_path:
