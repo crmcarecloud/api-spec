@@ -652,7 +652,7 @@ paths:
                       booking_id:
                         type: string
                         description: The unique id of the booking
-                        example: 81a94c48474bc45c03d41f7016
+                        example: 8bc48e4b5da4c61eddb98e59fe
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1187,7 +1187,7 @@ paths:
                       campaign_id:
                         type: string
                         description: The unique id of the campaign
-                        example: 8edebb6b9d299c59804b2aa812
+                        example: 8ad8b2b701199684f1222961d6
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1492,7 +1492,7 @@ paths:
                       campaign_product_store_record_id:
                         type: string
                         description: The unique id of the campaign product store record.
-                        example: 88c774183f5c3e413b3ba570f8
+                        example: 8bd253a890067595008f1d44aa
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1730,11 +1730,11 @@ paths:
                 card_type_id:
                   type: string
                   description: The unique id of the card type.
-                  example: 8bed991c68a470e7aaeffbf048
+                  example: 83d1d11ea3884a5d33253fe214
                 customer_id:
                   type: string
                   description: The unique id of the card holder.
-                  example: 81ceb8582e2d8dbb7e71b7273b
+                  example: 8ea2591121e636086a4a9c0992
               required:
                 - card_type_id
                 - customer_id
@@ -1753,7 +1753,7 @@ paths:
                         type: string
                         readOnly: true
                         description: The unique id of the card
-                        example: 81a94c48474bc45c03d41f7016
+                        example: 8fd73167342d06899c4c015320
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1793,7 +1793,7 @@ paths:
                 card_id:
                   description: Id of the card. It will generates file from this card
                   type: string
-                  example: 81a94c48474bc45c03d41f7016
+                  example: 8fd73167342d06899c4c015320
                 file_type:
                   description: 'Type of the final file *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*'
                   type: string
@@ -2243,26 +2243,7 @@ paths:
                         type: array
                         description: List of the countries
                         items:
-                          type: object
-                          properties:
-                            country_id:
-                              type: string
-                              description: The unique id of the country as ISO code
-                              example: fi
-                            name:
-                              type: string
-                              description: Name of the country. Language depends on the `Accept-Language` header from the request.
-                              example: Finland
-                            state:
-                              type: integer
-                              enum:
-                                - 0
-                                - 1
-                                - 2
-                              description: |
-                                State of the country
-                                *Possible values are: 0 - deleted / 1- active / 2 - non active*
-                              example: 1
+                          - $ref: '#/components/schemas/Country'
                       total_items:
                         type: integer
                         description: Count of all found countries
@@ -2516,7 +2497,7 @@ paths:
                         type: array
                         description: List of the credit types
                         items:
-                          $ref: '#/components/schemas/CreditType'
+                          - $ref: '#/components/schemas/CreditType'
                       total_items:
                         type: integer
                         description: Count of all found credit types
@@ -2603,7 +2584,7 @@ paths:
                         type: array
                         description: Structure of currency
                         items:
-                          $ref: '#/components/schemas/Currency'
+                          - $ref: '#/components/schemas/Currency'
                       total_items:
                         type: integer
                         description: Total count of found items of resource currencies
@@ -14557,12 +14538,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the agreement in CareCloud
-          example: 81eaeea13b8984a169c490a325
+          example: 8fd73167342d06899c4c015320
         name:
           type: string
           readOnly: true
           description: Name of the agreement in CareCloud
-          example: GDPR agreement
+          example: Custom agreement
         text:
           type: string
           readOnly: true
@@ -14577,7 +14558,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change (YYYY-MM-DD HH:MM:SS)'
-          example: '2018-05-07 14:26:19.215774'
+          example: '2021-12-16 17:42:28.248955'
     Bill:
       type: object
       description: Structure of bill from POS
@@ -14711,11 +14692,11 @@ components:
           type: string
           readOnly: true
           description: The unique id of the booking
-          example: 83cfee22eabfbbb15a14815e30
+          example: 83d0ce2b5a1bc0dc8da01b13e7
         customer_id:
           type: string
           description: The unique id of the customer that created the booking
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 85bc5819e09dab95437552ce79
         booking_items:
           type: array
           items:
@@ -14725,17 +14706,17 @@ components:
           type: string
           readOnly: false
           description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
-          example: cd0acd0a4ded4dedec
+          example: 81eaeea13b8984a169c490a325
         created_at:
           type: string
           readOnly: false
           description: 'Date and time of the booking *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2022-08-11 11:15:33'
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2013-07-24 21:33:33'
+          example: '2022-08-11 11:15:33'
         state:
           type: integer
           enum:
@@ -14766,7 +14747,7 @@ components:
           type: string
           readOnly: false
           description: The unique id of the booking time slot
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 88bb88399cc74d81edbe19d684
         booking_ticket:
           type: object
           description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
@@ -14791,7 +14772,7 @@ components:
           type: string
           readOnly: false
           description: 'Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
-          example: e2a1b9b01fe2a1b9b01f5c9fb1
+          example: 86e05affc7a7abefcd513ab400
         additional_properties:
           type: array
           items:
@@ -14801,7 +14782,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the boking item *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time of the booking item *(YYYY-MM-DD HH:MM:SS)*'
           example: '2017-06-20 16:59:49'
         state:
           type: integer
@@ -14830,27 +14811,27 @@ components:
           type: string
           readOnly: true
           description: The unique id of the booking ticket
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 89d88719b8b442de2d11b401a2
         name:
           type: string
           readOnly: false
           description: Name of the booking ticket in language from request header
-          example: Boat ride
+          example: Prophecy
         created_at:
           type: string
           readOnly: false
           description: 'Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2022-07-26 11:38:22'
         valid_from:
           type: string
           readOnly: false
           description: 'Date and time from when is ticket valid already. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2018-06-20 16:59:49'
+          example: null
         valid_to:
           type: string
           readOnly: false
           description: 'Date and time to when is ticket still valid. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2018-07-20 16:59:49'
+          example: null
         state:
           type: integer
           enum:
@@ -14865,7 +14846,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2015-01-05 11:24:12'
+          example: '2022-09-16 16:14:41'
       required:
         - name
     BookingStatus:
@@ -14876,17 +14857,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the booking status
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 8bf3397ab62d3ffd876fc9ae16
         name:
           type: string
           readOnly: false
           description: Name of the booking status in language from request header
-          example: Cancelled
+          example: Pending
         created_at:
           type: string
           readOnly: false
           description: 'Date and time of booking status creation *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2022-09-14 07:39:08.99493'
         state:
           type: integer
           enum:
@@ -14901,7 +14882,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2015-01-05 11:24:12'
+          example: '2022-09-14 07:39:08.99493'
       required:
         - name
     Campaign:
@@ -14912,27 +14893,27 @@ components:
           type: string
           readOnly: true
           description: The unique id of the campaign
-          example: 8edebb6b9d299c59804b2aa812
+          example: 8bed991c68a470e7aaeffbf048
         external_id:
           type: string
           readOnly: false
           description: The external id of the campaign
-          example: 288684441
+          example: 1
         parent_id:
           type: string
           readOnly: false
           description: Id of the parent campaign
-          example: 8fd17bf437555cf56a6ecf05fc
+          example: null
         name:
           type: string
           readOnly: false
           description: Name of the campaign
-          example: REST campaign
+          example: Standard campaign
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-10-24 19:09:30'
+          example: '2021-04-16 18:22:35.052987'
         state:
           type: integer
           enum:
@@ -14954,28 +14935,28 @@ components:
           type: string
           readOnly: true
           description: The unique id of the campaign product
-          example: 8bed991c68a470e7aaeff
+          example: 8bed991c68a470e7aaeffbf048
         product_id:
           type: string
           readOnly: false
           description: The unique id of the product
-          example: 80bfce6e94829c8df40
+          example: 8ad4ff4db9d628f2c8cb6181a4
         currency_id:
           type: string
           readOnly: false
           description: The unique id of the currency
-          example: 86e05affc7a7abefc
+          example: 8bed991c68a470e7aaeffbf048
         campaign_id:
           type: string
           readOnly: false
           description: The unique id of the campaign
-          example: 8bed991c68a470e7aaeffbf048
+          example: 8ad8b2b701199684f1222961d6
         value:
           type: number
           format: float
           readOnly: false
           description: Value of the product
-          example: 100
+          example: 50
         value_type_id:
           type: integer
           enum:
@@ -14983,17 +14964,17 @@ components:
             - 2
           readOnly: false
           description: 'Type of value (1 - percentage discount value, 2 - final price)'
-          example: 2
+          example: 1
         valid_from:
           type: string
           readOnly: false
           description: 'Valid from *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2018-11-19 00:00:00'
+          example: '2021-04-16 00:00:00'
         valid_to:
           type: string
           readOnly: false
           description: 'Valid to *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-01-05 23:59:59'
+          example: '2021-05-16 23:59:59'
         display_in:
           type: array
           items:
@@ -15001,13 +14982,12 @@ components:
           readOnly: false
           description: List of possible display places
           example:
-            - cash_desk
-            - web
+            - mapi
         type_id:
           type: string
           readOnly: false
           description: Type of a campaign product
-          example: 81eaeea13b8984a169c490a325
+          example: 86e05affc7a7abefcd513ab400
         presentation_data:
           type: object
           $ref: '#/components/schemas/CampaignPresentationData'
@@ -15015,7 +14995,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: 2013-08-19T16:28:03.978Z
+          example: 2021-04-16T19:02:22.000Z
         state:
           type: integer
           enum:
@@ -15064,7 +15044,7 @@ components:
           type: string
           readOnly: false
           description: URL address of the image
-          example: 'https://developer.crmcarecloud.com/images/campaign.jpg'
+          example: 'https://developers.crmcarecloud.com/img/customer_enterprise.png'
       required:
         - name
     CampaignProductStoreRecord:
@@ -15075,17 +15055,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the campaign product store record.
-          example: 88c774183f5c3e413b3ba570f8
+          example: 8bed991c68a470e7aaeffbf048
         store_id:
           type: string
           readOnly: false
           description: The unique id of the store.
-          example: 8fdd651ff3f615bcebebad87ce
+          example: 8bed991c68a470e7aaeffbf048
         campaign_product_id:
           type: string
           readOnly: false
           description: The unique id of the campaign product.
-          example: 8fdce3475560d56e95a6ab035c
+          example: 81eaeea13b8984a169c490a325
       required:
         - store_id
         - campaign_product_id
@@ -15097,12 +15077,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the card
-          example: 81a94c48474bc45c03d41f7016
+          example: 81eaeea13b8984a169c490a325
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the card holder.
-          example: 81ceb8582e2d8dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         card_type_id:
           type: string
           readOnly: false
@@ -15112,12 +15092,12 @@ components:
           type: string
           readOnly: false
           description: Card number
-          example: '200120000290'
+          example: '1000000000016'
         valid_from:
           type: string
           readOnly: false
           description: 'Card validity from *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-07-05'
+          example: '2021-04-14'
         valid_to:
           type: string
           readOnly: false
@@ -15155,17 +15135,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the card type.
-          example: 8fd17bf437555cf56a6ecf05fc
+          example: 8bd48117006496e0b1788109b8
         name:
           type: string
           readOnly: false
           description: Name of the card type
-          example: REST API card type
+          example: Postman test type
         prefix:
           type: string
           readOnly: false
           description: Prefix of the specific card type cards
-          example: '12'
+          example: 092
       required:
         - name
         - prefix
@@ -15191,16 +15171,38 @@ components:
           type: string
           readOnly: false
           description: Name of the communication channel
-          example: Viber
+          example: Email
         text_id:
           type: string
           readOnly: false
           description: Text representation of communication channel ID
-          example: viber
+          example: email
       required:
         - currency_id
         - name
         - text_id
+    Country:
+      type: object
+      description: Country resource
+      properties:
+        country_id:
+          type: string
+          description: The unique id of the country as ISO code
+          example: cz
+        name:
+          type: string
+          description: Name of the country. Language depends on the `Accept-Language` header from the request.
+          example: Czechia
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: |
+            State of the country
+            *Possible values are: 0 - deleted / 1- active / 2 - non active*
+          example: 1
     Credit:
       type: object
       description: Customer's credit
@@ -15209,24 +15211,24 @@ components:
           type: string
           readOnly: true
           description: The unique id of the credit record
-          example: 84cae7e5cbba16e31b0fc5ef1c
+          example: 8bed991c68a470e7aaeffbf048
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         assigned_credits:
           type: number
           format: float
           readOnly: true
           description: The number of earned credits in the record
-          example: 1208
+          example: 1000
         available_credits:
           type: number
           format: float
           readOnly: true
-          description: The number of avalilable credits from the record
-          example: 700
+          description: The number of avaliable credits from the record
+          example: 1000
         credit_type_id:
           type: string
           readOnly: false
@@ -15270,23 +15272,23 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         amount:
           type: number
           format: float
           readOnly: true
           description: The number of credits used in the credit operation record
-          example: 700
+          example: 1000
         credit_operation_type:
           type: string
           readOnly: true
           description: Type of the credit operation record
-          example: Voucher purchase
+          example: Manually added credits
         credit_operation_note:
           type: string
           readOnly: true
           description: Note of the credit operation record
-          example: Free one day parking
+          example: Addition
         partner_id:
           type: string
           readOnly: false
@@ -15301,12 +15303,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the store in CareCloud
-          example: 86e05affc7a7abefcd513ab400
+          example: 81eaeea13b8984a169c490a325
         credit_history_record_time:
           type: string
           readOnly: true
           description: 'Date and time of the credit record from the credit history *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2012-11-22 20:57:04'
+          example: '2023-03-07 09:53:55'
     CreditType:
       type: object
       description: Credits reservation resource
@@ -15320,12 +15322,12 @@ components:
           type: string
           readOnly: true
           description: Name of the credit type
-          example: Cancellation
+          example: Addition
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-04-22 13:53:54'
+          example: '2022-04-05 07:46:44.190403'
     CreditWalletSummary:
       type: object
       description: Customer's credit in the specific currency
@@ -17344,7 +17346,7 @@ components:
           items:
             $ref: '#/components/schemas/PropertyItem'
           readOnly: false
-          description: 'List of possible values. Used for multivalued data types ( like enum, multiselect)'
+          description: 'List of possible values. Used for multivalued data types (like enum, multiselect)'
         is_required:
           type: boolean
           enum:
@@ -19733,7 +19735,7 @@ components:
       required: true
       schema:
         type: string
-      example: 81a94c48474bc45c03d41f7016
+      example: 81eaeea13b8984a169c490a325
     card_type_id_path:
       name: card_type_id
       in: path
@@ -19749,7 +19751,7 @@ components:
       required: false
       schema:
         type: string
-      example: 200120000290
+      example: 1000000000016
     card_type_id:
       name: card_type_id
       in: query
@@ -19988,7 +19990,7 @@ components:
     campaign_store_id:
       name: store_id
       in: query
-      description: 'Parameter filters all campaig products from [store](#tag/Stores) by store id'
+      description: 'Parameter filters all campaign products from [store](#tag/Stores) by store id'
       required: false
       schema:
         type: string
@@ -20000,7 +20002,7 @@ components:
       required: true
       schema:
         type: string
-      example: 81eaeea13b8984a169c
+      example: 81eaeea13b8984a169c490a325
     currency_id_path:
       name: currency_id
       in: path
