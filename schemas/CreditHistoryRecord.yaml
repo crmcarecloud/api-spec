@@ -31,12 +31,12 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the credit's currency
-    example:
+    example: 8bed991c68a470e7aaeffbf048
   store_id:
     type: string
     readOnly: true
     description: The unique id of the store in CareCloud
-    example:
+    example: 81eaeea13b8984a169c490a325
   credit_history_record_time:
     type: string
     readOnly: true

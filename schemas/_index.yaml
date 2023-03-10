@@ -16,14 +16,10 @@ BookingItem:
   $ref: "./BookingItem.yaml"
 BookingTicket:
   $ref: "./BookingTicket.yaml"
-BookingTicketProperty:
-  $ref: "./BookingTicketProperty.yaml"
 BookingStatus:
   $ref: "./BookingStatus.yaml"
 Campaign:
   $ref: "./Campaign.yaml"
-CampaignPost:
-  $ref: "./CampaignPost.yaml"
 CampaignProduct:
   $ref: "./CampaignProduct.yaml"
 CampaignPresentationData:
@@ -38,6 +34,8 @@ CashierMessage:
   $ref: "./CashierMessage.yaml"
 CommunicationChannel:
   $ref: "./CommunicationChannel.yaml"
+Country:
+  $ref: "./Country.yaml"
 Credit:
   $ref: "./Credit.yaml"
 CreditHistoryRecord:

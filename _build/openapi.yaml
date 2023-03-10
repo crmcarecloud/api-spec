@@ -336,7 +336,7 @@ paths:
                       booking_id:
                         type: string
                         description: The unique id of the booking
-                        example: 81a94c48474bc45c03d41f7016
+                        example: 8bc48e4b5da4c61eddb98e59fe
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -642,7 +642,7 @@ paths:
                         type: array
                         description: List of all booking ticket properties
                         items:
-                          $ref: '#/components/schemas/BookingTicketProperty'
+                          $ref: '#/components/schemas/Property'
                       total_items:
                         type: integer
                         description: Count of all found booking ticket properties
@@ -850,7 +850,7 @@ paths:
               type: object
               properties:
                 campaign:
-                  $ref: '#/components/schemas/CampaignPost'
+                  $ref: '#/components/schemas/Campaign'
               required:
                 - campaign
       responses:
@@ -1851,41 +1851,11 @@ paths:
                         type: array
                         description: List of the countries
                         items:
-                          - type: object
-                            properties:
-                              country_id:
-                                type: string
-                                description: The unique id of the country as ISO code
-                                example: cz
-                              name:
-                                type: string
-                                description: Name of the country. Language depends on the `Accept-Language` header from the request.
-                                example: Czechia
-                              state:
-                                type: integer
-                                enum:
-                                  - 0
-                                  - 1
-                                  - 2
-                                description: |
-                                  State of the country
-                                  *Possible values are: 0 - deleted / 1- active / 2 - non active*
-                                example: 1
-                          - type: object
-                            properties:
-                              country_id:
-                                type: string
-                                example: sk
-                              name:
-                                type: string
-                                example: Slovakia
-                              state:
-                                type: integer
-                                example: 1
+                          - $ref: '#/components/schemas/Country'
                       total_items:
                         type: integer
                         description: Count of all found countries
-                        example: 2
+                        example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2132,32 +2102,10 @@ paths:
                         description: List of the credit types
                         items:
                           - $ref: '#/components/schemas/CreditType'
-                          - type: object
-                            properties:
-                              credit_type_id:
-                                type: string
-                                example: 8bed991c68a470e7aaeffbf048
-                              name:
-                                type: string
-                                example: Deduction
-                              last_change:
-                                type: string
-                                example: '2022-04-05 07:46:44.190403'
-                          - type: object
-                            properties:
-                              credit_type_id:
-                                type: string
-                                example: 81eaeea13b8984a169c490a325
-                              name:
-                                type: string
-                                example: Refund of cancelled account
-                              last_change:
-                                type: string
-                                example: '2022-04-05 07:46:44.19040'
                       total_items:
                         type: integer
                         description: Count of all found credit types
-                        example: 3
+                        example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2241,25 +2189,10 @@ paths:
                         description: Structure of currency
                         items:
                           - $ref: '#/components/schemas/Currency'
-                          - type: object
-                            description: Currency example
-                            properties:
-                              currency_id:
-                                type: string
-                                description: The unique id of the currency
-                                example: 8bed991c68a470e7aaeffbf048
-                              name:
-                                type: string
-                                description: Name of the currency
-                                example: EUR
-                              code:
-                                type: string
-                                description: International ISO code of the currency
-                                example: EUR
                       total_items:
                         type: integer
                         description: Total count of found items of resource currencies
-                        example: 2
+                        example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -13467,7 +13400,7 @@ components:
           type: string
           readOnly: false
           description: The unique id of the booking time slot
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 88bb88399cc74d81edbe19d684
         booking_ticket:
           type: object
           description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
@@ -13492,7 +13425,7 @@ components:
           type: string
           readOnly: false
           description: 'Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
-          example: e2a1b9b01fe2a1b9b01f5c9fb1
+          example: 86e05affc7a7abefcd513ab400
         additional_properties:
           type: array
           items:
@@ -13502,7 +13435,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the boking item *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time of the booking item *(YYYY-MM-DD HH:MM:SS)*'
           example: '2017-06-20 16:59:49'
         state:
           type: integer
@@ -13569,71 +13502,6 @@ components:
           example: '2022-09-16 16:14:41'
       required:
         - name
-    BookingTicketProperty:
-      type: object
-      description: Booking ticket property structure
-      properties:
-        property_id:
-          type: string
-          readOnly: true
-          description: The unique id of the property
-          example: firstname
-        name:
-          type: string
-          readOnly: false
-          description: Name of the property
-          example: null
-        description:
-          type: string
-          readOnly: false
-          description: User defined description of the property
-          example: null
-        data_type:
-          type: string
-          readOnly: false
-          description: 'Data type of the final value * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
-          example: string
-        items:
-          type: array
-          readOnly: false
-          description: 'List of possible values. Used for multivalued data types (like enum, multiselect)'
-        is_required:
-          type: boolean
-          enum:
-            - true
-            - false
-          readOnly: false
-          description: The settings whether the property is a required parameter of the specific entity
-          example: true
-        is_unique:
-          type: boolean
-          enum:
-            - true
-            - false
-          readOnly: false
-          description: The setting whether the property contains a unique value within the specific entity
-          example: false
-        last_change:
-          type: string
-          readOnly: true
-          description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2015-09-03 12:10:19'
-        state:
-          type: integer
-          enum:
-            - 0
-            - 1
-            - 2
-          readOnly: true
-          description: |
-            State of the property
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
-          example: 1
-      required:
-        - name
-        - data_type
-        - is_required
-        - is_unique
     BookingStatus:
       type: object
       description: Booking status
@@ -13710,27 +13578,6 @@ components:
             State of the campaign
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
-      required:
-        - name
-    CampaignPost:
-      type: object
-      description: Campaign resource
-      properties:
-        external_id:
-          type: string
-          readOnly: false
-          description: The external id of the campaign
-          example: 202303001
-        parent_id:
-          type: string
-          readOnly: false
-          description: Id of the parent campaign
-          example: 8bed991c68a470e7aaeffbf048
-        name:
-          type: string
-          readOnly: false
-          description: Name of the campaign
-          example: Spring standard campaign
       required:
         - name
     CampaignProduct:
@@ -13850,6 +13697,7 @@ components:
           type: string
           readOnly: false
           description: URL address of the image
+          example: 'https://developers.crmcarecloud.com/img/customer_enterprise.png'
       required:
         - name
     CampaignProductStoreRecord:
@@ -13986,6 +13834,28 @@ components:
         - currency_id
         - name
         - text_id
+    Country:
+      type: object
+      description: Country resource
+      properties:
+        country_id:
+          type: string
+          description: The unique id of the country as ISO code
+          example: cz
+        name:
+          type: string
+          description: Name of the country. Language depends on the `Accept-Language` header from the request.
+          example: Czechia
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: |
+            State of the country
+            *Possible values are: 0 - deleted / 1- active / 2 - non active*
+          example: 1
     Credit:
       type: object
       description: Customer's credit
@@ -14081,12 +13951,12 @@ components:
           type: string
           readOnly: false
           description: The unique id of the credit's currency
-          example: null
+          example: 8bed991c68a470e7aaeffbf048
         store_id:
           type: string
           readOnly: true
           description: The unique id of the store in CareCloud
-          example: null
+          example: 81eaeea13b8984a169c490a325
         credit_history_record_time:
           type: string
           readOnly: true

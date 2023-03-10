@@ -25,5 +25,6 @@ properties:
     type: string
     readOnly: false
     description: URL address of the image
+    example: https://developers.crmcarecloud.com/img/customer_enterprise.png
 required:
   - name

@@ -26,32 +26,10 @@ get:
                     description: List of the credit types
                     items:
                       - $ref: '../../schemas/_index.yaml#/CreditType'
-                      - type: object
-                        properties:
-                          credit_type_id:
-                            type: string
-                            example: 8bed991c68a470e7aaeffbf048
-                          name:
-                            type: string
-                            example: 'Deduction'
-                          last_change:
-                            type: string
-                            example: "2022-04-05 07:46:44.190403"
-                      - type: object
-                        properties:
-                          credit_type_id:
-                            type: string
-                            example: 81eaeea13b8984a169c490a325
-                          name:
-                            type: string
-                            example: 'Refund of cancelled account'
-                          last_change:
-                            type: string
-                            example: "2022-04-05 07:46:44.19040"
                   total_items:
                     type: integer
                     description: Count of all found credit types
-                    example: 3
+                    example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

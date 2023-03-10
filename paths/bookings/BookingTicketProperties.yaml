@@ -26,7 +26,7 @@ get:
                     type: array
                     description: List of all booking ticket properties
                     items:
-                      $ref: '../../schemas/_index.yaml#/BookingTicketProperty'
+                      $ref: '../../schemas/_index.yaml#/Property'
                   total_items:
                     type: integer
                     description: Count of all found booking ticket properties
