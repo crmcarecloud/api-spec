@@ -82,7 +82,7 @@ post:
                   partner_record_id:
                     type: string
                     description: The unique id of the partner record on the customer
-                    example: 8aa2049ac2f84952014d96bb23
+                    example: 88bd53f8ac5f3b595d6bc106a4
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

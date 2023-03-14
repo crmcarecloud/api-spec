@@ -17,15 +17,15 @@ post:
             application_id:
               type: string
               description: 'Id of the application. Application is the source of the token'
-              example: self_order_kiosk
+              example: 82de12eb8b138791e678fd11c3
             token:
               type: string
               description: 'Authentication token'
-              example: a78e11e774f7f
+              example: V952TL
             token_request_id:
               type: string
               description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
-              example: e11e7a7f7f610ea8e11e774
+              example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
           required:
             - application_id
             - token
@@ -44,7 +44,7 @@ post:
                   customer_id:
                     type: string
                     description: The unique id of the customer
-                    example: 8ea6abece4cd0a4ded0a29f093
+                    example: 8ea2591121e636086a4a9c0992
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -3531,7 +3531,7 @@ paths:
                       customer_source_record_id:
                         type: string
                         description: The unique id of the customer source record
-                        example: 87d934c86a6303f5fb4d1214fb
+                        example: 8fd73167342d06899c4c015320
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3640,7 +3640,7 @@ paths:
                       property_record_id:
                         type: string
                         description: The unique id of the property record
-                        example: 'contact_person:8aa2049ac2f84952014d96bb23'
+                        example: 'docasna_blokace_darce_do:8ea2591121e636086a4a9c0992'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3866,7 +3866,7 @@ paths:
                       interest_record_id:
                         type: string
                         description: The unique id of the interest record
-                        example: 87d934c86a6303f5fb4d1214fb
+                        example: 81eaeea13b8984a169c490a325
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4306,7 +4306,7 @@ paths:
                       customer_relation_id:
                         type: string
                         description: The unique id of customer's relation
-                        example: 8aa2049ac2f84952014d96bb23
+                        example: 81eaeea13b8984a169c490a325
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4485,7 +4485,7 @@ paths:
                       partner_record_id:
                         type: string
                         description: The unique id of the partner record on the customer
-                        example: 8aa2049ac2f84952014d96bb23
+                        example: 88bd53f8ac5f3b595d6bc106a4
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4801,15 +4801,15 @@ paths:
                 application_id:
                   type: string
                   description: Id of the application. Application is the source of the token
-                  example: self_order_kiosk
+                  example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
                   description: Authentication token
-                  example: a78e11e774f7f
+                  example: V952TL
                 token_request_id:
                   type: string
                   description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
-                  example: e11e7a7f7f610ea8e11e774
+                  example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
               required:
                 - application_id
                 - token
@@ -4828,7 +4828,7 @@ paths:
                       customer_id:
                         type: string
                         description: The unique id of the customer
-                        example: 8ea6abece4cd0a4ded0a29f093
+                        example: 8ea2591121e636086a4a9c0992
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4868,11 +4868,11 @@ paths:
                 customer_id:
                   type: string
                   description: The unique id of the customer
-                  example: 8ea6abece4cd0a4ded0a29f093
+                  example: 8ea2591121e636086a4a9c0992
                 data:
                   type: string
                   description: Base 64 encoded image data
-                  example: YTc4ZTExZTc3NGY3Zmh1b3dmamZram5sam5kZmpuZm5mIGRzbiBzZGpuc2Rsam5kc2Y=
+                  example: iVBORw0KGgoAAAANSUhEUgAAAMYAAAAtCAIAAAB6eoNLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAeASURBVHhe7ZvfbxNHEMf7n/elKk/tW3moKFKrIqUSBRURoIKkIiA5wlBKZVCoTYMLrkn5UUhClPLUD5nxsLe3t947byBq96uR5dlfZzyfzM7emY/eFBVlVUGqKLMKUkWZVZAqyqyCVFFmFaSKMqsgVZRZBamizCpIFWVWQaooswpSRZn1PpB68mr72c6uOkX/dR0KUq/393/bero63PxhcN+1a7+P70636NVxRSE93nzy5SensUtL17XpyGj9yq/HP/4O44021ZQfKWBavjf0YHKN3unLbR3dXnt7e+PxeGMm3m9vd1/tvWk4GK9fuXP25IoY76ePnmpfVY8eTCVs57+9qk1HRh8AqZt/TDyAmuzx3y91TrKACYZWV1ZGo9HWTLzv9Xrrvd6RBWs8nCwdvySR8Oybz8/VwSpIvVM6Txi5qtUOCE/X1tYASP2qXjx/Ti+v6h8ZDW6OJAbY15+du3y6RzB45b21M0ZHH6ggpSLreNDMtXvTv3Rygvo3bowfPlQnJLIUVEGe+kdAZCAJAPbz9XvaOhMt1vvi6bucXZBS/bgxcnHBvTOZUjNhr/b2eIU5WtxhJCqdPE9scOxu6jQL5uLYvWed/WpFAlDnSWRUkbe06f+JFHD0Nh8JHHKIoyR3QcHVoSFtPnth9XvizQVSVMqmRqJipDofWpRQ8u0vfXFRm0I68ekZxpw4dkb9ZKR2tl+Ph3+66e0wxPputZcfKaofGDJ66gYrKZQwRqii/IJIGI3XVZTk+m6egslsMpn0+322RXoRq/1y+3awnCfJCbvkRUp+0WAwkF6RnBK0r9dj2eBqV8/flG/fK5U8WSYDEWmJI8UwTovU9TIGA8fL3/eCbNni8K1NjoyPei9XWVu+xcoyAFs+tcYl8iMVL8ATeRKxFSbOJbrETJ15qicz5pK6vJCzZrCcv7+xQRdg1aeImAKRjFH/QMHVLJzxRAJwhAezYRGkiHTT4RGrs9sNqaarQBhgyfs8SFESuRDULb7f1UVyAiy7j8Vmqh1VETAirU5LkZ+acCTZAIdXznMhjNyjflVy6gyeAOqryY6GqZ+sJqTcSNM1HIxpgQYjA/NuSXRDisWlnX8CmNIrV7F/EZYHKWogFyCMcopTm9TgrY5vnuy0qH5Vo9GoM1LxIowdDebUORAXunjhQtMU6PTykys+p3uPw7599ZPVhJQRUM9eVuafPVmpEDogZadUAPLyK11GVR6kgMZgwtgEcz1aYR1ZU/2qJHOo01IeMZ7o9VbGJQ+pUxX7YFOXiBTlpjf56jH1k9WElIUzuJPajS43UXVAirOnNFILapMjKxC7IyWHO9mY3PM/73PxhCT/waj6VS2CVFz1LTVyLQqsuR/DPUbIV4+pn6wgUkRdGqFEm6qyROUGuwNSnE+lMQiuTemIVH2nM7szmeqgHLJyiuMkFZu2zhQJ84JqhRTtD5wHQUG5aUy+ekz9ZAWRChLjKshcB6SkBVO/qoWQihTjhH+RyikoLmdUadNMKekhLvYsaOj3++sHTwPNICAdKQopTAZETEfnRmpuLK0GyoIU26j6VS2ElHv30ixj/VSXJUUvUfHX74aqrZjLfkThzDreYa2+soeFK+okxquTICtu1E/WUUDKXcTVQkh5xTh27YGfP7JLLsT5Uf0Dcf5KvyfuPZCRvKJOTa2Qor0VUvFwmih45ecu8ftSc2PJVWRAFqSWjl9Sv6rMSJFFtO/QJBfykEJu2RuXe+aCgDiLbZHyeI3Lvv3g0clk5bD688pzt9HVYPaTB/dyDJbGtkhh6leVGal6pLNLLqSOI5JN/HaAiJqJkeok5JXgTYQmpEiW7uJzRdaRb//EsTM7s4ctnmyM+xwwiBSymwjB1QzN4eDdZmIEBB8K2R0BFylLbO46poWQerazazCJHTZScsNzdbipviNYSUlUXiLBjYPImulIIcr54FOaJlnMlk+Fb2hZFnFD3oRU5I6R5TCvrAYLaa9/AKu9MBepprumCJTtqV8XpBDFk4tU9lOeJ/mtetP2SqTjSaJecsFTZApdWCukyHlNz2oQtb9X/r99hDJLHkTIjRzBtqcrXi3chNTbiM4S1dryLctV4GiRdi8hcqdIucYr3DDFutxZLGsHCz6z3Dil8a5zFawjUvZ7ATHepz8Vbit5IN10t1MEAf1+P5gnONARbC+iiLxSL4BYgXXkDOj9yiCOFGI1wK1fiKWCOcylKmjwZHCImpBCBNg4qFtwd7NE5RmfKrjxochVbEpHpBDneQm2UXV3upUXLPY78tOPG6OU8l8iBxAH/5XhreRXK00cEHtQW+/1dPTGBu9hQmos6ZWRorlIIfkM8C0LAuVPq6u4kT2RrGB/+ma0BCGIIIXIMbYDmsFHPT+ZoMq7OivAsdFWnwtV3l8CKzCeLnG7IyUCLOLNxndI1rZKI3jEVRQJpKnt+BSxz+qKyXcWiBPBE/Myk6v9/X92Xu1ir3f9XGhiui0l29lc2dUTxyNGyhTmalOCkpAqKkpXQaooswpSRZlVkCrKrIJUUWYVpIoyqyBVlFkFqaLMKkgVZdWbN/8CHZprsGiYJ5MAAAAASUVORK5CYII=
               required:
                 - customer_id
                 - data
@@ -4918,7 +4918,7 @@ paths:
                 customer_id:
                   type: string
                   description: The unique id of the customer
-                  example: 8ea6abece4cd0a4ded0a29f093
+                  example: 8ea2591121e636086a4a9c0992
                 partner_records:
                   type: array
                   description: Collection of all customer's partner records
@@ -5643,7 +5643,7 @@ paths:
                       event_id:
                         type: string
                         description: The unique id of the event
-                        example: 8bed991c68a470e7aaeffbf048
+                        example: 82de12eb8b138791e678fd11c3
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -15382,7 +15382,7 @@ components:
         agreement_id:
           type: string
           description: 'The unique id of the agreement in CareCloud from [agreements](#tag/Agreements) resource'
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 8fd73167342d06899c4c015320
         agreement_value:
           type: integer
           enum:
@@ -15402,7 +15402,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 8ea2591121e636086a4a9c0992
         personal_information:
           type: object
           $ref: '#/components/schemas/PersonalInformation'
@@ -15424,13 +15424,13 @@ components:
         - personal_information
     CustomerResult:
       type: object
-      description: Search results for strict mode
+      description: Search results for the strict mode
       properties:
         customer_id:
           type: string
           readOnly: true
           description: The unique id of the customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 84b9167cc2f01ff007d98e1633
         match:
           type: integer
           readOnly: true
@@ -15444,17 +15444,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer relation type
-          example: 8bed991c68a470e7aaefff048
+          example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
           readOnly: false
           description: Name of the customer relation type
-          example: Family
+          example: Family account
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2021-03-03 18:07:14'
+          example: '2019-05-16 13:35:40'
         state:
           type: integer
           enum:
@@ -15474,7 +15474,7 @@ components:
       properties:
         strict:
           type: array
-          description: Search results for strict mode
+          description: Search results for the strict mode
           items:
             $ref: '#/components/schemas/CustomerResult'
     CustomerSource:
@@ -15521,22 +15521,22 @@ components:
           type: string
           description: The unique id of the customer source record.
           readOnly: true
-          example: 8fdce3475560d56e95a6ab035r
+          example: 8fd73167342d06899c4c015320
         customer_source_id:
           type: string
           description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
           readOnly: false
-          example: 8fdce3475560d56e95a6ab035r
+          example: 86e05affc7a7abefcd513ab400
         customer_id:
           type: string
           readOnly: true
           description: The unique id of the customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 87af991126405bf8e7dfb36045
         external_id:
           type: string
           description: The unique external id of the customer. It may be id from the other system
           readOnly: false
-          example: null
+          example: 6
         last_change:
           type: string
           readOnly: true
@@ -15576,12 +15576,12 @@ components:
           type: string
           readOnly: true
           description: Name of the customer address type
-          example: Shipping
+          example: Mailing address
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-12-01 14:29:41'
+          example: '2022-07-25 17:57:44.793447'
     AdditionalAddress:
       type: object
       description: Address resource
@@ -15590,11 +15590,11 @@ components:
           type: string
           description: Unique additional address ID
           readOnly: true
-          example: 86e05affc7a7abefcd513ab00
+          example: 86e05affc7a7abefcd513ab400
         address_type:
           type: string
           description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
-          example: 8bed991c6a470eaaffbf048
+          example: 86e05affc7a7abefcd513ab400
         address:
           type: object
           $ref: '#/components/schemas/Address'
@@ -15669,17 +15669,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the event
-          example: 8bed991c68a470e7aaeffbf048
+          example: 82de12eb8b138791e678fd11c3
         event_type_id:
           type: string
           readOnly: false
           description: The unique id of the event type
-          example: 8bed991c68a470e7aaeffbf048
+          example: 8bda8a4854394325e2748a5005
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the card holder.
-          example: 81ceb8582e2d8dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         external_id:
           type: string
           readOnly: false
@@ -15694,12 +15694,12 @@ components:
             - type: object
           readOnly: false
           description: Additional data of the event. Serialized data in JSON
-          example: '{"test":10,"test2":20}'
+          example: '{"id_account_history_change":6}'
         created_at:
           type: string
           readOnly: false
           description: 'Date and time of the event *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2021-04-29 14:51:43'
         secondary_external_id:
           type: string
           readOnly: false
@@ -15793,17 +15793,17 @@ components:
           type: string
           readOnly: false
           description: The unique id of the client external application
-          example: 89d1a6111b3fb6e74665d948
+          example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
           readOnly: false
           description: The name of the external application
-          example: mobile app
+          example: Sandbox app
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-07-01 14:04:25'
+          example: '2021-07-26 09:46:59.005819'
         state:
           type: integer
           enum:
@@ -15987,7 +15987,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the interest record
-          example: 87d934c86a6303f5fb4d1214fb
+          example: 81eaeea13b8984a169c490a325
         interest_id:
           type: string
           readOnly: false
@@ -15997,12 +15997,12 @@ components:
           type: string
           readOnly: false
           description: The unique id of the customer
-          example: 89ac83ca207a820c62c79bf03a
+          example: 8ea2591121e636086a4a9c0992
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-08-06 10:31:09'
+          example: '2023-03-13 17:35:05'
       required:
         - interest_id
         - customer_id
@@ -16506,12 +16506,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the partner record
-          example: 8aa2049ac2f84952014d96bb23
+          example: 88bd53f8ac5f3b595d6bc106a4
         partner_id:
           type: string
           readOnly: false
           description: The unique id of the partner
-          example: 2f8aa204842f8495298aa20452
+          example: 86e05affc7a7abefcd513ab400
         last_change:
           type: string
           readOnly: true
@@ -17421,17 +17421,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the property record
-          example: 'contact_person:8aa2049ac2f84952014d96bb23'
+          example: 'docasna_blokace_darce_do:8ea2591121e636086a4a9c0992'
         property_id:
           type: string
           readOnly: false
           description: The unique id of the property
-          example: contact_person
+          example: docasna_blokace_darce_do
         property_name:
           type: string
           readOnly: true
           description: Name of the property
-          example: Project contact person
+          example: 'Property #6'
         property_value:
           oneOf:
             - type: string
@@ -17444,7 +17444,7 @@ components:
             - type: null
           readOnly: false
           description: Value of the property
-          example: Arthur Dent
+          example: '2002-02-02'
         last_change:
           type: string
           readOnly: true
@@ -17769,12 +17769,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer's relation
-          example: 8ea6abece4cd0ad0a2ce4cd0a4ded09
+          example: 81eaeea13b8984a169c490a325
         related_customer_id:
           type: string
           readOnly: false
           description: The unique id of the related customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 8aa68a112c62ad5f84a22a0652
         short_name:
           type: string
           readOnly: true
@@ -17784,7 +17784,7 @@ components:
           type: string
           readOnly: false
           description: The unique id of the customer relation type
-          example: 8ea6abece4cd038a6abece4cd0
+          example: 8bed991c68a470e7aaeffbf048
         is_leading:
           type: boolean
           readOnly: false
@@ -19638,7 +19638,7 @@ components:
       description: The unique id of the customer
       schema:
         type: string
-      example: 89ac83ca207a820c62c79bf03a
+      example: 8ea2591121e636086a4a9c0992
     customer_id:
       name: customer_id
       in: query
@@ -19654,7 +19654,7 @@ components:
       description: The unique id of the related customer
       schema:
         type: string
-      example: 8fdce3475560d56e95a6ab035r
+      example: 87af991126405bf8e7dfb36045
     customer_id_required:
       name: customer_id
       in: query
@@ -19711,7 +19711,7 @@ components:
       description: The unique id of a customer address type in CareCloud
       schema:
         type: string
-      example: 86e05afc7a7abefcd513ab400
+      example: 86e05affc7a7abefcd513ab400
     customer_address_type_id:
       name: customer_address_type_id
       in: query
@@ -19719,7 +19719,7 @@ components:
       description: The unique id of the customer address type.
       schema:
         type: string
-      example: 8fdce3475560d56e95a6ab035
+      example: 86e05affc7a7abefcd513ab400
     additional_customer_address_id_path:
       name: additional_customer_address_id_path
       in: path
@@ -19727,7 +19727,7 @@ components:
       description: Unique ID of the customer additional address
       schema:
         type: string
-        example: 8fdce3475560d56e95a6ab035
+        example: 86e05affc7a7abefcd513ab400
     card_id_path:
       name: card_id
       in: path
@@ -19781,7 +19781,7 @@ components:
       schema:
         type: string
       allowReserved: true
-      example: 'contact_person:8aa2049ac2f84952014d96bb23'
+      example: 'docasna_blokace_darce_do:8ea2591121e636086a4a9c0992'
     interest_record_id_path:
       name: interest_record_id
       in: path
@@ -19940,7 +19940,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaefff048
+      example: 81eaeea13b8984a169c490a325
     customer_relation_type_id_path:
       name: customer_relation_type_id
       in: path
@@ -19948,7 +19948,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaefff048
+      example: 8bed991c68a470e7aaeffbf048
     customer_relation_type_id:
       name: customer_relation_type_id
       in: query
@@ -19956,7 +19956,7 @@ components:
       required: false
       schema:
         type: string
-      example: 8bed991c68a470e7aaefff048
+      example: 8bed991c68a470e7aaeffbf048
     campaign_id_path:
       name: campaign_id
       in: path
@@ -20018,7 +20018,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaeffbf048
+      example: 82de12eb8b138791e678fd11c3
     event_type_id:
       name: event_type_id
       in: query
@@ -20026,7 +20026,7 @@ components:
       required: false
       schema:
         type: string
-      example: 8bed991c68a470e7aaeffbf048
+      example: 8bda8a4854394325e2748a5005
     text_id:
       name: text_id
       in: query
@@ -20042,7 +20042,7 @@ components:
       required: true
       schema:
         type: string
-      example: 86e05affc7a7abefcd513ab400
+      example: 8bd253a890067595008f1d44aa
     event_property_id_path:
       name: event_property_id
       in: path
@@ -20058,7 +20058,7 @@ components:
       required: true
       schema:
         type: string
-      example: 81dcd5807157297ad7d668e61
+      example: 8bda8a4854394325e2748a5005
     interest_id_path:
       name: interest_id
       in: path
@@ -20154,7 +20154,7 @@ components:
       description: 'Unique ID of the partner from the resource [GET /partners](/#tag/Partners)'
       schema:
         type: string
-      example: 89ac83ca207a820c62c79bf03a
+      example: 86e05affc7a7abefcd513ab400
     partner_record_id_path:
       name: partner_record_id
       in: path
@@ -20162,7 +20162,7 @@ components:
       required: true
       schema:
         type: string
-      example: 86e05affc7a7abefcd513ab400
+      example: 88bd53f8ac5f3b595d6bc106a4
     payment_type_id_path:
       name: payment_type_id
       in: path

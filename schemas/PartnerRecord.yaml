@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the partner record
-    example: 8aa2049ac2f84952014d96bb23
+    example: 88bd53f8ac5f3b595d6bc106a4
   partner_id:
     type: string
     readOnly: false
     description: The unique id of the partner
-    example: 2f8aa204842f8495298aa20452
+    example: 86e05affc7a7abefcd513ab400
   last_change:
     type: string
     readOnly: true

@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the customer's relation
-    example: 8ea6abece4cd0ad0a2ce4cd0a4ded09
+    example: 81eaeea13b8984a169c490a325
   related_customer_id:
     type: string
     readOnly: false
     description: The unique id of the related customer
-    example: 8ea6abece4cd0a4ded0a29f093
+    example: 8aa68a112c62ad5f84a22a0652
   short_name:
     type: string
     readOnly: true
@@ -20,7 +20,7 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the customer relation type
-    example: 8ea6abece4cd038a6abece4cd0
+    example: 8bed991c68a470e7aaeffbf048
   is_leading:
     type: boolean
     readOnly: false

@@ -4,7 +4,7 @@ properties:
   agreement_id:
     type: string
     description: The unique id of the agreement in CareCloud from [agreements](#tag/Agreements) resource
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: 8fd73167342d06899c4c015320
   agreement_value:
     type: integer
     enum:

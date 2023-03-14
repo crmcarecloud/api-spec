@@ -140,7 +140,7 @@ post:
                   customer_source_record_id:
                     type: string
                     description: The unique id of the customer source record
-                    example: 87d934c86a6303f5fb4d1214fb
+                    example: 8fd73167342d06899c4c015320
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

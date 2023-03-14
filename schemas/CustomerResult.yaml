@@ -1,11 +1,11 @@
 type: object
-description: Search results for strict mode
+description: Search results for the strict mode
 properties:
   customer_id:
     type: string
     readOnly: true
     description: The unique id of the customer
-    example: 8ea6abece4cd0a4ded0a29f093
+    example: 84b9167cc2f01ff007d98e1633
   match:
     type: integer
     readOnly: true

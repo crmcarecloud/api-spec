@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the event
-    example: 8bed991c68a470e7aaeffbf048
+    example: 82de12eb8b138791e678fd11c3
   event_type_id:
     type: string
     readOnly: false
     description: The unique id of the event type
-    example: 8bed991c68a470e7aaeffbf048
+    example: 8bda8a4854394325e2748a5005
   customer_id:
     type: string
     readOnly: false
     description: The unique id of the card holder.
-    example: 81ceb8582e2d8dbb7e71b7273b
+    example: 8ea2591121e636086a4a9c0992
   external_id:
     type: string
     readOnly: false
@@ -30,12 +30,12 @@ properties:
       - type: object
     readOnly: false
     description: Additional data of the event. Serialized data in JSON
-    example: '{"test":10,"test2":20}'
+    example: '{"id_account_history_change":6}'
   created_at:
     type: string
     readOnly: false
     description: Date and time of the event *(YYYY-MM-DD HH:MM:SS)*
-    example: "2017-06-20 16:59:49"
+    example: "2021-04-29 14:51:43"
   secondary_external_id:
     type: string
     readOnly: false

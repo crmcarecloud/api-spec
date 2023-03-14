@@ -16,7 +16,7 @@ post:
             customer_id:
               type: string
               description: The unique id of the customer
-              example: 8ea6abece4cd0a4ded0a29f093
+              example: 8ea2591121e636086a4a9c0992
             partner_records:
               type: array
               description: Collection of all customer's partner records
