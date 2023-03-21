@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the property record
-    example: contact_person:8aa2049ac2f84952014d96bb23
+    example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
   property_id:
     type: string
     readOnly: false
     description: The unique id of the property
-    example: contact_person
+    example: docasna_blokace_darce_do
   property_name:
     type: string
     readOnly: true
     description: Name of the property
-    example: Project contact person
+    example: "Property #6"
   property_value:
     oneOf:
       - type: string
@@ -28,7 +28,7 @@ properties:
       - type: null
     readOnly: false
     description: Value of the property
-    example: "Arthur Dent"
+    example: "2002-02-02"
   last_change:
     type: string
     readOnly: true

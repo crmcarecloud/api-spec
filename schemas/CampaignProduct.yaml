@@ -5,28 +5,28 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the campaign product
-    example: 8bed991c68a470e7aaeff
+    example: 8bed991c68a470e7aaeffbf048
   product_id:
     type: string
     readOnly: false
     description: The unique id of the product
-    example: 80bfce6e94829c8df40
+    example: 8ad4ff4db9d628f2c8cb6181a4
   currency_id:
     type: string
     readOnly: false
     description: The unique id of the currency
-    example: 86e05affc7a7abefc
+    example: 8bed991c68a470e7aaeffbf048
   campaign_id:
     type: string
     readOnly: false
     description: The unique id of the campaign
-    example: 8bed991c68a470e7aaeffbf048
+    example: 8ad8b2b701199684f1222961d6
   value:
     type: number
     format: float
     readOnly: false
     description: Value of the product
-    example: 100
+    example: 50
   value_type_id:
     type: integer
     enum:
@@ -34,29 +34,29 @@ properties:
       - 2
     readOnly: false
     description: Type of value (1 - percentage discount value, 2 - final price)
-    example: 2
+    example: 1
   valid_from:
     type: string
     readOnly: false
     description: Valid from *(YYYY-MM-DD HH:MM:SS)*
-    example: "2018-11-19 00:00:00"
+    example: "2021-04-16 00:00:00"
   valid_to:
     type: string
     readOnly: false
     description: Valid to *(YYYY-MM-DD HH:MM:SS)*
-    example: "2020-01-05 23:59:59"
+    example: "2021-05-16 23:59:59"
   display_in:
     type: array
     items:
       type: string
     readOnly: false
     description: List of possible display places
-    example: [ "cash_desk", "web" ]
+    example: [ "mapi" ]
   type_id:
     type: string
     readOnly: false
     description: Type of a campaign product
-    example: 81eaeea13b8984a169c490a325
+    example: 86e05affc7a7abefcd513ab400
   presentation_data:
     type: object
     $ref: '../schemas/_index.yaml#/CampaignPresentationData'
@@ -64,7 +64,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: 2013-08-19 16:28:03.978165
+    example: 2021-04-16 19:02:22
   state:
     type: integer
     enum:

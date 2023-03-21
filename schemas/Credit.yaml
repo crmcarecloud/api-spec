@@ -5,24 +5,24 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the credit record
-    example: 84cae7e5cbba16e31b0fc5ef1c
+    example: 8bed991c68a470e7aaeffbf048
   customer_id:
     type: string
     readOnly: false
     description: The unique id of the customer.
-    example: 81ceb8582e28dbb7e71b7273b
+    example: 8ea2591121e636086a4a9c0992
   assigned_credits:
     type: number
     format: float
     readOnly: true
     description: The number of earned credits in the record
-    example: 1208
+    example: 1000
   available_credits:
     type: number
     format: float
     readOnly: true
-    description: The number of avalilable credits from the record
-    example: 700
+    description: The number of avaliable credits from the record
+    example: 1000
   credit_type_id:
     type: string
     readOnly: false

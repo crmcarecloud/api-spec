@@ -619,6 +619,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = null; // string | The unique id of the customer (optional)\n$booking_status = null; // string | Current status of the booking from resource booking-statuses (optional)\n$add_booking_items = null; // string | Possible values: full - returns all booking items with their additional properties. / items-only - returns all booking items without additional properties. / none or no value - return no booking items (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_bookings = $care_cloud->bookingsApi()->getBookings(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $customer_id,\n        $booking_status,\n        $add_booking_items\n    );\n    $bookings = $get_bookings->getData()->getBookings();\n    $total_items = $get_bookings->getData()->getTotalItems();\n    var_dump($bookings);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
     post:
       tags:
         - Bookings
@@ -652,7 +656,7 @@ paths:
                       booking_id:
                         type: string
                         description: The unique id of the booking
-                        example: 81a94c48474bc45c03d41f7016
+                        example: 8bc48e4b5da4c61eddb98e59fe
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -669,6 +673,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Booking;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\BookingItem;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\BookingsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n//$booking_id = '89cc1c4476e0ec8aa25f46cbff'; // string | The unique id of the booking\n\n// Set the request body\n$booking_item1 = new BookingItem();\n$booking_item1->setTimeSlotId('82b6d539997857de914f2252a1'); // string | The unique id of the booking time slot\n$booking_item1->setCreatedAt('2023-03-08 10:47:34'); // string | Date and time of the booking (YYYY-MM-DD HH:MM:SS)\n$booking_item1->setCustomerId('85bc5819e09dab95437552ce79'); // string | The unique id of the customer\n\n$booking = new Booking();\n$booking->setCustomerId('85bc5819e09dab95437552ce79'); // string | The unique id of the customer (optional)\n$booking->setBookingItems(array($booking_item1)); // BookingItem[] | List of the booking items\n$booking->setBookingStatus(null); //string | Current status of the booking from resource booking-statuses. If not set, CareCloud uses default booking status.\n$booking->setCreatedAt('2023-03-08 10:51:34'); // string | Date and time of the booking (YYYY-MM-DD HH:MM:SS)\n\n$body = new BookingsBody();\n$body->setBooking($booking);\n\n// Call endpoint and post data\ntry\n{\n    $post_booking = $care_cloud->bookingsApi()->postBooking(\n        $body,\n        $accept_language\n    );\n    $booking_id = $post_booking->getData()->getBookingId();\n    var_dump($booking_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/bookings/{booking_id}':
     get:
       tags:
@@ -705,6 +713,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_id = '89cc1c4476e0ec8aa25f46cbff'; // string | The unique id of the booking\n\n// Call endpoint and get data\ntry\n{\n    $get_booking = $care_cloud->bookingsApi()->getBooking(\n        $booking_id,\n        $accept_language\n    );\n    $booking = $get_booking->getData();\n    var_dump($booking);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
     put:
       tags:
         - Bookings
@@ -755,6 +767,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\BookingsBookingIdBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\BookingsbookingIdBooking;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_id = '8bc48e4b5da4c61eddb98e59fe'; // string | The unique id of the booking\n\n// Set the request body\n$booking = new BookingsbookingIdBooking();\n$booking->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer\n$booking->setBookingStatus('8bed991c68a470e7aaeffbf048'); //string | Current status of the booking from resource booking-statuses\n\n$body = new BookingsBookingIdBody();\n$body->setBooking($booking);\n\n// Call endpoint and put data\ntry\n{\n    $care_cloud->bookingsApi()->putBooking(\n        $body,\n        $booking_id,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
     delete:
       tags:
         - Bookings
@@ -783,6 +799,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_id = '88dd0f3a065bdca689fee059b4'; // string | The unique id of the booking\n\n// Call endpoint and delete data\ntry\n{\n    $care_cloud->bookingsApi()->deleteBooking(\n        $booking_id,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /booking-tickets:
     get:
       tags:
@@ -838,6 +858,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = null; // string | The unique id of the customer (optional)\n$valid_from = null; // string | Date and time from when is record already valid. (YYYY-MM-DD HH:MM:SS) (optional)\n$valid_to = null; // string | Date and time till when is record still valid. (YYYY-MM-DD HH:MM:SS) (optional)\n$valid_only = null; // boolean | true - returns only records valid in current moment / false - returns all records of the resource without time validation (optional)\n$booking_ticket_property_id = null; // string | Booking ticket property id from resource booking-ticket-properties (optional)\n$booking_ticket_property_value = null; // Booking ticket property record value from booking-ticket-properties in case of datatype with multiple values (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_tickets = $care_cloud->bookingTicketsApi()->getBookingTickets(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $customer_id,\n        $valid_from,\n        $valid_to,\n        $valid_only,\n        $booking_ticket_property_id,\n        $booking_ticket_property_value\n    );\n    $booking_tickets = $get_booking_tickets->getData()->getBookingTickets();\n    $total_items = $get_booking_tickets->getData()->getTotalItems();\n    var_dump($booking_tickets);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/booking-tickets/{booking_ticket_id}':
     get:
       tags:
@@ -874,6 +898,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_ticket_id = '89d88719b8b442de2d11b401a2'; // string | The unique id of the booking ticket\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_ticket = $care_cloud->bookingTicketsApi()->getBookingTicket(\n        $booking_ticket_id,\n        $accept_language\n    );\n    $booking_ticket = $get_booking_ticket->getData();\n    var_dump($booking_ticket);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/booking-tickets/{booking_ticket_id}/time-slots':
     get:
       tags:
@@ -929,6 +957,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_ticket_id = '89d88719b8b442de2d11b401a2'; // string | The unique id of the booking ticket\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$free_only = null; // bool | Possible values: true - returns all time slots with free capacity. / false - returns all occupied time slots. / no value - all time slots are returned (optional)\n$time_from = null; // string | Filter results on the start of the time interval. (YYYY-MM-DD HH:MM:SS) (optional)\n$time_to = null; // string | Filter results on the end of the time interval. (YYYY-MM-DD HH:MM:SS) (optional)\n$booking_ticket_property_id = null; // string | Booking ticket property id from resource booking-ticket-properties. (optional)\n$booking_ticket_property_value = null; // string | Booking ticket property record value from booking-ticket-properties in case of datatype with multiple values (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_time_slots = $care_cloud->bookingTicketsApi()->getSubBookingTicketsTimeSlots(\n        $booking_ticket_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $free_only,\n        $time_from,\n        $time_to,\n        $booking_ticket_property_id,\n        $booking_ticket_property_value\n    );\n    $booking_time_slots = $get_booking_time_slots->getData()->getTimeSlots();\n    $total_items = $get_booking_time_slots->getData()->getTotalItems();\n    var_dump($booking_time_slots);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /booking-ticket-properties:
     get:
       tags:
@@ -979,6 +1011,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_ticket_properties = $care_cloud->bookingTicketsPropertiesApi()->getBookingTicketProperties(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name\n    );\n    $booking_ticket_properties = $get_booking_ticket_properties->getData()->getBookingTicketProperties();\n    $total_items = $get_booking_ticket_properties->getData()->getTotalItems();\n    var_dump($booking_ticket_properties);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/booking-ticket-properties/{booking_ticket_property_id}':
     get:
       tags:
@@ -1015,6 +1051,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_ticket_property_id = 'firstname'; // string | The unique id of the booking ticket property\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_ticket_property = $care_cloud->bookingTicketsPropertiesApi()->getBookingTicketProperty(\n        $booking_ticket_property_id,\n        $accept_language\n    );\n    $booking_ticket_property = $get_booking_ticket_property->getData();\n    var_dump($booking_ticket_property);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /booking-statuses:
     get:
       tags:
@@ -1064,6 +1104,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_statuses = $care_cloud->bookingStatusesApi()->getBookingStatuses(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $booking_statuses = $get_booking_statuses->getData()->getBookingStatuses();\n    $total_items = $get_booking_statuses->getData()->getTotalItems();\n    var_dump($booking_statuses);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/booking-statuses/{booking_status_id}':
     get:
       tags:
@@ -1100,6 +1144,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$booking_status_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the booking status\n\n// Call endpoint and get data\ntry\n{\n    $get_booking_status = $care_cloud->bookingStatusesApi()->getBookingStatus(\n        $booking_status_id,\n        $accept_language\n    );\n    $booking_status = $get_booking_status->getData();\n    var_dump($booking_status);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /campaigns:
     get:
       tags:
@@ -1187,7 +1235,7 @@ paths:
                       campaign_id:
                         type: string
                         description: The unique id of the campaign
-                        example: 8edebb6b9d299c59804b2aa812
+                        example: 8ad8b2b701199684f1222961d6
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1492,7 +1540,7 @@ paths:
                       campaign_product_store_record_id:
                         type: string
                         description: The unique id of the campaign product store record.
-                        example: 88c774183f5c3e413b3ba570f8
+                        example: 8bd253a890067595008f1d44aa
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1730,11 +1778,11 @@ paths:
                 card_type_id:
                   type: string
                   description: The unique id of the card type.
-                  example: 8bed991c68a470e7aaeffbf048
+                  example: 83d1d11ea3884a5d33253fe214
                 customer_id:
                   type: string
                   description: The unique id of the card holder.
-                  example: 81ceb8582e2d8dbb7e71b7273b
+                  example: 8ea2591121e636086a4a9c0992
               required:
                 - card_type_id
                 - customer_id
@@ -1753,7 +1801,7 @@ paths:
                         type: string
                         readOnly: true
                         description: The unique id of the card
-                        example: 81a94c48474bc45c03d41f7016
+                        example: 8fd73167342d06899c4c015320
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1793,7 +1841,7 @@ paths:
                 card_id:
                   description: Id of the card. It will generates file from this card
                   type: string
-                  example: 81a94c48474bc45c03d41f7016
+                  example: 8fd73167342d06899c4c015320
                 file_type:
                   description: 'Type of the final file *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*'
                   type: string
@@ -1881,6 +1929,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Card;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CardsBatchBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the request body\n$card1 = new Card();\n$card1->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer (optional)\n$card1->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique id of the card type (optional)\n$card1->setCardNumber('20230310001'); // string | The number of the card\n$card1->setValidFrom(null); // string | Card validity from (YYYY-MM-DD HH:MM:SS) (optional)\n$card1->setValidTo(null); // string | Card validity to (YYYY-MM-DD HH:MM:SS) (optional)\n$card1->setStoreId(null); // string | The unique id of the store (optional)\n$card1->setState(1); // integer | Possible values are: 0 - blocked / 1 - active\n\n$body = new CardsBatchBody();\n$body->setCards(array($card1));\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->cardsApi()->postBatchCards(\n        $body,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /card-types:
     get:
       tags:
@@ -2177,6 +2229,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_communication_channels = $care_cloud->communicationChannelsApi()->getCommunicationChannels(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $communication_channels = $get_communication_channels->getData()->getCommunicationChannels();\n    $total_items = $get_communication_channels->getData()->getTotalItems();\n    var_dump($communication_channels);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/communication-channels/{communication_channel_id}':
     get:
       tags:
@@ -2213,6 +2269,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$communication_channel_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the communication channel\n\n// Call endpoint and get data\ntry\n{\n    $get_communication_channel = $care_cloud->communicationChannelsApi()->getCommunicationChannel(\n        $communication_channel_id,\n        $accept_language\n    );\n    $communication_channel = $get_communication_channel->getData();\n    var_dump($communication_channel);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /countries:
     get:
       tags:
@@ -2243,26 +2303,7 @@ paths:
                         type: array
                         description: List of the countries
                         items:
-                          type: object
-                          properties:
-                            country_id:
-                              type: string
-                              description: The unique id of the country as ISO code
-                              example: fi
-                            name:
-                              type: string
-                              description: Name of the country. Language depends on the `Accept-Language` header from the request.
-                              example: Finland
-                            state:
-                              type: integer
-                              enum:
-                                - 0
-                                - 1
-                                - 2
-                              description: |
-                                State of the country
-                                *Possible values are: 0 - deleted / 1- active / 2 - non active*
-                              example: 1
+                          - $ref: '#/components/schemas/Country'
                       total_items:
                         type: integer
                         description: Count of all found countries
@@ -2283,6 +2324,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_countries = $care_cloud->countriesApi()->getCountries(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name\n    );\n    $countries = $get_countries->getData()->getCountries();\n    var_dump($countries);\n    $total_items = $get_countries->getData()->getTotalItems();\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /credits:
     get:
       tags:
@@ -2336,6 +2381,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = null; // string | The unique id of the customer (optional)\n$credit_type_id = null; // string | The unique id of the credit type (optional)\n$create_credit_time_from = null; // string | Date and time from of the credit record's creation (YYYY-MM-DD HH:MM:SS) (optional)\n$create_credit_time_to = null; // string | Date and time to of the credit record's creation (YYYY-MM-DD HH:MM:SS) (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_credit_records = $care_cloud->creditsApi()->getCredits(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $customer_id,\n        $credit_type_id,\n        $create_credit_time_from,\n        $create_credit_time_to\n    );\n    $credit_records = $get_credit_records->getData()->getCredits();\n    $total_items = $get_credit_records->getData()->getTotalItems();\n    var_dump($credit_records);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/credits/{credit_id}':
     get:
       tags:
@@ -2372,6 +2421,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$credit_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the credit record\n\n// Call endpoint and get data\ntry\n{\n    $get_credit_record = $care_cloud->creditsApi()->getCredit(\n        $credit_id,\n        $accept_language\n    );\n    $credit_record = $get_credit_record->getData();\n    var_dump($credit_record);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/credits/{credit_id}/purchases':
     get:
       tags:
@@ -2431,7 +2484,7 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$point_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the point record\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$store_id = null; // string | The unique id of the store (optional, default is null)\n$customer_id = null; // string | The unique id of the customer (optional, default is null)\n$type_id = null; // string | The unique id of the purchase type (optional, default is null)\n$payment_time_from = null; // string | Date and time from of the create point record (YYYY-MM-DD HH:MM:SS) (optional, default is null)\n$payment_point_time_to = null; // string | Date and time to of the create point record (YYYY-MM-DD HH:MM:SS) (optional, default is null)\n$purchase_items_extension = false; // boolean | If true, resource returns extended response with purchase items. If false, the resource won't be extended. (optional, default is false)\n\n// Call endpoint and get data\ntry\n{\n    $get_purchases = $care_cloud->pointsApi()->getSubPointPurchases(\n        $point_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $store_id,\n        $customer_id,\n        $type_id,\n        $payment_time_from,\n        $payment_point_time_to,\n        $purchase_items_extension\n    );\n    $purchases = $get_purchases->getData()->getPurchases();\n    $total_items = $get_purchases->getData()->getTotalItems();\n    var_dump($purchases);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$credit_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the credit record\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$store_id = null; // string | The unique id of the store (optional)\n$customer_id = null; // string | The unique id of the customer (optional)\n$type_id = null; // string | The unique id of the purchase type (optional)\n$payment_time_from = null; // string | Date and time from of the purchase payment (YYYY-MM-DD HH:MM:SS) (optional)\n$payment_time_to = null; // string | Date and time to of the purchase payment (YYYY-MM-DD HH:MM:SS) (optional)\n$purchase_items_extension = null; // boolean | If true, resource returns extended response with purchase items. If false, the resource won't be extended (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_purchases = $care_cloud->creditsApi()->getSubCreditPurchases(\n        $credit_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $store_id,\n        $customer_id,\n        $type_id,\n        $payment_time_from,\n        $payment_time_to,\n        $purchase_items_extension\n    );\n    $purchases = $get_purchases->getData()->getPurchases();\n    $total_items = $get_purchases->getData()->getTotalItems();\n    var_dump($purchases);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /credit-history:
     get:
       tags:
@@ -2488,6 +2541,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$credit_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the credit record\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer\n$store_id = null; // string | The unique id of the store (optional)\n$partner_id = null; // string | The unique id of the partner (optional)\n$time_from = null; // string | Filter results on the start of the time interval (YYYY-MM-DD HH:MM:SS) (optional)\n$time_to = null; // string | Filter results on the end of the time interval (YYYY-MM-DD HH:MM:SS) (optional)\n$credit_operation_type = null; // string | Search record by the operation type name or a part of the operation type name (optional)\n$credit_operation_note = null; // string | Search record by the operation type note or a part of the operation type note (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_credit_history = $care_cloud->creditHistoryApi()->getCreditHistory(\n        $customer_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $store_id,\n        $partner_id,\n        $time_from,\n        $time_to,\n        $credit_operation_type,\n        $credit_operation_note\n    );\n    $credit_history = $get_credit_history->getData()->getCreditHistory();\n    $total_items = $get_credit_history->getData()->getTotalItems();\n    var_dump($credit_history);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /credit-types:
     get:
       tags:
@@ -2516,7 +2573,7 @@ paths:
                         type: array
                         description: List of the credit types
                         items:
-                          $ref: '#/components/schemas/CreditType'
+                          - $ref: '#/components/schemas/CreditType'
                       total_items:
                         type: integer
                         description: Count of all found credit types
@@ -2537,6 +2594,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_credit_types = $care_cloud->creditTypesApi()->getCreditTypes(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $credit_types = $get_credit_types->getData()->getCreditTypes();\n    $total_items = $get_credit_types->getData()->getTotalItems();\n    var_dump($credit_types);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/credit-types/{credit_type_id}':
     get:
       tags:
@@ -2573,6 +2634,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$credit_type_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the credit type\n\n// Call endpoint and get data\ntry\n{\n    $get_credit_type = $care_cloud->creditTypesApi()->getCreditType(\n        $credit_type_id,\n        $accept_language\n    );\n    $credit_type = $get_credit_type->getData();\n    var_dump($credit_type);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /currencies:
     get:
       tags:
@@ -2603,7 +2668,7 @@ paths:
                         type: array
                         description: Structure of currency
                         items:
-                          $ref: '#/components/schemas/Currency'
+                          - $ref: '#/components/schemas/Currency'
                       total_items:
                         type: integer
                         description: Total count of found items of resource currencies
@@ -2624,6 +2689,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$currency_name = null; // string | Name or part of the name of the currency you are looking for (optional)\n$currency_code = null; // string | The unique code of a currency represented by ISO code (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_currencies = $care_cloud->currenciesApi()->getCurrencies(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $currency_name,\n        $currency_code\n    );\n    $countries = $get_currencies->getData()->getCurrencies();\n    var_dump($countries);\n    $total_items = $get_currencies->getData()->getTotalItems();\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/currencies/{currency_id}':
     get:
       tags:
@@ -2660,6 +2729,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$currency_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the reward type\n\n// Call endpoint and get data\ntry\n{\n    $get_currency = $care_cloud->currenciesApi()->getCurrency(\n        $currency_id,\n        $accept_language\n    );\n    $currency = $get_currency->getData();\n    var_dump($currency);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customers:
     post:
       tags:
@@ -3550,7 +3623,7 @@ paths:
                       customer_source_record_id:
                         type: string
                         description: The unique id of the customer source record
-                        example: 87d934c86a6303f5fb4d1214fb
+                        example: 8fd73167342d06899c4c015320
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3659,7 +3732,7 @@ paths:
                       property_record_id:
                         type: string
                         description: The unique id of the property record
-                        example: 'contact_person:8aa2049ac2f84952014d96bb23'
+                        example: 'docasna_blokace_darce_do:8ea2591121e636086a4a9c0992'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -3885,7 +3958,7 @@ paths:
                       interest_record_id:
                         type: string
                         description: The unique id of the interest record
-                        example: 87d934c86a6303f5fb4d1214fb
+                        example: 81eaeea13b8984a169c490a325
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4325,7 +4398,7 @@ paths:
                       customer_relation_id:
                         type: string
                         description: The unique id of customer's relation
-                        example: 8aa2049ac2f84952014d96bb23
+                        example: 81eaeea13b8984a169c490a325
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4470,6 +4543,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_partners = $care_cloud->customersApi()->getSubCustomerPartners(\n        $customer_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $partners = $get_partners->getData()->getPartnerRecords();\n    var_dump($partners);\n    $total_items = $get_partners->getData()->getTotalItems();\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
     post:
       tags:
         - Customers
@@ -4504,7 +4581,7 @@ paths:
                       partner_record_id:
                         type: string
                         description: The unique id of the partner record on the customer
-                        example: 8aa2049ac2f84952014d96bb23
+                        example: 88bd53f8ac5f3b595d6bc106a4
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4521,6 +4598,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerIdPartnerrecordsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PartnerRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$customer_id = '8fa66731256448d1ae0c19a1dd'; // string | The unique id of the customer\n\n// Set the request body\n$partner_record = new PartnerRecord();\n$partner_record->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique id of the partner\n\n$body = new CustomerIdPartnerrecordsBody();\n$body->setPartnerRecord($partner_record);\n\n// Call endpoint and post data\ntry\n{\n    $post_customer_partner = $care_cloud->customersApi()->postSubCustomerPartnerRecord(\n        $body,\n        $customer_id,\n        $accept_language\n    );\n    $partner_record_id = $post_customer_partner->getData()->getPartnerRecordId();\n    var_dump($partner_record_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/customers/{customer_id}/partner-records/{partner_record_id}':
     delete:
       tags:
@@ -4551,6 +4632,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer\n$partner_record_id = '86b672f8b84076d6679cac14d9'; // string | The unique id of the partner record\n\n// Call endpoint and delete data\ntry\n{\n    $care_cloud->customersApi()->deleteSubCustomerPartner(\n        $customer_id,\n        $partner_record_id,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customers/actions/verify-credentials:
     post:
       tags:
@@ -4820,15 +4905,15 @@ paths:
                 application_id:
                   type: string
                   description: Id of the application. Application is the source of the token
-                  example: self_order_kiosk
+                  example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
                   description: Authentication token
-                  example: a78e11e774f7f
+                  example: V952TL
                 token_request_id:
                   type: string
                   description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
-                  example: e11e7a7f7f610ea8e11e774
+                  example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
               required:
                 - application_id
                 - token
@@ -4847,7 +4932,7 @@ paths:
                       customer_id:
                         type: string
                         description: The unique id of the customer
-                        example: 8ea6abece4cd0a4ded0a29f093
+                        example: 8ea2591121e636086a4a9c0992
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -4887,11 +4972,11 @@ paths:
                 customer_id:
                   type: string
                   description: The unique id of the customer
-                  example: 8ea6abece4cd0a4ded0a29f093
+                  example: 8ea2591121e636086a4a9c0992
                 data:
                   type: string
                   description: Base 64 encoded image data
-                  example: YTc4ZTExZTc3NGY3Zmh1b3dmamZram5sam5kZmpuZm5mIGRzbiBzZGpuc2Rsam5kc2Y=
+                  example: iVBORw0KGgoAAAANSUhEUgAAAMYAAAAtCAIAAAB6eoNLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAeASURBVHhe7ZvfbxNHEMf7n/elKk/tW3moKFKrIqUSBRURoIKkIiA5wlBKZVCoTYMLrkn5UUhClPLUD5nxsLe3t947byBq96uR5dlfZzyfzM7emY/eFBVlVUGqKLMKUkWZVZAqyqyCVFFmFaSKMqsgVZRZBamizCpIFWVWQaooswpSRZn1PpB68mr72c6uOkX/dR0KUq/393/bero63PxhcN+1a7+P70636NVxRSE93nzy5SensUtL17XpyGj9yq/HP/4O44021ZQfKWBavjf0YHKN3unLbR3dXnt7e+PxeGMm3m9vd1/tvWk4GK9fuXP25IoY76ePnmpfVY8eTCVs57+9qk1HRh8AqZt/TDyAmuzx3y91TrKACYZWV1ZGo9HWTLzv9Xrrvd6RBWs8nCwdvySR8Oybz8/VwSpIvVM6Txi5qtUOCE/X1tYASP2qXjx/Ti+v6h8ZDW6OJAbY15+du3y6RzB45b21M0ZHH6ggpSLreNDMtXvTv3Rygvo3bowfPlQnJLIUVEGe+kdAZCAJAPbz9XvaOhMt1vvi6bucXZBS/bgxcnHBvTOZUjNhr/b2eIU5WtxhJCqdPE9scOxu6jQL5uLYvWed/WpFAlDnSWRUkbe06f+JFHD0Nh8JHHKIoyR3QcHVoSFtPnth9XvizQVSVMqmRqJipDofWpRQ8u0vfXFRm0I68ekZxpw4dkb9ZKR2tl+Ph3+66e0wxPputZcfKaofGDJ66gYrKZQwRqii/IJIGI3XVZTk+m6egslsMpn0+322RXoRq/1y+3awnCfJCbvkRUp+0WAwkF6RnBK0r9dj2eBqV8/flG/fK5U8WSYDEWmJI8UwTovU9TIGA8fL3/eCbNni8K1NjoyPei9XWVu+xcoyAFs+tcYl8iMVL8ATeRKxFSbOJbrETJ15qicz5pK6vJCzZrCcv7+xQRdg1aeImAKRjFH/QMHVLJzxRAJwhAezYRGkiHTT4RGrs9sNqaarQBhgyfs8SFESuRDULb7f1UVyAiy7j8Vmqh1VETAirU5LkZ+acCTZAIdXznMhjNyjflVy6gyeAOqryY6GqZ+sJqTcSNM1HIxpgQYjA/NuSXRDisWlnX8CmNIrV7F/EZYHKWogFyCMcopTm9TgrY5vnuy0qH5Vo9GoM1LxIowdDebUORAXunjhQtMU6PTykys+p3uPw7599ZPVhJQRUM9eVuafPVmpEDogZadUAPLyK11GVR6kgMZgwtgEcz1aYR1ZU/2qJHOo01IeMZ7o9VbGJQ+pUxX7YFOXiBTlpjf56jH1k9WElIUzuJPajS43UXVAirOnNFILapMjKxC7IyWHO9mY3PM/73PxhCT/waj6VS2CVFz1LTVyLQqsuR/DPUbIV4+pn6wgUkRdGqFEm6qyROUGuwNSnE+lMQiuTemIVH2nM7szmeqgHLJyiuMkFZu2zhQJ84JqhRTtD5wHQUG5aUy+ekz9ZAWRChLjKshcB6SkBVO/qoWQihTjhH+RyikoLmdUadNMKekhLvYsaOj3++sHTwPNICAdKQopTAZETEfnRmpuLK0GyoIU26j6VS2ElHv30ixj/VSXJUUvUfHX74aqrZjLfkThzDreYa2+soeFK+okxquTICtu1E/WUUDKXcTVQkh5xTh27YGfP7JLLsT5Uf0Dcf5KvyfuPZCRvKJOTa2Qor0VUvFwmih45ecu8ftSc2PJVWRAFqSWjl9Sv6rMSJFFtO/QJBfykEJu2RuXe+aCgDiLbZHyeI3Lvv3g0clk5bD688pzt9HVYPaTB/dyDJbGtkhh6leVGal6pLNLLqSOI5JN/HaAiJqJkeok5JXgTYQmpEiW7uJzRdaRb//EsTM7s4ctnmyM+xwwiBSymwjB1QzN4eDdZmIEBB8K2R0BFylLbO46poWQerazazCJHTZScsNzdbipviNYSUlUXiLBjYPImulIIcr54FOaJlnMlk+Fb2hZFnFD3oRU5I6R5TCvrAYLaa9/AKu9MBepprumCJTtqV8XpBDFk4tU9lOeJ/mtetP2SqTjSaJecsFTZApdWCukyHlNz2oQtb9X/r99hDJLHkTIjRzBtqcrXi3chNTbiM4S1dryLctV4GiRdi8hcqdIucYr3DDFutxZLGsHCz6z3Dil8a5zFawjUvZ7ATHepz8Vbit5IN10t1MEAf1+P5gnONARbC+iiLxSL4BYgXXkDOj9yiCOFGI1wK1fiKWCOcylKmjwZHCImpBCBNg4qFtwd7NE5RmfKrjxochVbEpHpBDneQm2UXV3upUXLPY78tOPG6OU8l8iBxAH/5XhreRXK00cEHtQW+/1dPTGBu9hQmos6ZWRorlIIfkM8C0LAuVPq6u4kT2RrGB/+ma0BCGIIIXIMbYDmsFHPT+ZoMq7OivAsdFWnwtV3l8CKzCeLnG7IyUCLOLNxndI1rZKI3jEVRQJpKnt+BSxz+qKyXcWiBPBE/Myk6v9/X92Xu1ir3f9XGhiui0l29lc2dUTxyNGyhTmalOCkpAqKkpXQaooswpSRZlVkCrKrIJUUWYVpIoyqyBVlFkFqaLMKkgVZdWbN/8CHZprsGiYJ5MAAAAASUVORK5CYII=
               required:
                 - customer_id
                 - data
@@ -4937,7 +5022,7 @@ paths:
                 customer_id:
                   type: string
                   description: The unique id of the customer
-                  example: 8ea6abece4cd0a4ded0a29f093
+                  example: 8ea2591121e636086a4a9c0992
                 partner_records:
                   type: array
                   description: Collection of all customer's partner records
@@ -4965,6 +5050,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsSetpartnersBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PartnerRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the request body\n$partner_record1 = new PartnerRecord();\n$partner_record1->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique id of the partner\n\n$body = new ActionsSetpartnersBody();\n$body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer\n$body->setPartnerRecords(array($partner_record1));\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->customersActionsApi()->postSubCustomerSetPartners(\n        $body,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customer-address-types:
     get:
       tags:
@@ -5014,6 +5103,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_customer_address_types = $care_cloud->customerAddressTypesApi()->getCustomerAddressTypes(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $customer_address_types = $get_customer_address_types->getData()->getCustomerAddressTypes();\n    $total_items = $get_customer_address_types->getData()->getTotalItems();\n    var_dump($customer_address_types);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/customer-address-types/{customer_address_type_id}':
     get:
       tags:
@@ -5050,6 +5143,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$customer_address_type_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the customer address type in CareCloud\n\n// Call endpoint and get data\ntry\n{\n    $get_customer_address_type = $care_cloud->customerAddressTypesApi()->getCustomerAddressType(\n        $customer_address_type_id,\n        $accept_language\n    );\n    $customer_address_type = $get_customer_address_type->getData();\n    var_dump($customer_address_type);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customer-external-applications:
     get:
       tags:
@@ -5662,7 +5759,7 @@ paths:
                       event_id:
                         type: string
                         description: The unique id of the event
-                        example: 8bed991c68a470e7aaeffbf048
+                        example: 82de12eb8b138791e678fd11c3
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -6348,6 +6445,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$message_id = '8bd62e6ba18b3c791a9402cf3e'; // string | The unique id of the message\n\n// Call endpoint and get data\ntry\n{\n    $get_message = $care_cloud->messagesApi()->getMessage(\n        $message_id,\n        $accept_language\n    );\n    $message = $get_message->getData();\n    var_dump($message);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/messages/{message_id}/detail':
     get:
       tags:
@@ -6384,6 +6485,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$message_id = '8bd62e6ba18b3c791a9402cf3e'; // string | The unique id of the message\n\n// Call endpoint and get data\ntry\n{\n    $get_message_detail = $care_cloud->messagesApi()->getSubMessageDetail(\n        $message_id,\n        $accept_language\n    );\n    $message_detail = $get_message_detail->getData();\n    var_dump($message_detail);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /messages/actions/send-message:
     post:
       tags:
@@ -6426,6 +6531,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsSendmessageBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Message;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Parameter;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the request body\n$parameter = new Parameter();\n$parameter->setParameterName('parameter_name');\n$parameter->setValue('parameter_value');\n\n$message = new Message();\n$message->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer\n$message->setMessageTemplateId('8bed991c68a470e7aaeffbf048'); // string | The unique id of the message template\n$message->setContact('happycustomer@crmcarecloud.com'); // string | Email address or phone number of customer in case of send message to different contact than customer has in database (optional)\n$message->setCommunicationChannelId(1); // integer | 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification\n$message->setMessageData(array($parameter));\n\n$body = new ActionsSendmessageBody();\n$body->setMessage($message);\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->messagesApi()->postMessageSend(\n        $body,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /message-templates:
     get:
       tags:
@@ -8532,11 +8641,15 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_product_reservation_ext_list_types = $care_cloud->productReservationExternalListTypesApi()->getProductReservationExternalListTypes(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $product_reservation_ext_list_types = $get_product_reservation_ext_list_types->getData()->getProductReservationExternalListTypes();\n    $total_items = $get_product_reservation_ext_list_types->getData()->getTotalItems();\n    var_dump($product_reservation_ext_list_types);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/product-reservation-external-list-types/{product_reservation_external_list_type_id}':
     get:
       tags:
         - Product reservation external list types
-      summary: Detail of an product reservation external list type
+      summary: Detail of a product reservation external list type
       description: Get information about a specific product reservation external list type
       operationId: getProductReservationExternalListType
       parameters:
@@ -8568,6 +8681,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$product_reservation_external_list_type_id = '86e05affc7a7abefcd513ab400'; // string | The unique id\n\n// Call endpoint and get data\ntry\n{\n    $get_product_reservation_ext_list_type = $care_cloud->productReservationExternalListTypesApi()->getProductReservationExternalListType(\n        $product_reservation_external_list_type_id,\n        $accept_language\n    );\n    $product_reservation_ext_list_type = $get_product_reservation_ext_list_type->getData();\n    var_dump($product_reservation_ext_list_type);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /reservable-products:
     get:
       tags:
@@ -8877,6 +8994,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$purchase_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the booking ticket\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_purchase_items = $care_cloud->purchasesApi()->getSubPurchaseItems(\n        $purchase_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n    );\n    $purchase_items = $get_purchase_items->getData()->getPurchaseItems();\n    $total_items = $get_purchase_items->getData()->getTotalItems();\n    var_dump($purchase_items);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/purchases/{purchase_id}/vouchers':
     get:
       tags:
@@ -8981,6 +9102,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$purchase_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the booking ticket\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_purchase_points = $care_cloud->purchasesApi()->getSubPurchasePoints(\n        $purchase_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $purchase_points = $get_purchase_points->getData()->getPoints();\n    $total_items = $get_purchase_points->getData()->getTotalItems();\n    var_dump($purchase_points);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/purchases/{purchase_id}/actions/payment-summary':
     get:
       tags:
@@ -9562,16 +9687,35 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$recommendation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the recommendation\n\n// Call endpoint and get data\ntry\n{\n    $get_recommendation = $care_cloud->hintApi()->getRecommendation($recommendation_id, $accept_language);\n    $recommendation = $get_recommendation->getData();\n    var_dump($recommendation);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /recommendation-engine/product/actions/eliminate:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation with an elimination
       description: It selects the best products from an initial list for the customer. Eliminates all products that don't match future customer preferences (depends on his previous shopping behavior). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
-      operationId: getRecommendationProductEliminate
+      operationId: postRecommendationProductEliminate
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/product_id_list'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9613,17 +9757,39 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/product/actions/order:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Order products for the best recommendation.
       description: 'The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer and his previous shopping behavior. If needed, the initial parameter might define the number of results.'
-      operationId: getRecommendationProductOrder
+      operationId: postRecommendationProductOrder
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9665,17 +9831,39 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/product/actions/combine:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation
       description: 'It selects the best products from an initial list for the customer. Eliminates all products that don''t match future customer preferences (depends on his previous shopping behavior). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.'
-      operationId: getRecommendationProductCombine
+      operationId: postRecommendationProductCombine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9717,17 +9905,43 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/shopping-cart/actions/eliminate:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation with elimination for shopping cart
       description: It selects the best products from an initial list for the customer shopping cart. Eliminates all products that don't match future customer preferences (depends on other customers' shopping behavior with the same products). The method doesn't have to return any results depending on the initial list (no product match future customer preferences).
-      operationId: getRecommendationCartEliminate
+      operationId: postRecommendationCartEliminate
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/cart_product_ids'
-        - $ref: '#/components/parameters/product_id_list'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                cart_product_ids:
+                  type: array
+                  description: List of the product ids in customer's shopping cart
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9768,17 +9982,43 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/shopping-cart/actions/order:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Order products for the best recommendation for a shopping cart
       description: 'The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer''s shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.'
-      operationId: getRecommendationCartOrder
+      operationId: postRecommendationCartOrder
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/cart_product_ids_required'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_product_ids:
+                  type: array
+                  description: List of the product ids in customer's shopping cart
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - cart_product_ids
       responses:
         '200':
           description: OK
@@ -9819,18 +10059,47 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   /recommendation-engine/shopping-cart/actions/combine:
-    get:
+    post:
       tags:
         - Product recommendation engine
       summary: Get the best recommendation for shopping cart
       description: 'It selects the best products from an initial list for the customer shopping cart. Eliminates all products that don''t match future customer preferences (depends on other customers'' shopping behavior with the same products). If needed, it fills the missing number of results from the best products depends on the prediction algorithms.'
-      operationId: getRecommendationCartCombined
+      operationId: postRecommendationCartCombine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-        - $ref: '#/components/parameters/cart_product_ids'
-        - $ref: '#/components/parameters/product_id_list'
-        - $ref: '#/components/parameters/count'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique id of the customer
+                  example: 8ea2591121e636086a4a9c0992
+                cart_product_ids:
+                  type: array
+                  description: List of the product ids in customer's shopping cart
+                  items:
+                    type: string
+                  example:
+                    - 8fd73167342d0689c4c015320
+                    - 84aec0f62c76448621d68d343c
+                product_id_list:
+                  type: array
+                  description: List of the product ids. Initial products of the recommendation engine
+                  items:
+                    type: string
+                  example:
+                    - 89d88719b8b442de2d11b401a2
+                    - 88bb88399cc74d81edbe19d684
+                count:
+                  type: integer
+                  description: The number of records to return
+                  example: 5
+              required:
+                - customer_id
       responses:
         '200':
           description: OK
@@ -9875,7 +10144,7 @@ paths:
       tags:
         - Product recommendation engine
       summary: Create a batch of the third party recommendations
-      description: Batch process helps to add multiple third party reccomendations in one request
+      description: Batch process helps to add multiple third party recommendations in one request
       operationId: postBulkThirdPartyRecommendations
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10534,7 +10803,7 @@ paths:
                   data:
                     type: object
                     properties:
-                      rewards_types:
+                      reward_types:
                         type: array
                         description: List of all reward types
                         items:
@@ -10559,6 +10828,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_reward_types = $care_cloud->rewardTypesApi()->getRewardTypes(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name\n    );\n    $reward_types = $get_reward_types->getData()->getRewardsTypes();\n    $total_items = $get_reward_types->getData()->getTotalItems();\n    var_dump($reward_types);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/reward-types/{reward_type_id}':
     get:
       tags:
@@ -10595,6 +10868,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$reward_type_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the reward type\n\n// Call endpoint and get data\ntry\n{\n    $get_reward_type = $care_cloud->rewardTypesApi()->getRewardtype(\n        $reward_type_id,\n        $accept_language\n    );\n    $reward_type = $get_reward_type->getData();\n    var_dump($reward_type);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /segments:
     get:
       tags:
@@ -12738,6 +13015,41 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: |
+            use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+            require_once '../vendor/autoload.php';
+
+            $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+            $login = 'login';
+            $password = 'password';
+            $external_app_id = 'application_id';
+            $auth_type = AuthTypes::BEARER_AUTH;
+
+            $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+            $care_cloud = new CareCloud($config);
+
+            // Set query parameters
+            $test_string = 'taco cat'; // string | Test string send to REST API. Correct result should return a reverted string
+
+            // Call endpoint and get data
+            try
+            {
+                $get_connection_test = $care_cloud->productRecommendationEngineApi()->getRecommendationCartCombined();
+                $test_string_reverted = $get_connection_test->getData()->getTestString();
+                var_dump($test_string_reverted);
+            }
+            catch(ApiException $e)
+            {
+                die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+            }
   /tokens:
     post:
       tags:
@@ -13832,6 +14144,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_voucher_properties = $care_cloud->voucherPropertiesApi()->getVoucherProperties(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name\n    );\n    $voucher_properties = $get_voucher_properties->getData()->getVoucherProperties();\n    $total_items = $get_voucher_properties->getData()->getTotalItems();\n    var_dump($voucher_properties);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/voucher-properties/{voucher_property_id}':
     get:
       tags:
@@ -13868,6 +14184,10 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$voucher_property_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the voucher property\n\n// Call endpoint and get data\ntry\n{\n    $get_voucher_property = $care_cloud->voucherPropertiesApi()->getVoucherProperty(\n        $voucher_property_id,\n        $accept_language\n    );\n    $voucher_property = $get_voucher_property->getData();\n    var_dump($voucher_property);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /wallet/actions/sales-turnover:
     get:
       tags:
@@ -14413,12 +14733,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the agreement in CareCloud
-          example: 81eaeea13b8984a169c490a325
+          example: 8fd73167342d06899c4c015320
         name:
           type: string
           readOnly: true
           description: Name of the agreement in CareCloud
-          example: GDPR agreement
+          example: Custom agreement
         text:
           type: string
           readOnly: true
@@ -14433,7 +14753,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change (YYYY-MM-DD HH:MM:SS)'
-          example: '2018-05-07 14:26:19.215774'
+          example: '2021-12-16 17:42:28.248955'
     Bill:
       type: object
       description: Structure of bill from POS
@@ -14567,11 +14887,11 @@ components:
           type: string
           readOnly: true
           description: The unique id of the booking
-          example: 83cfee22eabfbbb15a14815e30
+          example: 83d0ce2b5a1bc0dc8da01b13e7
         customer_id:
           type: string
           description: The unique id of the customer that created the booking
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 85bc5819e09dab95437552ce79
         booking_items:
           type: array
           items:
@@ -14581,17 +14901,17 @@ components:
           type: string
           readOnly: false
           description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
-          example: cd0acd0a4ded4dedec
+          example: 81eaeea13b8984a169c490a325
         created_at:
           type: string
           readOnly: false
           description: 'Date and time of the booking *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2022-08-11 11:15:33'
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2013-07-24 21:33:33'
+          example: '2022-08-11 11:15:33'
         state:
           type: integer
           enum:
@@ -14622,7 +14942,7 @@ components:
           type: string
           readOnly: false
           description: The unique id of the booking time slot
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 88bb88399cc74d81edbe19d684
         booking_ticket:
           type: object
           description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
@@ -14647,7 +14967,7 @@ components:
           type: string
           readOnly: false
           description: 'Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
-          example: e2a1b9b01fe2a1b9b01f5c9fb1
+          example: 86e05affc7a7abefcd513ab400
         additional_properties:
           type: array
           items:
@@ -14657,7 +14977,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the boking item *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time of the booking item *(YYYY-MM-DD HH:MM:SS)*'
           example: '2017-06-20 16:59:49'
         state:
           type: integer
@@ -14686,27 +15006,27 @@ components:
           type: string
           readOnly: true
           description: The unique id of the booking ticket
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 89d88719b8b442de2d11b401a2
         name:
           type: string
           readOnly: false
           description: Name of the booking ticket in language from request header
-          example: Boat ride
+          example: Prophecy
         created_at:
           type: string
           readOnly: false
           description: 'Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2022-07-26 11:38:22'
         valid_from:
           type: string
           readOnly: false
           description: 'Date and time from when is ticket valid already. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2018-06-20 16:59:49'
+          example: null
         valid_to:
           type: string
           readOnly: false
           description: 'Date and time to when is ticket still valid. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2018-07-20 16:59:49'
+          example: null
         state:
           type: integer
           enum:
@@ -14721,7 +15041,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2015-01-05 11:24:12'
+          example: '2022-09-16 16:14:41'
       required:
         - name
     BookingStatus:
@@ -14732,17 +15052,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the booking status
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 8bf3397ab62d3ffd876fc9ae16
         name:
           type: string
           readOnly: false
           description: Name of the booking status in language from request header
-          example: Cancelled
+          example: Pending
         created_at:
           type: string
           readOnly: false
           description: 'Date and time of booking status creation *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2022-09-14 07:39:08.99493'
         state:
           type: integer
           enum:
@@ -14757,7 +15077,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2015-01-05 11:24:12'
+          example: '2022-09-14 07:39:08.99493'
       required:
         - name
     Campaign:
@@ -14768,27 +15088,27 @@ components:
           type: string
           readOnly: true
           description: The unique id of the campaign
-          example: 8edebb6b9d299c59804b2aa812
+          example: 8bed991c68a470e7aaeffbf048
         external_id:
           type: string
           readOnly: false
           description: The external id of the campaign
-          example: 288684441
+          example: 1
         parent_id:
           type: string
           readOnly: false
           description: Id of the parent campaign
-          example: 8fd17bf437555cf56a6ecf05fc
+          example: null
         name:
           type: string
           readOnly: false
           description: Name of the campaign
-          example: REST campaign
+          example: Standard campaign
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-10-24 19:09:30'
+          example: '2021-04-16 18:22:35.052987'
         state:
           type: integer
           enum:
@@ -14810,28 +15130,28 @@ components:
           type: string
           readOnly: true
           description: The unique id of the campaign product
-          example: 8bed991c68a470e7aaeff
+          example: 8bed991c68a470e7aaeffbf048
         product_id:
           type: string
           readOnly: false
           description: The unique id of the product
-          example: 80bfce6e94829c8df40
+          example: 8ad4ff4db9d628f2c8cb6181a4
         currency_id:
           type: string
           readOnly: false
           description: The unique id of the currency
-          example: 86e05affc7a7abefc
+          example: 8bed991c68a470e7aaeffbf048
         campaign_id:
           type: string
           readOnly: false
           description: The unique id of the campaign
-          example: 8bed991c68a470e7aaeffbf048
+          example: 8ad8b2b701199684f1222961d6
         value:
           type: number
           format: float
           readOnly: false
           description: Value of the product
-          example: 100
+          example: 50
         value_type_id:
           type: integer
           enum:
@@ -14839,17 +15159,17 @@ components:
             - 2
           readOnly: false
           description: 'Type of value (1 - percentage discount value, 2 - final price)'
-          example: 2
+          example: 1
         valid_from:
           type: string
           readOnly: false
           description: 'Valid from *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2018-11-19 00:00:00'
+          example: '2021-04-16 00:00:00'
         valid_to:
           type: string
           readOnly: false
           description: 'Valid to *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-01-05 23:59:59'
+          example: '2021-05-16 23:59:59'
         display_in:
           type: array
           items:
@@ -14857,13 +15177,12 @@ components:
           readOnly: false
           description: List of possible display places
           example:
-            - cash_desk
-            - web
+            - mapi
         type_id:
           type: string
           readOnly: false
           description: Type of a campaign product
-          example: 81eaeea13b8984a169c490a325
+          example: 86e05affc7a7abefcd513ab400
         presentation_data:
           type: object
           $ref: '#/components/schemas/CampaignPresentationData'
@@ -14871,7 +15190,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: 2013-08-19T16:28:03.978Z
+          example: 2021-04-16T19:02:22.000Z
         state:
           type: integer
           enum:
@@ -14920,7 +15239,7 @@ components:
           type: string
           readOnly: false
           description: URL address of the image
-          example: 'https://developer.crmcarecloud.com/images/campaign.jpg'
+          example: 'https://developers.crmcarecloud.com/img/customer_enterprise.png'
       required:
         - name
     CampaignProductStoreRecord:
@@ -14931,17 +15250,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the campaign product store record.
-          example: 88c774183f5c3e413b3ba570f8
+          example: 8bed991c68a470e7aaeffbf048
         store_id:
           type: string
           readOnly: false
           description: The unique id of the store.
-          example: 8fdd651ff3f615bcebebad87ce
+          example: 8bed991c68a470e7aaeffbf048
         campaign_product_id:
           type: string
           readOnly: false
           description: The unique id of the campaign product.
-          example: 8fdce3475560d56e95a6ab035c
+          example: 81eaeea13b8984a169c490a325
       required:
         - store_id
         - campaign_product_id
@@ -14953,12 +15272,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the card
-          example: 81a94c48474bc45c03d41f7016
+          example: 81eaeea13b8984a169c490a325
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the card holder.
-          example: 81ceb8582e2d8dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         card_type_id:
           type: string
           readOnly: false
@@ -14968,12 +15287,12 @@ components:
           type: string
           readOnly: false
           description: Card number
-          example: '200120000290'
+          example: '1000000000016'
         valid_from:
           type: string
           readOnly: false
           description: 'Card validity from *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-07-05'
+          example: '2021-04-14'
         valid_to:
           type: string
           readOnly: false
@@ -15011,17 +15330,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the card type.
-          example: 8fd17bf437555cf56a6ecf05fc
+          example: 8bd48117006496e0b1788109b8
         name:
           type: string
           readOnly: false
           description: Name of the card type
-          example: REST API card type
+          example: Postman test type
         prefix:
           type: string
           readOnly: false
           description: Prefix of the specific card type cards
-          example: '12'
+          example: 092
       required:
         - name
         - prefix
@@ -15047,16 +15366,38 @@ components:
           type: string
           readOnly: false
           description: Name of the communication channel
-          example: Viber
+          example: Email
         text_id:
           type: string
           readOnly: false
           description: Text representation of communication channel ID
-          example: viber
+          example: email
       required:
         - currency_id
         - name
         - text_id
+    Country:
+      type: object
+      description: Country resource
+      properties:
+        country_id:
+          type: string
+          description: The unique id of the country as ISO code
+          example: cz
+        name:
+          type: string
+          description: Name of the country. Language depends on the `Accept-Language` header from the request.
+          example: Czechia
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          description: |
+            State of the country
+            *Possible values are: 0 - deleted / 1- active / 2 - non active*
+          example: 1
     Credit:
       type: object
       description: Customer's credit
@@ -15065,24 +15406,24 @@ components:
           type: string
           readOnly: true
           description: The unique id of the credit record
-          example: 84cae7e5cbba16e31b0fc5ef1c
+          example: 8bed991c68a470e7aaeffbf048
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         assigned_credits:
           type: number
           format: float
           readOnly: true
           description: The number of earned credits in the record
-          example: 1208
+          example: 1000
         available_credits:
           type: number
           format: float
           readOnly: true
-          description: The number of avalilable credits from the record
-          example: 700
+          description: The number of avaliable credits from the record
+          example: 1000
         credit_type_id:
           type: string
           readOnly: false
@@ -15126,23 +15467,23 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         amount:
           type: number
           format: float
           readOnly: true
           description: The number of credits used in the credit operation record
-          example: 700
+          example: 1000
         credit_operation_type:
           type: string
           readOnly: true
           description: Type of the credit operation record
-          example: Voucher purchase
+          example: Manually added credits
         credit_operation_note:
           type: string
           readOnly: true
           description: Note of the credit operation record
-          example: Free one day parking
+          example: Addition
         partner_id:
           type: string
           readOnly: false
@@ -15157,12 +15498,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the store in CareCloud
-          example: 86e05affc7a7abefcd513ab400
+          example: 81eaeea13b8984a169c490a325
         credit_history_record_time:
           type: string
           readOnly: true
           description: 'Date and time of the credit record from the credit history *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2012-11-22 20:57:04'
+          example: '2023-03-07 09:53:55'
     CreditType:
       type: object
       description: Credits reservation resource
@@ -15176,12 +15517,12 @@ components:
           type: string
           readOnly: true
           description: Name of the credit type
-          example: Cancellation
+          example: Addition
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-04-22 13:53:54'
+          example: '2022-04-05 07:46:44.190403'
     CreditWalletSummary:
       type: object
       description: Customer's credit in the specific currency
@@ -15236,7 +15577,7 @@ components:
         agreement_id:
           type: string
           description: 'The unique id of the agreement in CareCloud from [agreements](#tag/Agreements) resource'
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 8fd73167342d06899c4c015320
         agreement_value:
           type: integer
           enum:
@@ -15256,7 +15597,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 8ea2591121e636086a4a9c0992
         personal_information:
           type: object
           $ref: '#/components/schemas/PersonalInformation'
@@ -15278,13 +15619,13 @@ components:
         - personal_information
     CustomerResult:
       type: object
-      description: Search results for strict mode
+      description: Search results for the strict mode
       properties:
         customer_id:
           type: string
           readOnly: true
           description: The unique id of the customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 84b9167cc2f01ff007d98e1633
         match:
           type: integer
           readOnly: true
@@ -15298,17 +15639,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer relation type
-          example: 8bed991c68a470e7aaefff048
+          example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
           readOnly: false
           description: Name of the customer relation type
-          example: Family
+          example: Family account
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2021-03-03 18:07:14'
+          example: '2019-05-16 13:35:40'
         state:
           type: integer
           enum:
@@ -15328,7 +15669,7 @@ components:
       properties:
         strict:
           type: array
-          description: Search results for strict mode
+          description: Search results for the strict mode
           items:
             $ref: '#/components/schemas/CustomerResult'
     CustomerSource:
@@ -15375,22 +15716,22 @@ components:
           type: string
           description: The unique id of the customer source record.
           readOnly: true
-          example: 8fdce3475560d56e95a6ab035r
+          example: 8fd73167342d06899c4c015320
         customer_source_id:
           type: string
           description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
           readOnly: false
-          example: 8fdce3475560d56e95a6ab035r
+          example: 86e05affc7a7abefcd513ab400
         customer_id:
           type: string
           readOnly: true
           description: The unique id of the customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 87af991126405bf8e7dfb36045
         external_id:
           type: string
           description: The unique external id of the customer. It may be id from the other system
           readOnly: false
-          example: null
+          example: 6
         last_change:
           type: string
           readOnly: true
@@ -15430,12 +15771,12 @@ components:
           type: string
           readOnly: true
           description: Name of the customer address type
-          example: Shipping
+          example: Mailing address
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-12-01 14:29:41'
+          example: '2022-07-25 17:57:44.793447'
     AdditionalAddress:
       type: object
       description: Address resource
@@ -15444,11 +15785,11 @@ components:
           type: string
           description: Unique additional address ID
           readOnly: true
-          example: 86e05affc7a7abefcd513ab00
+          example: 86e05affc7a7abefcd513ab400
         address_type:
           type: string
           description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
-          example: 8bed991c6a470eaaffbf048
+          example: 86e05affc7a7abefcd513ab400
         address:
           type: object
           $ref: '#/components/schemas/Address'
@@ -15523,17 +15864,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the event
-          example: 8bed991c68a470e7aaeffbf048
+          example: 82de12eb8b138791e678fd11c3
         event_type_id:
           type: string
           readOnly: false
           description: The unique id of the event type
-          example: 8bed991c68a470e7aaeffbf048
+          example: 8bda8a4854394325e2748a5005
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the card holder.
-          example: 81ceb8582e2d8dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         external_id:
           type: string
           readOnly: false
@@ -15548,12 +15889,12 @@ components:
             - type: object
           readOnly: false
           description: Additional data of the event. Serialized data in JSON
-          example: '{"test":10,"test2":20}'
+          example: '{"id_account_history_change":6}'
         created_at:
           type: string
           readOnly: false
           description: 'Date and time of the event *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-06-20 16:59:49'
+          example: '2021-04-29 14:51:43'
         secondary_external_id:
           type: string
           readOnly: false
@@ -15647,17 +15988,17 @@ components:
           type: string
           readOnly: false
           description: The unique id of the client external application
-          example: 89d1a6111b3fb6e74665d948
+          example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
           readOnly: false
           description: The name of the external application
-          example: mobile app
+          example: Sandbox app
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-07-01 14:04:25'
+          example: '2021-07-26 09:46:59.005819'
         state:
           type: integer
           enum:
@@ -15841,7 +16182,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the interest record
-          example: 87d934c86a6303f5fb4d1214fb
+          example: 81eaeea13b8984a169c490a325
         interest_id:
           type: string
           readOnly: false
@@ -15851,12 +16192,12 @@ components:
           type: string
           readOnly: false
           description: The unique id of the customer
-          example: 89ac83ca207a820c62c79bf03a
+          example: 8ea2591121e636086a4a9c0992
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-08-06 10:31:09'
+          example: '2023-03-13 17:35:05'
       required:
         - interest_id
         - customer_id
@@ -15900,12 +16241,13 @@ components:
             - 0
             - 1
             - -1
+            - -2
             - 2
             - 4
           readOnly: true
           description: |
             The status id of the message.
-            *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
+            *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / -2 message was not recieved (soft bounce) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
           example: 1
         message_template_id:
           type: string
@@ -16359,12 +16701,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the partner record
-          example: 8aa2049ac2f84952014d96bb23
+          example: 88bd53f8ac5f3b595d6bc106a4
         partner_id:
           type: string
           readOnly: false
           description: The unique id of the partner
-          example: 2f8aa204842f8495298aa20452
+          example: 86e05affc7a7abefcd513ab400
         last_change:
           type: string
           readOnly: true
@@ -17199,7 +17541,7 @@ components:
           items:
             $ref: '#/components/schemas/PropertyItem'
           readOnly: false
-          description: 'List of possible values. Used for multivalued data types ( like enum, multiselect)'
+          description: 'List of possible values. Used for multivalued data types (like enum, multiselect)'
         is_required:
           type: boolean
           enum:
@@ -17274,17 +17616,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the property record
-          example: 'contact_person:8aa2049ac2f84952014d96bb23'
+          example: 'docasna_blokace_darce_do:8ea2591121e636086a4a9c0992'
         property_id:
           type: string
           readOnly: false
           description: The unique id of the property
-          example: contact_person
+          example: docasna_blokace_darce_do
         property_name:
           type: string
           readOnly: true
           description: Name of the property
-          example: Project contact person
+          example: 'Property #6'
         property_value:
           oneOf:
             - type: string
@@ -17297,7 +17639,7 @@ components:
             - type: null
           readOnly: false
           description: Value of the property
-          example: Arthur Dent
+          example: '2002-02-02'
         last_change:
           type: string
           readOnly: true
@@ -17622,12 +17964,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer's relation
-          example: 8ea6abece4cd0ad0a2ce4cd0a4ded09
+          example: 81eaeea13b8984a169c490a325
         related_customer_id:
           type: string
           readOnly: false
           description: The unique id of the related customer
-          example: 8ea6abece4cd0a4ded0a29f093
+          example: 8aa68a112c62ad5f84a22a0652
         short_name:
           type: string
           readOnly: true
@@ -17637,7 +17979,7 @@ components:
           type: string
           readOnly: false
           description: The unique id of the customer relation type
-          example: 8ea6abece4cd038a6abece4cd0
+          example: 8bed991c68a470e7aaeffbf048
         is_leading:
           type: boolean
           readOnly: false
@@ -19491,7 +19833,7 @@ components:
       description: The unique id of the customer
       schema:
         type: string
-      example: 89ac83ca207a820c62c79bf03a
+      example: 8ea2591121e636086a4a9c0992
     customer_id:
       name: customer_id
       in: query
@@ -19507,7 +19849,7 @@ components:
       description: The unique id of the related customer
       schema:
         type: string
-      example: 8fdce3475560d56e95a6ab035r
+      example: 87af991126405bf8e7dfb36045
     customer_id_required:
       name: customer_id
       in: query
@@ -19564,7 +19906,7 @@ components:
       description: The unique id of a customer address type in CareCloud
       schema:
         type: string
-      example: 86e05afc7a7abefcd513ab400
+      example: 86e05affc7a7abefcd513ab400
     customer_address_type_id:
       name: customer_address_type_id
       in: query
@@ -19572,7 +19914,7 @@ components:
       description: The unique id of the customer address type.
       schema:
         type: string
-      example: 8fdce3475560d56e95a6ab035
+      example: 86e05affc7a7abefcd513ab400
     additional_customer_address_id_path:
       name: additional_customer_address_id_path
       in: path
@@ -19580,7 +19922,7 @@ components:
       description: Unique ID of the customer additional address
       schema:
         type: string
-        example: 8fdce3475560d56e95a6ab035
+        example: 86e05affc7a7abefcd513ab400
     card_id_path:
       name: card_id
       in: path
@@ -19588,7 +19930,7 @@ components:
       required: true
       schema:
         type: string
-      example: 81a94c48474bc45c03d41f7016
+      example: 81eaeea13b8984a169c490a325
     card_type_id_path:
       name: card_type_id
       in: path
@@ -19604,7 +19946,7 @@ components:
       required: false
       schema:
         type: string
-      example: 200120000290
+      example: 1000000000016
     card_type_id:
       name: card_type_id
       in: query
@@ -19634,7 +19976,7 @@ components:
       schema:
         type: string
       allowReserved: true
-      example: 'contact_person:8aa2049ac2f84952014d96bb23'
+      example: 'docasna_blokace_darce_do:8ea2591121e636086a4a9c0992'
     interest_record_id_path:
       name: interest_record_id
       in: path
@@ -19793,7 +20135,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaefff048
+      example: 81eaeea13b8984a169c490a325
     customer_relation_type_id_path:
       name: customer_relation_type_id
       in: path
@@ -19801,7 +20143,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaefff048
+      example: 8bed991c68a470e7aaeffbf048
     customer_relation_type_id:
       name: customer_relation_type_id
       in: query
@@ -19809,7 +20151,7 @@ components:
       required: false
       schema:
         type: string
-      example: 8bed991c68a470e7aaefff048
+      example: 8bed991c68a470e7aaeffbf048
     campaign_id_path:
       name: campaign_id
       in: path
@@ -19843,7 +20185,7 @@ components:
     campaign_store_id:
       name: store_id
       in: query
-      description: 'Parameter filters all campaig products from [store](#tag/Stores) by store id'
+      description: 'Parameter filters all campaign products from [store](#tag/Stores) by store id'
       required: false
       schema:
         type: string
@@ -19855,7 +20197,7 @@ components:
       required: true
       schema:
         type: string
-      example: 81eaeea13b8984a169c
+      example: 81eaeea13b8984a169c490a325
     currency_id_path:
       name: currency_id
       in: path
@@ -19871,7 +20213,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaeffbf048
+      example: 82de12eb8b138791e678fd11c3
     event_type_id:
       name: event_type_id
       in: query
@@ -19879,7 +20221,7 @@ components:
       required: false
       schema:
         type: string
-      example: 8bed991c68a470e7aaeffbf048
+      example: 8bda8a4854394325e2748a5005
     text_id:
       name: text_id
       in: query
@@ -19895,7 +20237,7 @@ components:
       required: true
       schema:
         type: string
-      example: 86e05affc7a7abefcd513ab400
+      example: 8bd253a890067595008f1d44aa
     event_property_id_path:
       name: event_property_id
       in: path
@@ -19911,7 +20253,7 @@ components:
       required: true
       schema:
         type: string
-      example: 81dcd5807157297ad7d668e61
+      example: 8bda8a4854394325e2748a5005
     interest_id_path:
       name: interest_id
       in: path
@@ -20007,7 +20349,7 @@ components:
       description: 'Unique ID of the partner from the resource [GET /partners](/#tag/Partners)'
       schema:
         type: string
-      example: 89ac83ca207a820c62c79bf03a
+      example: 86e05affc7a7abefcd513ab400
     partner_record_id_path:
       name: partner_record_id
       in: path
@@ -20015,7 +20357,7 @@ components:
       required: true
       schema:
         type: string
-      example: 86e05affc7a7abefcd513ab400
+      example: 88bd53f8ac5f3b595d6bc106a4
     payment_type_id_path:
       name: payment_type_id
       in: path
@@ -20283,33 +20625,6 @@ components:
       schema:
         type: string
       example: 8ad8b2b701199684f1222961d6
-    product_id_list:
-      name: product_id_list
-      in: query
-      required: false
-      description: List of the product ids. Initial products of the recommendation engine.
-      schema:
-        type: array
-        items:
-          type: string
-    cart_product_ids:
-      name: cart_product_ids
-      in: query
-      required: false
-      description: List of the product ids in customer's shopping cart
-      schema:
-        type: array
-        items:
-          type: string
-    cart_product_ids_required:
-      name: cart_product_ids
-      in: query
-      required: true
-      description: List of the product ids in customer's shopping cart
-      schema:
-        type: array
-        items:
-          type: string
     segment_id_path:
       name: segment_id
       in: path

@@ -10,12 +10,12 @@ properties:
     type: string
     readOnly: false
     description: Name of the communication channel
-    example: Viber
+    example: Email
   text_id:
     type: string
     readOnly: false
     description: Text representation of communication channel ID
-    example: viber
+    example: email
 required:
   - currency_id
   - name

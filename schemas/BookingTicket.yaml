@@ -5,27 +5,27 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the booking ticket
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: 89d88719b8b442de2d11b401a2
   name:
     type: string
     readOnly: false
     description: Name of the booking ticket in language from request header
-    example: "Boat ride"
+    example: "Prophecy"
   created_at:
     type: string
     readOnly: false
     description: Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*
-    example: "2017-06-20 16:59:49"
+    example: "2022-07-26 11:38:22"
   valid_from:
     type: string
     readOnly: false
     description: Date and time from when is ticket valid already. *(YYYY-MM-DD HH:MM:SS)*
-    example: "2018-06-20 16:59:49"
+    example:
   valid_to:
     type: string
     readOnly: false
     description: Date and time to when is ticket still valid. *(YYYY-MM-DD HH:MM:SS)*
-    example: "2018-07-20 16:59:49"
+    example:
   state:
     type: integer
     enum:
@@ -40,6 +40,6 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2015-01-05 11:24:12"
+    example: "2022-09-16 16:14:41"
 required:
   - name

@@ -5,23 +5,23 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the customer.
-    example: 81ceb8582e28dbb7e71b7273b
+    example: 8ea2591121e636086a4a9c0992
   amount:
     type: number
     format: float
     readOnly: true
     description: The number of credits used in the credit operation record
-    example: 700
+    example: 1000
   credit_operation_type:
     type: string
     readOnly: true
     description: Type of the credit operation record
-    example: "Voucher purchase"
+    example: "Manually added credits"
   credit_operation_note:
     type: string
     readOnly: true
     description: Note of the credit operation record
-    example: "Free one day parking"
+    example: "Addition"
   partner_id:
     type: string
     readOnly: false
@@ -36,9 +36,9 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the store in CareCloud
-    example: 86e05affc7a7abefcd513ab400
+    example: 81eaeea13b8984a169c490a325
   credit_history_record_time:
     type: string
     readOnly: true
     description: Date and time of the credit record from the credit history *(YYYY-MM-DD HH:MM:SS)*
-    example: '2012-11-22 20:57:04'
+    example: '2023-03-07 09:53:55'

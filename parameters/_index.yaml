@@ -481,7 +481,7 @@ customer_id_path:
   description: The unique id of the customer
   schema:
     type: string
-  example: 89ac83ca207a820c62c79bf03a
+  example: 8ea2591121e636086a4a9c0992
 customer_id:
   name: customer_id
   in: query
@@ -497,7 +497,7 @@ related_customer_id:
   description: The unique id of the related customer
   schema:
     type: string
-  example: 8fdce3475560d56e95a6ab035r
+  example: 87af991126405bf8e7dfb36045
 customer_id_required:
   name: customer_id
   in: query
@@ -554,7 +554,7 @@ customer_address_type_id_path:
   description: 	The unique id of a customer address type in CareCloud
   schema:
     type: string
-  example: 86e05afc7a7abefcd513ab400
+  example: 86e05affc7a7abefcd513ab400
 customer_address_type_id:
   name: customer_address_type_id
   in: query
@@ -562,7 +562,7 @@ customer_address_type_id:
   description: The unique id of the customer address type.
   schema:
     type: string
-  example: 8fdce3475560d56e95a6ab035
+  example: 86e05affc7a7abefcd513ab400
 additional_customer_address_id_path:
   name: additional_customer_address_id_path
   in: path
@@ -570,7 +570,7 @@ additional_customer_address_id_path:
   description: Unique ID of the customer additional address
   schema:
     type: string
-    example: 8fdce3475560d56e95a6ab035
+    example: 86e05affc7a7abefcd513ab400
 
 # Card
 card_id_path:
@@ -580,7 +580,7 @@ card_id_path:
   required: true
   schema:
     type: string
-  example: 81a94c48474bc45c03d41f7016
+  example: 81eaeea13b8984a169c490a325
 card_type_id_path:
   name: card_type_id
   in: path
@@ -596,7 +596,7 @@ card_number:
   required: false
   schema:
     type: string
-  example: 200120000290
+  example: 1000000000016
 card_type_id:
   name: card_type_id
   in: query
@@ -627,7 +627,7 @@ property_record_id_path:
   schema:
     type: string
   allowReserved: true
-  example: contact_person:8aa2049ac2f84952014d96bb23
+  example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
 
 # Interest
 interest_record_id_path:
@@ -796,7 +796,7 @@ customer_relation_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaefff048
+  example: 81eaeea13b8984a169c490a325
 # Customer relation type
 customer_relation_type_id_path:
   name: customer_relation_type_id
@@ -805,7 +805,7 @@ customer_relation_type_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaefff048
+  example: 8bed991c68a470e7aaeffbf048
 customer_relation_type_id:
   name: customer_relation_type_id
   in: query
@@ -813,7 +813,7 @@ customer_relation_type_id:
   required: false
   schema:
     type: string
-  example: 8bed991c68a470e7aaefff048
+  example: 8bed991c68a470e7aaeffbf048
 # Campaigns
 campaign_id_path:
   name: campaign_id
@@ -848,7 +848,7 @@ type_id:
 campaign_store_id:
   name: store_id
   in: query
-  description: Parameter filters all campaig products from [store](#tag/Stores) by store id
+  description: Parameter filters all campaign products from [store](#tag/Stores) by store id
   required: false
   schema:
     type: string
@@ -860,7 +860,7 @@ campaign_product_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c
+  example: 81eaeea13b8984a169c490a325
 
 # Currencies
 currency_id_path:
@@ -880,7 +880,7 @@ event_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: 82de12eb8b138791e678fd11c3
 event_type_id:
   name: event_type_id
   in: query
@@ -888,7 +888,7 @@ event_type_id:
   required: false
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: 8bda8a4854394325e2748a5005
 text_id:
   name: text_id
   in: query
@@ -904,7 +904,7 @@ event_group_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: 8bd253a890067595008f1d44aa
 event_property_id_path:
   name: event_property_id
   in: path
@@ -920,7 +920,7 @@ event_type_id_path:
   required: true
   schema:
     type: string
-  example: 81dcd5807157297ad7d668e61
+  example: 8bda8a4854394325e2748a5005
 
 # Interests
 interest_id_path:
@@ -1026,7 +1026,7 @@ partner_id:
   description: Unique ID of the partner from the resource [GET /partners](/#tag/Partners)
   schema:
     type: string
-  example: 89ac83ca207a820c62c79bf03a
+  example: 86e05affc7a7abefcd513ab400
 partner_record_id_path:
   name: partner_record_id
   in: path
@@ -1034,7 +1034,7 @@ partner_record_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: 88bd53f8ac5f3b595d6bc106a4
 #Payment types
 payment_type_id_path:
   name: payment_type_id
@@ -1310,33 +1310,6 @@ recommendation_id_path:
   schema:
     type: string
   example: 8ad8b2b701199684f1222961d6
-product_id_list:
-  name: product_id_list
-  in: query
-  required: false
-  description: List of the product ids. Initial products of the recommendation engine.
-  schema:
-    type: array
-    items:
-      type: string
-cart_product_ids:
-  name: cart_product_ids
-  in: query
-  required: false
-  description: List of the product ids in customer's shopping cart
-  schema:
-    type: array
-    items:
-      type: string
-cart_product_ids_required:
-  name: cart_product_ids
-  in: query
-  required: true
-  description: List of the product ids in customer's shopping cart
-  schema:
-    type: array
-    items:
-      type: string
 
 # Segment
 segment_id_path:

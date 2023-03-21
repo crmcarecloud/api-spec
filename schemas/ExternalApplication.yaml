@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the client external application
-    example: 89d1a6111b3fb6e74665d948
+    example: 8bed991c68a470e7aaeffbf048
   name:
     type: string
     readOnly: false
     description: The name of the external application
-    example: mobile app
+    example: Sandbox app
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2020-07-01 14:04:25'
+    example: '2021-07-26 09:46:59.005819'
   state:
     type: integer
     enum:

@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the interest record
-    example: 87d934c86a6303f5fb4d1214fb
+    example: 81eaeea13b8984a169c490a325
   interest_id:
     type: string
     readOnly: false
@@ -15,12 +15,12 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the customer
-    example: 89ac83ca207a820c62c79bf03a
+    example: 8ea2591121e636086a4a9c0992
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2020-08-06 10:31:09'
+    example: '2023-03-13 17:35:05'
 required:
   - interest_id
   - customer_id

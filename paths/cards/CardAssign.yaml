@@ -19,11 +19,11 @@ post:
             card_type_id:
               type: string
               description: The unique id of the card type.
-              example: 8bed991c68a470e7aaeffbf048
+              example: 83d1d11ea3884a5d33253fe214
             customer_id:
               type: string
               description: The unique id of the card holder.
-              example: 81ceb8582e2d8dbb7e71b7273b
+              example: 8ea2591121e636086a4a9c0992
           required:
             - card_type_id
             - customer_id
@@ -42,7 +42,7 @@ post:
                     type: string
                     readOnly: true
                     description: The unique id of the card
-                    example: 81a94c48474bc45c03d41f7016
+                    example: 8fd73167342d06899c4c015320
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

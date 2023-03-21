@@ -13,7 +13,7 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the booking time slot
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: 88bb88399cc74d81edbe19d684
   booking_ticket:
     type: object
     description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
@@ -38,7 +38,7 @@ properties:
     type: string
     readOnly: false
     description: Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
-    example: e2a1b9b01fe2a1b9b01f5c9fb1
+    example: 86e05affc7a7abefcd513ab400
   additional_properties:
     type: array
     items:
@@ -48,7 +48,7 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: Date and time of the boking item *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the booking item *(YYYY-MM-DD HH:MM:SS)*
     example: "2017-06-20 16:59:49"
   state:
     type: integer

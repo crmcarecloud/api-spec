@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the card type.
-    example: "8fd17bf437555cf56a6ecf05fc"
+    example: "8bd48117006496e0b1788109b8"
   name:
     type: string
     readOnly: false
     description: Name of the card type
-    example: "REST API card type"
+    example: "Postman test type"
   prefix:
     type: string
     readOnly: false
     description: Prefix of the specific card type cards
-    example: "12"
+    example: "092"
 required:
   - name
   - prefix

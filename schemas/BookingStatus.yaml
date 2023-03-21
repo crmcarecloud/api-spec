@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the booking status
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: 8bf3397ab62d3ffd876fc9ae16
   name:
     type: string
     readOnly: false
     description: Name of the booking status in language from request header
-    example: "Cancelled"
+    example: "Pending"
   created_at:
     type: string
     readOnly: false
     description: Date and time of booking status creation *(YYYY-MM-DD HH:MM:SS)*
-    example: "2017-06-20 16:59:49"
+    example: "2022-09-14 07:39:08.99493"
   state:
     type: integer
     enum:
@@ -30,6 +30,6 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2015-01-05 11:24:12"
+    example: "2022-09-14 07:39:08.99493"
 required:
   - name

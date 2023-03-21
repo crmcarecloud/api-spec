@@ -121,7 +121,7 @@ post:
                   property_record_id:
                     type: string
                     description: The unique id of the property record
-                    example: contact_person:8aa2049ac2f84952014d96bb23
+                    example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':
