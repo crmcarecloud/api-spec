@@ -5,18 +5,18 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the point record
-    example: 84cae7e5cbba16e31b0fc5ef1c
+    example: 8bd48117006496e0b1788109b8
   customer_id:
     type: string
     readOnly: false
     description: The unique id of the customer.
-    example: 81ceb8582e28dbb7e71b7273b
+    example: 87af991126405bf8e7dfb36045
   assigned_points:
     type: number
     format: float
     readOnly: true
     description: The number of earned points
-    example: 1208
+    example: 50
   available_points:
     type: number
     format: float
@@ -27,7 +27,7 @@ properties:
     type: string
     readOnly: false
     description: Type of the point record
-    example: 86e05affc7a7abefcd513ab400
+    example: 81eaeea13b8984a169c490a325
   partner_id:
     type: string
     readOnly: false
@@ -37,7 +37,7 @@ properties:
     type: string
     readOnly: false
     description: Date and time of the point record validity to *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2023-09-16 23:59:59"
   state:
     type: integer
     enum:

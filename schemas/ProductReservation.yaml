@@ -8,24 +8,24 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the product reservation
-    example: '81d503b99cc748b3ca189383ad'
+    example: '81eaeea13b8984a169c490a325'
   customer_id:
     type: string
     readOnly: false
     description:   The unique id of the customer, owner of the product reservation
-    example: '8eae20da24332e84611849f5cd'
+    example: '8ea2591121e636086a4a9c0992'
   store_id:
     type: string
     readOnly: false
     description: The unique id of the store tied to the reservation
-    example: '86e05affc7a7abefcd513ab400'
+    example: '82db62087b0f79a6e14e5747e7'
   reservation_codes:
     type: array
     items:
       type: string
     readOnly: true
     description: Reservation codes of the reservation from CareCloud
-    example: [10]
+    example: [3]
   external_reservation_codes:
     type: array
     items:
@@ -43,7 +43,7 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the product reservation source
-    example: 86e05affc7a7abefcd513ab400
+    example: 8bed991c68a470e7aaeffbf048
   pickup_date:
     type: string
     readOnly: true
@@ -53,17 +53,17 @@ properties:
     type: string
     readOnly: false
     description: Customer’s note for the merchant
-    example:
+    example: "Please add a gift package"
   total_price:
     type: number
     format: float
     readOnly: false
-    description: Total price of reservation If currency_id, than total_price is mandatory
+    description: Total price of reservation. If currency_id is set, then total_price is mandatory
     example: 69
   currency_id:
     type: string
     readOnly: false
-    description: Id of the currency. If total_price is set, than currency_id is mandatory
+    description: Id of the currency. If total_price is set, then currency_id is mandatory
     example: 8bed991c68a470e7aaeffbf048
   product_reservation_items:
     type: array
@@ -75,7 +75,7 @@ properties:
     type: string
     readOnly: false
     description: The unique external id of the purchase
-    example:
+    example: "20231412"
   utm:
     type: object
     $ref: '../schemas/_index.yaml#/UTM'

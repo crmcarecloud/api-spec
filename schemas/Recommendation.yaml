@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the recommendation
-    example: 89d3d4303c86e8c559fe51b18a
+    example: 8bed991c68a470e7aaeffbf048
   name:
     type: string
     readOnly: false

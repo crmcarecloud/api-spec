@@ -25,7 +25,7 @@ properties:
     type: string
     readOnly: false
     description: Id of the currency from resource [currencies](#tag/Currencies)
-    example: 8bed991c6a470eaaffbf048
+    example: 8bed991c68a470e7aaeffbf048
   total_price:
     type: number
     format: float

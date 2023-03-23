@@ -5,32 +5,32 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the purchase
-    example: 85c763ebcec2fa488f8857bee
+    example: 81eaeea13b8984a169c490a325
   customer_id:
     type: string
     readOnly: false
     description: The unique id of the customer.
-    example: 81ceb8582e28dbb7e71b7273b
+    example: 8ea2591121e636086a4a9c0992
   store_id:
     type: string
     readOnly: false
     description: The unique id of the store in CareCloud
-    example: 8fd7316732d06899c4c015320
+    example: 81eaeea13b8984a169c490a325
   external_purchase_id:
     type: string
     readOnly: false
     description: The external unique id of the purchase
-    example: 2364
+    example: D67X202789
   payment_time:
     type: string
     readOnly: false
     description: Date and time of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
-    example: '2012-11-22 20:57:04'
+    example: "2021-02-24 00:00:00"
   items_count:
     type: integer
     readOnly: false
     description: Count of the purchase items
-    example: 10
+    example: 1
   purchase_items:
     type: array
     items:
@@ -41,23 +41,23 @@ properties:
     type: string
     readOnly: false
     description: Purchase type
-    example: 86e05affc7a7abefd513ab400
+    example: 86e05affc7a7abefcd513ab400
   total_price:
     type: number
     format: float
     readOnly: false
     description: Total price of the purchase
-    example: 60.51
+    example: 660
   currency_id:
     type: string
     readOnly: false
     description: The unique id of the currency
-    example: 86e05affc77abefcd513ab400
+    example: 8bed991c68a470e7aaeffbf048
   card_number:
     type: string
     readOnly: false
     description: Purchasing customer card number
-    example: 200190002218
+    example: 1000000000016
   cashdesk_number:
     type: string
     readOnly: false
@@ -67,7 +67,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2012-11-22 20:56:05.333756'
+    example: "2021-01-17 00:00:00"
 required:
   - customer_id
   - store_id

@@ -22,7 +22,7 @@ post:
               type: string
               readOnly: false
               description: The unique id of the customer.
-              example: 81ceb8582e28dbb7e71b7273b
+              example: 8ea2591121e636086a4a9c0992
             amount:
               type: number
               format: float
@@ -33,7 +33,7 @@ post:
               type: string
               readOnly: false
               description: Date and time of the point reservation expiration *(YYYY-MM-DD HH:MM:SS)*
-              example: "2019-10-31 00:00:00"
+              example: "2023-10-31 00:00:00"
           required:
             - customer_id
             - external_id

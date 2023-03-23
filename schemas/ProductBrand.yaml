@@ -10,12 +10,12 @@ properties:
     type: string
     readOnly: false
     description: Name of the product brand
-    example: "The best brand"
+    example: "The best brand N5"
   external_id:
     type: string
     readOnly: false
     description: The external unique id of the product brand
-    example: 'a5d332'
+    example: 'a5d332_5'
 required:
   - name
   - external_id

@@ -25,6 +25,6 @@ properties:
     type: string
     readOnly: false
     description: ID of the related bill item
-    example:
+    example: "6fd73167342d6899c415320"
 required:
   - bill_item_id
