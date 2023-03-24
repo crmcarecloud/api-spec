@@ -2,7 +2,7 @@ post:
   tags:
     - Product recommendation engine
   summary: Create a batch of the third party recommendations
-  description: Batch process helps to add multiple third party recommendations in one request
+  description: Batch process helps to add multiple third party recommendations in one request. A third party may submit products recommended to a selected customer based on their previous shopping behavior or products recommended based on links to the current content of their shopping cart.
   operationId: postBulkThirdPartyRecommendations
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
