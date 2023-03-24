@@ -9,16 +9,17 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the CareCloud customer. Required only if `product_id` is not set.
+    description: The unique id of the CareCloud customer. Required only if `products` parameter is not set.
     example: 8ea6abece4cd0a4ded0a29f093
-  product:
-    type: object
-    $ref: '../schemas/_index.yaml#/ProductIdentification'
-    description: Structure contains product identification. Product structure is required only if the parameter `customer_id` is not set.
+  products:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/ProductIdentification'
+    description: Products from the shopping cart to which the recommended product is linked. Structure is required only if the parameter `customer_id` is not set.
   recommended_product:
+    description: All recommended products linked to the customer (parameter `customer_id`) or to the shopping cart content (parameter `products`).
     type: object
     $ref: '../schemas/_index.yaml#/ProductIdentification'
-    description: Structure contains recommended product identification.
   recommendation_system_id:
     type: string
     readOnly: false
