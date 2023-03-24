@@ -5,9 +5,9 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the interest
-    example: 86e05affc7a7abefcd513ab400
+    example: 81eaeea13b8984a169c490a325
   name:
     type: string
     readOnly: true
     description: Name of the interest
-    example: Common stuff
+    example: Tech

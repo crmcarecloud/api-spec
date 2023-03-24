@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the product
-    example: '89bdacbffb5c82f2c52cb9ae8f'
+    example: '85d6598db0bf3f62afd5db8507'
   name:
     type: string
     readOnly: false
     description: Name of the product
-    example: "Vodka tonic"
+    example: "Google phone 1"
   code:
     type: string
     readOnly: false
@@ -20,7 +20,7 @@ properties:
     type: string
     readOnly: false
     description: The external unique id of the product. This parameter is depracated. Please use parameter `plu_ids`
-    example: '668'
+    example: 'NKBD7TB'
     deprecated: true
   plu_ids:
     type: array
@@ -32,12 +32,12 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the product group
-    example: '85cfc89601efa1ba2c2aa3b6a0'
+    example: '82de12eb8b138791e678fd11c3'
   product_brand_id:
     type: string
     readOnly: false
     description: The unique id of the product brand
-    example:
+    example: "82db62087b0f79a6e14e5747e7"
   additional_properties:
     type: array
     items:
@@ -48,7 +48,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2012-12-18 11:55:07"
+    example: "2022-11-01 13:15:24"
   state:
     type: integer
     enum:

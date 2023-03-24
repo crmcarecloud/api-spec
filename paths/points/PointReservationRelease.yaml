@@ -16,7 +16,7 @@ post:
             external_id:
               type: string
               description: The external id of the point reservation.
-              example: '123455'
+              example: '123461'
           required:
             - external_id
 

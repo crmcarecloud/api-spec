@@ -6651,7 +6651,7 @@ paths:
                 external_application_id:
                   description: 'Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)'
                   type: string
-                  example: 89d1a6111b3fb6e74665d948
+                  example: 82de12eb8b138791e678fd11c3
                 communication_channel_id:
                   type: integer
                   enum:
@@ -6664,10 +6664,10 @@ paths:
                 recipient:
                   type: string
                   description: 'Recipient of the message with OTP. The parameter could contain email, phone number or other identifier of the message recipient.'
-                  example: 420123321123
+                  example: happy_customer@crmcarecloud.com
                 otp_type:
                   type: integer
-                  description: 'Parameter sets witch OTP type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
+                  description: 'Parameter sets witch OTP type should be generated. *Possible values: 1 - alphanumeric, 2 - numeric*'
                   enum:
                     - 1
                     - 2
@@ -6676,7 +6676,7 @@ paths:
                 message_template_id:
                   type: string
                   description: 'The unique id of the message_template. If not set, CareCloud uses default value from the system configuration'
-                  example: 8cbb5886e1d68e07a6e0e393a0
+                  example: null
               required:
                 - communication_channel_id
                 - recipient
@@ -6695,7 +6695,7 @@ paths:
                       request_id:
                         type: string
                         description: 'The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp)'
-                        example: 76951b4a90626f3635990330ec487e32c539c74
+                        example: c27c29917a1dec03ef0673d823619b776ab93353
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -6736,15 +6736,15 @@ paths:
                 verification_code:
                   type: string
                   description: 'Verification code from email, SMS or notification provided by recipient'
-                  example: N12B2FD67
+                  example: 7256
                 request_id:
                   type: string
                   description: 'The parameter specifies the request that caused the OTP to be created. Request id was created in the action method [/one-time-password/actions/send](#operation/postSendOtp)'
-                  example: 76951b4a90626f3635990330ec487e32c539c74
+                  example: 106c5ce60ed0830ffb813135bfff7cad9f4c3e47
                 external_application_id:
                   type: string
                   description: 'Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)'
-                  example: 89d1a6111b3fb6e74665d948
+                  example: 82de12eb8b138791e678fd11c3
               required:
                 - verification_code
                 - request_id
@@ -7279,11 +7279,11 @@ paths:
                   type: number
                   format: float
                   description: Number of redeemed points.
-                  example: '1000'
+                  example: '100'
                 customer_id:
                   type: string
                   description: The unique id of the customer.
-                  example: 81ceb8582e28dbb7e71b7273b
+                  example: 8ea2591121e636086a4a9c0992
                 partner_id:
                   type: string
                   readOnly: false
@@ -7293,8 +7293,21 @@ paths:
                 - amount
                 - customer_id
       responses:
-        '204':
-          description: No Content
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      point_id:
+                        type: string
+                        readOnly: true
+                        description: The unique id of the point redemption
+                        example: 80c2c110a50db9f8134b6b72b3
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -7338,11 +7351,11 @@ paths:
                   type: number
                   format: float
                   description: The number of collected points.
-                  example: '1500'
+                  example: 1500
                 customer_id:
                   type: string
                   description: The unique id of the customer.
-                  example: 81ceb8582e28dbb7e71b7273b
+                  example: 8ea2591121e636086a4a9c0992
                 partner_id:
                   type: string
                   readOnly: false
@@ -7394,21 +7407,21 @@ paths:
                 original_customer_id:
                   type: string
                   description: Id of the original points holder.
-                  example: 86ae806b9ae10r9c233bf2a5f5
+                  example: 8ea2591121e636086a4a9c0992
                 new_customer_id:
                   type: string
                   description: Id of the new points holder.
-                  example: 83aa5f5ba88er59c8b9a4e6ba3
+                  example: 84b9167cc2f01ff007d98e1633
                 amount:
                   type: number
                   format: float
                   description: Number of the transferred points.
-                  example: '100'
+                  example: 100
                 point_type_id:
                   type: string
                   readOnly: false
                   description: Type of the transferred points.
-                  example: 8acbd017407b60e201rf931e94
+                  example: 8adcb83164fa7e12668035d43e
               required:
                 - original_customer_id
                 - new_customer_id
@@ -7617,7 +7630,7 @@ paths:
                   type: string
                   readOnly: false
                   description: The unique id of the customer.
-                  example: 81ceb8582e28dbb7e71b7273b
+                  example: 8ea2591121e636086a4a9c0992
                 amount:
                   type: number
                   format: float
@@ -7628,7 +7641,7 @@ paths:
                   type: string
                   readOnly: false
                   description: 'Date and time of the point reservation expiration *(YYYY-MM-DD HH:MM:SS)*'
-                  example: '2019-10-31 00:00:00'
+                  example: '2023-10-31 00:00:00'
               required:
                 - customer_id
                 - external_id
@@ -7675,7 +7688,7 @@ paths:
                 external_id:
                   type: string
                   description: The external id of the point reservation.
-                  example: '123455'
+                  example: '123461'
               required:
                 - external_id
       responses:
@@ -9191,19 +9204,19 @@ paths:
                 store_id:
                   type: string
                   description: ID of the store
-                  example: 8fd73167342d06899c15320
+                  example: 8bed991c68a470e7aaeffbf048
                 cashdesk_number:
                   type: integer
                   description: Number of the cashdesk in store
                   example: 1
                 card_number:
                   type: string
-                  description: Cusomer card number
-                  example: 200120000290
+                  description: Customer card number
+                  example: 1000000000016
                 customer_id:
                   type: string
                   description: Id of the customer that made the purchase. You can search customers by plenty parameter in the resource customers
-                  example: 6734267342d0689d06899c
+                  example: 8ea2591121e636086a4a9c0992
                 reward_list_type:
                   type: string
                   enum:
@@ -9280,7 +9293,7 @@ paths:
                 store_id:
                   type: string
                   description: Id of the store
-                  example: 8fd73167342d06899c15320
+                  example: 8bed991c68a470e7aaeffbf048
                 cashdesk_number:
                   type: integer
                   description: Number of the cashdesk in the store
@@ -9288,11 +9301,11 @@ paths:
                 card_number:
                   type: string
                   description: The customer's card number
-                  example: 200120000290
+                  example: '1000000000016'
                 customer_id:
                   type: string
                   description: Id of the customer that made the purchase. You can search customers by plenty parameter in resource customers
-                  example: 6734267342d0689d06899c
+                  example: 8ea2591121e636086a4a9c0992
                 payment_type:
                   type: string
                   enum:
@@ -9307,7 +9320,7 @@ paths:
                 max_points:
                   type: string
                   description: Amount of points to be redeemed
-                  example: 4
+                  example: 0
                 max_credit:
                   type: string
                   description: Amount of credit customer wants to use in the purchase
@@ -9317,7 +9330,8 @@ paths:
                   items:
                     type: string
                   description: The bill closure will use present codes and recommend discounts
-                  example: []
+                  example:
+                    - PTV2
                 bill:
                   $ref: '#/components/schemas/Bill'
               required:
@@ -9374,7 +9388,7 @@ paths:
                 store_id:
                   type: string
                   description: Id of the store
-                  example: 8fd73167342d06899c15320
+                  example: 81eaeea13b8984a169c490a325
                 cashdesk_number:
                   type: integer
                   description: Number of the cashdesk in store
@@ -9382,11 +9396,11 @@ paths:
                 card_number:
                   type: string
                   description: The customer's card number
-                  example: 200120000290
+                  example: '1000000000016'
                 customer_id:
                   type: string
                   description: Id of the customer that made the purchase. You can search customers by plenty parameter in resource customers
-                  example: 6734267342d0689d06899c
+                  example: 8ea2591121e636086a4a9c0992
                 bill:
                   $ref: '#/components/schemas/FinalBill'
               required:
@@ -9447,19 +9461,19 @@ paths:
                 store_id:
                   type: string
                   description: Id of store
-                  example: 8fd73167342d06899c15320
+                  example: 81eaeea13b8984a169c490a325
                 external_purchase_id:
                   type: string
                   description: The unique external id of the purchase
-                  example: 2364
+                  example: 8fbea1c1eaa8edd35e7f288
                 card_number:
                   type: string
                   description: Number of the customer's card. Parameter is mandatory only if customer_id is not set.
-                  example: 200120000290
+                  example: '1000000000016'
                 customer_id:
                   type: string
                   description: The unique id of the customer. Parameter is mandatory only if card_number is not set.
-                  example: 89ac83ca207a820c62c79bf03a
+                  example: 8ea2591121e636086a4a9c0992
               required:
                 - store_id
                 - external_purchase_id
@@ -14782,7 +14796,7 @@ components:
           type: string
           readOnly: false
           description: 'Id of the currency from resource [currencies](#tag/Currencies)'
-          example: 8bed991c6a470eaaffbf048
+          example: 8bed991c68a470e7aaeffbf048
         total_price:
           type: number
           format: float
@@ -14844,7 +14858,7 @@ components:
           format: float
           readOnly: false
           description: 'Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer''s health insurance.'
-          example: 4
+          example: 6
         bill_item_id:
           type: string
           readOnly: false
@@ -14862,12 +14876,12 @@ components:
           type: string
           readOnly: false
           description: 'Type of the purchase item from resource [purchase-item-types](#tag/Purchase-item-types)'
-          example: 89d3d433c86ec59fe51b18a
+          example: 86e05affc7a7abefcd513ab400
         customer_id:
           type: string
           readOnly: false
           description: The ID of the customer
-          example: 89ac83ca207a820c62c79bf03a
+          example: 8ea2591121e636086a4a9c0992
       required:
         - plu_ids
         - plu_name
@@ -15853,7 +15867,7 @@ components:
           type: string
           readOnly: false
           description: ID of the related bill item
-          example: null
+          example: 6fd73167342d6899c415320
       required:
         - bill_item_id
     Event:
@@ -16047,7 +16061,7 @@ components:
           type: string
           readOnly: false
           description: 'Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types)'
-          example: 86e05affc7a7abefzcd513ab00
+          example: 86e05affc7a7abefcd513ab400
         canceled:
           type: boolean
           enum:
@@ -16067,7 +16081,7 @@ components:
           description: |
             Payment type changes the checkout process depending on the value of the parameter you can allow/deny the use of benefits.
             *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup*
-          example: S
+          example: A
         payment_recap:
           type: object
           $ref: '#/components/schemas/PaymentRecap'
@@ -16096,7 +16110,7 @@ components:
           type: string
           readOnly: false
           description: 'Id of the currency from resource [currencies](#tag/Currencies)'
-          example: 8bed991c6a470eaaffbf048
+          example: 8bed991c68a470e7aaeffbf048
         total_price:
           type: number
           format: float
@@ -16168,12 +16182,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the interest
-          example: 86e05affc7a7abefcd513ab400
+          example: 81eaeea13b8984a169c490a325
         name:
           type: string
           readOnly: true
           description: Name of the interest
-          example: Common stuff
+          example: Tech
     InterestRecord:
       type: object
       description: Customer interest record
@@ -16234,7 +16248,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the message
-          example: 89ce2a1b9b01f5c939fb1e20cd
+          example: 8fd73167342d06899c4c015320
         status:
           type: integer
           enum:
@@ -16247,18 +16261,18 @@ components:
           readOnly: true
           description: |
             The status id of the message.
-            *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / -2 message was not recieved (soft bounce) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
+            *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR)*
           example: 1
         message_template_id:
           type: string
           readOnly: false
           description: The unique id of the message_template
-          example: 8cbb5886e1d68e07a6e0e393a0
+          example: 8bed991c68a470e7aaeffbf048
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the card holder.
-          example: 81ceb8582e2d8dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         contact:
           type: string
           readOnly: false
@@ -16283,12 +16297,12 @@ components:
           type: string
           readOnly: true
           description: User agent of the mail client application where message was opened
-          example: null
+          example: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Thunderbird/78.11.0'
         mail_client_language:
           type: string
           readOnly: true
           description: Language of the mail client application where message was opened
-          example: null
+          example: 'cs,sk;q=0.8,en-US;q=0.5,en;q=0.3'
         communication_channel_id:
           type: integer
           enum:
@@ -16304,7 +16318,7 @@ components:
           items:
             $ref: '#/components/schemas/Parameter'
           readOnly: false
-          description: Message data could contains array of customized paramteres. They may have influence on message display or add values to message
+          description: Message data could contains array of customized parameters. They may have influence on message display or add values to message
         last_change:
           type: string
           readOnly: true
@@ -16349,30 +16363,30 @@ components:
           type: string
           readOnly: true
           description: The unique id of the message_template
-          example: 8cbb5886e1d68e07a6e0e393a0
+          example: 8bed991c68a470e7aaeffbf048
         consent_free_template:
           type: boolean
           enum:
             - true
             - false
           readOnly: false
-          description: 'If true, customer can recieve message without any consent(GDPR, etc.)'
-          example: false
+          description: 'If true, customer can receive message without any consent(GDPR, etc.)'
+          example: true
         subject:
           type: string
           readOnly: true
           description: Subject of the message template. Mandatory only in case of email template
-          example: Hotels
+          example: CRM & CDP CareCloud password setup
         sender:
           type: string
           readOnly: true
           description: Sender of the message template
-          example: <info@crmcarecloud.com>
+          example: '"CRM & CDP CareCloud"<info@cortex.cz>'
         name:
           type: string
           readOnly: true
           description: Name of the message template
-          example: Náezv
+          example: First CareCloud login
         message_template_group_id:
           type: integer
           enum:
@@ -16380,8 +16394,8 @@ components:
             - 2
             - 3
           readOnly: true
-          description: 'The unique id of the message template group. *Possible values are: 1 - newsletter template / 2- system template(registration message, order summary message, etc.) / 3 - transactional communication(for hotel, traveling,...)*'
-          example: 1
+          description: 'The unique id of the message template group. *Possible values are: 1 - newsletter template / 2 - system template (registration message, order summary message, etc.) / 3 - transactional communication (for hotel, traveling,...)*'
+          example: 2
         communication_channel_id:
           type: integer
           enum:
@@ -16391,19 +16405,19 @@ components:
             - 5
             - 9
           readOnly: true
-          description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*'
+          description: 'The unique id of the communication channel. *Possible values are: 1 - email / 2 - SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*'
           example: 1
         template_data:
           type: array
           items:
             $ref: '#/components/schemas/Parameter'
           readOnly: false
-          description: Template data could contains array of customized paramteres. They may have influence on template display or add values to template
+          description: Template data could contains array of customized parameters. They may have influence on template display or add values to template
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2016-05-04 11:29:10'
+          example: '2021-11-25 16:57:09'
       required:
         - subject
         - sender
@@ -16894,18 +16908,18 @@ components:
           type: string
           readOnly: true
           description: The unique id of the point record
-          example: 84cae7e5cbba16e31b0fc5ef1c
+          example: 8bd48117006496e0b1788109b8
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 87af991126405bf8e7dfb36045
         assigned_points:
           type: number
           format: float
           readOnly: true
           description: The number of earned points
-          example: 1208
+          example: 50
         available_points:
           type: number
           format: float
@@ -16916,7 +16930,7 @@ components:
           type: string
           readOnly: false
           description: Type of the point record
-          example: 86e05affc7a7abefcd513ab400
+          example: 81eaeea13b8984a169c490a325
         partner_id:
           type: string
           readOnly: false
@@ -16926,7 +16940,7 @@ components:
           type: string
           readOnly: false
           description: 'Date and time of the point record validity to *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2023-09-16 23:59:59'
         state:
           type: integer
           enum:
@@ -16950,28 +16964,28 @@ components:
           type: string
           readOnly: true
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 87af991126405bf8e7dfb36045
         amount:
           type: number
           format: float
           readOnly: true
           description: The number of points used in the point operation record
-          example: 700
+          example: 50
         point_operation_type:
           type: string
           readOnly: true
           description: Type of the point operation record
-          example: Voucher purchase
+          example: Points addition
         point_operation_note:
           type: string
           readOnly: true
           description: Note of the point operation record
-          example: Free one day parking
+          example: Manual rewards points for the product purchase collection
         point_type_id:
           type: string
           readOnly: false
           description: Type of the point record
-          example: 86e05affc7a7abefcd513ab400
+          example: 81eaeea13b8984a169c490a325
         partner_id:
           type: string
           readOnly: false
@@ -16986,7 +17000,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the point record from the point history *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2012-11-22 20:57:04'
+          example: '2021-09-16 15:33:11'
     PointReservation:
       type: object
       description: Points reservation resource
@@ -16995,12 +17009,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the point reservation record
-          example: 88c1e91444434b0243d94b40cd
+          example: 8fd73167342d06899c4c015320
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         external_id:
           type: string
           readOnly: false
@@ -17011,7 +17025,7 @@ components:
           format: float
           readOnly: false
           description: The number of reserved points
-          example: 11
+          example: 10
         state:
           type: integer
           enum:
@@ -17027,7 +17041,7 @@ components:
           type: string
           readOnly: false
           description: 'Date and time of the point reservation expiration *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-10-31 00:00:00'
+          example: '2023-10-31 00:00:00'
       required:
         - customer_id
         - external_id
@@ -17046,12 +17060,12 @@ components:
           type: string
           readOnly: true
           description: Name of the point type
-          example: Cancellation
+          example: Rewards points earned for the product purchase
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2020-04-22 13:53:54'
+          example: '2021-04-16 13:47:53'
     Product:
       type: object
       description: Product resource
@@ -17060,12 +17074,12 @@ components:
           type: string
           readOnly: true
           description: The unique id of the product
-          example: 89bdacbffb5c82f2c52cb9ae8f
+          example: 85d6598db0bf3f62afd5db8507
         name:
           type: string
           readOnly: false
           description: Name of the product
-          example: Vodka tonic
+          example: Google phone 1
         code:
           type: string
           readOnly: false
@@ -17075,7 +17089,7 @@ components:
           type: string
           readOnly: false
           description: The external unique id of the product. This parameter is depracated. Please use parameter `plu_ids`
-          example: '668'
+          example: NKBD7TB
           deprecated: true
         plu_ids:
           type: array
@@ -17087,12 +17101,12 @@ components:
           type: string
           readOnly: false
           description: The unique id of the product group
-          example: 85cfc89601efa1ba2c2aa3b6a0
+          example: 82de12eb8b138791e678fd11c3
         product_brand_id:
           type: string
           readOnly: false
           description: The unique id of the product brand
-          example: null
+          example: 82db62087b0f79a6e14e5747e7
         additional_properties:
           type: array
           items:
@@ -17103,7 +17117,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2012-12-18 11:55:07'
+          example: '2022-11-01 13:15:24'
         state:
           type: integer
           enum:
@@ -17138,17 +17152,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the product
-          example: 89bdacbffb5c82f2c52cb9ae8f
+          example: 81c14010c101966aefbb4738fc
         name:
           type: string
           readOnly: false
           description: Name of the product
-          example: Vodka tonic
+          example: Custom product N12
         code:
           type: string
           readOnly: false
           description: Code of the product
-          example: '649'
+          example: '64912'
         plu_ids:
           type: array
           items:
@@ -17159,7 +17173,7 @@ components:
           type: string
           readOnly: false
           description: 'The unique id of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.'
-          example: 85cfc89601efa1ba2c2aa3b6a0
+          example: 83d1d11ea3884a5d33253fe214
         product_group_external_id:
           type: string
           readOnly: false
@@ -17169,7 +17183,7 @@ components:
           type: string
           readOnly: false
           description: 'The unique id of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.'
-          example: 1efa11efa1b2efa1ba2c2aa3ba2
+          example: 82db62087b0f79a6e14e5747e7
         product_brand_external_id:
           type: string
           readOnly: false
@@ -17202,12 +17216,12 @@ components:
           type: string
           readOnly: false
           description: Name of the product brand
-          example: The best brand
+          example: The best brand N5
         external_id:
           type: string
           readOnly: false
           description: The external unique id of the product brand
-          example: a5d332
+          example: a5d332_5
       required:
         - name
         - external_id
@@ -17219,17 +17233,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the product group
-          example: 83d1d11ea3884a5d33253fe214
+          example: 8fd73167342d06899c4c015320
         name:
           type: string
           readOnly: false
           description: Name of the product group
-          example: The best brand
+          example: Accessories
         parent_product_group_id:
           type: string
           readOnly: false
           description: 'The unique id of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.'
-          example: 1884a5d11ea3884a5d332534a5f
+          example: 83d1d11ea3884a5d33253fe214
         parent_external_id:
           type: string
           readOnly: false
@@ -17254,7 +17268,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-02-08 15:35:09'
+          example: '2021-04-16 15:55:44.33538'
         state:
           type: integer
           enum:
@@ -17280,17 +17294,17 @@ components:
           type: string
           readOnly: true
           description: The unique id of the product reservation
-          example: 81d503b99cc748b3ca189383ad
+          example: 81eaeea13b8984a169c490a325
         customer_id:
           type: string
           readOnly: false
           description: 'The unique id of the customer, owner of the product reservation'
-          example: 8eae20da24332e84611849f5cd
+          example: 8ea2591121e636086a4a9c0992
         store_id:
           type: string
           readOnly: false
           description: The unique id of the store tied to the reservation
-          example: 86e05affc7a7abefcd513ab400
+          example: 82db62087b0f79a6e14e5747e7
         reservation_codes:
           type: array
           items:
@@ -17298,7 +17312,7 @@ components:
           readOnly: true
           description: Reservation codes of the reservation from CareCloud
           example:
-            - 10
+            - 3
         external_reservation_codes:
           type: array
           items:
@@ -17318,7 +17332,7 @@ components:
           type: string
           readOnly: false
           description: The unique id of the product reservation source
-          example: 86e05affc7a7abefcd513ab400
+          example: 8bed991c68a470e7aaeffbf048
         pickup_date:
           type: string
           readOnly: true
@@ -17328,17 +17342,17 @@ components:
           type: string
           readOnly: false
           description: Customer’s note for the merchant
-          example: null
+          example: Please add a gift package
         total_price:
           type: number
           format: float
           readOnly: false
-          description: 'Total price of reservation If currency_id, than total_price is mandatory'
+          description: 'Total price of reservation. If currency_id is set, then total_price is mandatory'
           example: 69
         currency_id:
           type: string
           readOnly: false
-          description: 'Id of the currency. If total_price is set, than currency_id is mandatory'
+          description: 'Id of the currency. If total_price is set, then currency_id is mandatory'
           example: 8bed991c68a470e7aaeffbf048
         product_reservation_items:
           type: array
@@ -17350,7 +17364,7 @@ components:
           type: string
           readOnly: false
           description: The unique external id of the purchase
-          example: null
+          example: '20231412'
         utm:
           type: object
           $ref: '#/components/schemas/UTM'
@@ -17413,19 +17427,19 @@ components:
           type: string
           readOnly: false
           description: The unique id of the reservable product in CareCloud
-          example: 85aee4e91a07d60626f7abcb21
+          example: 81eaeea13b8984a169c490a325
         amount:
           type: number
           format: float
           readOnly: false
           description: Number of the reserved products
-          example: 3
+          example: 1
         unit_price:
           type: number
           format: float
           readOnly: false
           description: 'Unit price of the reserved product. If vat_rate is set, than unit_price is mandatory'
-          example: 23
+          example: 2300
         vat_rate:
           type: number
           format: float
@@ -17506,7 +17520,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the external list type
-          example: 8bed991c68a470e7aaeffbf048
+          example: 86e05affc7a7abefcd513ab400
         name:
           type: string
           readOnly: true
@@ -17655,32 +17669,32 @@ components:
           type: string
           readOnly: true
           description: The unique id of the purchase
-          example: 85c763ebcec2fa488f8857bee
+          example: 81eaeea13b8984a169c490a325
         customer_id:
           type: string
           readOnly: false
           description: The unique id of the customer.
-          example: 81ceb8582e28dbb7e71b7273b
+          example: 8ea2591121e636086a4a9c0992
         store_id:
           type: string
           readOnly: false
           description: The unique id of the store in CareCloud
-          example: 8fd7316732d06899c4c015320
+          example: 81eaeea13b8984a169c490a325
         external_purchase_id:
           type: string
           readOnly: false
           description: The external unique id of the purchase
-          example: 2364
+          example: D67X202789
         payment_time:
           type: string
           readOnly: false
           description: 'Date and time of the purchase payment *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2012-11-22 20:57:04'
+          example: '2021-02-24 00:00:00'
         items_count:
           type: integer
           readOnly: false
           description: Count of the purchase items
-          example: 10
+          example: 1
         purchase_items:
           type: array
           items:
@@ -17691,23 +17705,23 @@ components:
           type: string
           readOnly: false
           description: Purchase type
-          example: 86e05affc7a7abefd513ab400
+          example: 86e05affc7a7abefcd513ab400
         total_price:
           type: number
           format: float
           readOnly: false
           description: Total price of the purchase
-          example: 60.51
+          example: 660
         currency_id:
           type: string
           readOnly: false
           description: The unique id of the currency
-          example: 86e05affc77abefcd513ab400
+          example: 8bed991c68a470e7aaeffbf048
         card_number:
           type: string
           readOnly: false
           description: Purchasing customer card number
-          example: 200190002218
+          example: 1000000000016
         cashdesk_number:
           type: string
           readOnly: false
@@ -17717,7 +17731,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2012-11-22 20:56:05.333756'
+          example: '2021-01-17 00:00:00'
       required:
         - customer_id
         - store_id
@@ -17861,7 +17875,7 @@ components:
           type: string
           readOnly: true
           description: The unique id of the recommendation
-          example: 89d3d4303c86e8c559fe51b18a
+          example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
           readOnly: false
@@ -19541,7 +19555,7 @@ components:
       description: The unique external id. It may be id from the other system
       schema:
         type: string
-      example: externalid
+      example: 18
     tag_id_arr:
       name: tag_ids
       in: query
@@ -19842,7 +19856,7 @@ components:
       description: The unique id of the customer
       schema:
         type: string
-      example: 89ac83ca207a820c62c79bf03a
+      example: 8ea2591121e636086a4a9c0992
     related_customer_id:
       name: related_customer_id
       in: query
@@ -19858,7 +19872,7 @@ components:
       description: The unique id of the customer
       schema:
         type: string
-      example: 89ac83ca207a820c62c79bf03a
+      example: 8ea2591121e636086a4a9c0992
     customer_external_id:
       name: external_id
       in: query
@@ -20112,7 +20126,7 @@ components:
       required: false
       schema:
         type: string
-      example: 8fd7316732d06899c4c015320
+      example: 81eaeea13b8984a169c490a325
     customer_external_application_id_path:
       name: customer_external_application_id
       in: path
@@ -20262,7 +20276,7 @@ components:
       required: true
       schema:
         type: string
-      example: 86e05affc7a7abefcd513ab400
+      example: 81eaeea13b8984a169c490a325
     language_list_type:
       name: language_list_type
       in: query
@@ -20283,7 +20297,7 @@ components:
       required: true
       schema:
         type: string
-      example: 89ce2a1b9b01f5c939fb1e20cd
+      example: 8fd73167342d06899c4c015320
     message_template_id_path:
       name: message_template_id
       in: path
@@ -20291,7 +20305,7 @@ components:
       required: true
       schema:
         type: string
-      example: 82de12eb8b138791e678fd11c3
+      example: 8bed991c68a470e7aaeffbf048
     contact:
       name: contact
       in: query
@@ -20374,7 +20388,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bcd4f6d0e1432tfc472632e1d
+      example: 8bd48117006496e0b1788109b8
     point_reservation_id_path:
       name: point_reservation_id
       in: path
@@ -20382,7 +20396,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bcd4f6d0e1432tfc472632e1d
+      example: 8fd73167342d06899c4c015320
     point_type_id_path:
       name: point_type_id
       in: path
@@ -20432,7 +20446,7 @@ components:
       required: false
       schema:
         type: string
-      example: Voucher purch
+      example: Voucher purchase
     point_operation_note:
       name: point_operation_note
       in: query
@@ -20448,7 +20462,7 @@ components:
       required: true
       schema:
         type: string
-      example: 89bdacbffb5c82f2c52cb9ae8f
+      example: 82db62087b0f79a6e14e5747e7
     reservable_product_id_path:
       name: reservable_product_id
       in: path
@@ -20472,15 +20486,15 @@ components:
       required: true
       schema:
         type: string
-      example: 87c4c16c6d82d44ab7f50d537e
+      example: 8fd73167342d06899c4c015320
     product_property_id_path:
       name: product_property_id
       in: path
-      description: The unique id of the product group
+      description: The unique id of the product property
       required: true
       schema:
         type: string
-      example: 87c4c16c6d82d44ab7f50d537e
+      example: for_recommendation_engine
     product_reservation_id_path:
       name: product_reservation_id
       in: path
@@ -20540,7 +20554,7 @@ components:
     external_reservation_list_type_id:
       name: external_reservation_list_type_id
       in: query
-      description: 'Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.'
+      description: 'Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.'
       required: false
       schema:
         type: string
@@ -20548,11 +20562,11 @@ components:
     product_reservation_external_list_type_id_path:
       name: product_reservation_external_list_type_id
       in: path
-      description: Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose.
+      description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose.
       required: true
       schema:
         type: string
-      example: 8bed991c68a470e7aaeffbf048
+      example: 86e05affc7a7abefcd513ab400
     reservation_state:
       name: reservation_state
       in: query
@@ -20580,7 +20594,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8bc3btbb6f14765b3025cea06c
+      example: 8bd62e6ba18b3c791a9402cf3e
     purchase_type_id:
       name: type_id
       in: query
@@ -20588,7 +20602,7 @@ components:
       required: false
       schema:
         type: string
-      example: 86e05affc7a7abefd513ab400
+      example: 86e05affc7a7abefcd513ab400
     payment_time_from:
       name: payment_time_from
       in: query
@@ -20625,7 +20639,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8ad8b2b701199684f1222961d6
+      example: 8bed991c68a470e7aaeffbf048
     segment_id_path:
       name: segment_id
       in: path
@@ -20781,7 +20795,7 @@ components:
       required: true
       schema:
         type: string
-      example: 8fd7316732d06899c4c015320
+      example: 81eaeea13b8984a169c490a325
     store_group_id_path:
       name: store_group_id
       in: path
@@ -20805,7 +20819,7 @@ components:
       required: false
       schema:
         type: string
-      example: 8fd7316732d06899c4c015320
+      example: 81eaeea13b8984a169c490a325
     visible_for_customer:
       name: visible_for_customer
       in: query

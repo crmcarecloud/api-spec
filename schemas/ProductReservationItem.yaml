@@ -5,19 +5,19 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the reservable product in CareCloud
-    example: 85aee4e91a07d60626f7abcb21
+    example: 81eaeea13b8984a169c490a325
   amount:
     type: number
     format: float
     readOnly: false
     description: Number of the reserved products
-    example: 3
+    example: 1
   unit_price:
     type: number
     format: float
     readOnly: false
     description: Unit price of the reserved product. If vat_rate is set, than unit_price is mandatory
-    example: 23
+    example: 2300
   vat_rate:
     type: number
     format: float

@@ -16,19 +16,19 @@ post:
             store_id:
               type: string
               description: Id of store
-              example: 8fd73167342d06899c15320
+              example: 81eaeea13b8984a169c490a325
             external_purchase_id:
               type: string
               description: The unique external id of the purchase
-              example: 2364
+              example: 8fbea1c1eaa8edd35e7f288
             card_number:
               type: string
               description: Number of the customer's card. Parameter is mandatory only if customer_id is not set.
-              example: 200120000290
+              example: "1000000000016"
             customer_id:
               type: string
               description: The unique id of the customer. Parameter is mandatory only if card_number is not set.
-              example: 89ac83ca207a820c62c79bf03a
+              example: 8ea2591121e636086a4a9c0992
           required:
             - store_id
             - external_purchase_id

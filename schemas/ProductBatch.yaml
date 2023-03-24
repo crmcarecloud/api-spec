@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the product
-    example: '89bdacbffb5c82f2c52cb9ae8f'
+    example: '81c14010c101966aefbb4738fc'
   name:
     type: string
     readOnly: false
     description: Name of the product
-    example: "Vodka tonic"
+    example: "Custom product N12"
   code:
     type: string
     readOnly: false
     description: Code of the product
-    example: '649'
+    example: '64912'
   plu_ids:
     type: array
     items:
@@ -26,7 +26,7 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.
-    example: '85cfc89601efa1ba2c2aa3b6a0'
+    example: '83d1d11ea3884a5d33253fe214'
   product_group_external_id:
     type: string
     readOnly: false
@@ -36,7 +36,7 @@ properties:
     type: string
     readOnly: false
     description: The unique id of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.
-    example: '1efa11efa1b2efa1ba2c2aa3ba2'
+    example: '82db62087b0f79a6e14e5747e7'
   product_brand_external_id:
     type: string
     readOnly: false

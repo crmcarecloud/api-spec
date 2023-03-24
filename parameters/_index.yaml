@@ -177,7 +177,7 @@ external_id:
   description: The unique external id. It may be id from the other system
   schema:
     type: string
-  example: externalid
+  example: 18
 tag_id_arr:
   name: tag_ids
   in: query
@@ -489,7 +489,7 @@ customer_id:
   description: The unique id of the customer
   schema:
     type: string
-  example: 89ac83ca207a820c62c79bf03a
+  example: 8ea2591121e636086a4a9c0992
 related_customer_id:
   name: related_customer_id
   in: query
@@ -505,7 +505,7 @@ customer_id_required:
   description: The unique id of the customer
   schema:
     type: string
-  example: 89ac83ca207a820c62c79bf03a
+  example: 8ea2591121e636086a4a9c0992
 customer_external_id:
   name: external_id
   in: query
@@ -767,7 +767,7 @@ reward_store_id:
   required: false
   schema:
     type: string
-  example: 8fd7316732d06899c4c015320
+  example: 81eaeea13b8984a169c490a325
 
 # Customer External applications
 customer_external_application_id_path:
@@ -930,7 +930,7 @@ interest_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: 81eaeea13b8984a169c490a325
 
 # Languages
 language_list_type:
@@ -955,7 +955,7 @@ message_id_path:
   required: true
   schema:
     type: string
-  example: 89ce2a1b9b01f5c939fb1e20cd
+  example: 8fd73167342d06899c4c015320
 message_template_id_path:
   name: message_template_id
   in: path
@@ -963,7 +963,7 @@ message_template_id_path:
   required: true
   schema:
     type: string
-  example: 82de12eb8b138791e678fd11c3
+  example: 8bed991c68a470e7aaeffbf048
 contact:
   name: contact
   in: query
@@ -1052,7 +1052,7 @@ point_id_path:
   required: true
   schema:
     type: string
-  example: 8bcd4f6d0e1432tfc472632e1d
+  example: 8bd48117006496e0b1788109b8
 point_reservation_id_path:
   name: point_reservation_id
   in: path
@@ -1060,7 +1060,7 @@ point_reservation_id_path:
   required: true
   schema:
     type: string
-  example: 8bcd4f6d0e1432tfc472632e1d
+  example: 8fd73167342d06899c4c015320
 point_type_id_path:
   name: point_type_id
   in: path
@@ -1110,7 +1110,7 @@ point_operation_type:
   required: false
   schema:
     type: string
-  example: "Voucher purch"
+  example: "Voucher purchase"
 point_operation_note:
   name: point_operation_note
   in: query
@@ -1128,7 +1128,7 @@ product_id_path:
   required: true
   schema:
     type: string
-  example: 89bdacbffb5c82f2c52cb9ae8f
+  example: 82db62087b0f79a6e14e5747e7
 reservable_product_id_path:
   name: reservable_product_id
   in: path
@@ -1152,15 +1152,15 @@ product_group_id_path:
   required: true
   schema:
     type: string
-  example: 87c4c16c6d82d44ab7f50d537e
+  example: 8fd73167342d06899c4c015320
 product_property_id_path:
   name: product_property_id
   in: path
-  description: The unique id of the product group
+  description: The unique id of the product property
   required: true
   schema:
     type: string
-  example: 87c4c16c6d82d44ab7f50d537e
+  example: for_recommendation_engine
 product_reservation_id_path:
   name: product_reservation_id
   in: path
@@ -1220,7 +1220,7 @@ external_reservation_code:
 external_reservation_list_type_id:
   name: external_reservation_list_type_id
   in: query
-  description: Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.
+  description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.
   required: false
   schema:
     type: string
@@ -1228,11 +1228,11 @@ external_reservation_list_type_id:
 product_reservation_external_list_type_id_path:
   name: product_reservation_external_list_type_id
   in: path
-  description: Every reservation can have more than one external code depends of the bussiness requirements. This paramter allows to pick from witch list of external codes you want to choose.
+  description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose.
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: 86e05affc7a7abefcd513ab400
 reservation_state:
   name: reservation_state
   in: query
@@ -1262,7 +1262,7 @@ purchase_id_path:
   required: true
   schema:
     type: string
-  example: 8bc3btbb6f14765b3025cea06c
+  example: 8bd62e6ba18b3c791a9402cf3e
 purchase_type_id:
   name: type_id
   in: query
@@ -1270,7 +1270,7 @@ purchase_type_id:
   required: false
   schema:
     type: string
-  example: 86e05affc7a7abefd513ab400
+  example: 86e05affc7a7abefcd513ab400
 payment_time_from:
   name: payment_time_from
   in: query
@@ -1309,7 +1309,7 @@ recommendation_id_path:
   required: true
   schema:
     type: string
-  example: 8ad8b2b701199684f1222961d6
+  example: 8bed991c68a470e7aaeffbf048
 
 # Segment
 segment_id_path:
@@ -1472,7 +1472,7 @@ store_id_path:
   required: true
   schema:
     type: string
-  example: 8fd7316732d06899c4c015320
+  example: 81eaeea13b8984a169c490a325
 store_group_id_path:
   name: store_group_id
   in: path
@@ -1496,7 +1496,7 @@ store_id:
   required: false
   schema:
     type: string
-  example: 8fd7316732d06899c4c015320
+  example: 81eaeea13b8984a169c490a325
 visible_for_customer:
   name: visible_for_customer
   in: query

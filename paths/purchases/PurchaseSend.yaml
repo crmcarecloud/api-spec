@@ -16,7 +16,7 @@ post:
             store_id:
               type: string
               description: Id of the store
-              example: 8fd73167342d06899c15320
+              example: 81eaeea13b8984a169c490a325
             cashdesk_number:
               type: integer
               description: Number of the cashdesk in store
@@ -24,11 +24,11 @@ post:
             card_number:
               type: string
               description: The customer's card number
-              example: 200120000290
+              example: "1000000000016"
             customer_id:
                 type: string
                 description: Id of the customer that made the purchase. You can search customers by plenty parameter in resource customers
-                example: 6734267342d0689d06899c
+                example: 8ea2591121e636086a4a9c0992
             bill:
               $ref: '../../schemas/_index.yaml#/FinalBill'
           required:

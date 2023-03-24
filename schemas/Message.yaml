@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the message
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: 8fd73167342d06899c4c015320
   status:
     type: integer
     enum:
@@ -18,18 +18,18 @@ properties:
     readOnly: true
     description: |
       The status id of the message.
-      *Possible values are: 0 - message was not send / 1- message was send successfully / -1 message was not recieved (it was returned) / -2 message was not recieved (soft bounce) / 2 - an error occured while sending / 4 - customer has no agreements (GDPR)*
+      *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR)*
     example: 1
   message_template_id:
     type: string
     readOnly: false
     description: The unique id of the message_template
-    example: 8cbb5886e1d68e07a6e0e393a0
+    example: 8bed991c68a470e7aaeffbf048
   customer_id:
     type: string
     readOnly: false
     description: The unique id of the card holder.
-    example: 81ceb8582e2d8dbb7e71b7273b
+    example: 8ea2591121e636086a4a9c0992
   contact:
     type: string
     readOnly: false
@@ -54,12 +54,12 @@ properties:
     type: string
     readOnly: true
     description: User agent of the mail client application where message was opened
-    example:
+    example: "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko\/20100101 Thunderbird\/78.11.0"
   mail_client_language:
     type: string
     readOnly: true
     description: Language of the mail client application where message was opened
-    example:
+    example: "cs,sk;q=0.8,en-US;q=0.5,en;q=0.3"
   communication_channel_id:
     type: integer
     enum:
@@ -75,7 +75,7 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/Parameter'
     readOnly: false
-    description: Message data could contains array of customized paramteres. They may have influence on message display or add values to message
+    description: Message data could contains array of customized parameters. They may have influence on message display or add values to message
     #example: []
   last_change:
     type: string

@@ -20,11 +20,11 @@ post:
               type: number
               format: float
               description: The number of collected points.
-              example: '1500'
+              example: 1500
             customer_id:
               type: string
               description: The unique id of the customer.
-              example: '81ceb8582e28dbb7e71b7273b'
+              example: '8ea2591121e636086a4a9c0992'
             partner_id:
               type: string
               readOnly: false

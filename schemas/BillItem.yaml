@@ -40,7 +40,7 @@ properties:
     format: float
     readOnly: false
     description: Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer's health insurance.
-    example: 4
+    example: 6
   bill_item_id:
     type: string
     readOnly: false
@@ -58,12 +58,12 @@ properties:
     type: string
     readOnly: false
     description: Type of the purchase item from resource [purchase-item-types](#tag/Purchase-item-types)
-    example: 89d3d433c86ec59fe51b18a
+    example: 86e05affc7a7abefcd513ab400
   customer_id:
     type: string
     readOnly: false
     description: The ID of the customer
-    example: 89ac83ca207a820c62c79bf03a
+    example: 8ea2591121e636086a4a9c0992
 required:
   - plu_ids
   - plu_name

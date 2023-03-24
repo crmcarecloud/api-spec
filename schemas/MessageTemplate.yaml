@@ -5,30 +5,30 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the message_template
-    example: 8cbb5886e1d68e07a6e0e393a0
+    example: 8bed991c68a470e7aaeffbf048
   consent_free_template:
     type: boolean
     enum:
       - true
       - false
     readOnly: false
-    description: If true, customer can recieve message without any consent(GDPR, etc.)
-    example: false
+    description: If true, customer can receive message without any consent(GDPR, etc.)
+    example: true
   subject:
     type: string
     readOnly: true
     description: Subject of the message template. Mandatory only in case of email template
-    example: Hotels
+    example: "CRM & CDP CareCloud password setup"
   sender:
     type: string
     readOnly: true
     description: Sender of the message template
-    example: "<info@crmcarecloud.com>"
+    example: "\"CRM & CDP CareCloud\"<info@cortex.cz>"
   name:
     type: string
     readOnly: true
     description: Name of the message template
-    example: Náezv
+    example: "First CareCloud login"
   message_template_group_id:
     type: integer
     enum:
@@ -36,8 +36,8 @@ properties:
       - 2
       - 3
     readOnly: true
-    description: "The unique id of the message template group. *Possible values are: 1 - newsletter template / 2- system template(registration message, order summary message, etc.) / 3 - transactional communication(for hotel, traveling,...)*"
-    example: 1
+    description: "The unique id of the message template group. *Possible values are: 1 - newsletter template / 2 - system template (registration message, order summary message, etc.) / 3 - transactional communication (for hotel, traveling,...)*"
+    example: 2
   communication_channel_id:
     type: integer
     enum:
@@ -47,20 +47,20 @@ properties:
       - 5
       - 9
     readOnly: true
-    description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*"
+    description: "The unique id of the communication channel. *Possible values are: 1 - email / 2 - SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*"
     example: 1
   template_data:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Parameter'
     readOnly: false
-    description: Template data could contains array of customized paramteres. They may have influence on template display or add values to template
+    description: Template data could contains array of customized parameters. They may have influence on template display or add values to template
     #example: []
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2016-05-04 11:29:10"
+    example: "2021-11-25 16:57:09"
 required:
   - subject
   - sender

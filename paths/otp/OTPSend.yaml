@@ -18,7 +18,7 @@ post:
             external_application_id:
               description: Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)
               type: string
-              example: 89d1a6111b3fb6e74665d948
+              example: 82de12eb8b138791e678fd11c3
             communication_channel_id:
               type: integer
               enum:
@@ -31,10 +31,10 @@ post:
             recipient:
               type: string
               description: Recipient of the message with OTP. The parameter could contain email, phone number or other identifier of the message recipient.
-              example: +420123321123
+              example: "happy_customer@crmcarecloud.com"
             otp_type:
               type: integer
-              description: 'Parameter sets witch OTP type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
+              description: 'Parameter sets witch OTP type should be generated. *Possible values: 1 - alphanumeric, 2 - numeric*'
               enum:
                 - 1
                 - 2
@@ -43,7 +43,7 @@ post:
             message_template_id:
               type: string
               description: The unique id of the message_template. If not set, CareCloud uses default value from the system configuration
-              example: 8cbb5886e1d68e07a6e0e393a0
+              example:
           required:
             - communication_channel_id
             - recipient
@@ -62,7 +62,7 @@ post:
                   request_id:
                     type: string
                     description: The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp)
-                    example: 76951b4a90626f3635990330ec487e32c539c74
+                    example: c27c29917a1dec03ef0673d823619b776ab93353
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':
