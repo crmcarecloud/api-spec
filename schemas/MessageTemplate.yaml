@@ -23,7 +23,7 @@ properties:
     type: string
     readOnly: true
     description: Sender of the message template
-    example: "\"CRM & CDP CareCloud\"<info@cortex.cz>"
+    example: "\"CRM & CDP CareCloud\"<info@crmcarecloud.com>"
   name:
     type: string
     readOnly: true
