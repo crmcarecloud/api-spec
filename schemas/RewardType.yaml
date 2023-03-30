@@ -5,16 +5,16 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the reward type.
-    example: "8fd17bf437555cf56a6ecf05fc"
+    example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false
     description: Name of the reward type
-    example: "Percentage discount"
+    example: "Product + another for free"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: "2019-07-15 17:26:34"
+    example: "2020-01-14 09:02:13.235667"
 required:
   - name

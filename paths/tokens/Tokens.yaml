@@ -26,7 +26,7 @@ post:
             external_application_id:
               type: string
               description: Id of the [customer-external-application resource](#tag/Customer-external-applications)
-              example: 86e05affc7a7abefcd513ab400
+              example: 82de12eb8b138791e678fd11c3
             push_token:
               type: string
               description: Push notification token (Apple or Google)
@@ -49,7 +49,7 @@ post:
                   token_id:
                     type: string
                     description: Client's application token
-                    example: c5a67da2c3a874f7f658bfa7a5959e09359095c5da43c7a78e11e710eabce49418715a6a
+                    example: 4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

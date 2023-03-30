@@ -17,7 +17,7 @@ post:
             customer_id:
               type: string
               description: The unique id of the customer
-              example: 89ac83ca207a820c62c79bf03a
+              example: 8ea2591121e636086a4a9c0992
           required:
             - customer_id
   responses:

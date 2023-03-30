@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the segment
-    example: 8dc1e66b44796af5cd377910e1
+    example: 82de12eb8b138791e678fd11c3
   name:
     type: string
     readOnly: false
     description: Name of the segment
-    example: readers
+    example: "VIP customers"
   segment_group_id:
     type: string
     readOnly: true
     description: Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups)
-    example: c1e66b44796af5cd377910ed37
+    example: 8bed991c68a470e7aaeffbf048
   segment_picture_url:
     type: string
     readOnly: true
@@ -25,11 +25,11 @@ properties:
     type: string
     readOnly: false
     description: Short description of the segment
-    example: "Customers that like to read more than 1 book a month"
+    example: "VIP customers note test"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2019-08-29 13:04:45'
+    example: "2021-06-04 13:25:39"
 required:
   - name

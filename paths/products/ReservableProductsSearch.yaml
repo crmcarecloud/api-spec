@@ -19,7 +19,7 @@ post:
             search_string:
               type: string
               description: String used for searching the results
-              example: "Ca"
+              example: "Ap"
           required:
             - search_string
   responses:

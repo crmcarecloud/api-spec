@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: false
     description: Full text search result
-    example: Campari soda 2dc
+    example: Apple iPhone 12 Pro 128GB
   resource_id:
     type: string
     readOnly: false
     description: The unique id of the resource as a search result. The unique id depends on resource where the search action was processed
-    example: 84b2d99e84c3d730beba523799
+    example: 8bed991c68a470e7aaeffbf048
   flags:
     type: array
     items:

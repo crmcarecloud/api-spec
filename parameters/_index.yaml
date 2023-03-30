@@ -214,7 +214,7 @@ user_id_path:
   description: The unique id of the user
   schema:
     type: string
-  example: 838b73aacb5ac326cec4030c80
+  example: 898a6545ed2bfa3f8466d09bc6
 user_role_id_path:
   name: user_role_id
   in: path
@@ -222,7 +222,7 @@ user_role_id_path:
   description: The unique id of the user role
   schema:
     type: string
-  example: 8bd4811006496e0b1788109b8
+  example: 86e05affc7a7abefcd513ab400
 email:
   name: email
   in: query
@@ -647,7 +647,7 @@ voucher_id_path:
   required: true
   schema:
     type: string
-  example: 8fbccbdba315e6240b07f239ba
+  example: 82d0f9d976dee39aacd13dc7ea
 is_applied:
   name: is_applied
   in: query
@@ -677,7 +677,7 @@ voucher_property_id_path:
   required: true
   schema:
     type: string
-  example: promotion
+  example: id_produktu_v_dwh
 # Reward
 reward_id_path:
   name: reward_id
@@ -686,7 +686,7 @@ reward_id_path:
   required: true
   schema:
     type: string
-  example:
+  example: 8fd73167342d06899c4c015320
 reward_property_id_path:
   name: reward_property_id
   in: path
@@ -720,7 +720,7 @@ reward_type_id_path:
   required: true
   schema:
     type: string
-  example:
+  example: 8bed991c68a470e7aaeffbf048
 is_automated:
   name: is_automated
   in: query
@@ -777,7 +777,7 @@ customer_external_application_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b894a169c490a325
+  example: 8bed991c68a470e7aaeffbf048
 
 # Customer Property
 customer_property_id_path:
@@ -1136,7 +1136,7 @@ reservable_product_id_path:
   required: true
   schema:
     type: string
-  example: 89bdacbffb5c82f2c52cb9ae8f
+  example: 8bed991c68a470e7aaeffbf048
 product_brand_id_path:
   name: product_brand_id
   in: path
@@ -1319,7 +1319,7 @@ segment_id_path:
   description: The unique id of the segment
   schema:
     type: string
-  example: 8dc1e66b44796af5cd377910e1
+  example: 82de12eb8b138791e678fd11c3
 segment_group_id_path:
   name: segment_group_id
   in: path
@@ -1327,7 +1327,7 @@ segment_group_id_path:
   description: The unique ID of the segment group
   schema:
     type: string
-  example: 8dc1e66b44796af5cd377910e1
+  example: 8bed991c68a470e7aaeffbf048
 segment_group_ids:
   name: segment_group_ids
   in: query
@@ -1462,7 +1462,7 @@ status_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc77abefc513ab400
+  example: 86e05affc7a7abefcd513ab400
 
 # Store
 store_id_path:
@@ -1480,7 +1480,7 @@ store_group_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c6a470e7aaeffbf048
+  example:
 store_property_id_path:
   name: store_property_id
   in: path
@@ -1488,7 +1488,7 @@ store_property_id_path:
   required: true
   schema:
     type: string
-  example: provided_services
+  example: poskytovane_sluzby
 store_id:
   name: store_id
   in: query
@@ -1532,7 +1532,7 @@ task_id_path:
   description: The unique id of the task in CareCloud
   schema:
     type: string
-    example: ca105dff90694c2ca105dff986f1b
+    example: 8bed991c68a470e7aaeffbf048
 task_type_id_path:
   name: task_type_id
   in: path
@@ -1540,7 +1540,7 @@ task_type_id_path:
   description: The unique id of the task type in CareCloud
   schema:
     type: string
-    example: ca105dff90694c2ca105dff986f1b
+    example: 8bed991c68a470e7aaeffbf048
 task_state_id_path:
   name: task_state_id
   in: path
@@ -1548,7 +1548,7 @@ task_state_id_path:
   description: The unique id of the task state in CareCloud
   schema:
     type: string
-    example: ca105dff90694c2ca105dff986f1b
+    example: 86e05affc7a7abefcd513ab400
 task_assignee_id_path:
   name: assignee_id
   in: path
@@ -1556,7 +1556,7 @@ task_assignee_id_path:
   description: The unique id of the task assignee in CareCloud
   schema:
     type: string
-    example: ca105dff90694c2ca105dff986f1b
+    example: 81eaeea13b8984a169c490a325
 task_state_id:
   name: task_state_id
   in: query
@@ -1564,7 +1564,7 @@ task_state_id:
   description: Task state id from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.
   schema:
     type: string
-    example: 40c027db56a325913fca105dff9
+    example: 86e05affc7a7abefcd513ab400
 task_type_id:
   name: task_type_id
   in: query
@@ -1572,7 +1572,7 @@ task_type_id:
   description: Task type id from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.
   schema:
     type: string
-    example: 40c027db56a32591ca105dff93f
+    example: 8bed991c68a470e7aaeffbf048
 task_priority:
   name: priority
   in: query
@@ -1625,7 +1625,7 @@ task_comment_id_path:
   description: The unique id of the task comment in CareCloud
   schema:
     type: string
-    example: ca105dff90694c2ca105dff986f1b
+    example: 8bed991c68a470e7aaeffbf048
 task_property_id_path:
   name: task_property_id
   in: path
@@ -1633,7 +1633,7 @@ task_property_id_path:
   required: true
   schema:
     type: string
-  example: contact_information
+  example: p1_communication_reasons
 #Tests
 test_string:
   name: test_string
@@ -1642,7 +1642,7 @@ test_string:
   description: Test string send to REST API. Correct result should reverted string
   schema:
     type: string
-  example: 'Hello World!'
+  example: 'taco cat'
 
 # Tokens
 token_id_path:
@@ -1660,7 +1660,7 @@ external_application_id:
   description: Id of external application. For id of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications)
   schema:
     type: string
-  example: 89d1a6111b3fb6e74665d948
+  example: 8bed991c68a470e7aaeffbf048
 token_type:
   name: token_type
   in: query

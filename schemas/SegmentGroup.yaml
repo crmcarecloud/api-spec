@@ -5,26 +5,26 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the segment group
-    example: 8dc1e66b44796af5cd377910e1
+    example: 83d1d11ea3884a5d33253fe214
   name:
     type: string
     readOnly: false
     description: Name of the segment group
-    example: Badges
+    example: RFM Badges
   parent_group_id:
     type: string
     readOnly: true
     description: The unique ID of the parent segment group
-    example: 80a7be2e78aabc1454ca817265
+    example: 8bed991c68a470e7aaeffbf048
   note:
     type: string
     readOnly: false
     description: Short description of the segment group
-    example: "Carecloud Badges for tagging customers"
+    example: "RFM Badges for tagging customers"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2019-08-29 13:04:45'
+    example: "2022-04-21 08:26:36.058922"
 required:
   - name

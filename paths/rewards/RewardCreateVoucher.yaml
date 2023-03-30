@@ -17,15 +17,15 @@ post:
             customer_id:
               type: string
               description: The unique id of the customer.
-              example: 81ceb8582e2d8dbb7e71b7273b
+              example: 8ea2591121e636086a4a9c0992
             code:
               type: string
               description: Code of the voucher
-              example: "w7TU7KfeE"
+              example: "w7TU7KfeE1"
             note:
               type: string
               description: Voucher's note
-              example: "Contact before use"
+              example: "Use before 28.03.2024 get another one for free"
           required:
             - customer_id
   responses:
@@ -42,7 +42,7 @@ post:
                   voucher_id:
                     type: string
                     description: The unique id of the voucher
-                    example: 8bb7345976bbc9ed20e5083dd6
+                    example: 82d0f9d976dee39aacd13dc7ea
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

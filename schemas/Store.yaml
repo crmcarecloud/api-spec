@@ -5,29 +5,29 @@ properties:
     type: string
     readOnly: true
     description: The unique id of the store in CareCloud
-    example: 86e05affc7a7abefcd513ab400
+    example: 81eaeea13b8984a169c490a325
   store_code:
     type: string
     readOnly: false
     description: External code of the store
-    example: ""
+    example: "84a169c490a325"
   name:
     type: string
     readOnly: false
     description: Name of the store
-    example: Great Pub
+    example: Another good store
   store_address:
     $ref: '../schemas/_index.yaml#/Address'
   contact_email:
     type: string
     readOnly: false
     description: Contact email of the store
-    example: ""
+    example: "good.store@crmcarecloud.com"
   manager_name:
     type: string
     readOnly: false
     description: Name of the store manager
-    example: ""
+    example: "Andrew Black"
   phone_number:
     type: string
     pattern: ^[1-9][0-9]*$
@@ -43,14 +43,14 @@ properties:
     type: string
     readOnly: false
     description: The external unique id of the store in external system
-    example: 2375303497
+    example: "2375303497"
   gps_coordinates:
     $ref: '../schemas/_index.yaml#/GPSCoordinates'
   url_address:
     type: string
     readOnly: false
     description: URL address of the store
-    example: ""
+    example: "www.crmcarecloud.com"
   opening:
     type: array
     items:
@@ -72,28 +72,28 @@ properties:
     readOnly: true
     description: |
       State of the visibility for the customer
-      *Possible values are: 0 - invisible / 1- visible*
+      *Possible values are: 0 - invisible / 1 - visible*
     example: 1
   short_description:
     type: string
     readOnly: false
     description: Short description of the store
-    example: fdsfdsfds
+    example: "Another good store for buying beverages"
   description:
     type: string
     readOnly: false
     description: Long description of the store
-    example:
+    example: "Another good store for buying beverages: beer, wine, juice, soda"
   registration_id:
     type: string
     readOnly: false
     description: Legal registration number of the store
-    example: 123
+    example: "81eaeea13b89"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
-    example: '2018-12-19 16:12:56'
+    example: "2023-03-28 16:12:56"
   state:
     type: integer
     enum:

@@ -134,12 +134,10 @@ post:
               $ref: '../../schemas/_index.yaml#/Task'
             property_records:
               type: array
-              description: List of an task property records
-              items:
-                $ref: '../../schemas/_index.yaml#/PropertyRecord'
+              description: List of a task property records
             assignees:
               type: array
-              description: List of an task assignees
+              description: List of a task assignees
               items:
                 $ref: '../../schemas/_index.yaml#/TaskAssignee'
           required:
