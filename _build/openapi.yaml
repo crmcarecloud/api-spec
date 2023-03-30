@@ -12197,6 +12197,8 @@ paths:
                 property_records:
                   type: array
                   description: List of a task property records
+                  items:
+                    $ref: '#/components/schemas/PropertyRecord'
                 assignees:
                   type: array
                   description: List of a task assignees
@@ -20801,7 +20803,7 @@ components:
       required: true
       schema:
         type: string
-      example: null
+      example: 8bed991c68a470e7aaeffbf048
     store_property_id_path:
       name: store_property_id
       in: path

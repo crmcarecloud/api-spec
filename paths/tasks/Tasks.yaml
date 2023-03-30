@@ -135,6 +135,8 @@ post:
             property_records:
               type: array
               description: List of a task property records
+              items:
+                $ref: '../../schemas/_index.yaml#/PropertyRecord'
             assignees:
               type: array
               description: List of a task assignees

@@ -1480,7 +1480,7 @@ store_group_id_path:
   required: true
   schema:
     type: string
-  example:
+  example: 8bed991c68a470e7aaeffbf048
 store_property_id_path:
   name: store_property_id
   in: path
