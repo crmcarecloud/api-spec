@@ -2,7 +2,7 @@ get:
   tags:
     - Tokens
   summary: Get authentication token
-  description: Returns authentication token for specific external application
+  description: Returns authentication token for specific external application.
   operationId: getTokenAuthentication
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -22,15 +22,15 @@ get:
                 properties:
                   token:
                     type: string
-                    description: 'Authentication token for external application'
+                    description: 'Authentication token for external application.'
                     example: LQ55EH
                   token_request_id:
                     type: string
-                    description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
+                    description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
                     example: 6fb977c6fce6da6c0fa32aa1bc6417c621c116c65a5d638fefac1488334d67e33867675d
                   valid_to:
                     type: string
-                    description: Date and time of the token validity   *(YYYY-MM-DD HH:MM:SS)*
+                    description: Date and time of the token validity. *(YYYY-MM-DD HH:MM:SS)*
                     example: '2019-01-04 10:31:56'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -73,13 +73,13 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
         $token_id = '8ea02b112ccac496a3d423c5b1'; // string | Client's application token
 
         // Set query parameters
-        $external_application_id = '82de12eb8b138791e678fd11c3'; // string | Id of the external application
+        $external_application_id = '82de12eb8b138791e678fd11c3'; // string | ID of the external application
         $token_type = 1; // integer | Possible values: 1- alphanumeric, 2- numeric
 
         // Call endpoint and get data

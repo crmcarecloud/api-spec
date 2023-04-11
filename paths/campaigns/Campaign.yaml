@@ -2,7 +2,7 @@ get:
   tags:
     - Campaigns
   summary: Detail of a specific campaign
-  description: Get information about a specific campaign
+  description: Get information about a specific campaign.
   operationId: getCampaign
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $campaign_id = '82db62087b0f79a6e14e5747e7'; // string | The unique id of the campaign
+        $campaign_id = '82db62087b0f79a6e14e5747e7'; // string | The unique ID of the campaign
 
         // Call endpoint and get data
         try

@@ -1,9 +1,9 @@
 type: object
-description: Address resource
+description: Address resource.
 properties:
   additional_address_id:
     type: string
-    description: Unique additional address ID
+    description: Unique additional address ID.
     readOnly: true
     example: 86e05affc7a7abefcd513ab400
   address_type:

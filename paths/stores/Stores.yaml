@@ -26,12 +26,12 @@ get:
                 properties:
                   stores:
                     type: array
-                    description: List of all stores
+                    description: List of all stores.
                     items:
                       $ref: '../../schemas/_index.yaml#/Store'
                   total_items:
                     type: integer
-                    description: Count of all found stores
+                    description: The number of all found stores.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -71,10 +71,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $reward_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the reward
+        $reward_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the reward
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -108,7 +108,7 @@ post:
   tags:
     - Stores
   summary: Create a store
-  description: Add a new store
+  description: Add a new store.
   operationId: postStore
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -136,7 +136,7 @@ post:
                 properties:
                   store_id:
                     type: string
-                    description: The unique id of the store in CareCloud
+                    description: The unique ID of the store in CareCloud.
                     example: 86e05affc7a7abefcd513ab400
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -178,7 +178,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the store info
         $store = new Store();
@@ -188,8 +188,8 @@ post:
         $store->setContactEmail(null); // string | The contact email of the store (optional)
         $store->setManagerName(null); // string | The name of the store manager (optional)
         $store->setPhoneNumber(null); // string^[1-9][0-9]*$ Phone number of the store with international prefix (420000000000) (optional)
-        $store->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique id of the partner
-        $store->setSystemId('candystoreid'); // string | The unique id of the store in the external system
+        $store->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique ID of the partner
+        $store->setSystemId('candystoreid'); // string | The unique ID of the store in the external system
         $store->setGpsCoordinates(null); // object | GPS coordinates of the store (optional)
         $store->setUrlAddress(null); // string | The URL of the store (optional)
         $store->setOpening(null); // object | The list of the opening days (optional)

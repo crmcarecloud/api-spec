@@ -24,12 +24,12 @@ get:
                 properties:
                   task_assignees:
                     type: array
-                    description: List of all task assignees
+                    description: List of all task assignees.
                     items:
                       $ref: '../../schemas/_index.yaml#/TaskAssignee'
                   total_items:
                     type: integer
-                    description: Count of all found task assignees
+                    description: The number of all found task assignees.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -69,10 +69,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the task
+        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the task
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -104,7 +104,7 @@ post:
   tags:
     - Tasks
   summary: Create a task assignee
-  description: Add a new assignee to the task
+  description: Add a new assignee to the task.
   operationId: postTaskAssignee
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -133,7 +133,7 @@ post:
                 properties:
                   task_assignee_id:
                     type: string
-                    description: The unique id of the task assignee in CareCloud
+                    description: The unique ID of the task assignee in CareCloud.
                     example: 86e05affc7a7abefcd513ab400
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -175,14 +175,14 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the task
+        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the task
 
         // Set the task assignee info
         $task_assignee = new TaskAssignee();
-        $task_assignee->setUserId('8a84da45ed2c825a741a321d50'); // string | The unique id of the assigned user
+        $task_assignee->setUserId('8a84da45ed2c825a741a321d50'); // string | The unique ID of the assigned user
 
         // Set the request body
         $body = new TaskIdAssigneesBody();

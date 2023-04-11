@@ -2,7 +2,7 @@ get:
   tags:
     - Communication channels
   summary: Get all communication channels
-  description: Get a list of communication channels accepted in CRM CareCloud
+  description: Get a list of communication channels accepted in CRM CareCloud.
   operationId: getCommunicationChannels
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -23,12 +23,12 @@ get:
                 properties:
                   communication_channels:
                     type: array
-                    description: Structure of the communication channel
+                    description: Structure of the communication channel.
                     items:
                       $ref: '../../schemas/_index.yaml#/CommunicationChannel'
                   total_items:
                     type: integer
-                    description: Total count of found items of the resource communication channels
+                    description: Total count of found items of the resource communication channels.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -68,7 +68,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

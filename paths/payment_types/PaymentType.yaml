@@ -2,7 +2,7 @@ get:
   tags:
     - Payment types
   summary: Detail of an payment type
-  description: Get information about a specific payment type
+  description: Get information about a specific payment type.
   operationId: getPaymentType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

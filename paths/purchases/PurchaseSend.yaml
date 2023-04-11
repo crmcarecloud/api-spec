@@ -2,7 +2,7 @@ post:
   tags:
     - Purchases
   summary: Send purchase
-  description: The method sends the final closed bill to CareCloud. It returns info about success/failure in the response
+  description: The method sends the final closed bill to CareCloud. It returns info about success/failure in the response.
   operationId: postPurchaseSend
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -15,19 +15,19 @@ post:
           properties:
             store_id:
               type: string
-              description: Id of the store
+              description: ID of the store.
               example: 81eaeea13b8984a169c490a325
             cashdesk_number:
               type: integer
-              description: Number of the cashdesk in store
+              description: Number of the cash-desk in store.
               example: 1
             card_number:
               type: string
-              description: The customer's card number
+              description: The customer card number.
               example: "1000000000016"
             customer_id:
                 type: string
-                description: Id of the customer that made the purchase. You can search customers by plenty parameter in resource customers
+                description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
                 example: 8ea2591121e636086a4a9c0992
             bill:
               $ref: '../../schemas/_index.yaml#/FinalBill'
@@ -48,7 +48,7 @@ post:
                 properties:
                   purchase_id:
                     type: string
-                    description: The unique id of the purchase
+                    description: The unique ID of the purchase.
                     example: 85c763ebcec2fa488f8857bee
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -92,7 +92,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the bill info
         $plu_ids = new PluId();

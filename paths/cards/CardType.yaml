@@ -2,7 +2,7 @@ get:
   tags:
     - Card types
   summary: Get a card type
-  description: Get information about a specific customer card type
+  description: Get information about a specific customer card type.
   operationId: getCardType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the card type
+        $card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the card type
 
         // Call endpoint and get data
         try
@@ -75,7 +75,7 @@ put:
   tags:
     - Card types
   summary: Update a card type
-  description: Update a specific customer card type
+  description: Update a specific customer card type.
   operationId: putCardType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -134,10 +134,10 @@ put:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the card type
+        $card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the card type
 
         // Set card type data
         $card_type = new CardType();

@@ -31,7 +31,7 @@ If you want to use a user from CDP CareCloud, you need to set the 'User Group' o
 #### External applications
 The external application represents an application that wants to/ already communicate with CPD CareCloud REST API. Every system needs to be identified, and that's why we need to know the external application ID.
 It could be one of the following examples:
-- a mobile app for the customer's purchase overview
+- a mobile app for the customer  purchase overview
 - e-shop that uses customers data
 - production system that wants to synchronize customer purchases
 

@@ -1,20 +1,20 @@
 type: object
-description: Event group resource
+description: Event group resource.
 properties:
   event_group_id:
     type: string
     readOnly: false
-    description: The unique id of the event
+    description: The unique ID of the event.
     example: 86e05affc7a7abefc513ab4tt0
   name:
     type: string
     readOnly: false
-    description: The unique id of the event type
+    description: The unique ID of the event type.
     example: Shopping Cart
   text_id:
     type: string
     readOnly: true
-    description: Text id of an event group
+    description: Text ID of an event group.
     example: shopping_cart
   state:
     type: integer
@@ -24,7 +24,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type
+      State of the event type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

@@ -1,10 +1,10 @@
 type: object
-description: Structure of bill from POS
+description: Structure of bill from POS.
 properties:
   bill_id:
     type: string
     readOnly: false
-    description: Identification number of the bill (must be unique in POS, use prefix 'C' for a canceled bill)
+    description: Identification number of the bill (must be unique in POS, use prefix 'C' for a canceled bill).
     example: 8fbea1c1eaa8edd35e7f278
   bill_number:
     type: string
@@ -14,30 +14,30 @@ properties:
   payment_time:
     type: string
     readOnly: false
-    description: "Date and time of bill creation *Possible value: 2016-06-30T15:51:49+02:00*"
+    description: "Date and time of bill creation. *Possible value: 2016-06-30T15:51:49+02:00*"
     example: "2016-06-30T15:5:49+02:00"
   created_by:
     type: string
     readOnly: false
-    description: Name of the user who created a bill
+    description: Name of the user who created a bill.
     example:
   currency_id:
     type: string
     readOnly: false
-    description: Id of the currency from resource [currencies](#tag/Currencies)
+    description: ID of the currency from resource [currencies](#tag/Currencies).
     example: 8bed991c68a470e7aaeffbf048
   total_price:
     type: number
     format: float
     readOnly: false
-    description: The total price of the bill as a sum of all items
+    description: The total price of the bill as a sum of all items.
     example: '700'
   bill_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/BillItem'
     readOnly: false
-    description: List of bill items
+    description: List of bill items.
 required:
   - bill_id
   - payment_time

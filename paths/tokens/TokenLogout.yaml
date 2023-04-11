@@ -2,7 +2,7 @@ post:
   tags:
     - Tokens
   summary: Logout from the application
-  description: Logout of a customer account to client's application
+  description: Logout of a customer account to client's application.
   operationId: postTokenLogout
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -51,7 +51,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
         $token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token

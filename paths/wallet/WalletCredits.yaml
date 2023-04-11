@@ -2,7 +2,7 @@ get:
   tags:
     - Wallet
   summary: Get credits overview
-  description: Get information about credits overview of the customer in the time interval
+  description: Get information about credits overview of the customer in the time interval.
   operationId: getWalletCredits
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -23,23 +23,23 @@ get:
                   earned_credits:
                     type: number
                     format: float
-                    description: Amount of earned credits in time interval
+                    description: Amount of earned credits in time interval.
                     example: 100
                   redeemed_credits:
                     type: number
                     format: float
-                    description: Amount of redeemed credits in time interval
+                    description: Amount of redeemed credits in time interval.
                     example: 20.5
                   available_credits:
                     type: number
                     format: float
-                    description: Amount of available credits in the moment. Time interval has no influence to the result
+                    description: Amount of available credits in the moment. Time interval has no influence to the result.
                     example: 79.5
                   split_by_currency:
                     type: array
                     items:
                       $ref: '../../schemas/_index.yaml#/CreditWalletSummary'
-                    description: The credit overview split by currency
+                    description: The credit overview split by currency.
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':
@@ -78,10 +78,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
         $date_from = null; // string | Start of the time interval (YYYY-MM-DD) (optional)
         $date_to = null; // string | End of the time interval (YYYY-MM-DD) (optional)
 

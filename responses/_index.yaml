@@ -1,5 +1,5 @@
 BadRequest:
-  description: Bad input parameter. Error message specifies the detail
+  description: Bad input parameter. Error message specifies the detail.
   content:
     application/json:
       schema:
@@ -12,7 +12,7 @@ BadRequest:
                 properties:
                   error_data:
                     type: object
-                    description: Data in case of an exception
+                    description: Data in case of an exception.
                     properties:
                       invalid_params:
                         type: array
@@ -30,9 +30,9 @@ BadRequest:
                               example: ""
                             message:
                               type: string
-                              example: "Relation for this combination of event type, customer id and external ids already exists"
+                              example: "Relation for this combination of event type, customer ID and external IDs already exists."
 Unauthorized:
-  description: The client has invalid credentials or auth token
+  description: The client has invalid credentials or auth token.
   content:
     application/json:
       schema:
@@ -45,12 +45,12 @@ Unauthorized:
                 properties:
                   error_data:
                     type: object
-                    description: Data in case of an exception
+                    description: Data in case of an exception.
                     example:
 Forbidden:
-  description: The client does not exist or the client tried to access non authorized property/resource
+  description: The client does not exist or the client tried to access non authorized property/resource.
 NotFound:
-  description: The resource was not found
+  description: The resource was not found.
   content:
     application/json:
       schema:
@@ -63,7 +63,7 @@ NotFound:
                 properties:
                   error_data:
                     type: object
-                    description: Data in case of an exception
+                    description: Data in case of an exception.
                     properties:
                       resource_name:
                         type: string
@@ -72,7 +72,7 @@ NotFound:
                         type: string
                         example: "84b5e55448fbd6c0b22b4d"
 NotAllowed:
-  description: The resource does not support the specified HTTP method
+  description: The resource does not support the specified HTTP method.
   content:
     application/json:
       schema:
@@ -85,15 +85,15 @@ NotAllowed:
                 properties:
                   error_data:
                     type: object
-                    description: Data in case of an exception
+                    description: Data in case of an exception.
                     properties:
                       http_method:
                         type: string
                         example: "DELETE"
 TooManyRequests:
-  description: Too many requests - more than the resource limit
+  description: Too many requests - more than the resource limit.
 InternalServerError:
-  description: Server is not working as expected
+  description: Server is not working as expected.
   content:
     application/json:
       schema:
@@ -102,4 +102,4 @@ InternalServerError:
           error:
             $ref: '../schemas/_index.yaml#/BasicError'
 ServiceUnavailable:
-  description: Temporary state when the service is temporarily unavailable, overloaded or there is a maintenance window
+  description: Temporary state when the service is temporarily unavailable, overloaded or there is a maintenance window.

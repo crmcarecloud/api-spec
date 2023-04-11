@@ -2,7 +2,7 @@ get:
   tags:
     - Wallet
   summary: Get credits expiration overview
-  description: Get information about credits expiration overview of the customer
+  description: Get information about credits expiration overview of the customer.
   operationId: getWalletCreditsExpiration
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -21,16 +21,16 @@ get:
                   next_amount:
                     type: number
                     format: float
-                    description: Date (ISO 8601) when first points will expire
+                    description: Date (ISO 8601) when first points will expire.
                     example: 77.36
                   next_date:
                     type: string
-                    description: Amount of redeemed points in time interval *(YYYY-MM-DD)*
+                    description: Amount of redeemed points in time interval. *(YYYY-MM-DD)*
                     example: '2022-01-01'
                   current_month_amount:
                     type: number
                     format: float
-                    description: Amount of points that will expire in current month
+                    description: Amount of points that will expire in current month.
                     example: 0
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -70,10 +70,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Call endpoint and get data
         try

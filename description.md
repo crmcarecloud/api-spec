@@ -13,7 +13,7 @@ CRM CareCloud REST API allows you to create and manage the customer accounts and
 
 
 ## What is the best interface for my use case?
-<img src="img/customer_enterprise.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/customer_enterprise.png">
 
 Now, when it is all clear, let's continue with API call structure
 
@@ -85,7 +85,7 @@ In special cases, if it is not possible to follow the RESTful way, we use the pr
 
 POST  `<projectURL>/webservice/rest-api/customer-interface/v1.0/resource-name/resource_id/actions/action_id`
 
-Where `resource-name` represents a resource with its unique id - resource_id. Keyword actions identifies an action call and action_id is a unique id of the action that is represented by name of the action. Action name is unique across the API.
+Where `resource-name` represents a resource with its unique ID - resource_id. Keyword actions identifies an action call and action_id is a unique ID of the action that is represented by name of the action. Action name is unique across the API.
 
 This is the example of the action “add customer” by resource segments:
 
@@ -173,7 +173,7 @@ The best way to decide what interface use is to look at the [following section](
 
 ## What is an external application?
 External application is your identification for CareCloud REST API. It helps us to know which application uses REST API. Because as an integrator, you could integrate more applications to one installation of our REST API.<br/>
-You have to use `external_application_id` in multiple resources around REST API. The important information is External application is not a resource, and you can find or create id for your application in CareCloud administration.<br/>
+You have to use `external_application_id` in multiple resources around REST API. The important information is External application is not a resource, and you can find or create ID for your application in CareCloud administration.<br/>
 If you don't know how to find it, here is [a guide](#section/Authentication) for you to get, create or manage existing applications.
 
 ## What authentication use for the REST API enterprise interface?
@@ -185,7 +185,7 @@ HTTP PUT doesn't support updating a single parameter. You need to send the whole
 
 ## How do I create a customer account?
 
-In the CareCloud platform, each customer has their customer account, to which all data related to this customer are assigned. The customer's account can be found and identified by any unique identifier (such as a customer card) associated with that account.
+In the CareCloud platform, each customer has their customer account, to which all data related to this customer are assigned. The customer  account can be found and identified by any unique identifier (such as a customer card) associated with that account.
 You can create a customer account using the method [[POST] /customers](#operation/postCustomer) as described [here](#section/Use-cases/Creation-of-a-customer-account-process).
 
 ## How does the authentication process work in the customer interface?
@@ -434,18 +434,18 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yjd
 Use case covers authorization of a customer in an external application through REST API (customer interface only).
 For more information, please look at the picture below:
 
-<img src="img/login_between_two_apps_with_auth_token-3.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/login_between_two_apps_with_auth_token-3.png">
 
 
 ## Update of a forgotten password - customer
 
-Use case covers update of customer's password through REST API. In this case, an external application operates the whole process and updates the customer's password after a new password confirmation.
+Use case covers update of the customer  password through REST API. In this case, an external application operates the whole process and updates the the customer  password after a new password confirmation.
 
-<img src="img/forgotten_password_1.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/forgotten_password_1.png">
 
-Use case covers update of customer's password through REST API. It includes sending a forgotten password email to the customer.
+Use case covers update of the customer  password through REST API. It includes sending a forgotten password email to the customer.
 
-<img src="img/forgotten_password_rest_api-send-fp-email.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/forgotten_password_rest_api-send-fp-email.png">
 
 
 ## Newsletter sign-up
@@ -454,7 +454,7 @@ Customer source identifies the source of the customer (email, Facebook, registra
 List of available customer sources is available in resource [[GET] /cusomer-sources](/#tag/Customer-sources). If you want to create a new customer source for an existing customer, you can do it at [[POST] /customers/{cusomer_id}/customer-source-records](#operation/postSubCustomerSource). If you're going to add a customer source to the customer while registering, you can do it right at [[POST] /customers](#operation/postCustomer).
 Following flowchart covers all three states of the customer:
 <br/>
-<img src="img/customer_sign_up_for_newsletter.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/customer_sign_up_for_newsletter.png">
 
 If it's a customer already signed up for the newsletter and wants to registred. You don't have to worry. Just follow the use case below. CPD CareCloud will handle this situation. You need to create a new customer with [[POST] /customers](#operation/postCustomer). In the end, you will have a customer with newsletter and registration sources.
 
@@ -628,7 +628,7 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 
 ```
 
-7. If you have done everything right, you will get a card id in the response.
+7. If you have done everything right, you will get a card ID in the response.
 
 ```json
 
@@ -645,11 +645,11 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 ### Phone validation
 Use case covers scenario when cashier/operator has to verify phone number ownership. It includes two REST API calls for send OTP [/one-time-password/actions/send](#operation/postSendOtp) and verify it [/one-time-password/actions/verify](#operation/postVerifyOtp).
 
-<img src="img/otp-customer-phone-validation.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/otp-customer-phone-validation.png">
 
 You can use the same REST API action methods without customer identification to verify a phone number or email ownership in any process. In the diagram below, you can see an online registration of new customer process with phone verification.
 
-<img src="img/otp-phone-verification.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/otp-phone-verification.png">
 
 ## How to create a Marketing Automation Event?
 
@@ -657,7 +657,7 @@ Marketing automation events are used to launch a scenario connected to an event.
 
 Marketing Automation Events has the following structure of resources:
 
-<img src="https://imgur.com/0Bu8zWI.jpeg">
+<img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
 
 **Event group:** groups divide event types into administrator-defined categories. An administrator can add, edit or delete event groups from the administration environment of the CareCloud platform.
 
@@ -861,12 +861,12 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 }
 ```
 In the example, you can see two important things:
-- The external ids or the CareCloud REST API ids can establish a relationship between the product and its group or brand.
+- The external IDs or the CareCloud REST API IDs can establish a relationship between the product and its group or brand.
 - You can use multiple product lists if you identify a product with more than one code. You need to change list_code from value `GLOBAL` to other contained in CarCloud administration.
 
 ### Bill Closure with rewards application
 
-<img src="img/checkout_with_reward_application.png">
+<img src="https://cdn.carecloud.cz/static/developers/img/checkout_with_reward_application.png">
 
 1. User clicks on the Loyalty program button in the POS system.
 2. The User inserts the Customer Card Number into the specified field on POS using a barcode reader or manual input. The User can identify a customer with other parameters like email, phone, or name. If so, the User should collect these parameters from the Customer and get `customer id` with API call [GET /customers?parameter=value](#operation/getCustomers).
@@ -981,7 +981,7 @@ Response to the request above:
 ```
 6. The User chooses rewards and sets the amount of use.
 7. The User clicks on the Bill Closure button in POS.
-8. The POS system adds selected rewards from [ POST /purchases/action/recommend-best-rewards](#operation/postPurchaseRecommendedRewards) and sends request Bill Closure to CareCloud REST API [POST /purchases/actions/accept-payment](#operation/postPurchaseAcceptPayment). Based on the Customer id (or Card Number) and Bill Items, CareCloud calculates all available discounts. CareCloud applies all selected rewards too.
+8. The POS system adds selected rewards from [ POST /purchases/action/recommend-best-rewards](#operation/postPurchaseRecommendedRewards) and sends request Bill Closure to CareCloud REST API [POST /purchases/actions/accept-payment](#operation/postPurchaseAcceptPayment). Based on the Customer ID (or Card Number) and Bill Items, CareCloud calculates all available discounts. CareCloud applies all selected rewards too.
 
 ```http request
 POST <projectURL>/webservice/rest-api/enterprise-interface/v1.0/purchases/action/accept-payment

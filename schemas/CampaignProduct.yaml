@@ -1,31 +1,31 @@
 type: object
-description: Campaign product structure
+description: Campaign product structure.
 properties:
   campaign_product_id:
     type: string
     readOnly: true
-    description: The unique id of the campaign product
+    description: The unique ID of the campaign product.
     example: 8bed991c68a470e7aaeffbf048
   product_id:
     type: string
     readOnly: false
-    description: The unique id of the product
+    description: The unique ID of the product.
     example: 8ad4ff4db9d628f2c8cb6181a4
   currency_id:
     type: string
     readOnly: false
-    description: The unique id of the currency
+    description: The unique ID of the currency.
     example: 8bed991c68a470e7aaeffbf048
   campaign_id:
     type: string
     readOnly: false
-    description: The unique id of the campaign
+    description: The unique ID of the campaign.
     example: 8ad8b2b701199684f1222961d6
   value:
     type: number
     format: float
     readOnly: false
-    description: Value of the product
+    description: Value of the product.
     example: 50
   value_type_id:
     type: integer
@@ -33,29 +33,29 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: Type of value (1 - percentage discount value, 2 - final price)
+    description: Type of value (1 - percentage discount value, 2 - final price).
     example: 1
   valid_from:
     type: string
     readOnly: false
-    description: Valid from *(YYYY-MM-DD HH:MM:SS)*
+    description: Validity of the campaign product from the date. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-04-16 00:00:00"
   valid_to:
     type: string
     readOnly: false
-    description: Valid to *(YYYY-MM-DD HH:MM:SS)*
+    description: Validity of the campaign product to the date. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-05-16 23:59:59"
   display_in:
     type: array
     items:
       type: string
     readOnly: false
-    description: List of possible display places
+    description: List of possible display places.
     example: [ "mapi" ]
   type_id:
     type: string
     readOnly: false
-    description: Type of a campaign product
+    description: Type of a campaign product.
     example: 86e05affc7a7abefcd513ab400
   presentation_data:
     type: object
@@ -63,7 +63,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: 2021-04-16 19:02:22
   state:
     type: integer
@@ -72,7 +72,7 @@ properties:
       - 1
     readOnly: true
     description: |
-      State of the card
+      State of the card.
       *Possible values are: 0 - blocked / 1 - active*
     example: 1
 required:

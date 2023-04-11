@@ -1,18 +1,18 @@
 type: object
-description: Points reservation resource
+description: Points reservation resource.
 properties:
   point_type_id:
     type: string
     readOnly: true
-    description: The unique id of the point type
+    description: The unique ID of the point type.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: true
-    description: Name of the point type
+    description: Name of the point type.
     example: 'Rewards points earned for the product purchase'
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-04-16 13:47:53"

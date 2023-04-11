@@ -2,7 +2,7 @@ post:
   tags:
     - Customers
   summary: Create a new customer
-  description: Add a new customer account in CRM CareCloud
+  description: Add a new customer account in CRM CareCloud.
   operationId: postCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -24,12 +24,12 @@ post:
               example: password_example
             autologin:
               type: boolean
-              description: If true, password is required and customer is logged in. Otherwise password is optional
+              description: If true, password is required and customer is logged in. Otherwise password is optional.
             social_network_credentials:
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
             property_records:
               type: array
-              description: List of an customer property records
+              description: List of an customer property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
           required:
@@ -49,7 +49,7 @@ post:
                 properties:
                   customer_id:
                     type: string
-                    description: The unique id of the customer
+                    description: The unique ID of the customer.
                     example: 8ea6abece4cd0a4ded0a29f093
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -97,7 +97,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set address of a new customer (optional)
         $address = new Address();
@@ -110,10 +110,10 @@ post:
 
         // Set custom agreements of a new customer (optional)
         $custom_agreement1 = new CustomAgreements();
-        $custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd'); // string | The unique id of the agreement in CareCloud
+        $custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd'); // string | The unique ID of the agreement in CareCloud
         $custom_agreement1->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
         $custom_agreement2 = new CustomAgreements();
-        $custom_agreement2->setAgreementId('8fd73167342d06899c4c015320'); // string | The unique id of the agreement in CareCloud
+        $custom_agreement2->setAgreementId('8fd73167342d06899c4c015320'); // string | The unique ID of the agreement in CareCloud
         $custom_agreement2->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
 
         $custom_agreements = array(
@@ -137,8 +137,8 @@ post:
         ->setBirthdate('1990-01-01') // string <date> | Customer's date of birth (YYYY-MM-DD) (optional)
         ->setEmail('doe@crmcarecloud.com') // string | Email of the customer (optional)
         ->setPhone('420523828932') // string | Phone number of the customer with international prefix (420000000000) (optional)
-        ->setLanguageId('cs') // string | The unique id for the language by ISO 639 code
-        ->setStoreId(null) // string | The unique id for the original customer account store of registration (optional)
+        ->setLanguageId('cs') // string | The unique ID for the language by ISO 639 code
+        ->setStoreId(null) // string | The unique ID for the original customer account store of registration (optional)
         ->setPhotoUrl(null) // string | URL address of the customer photo (optional)
         ->setAddress($address)
             ->setAgreement($agreement);
@@ -148,12 +148,12 @@ post:
 
         // Set source record of a new customer
         $customer_source = new CustomerSourceRecord();
-        $customer_source->setCustomerSourceId('8fd73167342d06899c4c015320'); // string | The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+        $customer_source->setCustomerSourceId('8fd73167342d06899c4c015320'); // string | The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created
         $customer_source->setExternalId('external-id'); // string | The unique external id of the customer. It may be id from the other system
 
-        // Set customer's social network credentials (optional)
+        // Set the customer  social network credentials (optional)
         $social_network_credentials = new SocialNetworkCredentials();
-        $social_network_credentials->setSocialNetworkId('instagram'); // string | The unique id of the social network
+        $social_network_credentials->setSocialNetworkId('instagram'); // string | The unique ID of the social network
         $social_network_credentials->setSocialNetworkToken('38e223j1jedu12d1jnjqwd'); // string | Social network customer's token
 
         // Set basic information about new customer to the request body
@@ -195,7 +195,7 @@ post:
             $config
         );
         $body = new \CareCloud\Model\CustomersBody(); // \CareCloud\Model\CustomersBody |
-        $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+        $accept_language = "cs, en-gb;q=0.8"; // string | The unique ID of the language code by ISO 639-1
 
         try {
             $result = $apiInstance->postCustomer($body, $accept_language);
@@ -208,7 +208,7 @@ get:
   tags:
     - Customers
   summary: Get all customers
-  description: Get a list of all customers
+  description: Get a list of all customers.
   operationId: getCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -235,12 +235,12 @@ get:
                 properties:
                   customers:
                     type: array
-                    description: Array of customers
+                    description: Array of customers.
                     items:
                       $ref: '../../schemas/_index.yaml#/Customer'
                   total_items:
                     type: integer
-                    description: Count of all found customers
+                    description: The number of all found customers.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -280,7 +280,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -289,7 +289,7 @@ get:
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional)
         $email = null; // string | Search by email (optional)
         $phone = null; // string | Phone number with international prefix (420000000) (optional)
-        $customer_source_id = null; // string | The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created (optional)
+        $customer_source_id = null; // string | The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created (optional)
         $first_name = 'John'; // string | Search by first name (optional)
         $last_name = null; // string | Search by last name (optional)
         $birthdate = null; // string | Customer's date of birth. Possible values are: YYYY-MM-DD / DD.MM.YYYY (optional)
@@ -338,14 +338,14 @@ get:
             new GuzzleHttp\Client(),
             $config
         );
-        $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+        $accept_language = "cs, en-gb;q=0.8"; // string | The unique ID of the language code by ISO 639-1
         $count = 100; // int | The number of records to return.
         $offset = 0; // int | The number of records from a collection to skip.
         $sort_field = "sort_field_example"; // string | One of the query string parameters for sorting. *Response is sorted by the specified field.*
         $sort_direction = "sort_direction_example"; // string | Direction of sorting the response list.
         $email = "email_example"; // string | Search by email
         $phone = "phone_example"; // string | Phone number with international prefix (420000000)
-        $customer_source_id = "customer_source_id_example"; // string | The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+        $customer_source_id = "customer_source_id_example"; // string | The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created
         $first_name = "first_name_example"; // string | Search by first name
         $last_name = "last_name_example"; // string | Search by last name
         $birthdate = "birthdate_example"; // string | Customer's date of birth. *Possible values are: YYYY-MM-DD / DD.MM.YYYY*

@@ -1,20 +1,20 @@
 type: object
-description: Booking structure
+description: Booking structure.
 properties:
   booking_id:
     type: string
     readOnly: true
-    description: The unique id of the booking
+    description: The unique ID of the booking.
     example: 83d0ce2b5a1bc0dc8da01b13e7
   customer_id:
     type: string
-    description: The unique id of the customer that created the booking
+    description: The unique ID of the customer that created the booking.
     example: 85bc5819e09dab95437552ce79
   booking_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/BookingItem'
-    description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`
+    description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`.
   booking_status:
     type: string
     readOnly: false
@@ -23,12 +23,12 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: Date and time of the booking *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the booking. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-08-11 11:15:33"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2022-08-11 11:15:33'
   state:
     type: integer
@@ -38,7 +38,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the booking record
+      State of the booking record.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

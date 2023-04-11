@@ -1,86 +1,86 @@
 type: object
 description: |
-  Product reservation resource
+  Product reservation resource.
 
   <p class="warning">⚠️Structure has to contain reservation codes or product reservation items</p>
 properties:
   product_reservation_id:
     type: string
     readOnly: true
-    description: The unique id of the product reservation
+    description: The unique ID of the product reservation.
     example: '81eaeea13b8984a169c490a325'
   customer_id:
     type: string
     readOnly: false
-    description:   The unique id of the customer, owner of the product reservation
+    description:   The unique ID of the customer, owner of the product reservation.
     example: '8ea2591121e636086a4a9c0992'
   store_id:
     type: string
     readOnly: false
-    description: The unique id of the store tied to the reservation
+    description: The unique ID of the store tied to the reservation.
     example: '82db62087b0f79a6e14e5747e7'
   reservation_codes:
     type: array
     items:
       type: string
     readOnly: true
-    description: Reservation codes of the reservation from CareCloud
+    description: Reservation codes of the reservation from CareCloud.
     example: [3]
   external_reservation_codes:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/ExternalCode'
     readOnly: false
-    description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of id sources.
+    description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.
   benefit_codes:
     type: array
     items:
       type: string
     readOnly: false
-    description: List of the benefit (rewards, vouchers) codes used in a reservation. After the reservation is delivered, all benefits are applied on the customer's account
+    description: List of the benefit (rewards, vouchers) codes used in a reservation. After the reservation is delivered, all benefits are applied on the customer account.
     example: [ "PTV116", "PTV120" ]
   product_reservation_source_id:
     type: string
     readOnly: false
-    description: The unique id of the product reservation source
+    description: The unique ID of the product reservation source.
     example: 8bed991c68a470e7aaeffbf048
   pickup_date:
     type: string
     readOnly: true
-    description: Date of the reservation pickup in the tied store (YYYY-MM-DD)
+    description: Date of the reservation pickup in the tied store. *(YYYY-MM-DD)*
     example: '2020-04-20'
   customers_note:
     type: string
     readOnly: false
-    description: Customer’s note for the merchant
+    description: Customer’s note for the merchant.
     example: "Please add a gift package"
   total_price:
     type: number
     format: float
     readOnly: false
-    description: Total price of reservation. If currency_id is set, then total_price is mandatory
+    description: Total price of reservation. If currency_id is set, then total_price is mandatory.
     example: 69
   currency_id:
     type: string
     readOnly: false
-    description: Id of the currency. If total_price is set, then currency_id is mandatory
+    description: ID of the currency. If total_price is set, then currency_id is mandatory.
     example: 8bed991c68a470e7aaeffbf048
   product_reservation_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationItem'
     readOnly: false
-    description: List of the Product Reservation Items
+    description: List of the Product Reservation Items.
   external_purchase_id:
     type: string
     readOnly: false
-    description: The unique external id of the purchase
+    description: The unique external ID of the purchase.
     example: "20231412"
   utm:
     type: object
     $ref: '../schemas/_index.yaml#/UTM'
     readOnly: false
-    description: UTM structure for data from email campaign
+    description: UTM structure for data from email campaign.
   actual_state:
     type: integer
     enum:
@@ -103,17 +103,17 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationProgress'
     readOnly: true
-    description: History of the product reservation progress. Product reservation progress is sorted in descending order by time
+    description: History of the product reservation progress. Product reservation progress is sorted in descending order by time.
   comments:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationComment'
     readOnly: true
-    description: Product reservation comments. Comments are sorted in descending order by time
+    description: Product reservation comments. Comments are sorted in descending order by time.
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2020-04-20 11:23:35"
   state:
     type: integer
@@ -123,8 +123,8 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the product reservation
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      State of the product reservation.
+      *Possible values are: 0 - deleted / 1 - active *
     example: 1
 required:
   - customer_id

@@ -1,20 +1,20 @@
 type: object
-description: Currency resource
+description: Currency resource.
 properties:
   currency_id:
     type: string
     readOnly: true
-    description: The unique id of the currency
+    description: The unique ID of the currency.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: false
-    description: Name of the currency
+    description: Name of the currency.
     example: CZK
   code:
     type: string
     readOnly: false
-    description: International ISO code of the currency
+    description: International ISO code of the currency.
     example: CZK
 required:
   - currency_id

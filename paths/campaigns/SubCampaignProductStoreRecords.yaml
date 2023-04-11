@@ -24,12 +24,12 @@ get:
                 properties:
                   campaign_product_store_records:
                     type: array
-                    description: List of the campaign product store records
+                    description: List of the campaign product store records.
                     items:
                       $ref: '../../schemas/_index.yaml#/CampaignProductStoreRecord'
                   total_items:
                     type: integer
-                    description: Count of all found campaign product store records
+                    description: The number of all found campaign product store records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -69,10 +69,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $campaign_product_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the campaign product
+        $campaign_product_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the campaign product
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -102,7 +102,7 @@ post:
   tags:
     - Campaign products
   summary: Add a store to the campaign product
-  description: Add one of the [stores](#tag/Stores) to a campaign product
+  description: Add one of the [stores](#tag/Stores) to a campaign product.
   operationId: postCampaignProductStoreRecord
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -131,7 +131,7 @@ post:
                 properties:
                   campaign_product_store_record_id:
                     type: string
-                    description: The unique id of the campaign product store record.
+                    description: The unique ID of the campaign product store record.
                     example: 8bd253a890067595008f1d44aa
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -173,15 +173,15 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $campaign_product_id = '81eaeea13b8984a169c490a325'; // string | The unique id of the campaign product
+        $campaign_product_id = '81eaeea13b8984a169c490a325'; // string | The unique ID of the campaign product
 
         // Set campaign product's store record data
         $campaign_product_store_record = new CampaignProductStoreRecord();
-        $campaign_product_store_record->setStoreId('82de12eb8b138791e678fd11c3'); // string | The unique id of the store
-        $campaign_product_store_record->setCampaignProductId($campaign_product_id); // string | The unique id of the campaign product
+        $campaign_product_store_record->setStoreId('82de12eb8b138791e678fd11c3'); // string | The unique ID of the store
+        $campaign_product_store_record->setCampaignProductId($campaign_product_id); // string | The unique ID of the campaign product
 
         // Set the request body
         $body = new CampaignProductIdCampaignproductstorerecordsBody();

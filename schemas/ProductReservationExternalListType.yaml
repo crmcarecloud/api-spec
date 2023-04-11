@@ -1,13 +1,13 @@
 type: object
-description: Product reservation external list type structure
+description: Product reservation external list type structure.
 properties:
   product_reservation_external_list_type_id:
     type: string
     readOnly: true
-    description: The unique id of the external list type
+    description: The unique ID of the external list type.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: true
-    description: Name of the external list type
+    description: Name of the external list type.
     example: 'Webshop reservations'

@@ -2,7 +2,7 @@ get:
   tags:
     - Events
   summary: Get a collection of event properties records
-  description: Get information about all property records on an event
+  description: Get information about all property records on an event.
   operationId: getSubEventProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -20,12 +20,12 @@ get:
                 properties:
                   property_records:
                     type: array
-                    description: List of property records
+                    description: List of property records.
                     items:
                       $ref: '../../schemas/_index.yaml#/PropertyRecord'
                   total_items:
                     type: integer
-                    description: Count of all found event property records
+                    description: The number of all found event property records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -65,10 +65,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $event_id = '81dee640727c45e3a7da28299e'; // string | The unique id of the event
+        $event_id = '81dee640727c45e3a7da28299e'; // string | The unique ID of the event
 
         // Call endpoint and get data
         try

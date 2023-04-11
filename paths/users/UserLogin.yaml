@@ -2,7 +2,7 @@ post:
   tags:
     - Users
   summary: User login
-  description: User login to external application
+  description: User login to external application.
   operationId: postUserLogin
   security: []
   parameters:
@@ -16,16 +16,16 @@ post:
           properties:
             user_external_application_id:
               type: string
-              description: Id of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications)
+              description: ID of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications).
               example: 89d1a6111b3fb6e74665d948
             login:
               type: string
-              description: Login name of user in CareCloud
+              description: Login name of user in CareCloud.
               example: example@crmcarecloud.com
             password:
               type: string
               format: password
-              description: User's password
+              description: The CareCloud user password.
               example: password_example
   responses:
     '200':
@@ -40,11 +40,11 @@ post:
                 properties:
                   bearer_token:
                     type: string
-                    description: Autentication bearer token for an user. Token can be used for autentication in REST API with Bearer Autentication (more information about it [here](#section/Authorization/bearerAuth))
+                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](#section/Authorization/bearerAuth)).
                     example: "09359095c5da43c7ae11e710eabce49418715a6a"
                   valid_to:
                     type: string
-                    description: Date and time (local time zone of the project) of the token validity   *(YYYY-MM-DD HH:MM:SS)*
+                    description: Date and time (local time zone of the project) of the token validity.   *(YYYY-MM-DD HH:MM:SS)*
                     example: '2019-01-04 10:31:56'
                   user:
                     $ref: '../../schemas/_index.yaml#/User'
@@ -85,11 +85,11 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $body = new ActionsLoginBody1();
-        $body->setUserExternalApplicationId('external_id'); // string | Id of an external application where user wants to be logged in
+        $body->setUserExternalApplicationId('external_id'); // string | ID of an external application where user wants to be logged in
         $body->setLogin('user_login'); // string | Login name of the user
         $body->setPassword('user_password'); // string | User's password
 

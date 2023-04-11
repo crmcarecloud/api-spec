@@ -1,18 +1,18 @@
 type: object
-description: Booking item structure
+description: Booking item structure.
 properties:
   booking_item_id:
     type: string
-    description: The unique id of the booking item
+    description: The unique ID of the booking item.
     example: 8fd73167342d0689c4c015320
   customer_id:
     type: string
-    description: The unique id of the customer
+    description: The unique ID of the customer.
     example: 8ea6abece4cd0a4ded0a29f093
   time_slot_id:
     type: string
     readOnly: false
-    description: The unique id of the booking time slot
+    description: The unique ID of the booking time slot.
     example: 88bb88399cc74d81edbe19d684
   booking_ticket:
     type: object
@@ -21,17 +21,17 @@ properties:
   valid_from:
     type: string
     readOnly: true
-    description: Date and time when time slot starts *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when time slot starts. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-01-09 22:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time when time slot ends *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when time slot ends. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-01-09 22:30:00"
   capacity_taken:
     type: integer
     readOnly: false
-    description: How much capacity is taken by the booking item. If not set, value is 1
+    description: How much capacity is taken by the booking item. If not set, value is 1.
     default: 1
     example: 2
   booking_item_status:
@@ -44,11 +44,11 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: true
-    description: List of additional property records
+    description: List of additional property records.
   created_at:
     type: string
     readOnly: false
-    description: Date and time of the booking item *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the booking item. *(YYYY-MM-DD HH:MM:SS)*
     example: "2017-06-20 16:59:49"
   state:
     type: integer
@@ -58,13 +58,13 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the booking item record
+      State of the booking item record.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2013-07-24 21:33:33'
 required:
   - time_slot_id

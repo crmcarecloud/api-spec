@@ -2,7 +2,7 @@ get:
   tags:
     - Store groups
   summary: Get all store groups
-  description: Get a list of all store groups
+  description: Get a list of all store groups.
   operationId: getStoreGroups
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -24,12 +24,12 @@ get:
                 properties:
                   store_groups:
                     type: array
-                    description: List of all store groups
+                    description: List of all store groups.
                     items:
                       $ref: '../../schemas/_index.yaml#/StoreGroup'
                   total_items:
                     type: integer
-                    description: Count of all found store groups
+                    description: The number of all found store groups.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -69,7 +69,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

@@ -2,7 +2,7 @@ get:
   tags:
     - Task properties
   summary: Get a task property
-  description: Get information about a specific task property
+  description: Get information about a specific task property.
   operationId: getTaskProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_property_id = 'p1_communication_reasons'; // string | The unique id of the task property
+        $task_property_id = 'p1_communication_reasons'; // string | The unique ID of the task property
 
         // Call endpoint and get data
         try

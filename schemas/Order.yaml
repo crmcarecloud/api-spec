@@ -1,45 +1,45 @@
 type: object
-description: Order resource
+description: Order resource.
 properties:
   order_id:
     type: string
     readOnly: true
-    description: The unique id of the order
+    description: The unique ID of the order.
     example: 80af8a5dcc0702daf336f4de41
   order_number:
     type: string
     readOnly: false
-    description: External order number. If not set, internal order number will be set
+    description: External order number. If not set, internal order number will be set.
     example: "A3NKI89NFDS82434B"
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer, owner of the order
+    description: The unique ID of the customer, owner of the order.
     example: 87a6f37e138c1ef18918e747d
   currency_id:
     type: string
     readOnly: false
-    description: Id of currency
+    description: ID of the currency.
     example: 8bed991c68a470eaaeffbf048
   total_price:
     type: number
     format: float
     readOnly: false
-    description: Total price of the order
+    description: Total price of the order.
     example: '36.00'
   discount_codes:
     type: array
     items:
       type: string
     readOnly: false
-    description: Discount codes used in order
+    description: Discount codes used in the order.
     example:
   order_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/OrderItem'
     readOnly: false
-    description: List of the OrderItems
+    description: List of the OrderItems.
   invoicing_data:
     type: object
     $ref: '../schemas/_index.yaml#/OrderInvoicing'
@@ -51,37 +51,37 @@ properties:
   customer_note:
     type: string
     readOnly: false
-    description: Customer’s note for the merchant
+    description: Customer’s note for the merchant.
     example: "Have a nice day!"
   order_status:
     type: string
     readOnly: true
-    description: Text representation of the order status
+    description: Text representation of the order status.
     example: "New Uncomfirmed"
   shipping_date:
     type: string
     readOnly: true
-    description: Date of the order shipping. If the date is in future, order should be shipped in this date
+    description: Date of the order shipping. If the date is in future, order should be shipped in this date.
     example: "2019-07-19 17:26:34"
   program_ranking:
     type: integer
     readOnly: true
-    description: Rank of order in case of the series of multiple orders
+    description: Rank of order in case of the series of multiple orders.
     example: 4
   payment_status:
     type: string
     readOnly: true
-    description: Text representation of the payment status
+    description: Text representation of the payment status.
     example: "Unpaid"
   invoice_document_url:
       type: string
       readOnly: true
-      description: URL address with the invoice PDF
+      description: URL address with the invoice PDF.
       example: "https://example.crmcarecloud.com/invoices/1c68a470eaaeff"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-07-15 17:26:34"
 required:
   - customer_id

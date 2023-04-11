@@ -2,7 +2,7 @@ get:
   tags:
     - Orders
   summary: Get all orders
-  description: Get information about all customer's orders
+  description: Get information about all customer orders.
   operationId: getOrders
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -25,12 +25,12 @@ get:
                 properties:
                   orders:
                     type: array
-                    description: Collection of the customer orders
+                    description: Collection of the customer orders.
                     items:
                       $ref: '../../schemas/_index.yaml#/Order'
                   total_items:
                     type: integer
-                    description: Count of all found customer orders
+                    description: The number of all found customer orders.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -52,7 +52,7 @@ post:
   tags:
     - Orders
   summary: Create an order
-  description: Create a new order for customer
+  description: Create a new order for customer.
   operationId: postOrder
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -80,7 +80,7 @@ post:
                 properties:
                   order_id:
                     type: string
-                    description: The unique id of the order
+                    description: The unique ID of the order.
                     example: 80af8a5dcc0702daf336f4de41
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

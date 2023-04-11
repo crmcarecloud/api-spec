@@ -1,18 +1,18 @@
 type: object
-description: Customer type structure
+description: Customer type structure.
 properties:
   type_id:
     type: string
     readOnly: true
-    description: The unique id of the customer type
+    description: The unique ID of the customer type.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: true
-    description: Name of the customer type
+    description: Name of the customer type.
     example: club
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2017-12-01 14:29:41'

@@ -1,8 +1,8 @@
 type: object
-description: Cashier message structure
+description: Cashier message structure.
 properties:
   text:
     type: string
     readOnly: true
-    description: Text of the message
+    description: Text of the message.
     example:

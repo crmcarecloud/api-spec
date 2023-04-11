@@ -25,12 +25,12 @@ get:
                 properties:
                   credits:
                     type: array
-                    description: List of the credit records
+                    description: List of the credit records.
                     items:
                       $ref: '../../schemas/_index.yaml#/Credit'
                   total_items:
                     type: integer
-                    description: Count of all found credit records
+                    description: The number of all found credit records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

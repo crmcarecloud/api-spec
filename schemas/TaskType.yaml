@@ -1,20 +1,20 @@
 type: object
-description: Task type resource
+description: Task type resource.
 properties:
   task_type_id:
     type: string
     readOnly: true
-    description: The unique id of the task type
+    description: The unique ID of the task type.
     example: 8bed991c68a470e7aaeffbf048
   name:
     type: string
     readOnly: false
-    description: Name of the task type
+    description: Name of the task type.
     example: "Customer care"
   text_id:
     type: string
     readOnly: true
-    description: Text id of the task type
+    description: Text ID of the task type.
     example: "customer_care"
   state:
     type: integer
@@ -24,7 +24,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type
+      State of the event type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Get a collection of properties
-  description: Get information about all property records on a customer account
+  description: Get information about all property records on a customer account.
   operationId: getSubCustomerProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -24,12 +24,12 @@ get:
                 properties:
                   property_records:
                     type: array
-                    description: List of property records
+                    description: List of property records.
                     items:
                       $ref: '../../schemas/_index.yaml#/PropertyRecord'
                   total_items:
                     type: integer
-                    description: Count of all found customer sources
+                    description: The number of all found customer sources.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -69,10 +69,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Call endpoint and get data
         try
@@ -91,7 +91,7 @@ post:
   tags:
     - Customers
   summary: Add a property to a customer
-  description: Add a new specific customer property record to a customer account
+  description: Add a new specific customer property record to a customer account.
   operationId: postSubCustomerProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -120,7 +120,7 @@ post:
                 properties:
                   property_record_id:
                     type: string
-                    description: The unique id of the property record
+                    description: The unique ID of the property record.
                     example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -162,14 +162,14 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Set property record info
         $property_record = new PropertyRecord();
-        $property_record->setPropertyId('is_biker'); // string | The unique id of the property
+        $property_record->setPropertyId('is_biker'); // string | The unique ID of the property
         $property_record->setPropertyValue(true); // mixed | Value of the property (optional) (string or null) or (number or null) or (integer or null) or (boolean or null) or (Array of any or null) or (object or null)
 
         // Set property record info to the request body

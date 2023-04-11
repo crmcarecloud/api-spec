@@ -1,10 +1,10 @@
 type: object
-description: Customer relation type structure
+description: Customer relation type structure.
 properties:
   customer_relation_type_id:
     type: string
     readOnly: true
-    description: The unique id of the customer relation type
+    description: The unique ID of the customer relation type.
     example: 8bed991c68a470e7aaeffbf048
   name:
     type: string
@@ -14,7 +14,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-05-16 13:35:40"
   state:
     type: integer
@@ -24,7 +24,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the customer relation type
+      State of the customer relation type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

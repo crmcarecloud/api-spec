@@ -1,16 +1,16 @@
 type: object
-description: External code resource
+description: External code resource.
 properties:
   external_code_type_id:
     type: integer
     readOnly: false
-    description: The unique id of the external code type (provided by your account manager)
+    description: The unique ID of the external code type (provided by your account manager).
     example: 1
     default: 1
   value:
     type: string
     readOnly: false
-    description: Value of external code
+    description: Value of the external code.
     example: '2107225110'
 required:
   - external_code_type_id

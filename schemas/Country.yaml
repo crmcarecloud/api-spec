@@ -1,9 +1,9 @@
 type: object
-description: Country resource
+description: Country resource.
 properties:
   country_id:
     type: string
-    description: The unique id of the country as ISO code
+    description: The unique ID of the country as ISO code.
     example: cz
   name:
     type: string
@@ -16,6 +16,6 @@ properties:
       - 1
       - 2
     description: |
-      State of the country
+      State of the country.
       *Possible values are: 0 - deleted / 1- active / 2 - non active*
     example: 1

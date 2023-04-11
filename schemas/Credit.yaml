@@ -1,47 +1,47 @@
 type: object
-description: Customer's credit
+description: A customer credit.
 properties:
   credit_id:
     type: string
     readOnly: true
-    description: The unique id of the credit record
+    description: The unique ID of the credit record.
     example: 8bed991c68a470e7aaeffbf048
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer.
+    description: The unique ID of the customer.
     example: 8ea2591121e636086a4a9c0992
   assigned_credits:
     type: number
     format: float
     readOnly: true
-    description: The number of earned credits in the record
+    description: The number of earned credits in the record.
     example: 1000
   available_credits:
     type: number
     format: float
     readOnly: true
-    description: The number of avaliable credits from the record
+    description: The number of available credits from the record.
     example: 1000
   credit_type_id:
     type: string
     readOnly: false
-    description: Type of the credit record
+    description: Type of the credit record.
     example: 86e05affc7a7abefcd513ab400
   partner_id:
     type: string
     readOnly: false
-    description: The unique id of the partner company
+    description: The unique ID of the partner company.
     example: 86e05affc7a7abefcd513ab400
   valid_to:
     type: string
     readOnly: false
-    description: Date and time of the credit record validity to *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the credit record validity to. *(YYYY-MM-DD HH:MM:SS)*
     example:
   currency_id:
     type: string
     readOnly: true
-    description: The unique id of the currency
+    description: The unique ID of the currency.
     example: 86e05affc7a7abefcd513ab400
   state:
     type: integer
@@ -51,7 +51,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the credit record
+      State of the credit record.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

@@ -16,7 +16,7 @@ post:
           properties:
             property_records:
               type: array
-              description: List of property records
+              description: List of property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
           required:

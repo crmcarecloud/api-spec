@@ -1,69 +1,69 @@
 type: object
-description: Store structure
+description: Store structure.
 properties:
   store_id:
     type: string
     readOnly: true
-    description: The unique id of the store in CareCloud
+    description: The unique ID of the store in CareCloud.
     example: 81eaeea13b8984a169c490a325
   store_code:
     type: string
     readOnly: false
-    description: External code of the store
+    description: External code of the store.
     example: "84a169c490a325"
   name:
     type: string
     readOnly: false
-    description: Name of the store
+    description: Name of the store.
     example: Another good store
   store_address:
     $ref: '../schemas/_index.yaml#/Address'
   contact_email:
     type: string
     readOnly: false
-    description: Contact email of the store
+    description: Contact email of the store.
     example: "good.store@crmcarecloud.com"
   manager_name:
     type: string
     readOnly: false
-    description: Name of the store manager
+    description: Name of the store manager.
     example: "Andrew Black"
   phone_number:
     type: string
     pattern: ^[1-9][0-9]*$
     readOnly: false
-    description: Phone number of the store with international prefix (420000000000)
+    description: Phone number of the store with international prefix (420000000000).
     example: 420523828931
   partner_id:
     type: string
     readOnly: false
-    description: The unique id of the partner
+    description: The unique ID of the partner.
     example: 86e05affc7a7abefcd513ab400
   system_id:
     type: string
     readOnly: false
-    description: The external unique id of the store in external system
+    description: The external unique ID of the store in external system.
     example: "2375303497"
   gps_coordinates:
     $ref: '../schemas/_index.yaml#/GPSCoordinates'
   url_address:
     type: string
     readOnly: false
-    description: URL address of the store
+    description: URL address of the store.
     example: "www.crmcarecloud.com"
   opening:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/OpeningDay'
     readOnly: false
-    description: List of opening days
+    description: List of opening days.
   image_urls:
     type: array
     items:
       type: string
       example:
     readOnly: true
-    description: A list of image URL addresses
+    description: A list of image URL addresses.
   visibility_for_customer:
     type: integer
     enum:
@@ -71,28 +71,28 @@ properties:
       - 1
     readOnly: true
     description: |
-      State of the visibility for the customer
+      State of the visibility for the customer.
       *Possible values are: 0 - invisible / 1 - visible*
     example: 1
   short_description:
     type: string
     readOnly: false
-    description: Short description of the store
+    description: Short description of the store.
     example: "Another good store for buying beverages"
   description:
     type: string
     readOnly: false
-    description: Long description of the store
+    description: Long description of the store.
     example: "Another good store for buying beverages: beer, wine, juice, soda"
   registration_id:
     type: string
     readOnly: false
-    description: Legal registration number of the store
+    description: Legal registration number of the store.
     example: "81eaeea13b89"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2023-03-28 16:12:56"
   state:
     type: integer

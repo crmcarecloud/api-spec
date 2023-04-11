@@ -16,15 +16,15 @@ post:
           properties:
             verification_code:
               type: string
-              description: Verification code from email, SMS or notification provided by recipient
+              description: Verification code from email, SMS or notification provided by recipient.
               example: 7256
             request_id:
               type: string
-              description: The parameter specifies the request that caused the OTP to be created. Request id was created in the action method [/one-time-password/actions/send](#operation/postSendOtp)
+              description: The parameter specifies the request that caused the OTP to be created. Request ID was created in the action method [/one-time-password/actions/send](#operation/postSendOtp).
               example: 106c5ce60ed0830ffb813135bfff7cad9f4c3e47
             external_application_id:
               type: string
-              description: Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)
+              description: ID of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication).
               example: 82de12eb8b138791e678fd11c3
           required:
             - verification_code
@@ -43,7 +43,7 @@ post:
                 properties:
                   is_valid:
                     type: boolean
-                    description: Result of the OTP verification
+                    description: Result of the OTP verification.
                     example: true
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -84,12 +84,12 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         $body = new ActionsVerifyBody();
         $body->setVerificationCode('7R29') // string | Verification code from email, SMS or notification provided by recipient
         ->setRequestId('b223286fbc1de2db689d443be35b1f6078f059d3') // string | The parameter specifies the request that caused the OTP to be created
-        ->setExternalApplicationId($external_app_id); // string | Id of the external application that requested one time password
+        ->setExternalApplicationId($external_app_id); // string | ID of the external application that requested one time password
 
         // Call endpoint and post data
         try

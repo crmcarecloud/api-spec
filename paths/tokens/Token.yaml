@@ -2,7 +2,7 @@ put:
   tags:
     - Tokens
   summary: Edit a push token
-  description: Update a push token and installation setup
+  description: Update a push token and installation setup.
   operationId: putToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -18,7 +18,7 @@ put:
               $ref: '../../schemas/_index.yaml#/Setup'
             push_token:
               type: string
-              description: Push notification token (Apple or Google)
+              description: Push notification token (Apple or Google).
               example: 4f7f658bfa7a5959e093590
           required:
             - setup
@@ -68,11 +68,11 @@ put:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the setup info
         $setup = new Setup();
-        $setup->setLanguageId('en'); // string | The unique id of the language by ISO 639-1 code from languages resource
+        $setup->setLanguageId('en'); // string | The unique ID of the language by ISO 639-1 code from languages resource
         $setup->setAllowedGps(false); // boolean | Permission to GPS tracking in the mobile application
         $setup->setAllowedNotifications(false); // boolean | Permission to the mobile application's notifications
 

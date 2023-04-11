@@ -3,7 +3,7 @@ post:
     - Tokens
   summary: Create a token
   description: >
-    Create a token and setup of the client's application
+    Create a token and setup of the client application.
     <p class="warning">Note: When creating a new token, HTTP header doesn't contain token_id in authentication part.</p>
     <p class="warning">⚠️ Warning: We highly recommend filling all identifications in tokens resource (device and application) to avoid problems if multiple applications use CareCloud REST API on one device.</p>
     <p class="warning">The creation of a token is different from other API calls. HTTP Authorization header contains only a login name and no token. See [Use cases](#section/Use-cases/Authentication-and-login-process-for-customer-interface).</p>
@@ -25,11 +25,11 @@ post:
               $ref: '../../schemas/_index.yaml#/Setup'
             external_application_id:
               type: string
-              description: Id of the [customer-external-application resource](#tag/Customer-external-applications)
+              description: ID of the [customer-external-application resource](#tag/Customer-external-applications).
               example: 82de12eb8b138791e678fd11c3
             push_token:
               type: string
-              description: Push notification token (Apple or Google)
+              description: Push notification token (Apple or Google).
               example: 4f7f658bfa7a5959e093590
           required:
             - device
@@ -48,7 +48,7 @@ post:
                 properties:
                   token_id:
                     type: string
-                    description: Client's application token
+                    description: The client application token.
                     example: 4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -94,18 +94,18 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the device info
         $device = new Device();
-        $device->setDeviceId('test121212'); // string | The unique id of the client device
+        $device->setDeviceId('test121212'); // string | The unique ID of the client device
         $device->setDeviceSystem('iOS'); // string | Operation system of the device
         $device->setDeviceName('Apple iPhone'); // string | The name of the device
         $device->setDeviceType('test_device'); // string | Type of device by producer (product line)
 
         // Set the setup info
         $setup = new Setup();
-        $setup->setLanguageId('en'); // string | The unique id of the language by ISO 639-1 code from languages resource
+        $setup->setLanguageId('en'); // string | The unique ID of the language by ISO 639-1 code from languages resource
         $setup->setAllowedGps(false); // boolean | Permission to GPS tracking in the mobile application
         $setup->setAllowedNotifications(false); // boolean | Permission to the mobile application's notifications
 
@@ -113,7 +113,7 @@ post:
         $body = new TokensBody();
         $body->setDevice($device);
         $body->setSetup($setup);
-        $body->setExternalApplicationId('82de12eb8b138791e678fd11c3'); // string | Id of the customer-external-application resource
+        $body->setExternalApplicationId('82de12eb8b138791e678fd11c3'); // string | ID of the customer-external-application resource
         $body->setPushToken(''); // string | Push notification token (Apple or Google) (optional)
 
         // Call endpoint and post data

@@ -1,20 +1,20 @@
 type: object
-description: Campaign product store record
+description: Campaign product store record.
 properties:
   campaign_product_store_record_id:
     type: string
     readOnly: true
-    description: The unique id of the campaign product store record.
+    description: The unique ID of the campaign product store record.
     example: 8bed991c68a470e7aaeffbf048
   store_id:
     type: string
     readOnly: false
-    description: The unique id of the store.
+    description: The unique ID of the store.
     example: 8bed991c68a470e7aaeffbf048
   campaign_product_id:
     type: string
     readOnly: false
-    description: The unique id of the campaign product.
+    description: The unique ID of the campaign product.
     example: 81eaeea13b8984a169c490a325
 required:
   - store_id

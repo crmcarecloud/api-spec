@@ -1,20 +1,20 @@
 type: object
-description: Product reservation source resource
+description: Product reservation source resource.
 properties:
   product_reservation_source_id:
     type: string
     readOnly: true
-    description: The unique id of the product reservation source
+    description: The unique ID of the product reservation source.
     example: '8bed991c68a470e7aaeffbf048'
   name:
     type: string
     readOnly: false
-    description: Name of the product reservation source in defined language(depends on language in http header of the API request)
+    description: Name of the product reservation source in defined language(depends on language in http header of the API request).
     example: 'E-shop'
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2020-09-09 12:32:42.143353"
   state:
     type: integer
@@ -24,6 +24,6 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the product reservation source
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      State of the product reservation source.
+      *Possible values are: 0 - deleted / 1 - active *
     example: 1

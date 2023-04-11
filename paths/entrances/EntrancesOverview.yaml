@@ -2,7 +2,7 @@ get:
   tags:
     - Charged entrances
   summary: Get entrances overview
-  description: Get information about entrances in time interval
+  description: Get information about entrances in time interval.
   operationId: getEntrancesOverview
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -22,19 +22,19 @@ get:
                 properties:
                   active_entrances:
                     type: integer
-                    description: Amount of active entrances in date range. Active entrances can be used by customers in their validity range
+                    description: Amount of active entrances in date range. Active entrances can be used by customers in their validity range.
                     example: 113655
                   canceled_entrances:
                     type: integer
-                    description: Amount of canceled entrances in date range. Canceled entrances in production systems and in CareCloud. Customers cannot use them anymore
+                    description: Amount of canceled entrances in date range. Canceled entrances in production systems and in CareCloud. Customers cannot use them anymore.
                     example: 446
                   deactivated_entrances:
                     type: integer
-                    description: Amount of deactivated entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud
+                    description: Amount of deactivated entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud.
                     example: 233834
                   sold_entrances:
                     type: integer
-                    description: Amount of sold entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud
+                    description: Amount of sold entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud.
                     example: 347489
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

@@ -11,8 +11,8 @@ $apiInstance = new CareCloud\Api\CustomersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$agreement_id = "agreement_id_example"; // string | The unique id of an agreement in CareCloud
-$accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+$agreement_id = "agreement_id_example"; // string | The unique ID of an agreement in CareCloud
+$accept_language = "cs, en-gb;q=0.8"; // string | The unique ID of the language code by ISO 639-1
 
 try {
     $result = $apiInstance->getCustomer($agreement_id, $accept_language);

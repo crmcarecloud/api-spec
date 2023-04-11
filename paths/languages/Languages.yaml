@@ -2,7 +2,7 @@ get:
   tags:
     - Languages
   summary: Get all languages
-  description: Get a list of all languages accepted in CRM CareCloud
+  description: Get a list of all languages accepted in CRM CareCloud.
   operationId: getLanguages
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -20,12 +20,12 @@ get:
                 properties:
                   languages:
                     type: array
-                    description: List of the language codes by ISO 639-1
+                    description: List of the language codes by ISO 639-1.
                     items:
                       $ref: '../../schemas/_index.yaml#/Language'
                   total_items:
                     type: integer
-                    description: Count of all found languages
+                    description: The number of all found languages.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -65,7 +65,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $language_list_type = 'web-portal'; // string | Type of language list, possible values: "carecloud-api" "web-portal" "customer-communication" (optional, the default value is "carecloud-api")

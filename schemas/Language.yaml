@@ -1,10 +1,10 @@
 type: object
-description: Language structure
+description: Language structure.
 properties:
   language_id:
     type: string
     readOnly: true
-    description: The unique id of the language code by ISO 639-1
+    description: The unique ID of the language code by ISO 639-1.
     example: cs
   state:
     type: integer
@@ -14,11 +14,11 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type
+      State of the event type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: 2017-03-24 15:29:47"

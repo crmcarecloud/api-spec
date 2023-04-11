@@ -1,17 +1,17 @@
 type: object
-description: GPS coordinates of the store
+description: GPS coordinates of the store.
 properties:
   gps_longitude:
     type: number
     format: float
     readOnly: false
-    description: GPS longitude
+    description: GPS longitude.
     example: 0
   gps_latitude:
     type: number
     format: float
     readOnly: false
-    description: GPS latitude
+    description: GPS latitude.
     example: 0
 required:
   - gps_longitude

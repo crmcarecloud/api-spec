@@ -1,5 +1,5 @@
 type: object
-description: Personal information of the customer
+description: Personal information of the customer.
 properties:
   salutation:
     type: string
@@ -17,55 +17,55 @@ properties:
   first_name:
     type: string
     readOnly: false
-    description: First name of the customer
+    description: First name of the customer.
     example: John
   last_name:
     type: string
     readOnly: false
-    description: Last name of the customer
+    description: Last name of the customer.
     example: Smith
   pre_nominals:
     type: string
     readOnly: false
-    description: Academic degrees, academic titles, other titles of customer placed before name
+    description: Academic degrees, academic titles, other titles of customer placed before name.
     example: Dr.
   post_nominals:
     type: string
     readOnly: false
-    description: Academic degrees, academic titles, other titles of customer placed after name
+    description: Academic degrees, academic titles, other titles of customer placed after name.
     example: Ph.D
   birthdate:
     type: string
     format: date
     readOnly: false
-    description: Customer's date of birth (YYYY-MM-DD)
+    description: Customer's date of birth. *(YYYY-MM-DD)*
     example: "1985-02-12"
   email:
     type: string
     pattern: ^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
     readOnly: false
-    description: Email of the customer
+    description: Email of the customer.
     example: happy_customer@crmcarecloud.com
   phone:
     type: string
     pattern: ^[1-9][0-9]*$
     readOnly: false
-    description: Phone number of the customer with international prefix (420000000000)
+    description: Phone number of the customer with international prefix (420000000000).
     example: 420523828931
   language_id:
     type: string
     readOnly: false
-    description: The unique id of the language by ISO 639-1 code
+    description: The unique ID of the language by ISO 639-1 code.
     example: en
   store_id:
     type: string
     readOnly: false
-    description: The unique id of the original customer account store of registration
+    description: The unique ID of the original customer account store of registration.
     example: 8bed991c68a4
   photo_url:
     type: string
     readOnly: true
-    description: URL address of the customer photo. If customer has no photo, this parameter is not send
+    description: URL address of the customer photo. If customer has no photo, this parameter is not send.
     example:
   address:
     type: object

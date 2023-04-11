@@ -1,25 +1,25 @@
 type: object
-description: Customer segment record
+description: Customer segment record.
 properties:
   segment_id:
     type: string
     readOnly: false
-    description: The unique id of the segment
+    description: The unique ID of the segment.
     example: 83caed4c60c6be7e4392cc25ed
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer
+    description: The unique ID of the customer.
     example: 89ac83ca207a820c62c79bf03a
   created_at:
     type: string
     readOnly: true
-    description: Date and time when was the segment record created *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when was the segment record created. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-06-20 16:59:49"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2019-08-29 13:04:45'
 required:
   - segment_id

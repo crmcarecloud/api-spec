@@ -2,7 +2,7 @@ get:
   tags:
     - Stores
   summary: Get a collection of store group records
-  description: Get information about all store group records on a store account
+  description: Get information about all store group records tied to the store.
   operationId: getSubStoreGroups
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -20,12 +20,12 @@ get:
                 properties:
                   store_group_records:
                     type: array
-                    description: List of store group records
+                    description: List of the store group records.
                     items:
                       $ref: '../../schemas/_index.yaml#/StoreGroupRecord'
                   total_items:
                     type: integer
-                    description: Count of all found store group records
+                    description: The number of all found store group records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -65,10 +65,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $store_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the store
+        $store_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the store
 
         // Call endpoint and get data
         try

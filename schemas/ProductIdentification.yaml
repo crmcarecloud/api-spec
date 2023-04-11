@@ -1,14 +1,14 @@
 type: object
-description: All possible identifications of the product
+description: All possible identifications of the product.
 properties:
   product_id:
     type: string
     readOnly: false
-    description: The unique CareCloud id of the product
+    description: The unique CareCloud ID of the product.
     example: '89bdacbffb5c82f2c52cb9ae8f'
   plu_ids:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PluId'
     readOnly: false
-    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id of every product across all POS systems)).
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).

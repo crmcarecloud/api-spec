@@ -15,7 +15,7 @@ post:
           properties:
             third_party_recommendations:
               type: array
-              description: List of the Recommendations from third party system
+              description: List of the Recommendations from third party system.
               items:
                 $ref: '../../schemas/_index.yaml#/ThirdPartyRecommendation'
           required:

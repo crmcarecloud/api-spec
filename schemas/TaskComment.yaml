@@ -1,25 +1,25 @@
 type: object
-description: Task comment
+description: Task comment.
 properties:
   task_comment_id:
     type: string
     readOnly: true
-    description: The unique id of the task comment
+    description: The unique ID of the task comment.
     example: 8bed991c68a470e7aaeffbf048
   task_id:
     type: string
     readOnly: true
-    description: The unique id of the task
+    description: The unique ID of the task.
     example: 8bed991c68a470e7aaeffbf048
   text:
     type: string
     readOnly: false
-    description: Text of the comment
+    description: Text of the comment.
     example: "Could you please send me last invoice to my email?."
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last comment change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last comment change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-06-20 16:59:49"
   state:
     type: integer
@@ -29,7 +29,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type
+      State of the event type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

@@ -25,12 +25,12 @@ get:
                 properties:
                   addresses:
                     type: array
-                    description: Collection of customer addresses
+                    description: Collection of customer addresses.
                     items:
                       $ref: '../../schemas/_index.yaml#/AdditionalAddress'
                   total_items:
                     type: integer
-                    description: Count of all found customer addresses
+                    description: The number of all found customer addresses.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -70,17 +70,17 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
         $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
         $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
-        $customer_address_type_id = null; // string | The unique id of the customer address type (optional, default is null)
+        $customer_address_type_id = null; // string | The unique ID of the customer address type (optional, default is null)
 
         // Call endpoint and get data
         try
@@ -107,7 +107,7 @@ post:
   tags:
     - Customers
   summary: Create an additional customer address
-  description: Add a new additional customer address
+  description: Add a new additional customer address.
   operationId: postSubCustomerAddress
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -136,7 +136,7 @@ post:
                 properties:
                   additional_address_id:
                     type: string
-                    description: The unique id of the additional customer address
+                    description: The unique ID of the additional customer address.
                     example: 81a94c48474bc45c03d41f7016
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -179,10 +179,10 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Set additional address
         $address = new Address();
@@ -198,7 +198,7 @@ post:
         $address->setCountryCode('cz'); // string | ISO code of the country Possible values de / gb / us / it / cz / etc.
 
         $additional_address = new AdditionalAddress();
-        $additional_address->setAddressType('86e05affc7a7abefcd513ab400') // string | The unique id of the type of the address
+        $additional_address->setAddressType('86e05affc7a7abefcd513ab400') // string | The unique ID of the type of the address
             ->setAddress($address);
 
         // Set additional address to the request body

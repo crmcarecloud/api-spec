@@ -2,7 +2,7 @@ post:
   tags:
     - Tokens
   summary: Login to the application
-  description: Login of a customer account to client's application
+  description: Login of a customer account to client's application.
   operationId: postTokenLogin
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -19,16 +19,16 @@ post:
               enum:
                 - card
                 - email
-              description: The unique id of the login type.
+              description: The unique ID of the login type.
               example: email
             login_value:
               type: string
-              description: Value of the login to Customer interface API
+              description: Value of the login to Customer interface API.
               example: example@crmcarecloud.com
             password:
               type: string
               format: password
-              description: Password of the customer
+              description: Password of the customer.
               example: password_example
           required:
             - device
@@ -46,7 +46,7 @@ post:
                 properties:
                   customer_id:
                     type: string
-                    description: The unique id of the customer
+                    description: The unique ID of the customer.
                     example: 8ea2591121e636086a4a9c0992
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -90,14 +90,14 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
         $token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token
 
         // Set the request body
         $body = new ActionsLoginBody();
-        $body->setLoginType('email'); // string | The unique id for the login type ('card' or 'email' only)
+        $body->setLoginType('email'); // string | The unique ID for the login type ('card' or 'email' only)
         $body->setLoginValue('happy_customer@example.com'); // string | Value of the login to Customer interface API
         $body->setPassword('secret_password'); // string | Customer's password
 

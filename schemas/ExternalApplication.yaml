@@ -1,20 +1,20 @@
 type: object
-description: External application structure
+description: External application structure.
 properties:
   external_application_id:
     type: string
     readOnly: false
-    description: The unique id of the client external application
+    description: The unique ID of the client external application.
     example: 8bed991c68a470e7aaeffbf048
   name:
     type: string
     readOnly: false
-    description: The name of the external application
+    description: The name of the external application.
     example: Sandbox app
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2021-07-26 09:46:59.005819'
   state:
     type: integer
@@ -24,7 +24,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the external application
+      State of the external application.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

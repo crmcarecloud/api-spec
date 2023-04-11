@@ -1,10 +1,10 @@
 type: object
-description: Basic information about a customer
+description: Basic information about a customer.
 properties:
   customer_id:
     type: string
     readOnly: true
-    description: The unique id of the customer
+    description: The unique ID of the customer.
     example: 8ea2591121e636086a4a9c0992
   personal_information:
     type: object
@@ -12,7 +12,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2019-06-23 11:47:22'
   state:
     type: integer
@@ -21,7 +21,7 @@ properties:
       - 1
       - 2
     readOnly: true
-    description: 'State of the customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+    description: 'State of the customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
     example: 1
 required:
   - personal_information

@@ -3,12 +3,12 @@ properties:
   agreement_id:
     type: string
     readOnly: true
-    description: The unique id of the agreement in CareCloud
+    description: The unique ID of the agreement in CareCloud.
     example: 8fd73167342d06899c4c015320
   name:
     type: string
     readOnly: true
-    description: Name of the agreement in CareCloud
+    description: Name of the agreement in CareCloud.
     example: Custom agreement
   text:
     type: string
@@ -18,10 +18,10 @@ properties:
   communication_channel_id:
     type: string
     readOnly: true
-    description: The unique id of the communication channel from resource [GET /communication-channels](#tag/Communication-channels)
+    description: The unique ID of the communication channel from resource [GET /communication-channels](#tag/Communication-channels).
     example: 86e05affc7a7abefcd513ab400
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2021-12-16 17:42:28.248955'

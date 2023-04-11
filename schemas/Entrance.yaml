@@ -1,14 +1,14 @@
 type: object
-description: Entrance structure
+description: Entrance structure.
 properties:
   entrance_id:
     type: string
     readOnly: false
-    description: The unique id of the entrance
+    description: The unique ID of the entrance.
     example: 80a7be2e78aabc1454ca817265
   pos_id:
     readOnly: false
-    description:  'Id of POS system for tickets. Required with path parameter entrance id *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
+    description:  'ID of POS system for tickets. Required with path parameter entrance ID. *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
     type: integer
     enum:
       - 3
@@ -18,32 +18,32 @@ properties:
   name:
     type: string
     readOnly: true
-    description: Name of the entrance
+    description: Name of the entrance.
     example: 1 Dňový Skipas - Akcia 7.1. - 22.1.2015
   customer_id:
     type: string
     readOnly: true
-    description: The unique id of the customer
+    description: The unique ID of the customer.
     example:
   resort_name:
     type: string
     readOnly: true
-    description: Name of the resort where is an entrance charged
+    description: Name of the resort where is an entrance charged.
     example:
   customer_category_name:
     type: string
     readOnly: true
-    description: Name of the customer category
+    description: Name of the customer category.
     example:
   external_order_id:
     type: string
     readOnly: true
-    description: Id of an external order creaded in POS system
+    description: ID of an external order creaded in POS system.
     example: "d03df0e0-959a-11e4-a6ce-0050569b002b"
   external_entrance_id:
     type: string
     readOnly: true
-    description: External id of the entrance. Structure can be different depends of POS system, that created entrance
+    description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
     example: "1-1760-61-107788"
   entrance_type_id:
     type: integer
@@ -57,53 +57,53 @@ properties:
   order_item_id:
     type: string
     readOnly: true
-    description: Order id item represents relation between entrance and order item from carecloud e-shop
+    description: Order ID item represents relation between entrance and order item from carecloud e-shop.
     example: "84947e1aa1ad6982cc8188d15c"
   card_id:
     type: string
     readOnly: true
-    description: Id of card used for charge entrance
+    description: ID of card used for charge entrance.
     example: "8c9fd120242ef646f477a5ed80"
   created_at:
     type: string
     readOnly: true
-    description: Date and time when entrance was created in CareCloud *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when entrance was created in CareCloud. *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-06 12:54:46"
   cancelled_at:
     type: string
     readOnly: true
-    description: Date and time when entrance was cancelled in CareCloud *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when entrance was cancelled in CareCloud. *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-09 22:38:48.088"
   charged_price:
     type: number
     format: float
     readOnly: true
-    description: Price charged to POS system
+    description: Price charged to POS system.
     example:
   product_ids:
     type: string
     readOnly: true
-    description: The unique id of the product
+    description: The unique ID of the product.
     example:
   charge_date:
     type: string
     readOnly: true
-    description: Date and time when entrance will be/was charged to the POS system *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when entrance will be/was charged to the POS system. *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-10 00:00:00"
   valid_from:
     type: string
     readOnly: true
-    description: Date of the first day when customer can use entrance *(YYYY-MM-DD)*
+    description: Date of the first day when customer can use entrance. *(YYYY-MM-DD)*
     example:
   valid_to:
     type: string
     readOnly: true
-    description: Date of the last day when customer can use entrance *(YYYY-MM-DD)*
+    description: Date of the last day when customer can use entrance. *(YYYY-MM-DD)*
     example:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2019-08-29 13:04:45'
   state:
     type: integer
@@ -111,7 +111,7 @@ properties:
       - 0
       - 1
     readOnly: false
-    description: 'State of the event type *Possible values are: 0 - cancelled / 1- active*'
+    description: 'State of the event type. *Possible values are: 0 - cancelled / 1- active*'
     example: 1
 required:
   - entrance_id

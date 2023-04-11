@@ -2,7 +2,7 @@ get:
   tags:
     - Booking tickets
   summary: Get a collection time slots depends on booking ticket
-  description: Get information about all time slots depends on booking ticket
+  description: Get information about all time slots depends on booking ticket.
   operationId: getSubBookingTicketsTimeSlots
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -29,12 +29,12 @@ get:
                 properties:
                   time_slots:
                     type: array
-                    description: List of booking time slots
+                    description: List of booking time slots.
                     items:
                       $ref: '../../schemas/_index.yaml#/TimeSlot'
                   total_items:
                     type: integer
-                    description: Count of all found time slots
+                    description: The number of all found time slots.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -74,10 +74,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $booking_ticket_id = '89d88719b8b442de2d11b401a2'; // string | The unique id of the booking ticket
+        $booking_ticket_id = '89d88719b8b442de2d11b401a2'; // string | The unique ID of the booking ticket
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

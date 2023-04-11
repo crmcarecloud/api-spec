@@ -2,7 +2,7 @@ get:
   tags:
     - Reservable products
   summary: Get all reservable products
-  description: Get the information as a list of reservable products
+  description: Get the information as a list of reservable products.
   operationId: getReservableProducts
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -25,12 +25,12 @@ get:
                 properties:
                   reservable_products:
                     type: array
-                    description: List of reservable products
+                    description: List of reservable products.
                     items:
                       $ref: '../../schemas/_index.yaml#/Product'
                   total_items:
                     type: integer
-                    description: Count of all found reservable products
+                    description: The number of all found reservable products.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -70,7 +70,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

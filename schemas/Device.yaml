@@ -1,25 +1,25 @@
 type: object
-description: Structure describes client's device
+description: Structure describes the client device or browser.
 properties:
   device_id:
     type: string
     readOnly: false
-    description: The unique id of the client device
+    description: The unique ID of the client device.
     example: '123456'
   device_system:
     type: string
     readOnly: false
-    description: Operation system of the device
+    description: Operation system of the device.
     example: 'OSX'
   device_name:
     type: string
     readOnly: false
-    description: The name of the device
+    description: The name of the device.
     example: 'Test device'
   device_type:
     type: string
     readOnly: false
-    description: Type of device by producer (product line)
+    description: Type of device by producer (product line).
     example: 'iPhone'
 required:
   - device_id

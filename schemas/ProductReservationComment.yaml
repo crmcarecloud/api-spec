@@ -1,13 +1,13 @@
 type: object
-description: Product reservation comment structure
+description: Product reservation comment structure.
 properties:
   comment_text:
     type: string
     readOnly: true
-    description: Text of the product reservation comment
+    description: Text of the product reservation comment.
     example: 'The customer will pick up the reservation tonight.'
   comment_time:
     type: string
     readOnly: true
-    description: Date and time of the product reservation comment *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the product reservation comment. *(YYYY-MM-DD HH:MM:SS)*
     example: '2012-11-22 20:57:04'

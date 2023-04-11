@@ -2,7 +2,7 @@ get:
   tags:
     - Payment types
   summary: Get all payment types
-  description: Get a list of payment types accepted in CRM CareCloud
+  description: Get a list of payment types accepted in CRM CareCloud.
   operationId: getPaymentTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -23,12 +23,12 @@ get:
                 properties:
                   payment_types:
                     type: array
-                    description: List of the payment types
+                    description: List of the payment types.
                     items:
                       $ref: '../../schemas/_index.yaml#/PaymentType'
                   total_items:
                     type: integer
-                    description: Count of all found payment types
+                    description: The number of all found payment types.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

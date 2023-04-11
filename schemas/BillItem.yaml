@@ -1,33 +1,33 @@
 type: object
-description: Bill item structure
+description: Bill item structure.
 properties:
   plu_ids:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PluId'
     readOnly: false
-    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique id of every product across all POS systems))
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
   plu_name:
     type: string
     readOnly: false
-    description: Product name
+    description: Product name.
     example: qwer
   category_plu_id:
     type: string
     readOnly: false
-    description: Product category ID from Global product list (consist cleaned data - unique id of every category across all POS systems)
+    description: Product category ID from Global product list (consist cleaned data - unique ID of every category across all POS systems).
     example: 8fbea1c1ea8edda5e67f27Q
   vat_rate:
     type: number
     format: float
     readOnly: false
-    description: VAT rate of the item
+    description: VAT rate of the item.
     example: 4
   quantity:
     type: number
     format: float
     readOnly: false
-    description: Quantity of product
+    description: Quantity of product.
     example: 2
   paid_amount:
     type: number
@@ -39,12 +39,12 @@ properties:
     type: number
     format: float
     readOnly: false
-    description: Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer's health insurance.
+    description: Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer  health insurance.
     example: 6
   bill_item_id:
     type: string
     readOnly: false
-    description: ID of the bill item
+    description: ID of the bill item.
     example: 6fd73167342d6899c415320
   loyalty_off:
     type: boolean
@@ -52,17 +52,17 @@ properties:
       - true
       - false
     readOnly: false
-    description: Switch off all loyalty benefits (points, discounts- instant and campaign prices, vouchers) on the item
+    description: Switch off all loyalty benefits (points, discounts- instant and campaign prices, vouchers) on the item.
     example: true
   purchase_item_type_id:
     type: string
     readOnly: false
-    description: Type of the purchase item from resource [purchase-item-types](#tag/Purchase-item-types)
+    description: Type of the purchase item from resource [purchase-item-types](#tag/Purchase-item-types).
     example: 86e05affc7a7abefcd513ab400
   customer_id:
     type: string
     readOnly: false
-    description: The ID of the customer
+    description: The ID of the customer.
     example: 8ea2591121e636086a4a9c0992
 required:
   - plu_ids

@@ -1,35 +1,35 @@
 type: object
-description: Purchase
+description: Purchase.
 properties:
   purchase_id:
     type: string
     readOnly: true
-    description: The unique id of the purchase
+    description: The unique ID of the purchase.
     example: 81eaeea13b8984a169c490a325
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer.
+    description: The unique ID of the customer.
     example: 8ea2591121e636086a4a9c0992
   store_id:
     type: string
     readOnly: false
-    description: The unique id of the store in CareCloud
+    description: The unique ID of the store in CareCloud.
     example: 81eaeea13b8984a169c490a325
   external_purchase_id:
     type: string
     readOnly: false
-    description: The external unique id of the purchase
+    description: The external unique ID of the purchase.
     example: D67X202789
   payment_time:
     type: string
     readOnly: false
-    description: Date and time of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-02-24 00:00:00"
   items_count:
     type: integer
     readOnly: false
-    description: Count of the purchase items
+    description: Count of the purchase items.
     example: 1
   purchase_items:
     type: array
@@ -40,33 +40,33 @@ properties:
   type_id:
     type: string
     readOnly: false
-    description: Purchase type
+    description: Purchase type.
     example: 86e05affc7a7abefcd513ab400
   total_price:
     type: number
     format: float
     readOnly: false
-    description: Total price of the purchase
+    description: Total price of the purchase.
     example: 660
   currency_id:
     type: string
     readOnly: false
-    description: The unique id of the currency
+    description: The unique ID of the currency.
     example: 8bed991c68a470e7aaeffbf048
   card_number:
     type: string
     readOnly: false
-    description: Purchasing customer card number
+    description: Purchasing customer card number.
     example: 1000000000016
   cashdesk_number:
     type: string
     readOnly: false
-    description: Number of the cashdesk
+    description: Number of the cash-desk
     example: 2
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-01-17 00:00:00"
 required:
   - customer_id

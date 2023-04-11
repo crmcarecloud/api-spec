@@ -14,7 +14,7 @@ info:
     email: support@carecloud.cz
 tags:
   - name: Agreements
-    description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer's consent (agreement). You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.
+    description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent (agreement). You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.
   - name: Bookings
     description: Bookings of the services. Meetings, restaurant reservations, client appointments.
   - name: Booking tickets
@@ -65,22 +65,22 @@ tags:
     description: You can get the list of the available customer types here.
   - name: Events
     description: |
-      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
+      Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
       **Scheme of the MA related resources and their relations:**
       <br />
-      <img src="https://imgur.com/0Bu8zWI.jpeg">
+      <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
   - name: Event groups
     description: |
-      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event groups below.
+      Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event groups below.
       <br />**Scheme of the MA related resources and their relations:**<br />
-      <img src="https://imgur.com/0Bu8zWI.jpeg">
+      <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
   - name: Event properties
-    description: Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of available properties for the events resource below.
+    description: Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of available properties for the events resource below.
   - name: Event types
     description: |
-      Events are a unique entity that you can use to record various activities on the customer's account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event types below.
+      Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event types below.
       <br />**Scheme of the MA related resources and their relations:**<br />
-      <img src="https://imgur.com/0Bu8zWI.jpeg">
+      <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
   - name: Hints
     description: There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.
   - name: Interests
@@ -92,7 +92,7 @@ tags:
   - name: Message templates
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message template details through this resource.
   - name: One Time Password
-    description: One Time Password resource provides a complete service of creating and validating one-use passwords. You can use OTP to validate any customer's operation through email, SMS, or phone notification.
+    description: One Time Password resource provides a complete service of creating and validating one-use passwords. You can use OTP to validate any customer operation through email, SMS, or phone notification.
   - name: Orders
     description: Orders are expressions of intentions to purchase products, i.e., requests to buy something. They may refer to products, services or even experiences. The order becomes a contract (spoken, written or electronic) between the business and the customer. The customer commits to receive the product and to pay for it. Orders can be managed here.
   - name: Partners
@@ -392,7 +392,7 @@ tags:
           <tr>
             <td>400</td>
             <td>bad_request_exception</td>
-            <td>'Encoded store id is invalid.'</td>
+            <td>'Encoded store ID is invalid.'</td>
           </tr>
         </tbody>
       </table>

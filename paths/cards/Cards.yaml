@@ -2,7 +2,7 @@ get:
   tags:
     - Cards
   summary: Get all cards
-  description: Get information about all customer cards
+  description: Get information about all customer cards.
   operationId: getCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -28,12 +28,12 @@ get:
                 properties:
                   cards:
                     type: array
-                    description: Collection of customer cards
+                    description: Collection of customer cards.
                     items:
                       $ref: '../../schemas/_index.yaml#/Card'
                   total_items:
                     type: integer
-                    description: Count of all found customer cards
+                    description: The number of all found customer cards.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -73,16 +73,16 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
         $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
         $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
-        $customer_id = null; // string | The unique id of the customer (optional, default is null)
+        $customer_id = null; // string | The unique ID of the customer (optional, default is null)
         $card_number = null; // string | Number of the customer card (optional, default is null)
-        $card_type_id = null; // string | The unique id of the card type (optional, default is null)
+        $card_type_id = null; // string | The unique ID of the card type (optional, default is null)
         $state = null; // integer | State of the customer. Possible values are: 0 - deleted / 1 - active / 2 - non active (optional, default is null)
         $is_valid = null; // boolean | in validity range - true / before or after validity range - false / no value - all (optional, default is null)
 
@@ -114,7 +114,7 @@ post:
   tags:
     - Cards
   summary: Create a card
-  description: Add a new customer card
+  description: Add a new customer card.
   operationId: postCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -142,7 +142,7 @@ post:
                 properties:
                   card_id:
                     type: string
-                    description: The unique id of the card
+                    description: The unique ID of the card.
                     example: 81a94c48474bc45c03d41f7016
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -184,16 +184,16 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set card info
         $card = new Card();
-        $card->setCustomerId('87af991126405bf8e7dfb36045'); // string | The unique id for the card holder
-        $card->setCardTypeId('81eaeea13b8984a169c490a325'); // string | The unique id for the card type
+        $card->setCustomerId('87af991126405bf8e7dfb36045'); // string | The unique ID for the card holder
+        $card->setCardTypeId('81eaeea13b8984a169c490a325'); // string | The unique ID for the card type
         $card->setCardNumber('CARD10101'); // string | Card number
         $card->setValidFrom('2022-10-18 16:18:00'); // string | Card validity from (YYYY-MM-DD HH:MM:SS)
         $card->setValidTo('2023-10-18 16:18:00'); // string | Card validity to (YYYY-MM-DD HH:MM:SS)
-        $card->setStoreId(null); // string | The unique id for the store, where the card was assigned to a customer
+        $card->setStoreId(null); // string | The unique ID for the store, where the card was assigned to a customer
         $card->setState(1); // integer | State of the card Possible values are: 0 - blocked / 1 - active
 
         $body = new CardsBody();

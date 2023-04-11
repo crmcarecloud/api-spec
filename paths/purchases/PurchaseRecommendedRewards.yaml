@@ -15,19 +15,19 @@ post:
           properties:
             store_id:
               type: string
-              description: ID of the store
+              description: ID of the store.
               example: 8bed991c68a470e7aaeffbf048
             cashdesk_number:
               type: integer
-              description: Number of the cashdesk in store
+              description: Number of the cash-desk in the store.
               example: 1
             card_number:
               type: string
-              description: Customer card number
+              description: The customer card number.
               example: 1000000000016
             customer_id:
               type: string
-              description: Id of the customer that made the purchase. You can search customers by plenty parameter in the resource customers
+              description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
               example: 8ea2591121e636086a4a9c0992
             reward_list_type:
               type: string
@@ -36,7 +36,7 @@ post:
                 - C
                 - A
               description: |
-                Type of the rewards
+                Type of the rewards.
                 *Possible values: F - full (all manual rewards available and valid of the specific POS)/ C -condensed (only manual rewards corresponding to items on the bill - maxCount not equals zero)/ A - all rewards list including automatic apply this is only for the DATA CUBE*
               example: "A"
             bill:
@@ -60,12 +60,12 @@ post:
                 properties:
                   recommended_best_rewards:
                     type: array
-                    description: List of the best rewards for POS
+                    description: List of the best rewards for POS.
                     items:
                       $ref: '../../schemas/_index.yaml#/RecommendedReward'
                   total_items:
                     type: integer
-                    description: Count of all found rewards
+                    description: The number of all found rewards.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -109,7 +109,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the bill info
         $plu_ids = new PluId();

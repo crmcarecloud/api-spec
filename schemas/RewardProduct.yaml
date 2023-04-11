@@ -1,10 +1,10 @@
 allOf:
   - $ref: "./Product.yaml"
   - type: object
-  - description: RewardProduct resource
+  - description: RewardProduct resource.
   - properties:
       minimum_number_of_products:
         type: integer
         readOnly: true
-        description: A minimal amount of purchase products to apply reward
+        description: A minimal amount of purchase products to apply reward.
         example: 2

@@ -1,20 +1,20 @@
 type: object
-description: Reward type resource
+description: Reward type resource.
 properties:
   reward_type_id:
     type: string
     readOnly: true
-    description: The unique id of the reward type.
+    description: The unique ID of the reward type.
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false
-    description: Name of the reward type
+    description: Name of the reward type.
     example: "Product + another for free"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2020-01-14 09:02:13.235667"
 required:
   - name

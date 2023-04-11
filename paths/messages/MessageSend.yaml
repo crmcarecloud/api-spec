@@ -3,7 +3,7 @@ post:
     - Messages
   summary: Send message
   description: |
-    Send message (email, SMS or PUSH notification) to customer
+    Send message (email, SMS or PUSH notification) to customer.
 
     <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
   operationId: postMessageSend
@@ -64,7 +64,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $parameter = new Parameter();
@@ -72,8 +72,8 @@ post:
         $parameter->setValue('parameter_value');
 
         $message = new Message();
-        $message->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer
-        $message->setMessageTemplateId('8bed991c68a470e7aaeffbf048'); // string | The unique id of the message template
+        $message->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
+        $message->setMessageTemplateId('8bed991c68a470e7aaeffbf048'); // string | The unique ID of the message template
         $message->setContact('happycustomer@crmcarecloud.com'); // string | Email address or phone number of customer in case of send message to different contact than customer has in database (optional)
         $message->setCommunicationChannelId(1); // integer | 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification
         $message->setMessageData(array($parameter));

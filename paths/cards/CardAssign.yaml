@@ -3,7 +3,7 @@ post:
     - Cards
   summary: Assign free card
   description: |
-    Assign a free card in order to the customer
+    Assign a free card in order to the customer.
 
     <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
   operationId: postAssignCard
@@ -18,11 +18,11 @@ post:
           properties:
             card_type_id:
               type: string
-              description: The unique id of the card type.
+              description: The unique ID of the card type.
               example: 83d1d11ea3884a5d33253fe214
             customer_id:
               type: string
-              description: The unique id of the card holder.
+              description: The unique ID of the card holder.
               example: 8ea2591121e636086a4a9c0992
           required:
             - card_type_id
@@ -41,7 +41,7 @@ post:
                   card_id:
                     type: string
                     readOnly: true
-                    description: The unique id of the card
+                    description: The unique ID of the card.
                     example: 8fd73167342d06899c4c015320
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -82,12 +82,12 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set card info to the request body
         $body = new ActionsAssignfreecardBody();
-        $body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique id for the card holder
-        $body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique id for the card type
+        $body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder
+        $body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type
 
         // Call endpoint and post data
         try

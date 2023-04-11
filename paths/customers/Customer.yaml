@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Get information about a customer
-  description: Get information about a specific customer account
+  description: Get information about a specific customer account.
   operationId: getCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Call endpoint and get data
         try
@@ -90,8 +90,8 @@ get:
             new GuzzleHttp\Client(),
             $config
         );
-        $customer_id = "87af991126405bf8e7dfb36045"; // string | The unique id of the customer
-        $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+        $customer_id = "87af991126405bf8e7dfb36045"; // string | The unique ID of the customer
+        $accept_language = "cs, en-gb;q=0.8"; // string | The unique ID of the language code by ISO 639-1
 
         try {
             $result = $apiInstance->getCustomer($customer_id, $accept_language);
@@ -104,7 +104,7 @@ put:
   tags:
     - Customers
   summary: Update a customer
-  description: Update the information on a specific customer account
+  description: Update the information on a specific customer account.
   operationId: putCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -176,10 +176,10 @@ put:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '85aae99524edceec17682e01b9'; // string | The unique id of the customer
+        $customer_id = '85aae99524edceec17682e01b9'; // string | The unique ID of the customer
 
         // Set address of a new customer (optional)
         $address = new Address();
@@ -192,11 +192,11 @@ put:
 
         // Set custom agreements of a new customer (optional)
         $custom_agreement1 = new CustomAgreements();
-        $custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd'); // string | The unique id of the agreement in CareCloud
+        $custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd'); // string | The unique ID of the agreement in CareCloud
         $custom_agreement1->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
 
         $custom_agreement2 = new CustomAgreements();
-        $custom_agreement2->setAgreementId('8fd73167342d06899c4c015320'); // string | The unique id of the agreement in CareCloud
+        $custom_agreement2->setAgreementId('8fd73167342d06899c4c015320'); // string | The unique ID of the agreement in CareCloud
         $custom_agreement2->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set
 
         $custom_agreements = array(
@@ -220,8 +220,8 @@ put:
             ->setBirthdate('1990-01-01') // string <date> | Customer's date of birth (YYYY-MM-DD) (optional)
             ->setEmail('doe@crmcarecloud.com') // string | Email of the customer (optional)
             ->setPhone('420523828932') // string | Phone number of the customer with international prefix (420000000000) (optional)
-            ->setLanguageId('cs') // string | The unique id for the language by ISO 639 code
-            ->setStoreId(null) // string | The unique id for the original customer account store of registration (optional)
+            ->setLanguageId('cs') // string | The unique ID for the language by ISO 639 code
+            ->setStoreId(null) // string | The unique ID for the original customer account store of registration (optional)
             ->setPhotoUrl(null) // string | URL address of the customer photo (optional)
             ->setAddress($address)
             ->setAgreement($agreement);
@@ -231,7 +231,7 @@ put:
 
         // Set customer social network credentials (optional)
         $social_network_credentials = new SocialNetworkCredentials();
-        $social_network_credentials->setSocialNetworkId('instagram'); // string | The unique id of the social network
+        $social_network_credentials->setSocialNetworkId('instagram'); // string | The unique ID of the social network
         $social_network_credentials->setSocialNetworkToken('38e223j1jedu12d1jnjqwd'); // string | Social network customer's token
 
         // Set basic information about new customer
@@ -269,8 +269,8 @@ put:
             $config
         );
         $body = new \CareCloud\Model\CustomersCustomerIdBody(); // \CareCloud\Model\CustomersCustomerIdBody |
-        $customer_id = "customer_id_example"; // string | The unique id of the customer
-        $accept_language = "cs, en-gb;q=0.8"; // string | The unique id of the language code by ISO 639-1
+        $customer_id = "customer_id_example"; // string | The unique ID of the customer
+        $accept_language = "cs, en-gb;q=0.8"; // string | The unique ID of the language code by ISO 639-1
 
         try {
             $apiInstance->putCustomer($body, $customer_id, $accept_language);

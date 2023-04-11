@@ -2,7 +2,7 @@ get:
   tags:
     - Product reservations
   summary: Get a product-reservation
-  description: Get information about a specific product-reservation
+  description: Get information about a specific product-reservation.
   operationId: getProductReservation
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

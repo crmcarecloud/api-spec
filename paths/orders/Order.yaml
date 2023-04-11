@@ -2,7 +2,7 @@ get:
   tags:
     - Orders
   summary: Get an order
-  description: Get information about a specific order
+  description: Get information about a specific order.
   operationId: getOrder
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

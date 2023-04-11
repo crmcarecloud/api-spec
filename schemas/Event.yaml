@@ -1,25 +1,25 @@
 type: object
-description: Event resource
+description: Event resource.
 properties:
   event_id:
     type: string
     readOnly: true
-    description: The unique id of the event
+    description: The unique ID of the event.
     example: 82de12eb8b138791e678fd11c3
   event_type_id:
     type: string
     readOnly: false
-    description: The unique id of the event type
+    description: The unique ID of the event type.
     example: 8bda8a4854394325e2748a5005
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the card holder.
+    description: The unique ID of the card holder.
     example: 8ea2591121e636086a4a9c0992
   external_id:
     type: string
     readOnly: false
-    description: The unique external id of the event. It may be id from other system
+    description: The unique external ID of the event. It may be ID from other system.
     example: 157613
   data:
     oneOf:
@@ -29,17 +29,17 @@ properties:
           type: string
       - type: object
     readOnly: false
-    description: Additional data of the event. Serialized data in JSON
+    description: Additional data of the event. Serialized data in JSON.
     example: '{"id_account_history_change":6}'
   created_at:
     type: string
     readOnly: false
-    description: Date and time of the event *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the event. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-04-29 14:51:43"
   secondary_external_id:
     type: string
     readOnly: false
-    description: Additional external id of the event. It's used in case, when differentiation of external_id needed
+    description: Additional external ID of the event. It's used in case, when differentiation of external_id needed.
     example:
   state:
     type: integer
@@ -49,7 +49,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type
+      State of the event type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

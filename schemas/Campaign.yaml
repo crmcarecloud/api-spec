@@ -1,30 +1,30 @@
 type: object
-description: Campaign resource
+description: Campaign resource.
 properties:
   idcampaign:
     type: string
     readOnly: true
-    description: The unique id of the campaign
+    description: The unique ID of the campaign.
     example: 8bed991c68a470e7aaeffbf048
   external_id:
     type: string
     readOnly: false
-    description: The external id of the campaign
+    description: The external ID of the campaign.
     example: 1
   parent_id:
     type: string
     readOnly: false
-    description: Id of the parent campaign
+    description: ID of the parent campaign.
     example: null
   name:
     type: string
     readOnly: false
-    description: Name of the campaign
+    description: Name of the campaign.
     example: Standard campaign
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-04-16 18:22:35.052987"
   state:
     type: integer
@@ -34,7 +34,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the campaign
+      State of the campaign.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

@@ -1,15 +1,15 @@
 type: object
-description: Purchase item type structure
+description: Purchase item type structure.
 properties:
   type_id:
     type: string
     readOnly: true
-    description: The unique id of the purchase item type
+    description: The unique ID of the purchase item type.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: false
-    description: Name of the purchase item type
+    description: Name of the purchase item type.
     example: purchase in store
 required:
   - name

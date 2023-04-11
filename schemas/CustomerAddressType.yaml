@@ -1,18 +1,18 @@
 type: object
-description: Customer address type structure
+description: Customer address type structure.
 properties:
   address_type_id:
     type: string
     readOnly: true
-    description: The unique id of the customer address type
+    description: The unique ID of the customer address type.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: true
-    description: Name of the customer address type
+    description: Name of the customer address type.
     example: Mailing address
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2022-07-25 17:57:44.793447'

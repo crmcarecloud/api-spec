@@ -253,15 +253,15 @@ BasicError:
     exception:
       type: string
       readOnly: false
-      description: Content of the exception
+      description: Content of the exception.
       example: "error_exception"
     title:
       type: string
       readOnly: false
-      description: The title of the error
+      description: The title of the error.
       example: "Error title"
     detail:
       type: string
       readOnly: false
-      description: The details of the error message
+      description: The details of the error message.
       example:

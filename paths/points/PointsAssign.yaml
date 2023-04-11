@@ -3,7 +3,7 @@ post:
     - Points
   summary: Assign of points
   description: |
-    Creates a new point collection record with the corresponding value
+    Creates a new point collection record with the corresponding value.
 
     <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
   operationId: postPointsAssign
@@ -23,12 +23,12 @@ post:
               example: 1500
             customer_id:
               type: string
-              description: The unique id of the customer.
+              description: The unique ID of the customer.
               example: '8ea2591121e636086a4a9c0992'
             partner_id:
               type: string
               readOnly: false
-              description: The unique id of the partner.
+              description: The unique ID of the partner.
               example: '86e05affc7a7abefcd513ab400'
           required:
             - amount
@@ -75,13 +75,13 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $body = new ActionsAssignpointsBody();
         $body->setAmount(100); // float | Number of assigned points
-        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer
-        $body->setPartnerId(null); // string | The unique id of the partner (optional)
+        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
+        $body->setPartnerId(null); // string | The unique ID of the partner (optional)
 
         // Call endpoint and post data
         try

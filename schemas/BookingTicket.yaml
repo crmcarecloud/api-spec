@@ -1,20 +1,20 @@
 type: object
-description: Booking ticket
+description: Booking ticket.
 properties:
   ticket_id:
     type: string
     readOnly: true
-    description: The unique id of the booking ticket
+    description: The unique ID of the booking ticket.
     example: 89d88719b8b442de2d11b401a2
   name:
     type: string
     readOnly: false
-    description: Name of the booking ticket in language from request header
+    description: Name of the booking ticket in language from request header.
     example: "Prophecy"
   created_at:
     type: string
     readOnly: false
-    description: Date and time when ticket was created *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when ticket was created. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-07-26 11:38:22"
   valid_from:
     type: string
@@ -33,13 +33,13 @@ properties:
       - 1
     readOnly: false
     description: |
-      State of the booking ticket
+      State of the booking ticket.
       *Possible values are: 0 - blocked / 1 - active*
     example: 1
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-09-16 16:14:41"
 required:
   - name

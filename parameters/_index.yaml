@@ -2,7 +2,7 @@
 Accept-Language:
   name: Accept-Language
   in: header
-  description: The unique id of the language code by ISO 639-1
+  description: The unique ID of the language code by ISO 639-1.
   required: false
   schema:
     type: string
@@ -138,7 +138,7 @@ valid_only:
 date_from:
   name: date_from
   in: query
-  description: Date (ISO 8601) start of the time interval *(YYYY-MM-DD)*
+  description: Date (ISO 8601) start of the time interval. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -146,7 +146,7 @@ date_from:
 date_to:
   name: date_to
   in: query
-  description: Date (ISO 8601) end of the time interval *(YYYY-MM-DD)*
+  description: Date (ISO 8601) end of the time interval. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -154,7 +154,7 @@ date_to:
 name:
   name: name
   in: query
-  description: 'Search record by name or a part of the name'
+  description: 'Search record by name or a part of the name.'
   required: false
   schema:
     type: string
@@ -162,7 +162,7 @@ name:
 value_type_id:
   name: value_type_id
   in: query
-  description: Type of value (1 - percentage discount value, 2 - final price)
+  description: Type of value (1 - percentage discount value, 2 - final price).
   required: false
   schema:
     type: integer
@@ -174,7 +174,7 @@ external_id:
   name: external_id
   in: query
   required: false
-  description: The unique external id. It may be id from the other system
+  description: The unique external id. It may be ID from the other system.
   schema:
     type: string
   example: 18
@@ -182,7 +182,7 @@ tag_id_arr:
   name: tag_ids
   in: query
   required: false
-  description: 	Parameter filters values by a list of tag ids. Logic OR is used between values.
+  description: 	Parameter filters values by a list of tag IDs. Logic OR is used between values.
   schema:
     type: array
     items:
@@ -211,7 +211,7 @@ user_id_path:
   name: user_id
   in: path
   required: true
-  description: The unique id of the user
+  description: The unique ID of the user.
   schema:
     type: string
   example: 898a6545ed2bfa3f8466d09bc6
@@ -219,14 +219,14 @@ user_role_id_path:
   name: user_role_id
   in: path
   required: true
-  description: The unique id of the user role
+  description: The unique ID of the user role.
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
 email:
   name: email
   in: query
-  description: 'Search by email'
+  description: 'Search by email.'
   required: false
   schema:
     type: string
@@ -234,7 +234,7 @@ email:
 phone:
   name: phone
   in: query
-  description: 'Phone number with international prefix (420000000)'
+  description: 'Phone number with international prefix (420000000).'
   required: false
   schema:
     type: string
@@ -250,7 +250,7 @@ login:
 first_name:
   name: first_name
   in: query
-  description: 'Search by first name'
+  description: 'Search by first name.'
   required: false
   schema:
     type: string
@@ -258,7 +258,7 @@ first_name:
 last_name:
   name: last_name
   in: query
-  description: 'Search by last name'
+  description: 'Search by last name.'
   required: false
   schema:
     type: string
@@ -277,7 +277,7 @@ agreement_id_path:
   name: agreement_id
   in: path
   required: true
-  description: The unique id of an agreement in CareCloud
+  description: The unique ID of an agreement in CareCloud.
   schema:
     type: string
   example: 81eaeea13b8984a169c490a325
@@ -286,7 +286,7 @@ agreement_id_path:
 booking_id_path:
   name: booking_id
   in: path
-  description: The unique id of the booking
+  description: The unique ID of the booking.
   required: true
   schema:
     type: string
@@ -295,7 +295,7 @@ booking_id_path:
 booking_ticket_property_id_path:
   name: booking_ticket_property_id
   in: path
-  description: The unique id of the booking ticket property
+  description: The unique ID of the booking ticket property.
   required: true
   schema:
     type: string
@@ -304,7 +304,7 @@ booking_ticket_property_id_path:
 booking_ticket_id_path:
   name: booking_ticket_id
   in: path
-  description: The unique id of the booking ticket
+  description: The unique ID of the booking ticket.
   required: true
   schema:
     type: string
@@ -313,7 +313,7 @@ booking_ticket_id_path:
 booking_status_id_path:
   name: booking_status_id
   in: path
-  description: The unique id of the booking status
+  description: The unique ID of the booking status.
   required: true
   schema:
     type: string
@@ -323,7 +323,7 @@ free_capacity_only:
   name: free_only
   in: query
   description: |
-    Parameter defines what kind of time slots is going to be return depends on the capacity
+    Parameter defines what kind of time slots is going to be return depends on the capacity.
     *Possible values: true - returns all time slots with free capacity. / false - returns all occupied time slots. / no value - all time slots are returned (filter is not applied)*
   required: false
   schema:
@@ -336,7 +336,7 @@ add_booking_items:
   name: add_booking_items
   in: query
   description: |
-    Booking items are going to be return depends on the parameter value
+    Booking items are going to be return depends on the parameter value.
     *Possible values: full - returns all booking items with their additional properties. / items-only - returns all booking items without additional properties. / none or no value - return no booking items*
   required: false
   schema:
@@ -351,7 +351,7 @@ booking_ticket_property_id:
   name: booking_ticket_property_id
   in: query
   required: false
-  description: Booking ticket property id from resource [booking-ticket-properties](#tag/Booking-ticket-properties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+  description: Booking ticket property ID from resource [booking-ticket-properties](#tag/Booking-ticket-properties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
   schema:
     type: string
   example: store
@@ -369,13 +369,13 @@ booking_status:
   required: false
   schema:
     type: string
-  description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses)
+  description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses).
   example: a820c6a820c62c79b2c79b
 #Communication channel
 communication_channel_id_path:
   name: communication_channel_id
   in: path
-  description: The unique id of the communication channel
+  description: The unique ID of the communication channel.
   required: true
   schema:
     type: string
@@ -384,7 +384,7 @@ communication_channel_id_path:
 country_id:
   name: country_id
   in: query
-  description: The unique id of a country represented by ISO code
+  description: The unique ID of a country represented by ISO code.
   required: false
   schema:
     type: string
@@ -392,7 +392,7 @@ country_id:
 country_name:
   name: country_name
   in: query
-  description: Name or part of the name of the country you looking for
+  description: Name or part of the name of the country you looking for.
   required: false
   schema:
     type: string
@@ -401,7 +401,7 @@ country_name:
 credit_id_path:
   name: credit_id
   in: path
-  description: The unique id of the credit record
+  description: The unique ID of the credit record.
   required: true
   schema:
     type: string
@@ -409,7 +409,7 @@ credit_id_path:
 credit_type_id_path:
   name: credit_type_id
   in: path
-  description: The unique id of a credit type
+  description: The unique ID of a credit type.
   required: true
   schema:
     type: string
@@ -417,7 +417,7 @@ credit_type_id_path:
 credit_type_id:
   name: credit_type_id
   in: query
-  description: The unique id of a credit type
+  description: The unique ID of a credit type.
   required: false
   schema:
     type: string
@@ -425,7 +425,7 @@ credit_type_id:
 create_credit_time_from:
   name: create_credit_time_from
   in: query
-  description: Date and time from of the create credit record *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time from of the create credit record. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -434,7 +434,7 @@ create_credit_time_from:
 create_credit_time_to:
   name: create_credit_time_to
   in: query
-  description: Date and time to of the create credit record *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time to of the create credit record. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -443,7 +443,7 @@ create_credit_time_to:
 credit_operation_type:
   name: credit_operation_type
   in: query
-  description: 'Search record by the operation type name or a part of the operation type name'
+  description: 'Search record by the operation type name or a part of the operation type name.'
   required: false
   schema:
     type: string
@@ -451,7 +451,7 @@ credit_operation_type:
 credit_operation_note:
   name: credit_operation_note
   in: query
-  description: 'Search record by the operation note or a part of the operation note'
+  description: 'Search record by the operation note or a part of the operation note.'
   required: false
   schema:
     type: string
@@ -460,7 +460,7 @@ credit_operation_note:
 currency_code:
   name: currency_code
   in: query
-  description: The unique code of a currency represented by ISO code
+  description: The unique code of a currency represented by ISO code.
   required: false
   schema:
     type: string
@@ -468,7 +468,7 @@ currency_code:
 currency_name:
   name: currency_name
   in: query
-  description: Name or part of the name of the currency you looking for
+  description: Name or part of the name of the currency you looking for.
   required: false
   schema:
     type: string
@@ -478,7 +478,7 @@ customer_id_path:
   name: customer_id
   in: path
   required: true
-  description: The unique id of the customer
+  description: The unique ID of the customer.
   schema:
     type: string
   example: 8ea2591121e636086a4a9c0992
@@ -486,7 +486,7 @@ customer_id:
   name: customer_id
   in: query
   required: false
-  description: The unique id of the customer
+  description: The unique ID of the customer.
   schema:
     type: string
   example: 8ea2591121e636086a4a9c0992
@@ -494,7 +494,7 @@ related_customer_id:
   name: related_customer_id
   in: query
   required: false
-  description: The unique id of the related customer
+  description: The unique ID of the related customer.
   schema:
     type: string
   example: 87af991126405bf8e7dfb36045
@@ -502,7 +502,7 @@ customer_id_required:
   name: customer_id
   in: query
   required: true
-  description: The unique id of the customer
+  description: The unique ID of the customer.
   schema:
     type: string
   example: 8ea2591121e636086a4a9c0992
@@ -518,7 +518,7 @@ customer_source_id:
   name: customer_source_id
   in: query
   required: false
-  description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+  description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
   schema:
     type: string
   example: 8fdce3475560d56e95a6ab035r
@@ -526,7 +526,7 @@ customer_type_id_arr:
   name: customer_type_id
   in: query
   required: false
-  description: 	Select by list of customer types from customer-types resource. Logic OR is used between values
+  description: 	Select by list of customer types from customer-types resource. Logic OR is used between values.
   schema:
     type: array
     items:
@@ -535,7 +535,7 @@ customer_source_id_path:
   name: customer_source_id
   in: path
   required: true
-  description: The unique id of the customer source. It identifies the system where the customer belongs or the customer account was created
+  description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
   schema:
     type: string
   example: 8fdce3475560d56e95a6ab035r
@@ -543,7 +543,7 @@ customer_type_id_path:
   name: customer_type_id
   in: path
   required: true
-  description: 	The unique id of a customer type in CareCloud
+  description: 	The unique ID of a customer type in CareCloud.
   schema:
     type: string
   example: 86e05afc7a7abefcd513ab400
@@ -551,7 +551,7 @@ customer_address_type_id_path:
   name: customer_address_type_id
   in: path
   required: true
-  description: 	The unique id of a customer address type in CareCloud
+  description: 	The unique ID of a customer address type in CareCloud.
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
@@ -559,7 +559,7 @@ customer_address_type_id:
   name: customer_address_type_id
   in: query
   required: false
-  description: The unique id of the customer address type.
+  description: The unique ID of the customer address type.
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
@@ -567,7 +567,7 @@ additional_customer_address_id_path:
   name: additional_customer_address_id_path
   in: path
   required: true
-  description: Unique ID of the customer additional address
+  description: Unique ID of the customer additional address.
   schema:
     type: string
     example: 86e05affc7a7abefcd513ab400
@@ -576,7 +576,7 @@ additional_customer_address_id_path:
 card_id_path:
   name: card_id
   in: path
-  description: The unique id of the card
+  description: The unique ID of the card.
   required: true
   schema:
     type: string
@@ -584,7 +584,7 @@ card_id_path:
 card_type_id_path:
   name: card_type_id
   in: path
-  description: The unique id of the card type
+  description: The unique ID of the card type.
   required: true
   schema:
     type: string
@@ -592,7 +592,7 @@ card_type_id_path:
 card_number:
   name: card_number
   in: query
-  description: Number of the customer card
+  description: Number of the customer card.
   required: false
   schema:
     type: string
@@ -600,7 +600,7 @@ card_number:
 card_type_id:
   name: card_type_id
   in: query
-  description: The unique id of the card type
+  description: The unique ID of the card type.
   required: false
   schema:
     type: string
@@ -609,7 +609,7 @@ state:
   name: state
   in: query
   description: |
-    State of the customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    State of the customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*
   required: false
   schema:
     type: integer
@@ -623,7 +623,7 @@ property_record_id_path:
   name: property_record_id
   in: path
   required: true
-  description: The unique id of the property record
+  description: The unique ID of the property record.
   schema:
     type: string
   allowReserved: true
@@ -634,7 +634,7 @@ interest_record_id_path:
   name: interest_record_id
   in: path
   required: true
-  description: The unique id of the interest record
+  description: The unique ID of the interest record.
   schema:
     type: string
   example: 87d934c86a6303f5fb4d1214fb
@@ -643,7 +643,7 @@ interest_record_id_path:
 voucher_id_path:
   name: voucher_id
   in: path
-  description: The unique id of the voucher
+  description: The unique ID of the voucher.
   required: true
   schema:
     type: string
@@ -664,7 +664,7 @@ is_applied:
 voucher_code:
   name: code
   in: query
-  description: Unique code of the voucher
+  description: Unique code of the voucher.
   required: false
   schema:
     type: string
@@ -673,7 +673,7 @@ voucher_code:
 voucher_property_id_path:
   name: voucher_property_id
   in: path
-  description: The unique id of the voucher property
+  description: The unique ID of the voucher property.
   required: true
   schema:
     type: string
@@ -682,7 +682,7 @@ voucher_property_id_path:
 reward_id_path:
   name: reward_id
   in: path
-  description: The unique id of the reward
+  description: The unique ID of the reward.
   required: true
   schema:
     type: string
@@ -690,7 +690,7 @@ reward_id_path:
 reward_property_id_path:
   name: reward_property_id
   in: path
-  description: The unique id of the reward property
+  description: The unique ID of the reward property.
   required: true
   schema:
     type: string
@@ -699,7 +699,7 @@ reward_property_id_path:
 reward_code:
   name: code
   in: query
-  description: Code of the reward
+  description: Code of the reward.
   required: false
   schema:
     type: string
@@ -716,7 +716,7 @@ reward_type_id:
 reward_type_id_path:
   name: reward_type_id
   in: path
-  description: The unique id of the reward
+  description: The unique ID of the reward.
   required: true
   schema:
     type: string
@@ -725,7 +725,7 @@ is_automated:
   name: is_automated
   in: query
   description: |
-    Filter of the automated rewards
+    Filter of the automated rewards.
     *Possible values: true - returns all automated rewards / false - returns all non automated rewards / no value - all rewards(filter is not applied)*
   required: false
   schema:
@@ -738,7 +738,7 @@ reward_group:
   name: reward_group
   in: query
   description: |
-    The unique id of the reward group
+    The unique ID of the reward group.
     *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward*
   required: false
   schema:
@@ -752,7 +752,7 @@ reward_group:
 without_stores:
   name: without_stores
   in: query
-  description: If true, the data will not contain information about business units (stores). If false, or not set resource returns default strucuture.
+  description: If true, the data will not contain information about business units (stores). If false, or not set resource returns default structure.
   required: false
   schema:
     type: boolean
@@ -763,7 +763,7 @@ without_stores:
 reward_store_id:
   name: store_id
   in: query
-  description: The unique id of the store where customer can apply the reward
+  description: The unique ID of the store where customer can apply the reward.
   required: false
   schema:
     type: string
@@ -773,7 +773,7 @@ reward_store_id:
 customer_external_application_id_path:
   name: customer_external_application_id
   in: path
-  description: The unique id of a customer external application in CareCloud
+  description: The unique ID of a customer external application in CareCloud.
   required: true
   schema:
     type: string
@@ -783,7 +783,7 @@ customer_external_application_id_path:
 customer_property_id_path:
   name: customer_property_id
   in: path
-  description: The unique id of the customer property
+  description: The unique ID of the customer property.
   required: true
   schema:
     type: string
@@ -792,7 +792,7 @@ customer_property_id_path:
 customer_relation_id_path:
   name: customer_relation_id
   in: path
-  description: The unique id of relation between two customers in CareCloud
+  description: The unique ID of relation between two customers in CareCloud.
   required: true
   schema:
     type: string
@@ -801,7 +801,7 @@ customer_relation_id_path:
 customer_relation_type_id_path:
   name: customer_relation_type_id
   in: path
-  description: The unique id of a customer relation type in CareCloud
+  description: The unique ID of a customer relation type in CareCloud.
   required: true
   schema:
     type: string
@@ -809,7 +809,7 @@ customer_relation_type_id_path:
 customer_relation_type_id:
   name: customer_relation_type_id
   in: query
-  description: The unique id of the customer relation type in CareCloud
+  description: The unique ID of the customer relation type in CareCloud.
   required: false
   schema:
     type: string
@@ -818,7 +818,7 @@ customer_relation_type_id:
 campaign_id_path:
   name: campaign_id
   in: path
-  description: The unique id of the campaign in CareCloud
+  description: The unique ID of the campaign in CareCloud.
   required: true
   schema:
     type: string
@@ -848,7 +848,7 @@ type_id:
 campaign_store_id:
   name: store_id
   in: query
-  description: Parameter filters all campaign products from [store](#tag/Stores) by store id
+  description: Parameter filters all campaign products from [store](#tag/Stores) by store ID.
   required: false
   schema:
     type: string
@@ -856,7 +856,7 @@ campaign_store_id:
 campaign_product_id_path:
   name: campaign_product_id
   in: path
-  description: The unique id of the campaign product in CareCloud
+  description: The unique ID of the campaign product in CareCloud.
   required: true
   schema:
     type: string
@@ -866,7 +866,7 @@ campaign_product_id_path:
 currency_id_path:
   name: currency_id
   in: path
-  description: The unique id of a currency in CareCloud
+  description: The unique ID of a currency in CareCloud.
   required: true
   schema:
     type: string
@@ -876,7 +876,7 @@ currency_id_path:
 event_id_path:
   name: event_id
   in: path
-  description: The unique id of the event
+  description: The unique ID of the event.
   required: true
   schema:
     type: string
@@ -884,7 +884,7 @@ event_id_path:
 event_type_id:
   name: event_type_id
   in: query
-  description: The unique id of the event type
+  description: The unique ID of the event type.
   required: false
   schema:
     type: string
@@ -892,7 +892,7 @@ event_type_id:
 text_id:
   name: text_id
   in: query
-  description: Text id of an event group
+  description: Text ID of an event group.
   required: false
   schema:
     type: string
@@ -900,7 +900,7 @@ text_id:
 event_group_id_path:
   name: event_group_id
   in: path
-  description: The unique id of the event group
+  description: The unique ID of the event group.
   required: true
   schema:
     type: string
@@ -908,7 +908,7 @@ event_group_id_path:
 event_property_id_path:
   name: event_property_id
   in: path
-  description: The unique id of the event property
+  description: The unique ID of the event property.
   required: true
   schema:
     type: string
@@ -916,7 +916,7 @@ event_property_id_path:
 event_type_id_path:
   name: event_type_id
   in: path
-  description: The unique id of the event type
+  description: The unique ID of the event type.
   required: true
   schema:
     type: string
@@ -926,7 +926,7 @@ event_type_id_path:
 interest_id_path:
   name: interest_id
   in: path
-  description: The unique id of the interest
+  description: The unique ID of the interest.
   required: true
   schema:
     type: string
@@ -951,7 +951,7 @@ language_list_type:
 message_id_path:
   name: message_id
   in: path
-  description: The unique id of the message
+  description: The unique ID of the message.
   required: true
   schema:
     type: string
@@ -959,7 +959,7 @@ message_id_path:
 message_template_id_path:
   name: message_template_id
   in: path
-  description: The unique id of the message template
+  description: The unique ID of the message template.
   required: true
   schema:
     type: string
@@ -967,7 +967,7 @@ message_template_id_path:
 contact:
   name: contact
   in: query
-  description: Email of phone number that was used as a contact in message
+  description: Email of phone number that was used as a contact in message.
   required: false
   schema:
     type: string
@@ -976,7 +976,7 @@ contact:
 communication_channel_id:
   name: communication_channel_id
   in: query
-  description: "The unique id of the communication channel. List of values is available in resource [GET /communication-channels](/#tag/Communication-channels)"
+  description: "The unique ID of the communication channel. List of values is available in resource [GET /communication-channels](/#tag/Communication-channels)."
   required: false
   schema:
     type: string
@@ -984,7 +984,7 @@ communication_channel_id:
 send_time_from:
   name: send_time_from
   in: query
-  description: "Start date and time of the time interval *YYYY-MM-DD HH:MM:SS*"
+  description: "Start date and time of the time interval. *YYYY-MM-DD HH:MM:SS*"
   required: false
   schema:
     type: string
@@ -993,7 +993,7 @@ send_time_from:
 send_time_to:
   name: send_time_to
   in: query
-  description: "End date and time of the time interval *YYYY-MM-DD HH:MM:SS*"
+  description: "End date and time of the time interval. *YYYY-MM-DD HH:MM:SS*"
   required: false
   schema:
     type: string
@@ -1004,7 +1004,7 @@ send_time_to:
 order_id_path:
   name: order_id
   in: path
-  description: The unique id of the order
+  description: The unique ID of the order.
   required: true
   schema:
     type: string
@@ -1014,7 +1014,7 @@ order_id_path:
 partner_id_path:
   name: partner_id
   in: path
-  description: The unique id of the partner
+  description: The unique ID of the partner.
   required: true
   schema:
     type: string
@@ -1023,14 +1023,14 @@ partner_id:
   name: partner_id
   in: query
   required: false
-  description: Unique ID of the partner from the resource [GET /partners](/#tag/Partners)
+  description: Unique ID of the partner from the resource [GET /partners](/#tag/Partners).
   schema:
     type: string
   example: 86e05affc7a7abefcd513ab400
 partner_record_id_path:
   name: partner_record_id
   in: path
-  description: The unique id of the partner record from account
+  description: The unique ID of the partner record from account.
   required: true
   schema:
     type: string
@@ -1039,7 +1039,7 @@ partner_record_id_path:
 payment_type_id_path:
   name: payment_type_id
   in: path
-  description: The unique id of the payment type
+  description: The unique ID of the payment type.
   required: true
   schema:
     type: string
@@ -1048,7 +1048,7 @@ payment_type_id_path:
 point_id_path:
   name: point_id
   in: path
-  description: The unique id of the point record
+  description: The unique ID of the point record.
   required: true
   schema:
     type: string
@@ -1056,7 +1056,7 @@ point_id_path:
 point_reservation_id_path:
   name: point_reservation_id
   in: path
-  description: The unique id of the point reservations
+  description: The unique ID of the point reservations.
   required: true
   schema:
     type: string
@@ -1064,7 +1064,7 @@ point_reservation_id_path:
 point_type_id_path:
   name: point_type_id
   in: path
-  description: The unique id of a point type
+  description: The unique ID of a point type.
   required: true
   schema:
     type: string
@@ -1072,7 +1072,7 @@ point_type_id_path:
 point_type_id:
   name: point_type_id
   in: query
-  description: The unique id of a point type
+  description: The unique ID of a point type.
   required: false
   schema:
     type: string
@@ -1080,7 +1080,7 @@ point_type_id:
 create_point_time_from:
   name: create_point_time_from
   in: query
-  description: Date and time from of the create point record *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time from of the create point record. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -1089,7 +1089,7 @@ create_point_time_from:
 create_point_time_to:
   name: create_point_time_to
   in: query
-  description: Date and time to of the create point record *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time to of the create point record. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -1098,7 +1098,7 @@ create_point_time_to:
 pointRes_external_id:
   name: external_id
   in: query
-  description: The external id of the point reservation
+  description: The external ID of the point reservation.
   required: false
   schema:
     type: string
@@ -1106,7 +1106,7 @@ pointRes_external_id:
 point_operation_type:
   name: point_operation_type
   in: query
-  description: 'Search record by the operation type name or a part of the operation type name'
+  description: 'Search record by the operation type name or a part of the operation type name.'
   required: false
   schema:
     type: string
@@ -1114,7 +1114,7 @@ point_operation_type:
 point_operation_note:
   name: point_operation_note
   in: query
-  description: 'Search record by the operation note or a part of the operation note'
+  description: 'Search record by the operation note or a part of the operation note.'
   required: false
   schema:
     type: string
@@ -1124,7 +1124,7 @@ point_operation_note:
 product_id_path:
   name: product_id
   in: path
-  description: The unique id of the product
+  description: The unique ID of the product.
   required: true
   schema:
     type: string
@@ -1132,7 +1132,7 @@ product_id_path:
 reservable_product_id_path:
   name: reservable_product_id
   in: path
-  description: The unique id of the reservable product
+  description: The unique ID of the reservable product.
   required: true
   schema:
     type: string
@@ -1140,7 +1140,7 @@ reservable_product_id_path:
 product_brand_id_path:
   name: product_brand_id
   in: path
-  description: The unique id of the product brand
+  description: The unique ID of the product brand.
   required: true
   schema:
     type: string
@@ -1148,7 +1148,7 @@ product_brand_id_path:
 product_group_id_path:
   name: product_group_id
   in: path
-  description: The unique id of the product group
+  description: The unique ID of the product group.
   required: true
   schema:
     type: string
@@ -1156,7 +1156,7 @@ product_group_id_path:
 product_property_id_path:
   name: product_property_id
   in: path
-  description: The unique id of the product property
+  description: The unique ID of the product property.
   required: true
   schema:
     type: string
@@ -1164,7 +1164,7 @@ product_property_id_path:
 product_reservation_id_path:
   name: product_reservation_id
   in: path
-  description: The unique id of the product reservation
+  description: The unique ID of the product reservation.
   required: true
   schema:
     type: string
@@ -1172,7 +1172,7 @@ product_reservation_id_path:
 product_reservation_source_id_path:
   name: product_reservation_source_id
   in: path
-  description: The unique id of the product reservation source in CareCloud
+  description: The unique ID of the product reservation source in CareCloud.
   required: true
   schema:
     type: string
@@ -1180,7 +1180,7 @@ product_reservation_source_id_path:
 product_id:
   name: product_id
   in: query
-  description: ID of the product
+  description: ID of the product.
   required: false
   schema:
     type: string
@@ -1188,7 +1188,7 @@ product_id:
 product_code:
   name: code
   in: query
-  description: Code of the product
+  description: Code of the product.
   required: false
   schema:
     type: string
@@ -1196,7 +1196,7 @@ product_code:
 product_group_code:
   name: code
   in: query
-  description: Code of the product group
+  description: Code of the product group.
   required: false
   schema:
     type: string
@@ -1204,7 +1204,7 @@ product_group_code:
 external_type_code:
   name: external_type_code
   in: query
-  description: Every product can have more than one external id depends of the bussiness requirements. This paramter allows to pick from witch list of external ids you want to choose. For the list of external type codes please contact you account manager. If the parameter is not set, API uses as a default value GLOBAL
+  description: Every product can have more than one external ID depends of the business requirements. This parameter allows to pick from witch list of external IDs you want to choose. For the list of external type codes please contact you account manager. If the parameter is not set, API uses as a default value GLOBAL.
   required: false
   schema:
     type: string
@@ -1212,7 +1212,7 @@ external_type_code:
 external_reservation_code:
   name: external_reservation_code
   in: query
-  description: Code of the reservation from external system (cashdesk, webshop, production system, others). If set, `external_reservation_list_type_id` has to be present in request too
+  description: Code of the reservation from external system (cash-desk, web-shop, production system, others). If set, `external_reservation_list_type_id` has to be present in request too.
   required: false
   schema:
     type: string
@@ -1258,7 +1258,7 @@ reservation_state:
 purchase_id_path:
   name: purchase_id
   in: path
-  description: The unique id of the purchase
+  description: The unique ID of the purchase.
   required: true
   schema:
     type: string
@@ -1274,7 +1274,7 @@ purchase_type_id:
 payment_time_from:
   name: payment_time_from
   in: query
-  description: Date and time from of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time from of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -1283,7 +1283,7 @@ payment_time_from:
 payment_time_to:
   name: payment_time_to
   in: query
-  description: Date and time to of the purchase payment *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time to of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -1292,7 +1292,7 @@ payment_time_to:
 purchase_items_extension:
   name: purchase_items_extension
   in: query
-  description: If true, resource returns extended response with purchase items. If false, the resource won't be extended. If the parameter is not set, the default value is false
+  description: If true, resource returns extended response with purchase items. If false, the resource won't be extended. If the parameter is not set, the default value is false.
   required: false
   schema:
     type: boolean
@@ -1305,7 +1305,7 @@ purchase_items_extension:
 recommendation_id_path:
   name: recommendation_id
   in: path
-  description: The unique id of a recommendation
+  description: The unique ID of a recommendation.
   required: true
   schema:
     type: string
@@ -1316,7 +1316,7 @@ segment_id_path:
   name: segment_id
   in: path
   required: true
-  description: The unique id of the segment
+  description: The unique ID of the segment.
   schema:
     type: string
   example: 82de12eb8b138791e678fd11c3
@@ -1324,7 +1324,7 @@ segment_group_id_path:
   name: segment_group_id
   in: path
   required: true
-  description: The unique ID of the segment group
+  description: The unique ID of the segment group.
   schema:
     type: string
   example: 8bed991c68a470e7aaeffbf048
@@ -1342,7 +1342,7 @@ segment_group_name:
   name: name
   in: query
   required: false
-  description: Name of the segmnt group
+  description: Name of the segment group.
   schema:
     type: string
   example:  Badges
@@ -1350,7 +1350,7 @@ segment_group_name:
 entrance_id_path:
   name: entrance_id
   in: path
-  description: The unique id of the charged entrance
+  description: The unique ID of the charged entrance.
   required: true
   schema:
     type: string
@@ -1359,7 +1359,7 @@ pos_id:
   name: pos_id
   in: query
   required: false
-  description:  'Id of POS system for tickets. Required with path parameter entrance id *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
+  description:  'ID of POS system for tickets. Required with path parameter entrance ID. *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
   schema:
     type: integer
     enum:
@@ -1371,7 +1371,7 @@ external_order_id:
   name: external_order_id
   in: query
   required: false
-  description:  string	Id of an external order creaded in POS system
+  description: ID of an external order created in POS system.
   schema:
     type: string
   example:
@@ -1379,7 +1379,7 @@ entrance_name:
   name: name
   in: query
   required: false
-  description:  Name of the charged entrance (product name is used from resource products)
+  description: Name of the charged entrance (product name is used from resource products).
   schema:
     type: string
   example:
@@ -1387,7 +1387,7 @@ resort_name:
   name: resort_name
   in: query
   required: false
-  description:  string	Name of the resort where is an entrance charged
+  description: Name of the resort where is an entrance charged.
   schema:
     type: string
   example:
@@ -1395,7 +1395,7 @@ customer_category_name:
   name: customer_category_name
   in: query
   required: false
-  description:  Name of the customer category
+  description:  Name of the customer category.
   schema:
     type: string
   example:
@@ -1403,7 +1403,7 @@ entrance_card_id:
   name: card_id
   in: query
   required: false
-  description: Id of card used for charging entrance
+  description: ID of a card used for charging entrance.
   schema:
     type: string
   example: 8c97533b621490a0b211419086
@@ -1412,7 +1412,7 @@ entrance_type_id:
   in: query
   required: false
   description: |
-    Type of the entrance
+    Type of the entrance.
     *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*
   schema:
     type: integer
@@ -1425,7 +1425,7 @@ entrance_state:
   name: state
   in: query
   required: false
-  description: 'State of the entrance *Possible values are: canceled entrance - 0 / valid entrance -1*'
+  description: 'State of the entrance. *Possible values are: canceled entrance - 0 / valid entrance -1*'
   schema:
     type: integer
     enum:
@@ -1436,7 +1436,7 @@ external_entrance_id:
   name: external_entrance_id
   in: query
   required: false
-  description: External id of the entrance. Structure can be different depends of POS system, that created entrance
+  description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
   schema:
     type: string
   example:
@@ -1458,7 +1458,7 @@ is_cancelled:
 status_id_path:
   name: status_id
   in: path
-  description: The unique id of the status
+  description: The unique ID of the status.
   required: true
   schema:
     type: string
@@ -1468,7 +1468,7 @@ status_id_path:
 store_id_path:
   name: store_id
   in: path
-  description: The unique id of the store in CareCloud
+  description: The unique ID of the store in CareCloud.
   required: true
   schema:
     type: string
@@ -1476,7 +1476,7 @@ store_id_path:
 store_group_id_path:
   name: store_group_id
   in: path
-  description: The unique id of the store group
+  description: The unique ID of the store group.
   required: true
   schema:
     type: string
@@ -1484,7 +1484,7 @@ store_group_id_path:
 store_property_id_path:
   name: store_property_id
   in: path
-  description: The unique id of the store property
+  description: The unique ID of the store property.
   required: true
   schema:
     type: string
@@ -1492,7 +1492,7 @@ store_property_id_path:
 store_id:
   name: store_id
   in: query
-  description: The unique id of the store in CareCloud
+  description: The unique ID of the store in CareCloud.
   required: false
   schema:
     type: string
@@ -1500,7 +1500,7 @@ store_id:
 visible_for_customer:
   name: visible_for_customer
   in: query
-  description: "State of the visibility of the customer *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*"
+  description: "State of the visibility of the customer. *Possible values are: 0 - invisible / 1- visible. If query string is not used, return both.*"
   required: false
   schema:
     type: integer
@@ -1512,7 +1512,7 @@ property_id:
   name: property_id
   in: query
   required: false
-  description: Store property id from resource [store-properties](#tag/Store-properties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+  description: Store property ID from resource [store-properties](#tag/Store-properties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
   schema:
     type: string
   example: provided_services
@@ -1520,7 +1520,7 @@ property_value:
   name: property_value
   in: query
   required: false
-  description: Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values . Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
+  description: Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
   schema:
     type: string
   example:
@@ -1529,7 +1529,7 @@ task_id_path:
   name: task_id
   in: path
   required: true
-  description: The unique id of the task in CareCloud
+  description: The unique ID of the task in CareCloud.
   schema:
     type: string
     example: 8bed991c68a470e7aaeffbf048
@@ -1537,7 +1537,7 @@ task_type_id_path:
   name: task_type_id
   in: path
   required: true
-  description: The unique id of the task type in CareCloud
+  description: The unique ID of the task type in CareCloud.
   schema:
     type: string
     example: 8bed991c68a470e7aaeffbf048
@@ -1545,7 +1545,7 @@ task_state_id_path:
   name: task_state_id
   in: path
   required: true
-  description: The unique id of the task state in CareCloud
+  description: The unique ID of the task state in CareCloud.
   schema:
     type: string
     example: 86e05affc7a7abefcd513ab400
@@ -1553,7 +1553,7 @@ task_assignee_id_path:
   name: assignee_id
   in: path
   required: true
-  description: The unique id of the task assignee in CareCloud
+  description: The unique ID of the task assignee in CareCloud.
   schema:
     type: string
     example: 81eaeea13b8984a169c490a325
@@ -1561,7 +1561,7 @@ task_state_id:
   name: task_state_id
   in: query
   required: false
-  description: Task state id from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.
+  description: Task state ID from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.
   schema:
     type: string
     example: 86e05affc7a7abefcd513ab400
@@ -1569,7 +1569,7 @@ task_type_id:
   name: task_type_id
   in: query
   required: false
-  description: Task type id from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.
+  description: Task type ID from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.
   schema:
     type: string
     example: 8bed991c68a470e7aaeffbf048
@@ -1589,7 +1589,7 @@ task_priority:
 task_due_date:
   name: due_date
   in: query
-  description: Date (ISO 8601) when the task due *(YYYY-MM-DD)*
+  description: Date (ISO 8601) when the task due. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -1597,7 +1597,7 @@ task_due_date:
 task_note:
   name: task_note
   in: query
-  description: 'Search record by the task note or a part of the task note'
+  description: 'Search record by the task note or a part of the task note.'
   required: false
   schema:
     type: string
@@ -1605,7 +1605,7 @@ task_note:
 task_title:
   name: task_title
   in: query
-  description: 'Search record by the task summary or a part of the task summary'
+  description: 'Search record by the task summary or a part of the task summary.'
   required: false
   schema:
     type: string
@@ -1617,19 +1617,19 @@ task_comment_text:
   required: false
   schema:
     type: string
-  example: "Could you please confirm your choice?."
+  example: "Could you please confirm your choice?"
 task_comment_id_path:
   name: task_comment_id
   in: path
   required: true
-  description: The unique id of the task comment in CareCloud
+  description: The unique ID of the task comment in CareCloud.
   schema:
     type: string
     example: 8bed991c68a470e7aaeffbf048
 task_property_id_path:
   name: task_property_id
   in: path
-  description: The unique id of the task property
+  description: The unique ID of the task property.
   required: true
   schema:
     type: string
@@ -1639,7 +1639,7 @@ test_string:
   name: test_string
   in: query
   required: false
-  description: Test string send to REST API. Correct result should reverted string
+  description: A test string sends to REST API. Correct result should revert the string.
   schema:
     type: string
   example: 'taco cat'
@@ -1648,7 +1648,7 @@ test_string:
 token_id_path:
   name: token_id
   in: path
-  description: Client's application token
+  description: A client application token.
   required: true
   schema:
     type: string
@@ -1657,7 +1657,7 @@ external_application_id:
   name: external_application_id
   in: query
   required: true
-  description: Id of external application. For id of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications)
+  description: ID of external application. For ID of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications).
   schema:
     type: string
   example: 8bed991c68a470e7aaeffbf048

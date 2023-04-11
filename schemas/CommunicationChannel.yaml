@@ -1,20 +1,20 @@
 type: object
-description: Communication channel resource
+description: Communication channel resource.
 properties:
   communication_channel_id:
     type: string
     readOnly: true
-    description: The unique id of the communication channel
+    description: The unique ID of the communication channel.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: false
-    description: Name of the communication channel
+    description: Name of the communication channel.
     example: Email
   text_id:
     type: string
     readOnly: false
-    description: Text representation of communication channel ID
+    description: Text representation of communication channel ID.
     example: email
 required:
   - currency_id

@@ -1,45 +1,45 @@
 type: object
-description: Product group resource
+description: Product group resource.
 properties:
   product_group_id:
     type: string
     readOnly: true
-    description: The unique id of the product group
+    description: The unique ID of the product group.
     example: '8fd73167342d06899c4c015320'
   name:
     type: string
     readOnly: false
-    description: Name of the product group
+    description: Name of the product group.
     example: "Accessories"
   parent_product_group_id:
     type: string
     readOnly: false
-    description: The unique id of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.
+    description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.
     example: '83d1d11ea3884a5d33253fe214'
   parent_external_id:
     type: string
     readOnly: false
-    description: The unique external id of the parent product group. If `parent_product_group_id` is also set, both parameters have to represent the same product group.
+    description: The unique external ID of the parent product group. If `parent_product_group_id` is also set, both parameters have to represent the same product group.
     example: '678'
   code:
     type: string
     readOnly: false
-    description: Code of the product group
+    description: Code of the product group.
     example: '567829'
   external_id:
     type: string
     readOnly: false
-    description: The external unique id of the product group
+    description: The external unique ID of the product group.
     example: '953'
   store_id:
     type: string
     readOnly: false
-    description: The unique id of the store where the product group is valid. The product group is global if this value is not set
+    description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
     example: '83d1d11ea3884a5d33253fe214'
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-04-16 15:55:44.33538"
   state:
     type: integer
@@ -49,8 +49,8 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the product group
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      State of the product group.
+      *Possible values are: 0 - deleted / 1 - active*
     example: 1
 required:
   - name

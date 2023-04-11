@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the task
+        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the task
 
         // Call endpoint and get data
         try
@@ -134,16 +134,16 @@ put:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the task
+        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the task
 
         // Set the task info
         $task = new Task();
-        $task->setTaskTypeId('8bed991c68a470e7aaeffbf048') // string | The unique id of the task type
-        ->setTaskStateId('86e05affc7a7abefcd513ab400') // string | The unique id of the task state
-        ->setCustomerId('85aae99524edceec17682e01b9') // string | The unique id of the customer
+        $task->setTaskTypeId('8bed991c68a470e7aaeffbf048') // string | The unique ID of the task type
+        ->setTaskStateId('86e05affc7a7abefcd513ab400') // string | The unique ID of the task state
+        ->setCustomerId('85aae99524edceec17682e01b9') // string | The unique ID of the customer
         ->setTaskNote(null) // string | Text note of the task (optional)
         ->setTaskTitle('Test task n.01') // string | Title of the task
         ->setTaskPriority(1) // integer | The parameter filters tasks by their priority. Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor.

@@ -2,7 +2,7 @@ post:
   tags:
     - Users
   summary: User logout
-  description: User logout from external application
+  description: User logout from external application.
   operationId: postUserLogout
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -15,11 +15,11 @@ post:
           properties:
             user_external_application_id:
               type: string
-              description: Id of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications)
+              description: ID of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications).
               example: 89d1a6111b3fb6e74665d948
             bearer_token:
               type: string
-              description: Autentication bearer token for an user.
+              description: Authentication bearer token for an user.
               example: 09359095c5da43c7ae11e710eabce49418715a6a
           required:
             - user_external_application_id
@@ -66,12 +66,12 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $body = new ActionsLogoutBody();
-        $body->setUserExternalApplicationId('82de12eb8b138791e678fd11c3'); // string | Id of an external application where user wants to be logged in
-        $body->setBearerToken('bearer_token'); // string | Autentication bearer token for a user
+        $body->setUserExternalApplicationId('82de12eb8b138791e678fd11c3'); // string | ID of an external application where user wants to be logged in
+        $body->setBearerToken('bearer_token'); // string | Authentication bearer token for a user
 
         // Call endpoint and post data
         try

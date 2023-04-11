@@ -2,7 +2,7 @@ put:
   tags:
     - Customers
   summary: Update a property of a customer
-  description: Update a specific customer property record on a customer account
+  description: Update a specific customer property record on a customer account.
   operationId: putSubCustomerProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -62,15 +62,15 @@ put:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
-        $property_record_id = 'blokace_darce:8ea2591121e636086a4a9c0992'; // string | The unique id of the property record
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
+        $property_record_id = 'blokace_darce:8ea2591121e636086a4a9c0992'; // string | The unique ID of the property record
 
         // Set property record info
         $property_record = new PropertyRecord();
-        $property_record->setPropertyId('blokace_darce'); // string | The unique id of the property
+        $property_record->setPropertyId('blokace_darce'); // string | The unique ID of the property
         $property_record->setPropertyValue(false); // mixed | Value of the property (optional) (string or null) or (number or null) or (integer or null) or (boolean or null) or (Array of any or null) or (object or null)
 
         // Set property record info to the request body
@@ -90,7 +90,7 @@ delete:
   tags:
     - Customers
   summary: Delete a property of a customer
-  description: Delete a specific customer property record on a customer account
+  description: Delete a specific customer property record on a customer account.
   operationId: deleteSubCustomerProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -137,11 +137,11 @@ delete:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
-        $property_record_id = 'blokace_darce:8ea2591121e636086a4a9c0992'; // string | The unique id of the property record
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
+        $property_record_id = 'blokace_darce:8ea2591121e636086a4a9c0992'; // string | The unique ID of the property record
 
         // Call endpoint and delete data
         try

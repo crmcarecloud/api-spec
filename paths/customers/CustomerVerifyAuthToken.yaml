@@ -3,7 +3,7 @@ post:
     - Customers actions
   summary: Verify auth token
   description: |
-    Method verifies authentication token created by a specified application. There is the unique id of the customer as a response.
+    Method verifies authentication token created by a specified application. There is the unique ID of the customer as a response.
 
     <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
   operationId: postCustomersVerifyAuthToken
@@ -16,7 +16,7 @@ post:
           properties:
             application_id:
               type: string
-              description: 'Id of the application. Application is the source of the token'
+              description: 'ID of the application. Application is the source of the token.'
               example: 82de12eb8b138791e678fd11c3
             token:
               type: string
@@ -24,7 +24,7 @@ post:
               example: V952TL
             token_request_id:
               type: string
-              description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token'
+              description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
               example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
           required:
             - application_id
@@ -43,7 +43,7 @@ post:
                 properties:
                   customer_id:
                     type: string
-                    description: The unique id of the customer
+                    description: The unique ID of the customer.
                     example: 8ea2591121e636086a4a9c0992
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -87,13 +87,13 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
         $token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token
 
         // Set query parameters
-        $external_application_id = '82de12eb8b138791e678fd11c3'; // string | Id of the external application
+        $external_application_id = '82de12eb8b138791e678fd11c3'; // string | ID of the external application
         $token_type = 1; // integer | Possible values: 1 - alphanumeric, 2 - numeric
 
         // Set the request body

@@ -1,20 +1,20 @@
 type: object
-description: Booking status
+description: Booking status.
 properties:
   booking_status_id:
     type: string
     readOnly: true
-    description: The unique id of the booking status
+    description: The unique ID of the booking status.
     example: 8bf3397ab62d3ffd876fc9ae16
   name:
     type: string
     readOnly: false
-    description: Name of the booking status in language from request header
+    description: Name of the booking status in language from request header.
     example: "Pending"
   created_at:
     type: string
     readOnly: false
-    description: Date and time of booking status creation *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of booking status creation. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-09-14 07:39:08.99493"
   state:
     type: integer
@@ -23,13 +23,13 @@ properties:
       - 1
     readOnly: false
     description: |
-      State of the booking status
+      State of the booking status.
       *Possible values are: 0 - blocked / 1 - active*
     example: 1
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-09-14 07:39:08.99493"
 required:
   - name

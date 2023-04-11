@@ -1,22 +1,22 @@
 type: object
-description: Search result resource
+description: Search result resource.
 properties:
   search_result_string:
     type: string
     readOnly: false
-    description: Full text search result
+    description: Full text search result.
     example: Apple iPhone 12 Pro 128GB
   resource_id:
     type: string
     readOnly: false
-    description: The unique id of the resource as a search result. The unique id depends on resource where the search action was processed
+    description: The unique ID of the resource as a search result. The unique ID depends on resource where the search action was processed.
     example: 8bed991c68a470e7aaeffbf048
   flags:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Flag'
     readOnly: false
-    description: List of flags that identify result of the search
+    description: List of flags that identify result of the search.
 required:
   - search_result_string
   - resource_id

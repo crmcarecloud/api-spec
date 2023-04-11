@@ -2,7 +2,7 @@ get:
   tags:
     - Tests
   summary: Connection test
-  description: If you need test REST API availability, please use this resource
+  description: If you need test REST API availability, please use this resource.
   operationId: getTestsConnection
   parameters:
     - $ref: '../../parameters/_index.yaml#/test_string'
@@ -20,7 +20,7 @@ get:
                 properties:
                   test_string:
                     type: string
-                    description: Reverted value of input parameters
+                    description: Reverted value of input parameters.
                     example: '!dlroW olleH'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

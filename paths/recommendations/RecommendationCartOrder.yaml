@@ -2,7 +2,7 @@ post:
   tags:
     - Product recommendation engine
   summary: Order products for the best recommendation for a shopping cart
-  description: The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer's shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.
+  description: The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer  shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.
   operationId: postRecommendationCartOrder
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -15,19 +15,19 @@ post:
           properties:
             cart_product_ids:
               type: array
-              description: List of the product ids in customer's shopping cart
+              description: List of the product IDs in the customer shopping cart.
               items:
                 type: string
               example: [ "8fd73167342d0689c4c015320", "84aec0f62c76448621d68d343c" ]
             product_id_list:
               type: array
-              description: List of the product ids. Initial products of the recommendation engine
+              description: List of the product IDs. Initial products of the recommendation engine.
               items:
                 type: string
               example: [ "89d88719b8b442de2d11b401a2", "88bb88399cc74d81edbe19d684" ]
             count:
               type: integer
-              description: The number of records to return
+              description: The number of records to return.
               example: 5
           required:
             - cart_product_ids
@@ -44,13 +44,13 @@ post:
                 properties:
                   recommended_products_list:
                     type: array
-                    description: List of the recommended product ids.
+                    description: List of the recommended product IDs.
                     items:
                       type: string
                     example: [ "80af10a712ce31a8ed0e2f68a0", "8bb7f47a2743d4a7494dfee1c0" ]
                   total_items:
                     type: integer
-                    description: Count of all found product ids.
+                    description: The number of all found product IDs.
                     example: 2
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

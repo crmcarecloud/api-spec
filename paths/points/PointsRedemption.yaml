@@ -3,7 +3,7 @@ post:
     - Points
   summary: Points redemption
   description: |
-    New point redemption record is created
+    New point redemption record is created.
 
     <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
   operationId: postPointsRedemption
@@ -23,12 +23,12 @@ post:
               example: '100'
             customer_id:
               type: string
-              description: The unique id of the customer.
+              description: The unique ID of the customer.
               example: '8ea2591121e636086a4a9c0992'
             partner_id:
               type: string
               readOnly: false
-              description: The unique id of the partner.
+              description: The unique ID of the partner.
               example: '86e05affc7a7abefcd513ab400'
           required:
             - amount
@@ -47,7 +47,7 @@ post:
                   point_id:
                     type: string
                     readOnly: true
-                    description: The unique id of the point redemption
+                    description: The unique ID of the point redemption.
                     example: 80c2c110a50db9f8134b6b72b3
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -88,13 +88,13 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $body = new ActionsReducepointsBody();
         $body->setAmount(17); // float | Number of redeemed points
-        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer
-        $body->setPartnerId(null); // string | The unique id of the partner (optional)
+        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
+        $body->setPartnerId(null); // string | The unique ID of the partner (optional)
 
         // Call endpoint and post data
         try

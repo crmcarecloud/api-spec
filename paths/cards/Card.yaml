@@ -2,7 +2,7 @@ get:
   tags:
     - Cards
   summary: Get a card
-  description: Get information about a specific customer card
+  description: Get information about a specific customer card.
   operationId: getCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $card_id = '82db62087b0f79a6e14e5747e7'; // string | The unique id of the card
+        $card_id = '82db62087b0f79a6e14e5747e7'; // string | The unique ID of the card
 
         // Call endpoint and get data
         try
@@ -75,7 +75,7 @@ put:
   tags:
     - Cards
   summary: Update a card
-  description: Update a specific customer card
+  description: Update a specific customer card.
   operationId: putCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -134,19 +134,19 @@ put:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $card_id = '82db62087b0f79a6e14e5747e7'; // string | The unique id of the card
+        $card_id = '82db62087b0f79a6e14e5747e7'; // string | The unique ID of the card
 
         // Set card info
         $card = new Card();
-        $card->setCustomerId('8fac83212755b729a2f3f9bbb0'); // string | The unique id for the card holder
-        $card->setCardTypeId('81eaeea13b8984a169c490a325'); // string | The unique id for the card type
+        $card->setCustomerId('8fac83212755b729a2f3f9bbb0'); // string | The unique ID for the card holder
+        $card->setCardTypeId('81eaeea13b8984a169c490a325'); // string | The unique ID for the card type
         $card->setCardNumber('CARD1011'); // string | Card number
         $card->setValidFrom('2022-10-17 16:18:00'); // string | Card validity from (YYYY-MM-DD HH:MM:SS)
         $card->setValidTo('2023-10-17 16:18:00'); // string | Card validity to (YYYY-MM-DD HH:MM:SS)
-        $card->setStoreId(null); // string | The unique id for the store, where the card was assigned to a customer
+        $card->setStoreId(null); // string | The unique ID for the store, where the card was assigned to a customer
         $card->setState(1); // integer | State of the card Possible values are: 0 - blocked / 1 - active
 
         // Set card info to the request body

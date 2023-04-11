@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Get a collection of segment records
-  description: Get information about all segment records on a customer account
+  description: Get information about all segment records on a customer account.
   operationId: getSubCustomerSegments
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -21,12 +21,12 @@ get:
                 properties:
                   segment_records:
                     type: array
-                    description: List of segment records
+                    description: List of segment records.
                     items:
                       $ref: '../../schemas/_index.yaml#/SegmentRecord'
                   total_items:
                     type: integer
-                    description: Count of all found segment records
+                    description: The number of all found segment records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -66,10 +66,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Set query parameters
         $segment_group_ids = null; // string[] | List of the segment group IDs from the resource GET /segment-groups (optional)

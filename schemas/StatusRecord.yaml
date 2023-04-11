@@ -1,30 +1,30 @@
 type: object
-description: Customer status record
+description: Customer status record.
 properties:
   status_record_id:
     type: string
     readOnly: true
-    description: The unique id of the status record
+    description: The unique ID of the status record.
     example: 87ac34ef46f3858a4ece61fb43
   status_id:
     type: string
     readOnly: false
-    description: The unique id of the status
+    description: The unique ID of the status.
     example: 86e05affc7a7abefcd513ab400
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer
+    description: The unique ID of the customer.
     example: 89ac83ca207a820c62c79bf03a
   valid_from:
     type: string
     readOnly: true
-    description: Date and time of the record valid from *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the record valid from. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-05-29 00:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time of the record valid to *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the record valid to. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-05-28 23:59:59"
   purchase_conditions:
     $ref: '../schemas/_index.yaml#/PurchaseConditions'
@@ -32,7 +32,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2020-08-06 10:31:09'
   state:
     type: integer
@@ -42,7 +42,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the reward
+      State of the reward.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

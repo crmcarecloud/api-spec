@@ -2,7 +2,7 @@ get:
   tags:
     - Campaign products
   summary: Collection of campaign products
-  description: Get information about all available campaign products
+  description: Get information about all available campaign products.
   operationId: getCampaignProducts
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -32,12 +32,12 @@ get:
                 properties:
                   campaign_products:
                     type: array
-                    description: List of the campaign products
+                    description: List of the campaign products.
                     items:
                       $ref: '../../schemas/_index.yaml#/CampaignProduct'
                   total_items:
                     type: integer
-                    description: Count of all found campaign products
+                    description: The number of all found campaign products.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -77,7 +77,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -126,7 +126,7 @@ post:
   tags:
     - Campaign products
   summary: Create a campaign product
-  description: Add a new campaign product
+  description: Add a new campaign product.
   operationId: postCampaignProduct
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -154,7 +154,7 @@ post:
                 properties:
                   campaign_product_id:
                     type: string
-                    description: The unique id of the campaign product
+                    description: The unique ID of the campaign product.
                     example: 8bed991c68a470e7aaeff
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -197,7 +197,7 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set campaign presentation data details
         $presentation_data = new CampaignPresentationData();
@@ -209,9 +209,9 @@ post:
 
         // Set basic information about new campaign product
         $campaign_product = new CampaignProduct();
-        $campaign_product->setProductId('8fd73167342d06899c4c015320'); // string | The unique id for the product
-        $campaign_product->setCurrencyId('8bed991c68a470e7aaeffbf048'); // string | The unique id for the currency
-        $campaign_product->setCampaignId('82db62087b0f79a6e14e5747e7'); // string | The unique id for the campaign
+        $campaign_product->setProductId('8fd73167342d06899c4c015320'); // string | The unique ID for the product
+        $campaign_product->setCurrencyId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the currency
+        $campaign_product->setCampaignId('82db62087b0f79a6e14e5747e7'); // string | The unique ID for the campaign
         $campaign_product->setValue(100); // float | Value of the product
         $campaign_product->setValueTypeId(2); // int | Type of value (1 - percentage discount value, 2 - final price)
         $campaign_product->setValidFrom('2022-10-17 00:00:00'); // string | Valid from (YYYY-MM-DD HH:MM:SS)

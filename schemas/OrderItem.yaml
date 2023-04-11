@@ -1,38 +1,38 @@
 type: object
-description: Order item resource
+description: Order item resource.
 properties:
   order_item_id:
     type: string
     readOnly: true
-    description: The unique id of the order item
+    description: The unique ID of the order item.
     example:
   product_variant_id:
     type: string
     readOnly: false
-    description: The unique id of the webshop product
+    description: The unique ID of the web-shop product.
     example: 8fcc724e1514dafb0a70228d3
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer, owner of the order item. If not set, customer_id from order will be saved
+    description: The unique ID of the customer, owner of the order item. If not set, customer_id from order will be saved.
     example:
   amount:
     type: number
     format: float
     readOnly: false
-    description: Amount of products in order item
+    description: Amount of products in order item.
     example: 1
   unit_price:
     type: number
     format: float
     readOnly: false
-    description: Unit price of the ordered product
+    description: Unit price of the ordered product.
     example: 36
   vat_rate:
     type: number
     format: float
     readOnly: false
-    description: The rate of the VAT of the ordered product
+    description: The rate of the VAT of the ordered product.
     example: 19
 required:
   - product_variant_id

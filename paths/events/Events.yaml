@@ -2,7 +2,7 @@ get:
   tags:
     - Events
   summary: Get information about all events
-  description: Get a list of events in CRM CareCloud
+  description: Get a list of events in CRM CareCloud.
   operationId: getEvents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -26,12 +26,12 @@ get:
                 properties:
                   events:
                     type: array
-                    description: Collection of all events
+                    description: Collection of all events.
                     items:
                       $ref: '../../schemas/_index.yaml#/Event'
                   total_items:
                     type: integer
-                    description: Count of all found events
+                    description: The number of all found events.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -71,16 +71,16 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
         $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
         $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
-        $event_type_id = null; // string | The unique id of the event type (optional, default is null)
-        $customer_id = null; // string | The unique id of the customer (optional, default is null)
-        $external_id = null; // string | The unique external id (optional, default is null)
+        $event_type_id = null; // string | The unique ID of the event type (optional, default is null)
+        $customer_id = null; // string | The unique ID of the customer (optional, default is null)
+        $external_id = null; // string | The unique external ID (optional, default is null)
 
         // Call endpoint and get data
         try
@@ -108,7 +108,7 @@ post:
   tags:
     - Events
   summary: Create a new event
-  description: Add a new event
+  description: Add a new event.
   operationId: postEvent
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -123,7 +123,7 @@ post:
               $ref: '../../schemas/_index.yaml#/Event'
             property_records:
               type: array
-              description: List of an event property records
+              description: List of an event property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
           required:
@@ -142,7 +142,7 @@ post:
                 properties:
                   event_id:
                     type: string
-                    description: The unique id of the event
+                    description: The unique ID of the event.
                     example: 82de12eb8b138791e678fd11c3
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -185,19 +185,19 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the event data
         $event = new Event();
-        $event->setEventTypeId('82d0f9d976dee39aacd13dc7ea'); // string | The unique id of the event type
-        $event->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id for the card holder
-        $event->setExternalId('e123'); // string | The unique external id of the event
+        $event->setEventTypeId('82d0f9d976dee39aacd13dc7ea'); // string | The unique ID of the event type
+        $event->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID for the card holder
+        $event->setExternalId('e123'); // string | The unique external ID of the event
         $event->setData(null); // string, string[] or object | Additional data of the event. Serialized data in JSON (optional)
         $event->setCreatedAt(null); // string | Date and time of the event (YYYY-MM-DD HH:MM:SS) (optional)
-        $event->setSecondaryExternalId(null); // string | Additional external id of the event (optional)
+        $event->setSecondaryExternalId(null); // string | Additional external ID of the event (optional)
 
         $property_record = new PropertyRecord();
-        $property_record->setPropertyId('account_event_type_records_count'); // string | The unique id of the property
+        $property_record->setPropertyId('account_event_type_records_count'); // string | The unique ID of the property
         $property_record->setPropertyValue(2); // (string or null) or (number or null) or (integer or null) or (boolean or null) or (Array of any or null) or (object or null) | Value of the property (optional)
 
         // Set the request body

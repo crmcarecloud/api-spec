@@ -2,7 +2,7 @@ get:
   tags:
     - Agreements
   summary: Detail of an agreement
-  description: Get information about a specific agreement
+  description: Get information about a specific agreement.
   operationId: getAgreement
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,7 +55,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1, Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1, Default: cs, en-gb;q=0.8
 
         // Set path parameter
         $agreement_id = '8fd73167342d06899c4c015320';

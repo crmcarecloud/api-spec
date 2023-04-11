@@ -1,5 +1,5 @@
 type: object
-description: Customer's consents
+description: Customer's consents.
 properties:
   agreement_gtc:
     type: integer
@@ -8,7 +8,7 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Consent to General Terms & Conditions *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: 'Consent to General Terms & Conditions. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
     example: 1
   agreement_profiling:
     type: integer
@@ -17,7 +17,7 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Consent to profiling *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: 'Consent to profiling. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
     example: 1
   agreement_marketing_communication:
     type: integer
@@ -26,14 +26,14 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Consent to marketing communication *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: 'Consent to marketing communication. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
     example: 1
   custom_agreements:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/CustomAgreements'
     readOnly: false
-    description: Custom agreements
+    description: Custom agreements.
 required:
   - agreement_marketing_communication
   - agreement_profiling

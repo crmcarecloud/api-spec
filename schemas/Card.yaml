@@ -1,45 +1,45 @@
 type: object
-description: Card resource
+description: Card resource.
 properties:
   card_id:
     type: string
     readOnly: true
-    description: The unique id of the card
+    description: The unique ID of the card.
     example: 81eaeea13b8984a169c490a325
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the card holder.
+    description: The unique ID of the card holder.
     example: 8ea2591121e636086a4a9c0992
   card_type_id:
     type: string
     readOnly: false
-    description: The unique id of the card type.
+    description: The unique ID of the card type.
     example: 8bed991c68a470e7aaeffbf048
   card_number:
     type: string
     readOnly: false
-    description: Card number
+    description: Card number.
     example: "1000000000016"
   valid_from:
     type: string
     readOnly: false
-    description: Card validity from *(YYYY-MM-DD HH:MM:SS)*
+    description: Card validity from. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-04-14"
   valid_to:
     type: string
     readOnly: false
-    description: Card validity to *(YYYY-MM-DD HH:MM:SS)*
+    description: Card validity to. *(YYYY-MM-DD HH:MM:SS)*
     example: "2059-07-05"
   store_id:
     type: string
     readOnly: false
-    description: The unique id of the store, where the card was assigned to a customer
+    description: The unique ID of the store, where the card was assigned to a customer.
     example:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-07-15 17:26:34"
   state:
     type: integer
@@ -48,7 +48,7 @@ properties:
       - 1
     readOnly: false
     description: |
-      State of the card
+      State of the card.
       *Possible values are: 0 - blocked / 1 - active*
     example: 1
 required:

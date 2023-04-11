@@ -1,20 +1,20 @@
 type: object
-description: Property record
+description: Property record.
 properties:
   property_record_id:
     type: string
     readOnly: true
-    description: The unique id of the property record
+    description: The unique ID of the property record.
     example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
   property_id:
     type: string
     readOnly: false
-    description: The unique id of the property
+    description: The unique ID of the property.
     example: docasna_blokace_darce_do
   property_name:
     type: string
     readOnly: true
-    description: Name of the property
+    description: Name of the property.
     example: "Property #6"
   property_value:
     oneOf:
@@ -27,12 +27,12 @@ properties:
       - type: object
       - type: null
     readOnly: false
-    description: Value of the property
+    description: Value of the property.
     example: "2002-02-02"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example:
 required:
   - property_id

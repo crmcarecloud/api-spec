@@ -1,13 +1,13 @@
 type: object
-description: Interest structure
+description: Interest structure.
 properties:
   interest_id:
     type: string
     readOnly: true
-    description: The unique id of the interest
+    description: The unique ID of the interest.
     example: 81eaeea13b8984a169c490a325
   name:
     type: string
     readOnly: true
-    description: Name of the interest
+    description: Name of the interest.
     example: Tech

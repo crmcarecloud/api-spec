@@ -1,15 +1,15 @@
 type: object
-description: Recommended reward structure
+description: Recommended reward structure.
 properties:
   code:
     type: string
     readOnly: true
-    description: Code of the reward
+    description: Code of the reward.
     example: PTV138
   name:
     type: string
     readOnly: true
-    description: Name of the reward
+    description: Name of the reward.
     example: SVK_wine
   reward_priority:
     type: integer
@@ -24,20 +24,20 @@ properties:
       - 8
       - 9
     readOnly: true
-    description: Priority of the reward *1 - highest, 9 - lowest*
+    description: Priority of the reward. *1 - highest, 9 - lowest*
     example: 8
   max_count:
     type: integer
     readOnly: true
-    description: Maximum number of the reward applications
+    description: Maximum number of the reward applications.
     example:
   description:
     type: string
     readOnly: true
-    description: Reward description
+    description: Reward description.
     example: "SVK_wine"
   reward_properties:
     type: object
     $ref: '../schemas/_index.yaml#/RewardProperties'
     readOnly: true
-    description: Properties of the reward
+    description: Properties of the reward.

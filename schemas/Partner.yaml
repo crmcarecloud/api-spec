@@ -1,39 +1,39 @@
 type: object
-description: Partner resource
+description: Partner resource.
 properties:
   partner_id:
     type: string
     readOnly: true
-    description: The unique id of the company
+    description: The unique ID of the company.
     example: 86e05affc7a7abefcd513ab400
   name:
     type: string
     readOnly: false
-    description: Name of the company
+    description: Name of the company.
     example: Demo
   address:
     type: object
     $ref: '../schemas/_index.yaml#/Address'
-    description: Address of the company
+    description: Address of the company.
   registration_id:
     type: string
     readOnly: false
-    description: Company registration number. National Registration unique id of the company.
+    description: Company registration number. National Registration unique ID of the company.
     example: '123456789'
   vat_id:
     type: string
     readOnly: false
-    description: VAT registration number. Value Added Tax unique id of the company.
+    description: VAT registration number. Value Added Tax unique ID of the company.
     example: '123456789'
   email:
     type: string
     readOnly: false
-    description: Email of the company
+    description: Email of the company.
     example: "happy_user@crmcarecloud.com"
   phone:
     type: string
     readOnly: false
-    description: Phone number of the company with international prefix (420000000)
+    description: Phone number of the company with international prefix (420000000).
     example: '123456787'
   state:
     type: integer
@@ -43,8 +43,8 @@ properties:
       - 2
     readOnly: false
     description: |
-      State of the partner
-      *Possible values are: 0 - deleted / 1- active / 2 - non active*
+      State of the partner.
+      *Possible values are: 0 - deleted / 1- active *
     example: 1
 required:
   - name

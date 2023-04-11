@@ -2,7 +2,7 @@ get:
   tags:
     - Charged entrances
   summary: Get all entrances
-  description: Get a list of entrances in CRM CareCloud
+  description: Get a list of entrances in CRM CareCloud.
   operationId: getEntrances
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -38,12 +38,12 @@ get:
                 properties:
                   entrances:
                     type: array
-                    description: List of available entrances
+                    description: List of available entrances.
                     items:
                       $ref: '../../schemas/_index.yaml#/Entrance'
                   total_items:
                     type: integer
-                    description: Count of all found entrances
+                    description: The number of all found entrances.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

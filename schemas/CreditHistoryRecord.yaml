@@ -1,44 +1,44 @@
 type: object
-description: Credit history record
+description: Credit history record.
 properties:
   customer_id:
     type: string
     readOnly: true
-    description: The unique id of the customer.
+    description: The unique ID of the customer.
     example: 8ea2591121e636086a4a9c0992
   amount:
     type: number
     format: float
     readOnly: true
-    description: The number of credits used in the credit operation record
+    description: The number of credits used in the credit operation record.
     example: 1000
   credit_operation_type:
     type: string
     readOnly: true
-    description: Type of the credit operation record
+    description: Type of the credit operation record.
     example: "Manually added credits"
   credit_operation_note:
     type: string
     readOnly: true
-    description: Note of the credit operation record
+    description: Note of the credit operation record.
     example: "Addition"
   partner_id:
     type: string
     readOnly: false
-    description: The unique id of the partner company
+    description: The unique ID of the partner company.
     example: 86e05affc7a7abefcd513ab400
   currency_id:
     type: string
     readOnly: true
-    description: The unique id of the currency
+    description: The unique ID of the currency.
     example: 86e05affc7a7abefcd513ab400
   store_id:
     type: string
     readOnly: true
-    description: The unique id of the store in CareCloud
+    description: The unique ID of the store in CareCloud.
     example: 81eaeea13b8984a169c490a325
   credit_history_record_time:
     type: string
     readOnly: true
-    description: Date and time of the credit record from the credit history *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the credit record from the credit history. *(YYYY-MM-DD HH:MM:SS)*
     example: '2023-03-07 09:53:55'

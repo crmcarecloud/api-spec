@@ -1,9 +1,9 @@
 post:
   tags:
     - One Time Password
-  summary: Send a one-time password to a communication channel
+  summary: Send a one-time password to a communication channel.
   description: |
-    Action method sends generated password to the selected communication channel and provides verification string
+    Action method sends generated password to the selected communication channel and provides verification string.
     Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
   operationId: postSendOtp
   parameters:
@@ -16,7 +16,7 @@ post:
           type: object
           properties:
             external_application_id:
-              description: Id of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication)
+              description: ID of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication).
               type: string
               example: 82de12eb8b138791e678fd11c3
             communication_channel_id:
@@ -26,7 +26,7 @@ post:
                 - 2
                 - 4
                 - 5
-              description: "The unique id of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+              description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
               example: 1
             recipient:
               type: string
@@ -42,7 +42,7 @@ post:
               default: 1
             message_template_id:
               type: string
-              description: The unique id of the message_template. If not set, CareCloud uses default value from the system configuration
+              description: The unique ID of the message_template. If not set, CareCloud uses default value from the system configuration.
               example:
           required:
             - communication_channel_id
@@ -61,7 +61,7 @@ post:
                 properties:
                   request_id:
                     type: string
-                    description: The parameter specifies the request that caused the OTP to be created. Request id will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp)
+                    description: The parameter specifies the request that caused the OTP to be created. Request ID will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp).
                     example: c27c29917a1dec03ef0673d823619b776ab93353
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -102,15 +102,15 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $body = new ActionsSendBody();
-        $body->setExternalApplicationId($external_app_id) // string | Id of the external application that requested one time password
-        ->setCommunicationChannelId(1) // integer | The unique id of the communication channel. Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification
+        $body->setExternalApplicationId($external_app_id) // string | ID of the external application that requested one time password
+        ->setCommunicationChannelId(1) // integer | The unique ID of the communication channel. Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification
         ->setRecipient('happy_customer@cortex.cz') // string | Recipient of the message with OTP. The parameter could contain email, phone number or other identifier of the message recipient
         ->setOtpType(1) // integer | Parameter sets witch OTP type should be generated. Possible values: 1- alphanumeric, 2- numeric (optional)
-        ->setMessageTemplateId(null); // string | The unique id of the message_template. If not set, CareCloud uses default value from the system configuration (optional)
+        ->setMessageTemplateId(null); // string | The unique ID of the message_template. If not set, CareCloud uses default value from the system configuration (optional)
 
         // Call endpoint and post data
         try

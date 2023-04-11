@@ -2,7 +2,7 @@ get:
   tags:
     - Card types
   summary: Get a collection of cards
-  description: Get information about all cards by card types resource
+  description: Get information about all cards by card types resource.
   operationId: getSubCardTypeCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -26,12 +26,12 @@ get:
                 properties:
                   cards:
                     type: array
-                    description: List of cards
+                    description: List of cards.
                     items:
                       $ref: '../../schemas/_index.yaml#/Card'
                   total_items:
                     type: integer
-                    description: Count of all found cards
+                    description: The number of all found cards.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -71,17 +71,17 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the card type
+        $card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the card type
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
         $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
         $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
-        $customer_id = null; // string | The unique id of the customer (optional, default is null)
+        $customer_id = null; // string | The unique ID of the customer (optional, default is null)
         $is_valid = null; // boolean | in validity range - true / before or after validity range - false / no value - all (optional, default is null)
 
         // Call endpoint and get data

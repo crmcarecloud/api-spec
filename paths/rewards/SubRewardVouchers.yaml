@@ -2,7 +2,7 @@ get:
   tags:
     - Rewards
   summary: Get vouchers tied to a reward
-  description: Get information about all vouchers created in relation to a specific reward
+  description: Get information about all vouchers created in relation to the specific reward.
   operationId: getSubRewardVouchers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -26,12 +26,12 @@ get:
                 properties:
                   vouchers:
                     type: array
-                    description: List of vouchers tied to a reward
+                    description: List of vouchers tied to the reward
                     items:
                       $ref: '../../schemas/_index.yaml#/Voucher'
                   total_items:
                     type: integer
-                    description: Count of all found vouchers
+                    description: The number of all found vouchers.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -71,18 +71,18 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $reward_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the reward
+        $reward_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the reward
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
         $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
         $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
-        $customer_id = null; // string | The unique id of the customer (optional, default is null)
-        $store_id = null; // string | The unique id of the store where the customer can apply reward (optional, default is null)
+        $customer_id = null; // string | The unique ID of the customer (optional, default is null)
+        $store_id = null; // string | The unique ID of the store where the customer can apply reward (optional, default is null)
 
         // Call endpoint and get data
         try

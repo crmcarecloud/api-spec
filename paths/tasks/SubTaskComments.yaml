@@ -25,12 +25,12 @@ get:
                 properties:
                   task_comments:
                     type: array
-                    description: List of all task comments
+                    description: List of all task comments.
                     items:
                       $ref: '../../schemas/_index.yaml#/TaskComment'
                   total_items:
                     type: integer
-                    description: Count of all found task comments
+                    description: The number of all found task comments.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -70,10 +70,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the task
+        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the task
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -107,7 +107,7 @@ post:
   tags:
     - Tasks
   summary: Create a task comment
-  description: Add a new comment to the task
+  description: Add a new comment to the task.
   operationId: postTaskComment
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -136,7 +136,7 @@ post:
                 properties:
                   task_comment_id:
                     type: string
-                    description: The unique id of the task comment in CareCloud
+                    description: The unique ID of the task comment in CareCloud.
                     example: 86e05affc7a7abefcd513ab400
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -178,10 +178,10 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the task
+        $task_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the task
 
         // Set the task comment
         $task_comment = new TaskComment();

@@ -1,20 +1,20 @@
 type: object
-description: CardType resource
+description: CardType resource.
 properties:
   card_type_id:
     type: string
     readOnly: true
-    description: The unique id of the card type.
+    description: The unique ID of the card type.
     example: "8bd48117006496e0b1788109b8"
   name:
     type: string
     readOnly: false
-    description: Name of the card type
+    description: Name of the card type.
     example: "Postman test type"
   prefix:
     type: string
     readOnly: false
-    description: Prefix of the specific card type cards
+    description: Prefix of the specific card type cards.
     example: "092"
 required:
   - name

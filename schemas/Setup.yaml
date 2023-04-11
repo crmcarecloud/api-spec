@@ -1,20 +1,20 @@
 type: object
-description: Setup of a client's device
+description: Setup of a client's device.
 properties:
   language_id:
     type: string
     readOnly: false
-    description: The unique id of the language by ISO 639-1 code from [languages resource](#tag/Languages)
+    description: The unique ID of the language by ISO 639-1 code from [languages resource](#tag/Languages).
     example: 'en'
   allowed_gps:
     type: boolean
     readOnly: false
-    description: Permission to GPS tracking in the mobile application
+    description: Permission to GPS tracking in the mobile application.
     example: true
   allowed_notifications:
     type: boolean
     readOnly: false
-    description: Permission to the mobile application notifications
+    description: Permission to the mobile application notifications.
     example: false
 required:
   - language_id

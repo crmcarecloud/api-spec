@@ -1,35 +1,35 @@
 type: object
-description: Segment structure
+description: Segment structure.
 properties:
   segment_id:
     type: string
     readOnly: true
-    description: The unique id of the segment
+    description: The unique ID of the segment.
     example: 82de12eb8b138791e678fd11c3
   name:
     type: string
     readOnly: false
-    description: Name of the segment
+    description: Name of the segment.
     example: "VIP customers"
   segment_group_id:
     type: string
     readOnly: true
-    description: Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups)
+    description: Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups).
     example: 8bed991c68a470e7aaeffbf048
   segment_picture_url:
     type: string
     readOnly: true
-    description: URL of the picture assigned to the segment
+    description: URL of the picture assigned to the segment.
     example:
   note:
     type: string
     readOnly: false
-    description: Short description of the segment
+    description: Short description of the segment.
     example: "VIP customers note test"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-06-04 13:25:39"
 required:
   - name

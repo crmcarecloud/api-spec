@@ -15,11 +15,11 @@ post:
           properties:
             customer_id:
               type: string
-              description: The unique id of the customer
+              description: The unique ID of the customer.
               example: 8ea2591121e636086a4a9c0992
             partner_records:
               type: array
-              description: Collection of all customer's partner records
+              description: Collection of all customer  partner records.
               items:
                 $ref: '../../schemas/_index.yaml#/PartnerRecord'
           required:
@@ -68,14 +68,14 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $partner_record1 = new PartnerRecord();
-        $partner_record1->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique id of the partner
+        $partner_record1->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique ID of the partner
 
         $body = new ActionsSetpartnersBody();
-        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer
+        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
         $body->setPartnerRecords(array($partner_record1));
 
         // Call endpoint and post data

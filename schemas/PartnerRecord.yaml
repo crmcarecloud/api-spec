@@ -1,20 +1,20 @@
 type: object
-description: Partner record
+description: Partner record.
 properties:
   partner_record_id:
     type: string
     readOnly: true
-    description: The unique id of the partner record
+    description: The unique ID of the partner record.
     example: 88bd53f8ac5f3b595d6bc106a4
   partner_id:
     type: string
     readOnly: false
-    description: The unique id of the partner
+    description: The unique ID of the partner.
     example: 86e05affc7a7abefcd513ab400
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example:
 required:
   - partner_id

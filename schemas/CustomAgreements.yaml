@@ -1,9 +1,9 @@
 type: object
-description: Custom agreements
+description: Custom agreements.
 properties:
   agreement_id:
     type: string
-    description: The unique id of the agreement in CareCloud from [agreements](#tag/Agreements) resource
+    description: The unique ID of the agreement in CareCloud from [agreements](#tag/Agreements) resource.
     example: 8fd73167342d06899c4c015320
   agreement_value:
     type: integer
@@ -11,7 +11,7 @@ properties:
       - 0
       - 1
       - 2
-    description: "Value of the specific agreement *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*"
+    description: "Value of the specific agreement. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*"
     example: 2
 required:
   - agreement_id

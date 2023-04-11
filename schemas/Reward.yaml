@@ -1,46 +1,46 @@
 type: object
-description: Reward structure
+description: Reward structure.
 properties:
   reward_id:
     type: string
     readOnly: true
-    description: The unique id of the reward
+    description: The unique ID of the reward.
     example: 83cfee22eabfbbb15a14815e30
   code:
     type: string
     readOnly: false
-    description: Code of the reward
+    description: Code of the reward.
     example:
   name:
     type: string
     readOnly: false
-    description: Name of the reward
+    description: Name of the reward.
     example: Dessert+Caffe
   note:
     type: string
     readOnly: false
-    description: Additional text
+    description: Additional text.
     example: ""
   subtitle:
     type: string
     readOnly: false
-    description: Text of subtitle
+    description: Text of subtitle.
     example:
   points_cost:
     type: number
     format: float
     readOnly: false
-    description: Number of points, that will be spent by the voucher redemption
+    description: Number of points, that will be spent by the voucher redemption.
     example: 200
   valid_time_from:
     type: string
     readOnly: false
-    description: Time the reward is valid from *(HH:MM:SS)*
+    description: Time the reward is valid from. *(HH:MM:SS)*
     example:
   valid_time_to:
     type: string
     readOnly: false
-    description: Time the reward is valid to *(HH:MM:SS)*
+    description: Time the reward is valid to. *(HH:MM:SS)*
     example:
   reward_group:
     type: integer
@@ -51,7 +51,7 @@ properties:
       - 4
     readOnly: false
     description: |
-      The unique id of the reward group
+      The unique ID of the reward group.
       *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
     example: 0
   reward_type_id:
@@ -64,13 +64,13 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/Store'
     readOnly: false
-    description: List of the stores where the reward can be redeemed
+    description: List of the stores where the reward can be redeemed.
   additional_properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: false
-    description: Additional properties
+    description: Additional properties.
   priority:
     type: integer
     enum:
@@ -84,7 +84,7 @@ properties:
       - 8
       - 9
     readOnly: false
-    description: Priority of the reward *1 is the highest priority*
+    description: Priority of the reward. *1 is the highest priority*
     example:
   image_urls:
     type: array
@@ -92,31 +92,31 @@ properties:
       type: string
       example:
     readOnly: true
-    description: List of reward image URL addresses
+    description: List of reward image URL addresses.
   reward_external_url:
     type: string
     readOnly: true
-    description: External URL addresses
+    description: External URL addresses.
     example:
   has_product_condition:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is product condition on reward
+    description: Parameter says, if there is product condition on reward.
     example: false
   has_group_condition:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is group condition on reward
+    description: Parameter says, if there is group condition on reward.
     example: true
   has_brand_condition:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is brand condition on reward
+    description: Parameter says, if there is brand condition on reward.
     example: false
   is_automated:
     type: boolean
     readOnly: false
-    description: Parameter says, if reward is automated or not. If reward is automated, means it's applied by rules of the reward. Otherwise have to be applied manually
+    description: Parameter says, if reward is automated or not. If reward is automated, means it's applied by rules of the reward. Otherwise have to be applied manually.
     example: false
   tags:
     type: array
@@ -127,7 +127,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2013-07-24 21:33:33'
   state:
     type: integer

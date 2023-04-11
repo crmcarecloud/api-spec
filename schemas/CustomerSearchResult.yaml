@@ -1,8 +1,8 @@
 type: object
-description: Result of the search
+description: Result of the search.
 properties:
   strict:
     type: array
-    description: Search results for the strict mode
+    description: Search results for the strict mode.
     items:
       $ref: '../schemas/_index.yaml#/CustomerResult'

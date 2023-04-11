@@ -2,7 +2,7 @@ get:
   tags:
     - Customer address types
   summary: Get all customer address types
-  description: Get a list of customer address types accepted in CRM CareCloud
+  description: Get a list of customer address types accepted in CRM CareCloud.
   operationId: getCustomerAddressTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -23,12 +23,12 @@ get:
                 properties:
                   customer_address_types:
                     type: array
-                    description: List of the customer address types
+                    description: List of the customer address types.
                     items:
                       $ref: '../../schemas/_index.yaml#/CustomerAddressType'
                   total_items:
                     type: integer
-                    description: Count of all found customer address types
+                    description: The number of all found customer address types.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -68,7 +68,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

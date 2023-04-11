@@ -1,42 +1,42 @@
 type: object
-description: Customer point
+description: Customer point.
 properties:
   point_id:
     type: string
     readOnly: true
-    description: The unique id of the point record
+    description: The unique ID of the point record.
     example: 8bd48117006496e0b1788109b8
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the customer.
+    description: The unique ID of the customer.
     example: 87af991126405bf8e7dfb36045
   assigned_points:
     type: number
     format: float
     readOnly: true
-    description: The number of earned points
+    description: The number of earned points.
     example: 50
   available_points:
     type: number
     format: float
     readOnly: true
-    description: The number of points available actually taking into account the eventual points redemption
+    description: The number of points available actually taking into account the eventual points redemption.
     example: 700
   point_type_id:
     type: string
     readOnly: false
-    description: Type of the point record
+    description: Type of the point record.
     example: 81eaeea13b8984a169c490a325
   partner_id:
     type: string
     readOnly: false
-    description: The unique id of the partner company
+    description: The unique ID of the partner company.
     example: 86e05affc7a7abefcd513ab400
   valid_to:
     type: string
     readOnly: false
-    description: Date and time of the point record validity to *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the point record validity to. *(YYYY-MM-DD HH:MM:SS)*
     example: "2023-09-16 23:59:59"
   state:
     type: integer
@@ -46,7 +46,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the point record
+      State of the point record.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

@@ -16,11 +16,11 @@ post:
           properties:
             user_external_application_id:
               type: string
-              description: 	Id of an external application where user wants to be logged in. If you don't have id, please contact your account manager.
+              description: 	ID of an external application where user wants to be logged in. If you don't have id, please contact your account manager.
               example: 89d1a6111b3fb6e74665d948
             sso_token:
               type: string
-              description: Single sign-on token from CareCloud
+              description: Single sign-on token from CareCloud.
               example: ae11e710ea4d9495da43c7ae11e71b4e723e7bce494a
           required:
             - social_network_credentials
@@ -37,11 +37,11 @@ post:
                 properties:
                   bearer_token:
                     type: string
-                    description: Autentication bearer token for an user. Token can be used for autentication in REST API with Bearer Autentication (more information about it [here](#section/Authorization/bearerAuth))
+                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](#section/Authorization/bearerAuth))
                     example: "09359095c5da43c7ae11e710eabce49418715a6a"
                   valid_to:
                     type: string
-                    description: Date and time (local time zone of the project) of the token validity   *(YYYY-MM-DD HH:MM:SS)*
+                    description: Date and time (local time zone of the project) of the token validity.  *(YYYY-MM-DD HH:MM:SS)*
                     example: '2019-01-04 10:31:56'
                   user:
                     $ref: '../../schemas/_index.yaml#/User'

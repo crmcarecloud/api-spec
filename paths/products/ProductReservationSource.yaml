@@ -2,7 +2,7 @@ get:
   tags:
     - Product reservation sources
   summary: Detail of a product reservation source
-  description: Get information about a specific product reservation source
+  description: Get information about a specific product reservation source.
   operationId: getProductReservationSource
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $product_reservation_source_id = '86e05affc7a7abefcd513ab400'; // string | The unique id of the product reservation source
+        $product_reservation_source_id = '86e05affc7a7abefcd513ab400'; // string | The unique ID of the product reservation source
 
         // Call endpoint and get data
         try

@@ -1,35 +1,35 @@
 type: object
-description: Booking time slot
+description: Booking time slot.
 properties:
   time_slot_id:
     type: string
     readOnly: true
-    description: The unique id of the booking time slot
+    description: The unique ID of the booking time slot.
     example: 89ce2a1b9b01f5c939fb1e20cd
   ticket_id:
     type: string
     readOnly: true
-    description: The unique id of the booking ticket
+    description: The unique ID of the booking ticket.
     example: 89ce2a1b9b01f5c939fb1e20cd
   valid_from:
     type: string
     readOnly: true
-    description: Date and time when time slot starts *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when time slot starts. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-01-09 22:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time when time slot ends *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when time slot ends. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-01-09 22:30:00"
   total_capacity:
     type: integer
     readOnly: true
-    description: Total capacity of the time slot
+    description: Total capacity of the time slot.
     example: 50
   free_capacity:
     type: integer
     readOnly: true
-    description: Free capacity of the time slot
+    description: Free capacity of the time slot.
     example: 20
   state:
     type: integer
@@ -38,13 +38,13 @@ properties:
       - 1
     readOnly: false
     description: |
-      State of the booking ticket
+      State of the booking ticket.
       *Possible values are: 0 - blocked / 1 - active*
     example: 1
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-05 11:24:12"
 required:
   - ticket_id

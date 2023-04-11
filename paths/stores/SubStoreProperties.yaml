@@ -2,7 +2,7 @@ get:
   tags:
     - Stores
   summary: Get a collection of properties
-  description: Get information about all property records on a store account
+  description: Get information about all property records tied to the store.
   operationId: getSubStoreProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -20,12 +20,12 @@ get:
                 properties:
                   property_records:
                     type: array
-                    description: List of property records
+                    description: List of property records.
                     items:
                       $ref: '../../schemas/_index.yaml#/PropertyRecord'
                   total_items:
                     type: integer
-                    description: Count of all found store property records
+                    description: The number of all found store property records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -65,10 +65,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $store_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the store
+        $store_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the store
 
         // Call endpoint and get data
         try
@@ -87,7 +87,7 @@ post:
   tags:
     - Stores
   summary: Add a property to a store
-  description: Add a new specific store property record to a store
+  description: Add a new store property record to a store.
   operationId: postSubStoreProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -116,7 +116,7 @@ post:
                 properties:
                   property_record_id:
                     type: string
-                    description: The unique id of the property record
+                    description: The unique ID of the property record.
                     example: contact_person:8aa2049ac2f84952014d96bb23
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -158,14 +158,14 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $store_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the store
+        $store_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the store
 
         // Set property record info
         $property_record = new PropertyRecord();
-        $property_record->setPropertyId('datum_otevreni'); // string | The unique id of the property
+        $property_record->setPropertyId('datum_otevreni'); // string | The unique ID of the property
         $property_record->setPropertyValue('2022-10-31'); // (string or null) or (number or null) or (integer or null) or (boolean or null) or (Array of any or null) or (object or null) | Value of the property (optional)
 
         // Set the request body

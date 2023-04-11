@@ -1,18 +1,18 @@
 type: object
-description: Product reservation progress history structure
+description: Product reservation progress history structure.
 properties:
   reservation_progress_id:
     type: integer
     readOnly: true
-    description: Id of the product reservation progress
+    description: ID of the product reservation progress.
     example: 4
   reservation_progress_text:
     type: string
     readOnly: true
-    description: String of the product reservation progress
+    description: String of the product reservation progress.
     example: Delivered
   reservation_progress_time:
     type: string
     readOnly: true
-    description: Date and time of the change of the product reservation progress *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the change of the product reservation progress. *(YYYY-MM-DD HH:MM:SS)*
     example: '2012-11-22 20:57:04'

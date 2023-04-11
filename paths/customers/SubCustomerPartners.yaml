@@ -1,8 +1,8 @@
 get:
   tags:
     - Customers
-  summary: Get information about all customer's partners
-  description: Get a list of customer's partners in CareCloud
+  summary: Get information about all customer  partners
+  description: Get a list of customer  partners in CareCloud.
   operationId: getSubCustomerPartners
   parameters:
     - $ref: '../../parameters/_index.yaml#/customer_id_path'
@@ -24,12 +24,12 @@ get:
                 properties:
                   partner_records:
                     type: array
-                    description: Collection of all customer's partner records
+                    description: Collection of all customer  partner records.
                     items:
                       $ref: '../../schemas/_index.yaml#/PartnerRecord'
                   total_items:
                     type: integer
-                    description: Count of all found customer's partners
+                    description: The number of all found customer  partners.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -69,10 +69,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
@@ -104,7 +104,7 @@ post:
   tags:
     - Customers
   summary: Add a partner to the customer
-  description: Add a new partner to the customer
+  description: Add a new partner to the customer.
   operationId: postSubCustomerPartnerRecord
   parameters:
     - $ref: '../../parameters/_index.yaml#/customer_id_path'
@@ -133,7 +133,7 @@ post:
                 properties:
                   partner_record_id:
                     type: string
-                    description: The unique id of the partner record on the customer
+                    description: The unique ID of the partner record on the customer.
                     example: 88bd53f8ac5f3b595d6bc106a4
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -175,14 +175,14 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $customer_id = '8fa66731256448d1ae0c19a1dd'; // string | The unique id of the customer
+        $customer_id = '8fa66731256448d1ae0c19a1dd'; // string | The unique ID of the customer
 
         // Set the request body
         $partner_record = new PartnerRecord();
-        $partner_record->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique id of the partner
+        $partner_record->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique ID of the partner
 
         $body = new CustomerIdPartnerrecordsBody();
         $body->setPartnerRecord($partner_record);

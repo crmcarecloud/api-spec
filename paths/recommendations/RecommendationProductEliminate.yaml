@@ -15,11 +15,11 @@ post:
           properties:
             customer_id:
               type: string
-              description: The unique id of the customer
+              description: The unique ID of the customer.
               example: "8ea2591121e636086a4a9c0992"
             product_id_list:
               type: array
-              description: List of the product ids. Initial products of the recommendation engine
+              description: List of the product IDs. Initial products of the recommendation engine.
               items:
                 type: string
               example: [ "8fd73167342d0689c4c015320", "84aec0f62c76448621d68d343c" ]
@@ -38,13 +38,13 @@ post:
                 properties:
                   recommended_products_list:
                     type: array
-                    description: List of the recommended product ids.
+                    description: List of the recommended product IDs.
                     items:
                       type: string
                     example: [ "80af10a712ce31a8ed0e2f68a0", "84b6d6ba0f1b0fadc6e73a2608", "8bb7f47a2743d4a7494dfee1c0" ]
                   total_items:
                     type: integer
-                    description: Count of all found product ids.
+                    description: The number of all found product IDs.
                     example: 3
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

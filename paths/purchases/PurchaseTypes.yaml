@@ -2,7 +2,7 @@ get:
   tags:
     - Purchase types
   summary: Get all purchase types
-  description: Get a list of purchase types accepted in CRM CareCloud
+  description: Get a list of purchase types accepted in CRM CareCloud.
   operationId: getPurchaseTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -23,12 +23,12 @@ get:
                 properties:
                   purchase_types:
                     type: array
-                    description: List of the purchase types
+                    description: List of the purchase types.
                     items:
                       $ref: '../../schemas/_index.yaml#/Purchase-type'
                   total_items:
                     type: integer
-                    description: Count of all found purchase types
+                    description: The number of all found purchase types.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -68,7 +68,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

@@ -16,7 +16,7 @@ post:
           properties:
             customer_id:
               type: string
-              description: The unique id of the customer
+              description: The unique ID of the customer.
               example: 8ea2591121e636086a4a9c0992
           required:
             - customer_id
@@ -62,10 +62,10 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $segment_id = '82de12eb8b138791e678fd11c3'; // string | The unique id of the segment
+        $segment_id = '82de12eb8b138791e678fd11c3'; // string | The unique ID of the segment
 
         // Set the request body
         $body = new ActionsAddcustomerBody();

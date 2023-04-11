@@ -2,7 +2,7 @@ get:
   tags:
     - Purchases
   summary: Get vouchers tied to a purchase
-  description: Get information about all vouchers created in relation to a specific purchase
+  description: Get information about all vouchers created in relation to a specific purchase.
   operationId: getSubPurchaseVouchers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -24,12 +24,12 @@ get:
                 properties:
                   vouchers:
                     type: array
-                    description: List of all recent vouchers
+                    description: List of all recent vouchers.
                     items:
                       $ref: '../../schemas/_index.yaml#/Voucher'
                   total_items:
                     type: integer
-                    description: Count of all recent vouchers
+                    description: The number of all recent vouchers.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -69,10 +69,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $purchase_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the purchase
+        $purchase_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the purchase
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)

@@ -1,9 +1,9 @@
 post:
   tags:
     - Customers actions
-  summary: Upload customer's profile photo
+  summary: Upload the customer  profile photo
   description: |
-    Method uploads customer's profile photo. In case if the customer already has a photo, new photo will replace the old one. Maximum size of a picture is 2 MB. <br/>
+    Method uploads the customer  profile photo. In case if the customer already has a photo, new photo will replace the old one. Maximum size of a picture is 2 MB. <br/>
     Available formats: `.jpg, .jpeg, .png`
   operationId: postCustomersUploadPhoto
   requestBody:
@@ -15,12 +15,12 @@ post:
           properties:
             customer_id:
               type: string
-              description: The unique id of the customer
+              description: The unique ID of the customer.
               example: 8ea2591121e636086a4a9c0992
             data:
               type: string
-              description: Base 64 encoded image data
-              example: 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
+              description: Base 64 encoded image data.
+              example: iVBORw0KGgoAAAANSUhEUgAAAMYAAAAtCAIAAAB6eoNLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAeASURBVHhe7ZvfbxNHEMf7n/elKk
           required:
             - customer_id
             - data
@@ -66,11 +66,11 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $body = new ActionsUploadcustomerphotoBody();
-        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer
+        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
         $body->setData('YTc4ZTExZTc3NGY3Zmh1b3dmamZram5sam5kZmpuZm5mIGRzbiBzZGpuc2Rsam5kc2Y'); // string | Base 64 encoded image data
 
         // Call endpoint and post data

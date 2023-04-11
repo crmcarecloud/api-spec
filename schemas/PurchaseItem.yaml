@@ -1,50 +1,50 @@
 type: object
-description: Purchase item
+description: Purchase item.
 properties:
   purchase_item_id:
     type: string
     readOnly: true
-    description: The unique id of the purchase item
+    description: The unique ID of the purchase item.
     example: 84b757641df03b1529c2c7f66c
   product_id:
     type: string
     readOnly: false
-    description: The unique id of the [product](#tag/Product)
+    description: The unique ID of the [product](#tag/Product).
     example: 89b3b24b405f461c63d8fcaa0c
   external_id:
     type: string
     readOnly: false
-    description: Identifier of the purchase item in external system
+    description: Identifier of the purchase item in external system.
     example:
   purchase_item_type_id:
     type: string
     readOnly: false
-    description: Type of the purchase item
+    description: Type of the purchase item.
     example: 86e05affc7a7abefcd513ab400
   price:
     type: number
     format: float
     readOnly: false
-    description: Price of the purchase item
+    description: Price of the purchase item.
     example: 1.99
   amount:
     type: number
     format: float
     readOnly: false
-    description: Amount of the purchase item
+    description: Amount of the purchase item.
     example:
   vat_rate:
     type: number
     format: float
     readOnly: false
-    description: The rate of an item VAT
+    description: The rate of an item VAT.
     example:
   additional_properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: false
-    description: List of additional properties
+    description: List of additional properties.
 required:
   - product_id
   - purchase_item_type_id

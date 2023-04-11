@@ -1,25 +1,25 @@
 type: object
-description: Basic information about a relation between customers
+description: Basic information about a relation between customers.
 properties:
   customer_relation_id:
     type: string
     readOnly: true
-    description: The unique id of the customer's relation
+    description: The unique ID of the customer relation.
     example: 81eaeea13b8984a169c490a325
   related_customer_id:
     type: string
     readOnly: false
-    description: The unique id of the related customer
+    description: The unique ID of the related customer.
     example: 8aa68a112c62ad5f84a22a0652
   short_name:
     type: string
     readOnly: true
-    description: Short name of the customer
+    description: Short name of the customer.
     example: Peter D.
   customer_relation_type_id:
     type: string
     readOnly: false
-    description: The unique id of the customer relation type
+    description: The unique ID of the customer relation type.
     example: 8bed991c68a470e7aaeffbf048
   is_leading:
     type: boolean
@@ -29,17 +29,17 @@ properties:
   valid_from:
     type: string
     readOnly: true
-    description: Date and time when customer relation starts *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when customer relation starts. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-01-09 22:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time when customer relation ends *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when customer relation ends. *(YYYY-MM-DD HH:MM:SS)*
     example: "2022-01-09 22:30:00"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change (YYYY-MM-DD HH:MM:SS)
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2022-06-23 11:47:22'
   state:
     type: integer
@@ -48,7 +48,7 @@ properties:
       - 1
       - 2
     readOnly: true
-    description: 'State of the related customer *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+    description: 'State of the related customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
     example: 1
 required:
   - related_customer_id

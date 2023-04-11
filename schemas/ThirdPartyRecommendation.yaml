@@ -1,15 +1,15 @@
 type: object
-description: Information about a third party recommendation structure
+description: Information about a third party recommendation structure.
 properties:
   third_party_recommendation_id:
     type: string
     readOnly: true
-    description: The unique id of the third party recommendation
+    description: The unique ID of the third party recommendation.
     example: 838b73aacb5ac326cec4030c80
   customer_id:
     type: string
     readOnly: false
-    description: The unique id of the CareCloud customer. Required only if `products` parameter is not set.
+    description: The unique ID of the CareCloud customer. Required only if `products` parameter is not set.
     example: 8ea6abece4cd0a4ded0a29f093
   products:
     type: array
@@ -23,12 +23,12 @@ properties:
   recommendation_system_id:
     type: string
     readOnly: false
-    description: The unique id of the third party recommendation system from resource recommendation systems
+    description: The unique ID of the third party recommendation system from resource recommendation systems.
     example: 89bdac89bdacbfbffb5c82f2c52c
   recommendation_system_dataset_id:
     type: string
     readOnly: false
-    description: The unique id of the third party recommendation system dataset
+    description: The unique ID of the third party recommendation system dataset.
     example: 89bffb5c82f2c529bdacbfbff
   score:
     type: number
@@ -44,13 +44,13 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the recommendation
+      State of the recommendation.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: '2019-01-04 10:31:56'
 required:
   - recommended_product_id

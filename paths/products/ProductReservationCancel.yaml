@@ -16,7 +16,7 @@ post:
           properties:
             product_reservation_id:
               type: string
-              description: The unique id of the product reservation.
+              description: The unique ID of the product reservation.
               example: '81d503b99cc748b3ca189383ad'
           required:
             - product_reservation_id

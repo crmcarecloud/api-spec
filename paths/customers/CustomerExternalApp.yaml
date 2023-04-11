@@ -2,7 +2,7 @@ get:
   tags:
     - Customer external applications
   summary: Detail of a customer external application
-  description: Get information about a specific customer external application
+  description: Get information about a specific customer external application.
   operationId: getCustomerExternalApp
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -55,10 +55,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameters
-        $customer_external_application_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of a customer external application
+        $customer_external_application_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of a customer external application
 
         // Call endpoint and get data
         try

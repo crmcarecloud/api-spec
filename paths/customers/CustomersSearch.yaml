@@ -3,7 +3,7 @@ get:
     - Customers actions
   summary: Search customers
   description: |
-    Search all customers matching for parameters
+    Search all customers matching for parameters.
 
     <p class="warning">⚠️ Action method for search customers is available only in Enterprise interface.</p>
   operationId: getCustomerSearch
@@ -62,7 +62,7 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $first_name = 'Andrew'; // string | Search by first name (optional)

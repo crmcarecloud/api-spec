@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Detail of a relation between customers
-  description: Get information about a specific customer relation
+  description: Get information about a specific customer relation.
   operationId: getSubCustomerRelatedCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -56,11 +56,11 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
-        $customer_relation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the relation between two customers
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
+        $customer_relation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the relation between two customers
 
         // Call endpoint and get data
         try
@@ -76,8 +76,8 @@ get:
 delete:
   tags:
     - Customers
-  summary: Delete a customer's relation
-  description: Delete a specific customer relation
+  summary: Delete the customer  relation
+  description: Delete a specific customer relation.
   operationId: deleteSubCustomerRelatedCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -124,11 +124,11 @@ delete:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
-        $customer_relation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique id of the relation between two customers
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
+        $customer_relation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the relation between two customers
 
         // Call endpoint and delete data
         try

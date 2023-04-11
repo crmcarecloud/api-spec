@@ -1,15 +1,15 @@
 type: object
-description: Time interval structure
+description: Time interval structure.
 properties:
   from:
     type: string
     readOnly: false
-    description: Time from *(HH:MM:SS)*
+    description: Time from. *(HH:MM:SS)*
     example: "08:00:00"
   to:
     type: string
     readOnly: false
-    description: Time to *(HH:MM:SS)*
+    description: Time to. *(HH:MM:SS)*
     example: "15:30:00"
 required:
   - from

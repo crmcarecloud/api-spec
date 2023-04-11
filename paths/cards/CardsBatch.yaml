@@ -15,7 +15,7 @@ post:
           properties:
             cards:
               type: array
-              description: List of the CareCloud cards
+              description: List of the CareCloud cards.
               items:
                 $ref: '../../schemas/_index.yaml#/Card'
           required:
@@ -63,16 +63,16 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the request body
         $card1 = new Card();
-        $card1->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer (optional)
-        $card1->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique id of the card type (optional)
+        $card1->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer (optional)
+        $card1->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID of the card type (optional)
         $card1->setCardNumber('20230310001'); // string | The number of the card
         $card1->setValidFrom(null); // string | Card validity from (YYYY-MM-DD HH:MM:SS) (optional)
         $card1->setValidTo(null); // string | Card validity to (YYYY-MM-DD HH:MM:SS) (optional)
-        $card1->setStoreId(null); // string | The unique id of the store (optional)
+        $card1->setStoreId(null); // string | The unique ID of the store (optional)
         $card1->setState(1); // integer | Possible values are: 0 - blocked / 1 - active
 
         $body = new CardsBatchBody();

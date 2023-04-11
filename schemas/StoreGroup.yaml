@@ -1,20 +1,20 @@
 type: object
-description: Store group resource
+description: Store group resource.
 properties:
   store_group_id:
     type: string
     readOnly: true
-    description: The unique id of the store group
+    description: The unique ID of the store group.
     example: 8bed991c68a470e7aaeffbf048
   name:
     type: string
     readOnly: false
-    description: Name of the store group
+    description: Name of the store group.
     example: Groceries
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2020-08-24 10:14:00"
 required:
   - name

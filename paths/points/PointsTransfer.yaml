@@ -3,7 +3,7 @@ post:
     - Points
   summary: Transfer points
   description: |
-    Transfers points from one customer to another
+    Transfers points from one customer to another.
   operationId: postPointsTransfer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -16,11 +16,11 @@ post:
           properties:
             original_customer_id:
               type: string
-              description: Id of the original points holder.
+              description: ID of the original points holder.
               example: '8ea2591121e636086a4a9c0992'
             new_customer_id:
               type: string
-              description: Id of the new points holder.
+              description: ID of the new points holder.
               example: '84b9167cc2f01ff007d98e1633'
             amount:
               type: number
@@ -79,13 +79,13 @@ post:
         $care_cloud = new CareCloud($config);
         
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1. Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1. Default: cs, en-gb;q=0.8
         
         // Set the request body
         $body = new ActionsTransferpointsBody();
         $body->setAmount(100); // float | Number of transferred points
-        $body->setOriginalCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the original point's holder
-        $body->setNewCustomerId('88a1b431227d2172d60285b4e1'); // string | The unique id of the new point's holder
+        $body->setOriginalCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the original point's holder
+        $body->setNewCustomerId('88a1b431227d2172d60285b4e1'); // string | The unique ID of the new point's holder
         $body->setPointTypeId('8adcb83164fa7e12668035d43e'); // string | Type of the transferred points
         
         // Call endpoint and post data

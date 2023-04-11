@@ -14,11 +14,11 @@ post:
           type: object
           properties:
             card_id:
-              description: Id of the card. It will generates file from this card
+              description: ID of the card. It will generates file from this card.
               type: string
               example: 8fd73167342d06899c4c015320
             file_type:
-              description: "Type of the final file *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*"
+              description: "Type of the final file. *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*"
               type: string
               enum:
                 - png
@@ -39,7 +39,7 @@ post:
                 type: object
                 properties:
                   file_url:
-                    description: Url address of the final file with virtual card
+                    description: URL address of the final virtual card file.
                     type: string
                     example: "https:\/\/dev-carecloud.cortex.cz\/\/crm\/scripts\/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8"
     '400':
@@ -81,11 +81,11 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set info to the request body
         $body = new ActionsGeneratedigitalcardfileBody();
-        $body->setCardId('8bd253a890067595008f1d44aa'); // string | Id of the card. It will generate file from this card
+        $body->setCardId('8bd253a890067595008f1d44aa'); // string | ID of the card. It will generate file from this card
         $body->setFileType('png'); // string | Type of the final file Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet
 
         // Call endpoint and post data

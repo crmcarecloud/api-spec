@@ -1,15 +1,15 @@
 type: object
-description: Property item structure
+description: Property item structure.
 properties:
   id:
     type: string
     readOnly: true
-    description: The unique id of the property item
+    description: The unique ID of the property item.
     example: 8fd73167342d0689c4c015320
   name:
     type: string
     readOnly: false
-    description: Name of the property item
+    description: Name of the property item.
     example: '{"en":"evening","cz":"vecer"}'
   resource_record_id:
     type: string
@@ -23,6 +23,6 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the property item
+      State of the property item.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1

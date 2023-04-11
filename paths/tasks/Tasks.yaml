@@ -30,12 +30,12 @@ get:
                 properties:
                   tasks:
                     type: array
-                    description: List of all tasks
+                    description: List of all tasks.
                     items:
                       $ref: '../../schemas/_index.yaml#/Task'
                   total_items:
                     type: integer
-                    description: Count of all found tasks
+                    description: The number of all found tasks.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -74,16 +74,16 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set query parameters
         $count = 10; // integer >= 1 | The number of records to return (optional, default is 100)
         $offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)
         $sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)
         $sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)
-        $task_type_id = null; // string | Task type id from the resource task-types. The parameter filters tasks by their type (optional)
-        $task_state_id = null; // string | Task state id from the resource task-states. The parameter filters tasks by their state (optional)
-        $customer_id = null; // string | The unique id of the customer (optional)
+        $task_type_id = null; // string | Task type ID from the resource task-types. The parameter filters tasks by their type (optional)
+        $task_state_id = null; // string | Task state ID from the resource task-states. The parameter filters tasks by their state (optional)
+        $customer_id = null; // string | The unique ID of the customer (optional)
         $priority = 3; // integer | The parameter filters tasks by their priority. Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor (optional)
         $due_date = null; // string | Date (ISO 8601) when the task due (YYYY-MM-DD) (optional)
         $task_title = null; // string | Search record by the task summary or a part of the task summary (optional)
@@ -157,7 +157,7 @@ post:
                 properties:
                   task_id:
                     type: string
-                    description: The unique id of the task in CareCloud
+                    description: The unique ID of the task in CareCloud
                     example: 86e05affc7a7abefcd513ab400
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -199,13 +199,13 @@ post:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set the task info
         $task = new Task();
-        $task->setTaskTypeId('8bed991c68a470e7aaeffbf048') // string | The unique id of the task type
-        ->setTaskStateId('86e05affc7a7abefcd513ab400') // string | The unique id of the task state
-        ->setCustomerId('85aae99524edceec17682e01b9') // string | The unique id of the customer
+        $task->setTaskTypeId('8bed991c68a470e7aaeffbf048') // string | The unique ID of the task type
+        ->setTaskStateId('86e05affc7a7abefcd513ab400') // string | The unique ID of the task state
+        ->setCustomerId('85aae99524edceec17682e01b9') // string | The unique ID of the customer
         ->setTaskNote(null) // string | Text note of the task (optional)
         ->setTaskTitle('Test task n.1') // string | Title of the task
         ->setTaskPriority(3) // integer | The parameter filters tasks by their priority. Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor.

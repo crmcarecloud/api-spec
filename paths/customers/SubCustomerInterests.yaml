@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Get a collection of interest records
-  description: Get information about all interest records on a customer account
+  description: Get information about all interest records on a customer account.
   operationId: getSubCustomerInterests
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -20,12 +20,12 @@ get:
                 properties:
                   interest_records:
                     type: array
-                    description: List of interest records
+                    description: List of interest records.
                     items:
                       $ref: '../../schemas/_index.yaml#/InterestRecord'
                   total_items:
                     type: integer
-                    description: Count of all found interest records
+                    description: The number of all found interest records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -65,10 +65,10 @@ get:
         $care_cloud = new CareCloud($config);
 
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
 
         // Call endpoint and get data
         try
@@ -87,7 +87,7 @@ post:
   tags:
     - Customers
   summary: Add an interest record to a customer
-  description: Add a new specific customer interest record to a customer account
+  description: Add a new specific customer interest record to a customer account.
   operationId: postSubCustomerInterest
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -116,7 +116,7 @@ post:
                 properties:
                   interest_record_id:
                     type: string
-                    description: The unique id of the interest record
+                    description: The unique ID of the interest record.
                     example: 81eaeea13b8984a169c490a325
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -158,15 +158,15 @@ post:
         $care_cloud = new CareCloud($config);
         
         // Set Header parameter Accept-Language
-        $accept_language = 'en'; //	string | The unique id of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
         
         // Set path parameter
-        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique id of the customer
+        $customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer
         
         // Set interest info
         $interest_record = new InterestRecord();
-        $interest_record->setInterestId('8bed991c68a470e7aaeffbf048'); // string | The unique id of the interest
-        $interest_record->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique id of the customer
+        $interest_record->setInterestId('8bed991c68a470e7aaeffbf048'); // string | The unique ID of the interest
+        $interest_record->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
         
         $body = new CustomerIdInterestrecordsBody();
         $body->setInterestRecord($interest_record);

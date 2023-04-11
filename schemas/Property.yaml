@@ -1,39 +1,39 @@
 type: object
-description: Property structure
+description: Property structure.
 properties:
   property_id:
     type: string
     readOnly: true
-    description: The unique id of the property
+    description: The unique ID of the property.
     example: test
   name:
     type: string
     readOnly: false
-    description: Name of the property
+    description: Name of the property.
     example: Test
   description:
     type: string
     readOnly: false
-    description: User defined description of the property
+    description: User defined description of the property.
     example: "test"
   data_type:
     type: string
     readOnly: false
-    description: 'Data type of the final value * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
+    description: 'Data type of the final value. * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
     example: string
   items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyItem'
     readOnly: false
-    description: List of possible values. Used for multivalued data types (like enum, multiselect)
+    description: List of possible values. Used for multivalued data types (like enum, multiselect).
   is_required:
     type: boolean
     enum:
       - true
       - false
     readOnly: false
-    description: The settings whether the property is a required parameter of the specific entity
+    description: The settings whether the property is a required parameter of the specific entity.
     example: false
   is_unique:
     type: boolean
@@ -41,12 +41,12 @@ properties:
       - true
       - false
     readOnly: false
-    description: The setting whether the property contains a unique value within the specific entity
+    description: The setting whether the property contains a unique value within the specific entity.
     example: false
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-06-20 14:48:09"
   state:
     type: integer
@@ -57,7 +57,7 @@ properties:
     readOnly: true
     description: |
       State of the property
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active *
     example: 1
 required:
   - name
