@@ -1,5 +1,5 @@
 type: object
-description: Customer point.
+description: Customer point record.
 properties:
   point_id:
     type: string
@@ -49,6 +49,11 @@ properties:
       State of the point record.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
+  created_at:
+    type: string
+    readOnly: false
+    description: "Date and time of point record creation. *Possible value: 2016-06-30T15:51:49+02:00*"
+    example: "2016-06-30T15:5:49+02:00"
 required:
   - customer_id
   - point_type_id
