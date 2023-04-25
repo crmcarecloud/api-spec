@@ -1787,8 +1787,8 @@ paths:
                 - card_type_id
                 - customer_id
       responses:
-        '201':
-          description: Created
+        '200':
+          description: OK
           content:
             application/json:
               schema:
@@ -16902,7 +16902,7 @@ components:
         - code
     Point:
       type: object
-      description: Customer point.
+      description: Customer point record.
       properties:
         point_id:
           type: string
@@ -16952,6 +16952,11 @@ components:
             State of the point record.
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time of point record creation. *Possible value: 2016-06-30T15:51:49+02:00*'
+          example: '2016-06-30T15:5:49+02:00'
       required:
         - customer_id
         - point_type_id
