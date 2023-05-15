@@ -13,6 +13,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/visible_for_customer'
     - $ref: '../../parameters/_index.yaml#/property_id'
     - $ref: '../../parameters/_index.yaml#/property_value'
+    - $ref: '../../parameters/_index.yaml#/store_system_id'
   responses:
     '200':
       description: OK

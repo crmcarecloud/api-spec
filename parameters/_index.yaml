@@ -1497,6 +1497,14 @@ store_id:
   schema:
     type: string
   example: 81eaeea13b8984a169c490a325
+store_system_id:
+  name: system_id
+  in: query
+  description: The unique ID of the store in external system (e-shop, POS, etc.)
+  required: false
+  schema:
+    type: string
+  example: 1118384954
 visible_for_customer:
   name: visible_for_customer
   in: query
