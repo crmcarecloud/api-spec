@@ -1035,6 +1035,14 @@ partner_record_id_path:
   schema:
     type: string
   example: 88bd53f8ac5f3b595d6bc106a4
+partner_property_id_path:
+  name: partner_property_id
+  in: path
+  description: The unique ID of the partner property.
+  required: true
+  schema:
+    type: string
+  example: direct_contact
 #Payment types
 payment_type_id_path:
   name: payment_type_id

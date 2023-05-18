@@ -67,7 +67,6 @@ properties:
 required:
   - plu_ids
   - plu_name
-  - category_plu_id
   - vat_rate
   - quantity
   - paid_amount

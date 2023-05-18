@@ -1,7 +1,7 @@
 post:
   tags:
     - Product groups
-  summary: Create a batch of product groups
+  summary: Create a batch of product groups. If a group already exists, an update is applied.
   description: Batch process helps to add multiple product groups in one request.
   operationId: postBulkProductGroups
   parameters:

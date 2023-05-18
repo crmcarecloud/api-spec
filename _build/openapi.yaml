@@ -96,6 +96,8 @@ tags:
     description: 'Orders are expressions of intentions to purchase products, i.e., requests to buy something. They may refer to products, services or even experiences. The order becomes a contract (spoken, written or electronic) between the business and the customer. The customer commits to receive the product and to pay for it. Orders can be managed here.'
   - name: Partners
     description: A Partner is an entity that owns and manages a defined group of customer data in the CareCloud platform based on consent to the processing of personal data. The users of a specific Partner have no access to the customer data of another Partner. Each user is linked to a particular Partner. You can get here the list of Partners available.
+  - name: Partner properties
+    description: A Partner is an entity that owns and manages a defined group of customer data in the CareCloud platform based on consent to the processing of personal data. Partner properties endpoint provides list of all partner properties.
   - name: Payment types
     description: All payment types from CareCloud. Payment types can be used while creating an order.
   - name: Points
@@ -5054,6 +5056,69 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsSetpartnersBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PartnerRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the request body\n$partner_record1 = new PartnerRecord();\n$partner_record1->setPartnerId('86e05affc7a7abefcd513ab400'); // string | The unique ID of the partner\n\n$body = new ActionsSetpartnersBody();\n$body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer\n$body->setPartnerRecords(array($partner_record1));\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->customersActionsApi()->postSubCustomerSetPartners(\n        $body,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /customers/actions/set-status-record:
+    post:
+      tags:
+        - Customers actions
+      summary: Set a new customer status
+      description: |
+        The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
+
+        <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
+      operationId: postCustomersSetStatusRecord
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status_id:
+                  type: string
+                  description: The unique ID of the status.
+                  example: 86e05affc7a7abefcd513ab400
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer.
+                  example: 89ac83ca207a820c62c79bf03a
+                valid_to:
+                  type: string
+                  description: 'Date and time of the record valid to. If not set, validity from the status definition is applied. *(YYYY-MM-DD HH:MM:SS)*'
+                  example: '2021-05-28 23:59:59'
+              required:
+                - status_id
+                - customer_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status_record_id:
+                        type: string
+                        description: The unique ID of the customer status record.
+                        example: 8ea2591121e636086a4a9c0992
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customer-address-types:
     get:
       tags:
@@ -7014,6 +7079,138 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$partner_id = '86e05affc7a7abefcd513ab400'; // string | The unique ID of the partner\n\n// Call endpoint and get data\ntry\n{\n    $get_partner = $care_cloud->partnersApi()->getPartner($partner_id, $accept_language);\n    $partner = $get_partner->getData();\n    var_dump($partner);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/partners/{partner_id}/property-records':
+    get:
+      tags:
+        - Partners
+      summary: Get a collection of property records
+      description: Get information about all property records tied to the partner.
+      operationId: getSubPartnerProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/partner_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      property_records:
+                        type: array
+                        description: List of property records.
+                        items:
+                          $ref: '#/components/schemas/PropertyRecord'
+                      total_items:
+                        type: integer
+                        description: The number of all found partner property records.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /partner-properties:
+    get:
+      tags:
+        - Partner properties
+      summary: Get all partner properties
+      description: Get information about partner properties.
+      operationId: getPartnerProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      partner_properties:
+                        type: array
+                        description: List of all partner properties.
+                        items:
+                          $ref: '#/components/schemas/Property'
+                      total_items:
+                        type: integer
+                        description: The number of all found partner properties.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/partner-properties/{partner_property_id}':
+    get:
+      tags:
+        - Partner properties
+      summary: Get a partner property
+      description: Get information about a specific partner property.
+      operationId: getPartnerProperty
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/partner_property_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Property'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /payment-types:
     get:
       tags:
@@ -7908,7 +8105,7 @@ paths:
     post:
       tags:
         - Products
-      summary: Create a batch of products.
+      summary: 'Create a batch of products. If a product already exists, an update is applied.'
       description: Batch process helps to add multiple products in one request. <p class="warning">⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.</p>
       operationId: postBulkProducts
       parameters:
@@ -8190,7 +8387,7 @@ paths:
     post:
       tags:
         - Product groups
-      summary: Create a batch of product groups
+      summary: 'Create a batch of product groups. If a group already exists, an update is applied.'
       description: Batch process helps to add multiple product groups in one request.
       operationId: postBulkProductGroups
       parameters:
@@ -8957,6 +9154,45 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$purchase_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the purchase\n\n// Call endpoint and get data\ntry\n{\n    $get_purchase = $care_cloud->purchasesApi()->getPurchase($purchase_id, $accept_language);\n    $purchase = $get_purchase->getData();\n    var_dump($purchase);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+    put:
+      tags:
+        - Purchases
+      summary: Update a purchase
+      description: Update a specific purchase.
+      operationId: putPurchase
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/purchase_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                purchase:
+                  $ref: '#/components/schemas/Purchase'
+              required:
+                - purchase
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/purchases/{purchase_id}/purchase-items':
     get:
       tags:
@@ -14109,6 +14345,48 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsApplyvoucherBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$voucher_id = '85d6598db0bf3f62afd5db8507'; // string | The unique ID of the voucher\n\n// Set the request body\n$body = new ActionsApplyvoucherBody();\n$body->setStoreId(null); // string | The unique ID of the store (optional)\n$body->setDateApplied('2022-10-28 15:52:00'); // string | Date (ISO 8601) of voucher application (YYYY-MM-DD HH:MM:SS)\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->vouchersApi()->postVoucherApply($body, $voucher_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /vouchers/batch:
+    post:
+      tags:
+        - Vouchers
+      summary: Create a batch of vouchers.
+      description: Batch process helps to add multiple vouchers in one request. <p class="warning">⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.</p>
+      operationId: postBulkVouchers
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vouchers:
+                  type: array
+                  description: List of the CareCloud vouchers.
+                  items:
+                    $ref: '#/components/schemas/VoucherBatch'
+              required:
+                - vouchers
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /voucher-properties:
     get:
       tags:
@@ -14886,7 +15164,6 @@ components:
       required:
         - plu_ids
         - plu_name
-        - category_plu_id
         - vat_rate
         - quantity
         - paid_amount
@@ -17683,22 +17960,22 @@ components:
           example: 8ea2591121e636086a4a9c0992
         store_id:
           type: string
-          readOnly: false
+          readOnly: true
           description: The unique ID of the store in CareCloud.
           example: 81eaeea13b8984a169c490a325
         external_purchase_id:
           type: string
-          readOnly: false
+          readOnly: true
           description: The external unique ID of the purchase.
           example: D67X202789
         payment_time:
           type: string
-          readOnly: false
+          readOnly: true
           description: 'Date and time of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-02-24 00:00:00'
         items_count:
           type: integer
-          readOnly: false
+          readOnly: true
           description: Count of the purchase items.
           example: 1
         purchase_items:
@@ -17709,18 +17986,18 @@ components:
           description: List of all items of the purchase. Data is returned if query parameter purchase_items_extension has value true in the query string of the request.
         type_id:
           type: string
-          readOnly: false
+          readOnly: true
           description: Purchase type.
           example: 86e05affc7a7abefcd513ab400
         total_price:
           type: number
           format: float
-          readOnly: false
+          readOnly: true
           description: Total price of the purchase.
           example: 660
         currency_id:
           type: string
-          readOnly: false
+          readOnly: true
           description: The unique ID of the currency.
           example: 8bed991c68a470e7aaeffbf048
         card_number:
@@ -17730,7 +18007,7 @@ components:
           example: 1000000000016
         cashdesk_number:
           type: string
-          readOnly: false
+          readOnly: true
           description: Number of the cash-desk
           example: 2
         last_change:
@@ -19358,6 +19635,58 @@ components:
         - valid_from
         - reward_group
         - reward
+    VoucherBatch:
+      type: object
+      description: Voucher resource for the batch processing.
+      properties:
+        reward_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the reward.
+          example: 83cfee22eabfbbb15a14815e30
+        customer_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the customer.
+          example: 81ceb8582e2d8dbb7e71b7273b
+        store_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the store where voucher was applied.
+          example: 86e05affc7a7abefcd513ab400
+        code:
+          type: string
+          readOnly: false
+          description: Code of the voucher.
+          example: w7TU7KfeE
+        value:
+          type: number
+          format: float
+          readOnly: false
+          description: Value of the voucher when applied by the purchase.
+          example: 3.49
+        applied_date:
+          type: string
+          readOnly: false
+          description: 'Voucher application date. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2013-07-24 21:33:13'
+        valid_from:
+          type: string
+          readOnly: false
+          description: 'Date from the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          example: null
+        valid_to:
+          type: string
+          readOnly: false
+          description: 'Date to the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          example: null
+        note:
+          type: string
+          readOnly: false
+          description: Voucher's note.
+          example: Contact before use
+      required:
+        - reward_id
     BasicError:
       type: object
       required:
@@ -20379,6 +20708,14 @@ components:
       schema:
         type: string
       example: 88bd53f8ac5f3b595d6bc106a4
+    partner_property_id_path:
+      name: partner_property_id
+      in: path
+      description: The unique ID of the partner property.
+      required: true
+      schema:
+        type: string
+      example: direct_contact
     payment_type_id_path:
       name: payment_type_id
       in: path

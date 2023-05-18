@@ -238,6 +238,8 @@ UTM:
   $ref: "./UTM.yaml"
 Voucher:
   $ref: "./Voucher.yaml"
+VoucherBatch:
+  $ref: "./VoucherBatch.yaml"
 
 BasicError:
   type: object

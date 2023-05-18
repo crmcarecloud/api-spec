@@ -1,0 +1,62 @@
+post:
+  tags:
+    - Customers actions
+  summary: Set a new customer status
+  description: |
+    The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
+
+    <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
+  operationId: postCustomersSetStatusRecord
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status_id:
+              type: string
+              description: The unique ID of the status.
+              example: 86e05affc7a7abefcd513ab400
+            customer_id:
+              type: string
+              description: The unique ID of the customer.
+              example: 89ac83ca207a820c62c79bf03a
+            valid_to:
+              type: string
+              description: Date and time of the record valid to. If not set, validity from the status definition is applied. *(YYYY-MM-DD HH:MM:SS)*
+              example: "2021-05-28 23:59:59"
+          required:
+            - status_id
+            - customer_id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  status_record_id:
+                    type: string
+                    description: The unique ID of the customer status record.
+                    example: 8ea2591121e636086a4a9c0992
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

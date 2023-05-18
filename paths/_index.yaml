@@ -157,6 +157,9 @@
   $ref: "./customers/CustomerUploadPhoto.yaml"
 /customers/actions/set-partners:
   $ref: "./customers/CustomerSetPartners.yaml"
+/customers/actions/set-status-record:
+  $ref: "./customers/CustomerSetStatusRecord.yaml"
+
 # Customer address types
 /customer-address-types:
   $ref: "./customers/CustomerAddressTypes.yaml"
@@ -262,6 +265,15 @@
   $ref: "./partners/Partners.yaml"
 /partners/{partner_id}:
   $ref: "./partners/Partner.yaml"
+/partners/{partner_id}/property-records:
+  $ref: "./partners/SubPartnerProperties.yaml"
+
+# Partner properties
+/partner-properties:
+  $ref: "./partners/PartnerProperties.yaml"
+/partner-properties/{partner_property_id}:
+  $ref: "./partners/PartnerProperty.yaml"
+
 
 # Payment types
 /payment-types:
@@ -584,6 +596,9 @@
 #  Actions
 /vouchers/{voucher_id}/actions/apply-voucher:
   $ref: "./vouchers/VoucherApply.yaml"
+# Batch
+/vouchers/batch:
+  $ref: "./vouchers/VouchersBatch.yaml"
 
   #Voucher properties
 /voucher-properties:
