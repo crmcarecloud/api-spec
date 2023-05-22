@@ -44,17 +44,18 @@ properties:
     example:
   reward_group:
     type: string
-    readOnly: false
+    readOnly: true
     description: The unique ID of the reward group.
     example: 83cfee22eabfbbb15a14815e30
   note:
     type: string
-    readOnly: true
+    readOnly: false
     description: Voucher's note.
     example: "Contact before use"
   reward:
-    $ref: '../schemas/_index.yaml#/Reward'
-    readOnly: false
+    readOnly: true
+    allOf:
+      - $ref: '../schemas/_index.yaml#/Reward'
   created_at:
     type: string
     readOnly: true
@@ -76,12 +77,3 @@ properties:
       State of the voucher.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
-required:
-  - voucher_id
-  - customer_id
-  - store_id
-  - code
-  - value
-  - valid_from
-  - reward_group
-  - reward

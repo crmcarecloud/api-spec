@@ -76,7 +76,12 @@ properties:
       $ref: '../schemas/_index.yaml#/Parameter'
     readOnly: false
     description: Message data could contains array of customized parameters. They may have influence on message display or add values to message.
-    #example: []
+  attachments:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Attachment'
+    readOnly: false
+    description: "List of the attachments for the message. A single attachment has a size limit of 1 MB. File type restrictions: .jpg, .jpeg, .png, .gif, and .pdf."
   last_change:
     type: string
     readOnly: true

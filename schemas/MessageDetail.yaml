@@ -11,6 +11,12 @@ properties:
     readOnly: true
     description: HTML body of the message.
     example: ""
+  attachments:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/AttachmentInfo'
+    readOnly: true
+    description: List of the attachments from the message.
   last_change:
     type: string
     readOnly: true

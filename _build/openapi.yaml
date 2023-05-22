@@ -14245,6 +14245,45 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$voucher_id = '85d6598db0bf3f62afd5db8507'; // string | The unique ID of the voucher\n\n// Call endpoint and get data\ntry\n{\n    $get_voucher = $care_cloud->vouchersApi()->getVoucher($voucher_id, $accept_language);\n    $voucher = $get_voucher->getData();\n    var_dump($voucher);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+    put:
+      tags:
+        - Vouchers
+      summary: Update a voucher
+      description: This method updates a specific voucher.
+      operationId: putVoucher
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/voucher_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voucher:
+                  $ref: '#/components/schemas/Voucher'
+              required:
+                - voucher
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/vouchers/{voucher_id}/property-records':
     get:
       tags:
@@ -15047,6 +15086,38 @@ components:
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-12-16 17:42:28.248955'
+    Attachment:
+      type: object
+      description: Message attachment information structure.
+      properties:
+        upload_method:
+          type: string
+          enum:
+            - url
+            - base64
+          readOnly: false
+          description: Method how to upload attachment file.
+          example: url
+        file_data:
+          type: string
+          description: File data to upload. It could URL address of the file or BASE64 encoded file.
+          example: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
+        cache_for:
+          type: integer
+          description: 'CareCloud can cache the attachment for a certain amount of minutes. If the cache parameter is not set, the attachment is not cached, and it''s deleted after the message is sent.'
+          example: 20
+      required:
+        - upload_method
+        - file_data
+    AttachmentInfo:
+      type: object
+      description: Message attachment information structure.
+      properties:
+        attachment_format:
+          type: string
+          readOnly: false
+          description: Format of the attachment file.
+          example: general_terms.pdf
     Bill:
       type: object
       description: Structure of bill from POS.
@@ -16597,6 +16668,12 @@ components:
             $ref: '#/components/schemas/Parameter'
           readOnly: false
           description: Message data could contains array of customized parameters. They may have influence on message display or add values to message.
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+          readOnly: false
+          description: 'List of the attachments for the message. A single attachment has a size limit of 1 MB. File type restrictions: .jpg, .jpeg, .png, .gif, and .pdf.'
         last_change:
           type: string
           readOnly: true
@@ -16625,6 +16702,12 @@ components:
           readOnly: true
           description: HTML body of the message.
           example: ''
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachmentInfo'
+          readOnly: true
+          description: List of the attachments from the message.
         last_change:
           type: string
           readOnly: true
@@ -19594,17 +19677,18 @@ components:
           example: null
         reward_group:
           type: string
-          readOnly: false
+          readOnly: true
           description: The unique ID of the reward group.
           example: 83cfee22eabfbbb15a14815e30
         note:
           type: string
-          readOnly: true
+          readOnly: false
           description: Voucher's note.
           example: Contact before use
         reward:
-          $ref: '#/components/schemas/Reward'
-          readOnly: false
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/Reward'
         created_at:
           type: string
           readOnly: true
@@ -19626,15 +19710,6 @@ components:
             State of the voucher.
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
-      required:
-        - voucher_id
-        - customer_id
-        - store_id
-        - code
-        - value
-        - valid_from
-        - reward_group
-        - reward
     VoucherBatch:
       type: object
       description: Voucher resource for the batch processing.

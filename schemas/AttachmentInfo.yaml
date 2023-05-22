@@ -1,0 +1,8 @@
+type: object
+description: Message attachment information structure.
+properties:
+  attachment_format:
+    type: string
+    readOnly: false
+    description: Format of the attachment file.
+    example: general_terms.pdf

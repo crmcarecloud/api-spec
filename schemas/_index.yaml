@@ -6,6 +6,10 @@ Agreement:
   $ref: "./Agreement.yaml"
 AgreementList:
   $ref: "./AgreementList.yaml"
+Attachment:
+  $ref: "./Attachment.yaml"
+AttachmentInfo:
+  $ref: "./AttachmentInfo.yaml"
 Bill:
   $ref: "./Bill.yaml"
 BillItem:
