@@ -49,3 +49,4 @@ properties:
     example: "Contact before use"
 required:
   - reward_id
+  - customer_id

@@ -19710,6 +19710,8 @@ components:
             State of the voucher.
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
+      required:
+        - customer_id
     VoucherBatch:
       type: object
       description: Voucher resource for the batch processing.
@@ -19762,6 +19764,7 @@ components:
           example: Contact before use
       required:
         - reward_id
+        - customer_id
     BasicError:
       type: object
       required:
