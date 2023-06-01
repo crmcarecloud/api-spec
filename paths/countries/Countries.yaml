@@ -27,7 +27,7 @@ get:
                     type: array
                     description: List of the countries.
                     items:
-                      - $ref: '../../schemas/_index.yaml#/Country'
+                      $ref: '../../schemas/_index.yaml#/Country'
                   total_items:
                     type: integer
                     description: The number of all found countries.

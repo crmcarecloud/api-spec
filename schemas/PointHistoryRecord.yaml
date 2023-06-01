@@ -42,3 +42,9 @@ properties:
     readOnly: true
     description: Date and time of the point record from the point history. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-09-16 15:33:11"
+  extended_data:
+    type: string
+    format: json
+    readOnly: true
+    description: Extended data are related to the point history as details about the purchase, point expiration, and others. Several parameters depend on the type of point operation.
+    example: '{"date_of_points_expiration": null, "external_purchase_id": "97YDFFGIDF78T0Q3", "purchase_value": 23.5}'

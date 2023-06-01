@@ -25,7 +25,6 @@ properties:
       - type: array
         items: { }
       - type: object
-      - type: null
     readOnly: false
     description: Value of the property.
     example: "2002-02-02"

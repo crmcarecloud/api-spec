@@ -2305,7 +2305,7 @@ paths:
                         type: array
                         description: List of the countries.
                         items:
-                          - $ref: '#/components/schemas/Country'
+                          $ref: '#/components/schemas/Country'
                       total_items:
                         type: integer
                         description: The number of all found countries.
@@ -2575,7 +2575,7 @@ paths:
                         type: array
                         description: List of the credit types.
                         items:
-                          - $ref: '#/components/schemas/CreditType'
+                          $ref: '#/components/schemas/CreditType'
                       total_items:
                         type: integer
                         description: The number of all found credit types.
@@ -2670,7 +2670,7 @@ paths:
                         type: array
                         description: Structure of currency.
                         items:
-                          - $ref: '#/components/schemas/Currency'
+                          $ref: '#/components/schemas/Currency'
                       total_items:
                         type: integer
                         description: Total count of found items of resource currencies.
@@ -17367,6 +17367,12 @@ components:
           readOnly: true
           description: 'Date and time of the point record from the point history. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-09-16 15:33:11'
+        extended_data:
+          type: string
+          format: json
+          readOnly: true
+          description: 'Extended data are related to the point history as details about the purchase, point expiration, and others. Several parameters depend on the type of point operation.'
+          example: '{"date_of_points_expiration": null, "external_purchase_id": "97YDFFGIDF78T0Q3", "purchase_value": 23.5}'
     PointReservation:
       type: object
       description: Points reservation resource.
@@ -18016,7 +18022,6 @@ components:
             - type: array
               items: {}
             - type: object
-            - type: null
           readOnly: false
           description: Value of the property.
           example: '2002-02-02'

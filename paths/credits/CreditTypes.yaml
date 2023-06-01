@@ -25,7 +25,7 @@ get:
                     type: array
                     description: List of the credit types.
                     items:
-                      - $ref: '../../schemas/_index.yaml#/CreditType'
+                      $ref: '../../schemas/_index.yaml#/CreditType'
                   total_items:
                     type: integer
                     description: The number of all found credit types.
