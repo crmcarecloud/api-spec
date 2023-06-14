@@ -1271,6 +1271,14 @@ purchase_id_path:
   schema:
     type: string
   example: 8bd62e6ba18b3c791a9402cf3e
+external_purchase_id:
+  name: external_purchase_id
+  in: query
+  description: ID of the purchase from external (e-shop, POS) system. This ID should have unique value.
+  required: false
+  schema:
+    type: string
+  example: ZXA321FSWO1
 purchase_type_id:
   name: type_id
   in: query

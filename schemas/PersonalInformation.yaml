@@ -60,7 +60,7 @@ properties:
   store_id:
     type: string
     readOnly: false
-    description: The unique ID of the original customer account store of registration.
+    description: The unique ID of the original customer account store of registration. In case of the customer update, the request cant delete the parameter's value. Only updated.
     example: 8bed991c68a4
   photo_url:
     type: string

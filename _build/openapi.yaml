@@ -7413,6 +7413,7 @@ paths:
         - $ref: '#/components/parameters/payment_time_from'
         - $ref: '#/components/parameters/payment_time_to'
         - $ref: '#/components/parameters/purchase_items_extension'
+        - $ref: '#/components/parameters/external_purchase_id'
       responses:
         '200':
           description: OK
@@ -9074,6 +9075,7 @@ paths:
         - $ref: '#/components/parameters/payment_time_from'
         - $ref: '#/components/parameters/payment_time_to'
         - $ref: '#/components/parameters/purchase_items_extension'
+        - $ref: '#/components/parameters/external_purchase_id'
       responses:
         '200':
           description: OK
@@ -17229,7 +17231,7 @@ components:
         store_id:
           type: string
           readOnly: false
-          description: The unique ID of the original customer account store of registration.
+          description: 'The unique ID of the original customer account store of registration. In case of the customer update, the request cant delete the parameter''s value. Only updated.'
           example: 8bed991c68a4
         photo_url:
           type: string
@@ -21021,6 +21023,14 @@ components:
       schema:
         type: string
       example: 8bd62e6ba18b3c791a9402cf3e
+    external_purchase_id:
+      name: external_purchase_id
+      in: query
+      description: 'ID of the purchase from external (e-shop, POS) system. This ID should have unique value.'
+      required: false
+      schema:
+        type: string
+      example: ZXA321FSWO1
     purchase_type_id:
       name: type_id
       in: query

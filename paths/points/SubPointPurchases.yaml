@@ -17,6 +17,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/payment_time_from'
     - $ref: '../../parameters/_index.yaml#/payment_time_to'
     - $ref: '../../parameters/_index.yaml#/purchase_items_extension'
+    - $ref: '../../parameters/_index.yaml#/external_purchase_id'
   responses:
     '200':
       description: OK
