@@ -522,6 +522,14 @@ customer_source_id:
   schema:
     type: string
   example: 8fdce3475560d56e95a6ab035r
+customer_source_text_id:
+  name: customer_source_text_id
+  in: query
+  required: false
+  description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+  schema:
+    type: string
+  example: webshop_registration
 customer_type_id_arr:
   name: customer_type_id
   in: query

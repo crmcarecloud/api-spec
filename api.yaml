@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: CRM CareCloud REST API
+  title: REST API Reference
   version: 1.0.0
   license:
     name: EULA
@@ -449,10 +449,23 @@ tags:
 #      - Campaign products
 
 servers:
-  - url: https://<projectURL>/webservice/rest-api/enterprise-interface/v1.0
+  - url: https://{project_url}/webservice/rest-api/{api_interface}/{version}
     description: The **Enterprise API**. More in [Domain structure](#section/Getting-started/Domain-structure)
-  - url: https://<projectURL>/webservice/rest-api/customer-interface/v1.0
-    description: The **Customer API**. More in [Domain structure](#section/Getting-started/Domain-structure)
+    variables:
+      project_url:
+        default: sandbox.crmcarecloud.com
+        description: domain of the CareCloud project
+      api_interface:
+        enum:
+          - "enterprise-interface"
+          - "customer-interface"
+        default: "enterprise-interface"
+        description: Two different kinds of interfaces are used depending on the type of data required from CareCloud API and the character of integration (mobile application, webshop, POS, or BI tool).
+      version:
+        enum:
+          - v1.0
+        default: v1.0
+        description: Version of the CareCloud API
 #  - url: https://<projectURL>/webservice/rest-api/{API type}/v1.0
 #    variables:
 #      API type:

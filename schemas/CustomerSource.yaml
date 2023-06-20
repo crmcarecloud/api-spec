@@ -13,12 +13,12 @@ properties:
     type: string
     readOnly: false
     description: Name of the customer source.
-    example: All resources
-  last_change:
+    example: Webshop registration
+  customer_source_text_id:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: "2019-01-08 18:34:07"
+    description: It represents unique readable ID of the customer source.
+    example: webshop_registration
   state:
     type: integer
     enum:
@@ -30,6 +30,11 @@ properties:
       State of the customer source.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-01-08 18:34:07"
 required:
   - customer_source_id
   - name

@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: CRM CareCloud REST API
+  title: REST API Reference
   version: 1.0.0
   license:
     name: EULA
@@ -431,10 +431,23 @@ tags:
   - name: Wallet
     description: 'The Wallet in the CareCloud platform contains Rewards Points and Credits. It is assigned to each customer on his customer account. The content of the wallet is available in the Customer 360 View App. You get the Wallet content details included expirations, here.'
 servers:
-  - url: 'https://<projectURL>/webservice/rest-api/enterprise-interface/v1.0'
+  - url: 'https://{project_url}/webservice/rest-api/{api_interface}/{version}'
     description: 'The **Enterprise API**. More in [Domain structure](#section/Getting-started/Domain-structure)'
-  - url: 'https://<projectURL>/webservice/rest-api/customer-interface/v1.0'
-    description: 'The **Customer API**. More in [Domain structure](#section/Getting-started/Domain-structure)'
+    variables:
+      project_url:
+        default: sandbox.crmcarecloud.com
+        description: domain of the CareCloud project
+      api_interface:
+        enum:
+          - enterprise-interface
+          - customer-interface
+        default: enterprise-interface
+        description: 'Two different kinds of interfaces are used depending on the type of data required from CareCloud API and the character of integration (mobile application, webshop, POS, or BI tool).'
+      version:
+        enum:
+          - v1.0
+        default: v1.0
+        description: Version of the CareCloud API
 paths:
   /agreements:
     get:
@@ -5505,6 +5518,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/customer_source_text_id'
       responses:
         '200':
           description: OK
@@ -16053,12 +16067,12 @@ components:
           type: string
           readOnly: false
           description: Name of the customer source.
-          example: All resources
-        last_change:
+          example: Webshop registration
+        customer_source_text_id:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-01-08 18:34:07'
+          description: It represents unique readable ID of the customer source.
+          example: webshop_registration
         state:
           type: integer
           enum:
@@ -16070,6 +16084,11 @@ components:
             State of the customer source.
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-01-08 18:34:07'
       required:
         - customer_source_id
         - name
@@ -20309,6 +20328,14 @@ components:
       schema:
         type: string
       example: 8fdce3475560d56e95a6ab035r
+    customer_source_text_id:
+      name: customer_source_text_id
+      in: query
+      required: false
+      description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+      schema:
+        type: string
+      example: webshop_registration
     customer_type_id_arr:
       name: customer_type_id
       in: query

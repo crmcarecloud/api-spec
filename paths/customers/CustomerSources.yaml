@@ -10,6 +10,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/customer_source_text_id'
   responses:
     '200':
       description: OK
