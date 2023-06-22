@@ -54,8 +54,7 @@ properties:
     example: "Contact before use"
   reward:
     readOnly: true
-    allOf:
-      - $ref: '../schemas/_index.yaml#/Reward'
+    $ref: '../schemas/_index.yaml#/Reward'
   created_at:
     type: string
     readOnly: true
