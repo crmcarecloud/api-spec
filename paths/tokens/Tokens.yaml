@@ -8,8 +8,7 @@ post:
     <p class="warning">⚠️ Warning: We highly recommend filling all identifications in tokens resource (device and application) to avoid problems if multiple applications use CareCloud REST API on one device.</p>
     <p class="warning">The creation of a token is different from other API calls. HTTP Authorization header contains only a login name and no token. See [Use cases](#section/Use-cases/Authentication-and-login-process-for-customer-interface).</p>
   operationId: postToken
-  security:
-    - basicAuth: [ ]
+  security: []
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
   requestBody:

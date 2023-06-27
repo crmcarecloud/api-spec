@@ -152,10 +152,6 @@ We published the Open API 3.0 specification of the CareCloud REST API because we
 You can generate not only API clients in several languages. But also use it with plenty of tools that support many platforms and programming languages. Please look at the list of available generators and find there your platform:<br/>
 [https://openapi.tools/](https://openapi.tools/)
 
-# Authentication
-
-<SecurityDefinitions />
-
 # FAQ
 The section will answer all the questions you have about using and integrating CareCloud REST API.
 

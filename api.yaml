@@ -5,11 +5,6 @@ info:
   license:
     name: EULA
     url: https://www.crmcarecloud.com/
-  x-logo:
-    url: "https://cdn.carecloud.cz/static/carecloud_blue.svg"
-    altText: 'CRM CareCloud'
-  description:
-    $ref: "./description.md"
   contact:
     email: support@carecloud.cz
 tags:
@@ -128,7 +123,6 @@ tags:
   - name: Purchases
     description: There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.
   - name: Purchase error examples
-    x-traitTag: true
     description: >
       <p>Examples of the most occurred extended error codes from purchases resource endpoints and action methods:</p>
       <table>
@@ -477,7 +471,6 @@ paths:
   $ref: "./paths/_index.yaml"
 security:
   - bearerAuth: []
-  - basicAuth: []
 components:
   responses:
     $ref: "./responses/_index.yaml"
@@ -491,12 +484,3 @@ components:
       scheme: bearer
       description:
         $ref: "./bearerAuth.md"
-    basicAuth:
-      type: http
-      scheme: basic
-      description:
-        $ref: "./basicAuth.md"
-    none:
-      type: http
-      scheme: none
-      description : "Publicly accessible (no authentication needed)."
