@@ -1,5 +1,5 @@
 type: object
-description: Booking ticket.
+description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
 properties:
   ticket_id:
     type: string

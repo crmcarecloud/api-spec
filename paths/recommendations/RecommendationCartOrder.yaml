@@ -44,10 +44,9 @@ post:
                 properties:
                   recommended_products_list:
                     type: array
-                    description: List of the recommended product IDs.
+                    description: List of the recommended products.
                     items:
-                      type: string
-                    example: [ "80af10a712ce31a8ed0e2f68a0", "8bb7f47a2743d4a7494dfee1c0" ]
+                      $ref: '../../schemas/_index.yaml#/RecommendedProduct'
                   total_items:
                     type: integer
                     description: The number of all found product IDs.

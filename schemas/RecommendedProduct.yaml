@@ -1,0 +1,14 @@
+type: object
+description: Recommended product from recommendation engine
+properties:
+  product_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the product.
+    example: '85d6598db0bf3f62afd5db8507'
+  plu_ids:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PluId'
+    readOnly: true
+    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).

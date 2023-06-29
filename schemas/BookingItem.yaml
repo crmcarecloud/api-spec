@@ -15,8 +15,6 @@ properties:
     description: The unique ID of the booking time slot.
     example: 88bb88399cc74d81edbe19d684
   booking_ticket:
-    type: object
-    description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
     $ref: '../schemas/_index.yaml#/BookingTicket'
   valid_from:
     type: string

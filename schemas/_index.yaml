@@ -180,6 +180,8 @@ QualificationTurnover:
   $ref: "./QualificationTurnover.yaml"
 Recommendation:
   $ref: "./Recommendation.yaml"
+RecommendedProduct:
+  $ref: "./RecommendedProduct.yaml"
 RecommendedReward:
   $ref: "./RecommendedReward.yaml"
 RelatedCustomer:

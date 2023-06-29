@@ -9990,13 +9990,9 @@ paths:
                     properties:
                       recommended_products_list:
                         type: array
-                        description: List of the recommended product IDs.
+                        description: List of the recommended products.
                         items:
-                          type: string
-                        example:
-                          - 80af10a712ce31a8ed0e2f68a0
-                          - 84b6d6ba0f1b0fadc6e73a2608
-                          - 8bb7f47a2743d4a7494dfee1c0
+                          $ref: '#/components/schemas/RecommendedProduct'
                       total_items:
                         type: integer
                         description: The number of all found product IDs.
@@ -10064,13 +10060,9 @@ paths:
                     properties:
                       recommended_products_list:
                         type: array
-                        description: List of the recommended product IDs.
+                        description: List of the recommended products.
                         items:
-                          type: string
-                        example:
-                          - 80af10a712ce31a8ed0e2f68a0
-                          - 84b6d6ba0f1b0fadc6e73a2608
-                          - 8bb7f47a2743d4a7494dfee1c0
+                          $ref: '#/components/schemas/RecommendedProduct'
                       total_items:
                         type: integer
                         description: The number of all found product IDs.
@@ -10138,13 +10130,9 @@ paths:
                     properties:
                       recommended_products_list:
                         type: array
-                        description: List of the recommended product IDs.
+                        description: List of the recommended products.
                         items:
-                          type: string
-                        example:
-                          - 80af10a712ce31a8ed0e2f68a0
-                          - 84b6d6ba0f1b0fadc6e73a2608
-                          - 8bb7f47a2743d4a7494dfee1c0
+                          $ref: '#/components/schemas/RecommendedProduct'
                       total_items:
                         type: integer
                         description: The number of all found product IDs.
@@ -10216,12 +10204,9 @@ paths:
                     properties:
                       recommended_products_list:
                         type: array
-                        description: List of the recommended product IDs.
+                        description: List of the recommended products.
                         items:
-                          type: string
-                        example:
-                          - 80af10a712ce31a8ed0e2f68a0
-                          - 8bb7f47a2743d4a7494dfee1c0
+                          $ref: '#/components/schemas/RecommendedProduct'
                       total_items:
                         type: integer
                         description: The number of all found product IDs.
@@ -10293,12 +10278,9 @@ paths:
                     properties:
                       recommended_products_list:
                         type: array
-                        description: List of the recommended product IDs.
+                        description: List of the recommended products.
                         items:
-                          type: string
-                        example:
-                          - 80af10a712ce31a8ed0e2f68a0
-                          - 8bb7f47a2743d4a7494dfee1c0
+                          $ref: '#/components/schemas/RecommendedProduct'
                       total_items:
                         type: integer
                         description: The number of all found product IDs.
@@ -10374,12 +10356,9 @@ paths:
                     properties:
                       recommended_products_list:
                         type: array
-                        description: List of the recommended product IDs.
+                        description: List of the recommended products.
                         items:
-                          type: string
-                        example:
-                          - 80af10a712ce31a8ed0e2f68a0
-                          - 8bb7f47a2743d4a7494dfee1c0
+                          $ref: '#/components/schemas/RecommendedProduct'
                       total_items:
                         type: integer
                         description: The number of all found product IDs.
@@ -15322,8 +15301,6 @@ components:
           description: The unique ID of the booking time slot.
           example: 88bb88399cc74d81edbe19d684
         booking_ticket:
-          type: object
-          description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
           $ref: '#/components/schemas/BookingTicket'
         valid_from:
           type: string
@@ -15378,7 +15355,7 @@ components:
         - created_at
     BookingTicket:
       type: object
-      description: Booking ticket.
+      description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
       properties:
         ticket_id:
           type: string
@@ -18317,6 +18294,21 @@ components:
           example: 1
       required:
         - name
+    RecommendedProduct:
+      type: object
+      description: Recommended product from recommendation engine
+      properties:
+        product_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the product.
+          example: 85d6598db0bf3f62afd5db8507
+        plu_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/PluId'
+          readOnly: true
+          description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
     RecommendedReward:
       type: object
       description: Recommended reward structure.
