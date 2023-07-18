@@ -49,6 +49,33 @@ Unauthorized:
                     example:
 Forbidden:
   description: The client does not exist or the client tried to access non authorized property/resource.
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          error:
+            type: object
+            properties:
+              type:
+                type: string
+                example: interface_not_allowed_exception
+              title:
+                type: string
+                example: "Enterprise interface is not allowed for this resource"
+              detail:
+                type: string
+                example: "Resource name \"tokens\" is not allowed in Enterprise interface"
+              error_data:
+                type: object
+                description: Data in case of an exception.
+                properties:
+                  invalid_resource_name:
+                    type: string
+                    example: "tokens"
+                  interface:
+                    type: string
+                    example: "Enterprise"
 NotFound:
   description: The resource was not found.
   content:

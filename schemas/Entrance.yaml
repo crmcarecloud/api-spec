@@ -43,8 +43,14 @@ properties:
   external_entrance_id:
     type: string
     readOnly: true
-    description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
+    description: External ID of the entrance. Structure can be different depends of the POS system, that created the entrance.
     example: "1-1760-61-107788"
+  external_turnstile_permission_id:
+    type: string
+    readOnly: true
+    description: External ID of the permission to open a turnstile. Structure can be different depends of the POS system, that created the permission.
+    example: "1-1760-61-107788"
+
   entrance_type_id:
     type: integer
     enum:

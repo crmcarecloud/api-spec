@@ -30,6 +30,16 @@ post:
               readOnly: false
               description: The unique ID of the partner.
               example: '86e05affc7a7abefcd513ab400'
+            point_type_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the point type. If the parameter is not set, a default point type is set.
+              example: '86e05affc7a7abefcd513ab400'
+            note:
+              type: string
+              readOnly: false
+              description: Note for the new point record.
+              example: 'Birthdate point reward'
           required:
             - amount
             - customer_id

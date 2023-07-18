@@ -26,7 +26,13 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/QualificationTurnover'
     readOnly: false
-    description: The turnover necessary to be met to qualify for the status based on defined conditions.
+    description: The turnover necessary to qualify for the status based on defined conditions.
+  qualification_points:
+    type: number
+    format: float
+    readOnly: false
+    description: Amount of points necessary to qualify for the status based on defined conditions.
+    example: 3000
   previous_status:
     type: string
     readOnly: false

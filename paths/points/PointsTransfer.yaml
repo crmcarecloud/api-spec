@@ -32,6 +32,11 @@ post:
               readOnly: false
               description: Type of the transferred points.
               example: '8adcb83164fa7e12668035d43e'
+            note:
+              type: string
+              readOnly: false
+              description: Note for the new point record.
+              example: 'Birthdate point reward'
           required:
             - original_customer_id
             - new_customer_id

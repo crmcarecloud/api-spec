@@ -7496,6 +7496,16 @@ paths:
                   readOnly: false
                   description: The unique ID of the partner.
                   example: 86e05affc7a7abefcd513ab400
+                point_type_id:
+                  type: string
+                  readOnly: false
+                  description: 'The unique ID of the point type. If the parameter is not set, a default point type is set.'
+                  example: 86e05affc7a7abefcd513ab400
+                note:
+                  type: string
+                  readOnly: false
+                  description: Note for the new point record.
+                  example: Birthdate point reward
               required:
                 - amount
                 - customer_id
@@ -7568,12 +7578,35 @@ paths:
                   readOnly: false
                   description: The unique ID of the partner.
                   example: 86e05affc7a7abefcd513ab400
+                point_type_id:
+                  type: string
+                  readOnly: false
+                  description: 'The unique ID of the point type. If the parameter is not set, a default point type is set.'
+                  example: 86e05affc7a7abefcd513ab400
+                note:
+                  type: string
+                  readOnly: false
+                  description: Note for the new point record.
+                  example: Birthdate point reward
               required:
                 - amount
                 - customer_id
+                - partner_id
       responses:
-        '204':
-          description: No Content
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      event_id:
+                        type: string
+                        description: The unique ID of the point record.
+                        example: 82de12eb8b138791e678fd11c3
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -7629,6 +7662,11 @@ paths:
                   readOnly: false
                   description: Type of the transferred points.
                   example: 8adcb83164fa7e12668035d43e
+                note:
+                  type: string
+                  readOnly: false
+                  description: Note for the new point record.
+                  example: Birthdate point reward
               required:
                 - original_customer_id
                 - new_customer_id
@@ -11470,6 +11508,7 @@ paths:
         - $ref: '#/components/parameters/valid_from'
         - $ref: '#/components/parameters/valid_to'
         - $ref: '#/components/parameters/product_id'
+        - $ref: '#/components/parameters/external_turnstile_permission_id'
       responses:
         '200':
           description: OK
@@ -14854,6 +14893,33 @@ components:
                         example: null
     Forbidden:
       description: The client does not exist or the client tried to access non authorized property/resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: interface_not_allowed_exception
+                  title:
+                    type: string
+                    example: Enterprise interface is not allowed for this resource
+                  detail:
+                    type: string
+                    example: Resource name "tokens" is not allowed in Enterprise interface
+                  error_data:
+                    type: object
+                    description: Data in case of an exception.
+                    properties:
+                      invalid_resource_name:
+                        type: string
+                        example: tokens
+                      interface:
+                        type: string
+                        example: Enterprise
     NotFound:
       description: The resource was not found.
       content:
@@ -17315,6 +17381,11 @@ components:
           readOnly: false
           description: 'Date and time of point record creation. *Possible value: 2016-06-30T15:51:49+02:00*'
           example: '2016-06-30T15:5:49+02:00'
+        note:
+          type: string
+          readOnly: false
+          description: Note for the new point record.
+          example: Birthdate point reward
       required:
         - customer_id
         - point_type_id
@@ -18158,6 +18229,18 @@ components:
             $ref: '#/components/schemas/QualificationTurnover'
           readOnly: true
           description: Missing turnover to the next status in every active currency.
+        keep_status_points:
+          type: number
+          format: float
+          readOnly: false
+          description: Amount of points a customer needs to keep current status.
+          example: 300
+        next_status_points:
+          type: number
+          format: float
+          readOnly: false
+          description: Amount of points a customer needs to move to the following status.
+          example: 1500
         next_status_id:
           type: string
           readOnly: true
@@ -18224,7 +18307,7 @@ components:
         currency_id:
           type: string
           readOnly: false
-          description: The unique ID of the currency..
+          description: The unique ID of the currency.
           example: 86e05affc7a7abefcd513ab400
         value:
           type: number
@@ -18797,7 +18880,12 @@ components:
         external_entrance_id:
           type: string
           readOnly: true
-          description: 'External ID of the entrance. Structure can be different depends of POS system, that created entrance.'
+          description: 'External ID of the entrance. Structure can be different depends of the POS system, that created the entrance.'
+          example: 1-1760-61-107788
+        external_turnstile_permission_id:
+          type: string
+          readOnly: true
+          description: 'External ID of the permission to open a turnstile. Structure can be different depends of the POS system, that created the permission.'
           example: 1-1760-61-107788
         entrance_type_id:
           type: integer
@@ -18919,7 +19007,13 @@ components:
           items:
             $ref: '#/components/schemas/QualificationTurnover'
           readOnly: false
-          description: The turnover necessary to be met to qualify for the status based on defined conditions.
+          description: The turnover necessary to qualify for the status based on defined conditions.
+        qualification_points:
+          type: number
+          format: float
+          readOnly: false
+          description: Amount of points necessary to qualify for the status based on defined conditions.
+          example: 3000
         previous_status:
           type: string
           readOnly: false
@@ -21217,6 +21311,14 @@ components:
       in: query
       required: false
       description: 'External ID of the entrance. Structure can be different depends of POS system, that created entrance.'
+      schema:
+        type: string
+      example: null
+    external_turnstile_permission_id:
+      name: external_turnstile_permission_id
+      in: query
+      required: false
+      description: 'External ID of the turnstile permission. Structure can be different depends of the POS system, that created the permission.'
       schema:
         type: string
       example: null
