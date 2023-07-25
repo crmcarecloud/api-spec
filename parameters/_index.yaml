@@ -290,7 +290,6 @@ booking_id_path:
   required: true
   schema:
     type: string
-  allowReserved: false
   example: 13b8984a16913b8984a169cc490a
 booking_ticket_property_id_path:
   name: booking_ticket_property_id
@@ -299,7 +298,6 @@ booking_ticket_property_id_path:
   required: true
   schema:
     type: string
-  allowReserved: false
   example: place
 booking_ticket_id_path:
   name: booking_ticket_id
@@ -308,7 +306,6 @@ booking_ticket_id_path:
   required: true
   schema:
     type: string
-  allowReserved: false
   example: 13b8984a16913b8984a169cc490a
 booking_status_id_path:
   name: booking_status_id
@@ -317,7 +314,6 @@ booking_status_id_path:
   required: true
   schema:
     type: string
-  allowReserved: false
   example: 13b8984a16913b8984a169cc490a
 free_capacity_only:
   name: free_only
@@ -634,7 +630,6 @@ property_record_id_path:
   description: The unique ID of the property record.
   schema:
     type: string
-  allowReserved: false
   example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
 
 # Interest
@@ -702,7 +697,6 @@ reward_property_id_path:
   required: true
   schema:
     type: string
-  allowReserved: false
   example: subtitle
 reward_code:
   name: code
