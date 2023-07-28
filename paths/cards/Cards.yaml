@@ -115,7 +115,9 @@ post:
   tags:
     - Cards
   summary: Create a card
-  description: Add a new customer card.
+  description: >
+    Add a new customer card.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

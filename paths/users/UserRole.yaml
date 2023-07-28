@@ -2,7 +2,9 @@ get:
   tags:
     - User roles
   summary: Get information about a user role
-  description: Get information about a specific user role.
+  description: >
+    Get information about a specific user role.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: getUserRole
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

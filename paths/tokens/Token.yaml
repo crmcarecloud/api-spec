@@ -1,8 +1,12 @@
 put:
+  servers:
+    - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
   tags:
     - Tokens
   summary: Edit a push token
-  description: Update a push token and installation setup.
+  description: >
+    Update a push token and installation setup. <br/>
+    ⚠️ Endpoint is available only in Customer interface. <br/>
   operationId: putToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

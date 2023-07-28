@@ -2,7 +2,9 @@ get:
   tags:
     - Users
   summary: Get all users
-  description: Get a list of all users in CareCloud.
+  description: >
+    Get a list of all users in CareCloud.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: getUsers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

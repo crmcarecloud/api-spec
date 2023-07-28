@@ -2,7 +2,9 @@ post:
   tags:
     - Rewards
   summary: Create a new voucher
-  description: Create a new voucher for a specific customer based on a reward features definition.
+  description: >
+    Create a new voucher for a specific customer based on a reward features definition.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postRewardCreateVoucher
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

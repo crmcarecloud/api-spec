@@ -2,7 +2,9 @@ post:
   tags:
     - Users
   summary: User logout
-  description: User logout from external application.
+  description: >
+    User logout from external application.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postUserLogout
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

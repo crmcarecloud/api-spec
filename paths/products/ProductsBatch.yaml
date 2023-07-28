@@ -2,7 +2,10 @@ post:
   tags:
     - Products
   summary: Create a batch of products. If a product already exists, an update is applied.
-  description: Batch process helps to add multiple products in one request. <p class="warning">⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.</p>
+  description: >
+    Batch process helps to add multiple products in one request.<br/> 
+    ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postBulkProducts
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,9 @@ post:
   tags:
     - Purchases
   summary: Assign customer
-  description: The method assigns customer to the existing purchase. If customer could collect points, he is going to gain corresponding amount of points.
+  description: >
+    The method assigns customer to the existing purchase. If customer could collect points, he is going to gain corresponding amount of points.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postPurchaseAssignCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

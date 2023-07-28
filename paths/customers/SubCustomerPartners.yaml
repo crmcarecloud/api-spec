@@ -2,7 +2,9 @@ get:
   tags:
     - Customers
   summary: Get information about all customer  partners
-  description: Get a list of customer  partners in CareCloud.
+  description: >
+    Get a list of customer  partners in CareCloud.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: getSubCustomerPartners
   parameters:
     - $ref: '../../parameters/_index.yaml#/customer_id_path'

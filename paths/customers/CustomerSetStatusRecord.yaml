@@ -3,9 +3,8 @@ post:
     - Customers actions
   summary: Set a new customer status
   description: |
-    The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
-
-    <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
+    The method sets a new customer status. If another valid status exists, CareCloud deactivates it.<br/>
+    ⚠️ Action method is available only in the Enterprise interface.
   operationId: postCustomersSetStatusRecord
   requestBody:
     required: true

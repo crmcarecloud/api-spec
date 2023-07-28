@@ -2,7 +2,9 @@ post:
   tags:
     - Users
   summary: Verify user auth token
-  description: Verification of the user auth token.
+  description: >
+    Verification of the user auth token.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postUserVerifyAuthToken
   requestBody:
     required: true

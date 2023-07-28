@@ -2,7 +2,9 @@ delete:
   tags:
     - Customers
   summary: Delete a partner record from an account
-  description: Delete a specific customer partner record from a customer account.
+  description: >
+    Delete a specific customer partner record from a customer account.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: deleteSubCustomerPartner
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

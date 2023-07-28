@@ -4,8 +4,7 @@ post:
   summary: Points redemption
   description: |
     New point redemption record is created.
-
-    <p class="warning">⚠️ Action methods are available only in Enterprise interface.</p>
+    ⚠️ Action methods are available only in the Enterprise interface.
   operationId: postPointsRedemption
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

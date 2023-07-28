@@ -1,8 +1,12 @@
 post:
+  servers:
+    - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
   tags:
     - Tokens
   summary: Login via social network
-  description: Login of a customer account to client's application via social network.
+  description: >
+    Login of a customer account to client's application via social network. <br/>
+    ⚠️ Endpoint is available only in Customer interface.<br/>
   operationId: postTokenSocialLogin
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,10 +2,9 @@ post:
   tags:
     - Customers actions
   summary: Verify auth token
-  description: |
-    Method verifies authentication token created by a specified application. There is the unique ID of the customer as a response.
-
-    <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
+  description: >
+    Method verifies authentication token created by a specified application. There is the unique ID of the customer as a response. <br/>
+    ⚠️ Endpoint method is available only in the Enterprise interface.
   operationId: postCustomersVerifyAuthToken
   requestBody:
     required: true

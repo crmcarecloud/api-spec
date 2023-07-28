@@ -2,7 +2,9 @@ post:
   tags:
     - Users
   summary: User login
-  description: User login to external application.
+  description: >
+    User login to external application.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postUserLogin
   security: []
   parameters:

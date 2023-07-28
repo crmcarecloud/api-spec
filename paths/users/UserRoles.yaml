@@ -2,7 +2,9 @@ get:
   tags:
     - User roles
   summary: Get all user roles
-  description: Get a list of all user roles in CareCloud.
+  description: >
+    Get a list of all user roles in CareCloud.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: getUserRoles
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

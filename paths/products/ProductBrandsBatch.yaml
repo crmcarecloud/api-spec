@@ -2,7 +2,9 @@ post:
   tags:
     - Product brands
   summary: Create a batch of product brands
-  description: Batch process helps to add multiple product brands in one request.
+  description: >
+    Batch process helps to add multiple product brands in one request.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postBulkProductBrands
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

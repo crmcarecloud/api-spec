@@ -1,8 +1,12 @@
 get:
+  servers:
+    - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
   tags:
     - Tokens
   summary: Get authentication token
-  description: Returns authentication token for specific external application.
+  description: > 
+    Returns authentication token for specific external application. <br/>
+    ⚠️ Endpoint is available only in Customer interface.<br/>
   operationId: getTokenAuthentication
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

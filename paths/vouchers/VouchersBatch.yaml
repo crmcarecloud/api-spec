@@ -2,7 +2,10 @@ post:
   tags:
     - Vouchers
   summary: Create a batch of vouchers.
-  description: Batch process helps to add multiple vouchers in one request. <p class="warning">⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.</p>
+  description: >
+    Batch process helps to add multiple vouchers in one request. <br/>
+    ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/>
+    ⚠️ Endpoint is available only in Enterprise interface.<br/>
   operationId: postBulkVouchers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,9 @@ post:
   tags:
     - Product groups
   summary: Create a batch of product groups. If a group already exists, an update is applied.
-  description: Batch process helps to add multiple product groups in one request.
+  description: >
+    Batch process helps to add multiple product groups in one request.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postBulkProductGroups
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

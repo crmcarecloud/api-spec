@@ -75,7 +75,9 @@ put:
   tags:
     - Purchases
   summary: Update a purchase
-  description: Update a specific purchase.
+  description: >
+    Update a specific purchase.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: putPurchase
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -1,12 +1,14 @@
 post:
+  servers:
+    - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
   tags:
     - Tokens
   summary: Create a token
   description: >
-    Create a token and setup of the client application.
-    <p class="warning">Note: When creating a new token, HTTP header doesn't contain token_id in authentication part.</p>
-    <p class="warning">⚠️ Warning: We highly recommend filling all identifications in tokens resource (device and application) to avoid problems if multiple applications use CareCloud REST API on one device.</p>
-    <p class="warning">The creation of a token is different from other API calls. HTTP Authorization header contains only a login name and no token. See [Use cases](#section/Use-cases/Authentication-and-login-process-for-customer-interface).</p>
+    Create a token and setup of the client application. <br/>
+    ⚠️ The endpoint is available only in the Customer interface.<br/>
+    ⚠️ When creating a new token, the request doesn't need to contain an Authentication header.<br/>
+    ⚠️ Warning: We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.<br/>
   operationId: postToken
   security: []
   parameters:
@@ -24,7 +26,7 @@ post:
               $ref: '../../schemas/_index.yaml#/Setup'
             external_application_id:
               type: string
-              description: ID of the [customer-external-application resource](#tag/Customer-external-applications).
+              description: ID of the external application. More information about external applications and how to get an ID is available in [Authentication section](https://carecloud.readme.io/reference/authentication#external-applications-1)
               example: 82de12eb8b138791e678fd11c3
             push_token:
               type: string
