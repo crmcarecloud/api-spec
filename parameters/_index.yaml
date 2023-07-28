@@ -174,10 +174,20 @@ external_id:
   name: external_id
   in: query
   required: false
-  description: The unique external id. It may be ID from the other system.
+  description: The ID from other system than CareCloud. It is usually used for the synchronization or identification of the record in between CareCloud and other system. The ID doesn't need to be necessary unique. Usage of other parameter could be required to return more specific results.
   schema:
     type: string
   example: 18
+external_ids:
+  name: external_ids
+  in: query
+  required: false
+  description: The list of IDs from other system than CareCloud. It is usually used for the synchronization or identification of the records in between CareCloud and other system. The IDs don't need to be necessary unique. Usage of other parameter could be required to return more specific results.
+  schema:
+    type: array
+    items:
+      type: string
+  example: "ACSDOIDF23"
 tag_id_arr:
   name: tag_ids
   in: query
@@ -231,6 +241,16 @@ email:
   schema:
     type: string
   example: happy_customer@crmcarecloud.com
+email_list:
+  name: email_list
+  in: query
+  required: false
+  description: List of the email addresses of the customers.
+  schema:
+    type: array
+    items:
+      type: string
+  example: "happy_customer@crmcarecloud.com"
 phone:
   name: phone
   in: query
@@ -486,6 +506,16 @@ customer_id:
   schema:
     type: string
   example: 8ea2591121e636086a4a9c0992
+customer_ids:
+  name: customer_ids
+  in: query
+  required: false
+  description: List of the customer IDs.
+  schema:
+    type: array
+    items:
+      type: string
+  example: "8bed991c68a470e7aaeffbf048"
 related_customer_id:
   name: related_customer_id
   in: query
@@ -601,6 +631,16 @@ card_number:
   schema:
     type: string
   example: 1000000000016
+card_number_list:
+  name: card_number_list
+  in: query
+  required: false
+  description: List of the card numbers. If used, a list of cards will be returned if matching card numbers in CareCloud.
+  schema:
+    type: array
+    items:
+      type: string
+  example: "1000000000016"
 card_type_id:
   name: card_type_id
   in: query

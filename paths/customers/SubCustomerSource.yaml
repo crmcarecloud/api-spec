@@ -13,6 +13,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/customer_external_id'
     - $ref: '../../parameters/_index.yaml#/customer_source_id'
+    - $ref: '../../parameters/_index.yaml#/external_ids'
   responses:
     '200':
       description: OK

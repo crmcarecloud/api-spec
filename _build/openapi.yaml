@@ -1589,6 +1589,7 @@ paths:
         - $ref: '#/components/parameters/card_type_id'
         - $ref: '#/components/parameters/state'
         - $ref: '#/components/parameters/is_valid'
+        - $ref: '#/components/parameters/card_number_list'
       responses:
         '200':
           description: OK
@@ -2863,6 +2864,8 @@ paths:
         - $ref: '#/components/parameters/first_name'
         - $ref: '#/components/parameters/last_name'
         - $ref: '#/components/parameters/birthdate'
+        - $ref: '#/components/parameters/email_list'
+        - $ref: '#/components/parameters/customer_ids'
       responses:
         '200':
           description: OK
@@ -3342,6 +3345,7 @@ paths:
         - $ref: '#/components/parameters/card_number'
         - $ref: '#/components/parameters/card_type_id'
         - $ref: '#/components/parameters/is_valid'
+        - $ref: '#/components/parameters/card_number_list'
       responses:
         '200':
           description: OK
@@ -3559,6 +3563,7 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/customer_external_id'
         - $ref: '#/components/parameters/customer_source_id'
+        - $ref: '#/components/parameters/external_ids'
       responses:
         '200':
           description: OK
@@ -5604,8 +5609,9 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/customer_id'
-        - $ref: '#/components/parameters/external_id'
+        - $ref: '#/components/parameters/customer_external_id'
         - $ref: '#/components/parameters/customer_source_id'
+        - $ref: '#/components/parameters/external_ids'
       responses:
         '200':
           description: OK
@@ -16140,7 +16146,7 @@ components:
       properties:
         customer_source_record_id:
           type: string
-          description: The unique ID of the customer source record.
+          description: 'The unique ID of the customer source record. The customer sources are available in [customer-sources](https://carecloud.readme.io/reference/getcustomersources) resource'
           readOnly: true
           example: 8fd73167342d06899c4c015320
         customer_source_id:
@@ -20075,10 +20081,20 @@ components:
       name: external_id
       in: query
       required: false
-      description: The unique external id. It may be ID from the other system.
+      description: The ID from other system than CareCloud. It is usually used for the synchronization or identification of the record in between CareCloud and other system. The ID doesn't need to be necessary unique. Usage of other parameter could be required to return more specific results.
       schema:
         type: string
       example: 18
+    external_ids:
+      name: external_ids
+      in: query
+      required: false
+      description: The list of IDs from other system than CareCloud. It is usually used for the synchronization or identification of the records in between CareCloud and other system. The IDs don't need to be necessary unique. Usage of other parameter could be required to return more specific results.
+      schema:
+        type: array
+        items:
+          type: string
+      example: ACSDOIDF23
     tag_id_arr:
       name: tag_ids
       in: query
@@ -20129,6 +20145,16 @@ components:
       required: false
       schema:
         type: string
+      example: happy_customer@crmcarecloud.com
+    email_list:
+      name: email_list
+      in: query
+      required: false
+      description: List of the email addresses of the customers.
+      schema:
+        type: array
+        items:
+          type: string
       example: happy_customer@crmcarecloud.com
     phone:
       name: phone
@@ -20376,6 +20402,16 @@ components:
       schema:
         type: string
       example: 8ea2591121e636086a4a9c0992
+    customer_ids:
+      name: customer_ids
+      in: query
+      required: false
+      description: List of the customer IDs.
+      schema:
+        type: array
+        items:
+          type: string
+      example: 8bed991c68a470e7aaeffbf048
     related_customer_id:
       name: related_customer_id
       in: query
@@ -20489,6 +20525,16 @@ components:
       schema:
         type: string
       example: 1000000000016
+    card_number_list:
+      name: card_number_list
+      in: query
+      required: false
+      description: 'List of the card numbers. If used, a list of cards will be returned if matching card numbers in CareCloud.'
+      schema:
+        type: array
+        items:
+          type: string
+      example: '1000000000016'
     card_type_id:
       name: card_type_id
       in: query

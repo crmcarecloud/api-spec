@@ -14,6 +14,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/card_number'
     - $ref: '../../parameters/_index.yaml#/card_type_id'
     - $ref: '../../parameters/_index.yaml#/is_valid'
+    - $ref: '../../parameters/_index.yaml#/card_number_list'
   responses:
     '200':
       description: OK

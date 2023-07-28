@@ -222,6 +222,8 @@ get:
     - $ref: '../../parameters/_index.yaml#/first_name'
     - $ref: '../../parameters/_index.yaml#/last_name'
     - $ref: '../../parameters/_index.yaml#/birthdate'
+    - $ref: '../../parameters/_index.yaml#/email_list'
+    - $ref: '../../parameters/_index.yaml#/customer_ids'
   responses:
     '200':
       description: OK
