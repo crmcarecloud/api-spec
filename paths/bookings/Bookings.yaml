@@ -137,7 +137,7 @@ post:
                   booking_id:
                     type: string
                     description: The unique ID of the booking.
-                    example: 8bc48e4b5da4c61eddb98e59fe
+                    example: "8bc48e4b5da4c61eddb98e59fe"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

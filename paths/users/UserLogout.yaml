@@ -18,11 +18,11 @@ post:
             user_external_application_id:
               type: string
               description: ID of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications).
-              example: 89d1a6111b3fb6e74665d948
+              example: "89d1a6111b3fb6e74665d948"
             bearer_token:
               type: string
               description: Authentication bearer token for an user.
-              example: 09359095c5da43c7ae11e710eabce49418715a6a
+              example: "09359095c5da43c7ae11e710eabce49418715a6a"
           required:
             - user_external_application_id
             - bearer_token

@@ -19,16 +19,16 @@ post:
             user_external_application_id:
               type: string
               description: ID of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications).
-              example: 89d1a6111b3fb6e74665d948
+              example: "89d1a6111b3fb6e74665d948"
             login:
               type: string
               description: Login name of user in CareCloud.
-              example: example@crmcarecloud.com
+              example: "example@crmcarecloud.com"
             password:
               type: string
               format: password
               description: The CareCloud user password.
-              example: password_example
+              example: "password_example"
   responses:
     '200':
       description: OK

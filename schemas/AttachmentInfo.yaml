@@ -5,4 +5,4 @@ properties:
     type: string
     readOnly: false
     description: Format of the attachment file.
-    example: general_terms.pdf
+    example: "general_terms.pdf"

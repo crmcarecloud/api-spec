@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the currency from the API resource [GET /currencies](#tag/Currencies).
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   earned_credits:
     type: number
     format: float

@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the credit type.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
     readOnly: true

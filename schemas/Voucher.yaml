@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the voucher.
-    example: 8bb7345976bbc9ed20e5083dd6
+    example: "8bb7345976bbc9ed20e5083dd6"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the customer.
-    example: 81ceb8582e2d8dbb7e71b7273b
+    example: "81ceb8582e2d8dbb7e71b7273b"
   store_id:
     type: string
     readOnly: false
     description: The unique ID of the store where voucher was applied.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   code:
     type: string
     readOnly: false
@@ -36,17 +36,17 @@ properties:
     type: string
     readOnly: false
     description: Date from the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2013-07-10 21:33:13"
   valid_to:
     type: string
     readOnly: false
     description: Date to the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2013-07-30 21:33:13"
   reward_group:
     type: string
     readOnly: true
     description: The unique ID of the reward group.
-    example: 83cfee22eabfbbb15a14815e30
+    example: "83cfee22eabfbbb15a14815e30"
   note:
     type: string
     readOnly: false
@@ -59,12 +59,12 @@ properties:
     type: string
     readOnly: true
     description: Date of the voucher creation. *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2022-07-24 21:33:13"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: '2013-07-24 21:33:33'
+    example: '2022-07-24 21:33:33'
   state:
     type: integer
     enum:

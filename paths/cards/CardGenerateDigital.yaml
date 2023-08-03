@@ -16,14 +16,14 @@ post:
             card_id:
               description: ID of the card. It will generates file from this card.
               type: string
-              example: 8fd73167342d06899c4c015320
+              example: "8fd73167342d06899c4c015320"
             file_type:
               description: "Type of the final file. *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*"
               type: string
               enum:
                 - png
                 - wallet
-              example: png
+              example: "png"
           required:
             - card_id
             - file_type

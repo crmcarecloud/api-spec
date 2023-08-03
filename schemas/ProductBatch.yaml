@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the product.
-    example: '81c14010c101966aefbb4738fc'
+    example: "81c14010c101966aefbb4738fc"
   name:
     type: string
     readOnly: false
@@ -15,7 +15,7 @@ properties:
     type: string
     readOnly: false
     description: Code of the product.
-    example: '64912'
+    example: "64912"
   plu_ids:
     type: array
     items:
@@ -26,27 +26,27 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.
-    example: '83d1d11ea3884a5d33253fe214'
+    example: "83d1d11ea3884a5d33253fe214"
   product_group_external_id:
     type: string
     readOnly: false
     description: The unique external ID of the product group. If `product_group_id` is also set, both parameters have to represent the same product group.
-    example: '23'
+    example: "23"
   product_brand_id:
     type: string
     readOnly: false
     description: The unique ID of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.
-    example: '82db62087b0f79a6e14e5747e7'
+    example: "82db62087b0f79a6e14e5747e7"
   product_brand_external_id:
     type: string
     readOnly: false
     description: The unique external ID of the product brand. If `product_brand_id` is also set, both parameters have to represent the same product brand.
-    example: '71'
+    example: "71"
   store_id:
     type: string
     readOnly: false
     description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
-    example: '83d1d11ea3884a5d33253fe214'
+    example: "83d1d11ea3884a5d33253fe214"
   property_records:
     type: array
     items:

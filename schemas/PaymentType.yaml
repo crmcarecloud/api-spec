@@ -4,12 +4,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the payment type in CareCloud.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   name:
     type: string
     readOnly: true
     description: Name of the payment type in CareCloud.
-    example: Google Pay
+    example: "Google Pay"
   last_change:
     type: string
     readOnly: true

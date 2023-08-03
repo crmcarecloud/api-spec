@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the customer.
-    example: 8ea2591121e636086a4a9c0992
+    example: "8ea2591121e636086a4a9c0992"
   amount:
     type: number
     format: float

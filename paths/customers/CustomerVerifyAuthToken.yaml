@@ -16,15 +16,15 @@ post:
             application_id:
               type: string
               description: 'ID of the application. Application is the source of the token.'
-              example: 82de12eb8b138791e678fd11c3
+              example: "82de12eb8b138791e678fd11c3"
             token:
               type: string
               description: 'Authentication token'
-              example: V952TL
+              example: "V952TL"
             token_request_id:
               type: string
               description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
-              example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
+              example: "702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a"
           required:
             - application_id
             - token
@@ -43,7 +43,7 @@ post:
                   customer_id:
                     type: string
                     description: The unique ID of the customer.
-                    example: 8ea2591121e636086a4a9c0992
+                    example: "8ea2591121e636086a4a9c0992"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

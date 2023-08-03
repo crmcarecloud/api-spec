@@ -18,7 +18,7 @@ post:
             external_application_id:
               description: ID of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication).
               type: string
-              example: 82de12eb8b138791e678fd11c3
+              example: "82de12eb8b138791e678fd11c3"
             communication_channel_id:
               type: integer
               enum:
@@ -62,7 +62,7 @@ post:
                   request_id:
                     type: string
                     description: The parameter specifies the request that caused the OTP to be created. Request ID will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp).
-                    example: c27c29917a1dec03ef0673d823619b776ab93353
+                    example: "c27c29917a1dec03ef0673d823619b776ab93353"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

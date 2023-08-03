@@ -19,11 +19,11 @@ post:
             user_external_application_id:
               type: string
               description: 	ID of an external application where user wants to be logged in. If you don't have id, please contact your account manager.
-              example: 89d1a6111b3fb6e74665d948
+              example: "89d1a6111b3fb6e74665d948"
             sso_token:
               type: string
               description: Single sign-on token from CareCloud.
-              example: ae11e710ea4d9495da43c7ae11e71b4e723e7bce494a
+              example: "ae11e710ea4d9495da43c7ae11e71b4e723e7bce494a"
           required:
             - social_network_credentials
   responses:

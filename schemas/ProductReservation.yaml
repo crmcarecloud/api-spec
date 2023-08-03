@@ -43,7 +43,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the product reservation source.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   pickup_date:
     type: string
     readOnly: true
@@ -64,7 +64,7 @@ properties:
     type: string
     readOnly: false
     description: ID of the currency. If total_price is set, then currency_id is mandatory.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   product_reservation_items:
     type: array
     items:

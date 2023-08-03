@@ -27,11 +27,11 @@ get:
                   token:
                     type: string
                     description: 'Authentication token for external application.'
-                    example: LQ55EH
+                    example: "LQ55EH"
                   token_request_id:
                     type: string
                     description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
-                    example: 6fb977c6fce6da6c0fa32aa1bc6417c621c116c65a5d638fefac1488334d67e33867675d
+                    example: "6fb977c6fce6da6c0fa32aa1bc6417c621c116c65a5d638fefac1488334d67e33867675d"
                   valid_to:
                     type: string
                     description: Date and time of the token validity. *(YYYY-MM-DD HH:MM:SS)*

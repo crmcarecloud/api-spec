@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the store group.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false
     description: Name of the store group.
-    example: Groceries
+    example: "Groceries"
   last_change:
     type: string
     readOnly: true

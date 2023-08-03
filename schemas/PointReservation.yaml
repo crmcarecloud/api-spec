@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the point reservation record.
-    example: 8fd73167342d06899c4c015320
+    example: "8fd73167342d06899c4c015320"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the customer.
-    example: 8ea2591121e636086a4a9c0992
+    example: "8ea2591121e636086a4a9c0992"
   external_id:
     type: string
     readOnly: false
     description: The external unique ID of the product brand.
-    example: '123459'
+    example: "123459"
   quantity:
     type: number
     format: float

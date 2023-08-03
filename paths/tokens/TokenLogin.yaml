@@ -24,11 +24,11 @@ post:
                 - card
                 - email
               description: The unique ID of the login type.
-              example: email
+              example: "email"
             login_value:
               type: string
               description: Value of the login to Customer interface API.
-              example: example@crmcarecloud.com
+              example: "example@crmcarecloud.com"
             password:
               type: string
               format: password
@@ -51,7 +51,7 @@ post:
                   customer_id:
                     type: string
                     description: The unique ID of the customer.
-                    example: 8ea2591121e636086a4a9c0992
+                    example: "8ea2591121e636086a4a9c0992"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -124,7 +124,7 @@ post:
                   card_type_id:
                     type: string
                     description: The unique ID of the card type.
-                    example: 8bed991c68a470e7aaeffbf048
+                    example: "8bed991c68a470e7aaeffbf048"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

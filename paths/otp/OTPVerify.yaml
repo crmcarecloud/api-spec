@@ -17,15 +17,15 @@ post:
             verification_code:
               type: string
               description: Verification code from email, SMS or notification provided by recipient.
-              example: 7256
+              example: "7256"
             request_id:
               type: string
               description: The parameter specifies the request that caused the OTP to be created. Request ID was created in the action method [/one-time-password/actions/send](#operation/postSendOtp).
-              example: 106c5ce60ed0830ffb813135bfff7cad9f4c3e47
+              example: "106c5ce60ed0830ffb813135bfff7cad9f4c3e47"
             external_application_id:
               type: string
               description: ID of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication).
-              example: 82de12eb8b138791e678fd11c3
+              example: "82de12eb8b138791e678fd11c3"
           required:
             - verification_code
             - request_id

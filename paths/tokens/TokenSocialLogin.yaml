@@ -36,7 +36,7 @@ post:
                   customer_id:
                     type: string
                     description: The unique ID of the customer.
-                    example: 8ea6abece4cd0a4ded0a29f093
+                    example: "8ea6abece4cd0a4ded0a29f093"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

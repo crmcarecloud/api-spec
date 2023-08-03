@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the task comment.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   task_id:
     type: string
     readOnly: true
     description: The unique ID of the task.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   text:
     type: string
     readOnly: false

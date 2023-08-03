@@ -95,14 +95,14 @@ put:
                 customer_id:
                   type: string
                   description: The unique ID of the customer that created the booking.
-                  example: 8ea6abece4cd0a4ded0a29f093
+                  example: "8ea6abece4cd0a4ded0a29f093"
                 booking_status:
                   type: string
                   readOnly: false
                   description: |
                     Current status of the booking.
                     *Possible values are available in [booking-statuses](#tag/Booking-statuses)*
-                  example: 86e05affc7a7abefcd513ab400
+                  example: "86e05affc7a7abefcd513ab400"
           required:
             - booking
   responses:

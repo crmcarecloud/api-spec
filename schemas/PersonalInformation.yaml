@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: Customer's salutation. If it is not set in POST or PUT calls, it will be generated automatically.
-    example: Dear Mr. Smith
+    example: "Dear Mr. Smith"
   gender:
     type: integer
     enum:
@@ -18,22 +18,22 @@ properties:
     type: string
     readOnly: false
     description: First name of the customer.
-    example: John
+    example: "John"
   last_name:
     type: string
     readOnly: false
     description: Last name of the customer.
-    example: Smith
+    example: "Smith"
   pre_nominals:
     type: string
     readOnly: false
     description: Academic degrees, academic titles, other titles of customer placed before name.
-    example: Dr.
+    example: "Dr."
   post_nominals:
     type: string
     readOnly: false
     description: Academic degrees, academic titles, other titles of customer placed after name.
-    example: Ph.D
+    example: "Ph.D"
   birthdate:
     type: string
     format: date
@@ -51,7 +51,7 @@ properties:
     pattern: ^[1-9][0-9]*$
     readOnly: false
     description: Phone number of the customer with international prefix (420000000000).
-    example: 420523828931
+    example: "420523828931"
   language_id:
     type: string
     readOnly: false
@@ -61,7 +61,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the original customer account store of registration. In case of the customer update, the request cant delete the parameter's value. Only updated.
-    example: 8bed991c68a4
+    example: "8bed991c68a4"
   photo_url:
     type: string
     readOnly: true

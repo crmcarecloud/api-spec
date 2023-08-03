@@ -17,7 +17,7 @@ post:
             store_id:
               type: string
               description: The unique ID of the store where voucher was applied.
-              example: 81eaeea13b8984a169c490a325
+              example: "81eaeea13b8984a169c490a325"
             date_applied:
               type: string
               description: Date (ISO 8601) of voucher application. *(YYYY-MM-DD HH:MM:SS)*

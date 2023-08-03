@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: The unique CareCloud ID of the product.
-    example: '89bdacbffb5c82f2c52cb9ae8f'
+    example: "89bdacbffb5c82f2c52cb9ae8f"
   plu_ids:
     type: array
     items:

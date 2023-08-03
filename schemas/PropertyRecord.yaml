@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the property record.
-    example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
+    example: "docasna_blokace_darce_do:8ea2591121e636086a4a9c0992"
   property_id:
     type: string
     readOnly: false
     description: The unique ID of the property.
-    example: docasna_blokace_darce_do
+    example: "docasna_blokace_darce_do"
   property_name:
     type: string
     readOnly: true
@@ -32,6 +32,6 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2023-02-02 00:00:00"
 required:
   - property_id

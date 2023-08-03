@@ -16,7 +16,7 @@ post:
             auth_token:
               type: string
               description: Authentication token for user verification.
-              example: 95d22b814d9495b4e723e7a17ee104319
+              example: "95d22b814d9495b4e723e7a17ee104319"
           required:
             - auth_token
   responses:
@@ -33,7 +33,7 @@ post:
                   user_id:
                     type: string
                     description: The unique ID of the user.
-                    example: 838b73aacb5ac326cec4030c80
+                    example: "838b73aacb5ac326cec4030c80"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

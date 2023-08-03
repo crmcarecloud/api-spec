@@ -36,7 +36,7 @@ sort_field:
   required: false
   schema:
     type: string
-  example: field_name
+  example: "field_name"
 sort_direction:
   name: sort_direction
   in: query
@@ -47,7 +47,7 @@ sort_direction:
     enum:
       - ASC
       - DESC
-  example: ASC
+  example: "ASC"
 searchMode:
   name: mode
   in: query
@@ -64,7 +64,7 @@ searchMode:
     enum:
       - strict
       - none
-  example: strict
+  example: "strict"
 is_valid:
   name: is_valid
   in: query
@@ -158,7 +158,7 @@ name:
   required: false
   schema:
     type: string
-  example: Name
+  example: "Name"
 value_type_id:
   name: value_type_id
   in: query
@@ -177,7 +177,7 @@ external_id:
   description: The ID from other system than CareCloud. It is usually used for the synchronization or identification of the record in between CareCloud and other system. The ID doesn't need to be necessary unique. Usage of other parameter could be required to return more specific results.
   schema:
     type: string
-  example: 18
+  example: "18"
 external_ids:
   name: external_ids
   in: query
@@ -224,7 +224,7 @@ user_id_path:
   description: The unique ID of the user.
   schema:
     type: string
-  example: 898a6545ed2bfa3f8466d09bc6
+  example: "898a6545ed2bfa3f8466d09bc6"
 user_role_id_path:
   name: user_role_id
   in: path
@@ -232,7 +232,7 @@ user_role_id_path:
   description: The unique ID of the user role.
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 email:
   name: email
   in: query
@@ -240,7 +240,7 @@ email:
   required: false
   schema:
     type: string
-  example: happy_customer@crmcarecloud.com
+  example: "happy_customer@crmcarecloud.com"
 email_list:
   name: email_list
   in: query
@@ -258,7 +258,7 @@ phone:
   required: false
   schema:
     type: string
-  example: 420523828931
+  example: "420523828931"
 login:
   name: login
   in: query
@@ -266,7 +266,7 @@ login:
   required: false
   schema:
     type: string
-  example: happy_user
+  example: "happy_user"
 first_name:
   name: first_name
   in: query
@@ -274,7 +274,7 @@ first_name:
   required: false
   schema:
     type: string
-  example: John
+  example: "John"
 last_name:
   name: last_name
   in: query
@@ -282,7 +282,7 @@ last_name:
   required: false
   schema:
     type: string
-  example: Smith
+  example: "Smith"
 birthdate:
   name: birthdate
   in: query
@@ -290,7 +290,7 @@ birthdate:
   required: false
   schema:
     type: string
-  example: 985-02-12
+  example: "985-02-12"
 
 # Agreement parameters
 agreement_id_path:
@@ -300,7 +300,7 @@ agreement_id_path:
   description: The unique ID of an agreement in CareCloud.
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 
 #Booking parameters
 booking_id_path:
@@ -310,7 +310,7 @@ booking_id_path:
   required: true
   schema:
     type: string
-  example: 13b8984a16913b8984a169cc490a
+  example: "13b8984a16913b8984a169cc490a"
 booking_ticket_property_id_path:
   name: booking_ticket_property_id
   in: path
@@ -318,7 +318,7 @@ booking_ticket_property_id_path:
   required: true
   schema:
     type: string
-  example: place
+  example: "place"
 booking_ticket_id_path:
   name: booking_ticket_id
   in: path
@@ -326,7 +326,7 @@ booking_ticket_id_path:
   required: true
   schema:
     type: string
-  example: 13b8984a16913b8984a169cc490a
+  example: "13b8984a16913b8984a169cc490a"
 booking_status_id_path:
   name: booking_status_id
   in: path
@@ -334,7 +334,7 @@ booking_status_id_path:
   required: true
   schema:
     type: string
-  example: 13b8984a16913b8984a169cc490a
+  example: "13b8984a16913b8984a169cc490a"
 free_capacity_only:
   name: free_only
   in: query
@@ -362,7 +362,7 @@ add_booking_items:
       - items-only
       - none
     default: none
-  example: items-only
+  example: "items-only"
 booking_ticket_property_id:
   name: booking_ticket_property_id
   in: query
@@ -370,7 +370,7 @@ booking_ticket_property_id:
   description: Booking ticket property ID from resource [booking-ticket-properties](#tag/Booking-ticket-properties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
   schema:
     type: string
-  example: store
+  example: "store"
 booking_ticket_property_value:
   name: booking_ticket_property_value
   in: query
@@ -378,7 +378,7 @@ booking_ticket_property_value:
   description: Booking ticket property record value from [booking-ticket-properties](#tag/Booking-ticket-properties) in case of datatype with multiple values. Parameter filters resources depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
   schema:
     type: string
-  example: 89ac83ca207a20c62c79bf
+  example: "89ac83ca207a20c62c79bf"
 booking_status:
   name: booking_status
   in: query
@@ -386,7 +386,7 @@ booking_status:
   schema:
     type: string
   description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses).
-  example: a820c6a820c62c79b2c79b
+  example: "a820c6a820c62c79b2c79b"
 #Communication channel
 communication_channel_id_path:
   name: communication_channel_id
@@ -395,7 +395,7 @@ communication_channel_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 #Countries
 country_id:
   name: country_id
@@ -404,7 +404,7 @@ country_id:
   required: false
   schema:
     type: string
-  example: fi
+  example: "fi"
 country_name:
   name: country_name
   in: query
@@ -412,7 +412,7 @@ country_name:
   required: false
   schema:
     type: string
-  example: Finland
+  example: "Finland"
 # Credits
 credit_id_path:
   name: credit_id
@@ -421,7 +421,7 @@ credit_id_path:
   required: true
   schema:
     type: string
-  example: 8bcd4f6d0e1432tfc472632e1d
+  example: "8bcd4f6d0e1432tfc472632e1d"
 credit_type_id_path:
   name: credit_type_id
   in: path
@@ -429,7 +429,7 @@ credit_type_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 credit_type_id:
   name: credit_type_id
   in: query
@@ -437,7 +437,7 @@ credit_type_id:
   required: false
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 create_credit_time_from:
   name: create_credit_time_from
   in: query
@@ -480,7 +480,7 @@ currency_code:
   required: false
   schema:
     type: string
-  example: USD
+  example: "USD"
 currency_name:
   name: currency_name
   in: query
@@ -488,7 +488,7 @@ currency_name:
   required: false
   schema:
     type: string
-  example: United States dollar
+  example: "United States dollar"
 # Customer parameters
 customer_id_path:
   name: customer_id
@@ -497,7 +497,7 @@ customer_id_path:
   description: The unique ID of the customer.
   schema:
     type: string
-  example: 8ea2591121e636086a4a9c0992
+  example: "8ea2591121e636086a4a9c0992"
 customer_id:
   name: customer_id
   in: query
@@ -505,7 +505,7 @@ customer_id:
   description: The unique ID of the customer.
   schema:
     type: string
-  example: 8ea2591121e636086a4a9c0992
+  example: "8ea2591121e636086a4a9c0992"
 customer_ids:
   name: customer_ids
   in: query
@@ -523,7 +523,7 @@ related_customer_id:
   description: The unique ID of the related customer.
   schema:
     type: string
-  example: 87af991126405bf8e7dfb36045
+  example: "87af991126405bf8e7dfb36045"
 customer_id_required:
   name: customer_id
   in: query
@@ -531,7 +531,7 @@ customer_id_required:
   description: The unique ID of the customer.
   schema:
     type: string
-  example: 8ea2591121e636086a4a9c0992
+  example: "8ea2591121e636086a4a9c0992"
 customer_external_id:
   name: external_id
   in: query
@@ -539,7 +539,7 @@ customer_external_id:
   description: The parameter contains a unique ID from an external system (POS, webshop,  mobile app, ERP, and others ). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).
   schema:
     type: string
-  example: A798274529
+  example: "A798274529"
 customer_source_id:
   name: customer_source_id
   in: query
@@ -547,7 +547,7 @@ customer_source_id:
   description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
   schema:
     type: string
-  example: 8fdce3475560d56e95a6ab035r
+  example: "8fdce3475560d56e95a6ab035"
 customer_source_text_id:
   name: customer_source_text_id
   in: query
@@ -555,7 +555,7 @@ customer_source_text_id:
   description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
   schema:
     type: string
-  example: webshop_registration
+  example: "webshop_registration"
 customer_type_id_arr:
   name: customer_type_id
   in: query
@@ -572,7 +572,7 @@ customer_source_id_path:
   description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
   schema:
     type: string
-  example: 8fdce3475560d56e95a6ab035r
+  example: "8fdce3475560d56e95a6ab035"
 customer_type_id_path:
   name: customer_type_id
   in: path
@@ -580,7 +580,7 @@ customer_type_id_path:
   description: 	The unique ID of a customer type in CareCloud.
   schema:
     type: string
-  example: 86e05afc7a7abefcd513ab400
+  example: "86e05afc7a7abefcd513ab400"
 customer_address_type_id_path:
   name: customer_address_type_id
   in: path
@@ -588,7 +588,7 @@ customer_address_type_id_path:
   description: 	The unique ID of a customer address type in CareCloud.
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 customer_address_type_id:
   name: customer_address_type_id
   in: query
@@ -596,7 +596,7 @@ customer_address_type_id:
   description: The unique ID of the customer address type.
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 additional_customer_address_id_path:
   name: additional_customer_address_id_path
   in: path
@@ -604,7 +604,7 @@ additional_customer_address_id_path:
   description: Unique ID of the customer additional address.
   schema:
     type: string
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
 
 # Card
 card_id_path:
@@ -614,7 +614,7 @@ card_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 card_type_id_path:
   name: card_type_id
   in: path
@@ -622,7 +622,7 @@ card_type_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 card_number:
   name: card_number
   in: query
@@ -630,7 +630,7 @@ card_number:
   required: false
   schema:
     type: string
-  example: 1000000000016
+  example: "1000000000016"
 card_number_list:
   name: card_number_list
   in: query
@@ -648,7 +648,7 @@ card_type_id:
   required: false
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 state:
   name: state
   in: query
@@ -670,7 +670,7 @@ property_record_id_path:
   description: The unique ID of the property record.
   schema:
     type: string
-  example: docasna_blokace_darce_do:8ea2591121e636086a4a9c0992
+  example: "docasna_blokace_darce_do:8ea2591121e636086a4a9c0992"
 
 # Interest
 interest_record_id_path:
@@ -680,7 +680,7 @@ interest_record_id_path:
   description: The unique ID of the interest record.
   schema:
     type: string
-  example: 87d934c86a6303f5fb4d1214fb
+  example: "87d934c86a6303f5fb4d1214fb"
 
 # Voucher
 voucher_id_path:
@@ -690,7 +690,7 @@ voucher_id_path:
   required: true
   schema:
     type: string
-  example: 82d0f9d976dee39aacd13dc7ea
+  example: "82d0f9d976dee39aacd13dc7ea"
 is_applied:
   name: is_applied
   in: query
@@ -712,7 +712,7 @@ voucher_code:
   schema:
     type: string
   allowReserved: true
-  example: w7TU7KfeE
+  example: "w7TU7KfeE"
 voucher_property_id_path:
   name: voucher_property_id
   in: path
@@ -720,7 +720,7 @@ voucher_property_id_path:
   required: true
   schema:
     type: string
-  example: id_produktu_v_dwh
+  example: "id_produktu_v_dwh"
 # Reward
 reward_id_path:
   name: reward_id
@@ -729,7 +729,7 @@ reward_id_path:
   required: true
   schema:
     type: string
-  example: 8fd73167342d06899c4c015320
+  example: "8fd73167342d06899c4c015320"
 reward_property_id_path:
   name: reward_property_id
   in: path
@@ -737,7 +737,7 @@ reward_property_id_path:
   required: true
   schema:
     type: string
-  example: subtitle
+  example: "subtitle"
 reward_code:
   name: code
   in: query
@@ -746,7 +746,7 @@ reward_code:
   schema:
     type: string
   allowReserved: true
-  example:
+  example: "PTV120"
 reward_type_id:
   name: reward_type_id
   in: query
@@ -754,7 +754,7 @@ reward_type_id:
   required: false
   schema:
     type: string
-  example: 8aa2049ac2f84952014d96bb23
+  example: "8aa2049ac2f84952014d96bb23"
 reward_type_id_path:
   name: reward_type_id
   in: path
@@ -762,7 +762,7 @@ reward_type_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 is_automated:
   name: is_automated
   in: query
@@ -809,7 +809,7 @@ reward_store_id:
   required: false
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 
 # Customer External applications
 customer_external_application_id_path:
@@ -819,7 +819,7 @@ customer_external_application_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 
 # Customer Property
 customer_property_id_path:
@@ -829,7 +829,7 @@ customer_property_id_path:
   required: true
   schema:
     type: string
-  example: profession
+  example: "profession"
 #Customer relation
 customer_relation_id_path:
   name: customer_relation_id
@@ -838,7 +838,7 @@ customer_relation_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 # Customer relation type
 customer_relation_type_id_path:
   name: customer_relation_type_id
@@ -847,7 +847,7 @@ customer_relation_type_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 customer_relation_type_id:
   name: customer_relation_type_id
   in: query
@@ -855,7 +855,7 @@ customer_relation_type_id:
   required: false
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 # Campaigns
 campaign_id_path:
   name: campaign_id
@@ -864,7 +864,7 @@ campaign_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 display_in:
   name: display_in
   in: query
@@ -876,7 +876,7 @@ display_in:
       - web
       - cash desk
       - api
-  example:
+  example: "api"
 type_id:
   name: type_id
   in: query
@@ -886,7 +886,6 @@ type_id:
     type: array
     items:
       type: string
-  example:
 campaign_store_id:
   name: store_id
   in: query
@@ -894,7 +893,7 @@ campaign_store_id:
   required: false
   schema:
     type: string
-  example: 8fd7316732d06899c4c015320
+  example: "8fd7316732d06899c4c015320"
 campaign_product_id_path:
   name: campaign_product_id
   in: path
@@ -902,7 +901,7 @@ campaign_product_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 
 # Currencies
 currency_id_path:
@@ -912,7 +911,7 @@ currency_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 
 # Events
 event_id_path:
@@ -922,7 +921,7 @@ event_id_path:
   required: true
   schema:
     type: string
-  example: 82de12eb8b138791e678fd11c3
+  example: "82de12eb8b138791e678fd11c3"
 event_type_id:
   name: event_type_id
   in: query
@@ -930,7 +929,7 @@ event_type_id:
   required: false
   schema:
     type: string
-  example: 8bda8a4854394325e2748a5005
+  example: "8bda8a4854394325e2748a5005"
 text_id:
   name: text_id
   in: query
@@ -938,7 +937,7 @@ text_id:
   required: false
   schema:
     type: string
-  example: shopping_cart
+  example: "shopping_cart"
 event_group_id_path:
   name: event_group_id
   in: path
@@ -946,7 +945,7 @@ event_group_id_path:
   required: true
   schema:
     type: string
-  example: 8bd253a890067595008f1d44aa
+  example: "8bd253a890067595008f1d44aa"
 event_property_id_path:
   name: event_property_id
   in: path
@@ -954,7 +953,7 @@ event_property_id_path:
   required: true
   schema:
     type: string
-  example: account_registration_contact_source
+  example: "account_registration_contact_source"
 event_type_id_path:
   name: event_type_id
   in: path
@@ -962,7 +961,7 @@ event_type_id_path:
   required: true
   schema:
     type: string
-  example: 8bda8a4854394325e2748a5005
+  example: "8bda8a4854394325e2748a5005"
 
 # Interests
 interest_id_path:
@@ -972,7 +971,7 @@ interest_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 
 # Languages
 language_list_type:
@@ -987,7 +986,7 @@ language_list_type:
       - web-portal
       - customer-communication
     default: carecloud-api
-  example: customer-communication
+  example: "customer-communication"
 
 # Messages
 message_id_path:
@@ -997,7 +996,7 @@ message_id_path:
   required: true
   schema:
     type: string
-  example: 8fd73167342d06899c4c015320
+  example: "8fd73167342d06899c4c015320"
 message_template_id_path:
   name: message_template_id
   in: path
@@ -1005,7 +1004,7 @@ message_template_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 contact:
   name: contact
   in: query
@@ -1022,7 +1021,7 @@ communication_channel_id:
   required: false
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 send_time_from:
   name: send_time_from
   in: query
@@ -1050,7 +1049,7 @@ order_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aabed9e048
+  example: "8bed991c68a470e7aabed9e048"
 
 # Partner
 partner_id_path:
@@ -1060,7 +1059,7 @@ partner_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 partner_id:
   name: partner_id
   in: query
@@ -1068,7 +1067,7 @@ partner_id:
   description: Unique ID of the partner from the resource [GET /partners](/#tag/Partners).
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 partner_record_id_path:
   name: partner_record_id
   in: path
@@ -1076,7 +1075,7 @@ partner_record_id_path:
   required: true
   schema:
     type: string
-  example: 88bd53f8ac5f3b595d6bc106a4
+  example: "88bd53f8ac5f3b595d6bc106a4"
 partner_property_id_path:
   name: partner_property_id
   in: path
@@ -1084,7 +1083,7 @@ partner_property_id_path:
   required: true
   schema:
     type: string
-  example: direct_contact
+  example: "direct_contact"
 #Payment types
 payment_type_id_path:
   name: payment_type_id
@@ -1093,7 +1092,7 @@ payment_type_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 # Points
 point_id_path:
   name: point_id
@@ -1102,7 +1101,7 @@ point_id_path:
   required: true
   schema:
     type: string
-  example: 8bd48117006496e0b1788109b8
+  example: "8bd48117006496e0b1788109b8"
 point_reservation_id_path:
   name: point_reservation_id
   in: path
@@ -1110,7 +1109,7 @@ point_reservation_id_path:
   required: true
   schema:
     type: string
-  example: 8fd73167342d06899c4c015320
+  example: "8fd73167342d06899c4c015320"
 point_type_id_path:
   name: point_type_id
   in: path
@@ -1118,7 +1117,7 @@ point_type_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 point_type_id:
   name: point_type_id
   in: query
@@ -1126,7 +1125,7 @@ point_type_id:
   required: false
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 create_point_time_from:
   name: create_point_time_from
   in: query
@@ -1135,7 +1134,7 @@ create_point_time_from:
   schema:
     type: string
   allowReserved: true
-  example:
+  example: "2021-01-01 12:00:00"
 create_point_time_to:
   name: create_point_time_to
   in: query
@@ -1144,7 +1143,7 @@ create_point_time_to:
   schema:
     type: string
   allowReserved: true
-  example:
+  example: "2023-01-01 12:00:00"
 pointRes_external_id:
   name: external_id
   in: query
@@ -1152,7 +1151,7 @@ pointRes_external_id:
   required: false
   schema:
     type: string
-  example: 123459
+  example: "123459"
 point_operation_type:
   name: point_operation_type
   in: query
@@ -1178,7 +1177,7 @@ product_id_path:
   required: true
   schema:
     type: string
-  example: 82db62087b0f79a6e14e5747e7
+  example: "82db62087b0f79a6e14e5747e7"
 reservable_product_id_path:
   name: reservable_product_id
   in: path
@@ -1186,7 +1185,7 @@ reservable_product_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 product_brand_id_path:
   name: product_brand_id
   in: path
@@ -1194,7 +1193,7 @@ product_brand_id_path:
   required: true
   schema:
     type: string
-  example: 83d1d11ea3884a5d33253fe214
+  example: "83d1d11ea3884a5d33253fe214"
 product_group_id_path:
   name: product_group_id
   in: path
@@ -1202,7 +1201,7 @@ product_group_id_path:
   required: true
   schema:
     type: string
-  example: 8fd73167342d06899c4c015320
+  example: "8fd73167342d06899c4c015320"
 product_property_id_path:
   name: product_property_id
   in: path
@@ -1218,7 +1217,7 @@ product_reservation_id_path:
   required: true
   schema:
     type: string
-  example: 81d503b99cc748b3ca189383ad
+  example: "81d503b99cc748b3ca189383ad"
 product_reservation_source_id_path:
   name: product_reservation_source_id
   in: path
@@ -1226,7 +1225,7 @@ product_reservation_source_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 product_id:
   name: product_id
   in: query
@@ -1234,7 +1233,7 @@ product_id:
   required: false
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 product_code:
   name: code
   in: query
@@ -1242,7 +1241,7 @@ product_code:
   required: false
   schema:
     type: string
-  example: 649
+  example: "649"
 product_group_code:
   name: code
   in: query
@@ -1250,7 +1249,7 @@ product_group_code:
   required: false
   schema:
     type: string
-  example: 649
+  example: "649"
 external_type_code:
   name: external_type_code
   in: query
@@ -1258,7 +1257,7 @@ external_type_code:
   required: false
   schema:
     type: string
-    default: GLOBAL
+  example: "GLOBAL"
 external_reservation_code:
   name: external_reservation_code
   in: query
@@ -1266,7 +1265,7 @@ external_reservation_code:
   required: false
   schema:
     type: string
-  example: XYSD78TFDA
+  example: "XYSD78TFDA"
 external_reservation_list_type_id:
   name: external_reservation_list_type_id
   in: query
@@ -1282,7 +1281,7 @@ product_reservation_external_list_type_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 reservation_state:
   name: reservation_state
   in: query
@@ -1312,7 +1311,7 @@ purchase_id_path:
   required: true
   schema:
     type: string
-  example: 8bd62e6ba18b3c791a9402cf3e
+  example: "8bd62e6ba18b3c791a9402cf3e"
 external_purchase_id:
   name: external_purchase_id
   in: query
@@ -1320,7 +1319,7 @@ external_purchase_id:
   required: false
   schema:
     type: string
-  example: ZXA321FSWO1
+  example: "ZXA321FSWO1"
 purchase_type_id:
   name: type_id
   in: query
@@ -1328,7 +1327,7 @@ purchase_type_id:
   required: false
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 payment_time_from:
   name: payment_time_from
   in: query
@@ -1367,7 +1366,7 @@ recommendation_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 
 # Segment
 segment_id_path:
@@ -1377,7 +1376,7 @@ segment_id_path:
   description: The unique ID of the segment.
   schema:
     type: string
-  example: 82de12eb8b138791e678fd11c3
+  example: "82de12eb8b138791e678fd11c3"
 segment_group_id_path:
   name: segment_group_id
   in: path
@@ -1385,7 +1384,7 @@ segment_group_id_path:
   description: The unique ID of the segment group.
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 segment_group_ids:
   name: segment_group_ids
   in: query
@@ -1412,7 +1411,7 @@ entrance_id_path:
   required: true
   schema:
     type: string
-  example: 80a7be2e78aabc1454ca817265
+  example: "80a7be2e78aabc1454ca817265"
 pos_id:
   name: pos_id
   in: query
@@ -1432,7 +1431,7 @@ external_order_id:
   description: ID of an external order created in POS system.
   schema:
     type: string
-  example:
+  example: "a23b908eacd2442198e9ab"
 entrance_name:
   name: name
   in: query
@@ -1440,7 +1439,7 @@ entrance_name:
   description: Name of the charged entrance (product name is used from resource products).
   schema:
     type: string
-  example:
+  example: "1 day ticket"
 resort_name:
   name: resort_name
   in: query
@@ -1448,7 +1447,7 @@ resort_name:
   description: Name of the resort where is an entrance charged.
   schema:
     type: string
-  example:
+  example: "Jasná"
 customer_category_name:
   name: customer_category_name
   in: query
@@ -1456,7 +1455,7 @@ customer_category_name:
   description:  Name of the customer category.
   schema:
     type: string
-  example:
+  example: "Adult"
 entrance_card_id:
   name: card_id
   in: query
@@ -1464,7 +1463,7 @@ entrance_card_id:
   description: ID of a card used for charging entrance.
   schema:
     type: string
-  example: 8c97533b621490a0b211419086
+  example: "8c97533b621490a0b211419086"
 entrance_type_id:
   name: entrance_type_id
   in: query
@@ -1497,7 +1496,6 @@ external_entrance_id:
   description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
   schema:
     type: string
-  example:
 external_turnstile_permission_id:
   name: external_turnstile_permission_id
   in: query
@@ -1505,7 +1503,6 @@ external_turnstile_permission_id:
   description: External ID of the turnstile permission. Structure can be different depends of the POS system, that created the permission.
   schema:
     type: string
-  example:
 is_cancelled:
   name: is_cancelled
   in: query
@@ -1528,7 +1525,7 @@ status_id_path:
   required: true
   schema:
     type: string
-  example: 86e05affc7a7abefcd513ab400
+  example: "86e05affc7a7abefcd513ab400"
 
 # Store
 store_id_path:
@@ -1538,7 +1535,7 @@ store_id_path:
   required: true
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 store_group_id_path:
   name: store_group_id
   in: path
@@ -1546,7 +1543,7 @@ store_group_id_path:
   required: true
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 store_property_id_path:
   name: store_property_id
   in: path
@@ -1554,7 +1551,7 @@ store_property_id_path:
   required: true
   schema:
     type: string
-  example: poskytovane_sluzby
+  example: "poskytovane_sluzby"
 store_id:
   name: store_id
   in: query
@@ -1562,7 +1559,7 @@ store_id:
   required: false
   schema:
     type: string
-  example: 81eaeea13b8984a169c490a325
+  example: "81eaeea13b8984a169c490a325"
 store_system_id:
   name: system_id
   in: query
@@ -1570,7 +1567,7 @@ store_system_id:
   required: false
   schema:
     type: string
-  example: 1118384954
+  example: "1118384954"
 visible_for_customer:
   name: visible_for_customer
   in: query
@@ -1589,7 +1586,7 @@ property_id:
   description: Store property ID from resource [store-properties](#tag/Store-properties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
   schema:
     type: string
-  example: provided_services
+  example: "provided_services"
 property_value:
   name: property_value
   in: query
@@ -1597,7 +1594,7 @@ property_value:
   description: Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
   schema:
     type: string
-  example:
+  example: "8bed991c68a470e7aaeffbf048"
 #Tasks
 task_id_path:
   name: task_id
@@ -1606,7 +1603,7 @@ task_id_path:
   description: The unique ID of the task in CareCloud.
   schema:
     type: string
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
 task_type_id_path:
   name: task_type_id
   in: path
@@ -1614,7 +1611,7 @@ task_type_id_path:
   description: The unique ID of the task type in CareCloud.
   schema:
     type: string
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
 task_state_id_path:
   name: task_state_id
   in: path
@@ -1622,7 +1619,7 @@ task_state_id_path:
   description: The unique ID of the task state in CareCloud.
   schema:
     type: string
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
 task_assignee_id_path:
   name: assignee_id
   in: path
@@ -1630,7 +1627,7 @@ task_assignee_id_path:
   description: The unique ID of the task assignee in CareCloud.
   schema:
     type: string
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
 task_state_id:
   name: task_state_id
   in: query
@@ -1638,7 +1635,7 @@ task_state_id:
   description: Task state ID from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.
   schema:
     type: string
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
 task_type_id:
   name: task_type_id
   in: query
@@ -1646,7 +1643,7 @@ task_type_id:
   description: Task type ID from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.
   schema:
     type: string
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
 task_priority:
   name: priority
   in: query
@@ -1699,7 +1696,7 @@ task_comment_id_path:
   description: The unique ID of the task comment in CareCloud.
   schema:
     type: string
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
 task_property_id_path:
   name: task_property_id
   in: path
@@ -1707,7 +1704,7 @@ task_property_id_path:
   required: true
   schema:
     type: string
-  example: p1_communication_reasons
+  example: "p1_communication_reasons"
 #Tests
 test_string:
   name: test_string
@@ -1716,7 +1713,7 @@ test_string:
   description: A test string sends to REST API. Correct result should revert the string.
   schema:
     type: string
-  example: 'taco cat'
+  example: "taco cat"
 
 # Tokens
 token_id_path:
@@ -1726,7 +1723,7 @@ token_id_path:
   required: true
   schema:
     type: string
-  example: d9aacfc5eebfae1e9fdc7f20694c2ca105dff986f1b8176a6740c027db56a325913f
+  example: "d9aacfc5eebfae1e9fdc7f20694c2ca105dff986f1b8176a6740c027db56a325913f"
 external_application_id:
   name: external_application_id
   in: query
@@ -1734,7 +1731,7 @@ external_application_id:
   description: ID of external application. For ID of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications).
   schema:
     type: string
-  example: 8bed991c68a470e7aaeffbf048
+  example: "8bed991c68a470e7aaeffbf048"
 token_type:
   name: token_type
   in: query

@@ -19,7 +19,7 @@ post:
               type: number
               format: float
               description: Number of redeemed points.
-              example: '100'
+              example: 100
             customer_id:
               type: string
               description: The unique ID of the customer.
@@ -57,7 +57,7 @@ post:
                     type: string
                     readOnly: true
                     description: The unique ID of the point redemption.
-                    example: 80c2c110a50db9f8134b6b72b3
+                    example: "80c2c110a50db9f8134b6b72b3"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

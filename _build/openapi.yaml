@@ -6815,7 +6815,7 @@ paths:
                 verification_code:
                   type: string
                   description: 'Verification code from email, SMS or notification provided by recipient.'
-                  example: 7256
+                  example: '7256'
                 request_id:
                   type: string
                   description: 'The parameter specifies the request that caused the OTP to be created. Request ID was created in the action method [/one-time-password/actions/send](#operation/postSendOtp).'
@@ -7491,7 +7491,7 @@ paths:
                   type: number
                   format: float
                   description: Number of redeemed points.
-                  example: '100'
+                  example: 100
                 customer_id:
                   type: string
                   description: The unique ID of the customer.
@@ -17326,7 +17326,7 @@ components:
           pattern: '^[1-9][0-9]*$'
           readOnly: false
           description: Phone number of the customer with international prefix (420000000000).
-          example: 420523828931
+          example: '420523828931'
         language_id:
           type: string
           readOnly: false
@@ -18140,7 +18140,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2023-02-02 00:00:00'
       required:
         - property_id
     Purchase:
@@ -19823,12 +19823,12 @@ components:
           type: string
           readOnly: false
           description: 'Date from the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2013-07-10 21:33:13'
         valid_to:
           type: string
           readOnly: false
           description: 'Date to the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2013-07-30 21:33:13'
         reward_group:
           type: string
           readOnly: true
@@ -19846,12 +19846,12 @@ components:
           type: string
           readOnly: true
           description: 'Date of the voucher creation. *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2022-07-24 21:33:13'
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2013-07-24 21:33:33'
+          example: '2022-07-24 21:33:33'
         state:
           type: integer
           enum:
@@ -20121,7 +20121,7 @@ components:
       description: The ID from other system than CareCloud. It is usually used for the synchronization or identification of the record in between CareCloud and other system. The ID doesn't need to be necessary unique. Usage of other parameter could be required to return more specific results.
       schema:
         type: string
-      example: 18
+      example: '18'
     external_ids:
       name: external_ids
       in: query
@@ -20200,7 +20200,7 @@ components:
       required: false
       schema:
         type: string
-      example: 420523828931
+      example: '420523828931'
     login:
       name: login
       in: query
@@ -20480,7 +20480,7 @@ components:
       description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
       schema:
         type: string
-      example: 8fdce3475560d56e95a6ab035r
+      example: 8fdce3475560d56e95a6ab035
     customer_source_text_id:
       name: customer_source_text_id
       in: query
@@ -20505,7 +20505,7 @@ components:
       description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
       schema:
         type: string
-      example: 8fdce3475560d56e95a6ab035r
+      example: 8fdce3475560d56e95a6ab035
     customer_type_id_path:
       name: customer_type_id
       in: path
@@ -20561,7 +20561,7 @@ components:
       required: false
       schema:
         type: string
-      example: 1000000000016
+      example: '1000000000016'
     card_number_list:
       name: card_number_list
       in: query
@@ -20671,7 +20671,7 @@ components:
       schema:
         type: string
       allowReserved: true
-      example: null
+      example: PTV120
     reward_type_id:
       name: reward_type_id
       in: query
@@ -20794,7 +20794,7 @@ components:
           - web
           - cash desk
           - api
-      example: null
+      example: api
     type_id:
       name: type_id
       in: query
@@ -20804,7 +20804,6 @@ components:
         type: array
         items:
           type: string
-      example: null
     campaign_store_id:
       name: store_id
       in: query
@@ -21037,7 +21036,7 @@ components:
       schema:
         type: string
       allowReserved: true
-      example: null
+      example: '2021-01-01 12:00:00'
     create_point_time_to:
       name: create_point_time_to
       in: query
@@ -21046,7 +21045,7 @@ components:
       schema:
         type: string
       allowReserved: true
-      example: null
+      example: '2023-01-01 12:00:00'
     pointRes_external_id:
       name: external_id
       in: query
@@ -21054,7 +21053,7 @@ components:
       required: false
       schema:
         type: string
-      example: 123459
+      example: '123459'
     point_operation_type:
       name: point_operation_type
       in: query
@@ -21142,7 +21141,7 @@ components:
       required: false
       schema:
         type: string
-      example: 649
+      example: '649'
     product_group_code:
       name: code
       in: query
@@ -21150,7 +21149,7 @@ components:
       required: false
       schema:
         type: string
-      example: 649
+      example: '649'
     external_type_code:
       name: external_type_code
       in: query
@@ -21158,7 +21157,7 @@ components:
       required: false
       schema:
         type: string
-        default: GLOBAL
+      example: GLOBAL
     external_reservation_code:
       name: external_reservation_code
       in: query
@@ -21325,7 +21324,7 @@ components:
       description: ID of an external order created in POS system.
       schema:
         type: string
-      example: null
+      example: a23b908eacd2442198e9ab
     entrance_name:
       name: name
       in: query
@@ -21333,7 +21332,7 @@ components:
       description: Name of the charged entrance (product name is used from resource products).
       schema:
         type: string
-      example: null
+      example: 1 day ticket
     resort_name:
       name: resort_name
       in: query
@@ -21341,7 +21340,7 @@ components:
       description: Name of the resort where is an entrance charged.
       schema:
         type: string
-      example: null
+      example: Jasná
     customer_category_name:
       name: customer_category_name
       in: query
@@ -21349,7 +21348,7 @@ components:
       description: Name of the customer category.
       schema:
         type: string
-      example: null
+      example: Adult
     entrance_card_id:
       name: card_id
       in: query
@@ -21390,7 +21389,6 @@ components:
       description: 'External ID of the entrance. Structure can be different depends of POS system, that created entrance.'
       schema:
         type: string
-      example: null
     external_turnstile_permission_id:
       name: external_turnstile_permission_id
       in: query
@@ -21398,7 +21396,6 @@ components:
       description: 'External ID of the turnstile permission. Structure can be different depends of the POS system, that created the permission.'
       schema:
         type: string
-      example: null
     is_cancelled:
       name: is_cancelled
       in: query
@@ -21459,7 +21456,7 @@ components:
       required: false
       schema:
         type: string
-      example: 1118384954
+      example: '1118384954'
     visible_for_customer:
       name: visible_for_customer
       in: query
@@ -21486,7 +21483,7 @@ components:
       description: 'Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.'
       schema:
         type: string
-      example: null
+      example: 8bed991c68a470e7aaeffbf048
     task_id_path:
       name: task_id
       in: path

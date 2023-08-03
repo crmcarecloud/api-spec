@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the customer relation type.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false
     description: Name of the customer relation type
-    example: Family account
+    example: "Family account"
   last_change:
     type: string
     readOnly: true
