@@ -5,11 +5,11 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the purchase type.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
     readOnly: false
     description: Name of the purchase type.
-    example: Store purchase
+    example: "Store purchase"
 required:
   - name

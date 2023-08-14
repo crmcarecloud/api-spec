@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the reservable product in CareCloud.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   amount:
     type: number
     format: float

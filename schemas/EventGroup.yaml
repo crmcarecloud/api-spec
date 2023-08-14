@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the event.
-    example: 86e05affc7a7abefc513ab4tt0
+    example: "86e05affc7a7abefc513ab4tt0"
   name:
     type: string
     readOnly: false
     description: The unique ID of the event type.
-    example: Shopping Cart
+    example: "Shopping Cart"
   text_id:
     type: string
     readOnly: true
     description: Text ID of an event group.
-    example: shopping_cart
+    example: "shopping_cart"
   state:
     type: integer
     enum:

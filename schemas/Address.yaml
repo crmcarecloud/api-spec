@@ -4,27 +4,27 @@ properties:
   address1:
     type: string
     description: Street name of the address.
-    example: Old Town Square
+    example: "Old Town Square"
   address2:
     type: string
     description: Street number (Land registry number).
-    example: '34'
+    example: "34"
   address3:
     type: string
     description: House number.
-    example: ''
+    example: "1a"
   address4:
     type: string
     description: Next address data.
-    example: ''
+    example: ""
   address5:
     type: string
     description: Next address data.
-    example: ''
+    example: ""
   address6:
     type: string
     description: Next address data.
-    example: ''
+    example: ""
   address7:
     type: string
     description: Next address data.
@@ -32,12 +32,12 @@ properties:
   zip:
     type: string
     description: ZIP code.
-    example: '11000'
+    example: "11000"
   city:
     type: string
     description: City.
-    example: Prague 1
+    example: "Prague 1"
   country_code:
     type: string
     description: ISO code of the country. *Possible values de / gb / us / it / cz / etc*
-    example: cz
+    example: "cz"

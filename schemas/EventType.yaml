@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the event type.
-    example: 82d0f9d976dee39aac13dc7ea
+    example: "82d0f9d976dee39aac13dc7ea"
   event_group_id:
     type: string
     readOnly: false
     description: ID of the event type group.
-    example: 8bed991c68a470eaaeffbf048
+    example: "8bed991c68a470eaaeffbf048"
   name:
     type: string
     readOnly: false
     description: Name of the event type.
-    example: Voucher
+    example: "Voucher"
   state:
     type: integer
     enum:

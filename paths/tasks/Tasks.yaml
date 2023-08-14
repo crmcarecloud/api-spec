@@ -158,7 +158,7 @@ post:
                   task_id:
                     type: string
                     description: The unique ID of the task in CareCloud
-                    example: 86e05affc7a7abefcd513ab400
+                    example: "86e05affc7a7abefcd513ab400"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

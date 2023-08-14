@@ -2868,6 +2868,7 @@ paths:
         - $ref: '#/components/parameters/birthdate'
         - $ref: '#/components/parameters/email_list'
         - $ref: '#/components/parameters/customer_ids'
+        - $ref: '#/components/parameters/customer_short_salutation'
       responses:
         '200':
           description: OK
@@ -2955,6 +2956,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/customer_short_salutation'
       responses:
         '200':
           description: OK
@@ -9505,7 +9507,7 @@ paths:
                 card_number:
                   type: string
                   description: The customer card number.
-                  example: 1000000000016
+                  example: '1000000000016'
                 customer_id:
                   type: string
                   description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
@@ -9611,11 +9613,13 @@ paths:
                     *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup.*
                   example: S
                 max_points:
-                  type: string
+                  type: number
+                  format: float
                   description: Amount of points to be redeemed.
                   example: 0
                 max_credit:
-                  type: string
+                  type: number
+                  format: float
                   description: Amount of credit customer wants to use in the purchase.
                   example: 7
                 benefit_codes:
@@ -15091,7 +15095,7 @@ components:
         address3:
           type: string
           description: House number.
-          example: ''
+          example: 1a
         address4:
           type: string
           description: Next address data.
@@ -15178,7 +15182,7 @@ components:
           type: string
           readOnly: true
           description: Text of the agreement in CareCloud. Language version of text is returned by language setup in HTTP header of the request.
-          example: '<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>'
+          example: '<h1>Souhlas se zpracováním osobních údajů</h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:</p><h2>Operací spojených s provozováním systému card</h2><ul><li>Zařazení do databáze členů card systému</li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)</li><li>Zasílání obchodních sdělení</li></ul>'
         communication_channel_id:
           type: string
           readOnly: true
@@ -15244,7 +15248,7 @@ components:
           type: string
           readOnly: false
           description: Name of the user who created a bill.
-          example: null
+          example: API user
         currency_id:
           type: string
           readOnly: false
@@ -15255,7 +15259,7 @@ components:
           format: float
           readOnly: false
           description: The total price of the bill as a sum of all items.
-          example: '700'
+          example: 700
         bill_items:
           type: array
           items:
@@ -15282,7 +15286,7 @@ components:
           type: string
           readOnly: false
           description: Product name.
-          example: qwer
+          example: Iphone 14
         category_plu_id:
           type: string
           readOnly: false
@@ -15293,7 +15297,7 @@ components:
           format: float
           readOnly: false
           description: VAT rate of the item.
-          example: 4
+          example: 20
         quantity:
           type: number
           format: float
@@ -15305,13 +15309,13 @@ components:
           format: float
           readOnly: false
           description: Real money value (unit price * quantity) paid by the customer (The value for a pharmaceutical client could have a copayment for drug prescription or money value of drugs not covered by an insurer).
-          example: 6
+          example: 1200
         price:
           type: number
           format: float
           readOnly: false
           description: 'Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer  health insurance.'
-          example: 6
+          example: 1200
         bill_item_id:
           type: string
           readOnly: false
@@ -15654,7 +15658,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: 2021-04-16T19:02:22.000Z
+          example: '2021-04-16 19:02:22'
         state:
           type: integer
           enum:
@@ -15816,7 +15820,7 @@ components:
           type: string
           readOnly: true
           description: Text of the message.
-          example: null
+          example: Please apply discounts
     CommunicationChannel:
       type: object
       description: Communication channel resource.
@@ -15902,7 +15906,7 @@ components:
           type: string
           readOnly: false
           description: 'Date and time of the credit record validity to. *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2027-12-12 00:00:00'
         currency_id:
           type: string
           readOnly: true
@@ -16200,7 +16204,7 @@ components:
           type: string
           description: The unique external ID of the customer. It may be ID from the other system.
           readOnly: false
-          example: 6
+          example: A66854921C
         last_change:
           type: string
           readOnly: true
@@ -16273,7 +16277,7 @@ components:
           type: string
           readOnly: false
           description: The unique ID of the client device.
-          example: '123456'
+          example: 00000000-89ABCDEF-01234567-89ABCDEF
         device_system:
           type: string
           readOnly: false
@@ -16348,7 +16352,7 @@ components:
           type: string
           readOnly: false
           description: The unique external ID of the event. It may be ID from other system.
-          example: 157613
+          example: '157613'
         data:
           oneOf:
             - type: string
@@ -16571,7 +16575,7 @@ components:
           format: float
           readOnly: false
           description: The total price of the bill as a sum of all items.
-          example: '700'
+          example: 700
         utm:
           type: object
           $ref: '#/components/schemas/UTM'
@@ -16694,7 +16698,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2017-03-24 15:29:47"'
+          example: '2017-03-24 15:29:47'
     Message:
       type: object
       description: Message resource.
@@ -16747,7 +16751,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time when message was opened by recipient. *(YYYY-MM-DD HH:MM:SS)*'
-          example: null
+          example: '2015-01-05 13:24:12'
         mail_client_user_agent:
           type: string
           readOnly: true
@@ -16953,7 +16957,7 @@ components:
           format: float
           readOnly: false
           description: Total price of the order.
-          example: '36.00'
+          example: 36
         discount_codes:
           type: array
           items:
@@ -17100,7 +17104,7 @@ components:
           type: string
           readOnly: false
           description: Phone number of the contact with international prefix (420000000).
-          example: 38612345678
+          example: '38612345678'
         address:
           type: object
           $ref: '#/components/schemas/Address'
@@ -17150,7 +17154,7 @@ components:
           type: string
           readOnly: false
           description: VAT registration number. Value Added Tax unique ID of the company.
-          example: '123456789'
+          example: CZ123456789
         email:
           type: string
           readOnly: false
@@ -17160,7 +17164,7 @@ components:
           type: string
           readOnly: false
           description: Phone number of the company with international prefix (420000000).
-          example: '123456787'
+          example: '420000000'
         state:
           type: integer
           enum:
@@ -17795,7 +17799,7 @@ components:
           readOnly: true
           description: Reservation codes of the reservation from CareCloud.
           example:
-            - 3
+            - 3DBKBHA
         external_reservation_codes:
           type: array
           items:
@@ -18017,17 +18021,17 @@ components:
           type: string
           readOnly: true
           description: The unique ID of the property.
-          example: test
+          example: size
         name:
           type: string
           readOnly: false
           description: Name of the property.
-          example: Test
+          example: Size
         description:
           type: string
           readOnly: false
           description: User defined description of the property.
-          example: test
+          example: size
         data_type:
           type: string
           readOnly: false
@@ -18203,12 +18207,12 @@ components:
           type: string
           readOnly: false
           description: Purchasing customer card number.
-          example: 1000000000016
+          example: '1000000000016'
         cashdesk_number:
           type: string
           readOnly: true
           description: Number of the cash-desk
-          example: 2
+          example: 2a
         last_change:
           type: string
           readOnly: true
@@ -18406,7 +18410,7 @@ components:
           type: string
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: 2020-04-16T09:53:08.000Z
+          example: '2020-04-16 09:53:08'
         state:
           type: integer
           enum:
@@ -18714,7 +18718,7 @@ components:
           type: string
           readOnly: true
           description: 'Time the reward is valid to. *(HH:MM:SS)*'
-          example: '00:00:00'
+          example: '23:00:00'
     RewardType:
       type: object
       description: Reward type resource.
@@ -19208,7 +19212,7 @@ components:
           pattern: '^[1-9][0-9]*$'
           readOnly: false
           description: Phone number of the store with international prefix (420000000000).
-          example: 420523828931
+          example: '420523828931'
         partner_id:
           type: string
           readOnly: false
@@ -19735,7 +19739,7 @@ components:
           type: string
           readOnly: false
           description: Phone number of the user with international prefix (420000000).
-          example: 420523828931
+          example: '420523828931'
         user_role_id:
           type: string
           readOnly: true
@@ -20538,6 +20542,14 @@ components:
       schema:
         type: string
         example: 86e05affc7a7abefcd513ab400
+    customer_short_salutation:
+      name: customer_short_salutation
+      in: query
+      required: false
+      description: 'If true, the response will set a short salutation instead of a long one. Short salutations contain the first name of the customer only. If the parameter has a value false or not set, the full salutation is returned in response.'
+      schema:
+        type: boolean
+      example: false
     card_id_path:
       name: card_id
       in: path

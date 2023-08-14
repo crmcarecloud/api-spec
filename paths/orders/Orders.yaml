@@ -81,7 +81,7 @@ post:
                   order_id:
                     type: string
                     description: The unique ID of the order.
-                    example: 80af8a5dcc0702daf336f4de41
+                    example: "80af8a5dcc0702daf336f4de41"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the credit record.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the customer.
-    example: 8ea2591121e636086a4a9c0992
+    example: "8ea2591121e636086a4a9c0992"
   assigned_credits:
     type: number
     format: float
@@ -27,22 +27,22 @@ properties:
     type: string
     readOnly: false
     description: Type of the credit record.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   partner_id:
     type: string
     readOnly: false
     description: The unique ID of the partner company.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string
     readOnly: false
     description: Date and time of the credit record validity to. *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2027-12-12 00:00:00"
   currency_id:
     type: string
     readOnly: true
     description: The unique ID of the currency.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   state:
     type: integer
     enum:

@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the entrance.
-    example: 80a7be2e78aabc1454ca817265
+    example: "80a7be2e78aabc1454ca817265"
   pos_id:
     readOnly: false
     description:  'ID of POS system for tickets. Required with path parameter entrance ID. *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
@@ -19,7 +19,7 @@ properties:
     type: string
     readOnly: true
     description: Name of the entrance.
-    example: 1 Dňový Skipas - Akcia 7.1. - 22.1.2015
+    example: "1 Dňový Skipas - Akcia 7.1. - 22.1.2015"
   customer_id:
     type: string
     readOnly: true
@@ -110,7 +110,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: '2019-08-29 13:04:45'
+    example: "2019-08-29 13:04:45"
   state:
     type: integer
     enum:

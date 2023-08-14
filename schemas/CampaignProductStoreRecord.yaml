@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the campaign product store record.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   store_id:
     type: string
     readOnly: false
     description: The unique ID of the store.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   campaign_product_id:
     type: string
     readOnly: false
     description: The unique ID of the campaign product.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
 required:
   - store_id
   - campaign_product_id

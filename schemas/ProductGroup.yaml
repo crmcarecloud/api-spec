@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the product group.
-    example: '8fd73167342d06899c4c015320'
+    example: "8fd73167342d06899c4c015320"
   name:
     type: string
     readOnly: false
@@ -15,27 +15,27 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.
-    example: '83d1d11ea3884a5d33253fe214'
+    example: "83d1d11ea3884a5d33253fe214"
   parent_external_id:
     type: string
     readOnly: false
     description: The unique external ID of the parent product group. If `parent_product_group_id` is also set, both parameters have to represent the same product group.
-    example: '678'
+    example: "678"
   code:
     type: string
     readOnly: false
     description: Code of the product group.
-    example: '567829'
+    example: "567829"
   external_id:
     type: string
     readOnly: false
     description: The external unique ID of the product group.
-    example: '953'
+    example: "953"
   store_id:
     type: string
     readOnly: false
     description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
-    example: '83d1d11ea3884a5d33253fe214'
+    example: "83d1d11ea3884a5d33253fe214"
   last_change:
     type: string
     readOnly: true

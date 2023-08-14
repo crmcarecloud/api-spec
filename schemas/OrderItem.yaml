@@ -10,7 +10,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the web-shop product.
-    example: 8fcc724e1514dafb0a70228d3
+    example: "8fcc724e1514dafb0a70228d3"
   customer_id:
     type: string
     readOnly: false

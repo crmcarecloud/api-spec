@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the customer.
-    example: 84b9167cc2f01ff007d98e1633
+    example: "84b9167cc2f01ff007d98e1633"
   match:
     type: integer
     readOnly: true

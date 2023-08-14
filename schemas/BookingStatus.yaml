@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the booking status.
-    example: 8bf3397ab62d3ffd876fc9ae16
+    example: "8bf3397ab62d3ffd876fc9ae16"
   name:
     type: string
     readOnly: false

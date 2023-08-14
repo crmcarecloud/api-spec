@@ -4,16 +4,16 @@ properties:
   booking_item_id:
     type: string
     description: The unique ID of the booking item.
-    example: 8fd73167342d0689c4c015320
+    example: "8fd73167342d0689c4c015320"
   customer_id:
     type: string
     description: The unique ID of the customer.
-    example: 8ea6abece4cd0a4ded0a29f093
+    example: "8ea6abece4cd0a4ded0a29f093"
   time_slot_id:
     type: string
     readOnly: false
     description: The unique ID of the booking time slot.
-    example: 88bb88399cc74d81edbe19d684
+    example: "88bb88399cc74d81edbe19d684"
   booking_ticket:
     $ref: '../schemas/_index.yaml#/BookingTicket'
   valid_from:
@@ -36,7 +36,7 @@ properties:
     type: string
     readOnly: false
     description: Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   additional_properties:
     type: array
     items:

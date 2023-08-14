@@ -16,7 +16,7 @@ post:
             store_id:
               type: string
               description: ID of the store.
-              example: 8bed991c68a470e7aaeffbf048
+              example: "8bed991c68a470e7aaeffbf048"
             cashdesk_number:
               type: integer
               description: Number of the cash-desk in the store.
@@ -28,7 +28,7 @@ post:
             customer_id:
               type: string
               description: ID of the customer that made the purchase. You can search customers by plenty parameter in resource customers.
-              example: 8ea2591121e636086a4a9c0992
+              example: "8ea2591121e636086a4a9c0992"
             payment_type:
               type: string
               enum:
@@ -41,11 +41,13 @@ post:
                 *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup.*
               example: "S"
             max_points:
-              type: string
+              type: number
+              format: float
               description: Amount of points to be redeemed.
               example: 0
             max_credit:
-              type: string
+              type: number
+              format: float
               description: Amount of credit customer wants to use in the purchase.
               example: 7
             benefit_codes:

@@ -16,4 +16,4 @@ properties:
     type: string
     readOnly: true
     description: Time the reward is valid to. *(HH:MM:SS)*
-    example: "00:00:00"
+    example: "23:00:00"

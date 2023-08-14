@@ -605,7 +605,14 @@ additional_customer_address_id_path:
   schema:
     type: string
     example: "86e05affc7a7abefcd513ab400"
-
+customer_short_salutation:
+  name: customer_short_salutation
+  in: query
+  required: false
+  description: If true, the response will set a short salutation instead of a long one. Short salutations contain the first name of the customer only. If the parameter has a value false or not set, the full salutation is returned in response.
+  schema:
+    type: boolean
+  example: false
 # Card
 card_id_path:
   name: card_id

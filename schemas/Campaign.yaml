@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the campaign.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   external_id:
     type: string
     readOnly: false
@@ -20,7 +20,7 @@ properties:
     type: string
     readOnly: false
     description: Name of the campaign.
-    example: Standard campaign
+    example: "Standard campaign"
   last_change:
     type: string
     readOnly: true

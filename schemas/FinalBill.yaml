@@ -13,7 +13,7 @@ properties:
     type: string
     readOnly: false
     description: Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types).
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   canceled:
     type: boolean
     enum:
@@ -33,7 +33,7 @@ properties:
     description: |
       Payment type changes the checkout process depending on the value of the parameter you can allow/deny the use of benefits.
       *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup*
-    example: A
+    example: "A"
   payment_recap:
     type: object
     $ref: '../schemas/_index.yaml#/PaymentRecap'
@@ -42,7 +42,7 @@ properties:
     type: string
     readOnly: false
     description: Identification number of the bill (must be unique in POS, use prefix 'C' for a canceled bill).
-    example: 8fbea1c1eaa8edd35e7f278
+    example: "8fbea1c1eaa8edd35e7f278"
   bill_number:
     type: string
     readOnly: false
@@ -62,13 +62,13 @@ properties:
     type: string
     readOnly: false
     description: ID of the currency from resource [currencies](#tag/Currencies).
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   total_price:
     type: number
     format: float
     readOnly: false
     description: The total price of the bill as a sum of all items.
-    example: '700'
+    example: 700
   utm:
     type: object
     $ref: '../schemas/_index.yaml#/UTM'

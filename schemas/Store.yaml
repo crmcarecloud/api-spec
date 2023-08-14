@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the store in CareCloud.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   store_code:
     type: string
     readOnly: false
@@ -15,7 +15,7 @@ properties:
     type: string
     readOnly: false
     description: Name of the store.
-    example: Another good store
+    example: "Another good store"
   store_address:
     $ref: '../schemas/_index.yaml#/Address'
   contact_email:
@@ -33,12 +33,12 @@ properties:
     pattern: ^[1-9][0-9]*$
     readOnly: false
     description: Phone number of the store with international prefix (420000000000).
-    example: 420523828931
+    example: "420523828931"
   partner_id:
     type: string
     readOnly: false
     description: The unique ID of the partner.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   system_id:
     type: string
     readOnly: false

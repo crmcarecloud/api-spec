@@ -4,11 +4,11 @@ properties:
   country_id:
     type: string
     description: The unique ID of the country as ISO code.
-    example: cz
+    example: "cz"
   name:
     type: string
     description: Name of the country. Language depends on the `Accept-Language` header from the request.
-    example: Czechia
+    example: "Czechia"
   state:
     type: integer
     enum:

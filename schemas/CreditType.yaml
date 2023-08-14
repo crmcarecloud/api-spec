@@ -10,7 +10,7 @@ properties:
     type: string
     readOnly: true
     description: Name of the credit type.
-    example: 'Addition'
+    example: "Addition"
   last_change:
     type: string
     readOnly: true

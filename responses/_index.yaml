@@ -59,7 +59,7 @@ Forbidden:
             properties:
               type:
                 type: string
-                example: interface_not_allowed_exception
+                example: "interface_not_allowed_exception"
               title:
                 type: string
                 example: "Enterprise interface is not allowed for this resource"

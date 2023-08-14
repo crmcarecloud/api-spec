@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the purchase item.
-    example: 84b757641df03b1529c2c7f66c
+    example: "84b757641df03b1529c2c7f66c"
   product_id:
     type: string
     readOnly: false
     description: The unique ID of the [product](#tag/Product).
-    example: 89b3b24b405f461c63d8fcaa0c
+    example: "89b3b24b405f461c63d8fcaa0c"
   external_id:
     type: string
     readOnly: false
@@ -20,7 +20,7 @@ properties:
     type: string
     readOnly: false
     description: Type of the purchase item.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   price:
     type: number
     format: float

@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the booking ticket.
-    example: 89d88719b8b442de2d11b401a2
+    example: "89d88719b8b442de2d11b401a2"
   name:
     type: string
     readOnly: false

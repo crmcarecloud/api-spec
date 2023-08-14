@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the recommendation.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false
     description: Name of a the recommendation.
-    example: Health recommendation
+    example: "Health recommendation"
   brief_description:
     type: string
     readOnly: false
     description: Brief description of the recommendation.
-    example: Health recommendation for the customer
+    example: "Health recommendation for the customer"
   detailed_description:
     type: string
     readOnly: false
     description: Detailed recommendation description.
-    example: Detail description of the recommendation
+    example: "Detail description of the recommendation"
   content:
     type: string
     readOnly: false
@@ -30,7 +30,7 @@ properties:
     type: array
     items:
       type: string
-      example: 'https://<projectURL>/health_recommendations_pictures/img_health_recommendations_16'
+      example: "https://<projectURL>/health_recommendations_pictures/img_health_recommendations_16"
     readOnly: false
     description: URL addresses of the pictures of the recommendation.
   web_url:
@@ -42,7 +42,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: 2020-04-16 09:53:08
+    example: "2020-04-16 09:53:08"
   state:
     type: integer
     enum:

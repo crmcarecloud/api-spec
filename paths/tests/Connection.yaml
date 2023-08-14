@@ -21,7 +21,7 @@ get:
                   test_string:
                     type: string
                     description: Reverted value of input parameters.
-                    example: '!dlroW olleH'
+                    example: "!dlroW olleH"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

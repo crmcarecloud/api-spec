@@ -29,4 +29,4 @@ properties:
     type: string
     readOnly: true
     description: ID of the following status.
-    example: 83d1d11ea3884a5d33253fe214
+    example: "83d1d11ea3884a5d33253fe214"

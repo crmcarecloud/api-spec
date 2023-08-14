@@ -155,7 +155,7 @@ post:
                   campaign_product_id:
                     type: string
                     description: The unique ID of the campaign product.
-                    example: 8bed991c68a470e7aaeff
+                    example: "8bed991c68a470e7aaeff"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

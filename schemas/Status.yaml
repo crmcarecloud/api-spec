@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the status.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
     readOnly: false
     description: Name of the status.
-    example: Basic
+    example: "Basic"
   description:
     type: string
     readOnly: false
@@ -42,12 +42,12 @@ properties:
     type: string
     readOnly: false
     description: ID of the following status.
-    example: 83d1d11ea3884a5d33253fe214
+    example: "83d1d11ea3884a5d33253fe214"
   validity_period:
     type: string
     readOnly: false
     description: Definition of the status validity period.
-    example: 2 years
+    example: "2 years"
   collection_points:
     type: boolean
     enum:
@@ -88,7 +88,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: '2019-01-04 10:31:56'
+    example: "2019-01-04 10:31:56"
 required:
   - name
   - description

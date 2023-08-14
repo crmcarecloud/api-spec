@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the shipping.
-    example: 81eaeea13b8984a69c490a325
+    example: "81eaeea13b8984a69c490a325"
   contact_firstname:
     type: string
     readOnly: false
     description: First name of the contact for shipping.
-    example: John
+    example: "John"
   contact_lastname:
     type: string
     readOnly: false
     description: Last name of the contact for shipping.
-    example: Smith
+    example: "Smith"
   phone:
     type: string
     readOnly: false
     description: Phone number of the contact with international prefix (420000000).
-    example: 38612345678
+    example: "38612345678"
   address:
     type: object
     $ref: '../schemas/_index.yaml#/Address'

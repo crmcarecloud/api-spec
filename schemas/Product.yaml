@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the product.
-    example: '85d6598db0bf3f62afd5db8507'
+    example: "85d6598db0bf3f62afd5db8507"
   name:
     type: string
     readOnly: false
@@ -15,12 +15,12 @@ properties:
     type: string
     readOnly: false
     description: Code of the product.
-    example: '649'
+    example: "649"
   external_id:
     type: string
     readOnly: false
     description: The external unique ID of the product. This parameter is deprecated. Please use parameter `plu_ids`.
-    example: 'NKBD7TB'
+    example: "NKBD7TB"
     deprecated: true
   plu_ids:
     type: array
@@ -32,7 +32,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the product group.
-    example: '82de12eb8b138791e678fd11c3'
+    example: "82de12eb8b138791e678fd11c3"
   product_brand_id:
     type: string
     readOnly: false

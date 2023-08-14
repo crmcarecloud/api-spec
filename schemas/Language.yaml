@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the language code by ISO 639-1.
-    example: cs
+    example: "cs"
   state:
     type: integer
     enum:
@@ -21,4 +21,4 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: 2017-03-24 15:29:47"
+    example: "2017-03-24 15:29:47"

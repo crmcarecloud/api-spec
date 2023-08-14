@@ -45,7 +45,7 @@ properties:
     pattern: ^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
     readOnly: false
     description: Email of the customer.
-    example: happy_customer@crmcarecloud.com
+    example: "happy_customer@crmcarecloud.com"
   phone:
     type: string
     pattern: ^[1-9][0-9]*$
@@ -56,7 +56,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the language by ISO 639-1 code.
-    example: en
+    example: "en"
   store_id:
     type: string
     readOnly: false

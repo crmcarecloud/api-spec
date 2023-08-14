@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the message.
-    example: 8fd73167342d06899c4c015320
+    example: "8fd73167342d06899c4c015320"
   status:
     type: integer
     enum:
@@ -24,12 +24,12 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the message_template.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the card holder.
-    example: 8ea2591121e636086a4a9c0992
+    example: "8ea2591121e636086a4a9c0992"
   contact:
     type: string
     readOnly: false
@@ -49,7 +49,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time when message was opened by recipient. *(YYYY-MM-DD HH:MM:SS)*
-    example:
+    example: "2015-01-05 13:24:12"
   mail_client_user_agent:
     type: string
     readOnly: true

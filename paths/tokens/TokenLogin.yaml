@@ -33,7 +33,7 @@ post:
               type: string
               format: password
               description: Password of the customer.
-              example: password_example
+              example: "password_example"
           required:
             - device
             - setup

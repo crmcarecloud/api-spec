@@ -35,7 +35,7 @@ get:
                   valid_to:
                     type: string
                     description: Date and time of the token validity. *(YYYY-MM-DD HH:MM:SS)*
-                    example: '2019-01-04 10:31:56'
+                    example: "2019-01-04 10:31:56"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

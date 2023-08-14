@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the product reservation source.
-    example: '8bed991c68a470e7aaeffbf048'
+    example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false
     description: Name of the product reservation source in defined language(depends on language in http header of the API request).
-    example: 'E-shop'
+    example: "E-shop"
   last_change:
     type: string
     readOnly: true

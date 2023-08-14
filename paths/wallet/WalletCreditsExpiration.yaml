@@ -26,7 +26,7 @@ get:
                   next_date:
                     type: string
                     description: Amount of redeemed points in time interval. *(YYYY-MM-DD)*
-                    example: '2022-01-01'
+                    example: "2022-01-01"
                   current_month_amount:
                     type: number
                     format: float

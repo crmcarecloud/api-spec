@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the product brand.
-    example: '83d1d11ea3884a5d33253fe214'
+    example: "83d1d11ea3884a5d33253fe214"
   name:
     type: string
     readOnly: false
@@ -15,7 +15,7 @@ properties:
     type: string
     readOnly: false
     description: The external unique ID of the product brand.
-    example: 'a5d332_5'
+    example: "a5d332_5"
 required:
   - name
   - external_id

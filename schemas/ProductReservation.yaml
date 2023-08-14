@@ -8,24 +8,24 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the product reservation.
-    example: '81eaeea13b8984a169c490a325'
+    example: "81eaeea13b8984a169c490a325"
   customer_id:
     type: string
     readOnly: false
     description:   The unique ID of the customer, owner of the product reservation.
-    example: '8ea2591121e636086a4a9c0992'
+    example: "8ea2591121e636086a4a9c0992"
   store_id:
     type: string
     readOnly: false
     description: The unique ID of the store tied to the reservation.
-    example: '82db62087b0f79a6e14e5747e7'
+    example: "82db62087b0f79a6e14e5747e7"
   reservation_codes:
     type: array
     items:
       type: string
     readOnly: true
     description: Reservation codes of the reservation from CareCloud.
-    example: [3]
+    example: ["3DBKBHA"]
   external_reservation_codes:
     type: array
     items:
@@ -48,7 +48,7 @@ properties:
     type: string
     readOnly: true
     description: Date of the reservation pickup in the tied store. *(YYYY-MM-DD)*
-    example: '2020-04-20'
+    example: "2020-04-20"
   customers_note:
     type: string
     readOnly: false

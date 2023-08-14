@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the customer relation.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   related_customer_id:
     type: string
     readOnly: false
     description: The unique ID of the related customer.
-    example: 8aa68a112c62ad5f84a22a0652
+    example: "8aa68a112c62ad5f84a22a0652"
   short_name:
     type: string
     readOnly: true
     description: Short name of the customer.
-    example: Peter D.
+    example: "Peter D."
   customer_relation_type_id:
     type: string
     readOnly: false
     description: The unique ID of the customer relation type.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   is_leading:
     type: boolean
     readOnly: false
@@ -40,7 +40,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: '2022-06-23 11:47:22'
+    example: "2022-06-23 11:47:22"
   state:
     type: integer
     enum:

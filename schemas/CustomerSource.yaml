@@ -8,7 +8,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the customer source.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
     readOnly: false

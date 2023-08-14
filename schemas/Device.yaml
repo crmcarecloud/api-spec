@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the client device.
-    example: '123456'
+    example: "00000000-89ABCDEF-01234567-89ABCDEF"
   device_system:
     type: string
     readOnly: false
     description: Operation system of the device.
-    example: 'OSX'
+    example: "OSX"
   device_name:
     type: string
     readOnly: false
     description: The name of the device.
-    example: 'Test device'
+    example: "Test device"
   device_type:
     type: string
     readOnly: false
     description: Type of device by producer (product line).
-    example: 'iPhone'
+    example: "iPhone"
 required:
   - device_id
   - device_system

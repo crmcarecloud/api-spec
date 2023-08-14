@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the event.
-    example: 82de12eb8b138791e678fd11c3
+    example: "82de12eb8b138791e678fd11c3"
   event_type_id:
     type: string
     readOnly: false
     description: The unique ID of the event type.
-    example: 8bda8a4854394325e2748a5005
+    example: "8bda8a4854394325e2748a5005"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the card holder.
-    example: 8ea2591121e636086a4a9c0992
+    example: "8ea2591121e636086a4a9c0992"
   external_id:
     type: string
     readOnly: false
     description: The unique external ID of the event. It may be ID from other system.
-    example: 157613
+    example: "157613"
   data:
     oneOf:
       - type: string

@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the task type.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
     readOnly: false

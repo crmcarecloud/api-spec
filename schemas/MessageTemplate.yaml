@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the message_template.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   consent_free_template:
     type: boolean
     enum:

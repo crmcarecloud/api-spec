@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the purchase.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the customer.
-    example: 8ea2591121e636086a4a9c0992
+    example: "8ea2591121e636086a4a9c0992"
   store_id:
     type: string
     readOnly: true
     description: The unique ID of the store in CareCloud.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   external_purchase_id:
     type: string
     readOnly: true
     description: The external unique ID of the purchase.
-    example: D67X202789
+    example: "D67X202789"
   payment_time:
     type: string
     readOnly: true
@@ -41,7 +41,7 @@ properties:
     type: string
     readOnly: true
     description: Purchase type.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   total_price:
     type: number
     format: float
@@ -52,17 +52,17 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the currency.
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   card_number:
     type: string
     readOnly: false
     description: Purchasing customer card number.
-    example: 1000000000016
+    example: "1000000000016"
   cashdesk_number:
     type: string
     readOnly: true
     description: Number of the cash-desk
-    example: 2
+    example: "2a"
   last_change:
     type: string
     readOnly: true

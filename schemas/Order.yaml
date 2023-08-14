@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the order.
-    example: 80af8a5dcc0702daf336f4de41
+    example: "80af8a5dcc0702daf336f4de41"
   order_number:
     type: string
     readOnly: false
@@ -15,18 +15,18 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the customer, owner of the order.
-    example: 87a6f37e138c1ef18918e747d
+    example: "87a6f37e138c1ef18918e747d"
   currency_id:
     type: string
     readOnly: false
     description: ID of the currency.
-    example: 8bed991c68a470eaaeffbf048
+    example: "8bed991c68a470eaaeffbf048"
   total_price:
     type: number
     format: float
     readOnly: false
     description: Total price of the order.
-    example: '36.00'
+    example: 36.00
   discount_codes:
     type: array
     items:

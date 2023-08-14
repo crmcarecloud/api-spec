@@ -5,9 +5,9 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the user role.
-    example: 86e05affc7a7befcd513ab400
+    example: "86e05affc7a7befcd513ab400"
   name:
     type: string
     readOnly: true
     description: Name of the user role.
-    example: Cashdesk
+    example: "Cashdesk"

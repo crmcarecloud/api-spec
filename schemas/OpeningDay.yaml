@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the day of the week.
-    example: MON
+    example: "MON"
   time_intervals:
     type: array
     items:

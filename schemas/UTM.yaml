@@ -5,14 +5,14 @@ properties:
     type: string
     readOnly: false
     description: 'Use utm_source to identify a search engine, newsletter name, or other sources. (Example: google).'
-    example: 'google'
+    example: "google"
   utm_medium:
     type: string
     readOnly: false
     description: 'Use utm_medium to identify a medium such as an email or cost-per-click. (Example: cpc).'
-    example: 'cpc'
+    example: "cpc"
   utm_campaign:
     type: string
     readOnly: false
     description: 'Used for keyword analysis. Use utm_campaign to identify a specific product promotion or strategic campaign. (Example: utm_campaign=spring_sale).'
-    example: 'spring_sale'
+    example: "spring_sale"

@@ -5,26 +5,26 @@ properties:
     type: string
     description: The unique ID of the customer source record. The customer sources are available in [customer-sources](https://carecloud.readme.io/reference/getcustomersources) resource
     readOnly: true
-    example: 8fd73167342d06899c4c015320
+    example: "8fd73167342d06899c4c015320"
   customer_source_id:
     type: string
     description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
     readOnly: false
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   customer_id:
     type: string
     readOnly: true
     description: The unique ID of the customer.
-    example: 87af991126405bf8e7dfb36045
+    example: "87af991126405bf8e7dfb36045"
   external_id:
     type: string
     description: The unique external ID of the customer. It may be ID from the other system.
     readOnly: false
-    example: 6
+    example: "A66854921C"
   last_change:
     type: string
     readOnly: true
     description: Date and time of the last change. (YYYY-MM-DD HH:MM:SS)
-    example: '2019-06-23 11:47:22'
+    example: "2019-06-23 11:47:22"
 required:
   - customer_source_id

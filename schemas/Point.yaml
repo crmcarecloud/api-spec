@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the point record.
-    example: 8bd48117006496e0b1788109b8
+    example: "8bd48117006496e0b1788109b8"
   customer_id:
     type: string
     readOnly: false
     description: The unique ID of the customer.
-    example: 87af991126405bf8e7dfb36045
+    example: "87af991126405bf8e7dfb36045"
   assigned_points:
     type: number
     format: float
@@ -27,12 +27,12 @@ properties:
     type: string
     readOnly: false
     description: Type of the point record.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   partner_id:
     type: string
     readOnly: false
     description: The unique ID of the partner company.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string
     readOnly: false
@@ -58,7 +58,7 @@ properties:
     type: string
     readOnly: false
     description: Note for the new point record.
-    example: 'Birthdate point reward'
+    example: "Birthdate point reward"
 required:
   - customer_id
   - point_type_id

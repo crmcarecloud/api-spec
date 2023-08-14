@@ -8,11 +8,11 @@ properties:
       - base64
     readOnly: false
     description: Method how to upload attachment file.
-    example: url
+    example: "url"
   file_data:
     type: string
     description: File data to upload. It could URL address of the file or BASE64 encoded file.
-    example: https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png
+    example: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png"
   cache_for:
     type: integer
     description: CareCloud can cache the attachment for a certain amount of minutes. If the cache parameter is not set, the attachment is not cached, and it's deleted after the message is sent.

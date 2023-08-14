@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: Code of the reward.
-    example: PTV138
+    example: "PTV138"
   name:
     type: string
     readOnly: true
     description: Name of the reward.
-    example: SVK_wine
+    example: "SVK_wine"
   reward_priority:
     type: integer
     enum:

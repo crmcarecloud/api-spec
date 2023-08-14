@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the segment.
-    example: 82de12eb8b138791e678fd11c3
+    example: "82de12eb8b138791e678fd11c3"
   name:
     type: string
     readOnly: false
@@ -15,7 +15,7 @@ properties:
     type: string
     readOnly: true
     description: Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups).
-    example: 8bed991c68a470e7aaeffbf048
+    example: "8bed991c68a470e7aaeffbf048"
   segment_picture_url:
     type: string
     readOnly: true

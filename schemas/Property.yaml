@@ -5,22 +5,22 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the property.
-    example: test
+    example: "size"
   name:
     type: string
     readOnly: false
     description: Name of the property.
-    example: Test
+    example: "Size"
   description:
     type: string
     readOnly: false
     description: User defined description of the property.
-    example: "test"
+    example: "size"
   data_type:
     type: string
     readOnly: false
     description: 'Data type of the final value. * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
-    example: string
+    example: "string"
   items:
     type: array
     items:

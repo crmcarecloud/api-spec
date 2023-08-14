@@ -10,4 +10,4 @@ properties:
     type: string
     readOnly: true
     description: Name of the interest.
-    example: Tech
+    example: "Tech"

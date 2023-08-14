@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the task assignee.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   user_id:
     type: string
     readOnly: false
     description: The unique ID of the assigned user.
-    example: 898a6545ed2bfa3f8466d09bc6
+    example: "898a6545ed2bfa3f8466d09bc6"
   name:
     type: string
     readOnly: true

@@ -143,7 +143,7 @@ post:
                   event_id:
                     type: string
                     description: The unique ID of the event.
-                    example: 82de12eb8b138791e678fd11c3
+                    example: "82de12eb8b138791e678fd11c3"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

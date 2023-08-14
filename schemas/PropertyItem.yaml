@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the property item.
-    example: 8fd73167342d0689c4c015320
+    example: "8fd73167342d0689c4c015320"
   name:
     type: string
     readOnly: false
@@ -14,7 +14,7 @@ properties:
   resource_record_id:
     type: string
     description: The ID of the CareCloud REST API resource record is filled when the property is related directly to the CareCloud API resource (for example resource stores). Usually, the data type of the property determines it.
-    example: 67342d3167342d0689c4c00689c4
+    example: "67342d3167342d0689c4c00689c4"
   state:
     type: integer
     enum:

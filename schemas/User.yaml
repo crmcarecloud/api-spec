@@ -5,42 +5,42 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the user.
-    example: 838b73aacb5ac326cec4030c80
+    example: "838b73aacb5ac326cec4030c80"
   login:
     type: string
     readOnly: false
     description: Login ID of the user.
-    example: happy_user
+    example: "happy_user"
   first_name:
     type: string
     readOnly: false
     description: First name of the user.
-    example: Happy
+    example: "Happy"
   last_name:
     type: string
     readOnly: false
     description: Last name of the user.
-    example: User
+    example: "User"
   email:
     type: string
     readOnly: false
     description: Email of the user.
-    example: happy_user@crmcarcloud.com
+    example: "happy_user@crmcarcloud.com"
   phone:
     type: string
     readOnly: false
     description: Phone number of the user with international prefix (420000000).
-    example: 420523828931
+    example: "420523828931"
   user_role_id:
     type: string
     readOnly: true
     description: The unique ID of the user role.
-    example: 86e05affc7a7befcd513ab400
+    example: "86e05affc7a7befcd513ab400"
   store_id:
     type: string
     readOnly: true
     description: The unique ID of user's original store.
-    example: 86e05affc7a7abecd513ab400
+    example: "86e05affc7a7abecd513ab400"
 required:
   - login
   - first_name

@@ -140,7 +140,7 @@ post:
                   customer_relation_id:
                     type: string
                     description: The unique ID of the customer  relation.
-                    example: 81eaeea13b8984a169c490a325
+                    example: "81eaeea13b8984a169c490a325"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

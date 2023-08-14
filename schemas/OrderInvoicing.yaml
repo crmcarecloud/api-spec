@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the payment type from resource [GET /payment-types](#tag/Payment-types).
-    example: 8bd481170064960b1788109b8
+    example: "8bd481170064960b1788109b8"
   paid_date:
     type: string
     readOnly: false

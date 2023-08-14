@@ -14,4 +14,4 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. (YYYY-MM-DD HH:MM:SS)
-    example: '2018-05-07 14:26:19.215774'
+    example: "2018-05-07 14:26:19.215774"

@@ -16,7 +16,7 @@ post:
             store_id:
               type: string
               description: ID of the store.
-              example: 81eaeea13b8984a169c490a325
+              example: "81eaeea13b8984a169c490a325"
             cashdesk_number:
               type: integer
               description: Number of the cash-desk in store.
@@ -28,7 +28,7 @@ post:
             customer_id:
                 type: string
                 description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
-                example: 8ea2591121e636086a4a9c0992
+                example: "8ea2591121e636086a4a9c0992"
             bill:
               $ref: '../../schemas/_index.yaml#/FinalBill'
           required:
@@ -49,7 +49,7 @@ post:
                   purchase_id:
                     type: string
                     description: The unique ID of the purchase.
-                    example: 85c763ebcec2fa488f8857bee
+                    example: "85c763ebcec2fa488f8857bee"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -5,17 +5,17 @@ properties:
     type: string
     readOnly: false
     description: Name of the product.
-    example: T-shirt 10% off
+    example: "T-shirt 10% off"
   subtitle:
     type: string
     readOnly: false
     description: Text of the campaign product subtitle.
-    example: Discount only in following week
+    example: "Discount only in following week"
   note:
     type: string
     readOnly: false
     description: Text of the campaign product note.
-    example: This offer is limited
+    example: "This offer is limited"
   description:
     type: string
     readOnly: false
@@ -25,6 +25,6 @@ properties:
     type: string
     readOnly: false
     description: URL address of the image.
-    example: https://developers.crmcarecloud.com/img/customer_enterprise.png
+    example: "https://developers.crmcarecloud.com/img/customer_enterprise.png"
 required:
   - name

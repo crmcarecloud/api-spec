@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the reward.
-    example: 83cfee22eabfbbb15a14815e30
+    example: "83cfee22eabfbbb15a14815e30"
   code:
     type: string
     readOnly: false
@@ -15,7 +15,7 @@ properties:
     type: string
     readOnly: false
     description: Name of the reward.
-    example: Dessert+Caffe
+    example: "Dessert+Caffe"
   note:
     type: string
     readOnly: false
@@ -58,7 +58,7 @@ properties:
     type: string
     readOnly: true
     description: "The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others."
-    example: 8fdd651ff3f615bcebebad87ce
+    example: "8fdd651ff3f615bcebebad87ce"
   store_list:
     type: array
     items:
@@ -128,7 +128,7 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example: '2013-07-24 21:33:33'
+    example: "2013-07-24 21:33:33"
   state:
     type: integer
     enum:

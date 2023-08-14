@@ -23,7 +23,7 @@ put:
             push_token:
               type: string
               description: Push notification token (Apple or Google).
-              example: 4f7f658bfa7a5959e093590
+              example: "4f7f658bfa7a5959e093590"
           required:
             - setup
   responses:

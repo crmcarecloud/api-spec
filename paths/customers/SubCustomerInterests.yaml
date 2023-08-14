@@ -117,7 +117,7 @@ post:
                   interest_record_id:
                     type: string
                     description: The unique ID of the interest record.
-                    example: 81eaeea13b8984a169c490a325
+                    example: "81eaeea13b8984a169c490a325"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

@@ -27,11 +27,11 @@ post:
             external_application_id:
               type: string
               description: ID of the external application. More information about external applications and how to get an ID is available in [Authentication section](https://carecloud.readme.io/reference/authentication#external-applications-1)
-              example: 82de12eb8b138791e678fd11c3
+              example: "82de12eb8b138791e678fd11c3"
             push_token:
               type: string
               description: Push notification token (Apple or Google).
-              example: 4f7f658bfa7a5959e093590
+              example: "4f7f658bfa7a5959e093590"
           required:
             - device
             - setup
@@ -50,7 +50,7 @@ post:
                   token_id:
                     type: string
                     description: The client application token.
-                    example: 4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf
+                    example: "4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

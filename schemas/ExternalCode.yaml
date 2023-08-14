@@ -11,7 +11,7 @@ properties:
     type: string
     readOnly: false
     description: Value of the external code.
-    example: '2107225110'
+    example: "2107225110"
 required:
   - external_code_type_id
   - value

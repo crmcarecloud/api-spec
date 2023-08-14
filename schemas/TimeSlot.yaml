@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the booking time slot.
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: "89ce2a1b9b01f5c939fb1e20cd"
   ticket_id:
     type: string
     readOnly: true
     description: The unique ID of the booking ticket.
-    example: 89ce2a1b9b01f5c939fb1e20cd
+    example: "89ce2a1b9b01f5c939fb1e20cd"
   valid_from:
     type: string
     readOnly: true

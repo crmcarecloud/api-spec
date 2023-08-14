@@ -5,7 +5,7 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the language by ISO 639-1 code from [languages resource](#tag/Languages).
-    example: 'en'
+    example: "en"
   allowed_gps:
     type: boolean
     readOnly: false

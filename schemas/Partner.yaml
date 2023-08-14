@@ -5,12 +5,12 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the company.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
     readOnly: false
     description: Name of the company.
-    example: Demo
+    example: "Demo"
   address:
     type: object
     $ref: '../schemas/_index.yaml#/Address'
@@ -19,12 +19,12 @@ properties:
     type: string
     readOnly: false
     description: Company registration number. National Registration unique ID of the company.
-    example: '123456789'
+    example: "123456789"
   vat_id:
     type: string
     readOnly: false
     description: VAT registration number. Value Added Tax unique ID of the company.
-    example: '123456789'
+    example: "CZ123456789"
   email:
     type: string
     readOnly: false
@@ -34,7 +34,7 @@ properties:
     type: string
     readOnly: false
     description: Phone number of the company with international prefix (420000000).
-    example: '123456787'
+    example: "420000000"
   state:
     type: integer
     enum:

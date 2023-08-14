@@ -26,19 +26,19 @@ properties:
     type: string
     readOnly: false
     description: The unique ID of the partner company.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   currency_id:
     type: string
     readOnly: true
     description: The unique ID of the currency.
-    example: 86e05affc7a7abefcd513ab400
+    example: "86e05affc7a7abefcd513ab400"
   store_id:
     type: string
     readOnly: true
     description: The unique ID of the store in CareCloud.
-    example: 81eaeea13b8984a169c490a325
+    example: "81eaeea13b8984a169c490a325"
   credit_history_record_time:
     type: string
     readOnly: true
     description: Date and time of the credit record from the credit history. *(YYYY-MM-DD HH:MM:SS)*
-    example: '2023-03-07 09:53:55'
+    example: "2023-03-07 09:53:55"
