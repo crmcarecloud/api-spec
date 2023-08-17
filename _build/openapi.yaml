@@ -8766,6 +8766,54 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /product-reservations/actions/set-product-reservation-external-codes:
+    post:
+      tags:
+        - Product reservations
+      summary: Set one or multiple external reservation codes of different types to the product reservation
+      description: |
+        Set one or multiple external reservation codes of different types to the product reservation.<br/> The method will set all the reservation codes from the request.<br/> If a reservation code type already exists in the reservation, it will be replaced with a new value from the request. If the request does not contain the reservation code type already in the reservation, CareCloud will make no changes to the reservation code.
+      operationId: postProductReservationSetExternalReservationCode
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_reservation_id:
+                  type: string
+                  description: The unique ID of the product reservation.
+                  example: 81eaeea13b8984a169c490a325
+                external_reservation_codes:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ExternalCode'
+                  description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.
+              required:
+                - product_reservation_id
+                - external_reservation_codes
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /product-reservation-sources:
     get:
       tags:

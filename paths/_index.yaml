@@ -352,6 +352,8 @@
 #  Actions
 /product-reservations/{product_reservation_id}/actions/cancel-reservation:
   $ref: "./products/ProductReservationCancel.yaml"
+/product-reservations/actions/set-product-reservation-external-codes:
+  $ref: "./products/ProductReservationSetExternalReservationCodes.yaml"
 # Product reservation sources
 /product-reservation-sources:
   $ref: "./products/ProductReservationSources.yaml"
