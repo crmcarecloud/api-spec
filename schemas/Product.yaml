@@ -44,6 +44,13 @@ properties:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: false
     description: List of additional properties.
+  image_urls:
+    type: array
+    items:
+      type: string
+      example:
+    readOnly: true
+    description: A list of an image URLs.
   last_change:
     type: string
     readOnly: true
