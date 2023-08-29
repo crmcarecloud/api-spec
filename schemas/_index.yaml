@@ -36,6 +36,8 @@ CardType:
   $ref: "./CardType.yaml"
 CashierMessage:
   $ref: "./CashierMessage.yaml"
+ChartPointData:
+  $ref: "./ChartPointData.yaml"
 CommunicationChannel:
   $ref: "./CommunicationChannel.yaml"
 Country:

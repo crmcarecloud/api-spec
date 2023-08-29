@@ -1,0 +1,13 @@
+type: object
+description: Chart point data values.
+properties:
+  x_axis_value:
+    type: string
+    readOnly: true
+    description: The X-axis value
+    example: "7"
+  y_axis_value:
+    type: string
+    readOnly: false
+    description: The Y-axis value
+    example: "32"

@@ -1,0 +1,123 @@
+post:
+  tags:
+    - Bookings
+  summary: Get information about booking busy times
+  description: |
+    The action method provides data on the busiest times of bookings in a period. The period can change depending on the parameters set up.
+
+  operationId: postBookingBusyTimes
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            booking_date:
+              type: string
+              description: The date when you want to check how busy the bookings are
+              example: "2023-01-15"
+            time_period:
+              type: string
+              enum:
+                - day
+                - week
+                - month
+                - year
+              description: The period that the algorithm uses to calculate past busy times and return your data in that period. If you set the value as DAY, the algorithm will return the data for one day in an hour range.
+              example: "week"
+            booking_ticket_id:
+              type: string
+              description: The unique ID of the booking ticket. If not set, the data will be returned for all available tickets.
+              example: 13b8984a16913b8984a169cc490a
+            booking_property_id:
+              type: string
+              description: Booking ticket property ID from resource [booking-ticket-properties](https://carecloud.readme.io/reference/getbookingticketproperties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+              example: "store"
+            booking_property_value:
+              type: string
+              description: Booking ticket property record value from [booking-ticket-properties](https://carecloud.readme.io/reference/getbookingticketproperties) in case of datatype with multiple values. Parameter filters resources depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
+              example: "89ac83ca207a20c62c79bf"
+          required:
+            - booking_date
+            - time_period
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  time_unit:
+                    type: string
+                    readOnly: true
+                    description: The time unit for X-axis
+                    example: "hour"
+                  chart_data:
+                    type: array
+                    description: Data for the chart display. The items are ordered by X-axis values ascending.
+                    items:
+                      $ref: '../../schemas/_index.yaml#/ChartPointData'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsAssignfreecardBody;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+        require_once '../vendor/autoload.php';
+
+        $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+        $login = 'login';
+        $password = 'password';
+        $external_app_id = 'application_id';
+        $auth_type = AuthTypes::BEARER_AUTH;
+
+        $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+        $care_cloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set card info to the request body
+        $body = new ActionsAssignfreecardBody();
+        $body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder
+        $body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type
+
+        // Call endpoint and post data
+        try
+        {
+            $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);
+            $card_id = $post_assign_card->getData()->getCardId();
+            var_dump($card_id);
+        }
+        catch(ApiException $e)
+        {
+            die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }

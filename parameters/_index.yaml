@@ -367,7 +367,7 @@ booking_ticket_property_id:
   name: booking_ticket_property_id
   in: query
   required: false
-  description: Booking ticket property ID from resource [booking-ticket-properties](#tag/Booking-ticket-properties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+  description: Booking ticket property ID from resource [booking-ticket-properties](https://carecloud.readme.io/reference/getbookingticketproperties). The parameter determines property, which is used to filter resources by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
   schema:
     type: string
   example: "store"
@@ -375,7 +375,7 @@ booking_ticket_property_value:
   name: booking_ticket_property_value
   in: query
   required: false
-  description: Booking ticket property record value from [booking-ticket-properties](#tag/Booking-ticket-properties) in case of datatype with multiple values. Parameter filters resources depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
+  description: Booking ticket property record value from [booking-ticket-properties](https://carecloud.readme.io/reference/getbookingticketproperties) in case of datatype with multiple values. Parameter filters resources depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
   schema:
     type: string
   example: "89ac83ca207a20c62c79bf"

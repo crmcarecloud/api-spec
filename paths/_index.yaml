@@ -22,6 +22,9 @@
   $ref: "./bookings/BookingTicketProperties.yaml"
 /booking-ticket-properties/{booking_ticket_property_id}:
   $ref: "./bookings/BookingTicketProperty.yaml"
+#Action methods
+/bookings/actions/average-booking-busy-times:
+  $ref: "./bookings/BookingBusyTimes.yaml"
 #Booking statuses
 /booking-statuses:
   $ref: "./bookings/BookingStatuses.yaml"
