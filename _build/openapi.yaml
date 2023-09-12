@@ -592,6 +592,7 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/customer_id'
         - $ref: '#/components/parameters/booking_status'
+        - $ref: '#/components/parameters/booking_statuses'
         - $ref: '#/components/parameters/add_booking_items'
       responses:
         '200':
@@ -9006,6 +9007,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/product_reservation_external_list_type_name'
       responses:
         '200':
           description: OK
@@ -13774,7 +13776,7 @@ paths:
         - Tokens
       summary: Send email for set up of the new customer password
       description: |
-        Send email, that contains link to set up a new customer password.<br/> ⚠️ Endpoint is available only in Customer interface.<br/>
+        Send email, that contains link to set up a new customer password.<br/> The use case [Forgotten password](https://www.crmcarecloud.com/build-a-mobile-app/) shows how to use this action method.<br/> ⚠️ Endpoint is available only in Customer interface.<br/> ⚠️ An extra setup of event type in CareCloud could be necessary to make this method work correctly. If so, don't hesitate to get in touch with the CareCloud administrator in your organization.<br/>
       operationId: postTokenSendPasswordSetup
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -20484,11 +20486,22 @@ components:
       example: 89ac83ca207a20c62c79bf
     booking_status:
       name: booking_status
+      deprecated: true
       in: query
       required: false
       schema:
         type: string
-      description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses).'
+      description: 'This query parameter is deprecated, please use parameter `booking_statuses`.'
+      example: a820c6a820c62c79b2c79b
+    booking_statuses:
+      name: booking_statuses
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: 'List of current statuses of the bookings from resource [booking-statuses](#tag/Booking-statuses).'
       example: a820c6a820c62c79b2c79b
     communication_channel_id_path:
       name: communication_channel_id
@@ -21355,6 +21368,14 @@ components:
       schema:
         type: string
       example: 86e05affc7a7abefcd513ab400
+    product_reservation_external_list_type_name:
+      name: name
+      in: query
+      description: Name of the External list type
+      required: false
+      schema:
+        type: string
+        example: VIP
     reservation_state:
       name: reservation_state
       in: query

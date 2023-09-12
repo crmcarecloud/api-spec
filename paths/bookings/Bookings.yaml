@@ -12,6 +12,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/customer_id'
     - $ref: '../../parameters/_index.yaml#/booking_status'
+    - $ref: '../../parameters/_index.yaml#/booking_statuses'
     - $ref: '../../parameters/_index.yaml#/add_booking_items'
   responses:
     '200':
