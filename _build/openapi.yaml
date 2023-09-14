@@ -15023,6 +15023,7 @@ paths:
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer\n\n// Call endpoint and get data\ntry\n{\n    $get_credits_expiration = $care_cloud->walletApi()->getWalletCreditsExpiration($customer_id, $accept_language);\n    $credits_expiration = $get_credits_expiration->getData();\n    var_dump($credits_expiration);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
 security:
   - bearerAuth: []
+  - basicAuth: []
 components:
   responses:
     BadRequest:
@@ -21830,3 +21831,6 @@ components:
       description: |
         ## HTTP Bearer authentication
         Get a closer look in [Authentication section](https://carecloud.readme.io/reference/authentication)
+    basicAuth:
+      type: http
+      scheme: basic

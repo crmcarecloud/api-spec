@@ -471,6 +471,7 @@ paths:
   $ref: "./paths/_index.yaml"
 security:
   - bearerAuth: []
+  - basicAuth: []
 components:
   responses:
     $ref: "./responses/_index.yaml"
@@ -484,3 +485,6 @@ components:
       scheme: bearer
       description:
         $ref: "./bearerAuth.md"
+    basicAuth:
+      type: http
+      scheme: basic
