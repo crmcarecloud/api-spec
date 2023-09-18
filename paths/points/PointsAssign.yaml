@@ -54,7 +54,7 @@ post:
               data:
                 type: object
                 properties:
-                  event_id:
+                  point_id:
                     type: string
                     description: The unique ID of the point record.
                     example: "82de12eb8b138791e678fd11c3"

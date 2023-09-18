@@ -10,7 +10,6 @@ post:
     ⚠️ When creating a new token, the request doesn't need to contain an Authentication header.<br/>
     ⚠️ Warning: We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.<br/>
   operationId: postToken
-  security: []
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
   requestBody:
