@@ -1677,6 +1677,7 @@ paths:
         - $ref: '#/components/parameters/state'
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/card_number_list'
+        - $ref: '#/components/parameters/search_secondary_card_number'
       responses:
         '200':
           description: OK
@@ -15892,6 +15893,11 @@ components:
           readOnly: false
           description: Card number.
           example: '1000000000016'
+        secondary_card_number:
+          type: string
+          readOnly: false
+          description: Secondary card number represents alternative card number of the card.
+          example: AXNFUAIOHFDSNKA
         valid_from:
           type: string
           readOnly: false
@@ -20779,6 +20785,19 @@ components:
           - 1
           - 2
       example: 1
+    search_secondary_card_number:
+      name: search_secondary_card_number
+      in: query
+      description: |
+        Include secondary card numbers in search for filters `card_number` and `card_number_list`.
+        *Possible values: true - CareCloud API search only secondary card numbers / false - CareCloud API search only card numbers / default behavior without parameter - CareCloud API search only card numbers*
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: false
     property_record_id_path:
       name: property_record_id
       in: path

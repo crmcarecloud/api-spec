@@ -681,6 +681,19 @@ state:
       - 1
       - 2
   example: 1
+search_secondary_card_number:
+  name: search_secondary_card_number
+  in: query
+  description: |
+    Include secondary card numbers in search for filters `card_number` and `card_number_list`.
+    *Possible values: true - CareCloud API search only secondary card numbers / false - CareCloud API search only card numbers / default behavior without parameter - CareCloud API search only card numbers*
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: false
 # Property
 property_record_id_path:
   name: property_record_id

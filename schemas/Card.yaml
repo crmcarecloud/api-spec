@@ -21,6 +21,11 @@ properties:
     readOnly: false
     description: Card number.
     example: "1000000000016"
+  secondary_card_number:
+    type: string
+    readOnly: false
+    description: Secondary card number represents alternative card number of the card.
+    example: "AXNFUAIOHFDSNKA"
   valid_from:
     type: string
     readOnly: false
