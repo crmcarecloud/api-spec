@@ -1,6 +1,6 @@
+servers:
+  - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
 post:
-  servers:
-    - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
   tags:
     - Tokens
   summary: Login to the application for test customer

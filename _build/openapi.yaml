@@ -1073,6 +1073,7 @@ paths:
       summary: Get information about booking busy times
       description: |
         The action method provides data on the busiest times of bookings in a period. The period can change depending on the parameters set up.
+        The chart contains time intervals on the X axis and Percentage information about reserved time slots (70% of slots for the time is reserved) on the Y axis.
       operationId: postBookingBusyTimes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -8447,6 +8448,7 @@ paths:
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/store_id'
         - $ref: '#/components/parameters/product_group_code'
+        - $ref: '#/components/parameters/external_id'
       responses:
         '200':
           description: OK
@@ -13484,9 +13486,9 @@ paths:
                 die(var_dump($e->getResponseBody() ?: $e->getMessage()));
             }
   /tokens:
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     post:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Create a token
@@ -13554,9 +13556,9 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Device;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Setup;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\TokensBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the device info\n$device = new Device();\n$device->setDeviceId('test121212'); // string | The unique ID of the client device\n$device->setDeviceSystem('iOS'); // string | Operation system of the device\n$device->setDeviceName('Apple iPhone'); // string | The name of the device\n$device->setDeviceType('test_device'); // string | Type of device by producer (product line)\n\n// Set the setup info\n$setup = new Setup();\n$setup->setLanguageId('en'); // string | The unique ID of the language by ISO 639-1 code from languages resource\n$setup->setAllowedGps(false); // boolean | Permission to GPS tracking in the mobile application\n$setup->setAllowedNotifications(false); // boolean | Permission to the mobile application's notifications\n\n// Set the request body\n$body = new TokensBody();\n$body->setDevice($device);\n$body->setSetup($setup);\n$body->setExternalApplicationId('82de12eb8b138791e678fd11c3'); // string | ID of the customer-external-application resource\n$body->setPushToken(''); // string | Push notification token (Apple or Google) (optional)\n\n// Call endpoint and post data\ntry\n{\n    $post_token = $care_cloud->tokensApi()->postToken($body, $accept_language);\n    $token_id = $post_token->getData()->getTokenId();\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tokens/{token_id}':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     put:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Edit a push token
@@ -13605,9 +13607,9 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Setup;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\TokensTokenIdBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the setup info\n$setup = new Setup();\n$setup->setLanguageId('en'); // string | The unique ID of the language by ISO 639-1 code from languages resource\n$setup->setAllowedGps(false); // boolean | Permission to GPS tracking in the mobile application\n$setup->setAllowedNotifications(false); // boolean | Permission to the mobile application's notifications\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Set the request body\n$body = new TokensTokenIdBody();\n$body->setSetup($setup);\n$body->setPushToken('321e5d02605d46c18936912'); // string | Push notification token (Apple or Google) (optional)\n\n// Call endpoint and put data\ntry\n{\n    $care_cloud->tokensApi()->putToken($body, $token_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tokens/{token_id}/actions/login':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     post:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Login to the application
@@ -13679,9 +13681,9 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsLoginBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Set the request body\n$body = new ActionsLoginBody();\n$body->setLoginType('email'); // string | The unique ID for the login type ('card' or 'email' only)\n$body->setLoginValue('happy_customer@example.com'); // string | Value of the login to Customer interface API\n$body->setPassword('secret_password'); // string | Customer's password\n\n// Call endpoint and post data\ntry\n{\n    $post_token_login = $care_cloud->tokensApi()->postTokenLogin($body, $token_id, $accept_language);\n    $customer_id = $post_token_login->getData()->getCustomerId();\n    var_dump($customer_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tokens/{token_id}/actions/logout':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     post:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Logout from the application
@@ -13714,9 +13716,9 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->tokensApi()->postTokenLogout($token_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tokens/{token_id}/actions/social-network-login':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     post:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Login via social network
@@ -13769,9 +13771,9 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
   '/tokens/{token_id}/actions/send-password-setup-email':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     post:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Send email for set up of the new customer password
@@ -13818,9 +13820,9 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsSendpasswordsetupemailBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Set the request body\n$body = new ActionsSendpasswordsetupemailBody();\n$body->setEmail('happy_customer@example.com'); // string | Message with a setup password link will be delivered to this email address\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->tokensApi()->postTokenSendPasswordSetup($body, $token_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tokens/{token_id}/actions/auth-token':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     get:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Get authentication token
@@ -13876,9 +13878,9 @@ paths:
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '8ea02b112ccac496a3d423c5b1'; // string | Client's application token\n\n// Set query parameters\n$external_application_id = '82de12eb8b138791e678fd11c3'; // string | ID of the external application\n$token_type = 1; // integer | Possible values: 1- alphanumeric, 2- numeric\n\n// Call endpoint and get data\ntry\n{\n    $get_token = $care_cloud->tokensApi()->getTokenAuthentication(\n        $token_id,\n        $external_application_id,\n        $token_type,\n        $accept_language\n    );\n    $token = $get_token->getData();\n    var_dump($token);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tokens/{token_id}/actions/login-test-customer':
+    servers:
+      - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
     post:
-      servers:
-        - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
       tags:
         - Tokens
       summary: Login to the application for test customer

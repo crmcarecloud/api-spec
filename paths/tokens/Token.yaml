@@ -1,6 +1,6 @@
+servers:
+  - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
 put:
-  servers:
-    - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
   tags:
     - Tokens
   summary: Edit a push token
