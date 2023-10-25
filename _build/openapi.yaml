@@ -11828,6 +11828,68 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /entrances/actions/customer-stats:
+    get:
+      tags:
+        - Charged entrances
+      summary: Get a customer entrances usage stats
+      description: 'Get an information about how a customer used the entrances (usage, gamification, etc.)'
+      operationId: getEntrancesCustomerStats
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/valid_from'
+        - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/customer_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      distance:
+                        type: number
+                        description: Amount of kilometers that customer skied in the date range.
+                        example: 130.25
+                      elevation:
+                        type: number
+                        description: Elevation gained during skiing in the date range in meters.
+                        example: 10000
+                      skier_days:
+                        type: integer
+                        description: Number of days in the date range that a customer used his entrance ticket
+                        example: 20
+                      gained_ski_achievement:
+                        type: object
+                        properties:
+                          ski_achievement_id:
+                            type: string
+                            description: ID of the ski achievement the customer gained.
+                            example: '5'
+                          name:
+                            type: string
+                            description: Name of the ski achievement in the language from the request header.
+                            example: King of the mountain
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /statuses:
     get:
       tags:

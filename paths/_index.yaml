@@ -486,6 +486,8 @@
 #  Actions
 /entrances/actions/overview:
   $ref: "./entrances/EntrancesOverview.yaml"
+/entrances/actions/customer-stats:
+  $ref: "./entrances/EntrancesCustomerStats.yaml"
 
 #  Statuses
 /statuses:
