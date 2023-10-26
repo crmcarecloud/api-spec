@@ -11837,9 +11837,9 @@ paths:
       operationId: getEntrancesCustomerStats
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/valid_from'
-        - $ref: '#/components/parameters/valid_to'
-        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/date_from'
+        - $ref: '#/components/parameters/date_to'
+        - $ref: '#/components/parameters/customer_id_required'
       responses:
         '200':
           description: OK
@@ -11863,17 +11863,10 @@ paths:
                         type: integer
                         description: Number of days in the date range that a customer used his entrance ticket
                         example: 20
-                      gained_ski_achievement:
-                        type: object
-                        properties:
-                          ski_achievement_id:
-                            type: string
-                            description: ID of the ski achievement the customer gained.
-                            example: '5'
-                          name:
-                            type: string
-                            description: Name of the ski achievement in the language from the request header.
-                            example: King of the mountain
+                      ski_achievement_text_id:
+                        type: string
+                        description: It represents a ski achievement text ID gained by the customer.
+                        example: blue_powder
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
