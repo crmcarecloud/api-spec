@@ -140,6 +140,8 @@ PointReservation:
   $ref: "./PointReservation.yaml"
 PointType:
   $ref: "./PointType.yaml"
+Price:
+  $ref: "./Price.yaml"
 Product:
   $ref: "./Product.yaml"
 ProductIdentification:

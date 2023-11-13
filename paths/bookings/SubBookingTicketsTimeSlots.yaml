@@ -16,6 +16,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/time_to_full'
     - $ref: '../../parameters/_index.yaml#/booking_ticket_property_id'
     - $ref: '../../parameters/_index.yaml#/booking_ticket_property_value'
+    - $ref: '../../parameters/_index.yaml#/customer_id'
   responses:
     '200':
       description: OK

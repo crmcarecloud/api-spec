@@ -12,6 +12,10 @@ properties:
     readOnly: false
     description: Value of turnover in the currency
     example: 1500
+  due_date:
+    type: string
+    readOnly: false
+    description: Date until the turnover conditions need to be fulfilled. If the value is null, the date is unlimited.
 required:
   - currency_id
   - value

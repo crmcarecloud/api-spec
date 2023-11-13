@@ -13,6 +13,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/event_type_id'
     - $ref: '../../parameters/_index.yaml#/external_id'
+    - $ref: '../../parameters/_index.yaml#/event_type_ids'
   responses:
     '200':
       description: OK

@@ -162,7 +162,8 @@
   $ref: "./customers/CustomerSetPartners.yaml"
 /customers/actions/set-status-record:
   $ref: "./customers/CustomerSetStatusRecord.yaml"
-
+/customers/actions/newsletters-sign-up:
+  $ref: "./customers/CustomerNewslettersSignUp.yaml"
 # Customer address types
 /customer-address-types:
   $ref: "./customers/CustomerAddressTypes.yaml"

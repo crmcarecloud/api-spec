@@ -11,8 +11,11 @@ properties:
     enum:
       - 1
       - 2
+      - 3
+      - 4
+      - 5
     readOnly: false
-    description: 'Gender of the customer *Possible values: 1 - male, 2 - female*'
+    description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
     example: 1
   first_name:
     type: string

@@ -53,6 +53,10 @@ properties:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: false
     description: List of an additional properties.
+  prices:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Price'
 required:
   - name
   - plu_ids

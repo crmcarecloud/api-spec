@@ -962,6 +962,16 @@ event_type_id:
   schema:
     type: string
   example: "8bda8a4854394325e2748a5005"
+event_type_ids:
+  name: event_type_ids
+  in: query
+  required: false
+  description: List of the event type IDs from the resource [GET /event-types](https://carecloud.readme.io/reference/geteventtypes).
+  schema:
+    type: array
+    items:
+      type: string
+  example: "8bda8a4854394325e2748a5005"
 text_id:
   name: text_id
   in: query

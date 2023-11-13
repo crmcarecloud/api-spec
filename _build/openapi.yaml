@@ -932,6 +932,7 @@ paths:
         - $ref: '#/components/parameters/time_to_full'
         - $ref: '#/components/parameters/booking_ticket_property_id'
         - $ref: '#/components/parameters/booking_ticket_property_value'
+        - $ref: '#/components/parameters/customer_id'
       responses:
         '200':
           description: OK
@@ -4376,6 +4377,7 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/event_type_id'
         - $ref: '#/components/parameters/external_id'
+        - $ref: '#/components/parameters/event_type_ids'
       responses:
         '200':
           description: OK
@@ -5223,6 +5225,92 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /customers/actions/newsletters-sign-up:
+    post:
+      tags:
+        - Customers actions
+      summary: Sigh up for newsletters
+      description: |
+        Method sign up a contact for the newsletter. The contact does not need to be an existing customer. 
+        ⚠️ While use this method we strongly recommend you to verify a contact with Captcha before sending a request to CareCloud API
+      operationId: postCustomerNewslettersSignUp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contact:
+                  type: string
+                  description: 'The parameter could contain email, phone number or other identifier of the contact.'
+                  example: happy_customer@crmcarecloud.com
+              customer_source_id:
+                type: string
+                readOnly: false
+                description: The unique ID of the customer source.
+                example: 86e05affc7a7abefcd513ab400
+              required:
+                - contact
+                - customer_source_id
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: |
+            use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+            use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsVerifycredentialsBody;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+            require_once '../vendor/autoload.php';
+
+            $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+            $login = 'login';
+            $password = 'password';
+            $external_app_id = 'application_id';
+            $auth_type = AuthTypes::BEARER_AUTH;
+
+            $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+            $care_cloud = new CareCloud($config);
+
+            //Set the request body
+            $body = new ActionsVerifycredentialsBody();
+            $body->setLoginType('email'); // string | The unique ID of the login type (available: card, email)
+            $body->setLoginValue('customer_email@example.com'); // string | Value of the login for customer interface API
+            $body->setPassword('customer_password'); // string | Password of the customer.
+
+            // Call endpoint and post data
+            try
+            {
+                $post_credentials = $care_cloud->customersActionsApi()->postCustomerVerifyCredentials($body);
+                $customer_id = $post_credentials->getData()->getCustomerId();
+                var_dump($customer_id);
+            }
+            catch(ApiException $e)
+            {
+                die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+            }
   /customer-address-types:
     get:
       tags:
@@ -5852,6 +5940,7 @@ paths:
         - $ref: '#/components/parameters/event_type_id'
         - $ref: '#/components/parameters/customer_id'
         - $ref: '#/components/parameters/external_id'
+        - $ref: '#/components/parameters/event_type_ids'
       responses:
         '200':
           description: OK
@@ -7605,6 +7694,7 @@ paths:
               required:
                 - amount
                 - customer_id
+                - partner_id
       responses:
         '201':
           description: Created
@@ -17503,8 +17593,11 @@ components:
           enum:
             - 1
             - 2
+            - 3
+            - 4
+            - 5
           readOnly: false
-          description: 'Gender of the customer *Possible values: 1 - male, 2 - female*'
+          description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
           example: 1
         first_name:
           type: string
@@ -17766,6 +17859,22 @@ components:
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-04-16 13:47:53'
+    Price:
+      type: object
+      description: Price structure.
+      properties:
+        currency_id:
+          type: string
+          description: The unique ID of the currency.
+          example: 86e05affc7a7abefcd513ab400
+        value:
+          type: number
+          format: float
+          description: Price of the product
+          example: 650
+      required:
+        - currency_id
+        - value
     Product:
       type: object
       description: Product resource.
@@ -17807,12 +17916,10 @@ components:
           readOnly: false
           description: The unique ID of the product brand.
           example: 82db62087b0f79a6e14e5747e7
-        price:
-          type: number
-          format: float
-          description: Price of the product
-          readOnly: true
-          example: 650
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
         additional_properties:
           type: array
           items:
@@ -17913,6 +18020,10 @@ components:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: false
           description: List of an additional properties.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
       required:
         - name
         - plu_ids
@@ -18588,6 +18699,10 @@ components:
           readOnly: false
           description: Value of turnover in the currency
           example: 1500
+        due_date:
+          type: string
+          readOnly: false
+          description: 'Date until the turnover conditions need to be fulfilled. If the value is null, the date is unlimited.'
       required:
         - currency_id
         - value
@@ -21105,6 +21220,16 @@ components:
       required: false
       schema:
         type: string
+      example: 8bda8a4854394325e2748a5005
+    event_type_ids:
+      name: event_type_ids
+      in: query
+      required: false
+      description: 'List of the event type IDs from the resource [GET /event-types](https://carecloud.readme.io/reference/geteventtypes).'
+      schema:
+        type: array
+        items:
+          type: string
       example: 8bda8a4854394325e2748a5005
     text_id:
       name: text_id

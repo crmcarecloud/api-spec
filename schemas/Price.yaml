@@ -1,0 +1,15 @@
+type: object
+description: Price structure.
+properties:
+  currency_id:
+    type: string
+    description: The unique ID of the currency.
+    example: "86e05affc7a7abefcd513ab400"
+  value:
+    type: number
+    format: float
+    description: Price of the product
+    example: 650.00
+required:
+  - currency_id
+  - value

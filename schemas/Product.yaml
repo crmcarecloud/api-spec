@@ -38,12 +38,10 @@ properties:
     readOnly: false
     description: The unique ID of the product brand.
     example: "82db62087b0f79a6e14e5747e7"
-  price:
-    type: number
-    format: float
-    description: Price of the product
-    readOnly: true
-    example: 650.00
+  prices:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Price'
   additional_properties:
     type: array
     items:
