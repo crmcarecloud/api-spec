@@ -5245,11 +5245,11 @@ paths:
                   type: string
                   description: 'The parameter could contain email, phone number or other identifier of the contact.'
                   example: happy_customer@crmcarecloud.com
-              customer_source_id:
-                type: string
-                readOnly: false
-                description: The unique ID of the customer source.
-                example: 86e05affc7a7abefcd513ab400
+                customer_source_id:
+                  type: string
+                  readOnly: false
+                  description: The unique ID of the customer source.
+                  example: 86e05affc7a7abefcd513ab400
               required:
                 - contact
                 - customer_source_id
