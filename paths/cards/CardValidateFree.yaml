@@ -1,11 +1,11 @@
 post:
   tags:
     - Cards
-  summary: Assign free card
+  summary: Validate free card
   description: |
-    Assign a free card in order to the customer.
+    Method validates if a card is free to use(it is not blocked, used by somebody else or even not exists).
 
-  operationId: postAssignCard
+  operationId: postValidateFreeCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
   requestBody:
@@ -15,21 +15,12 @@ post:
         schema:
           type: object
           properties:
-            card_type_id:
-              type: string
-              description: The unique ID of the card type.
-              example: "83d1d11ea3884a5d33253fe214"
-            customer_id:
-              type: string
-              description: The unique ID of the card holder.
-              example: "8ea2591121e636086a4a9c0992"
             card_number:
               type: string
-              description: Card number.
+              description: Card number to validate.
               example: "1000000000016"
           required:
-            - card_type_id
-            - customer_id
+            - card_number
   responses:
     '200':
       description: OK
@@ -41,11 +32,14 @@ post:
               data:
                 type: object
                 properties:
-                  card_id:
-                    type: string
+                  is_free_to_use:
+                    type: boolean
+                    enum:
+                      - true
+                      - false
                     readOnly: true
-                    description: The unique ID of the card.
-                    example: "8fd73167342d06899c4c015320"
+                    description: An information if the card is free to use.
+                    example: "false"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

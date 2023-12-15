@@ -14,6 +14,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/customer_id'
     - $ref: '../../parameters/_index.yaml#/external_id'
     - $ref: '../../parameters/_index.yaml#/event_type_ids'
+    - $ref: '../../parameters/_index.yaml#/include_property_records'
   responses:
     '200':
       description: OK

@@ -2,7 +2,7 @@ post:
   tags:
     - Cards
   summary: Generate virtual card file
-  description: Generate file with virtual card. File can be generated as a PNG file or file for Apple Wallet.
+  description: Generate file with virtual card. File can be generated as a PNG file (QR code or Barcode) or file for Apple Wallet.
   operationId: postGenerateDigitalCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -18,11 +18,12 @@ post:
               type: string
               example: "8fd73167342d06899c4c015320"
             file_type:
-              description: "Type of the final file. *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*"
+              description: "Type of the final file. *Possible values: png - generates picture of barcode in png format / qr-png - generates picture of QR code in png format /wallet - generates pass package file for Apple Wallet*"
               type: string
               enum:
                 - png
                 - wallet
+                - qr-png
               example: "png"
           required:
             - card_id

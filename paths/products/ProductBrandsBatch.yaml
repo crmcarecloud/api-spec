@@ -20,6 +20,12 @@ post:
               description: List of the CareCloud product brands.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductBrand'
+            error_processing:
+              type: integer
+              enum:
+                - 1
+                - 2
+              description: "The parameter describes the batch method behavior in case of error occurs. *Possible values are: 1 - It returns the first error found and rollback all previous changes (this is also the default behavior if the parameter is not set) / 2 - It creates all valid records and creates an error report from failed attempts.*"
           required:
             - product_brands
   responses:

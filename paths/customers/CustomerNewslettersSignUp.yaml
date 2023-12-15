@@ -1,7 +1,7 @@
 post:
   tags:
     - Customers actions
-  summary: Sigh up for newsletters
+  summary: Sign up for newsletters
   description: |
     Method sign up a contact for the newsletter. The contact does not need to be an existing customer. 
     ⚠️ While use this method we strongly recommend you to verify a contact with Captcha before sending a request to CareCloud API

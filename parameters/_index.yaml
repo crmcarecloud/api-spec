@@ -215,6 +215,16 @@ time_to_full:
     type: string
   allowReserved: true
   example: '2018-05-07 23:59:59'
+include_property_records:
+  name: include_property_records
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  in: query
+  description: "If true, the property record structure will be included in the response. Possible values: true - property records structure will be included / false or not set - property records structure won't be included, and parameter will return null value"
+  example: true
 
 # Personal parameters
 user_id_path:
@@ -1004,7 +1014,6 @@ event_type_id_path:
   schema:
     type: string
   example: "8bda8a4854394325e2748a5005"
-
 # Interests
 interest_id_path:
   name: interest_id

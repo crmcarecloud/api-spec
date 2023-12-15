@@ -103,6 +103,16 @@ put:
                     Current status of the booking.
                     *Possible values are available in [booking-statuses](#tag/Booking-statuses)*
                   example: "86e05affc7a7abefcd513ab400"
+                data:
+                  oneOf:
+                    - type: string
+                    - type: array
+                      items:
+                        type: string
+                    - type: object
+                  readOnly: false
+                  description: Additional data of the booking. Serialized data in JSON.
+                  example: '"{\"size\":20, \"unit\": \"cm\"}"'
           required:
             - booking
   responses:

@@ -757,6 +757,16 @@ paths:
                         Current status of the booking.
                         *Possible values are available in [booking-statuses](#tag/Booking-statuses)*
                       example: 86e05affc7a7abefcd513ab400
+                    data:
+                      oneOf:
+                        - type: string
+                        - type: array
+                          items:
+                            type: string
+                        - type: object
+                      readOnly: false
+                      description: Additional data of the booking. Serialized data in JSON.
+                      example: '"{\"size\":20, \"unit\": \"cm\"}"'
               required:
                 - booking
       responses:
@@ -1865,8 +1875,6 @@ paths:
       summary: Assign free card
       description: |
         Assign a free card in order to the customer.
-
-        <p class="warning">⚠️ Action method is available only in Enterprise interface.</p>
       operationId: postAssignCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1885,6 +1893,10 @@ paths:
                   type: string
                   description: The unique ID of the card holder.
                   example: 8ea2591121e636086a4a9c0992
+                card_number:
+                  type: string
+                  description: Card number.
+                  example: '1000000000016'
               required:
                 - card_type_id
                 - customer_id
@@ -1924,12 +1936,74 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsAssignfreecardBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set card info to the request body\n$body = new ActionsAssignfreecardBody();\n$body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder\n$body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type\n\n// Call endpoint and post data\ntry\n{\n    $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);\n    $card_id = $post_assign_card->getData()->getCardId();\n    var_dump($card_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /cards/actions/validate-free-card:
+    post:
+      tags:
+        - Cards
+      summary: Validate free card
+      description: |
+        Method validates if a card is free to use(it is not blocked, used by somebody else or even not exists).
+      operationId: postValidateFreeCard
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_number:
+                  type: string
+                  description: Card number to validate.
+                  example: '1000000000016'
+              required:
+                - card_number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      is_free_to_use:
+                        type: boolean
+                        enum:
+                          - true
+                          - false
+                        readOnly: true
+                        description: An information if the card is free to use.
+                        example: 'false'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsAssignfreecardBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set card info to the request body\n$body = new ActionsAssignfreecardBody();\n$body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder\n$body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type\n\n// Call endpoint and post data\ntry\n{\n    $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);\n    $card_id = $post_assign_card->getData()->getCardId();\n    var_dump($card_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /cards/actions/generate-digital-card-file:
     post:
       tags:
         - Cards
       summary: Generate virtual card file
-      description: Generate file with virtual card. File can be generated as a PNG file or file for Apple Wallet.
+      description: Generate file with virtual card. File can be generated as a PNG file (QR code or Barcode) or file for Apple Wallet.
       operationId: postGenerateDigitalCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1945,11 +2019,12 @@ paths:
                   type: string
                   example: 8fd73167342d06899c4c015320
                 file_type:
-                  description: 'Type of the final file. *Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet*'
+                  description: 'Type of the final file. *Possible values: png - generates picture of barcode in png format / qr-png - generates picture of QR code in png format /wallet - generates pass package file for Apple Wallet*'
                   type: string
                   enum:
                     - png
                     - wallet
+                    - qr-png
                   example: png
               required:
                 - card_id
@@ -4378,6 +4453,7 @@ paths:
         - $ref: '#/components/parameters/event_type_id'
         - $ref: '#/components/parameters/external_id'
         - $ref: '#/components/parameters/event_type_ids'
+        - $ref: '#/components/parameters/include_property_records'
       responses:
         '200':
           description: OK
@@ -5229,7 +5305,7 @@ paths:
     post:
       tags:
         - Customers actions
-      summary: Sigh up for newsletters
+      summary: Sign up for newsletters
       description: |
         Method sign up a contact for the newsletter. The contact does not need to be an existing customer. 
         ⚠️ While use this method we strongly recommend you to verify a contact with Captcha before sending a request to CareCloud API
@@ -5253,6 +5329,100 @@ paths:
               required:
                 - contact
                 - customer_source_id
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: |
+            use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+            use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsVerifycredentialsBody;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+            use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+            require_once '../vendor/autoload.php';
+
+            $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+            $login = 'login';
+            $password = 'password';
+            $external_app_id = 'application_id';
+            $auth_type = AuthTypes::BEARER_AUTH;
+
+            $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+            $care_cloud = new CareCloud($config);
+
+            //Set the request body
+            $body = new ActionsVerifycredentialsBody();
+            $body->setLoginType('email'); // string | The unique ID of the login type (available: card, email)
+            $body->setLoginValue('customer_email@example.com'); // string | Value of the login for customer interface API
+            $body->setPassword('customer_password'); // string | Password of the customer.
+
+            // Call endpoint and post data
+            try
+            {
+                $post_credentials = $care_cloud->customersActionsApi()->postCustomerVerifyCredentials($body);
+                $customer_id = $post_credentials->getData()->getCustomerId();
+                var_dump($customer_id);
+            }
+            catch(ApiException $e)
+            {
+                die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+            }
+  /customers/actions/set-push-notifications:
+    post:
+      tags:
+        - Customers actions
+      summary: Set the customer's push notifications
+      description: |
+        ⚠️ The endpoint is available only in the Enterprise interface.<br/>
+        ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.<br/>
+        Method will set up customer's push notifications to specified application and device.
+      operationId: postCustomerSetPushNotifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer.
+                  example: 8ea2591121e636086a4a9c0992
+                device:
+                  $ref: '#/components/schemas/Device'
+                external_application_id:
+                  type: string
+                  description: 'ID of the external application. More information about external applications and how to get an ID is available in [Authentication section](https://carecloud.readme.io/reference/authentication#external-applications-1).'
+                  example: 82de12eb8b138791e678fd11c3
+                push_token:
+                  type: string
+                  description: Push notification token (Apple or Google).
+                  example: 4f7f658bfa7a5959e093590
+              required:
+                - customer_id
+                - device
+                - external_application_id
+                - push_token
       responses:
         '204':
           description: No Content
@@ -5941,6 +6111,7 @@ paths:
         - $ref: '#/components/parameters/customer_id'
         - $ref: '#/components/parameters/external_id'
         - $ref: '#/components/parameters/event_type_ids'
+        - $ref: '#/components/parameters/include_property_records'
       responses:
         '200':
           description: OK
@@ -8497,6 +8668,12 @@ paths:
                   description: List of the CareCloud product brands.
                   items:
                     $ref: '#/components/schemas/ProductBrand'
+                error_processing:
+                  type: integer
+                  enum:
+                    - 1
+                    - 2
+                  description: 'The parameter describes the batch method behavior in case of error occurs. *Possible values are: 1 - It returns the first error found and rollback all previous changes (this is also the default behavior if the parameter is not set) / 2 - It creates all valid records and creates an error report from failed attempts.*'
               required:
                 - product_brands
       responses:
@@ -11927,8 +12104,6 @@ paths:
       operationId: getEntrancesCustomerStats
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/date_from'
-        - $ref: '#/components/parameters/date_to'
         - $ref: '#/components/parameters/customer_id_required'
       responses:
         '200':
@@ -15656,6 +15831,21 @@ components:
           readOnly: false
           description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
           example: 81eaeea13b8984a169c490a325
+        utm:
+          type: object
+          $ref: '#/components/schemas/UTM'
+          readOnly: false
+          description: UTM structure for data from a campaign.
+        data:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+            - type: object
+          readOnly: false
+          description: Additional data of the booking. Serialized data in JSON.
+          example: '"{\"size\":20, \"unit\": \"cm\"}"'
         created_at:
           type: string
           readOnly: false
@@ -16687,6 +16877,12 @@ components:
             State of the event type.
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
+        property_records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyRecord'
+          readOnly: false
+          description: Additional properties of the event. This parameter contain values only if `include_property_records` is set to true.
       required:
         - event_type_id
         - customer_id
@@ -20504,6 +20700,16 @@ components:
         type: string
       allowReserved: true
       example: '2018-05-07 23:59:59'
+    include_property_records:
+      name: include_property_records
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      in: query
+      description: 'If true, the property record structure will be included in the response. Possible values: true - property records structure will be included / false or not set - property records structure won''t be included, and parameter will return null value'
+      example: true
     user_id_path:
       name: user_id
       in: path

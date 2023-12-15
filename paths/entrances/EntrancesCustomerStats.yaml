@@ -6,8 +6,6 @@ get:
   operationId: getEntrancesCustomerStats
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/date_from'
-    - $ref: '../../parameters/_index.yaml#/date_to'
     - $ref: '../../parameters/_index.yaml#/customer_id_required'
   responses:
     '200':

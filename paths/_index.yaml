@@ -52,6 +52,8 @@
 # Actions
 /cards/actions/assign-free-card:
   $ref: "./cards/CardAssign.yaml"
+/cards/actions/validate-free-card:
+  $ref: "./cards/CardValidateFree.yaml"
 /cards/actions/generate-digital-card-file:
   $ref: "./cards/CardGenerateDigital.yaml"
 # Batch
@@ -164,6 +166,8 @@
   $ref: "./customers/CustomerSetStatusRecord.yaml"
 /customers/actions/newsletters-sign-up:
   $ref: "./customers/CustomerNewslettersSignUp.yaml"
+/customers/actions/set-push-notifications:
+  $ref: "./customers/CustomerSetPushNotifications.yaml"
 # Customer address types
 /customer-address-types:
   $ref: "./customers/CustomerAddressTypes.yaml"
