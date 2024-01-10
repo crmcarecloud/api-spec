@@ -19,6 +19,9 @@ post:
               description: List of property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
+            error_processing:
+              type: integer
+              $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
             - property_records
   responses:

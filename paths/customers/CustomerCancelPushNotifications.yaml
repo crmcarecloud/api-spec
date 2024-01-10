@@ -1,12 +1,10 @@
 post:
   tags:
     - Customers actions
-  summary: Set the customer's push notifications
+  summary: Cancel the customer's push notifications subscription from all devices if push token not specified.
   description: |
     ⚠️ The endpoint is available only in the Enterprise interface.<br/>
-    ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.<br/>
-    Method will set up customer's push notifications to specified application and device.
-  operationId: postCustomerSetPushNotifications
+  operationId: postCustomerCancelPushNotifications
   requestBody:
     required: true
     content:
@@ -18,8 +16,6 @@ post:
               type: string
               description: The unique ID of the customer.
               example: "8ea2591121e636086a4a9c0992"
-            device:
-              $ref: '../../schemas/_index.yaml#/Device'
             external_application_id:
               type: string
               description: ID of the external application. More information about external applications and how to get an ID is available in [Authentication section](https://carecloud.readme.io/reference/authentication#external-applications-1).
@@ -30,9 +26,7 @@ post:
               example: "4f7f658bfa7a5959e093590"
           required:
             - customer_id
-            - device
             - external_application_id
-            - push_token
   responses:
     '204':
       description: No Content

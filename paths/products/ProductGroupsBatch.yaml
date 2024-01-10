@@ -20,6 +20,9 @@ post:
               description: List of the CareCloud product groups.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductGroup'
+            error_processing:
+              type: integer
+              $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
             - product_groups
   responses:

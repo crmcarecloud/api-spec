@@ -168,6 +168,8 @@
   $ref: "./customers/CustomerNewslettersSignUp.yaml"
 /customers/actions/set-push-notifications:
   $ref: "./customers/CustomerSetPushNotifications.yaml"
+/customers/actions/cancel-push-notifications:
+  $ref: "./customers/CustomerCancelPushNotifications.yaml"
 # Customer address types
 /customer-address-types:
   $ref: "./customers/CustomerAddressTypes.yaml"

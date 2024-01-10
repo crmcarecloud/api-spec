@@ -21,6 +21,9 @@ post:
               description: List of the CareCloud products.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductBatch'
+            error_processing:
+              type: integer
+              $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
             - products
   responses:

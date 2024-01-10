@@ -2086,6 +2086,9 @@ paths:
                   description: List of the CareCloud cards.
                   items:
                     $ref: '#/components/schemas/Card'
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - cards
       responses:
@@ -4037,6 +4040,9 @@ paths:
                   description: List of property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - property_records
       responses:
@@ -5442,45 +5448,55 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      x-codeSamples:
-        - lang: PHP
-          label: CareCloud SDK
-          source: |
-            use CrmCareCloud\Webservice\RestApi\Client\ApiException;
-            use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsVerifycredentialsBody;
-            use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
-            use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
-            use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
-
-            require_once '../vendor/autoload.php';
-
-            $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
-            $login = 'login';
-            $password = 'password';
-            $external_app_id = 'application_id';
-            $auth_type = AuthTypes::BEARER_AUTH;
-
-            $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
-
-            $care_cloud = new CareCloud($config);
-
-            //Set the request body
-            $body = new ActionsVerifycredentialsBody();
-            $body->setLoginType('email'); // string | The unique ID of the login type (available: card, email)
-            $body->setLoginValue('customer_email@example.com'); // string | Value of the login for customer interface API
-            $body->setPassword('customer_password'); // string | Password of the customer.
-
-            // Call endpoint and post data
-            try
-            {
-                $post_credentials = $care_cloud->customersActionsApi()->postCustomerVerifyCredentials($body);
-                $customer_id = $post_credentials->getData()->getCustomerId();
-                var_dump($customer_id);
-            }
-            catch(ApiException $e)
-            {
-                die(var_dump($e->getResponseBody() ?: $e->getMessage()));
-            }
+  /customers/actions/cancel-push-notifications:
+    post:
+      tags:
+        - Customers actions
+      summary: Cancel the customer's push notifications subscription from all devices if push token not specified.
+      description: |
+        ⚠️ The endpoint is available only in the Enterprise interface.<br/>
+      operationId: postCustomerCancelPushNotifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer.
+                  example: 8ea2591121e636086a4a9c0992
+                external_application_id:
+                  type: string
+                  description: 'ID of the external application. More information about external applications and how to get an ID is available in [Authentication section](https://carecloud.readme.io/reference/authentication#external-applications-1).'
+                  example: 82de12eb8b138791e678fd11c3
+                push_token:
+                  type: string
+                  description: Push notification token (Apple or Google).
+                  example: 4f7f658bfa7a5959e093590
+              required:
+                - customer_id
+                - external_application_id
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customer-address-types:
     get:
       tags:
@@ -8527,6 +8543,9 @@ paths:
                   description: List of the CareCloud products.
                   items:
                     $ref: '#/components/schemas/ProductBatch'
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - products
       responses:
@@ -8670,10 +8689,7 @@ paths:
                     $ref: '#/components/schemas/ProductBrand'
                 error_processing:
                   type: integer
-                  enum:
-                    - 1
-                    - 2
-                  description: 'The parameter describes the batch method behavior in case of error occurs. *Possible values are: 1 - It returns the first error found and rollback all previous changes (this is also the default behavior if the parameter is not set) / 2 - It creates all valid records and creates an error report from failed attempts.*'
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - product_brands
       responses:
@@ -8818,6 +8834,9 @@ paths:
                   description: List of the CareCloud product groups.
                   items:
                     $ref: '#/components/schemas/ProductGroup'
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - product_groups
       responses:
@@ -10857,6 +10876,9 @@ paths:
                   description: List of the Recommendations from third party system.
                   items:
                     $ref: '#/components/schemas/ThirdPartyRecommendation'
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - third_party_recommendations
       responses:
@@ -14940,10 +14962,7 @@ paths:
                     $ref: '#/components/schemas/VoucherBatch'
                 error_processing:
                   type: integer
-                  enum:
-                    - 1
-                    - 2
-                  description: 'The parameter describes the batch method behavior in case of error occurs. *Possible values are: 1 - It returns the first error found and rollback all previous changes (this is also the default behavior if the parameter is not set) / 2 - It creates all valid records and creates an error report from failed attempts.*'
+                  $ref: '#/components/schemas/Error_processing'
               required:
                 - vouchers
       responses:
@@ -20485,6 +20504,12 @@ components:
           readOnly: false
           description: The details of the error message.
           example: null
+    Error_processing:
+      type: integer
+      enum:
+        - 1
+        - 2
+      description: 'The parameter describes the batch method behavior in case of error occurs. *Possible values are: 1 - It returns the first error found and rollback all previous changes (this is also the default behavior if the parameter is not set) / 2 - It creates all valid records and creates an error report from failed attempts.*'
   parameters:
     Accept-Language:
       name: Accept-Language
