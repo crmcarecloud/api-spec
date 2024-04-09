@@ -1,0 +1,77 @@
+post:
+  tags:
+    - Credits
+  summary: Deposit of credits
+  description: |
+    Creates a new credit record with the corresponding value.
+    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+    ⚠️ Action methods are available only in Enterprise interface.
+  operationId: postCreditDeposit
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+              format: float
+              description: The number of deposit credits.
+              example: 1500
+            customer_id:
+              type: string
+              description: The unique ID of the customer.
+              example: '8ea2591121e636086a4a9c0992'
+            partner_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the partner.
+              example: '86e05affc7a7abefcd513ab400'
+            credit_type_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the credit type. If the parameter is not set, a default credit type is set.
+              example: '86e05affc7a7abefcd513ab400'
+            note:
+              type: string
+              readOnly: false
+              description: Note for the new credit deposit.
+              example: 'Birthdate point reward'
+          required:
+            - amount
+            - customer_id
+            - partner_id
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  credit_id:
+                    type: string
+                    description: The unique ID of the credit record.
+                    example: "82de12eb8b138791e678fd11c3"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

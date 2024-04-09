@@ -1,0 +1,25 @@
+type: object
+description: Product resource.
+properties:
+  product_id:
+    type: string
+    readOnly: false
+    description: The unique ID of the product. Product ID is required when parameter `plu_ids` is not set.
+    example: "85d6598db0bf3f62afd5db8507"
+  plu_id:
+    type: object
+    $ref: '../schemas/_index.yaml#/PluId'
+    readOnly: false
+    description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set.
+  reward_product_relation_type:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      Describes the relation between the product and the reward.
+      *Possible values:  0 - Condition - It is used when you need to list mandatory products in the shopping cart for reward application  / 1 - Bonus - It is used when products are part of a reward to the customer*
+    example: 0
+required:
+  - reward_product_relation_type

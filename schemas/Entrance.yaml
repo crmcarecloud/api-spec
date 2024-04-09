@@ -121,7 +121,6 @@ properties:
     example: 1
 required:
   - entrance_id
-  - entrance_type_id
   - card_id
   - state
   - pos_id

@@ -85,6 +85,13 @@
 # Sub-resources
 /credits/{credit_id}/purchases:
   $ref: "./credits/SubCreditPurchases.yaml"
+# Actions
+/credits/actions/reduce-credits:
+  $ref: "./credits/CreditReduce.yaml"
+/credits/actions/deposit-credits:
+  $ref: "./credits/CreditDeposit.yaml"
+/credits/actions/transfer-credits:
+  $ref: "./credits/CreditTransfer.yaml"
 #Credit history
 /credit-history:
   $ref: "./credits/CreditHistory.yaml"
@@ -453,10 +460,12 @@
   $ref: "./rewards/SubRewardStores.yaml"
 /rewards/tags:
   $ref: "./rewards/SubRewardTags.yaml"
-#  Actions
+#Actions
 /rewards/{reward_id}/actions/create-voucher:
   $ref: "./rewards/RewardCreateVoucher.yaml"
-#  Reward properties
+/rewards/{reward_id}/actions/set-products:
+  $ref: "./rewards/RewardSynchronizeProducts.yaml"
+#Reward properties
 /reward-properties:
   $ref: "./rewards/RewardProperties.yaml"
 /reward-properties/{reward_property_id}:
@@ -467,15 +476,15 @@
 /reward-types/{reward_type_id}:
   $ref: "./rewards/RewardType.yaml"
 
-#  Segments
+#Segments
 /segments:
   $ref: "./segments/Segments.yaml"
 /segments/{segment_id}:
   $ref: "./segments/Segment.yaml"
-#  Sub-resources of segments
+#Sub-resources of segments
 /segments/{segment_id}/segment-records:
   $ref: "./segments/SubSegmentRecords.yaml"
-#  Actions
+#Actions
 /segments/{segment_id}/actions/add-customer:
   $ref: "./segments/SegmentAddCustomer.yaml"
 /segments/{segment_id}/actions/remove-customer:
@@ -485,24 +494,24 @@
   $ref: "./segments/SegmentGroups.yaml"
 /segment-groups/{segment_group_id}:
   $ref: "./segments/SegmentGroup.yaml"
-#  Charged entrances
+#Charged entrances
 /entrances:
   $ref: "./entrances/Entrances.yaml"
 /entrances/{entrance_id}:
   $ref: "./entrances/Entrance.yaml"
-#  Actions
+#Actions
 /entrances/actions/overview:
   $ref: "./entrances/EntrancesOverview.yaml"
 /entrances/actions/customer-stats:
   $ref: "./entrances/EntrancesCustomerStats.yaml"
 
-#  Statuses
+#Statuses
 /statuses:
   $ref: "./statuses/Statuses.yaml"
 /statuses/{status_id}:
   $ref: "./statuses/Status.yaml"
 
-#  Stores
+#Stores
 /stores:
   $ref: "./stores/Stores.yaml"
 /stores/{store_id}:

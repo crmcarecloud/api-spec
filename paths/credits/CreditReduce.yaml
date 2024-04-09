@@ -1,0 +1,78 @@
+post:
+  tags:
+    - Credits
+  summary: Credit reduction
+  description: |
+    Endpoint for reducing credits on the customer's account. 
+    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+    ⚠️ Action methods are available only in the Enterprise interface.
+  operationId: postCreditReduction
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+              format: float
+              description: Number of reduced credits.
+              example: 100
+            customer_id:
+              type: string
+              description: The unique ID of the customer.
+              example: '8ea2591121e636086a4a9c0992'
+            partner_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the partner.
+              example: '86e05affc7a7abefcd513ab400'
+            credit_type_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the credit type. If the parameter is not set, a default credit type is set.
+              example: '86e05affc7a7abefcd513ab400'
+            note:
+              type: string
+              readOnly: false
+              description: A credit reduce note.
+              example: 'Credit expiration'
+          required:
+            - amount
+            - customer_id
+            - partner_id
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  credit_id:
+                    type: string
+                    readOnly: true
+                    description: The unique ID of the credit reduction.
+                    example: "80c2c110a50db9f8134b6b72b3"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

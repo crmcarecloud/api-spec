@@ -13,8 +13,14 @@ properties:
   text:
     type: string
     readOnly: true
-    description: Text of the agreement in CareCloud. Language version of text is returned by language setup in HTTP header of the request.
+    description: Text of the agreement in CareCloud. The language version of the text is returned by language setup in the HTTP header of the request.
     example: "<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>"
+  withdrawal_text:
+    type: string
+    readOnly: true
+    description: Text when a customer wants to withdraw his agreement. The language version of the text is returned by language setup in the HTTP header of the request.
+    example: "<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>"
+
   communication_channel_id:
     type: string
     readOnly: true

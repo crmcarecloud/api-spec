@@ -1,0 +1,65 @@
+post:
+  tags:
+    - Credits
+  summary: Transfer credits
+  description: |
+    Transfers credits from one customer to another.
+    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+    ⚠️ Action methods are available only in the Enterprise interface.
+  operationId: postCreditTransfer
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            original_customer_id:
+              type: string
+              description: ID of the original credit holder.
+              example: '8ea2591121e636086a4a9c0992'
+            new_customer_id:
+              type: string
+              description: ID of the new credit holder.
+              example: '84b9167cc2f01ff007d98e1633'
+            amount:
+              type: number
+              format: float
+              description: Number of the transferred credits.
+              example: 100
+            credit_type_id:
+              type: string
+              readOnly: false
+              description: Type of the transferred credits.
+              example: '8adcb83164fa7e12668035d43e'
+            note:
+              type: string
+              readOnly: false
+              description: Note for the credit transfer.
+              example: 'Merging customer account'
+          required:
+            - original_customer_id
+            - new_customer_id
+            - amount
+            - credit_type_id
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

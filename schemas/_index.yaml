@@ -164,6 +164,8 @@ ProductReservationSource:
   $ref: "./ProductReservationSource.yaml"
 ProductReservationExternalListType:
   $ref: "./ProductReservationExternalListType.yaml"
+ProductSynchronizationForReward:
+  $ref: "./ProductSynchronizationForReward.yaml"
 Property:
   $ref: "./Property.yaml"
 PropertyItem:

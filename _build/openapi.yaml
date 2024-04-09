@@ -2666,6 +2666,229 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$credit_id = '86e05affc7a7abefcd513ab400'; // string | The unique ID of the credit record\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$store_id = null; // string | The unique ID of the store (optional)\n$customer_id = null; // string | The unique ID of the customer (optional)\n$type_id = null; // string | The unique ID of the purchase type (optional)\n$payment_time_from = null; // string | Date and time from of the purchase payment (YYYY-MM-DD HH:MM:SS) (optional)\n$payment_time_to = null; // string | Date and time to of the purchase payment (YYYY-MM-DD HH:MM:SS) (optional)\n$purchase_items_extension = null; // boolean | If true, resource returns extended response with purchase items. If false, the resource won't be extended (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_purchases = $care_cloud->creditsApi()->getSubCreditPurchases(\n        $credit_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $store_id,\n        $customer_id,\n        $type_id,\n        $payment_time_from,\n        $payment_time_to,\n        $purchase_items_extension\n    );\n    $purchases = $get_purchases->getData()->getPurchases();\n    $total_items = $get_purchases->getData()->getTotalItems();\n    var_dump($purchases);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /credits/actions/reduce-credits:
+    post:
+      tags:
+        - Credits
+      summary: Credit reduction
+      description: |
+        Endpoint for reducing credits on the customer's account. 
+        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+        ⚠️ Action methods are available only in the Enterprise interface.
+      operationId: postCreditReduction
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  format: float
+                  description: Number of reduced credits.
+                  example: 100
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer.
+                  example: 8ea2591121e636086a4a9c0992
+                partner_id:
+                  type: string
+                  readOnly: false
+                  description: The unique ID of the partner.
+                  example: 86e05affc7a7abefcd513ab400
+                credit_type_id:
+                  type: string
+                  readOnly: false
+                  description: 'The unique ID of the credit type. If the parameter is not set, a default credit type is set.'
+                  example: 86e05affc7a7abefcd513ab400
+                note:
+                  type: string
+                  readOnly: false
+                  description: A credit reduce note.
+                  example: Credit expiration
+              required:
+                - amount
+                - customer_id
+                - partner_id
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      credit_id:
+                        type: string
+                        readOnly: true
+                        description: The unique ID of the credit reduction.
+                        example: 80c2c110a50db9f8134b6b72b3
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /credits/actions/deposit-credits:
+    post:
+      tags:
+        - Credits
+      summary: Deposit of credits
+      description: |
+        Creates a new credit record with the corresponding value.
+        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+        ⚠️ Action methods are available only in Enterprise interface.
+      operationId: postCreditDeposit
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  format: float
+                  description: The number of deposit credits.
+                  example: 1500
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer.
+                  example: 8ea2591121e636086a4a9c0992
+                partner_id:
+                  type: string
+                  readOnly: false
+                  description: The unique ID of the partner.
+                  example: 86e05affc7a7abefcd513ab400
+                credit_type_id:
+                  type: string
+                  readOnly: false
+                  description: 'The unique ID of the credit type. If the parameter is not set, a default credit type is set.'
+                  example: 86e05affc7a7abefcd513ab400
+                note:
+                  type: string
+                  readOnly: false
+                  description: Note for the new credit deposit.
+                  example: Birthdate point reward
+              required:
+                - amount
+                - customer_id
+                - partner_id
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      credit_id:
+                        type: string
+                        description: The unique ID of the credit record.
+                        example: 82de12eb8b138791e678fd11c3
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /credits/actions/transfer-credits:
+    post:
+      tags:
+        - Credits
+      summary: Transfer credits
+      description: |
+        Transfers credits from one customer to another.
+        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+        ⚠️ Action methods are available only in the Enterprise interface.
+      operationId: postCreditTransfer
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                original_customer_id:
+                  type: string
+                  description: ID of the original credit holder.
+                  example: 8ea2591121e636086a4a9c0992
+                new_customer_id:
+                  type: string
+                  description: ID of the new credit holder.
+                  example: 84b9167cc2f01ff007d98e1633
+                amount:
+                  type: number
+                  format: float
+                  description: Number of the transferred credits.
+                  example: 100
+                credit_type_id:
+                  type: string
+                  readOnly: false
+                  description: Type of the transferred credits.
+                  example: 8adcb83164fa7e12668035d43e
+                note:
+                  type: string
+                  readOnly: false
+                  description: Note for the credit transfer.
+                  example: Merging customer account
+              required:
+                - original_customer_id
+                - new_customer_id
+                - amount
+                - credit_type_id
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /credit-history:
     get:
       tags:
@@ -5354,45 +5577,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      x-codeSamples:
-        - lang: PHP
-          label: CareCloud SDK
-          source: |
-            use CrmCareCloud\Webservice\RestApi\Client\ApiException;
-            use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsVerifycredentialsBody;
-            use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
-            use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
-            use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
-
-            require_once '../vendor/autoload.php';
-
-            $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
-            $login = 'login';
-            $password = 'password';
-            $external_app_id = 'application_id';
-            $auth_type = AuthTypes::BEARER_AUTH;
-
-            $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
-
-            $care_cloud = new CareCloud($config);
-
-            //Set the request body
-            $body = new ActionsVerifycredentialsBody();
-            $body->setLoginType('email'); // string | The unique ID of the login type (available: card, email)
-            $body->setLoginValue('customer_email@example.com'); // string | Value of the login for customer interface API
-            $body->setPassword('customer_password'); // string | Password of the customer.
-
-            // Call endpoint and post data
-            try
-            {
-                $post_credentials = $care_cloud->customersActionsApi()->postCustomerVerifyCredentials($body);
-                $customer_id = $post_credentials->getData()->getCustomerId();
-                var_dump($customer_id);
-            }
-            catch(ApiException $e)
-            {
-                die(var_dump($e->getResponseBody() ?: $e->getMessage()));
-            }
   /customers/actions/set-push-notifications:
     post:
       tags:
@@ -11404,6 +11588,54 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsCreatevoucherBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$reward_id = '8fd73167342d06899c4c015320'; // string | The unique ID of the reward\n\n// Set the request body\n$body = new ActionsCreatevoucherBody();\n$body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer\n$body->setCode('e1234'); // string | Code of the voucher (optional)\n$body->setNote('test voucher 2'); // string | Note for the voucher\n\n// Call endpoint and post data\ntry\n{\n    $post_voucher = $care_cloud->rewardsApi()->postRewardCreateVoucher(\n        $body,\n        $reward_id,\n        $accept_language\n    );\n    $voucher_id = $post_voucher->getData()->getVoucherId();\n    var_dump($voucher_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/rewards/{reward_id}/actions/set-products':
+    post:
+      tags:
+        - Rewards
+      summary: Set all products that reward can be applied to
+      description: |
+        Batch process helps to set all products in one request. Request needs to contain all the products, because previous products will be erased.<br/>  ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+      operationId: postRewardSynchronizeProducts
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/reward_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  description: List of the CareCloud products.
+                  items:
+                    $ref: '#/components/schemas/ProductSynchronizationForReward'
+              required:
+                - products
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PluId;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ProductBatch;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ProductsBatchBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set products info\n$plu_id = new PluId();\n$plu_id->setListCode('GLOBAL'); // string | Code of the particular product list (“GLOBAL”, “SKU”, “PLU”, etc.)\n$plu_id->setCode('abc123'); // string | Code of product from the product list\n\n$product1 = new ProductBatch();\n$product1->setName('Apple Clock'); // strong | The name of the product\n$product1->setCode(null); // string | The code of the product (optional)\n$product1->setPluIds(array($plu_id)); // array of PluID objects\n$product1->setProductGroupId(null); // string | The unique ID of the product group (optional)\n$product1->setProductGroupExternalId(null); // string | The unique external ID of the product group (optional)\n$product1->setProductBrandId(null); // string | The unique ID of the product brand (optional)\n$product1->setProductBrandExternalId(null); // string | The unique external ID of the product brand (optional)\n$product1->setStoreId(null); // string | The unique ID for the store where the product group is valid (optional)\n\n// Set the request body\n$body = new ProductsBatchBody();\n$body->setProducts(array($product1));\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->productsApi()->postBulkProducts($body, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /reward-properties:
     get:
       tags:
@@ -15659,7 +15891,12 @@ components:
         text:
           type: string
           readOnly: true
-          description: Text of the agreement in CareCloud. Language version of text is returned by language setup in HTTP header of the request.
+          description: Text of the agreement in CareCloud. The language version of the text is returned by language setup in the HTTP header of the request.
+          example: '<h1>Souhlas se zpracováním osobních údajů</h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:</p><h2>Operací spojených s provozováním systému card</h2><ul><li>Zařazení do databáze členů card systému</li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)</li><li>Zasílání obchodních sdělení</li></ul>'
+        withdrawal_text:
+          type: string
+          readOnly: true
+          description: Text when a customer wants to withdraw his agreement. The language version of the text is returned by language setup in the HTTP header of the request.
           example: '<h1>Souhlas se zpracováním osobních údajů</h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:</p><h2>Operací spojených s provozováním systému card</h2><ul><li>Zařazení do databáze členů card systému</li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)</li><li>Zasílání obchodních sdělení</li></ul>'
         communication_channel_id:
           type: string
@@ -18565,6 +18802,32 @@ components:
           readOnly: true
           description: Name of the external list type.
           example: Webshop reservations
+    ProductSynchronizationForReward:
+      type: object
+      description: Product resource.
+      properties:
+        product_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the product. Product ID is required when parameter `plu_ids` is not set.
+          example: 85d6598db0bf3f62afd5db8507
+        plu_id:
+          type: object
+          $ref: '#/components/schemas/PluId'
+          readOnly: false
+          description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set.
+        reward_product_relation_type:
+          type: integer
+          enum:
+            - 0
+            - 1
+          readOnly: false
+          description: |
+            Describes the relation between the product and the reward.
+            *Possible values:  0 - Condition - It is used when you need to list mandatory products in the shopping cart for reward application  / 1 - Bonus - It is used when products are part of a reward to the customer*
+          example: 0
+      required:
+        - reward_product_relation_type
     Property:
       type: object
       description: Property structure.
@@ -19560,7 +19823,6 @@ components:
           example: 1
       required:
         - entrance_id
-        - entrance_type_id
         - card_id
         - state
         - pos_id
