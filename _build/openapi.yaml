@@ -1686,7 +1686,7 @@ paths:
         - $ref: '#/components/parameters/customer_id'
         - $ref: '#/components/parameters/card_number'
         - $ref: '#/components/parameters/card_type_id'
-        - $ref: '#/components/parameters/state'
+        - $ref: '#/components/parameters/card_state'
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/card_number_list'
         - $ref: '#/components/parameters/search_secondary_card_number'
@@ -2704,6 +2704,11 @@ paths:
                   readOnly: false
                   description: 'The unique ID of the credit type. If the parameter is not set, a default credit type is set.'
                   example: 86e05affc7a7abefcd513ab400
+                currency_id:
+                  type: string
+                  readOnly: false
+                  description: 'ID of the currency from resource [currencies](#tag/Currencies). If not set, the default currency of the project is used.'
+                  example: 8bed991c68a470e7aaeffbf048
                 note:
                   type: string
                   readOnly: false
@@ -2783,6 +2788,11 @@ paths:
                   readOnly: false
                   description: 'The unique ID of the credit type. If the parameter is not set, a default credit type is set.'
                   example: 86e05affc7a7abefcd513ab400
+                currency_id:
+                  type: string
+                  readOnly: false
+                  description: 'ID of the currency from resource [currencies](#tag/Currencies). If not set, the default currency of the project is used.'
+                  example: 8bed991c68a470e7aaeffbf048
                 note:
                   type: string
                   readOnly: false
@@ -2860,6 +2870,11 @@ paths:
                   readOnly: false
                   description: Type of the transferred credits.
                   example: 8adcb83164fa7e12668035d43e
+                currency_id:
+                  type: string
+                  readOnly: false
+                  description: 'ID of the currency from resource [currencies](#tag/Currencies). If not set, the default currency of the project is used.'
+                  example: 8bed991c68a470e7aaeffbf048
                 note:
                   type: string
                   readOnly: false
@@ -5555,6 +5570,9 @@ paths:
                   readOnly: false
                   description: The unique ID of the customer source.
                   example: 86e05affc7a7abefcd513ab400
+                agreements:
+                  type: object
+                  $ref: '#/components/schemas/Agreement'
               required:
                 - contact
                 - customer_source_id
@@ -12183,6 +12201,7 @@ paths:
         - $ref: '#/components/parameters/valid_to'
         - $ref: '#/components/parameters/product_id'
         - $ref: '#/components/parameters/external_turnstile_permission_id'
+        - $ref: '#/components/parameters/entrance_order_item_id'
       responses:
         '200':
           description: OK
@@ -20997,6 +21016,19 @@ components:
       in: query
       description: 'If true, the property record structure will be included in the response. Possible values: true - property records structure will be included / false or not set - property records structure won''t be included, and parameter will return null value'
       example: true
+    state:
+      name: state
+      in: query
+      description: |
+        State of the resource. *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      required: false
+      schema:
+        type: integer
+        enum:
+          - 0
+          - 1
+          - 2
+      example: 1
     user_id_path:
       name: user_id
       in: path
@@ -21437,18 +21469,17 @@ components:
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048
-    state:
+    card_state:
       name: state
       in: query
       description: |
-        State of the customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+        State of the card. *Possible values are: 0 - blocked / 1 - active*
       required: false
       schema:
         type: integer
         enum:
           - 0
           - 1
-          - 2
       example: 1
     search_secondary_card_number:
       name: search_secondary_card_number
@@ -22297,6 +22328,14 @@ components:
           - true
           - false
       example: false
+    entrance_order_item_id:
+      name: order_item_id
+      in: query
+      required: false
+      description: ID of an item from e-shop order.
+      schema:
+        type: string
+      example: '12345'
     status_id_path:
       name: status_id
       in: path

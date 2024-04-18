@@ -34,6 +34,11 @@ post:
               readOnly: false
               description: Type of the transferred credits.
               example: '8adcb83164fa7e12668035d43e'
+            currency_id:
+              type: string
+              readOnly: false
+              description: ID of the currency from resource [currencies](#tag/Currencies). If not set, the default currency of the project is used.
+              example: "8bed991c68a470e7aaeffbf048"
             note:
               type: string
               readOnly: false

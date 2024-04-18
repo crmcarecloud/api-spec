@@ -35,6 +35,11 @@ post:
               readOnly: false
               description: The unique ID of the credit type. If the parameter is not set, a default credit type is set.
               example: '86e05affc7a7abefcd513ab400'
+            currency_id:
+              type: string
+              readOnly: false
+              description: ID of the currency from resource [currencies](#tag/Currencies). If not set, the default currency of the project is used.
+              example: "8bed991c68a470e7aaeffbf048"
             note:
               type: string
               readOnly: false

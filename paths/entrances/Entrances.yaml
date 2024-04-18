@@ -26,6 +26,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/valid_to'
     - $ref: '../../parameters/_index.yaml#/product_id'
     - $ref: '../../parameters/_index.yaml#/external_turnstile_permission_id'
+    - $ref: '../../parameters/_index.yaml#/entrance_order_item_id'
   responses:
     '200':
       description: OK

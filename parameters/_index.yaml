@@ -225,7 +225,19 @@ include_property_records:
   in: query
   description: "If true, the property record structure will be included in the response. Possible values: true - property records structure will be included / false or not set - property records structure won't be included, and parameter will return null value"
   example: true
-
+state:
+  name: state
+  in: query
+  description: |
+    State of the resource. *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+  required: false
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+  example: 1
 # Personal parameters
 user_id_path:
   name: user_id
@@ -678,18 +690,17 @@ card_type_id:
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
-state:
+card_state:
   name: state
   in: query
   description: |
-    State of the customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    State of the card. *Possible values are: 0 - blocked / 1 - active*
   required: false
   schema:
     type: integer
     enum:
       - 0
       - 1
-      - 2
   example: 1
 search_secondary_card_number:
   name: search_secondary_card_number
@@ -1575,7 +1586,14 @@ is_cancelled:
       - true
       - false
   example: false
-
+entrance_order_item_id:
+  name: order_item_id
+  in: query
+  required: false
+  description: ID of an item from e-shop order.
+  schema:
+    type: string
+  example: "84947e1aa1ad6982cc8188d15c"
 # Statuses
 status_id_path:
   name: status_id

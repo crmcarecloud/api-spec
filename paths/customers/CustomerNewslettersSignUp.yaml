@@ -22,6 +22,9 @@ post:
               readOnly: false
               description: The unique ID of the customer source.
               example: "86e05affc7a7abefcd513ab400"
+            agreements:
+              type: object
+              $ref: '../../schemas/_index.yaml#/Agreement'
           required:
             - contact
             - customer_source_id

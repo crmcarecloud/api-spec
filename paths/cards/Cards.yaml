@@ -13,7 +13,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/customer_id'
     - $ref: '../../parameters/_index.yaml#/card_number'
     - $ref: '../../parameters/_index.yaml#/card_type_id'
-    - $ref: '../../parameters/_index.yaml#/state'
+    - $ref: '../../parameters/_index.yaml#/card_state'
     - $ref: '../../parameters/_index.yaml#/is_valid'
     - $ref: '../../parameters/_index.yaml#/card_number_list'
     - $ref: '../../parameters/_index.yaml#/search_secondary_card_number'
