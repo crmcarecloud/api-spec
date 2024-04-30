@@ -18061,14 +18061,16 @@ components:
           example: Dear Mr. Smith
         gender:
           type: integer
+          nullable: true
           enum:
             - 1
             - 2
             - 3
             - 4
             - 5
+            - null
           readOnly: false
-          description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
+          description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other / null - Not set *'
           example: 1
         first_name:
           type: string
@@ -22335,7 +22337,7 @@ components:
       description: ID of an item from e-shop order.
       schema:
         type: string
-      example: '12345'
+      example: 84947e1aa1ad6982cc8188d15c
     status_id_path:
       name: status_id
       in: path
