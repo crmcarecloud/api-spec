@@ -19141,8 +19141,33 @@ components:
         product_id:
           type: string
           readOnly: false
-          description: 'The unique ID of the [product](#tag/Product).'
+          description: 'The unique ID of the [product](https://carecloud.readme.io/reference/getproducts).'
           example: 89b3b24b405f461c63d8fcaa0c
+        product_name:
+          type: string
+          readOnly: true
+          description: 'The unique name of the [product](https://carecloud.readme.io/reference/getproducts).'
+          example: Apple Watch Ultra 2
+        product_group_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the product group.
+          example: 82de12eb8b138791e678fd11c3
+        product_group_name:
+          type: string
+          readOnly: true
+          description: The unique ID of the product group.
+          example: Smart watch
+        product_brand_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the product brand.
+          example: 82db62087b0f79a6e14e5747e7
+        product_brand_name:
+          type: string
+          readOnly: true
+          description: The unique ID of the product brand.
+          example: Apple
         external_id:
           type: string
           readOnly: false
