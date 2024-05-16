@@ -5,6 +5,7 @@ get:
   description: >
     Get a list of all users in CareCloud.<br/>
     ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+    ⚠️ This endpoint is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
   operationId: getUsers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -17,6 +18,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/login'
     - $ref: '../../parameters/_index.yaml#/first_name'
     - $ref: '../../parameters/_index.yaml#/last_name'
+    - $ref: '../../parameters/_index.yaml#/store_id'
   responses:
     '200':
       description: OK

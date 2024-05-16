@@ -13,6 +13,10 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/store_id'
     - $ref: '../../parameters/_index.yaml#/purchase_type_id'
+    - $ref: '../../parameters/_index.yaml#/payment_time_from'
+    - $ref: '../../parameters/_index.yaml#/payment_time_to'
+    - $ref: '../../parameters/_index.yaml#/purchase_items_extension'
+    - $ref: '../../parameters/_index.yaml#/external_purchase_id'
   responses:
     '200':
       description: OK

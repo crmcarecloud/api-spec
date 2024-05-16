@@ -3516,6 +3516,10 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/store_id'
         - $ref: '#/components/parameters/purchase_type_id'
+        - $ref: '#/components/parameters/payment_time_from'
+        - $ref: '#/components/parameters/payment_time_to'
+        - $ref: '#/components/parameters/purchase_items_extension'
+        - $ref: '#/components/parameters/external_purchase_id'
       responses:
         '200':
           description: OK
@@ -14524,7 +14528,7 @@ paths:
         - Users
       summary: Get all users
       description: |
-        Get a list of all users in CareCloud.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+        Get a list of all users in CareCloud.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/> ⚠️ This endpoint is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
       operationId: getUsers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -14537,6 +14541,7 @@ paths:
         - $ref: '#/components/parameters/login'
         - $ref: '#/components/parameters/first_name'
         - $ref: '#/components/parameters/last_name'
+        - $ref: '#/components/parameters/store_id'
       responses:
         '200':
           description: OK
@@ -20614,6 +20619,11 @@ components:
           readOnly: true
           description: The unique ID of user's original store.
           example: 86e05affc7a7abecd513ab400
+        last_login:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last user login. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2021-04-16 18:22:35.052987'
       required:
         - login
         - first_name

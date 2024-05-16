@@ -41,6 +41,11 @@ properties:
     readOnly: true
     description: The unique ID of user's original store.
     example: "86e05affc7a7abecd513ab400"
+  last_login:
+    type: string
+    readOnly: true
+    description: Date and time of the last user login. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2021-04-16 18:22:35.052987"
 required:
   - login
   - first_name
