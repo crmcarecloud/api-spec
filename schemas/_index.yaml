@@ -56,6 +56,8 @@ CustomAgreements:
   $ref: "./CustomAgreements.yaml"
 Customer:
   $ref: "./Customer.yaml"
+CustomerEngagementSetup:
+  $ref: "./CustomerEngagementSetup.yaml"
 CustomerResult:
   $ref: "./CustomerResult.yaml"
 CustomerRelationType:

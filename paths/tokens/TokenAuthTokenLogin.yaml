@@ -1,0 +1,66 @@
+post:
+  tags:
+    - Tokens
+  summary: Login via authentication token
+  description: >
+    Log in the customer using the provided authentication token for a seamless and secure login experience. <br/>
+    The authentication token can be provided in the method [GET /tokens/{token_id}/actions/auth-token](https://carecloud.readme.io/reference/gettokenauthentication) <br/>
+    ⚠️ Endpoint is available only in Customer interface.<br/>
+  operationId: postTokenAuthTokenLogin
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/token_id_path'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            application_id:
+              type: string
+              description: 'ID of the original external application.The ID represents the external application where the token was created.'
+              example: "82de12eb8b138791e678fd11c3"
+            token:
+              type: string
+              description: 'Authentication token'
+              example: "V952TL"
+            token_request_id:
+              type: string
+              description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
+              example: "702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a"
+          required:
+            - application_id
+            - token
+            - token_request_id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  customer_id:
+                    type: string
+                    description: The unique ID of the logged in customer.
+                    example: "8ea6abece4cd0a4ded0a29f093"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

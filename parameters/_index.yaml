@@ -523,6 +523,25 @@ currency_name:
   schema:
     type: string
   example: "United States dollar"
+
+#Customer engagement
+ce_setup_id_path:
+  name: customer_engagement_setup_id
+  in: path
+  required: true
+  description: The unique ID of the customer engagement setup.
+  schema:
+    type: string
+  example: "8ea2591121e636086a4a9c0992"
+application_url:
+  name: application_url
+  in: query
+  description: Full URL of the application that uses customer engagement setup
+  required: false
+  schema:
+    type: string
+  example: "https://www.crmcarecloud.com"
+
 # Customer parameters
 customer_id_path:
   name: customer_id

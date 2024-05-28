@@ -1,0 +1,27 @@
+type: object
+description: Customer engagement setup structure.
+properties:
+  setup_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the customer engagement setup.
+    example: "8bed991c68a470e7aaeffbf048"
+  name:
+    type: string
+    readOnly: false
+    description: Name of the flag.
+    example: Portal
+  application_url:
+    type: string
+    readOnly: false
+    description: URL of the application where is the customer engagement setup used.
+    example: https://www.crmcarecloud.com
+  setup:
+    type: string
+    readOnly: false
+    description: Serialized JSON contains the customer engagement setup for the application
+    example: "{\"setup\": [{\"id\": 1,\"name\": \"Setup A\",\"parameters\": {\"param1\": \"value1\",\"param2\": \"value2\"}}]}"
+required:
+  - name
+  - setup
+  - application_url

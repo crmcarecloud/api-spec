@@ -21,8 +21,9 @@ post:
             login_type:
               type: string
               enum:
-                - card
                 - email
+                - phone
+                - card
               description: The unique ID of the login type.
               example: "email"
             login_value:

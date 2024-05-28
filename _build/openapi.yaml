@@ -46,6 +46,8 @@ tags:
     description: Action methods for resource customers.
   - name: Customer address types
     description: You can get the list of the available customer address types here.
+  - name: Customer engagement
+    description: Resource helps tracking of all customer actions in web applications.
   - name: Customer external applications
     description: 'An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.'
   - name: Customer properties
@@ -2361,6 +2363,255 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameter\n$card_type_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the card type\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = null; // string | The unique ID of the customer (optional, default is null)\n$is_valid = null; // boolean | in validity range - true / before or after validity range - false / no value - all (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_cards = $care_cloud->cardTypesApi()->getSubCardTypeCards($card_type_id, $accept_language);\n    $cards = $get_cards->getData()->getCards();\n    $total_items = $get_cards->getData()->getTotalItems();\n    var_dump($cards);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /entrances:
+    get:
+      tags:
+        - Charged entrances
+      summary: Get all entrances
+      description: Get a list of entrances in CRM CareCloud.
+      operationId: getEntrances
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/pos_id'
+        - $ref: '#/components/parameters/external_order_id'
+        - $ref: '#/components/parameters/entrance_name'
+        - $ref: '#/components/parameters/resort_name'
+        - $ref: '#/components/parameters/customer_category_name'
+        - $ref: '#/components/parameters/entrance_card_id'
+        - $ref: '#/components/parameters/customer_id'
+        - $ref: '#/components/parameters/entrance_type_id'
+        - $ref: '#/components/parameters/entrance_state'
+        - $ref: '#/components/parameters/external_entrance_id'
+        - $ref: '#/components/parameters/is_valid'
+        - $ref: '#/components/parameters/is_cancelled'
+        - $ref: '#/components/parameters/valid_from'
+        - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/product_id'
+        - $ref: '#/components/parameters/external_turnstile_permission_id'
+        - $ref: '#/components/parameters/entrance_order_item_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      entrances:
+                        type: array
+                        description: List of available entrances.
+                        items:
+                          $ref: '#/components/schemas/Entrance'
+                      total_items:
+                        type: integer
+                        description: The number of all found entrances.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/entrances/{entrance_id}':
+    get:
+      tags:
+        - Charged entrances
+      summary: Get an entrance
+      description: Get information about a specific entrance resource.
+      operationId: getEntrance
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/entrance_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Entrance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    put:
+      tags:
+        - Charged entrances
+      summary: Update an entrance
+      description: This method updates a specific entrance resource.
+      operationId: putEntrance
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/entrance_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entrance:
+                  $ref: '#/components/schemas/Entrance'
+              required:
+                - entrance
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /entrances/actions/overview:
+    get:
+      tags:
+        - Charged entrances
+      summary: Get entrances overview
+      description: Get information about entrances in time interval.
+      operationId: getEntrancesOverview
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/valid_from'
+        - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/pos_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      active_entrances:
+                        type: integer
+                        description: Amount of active entrances in date range. Active entrances can be used by customers in their validity range.
+                        example: 113655
+                      canceled_entrances:
+                        type: integer
+                        description: Amount of canceled entrances in date range. Canceled entrances in production systems and in CareCloud. Customers cannot use them anymore.
+                        example: 446
+                      deactivated_entrances:
+                        type: integer
+                        description: Amount of deactivated entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud.
+                        example: 233834
+                      sold_entrances:
+                        type: integer
+                        description: Amount of sold entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud.
+                        example: 347489
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /entrances/actions/customer-stats:
+    get:
+      tags:
+        - Charged entrances
+      summary: Get a customer entrances usage stats
+      description: 'Get an information about how a customer used the entrances (usage, gamification, etc.)'
+      operationId: getEntrancesCustomerStats
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_required'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      distance:
+                        type: number
+                        description: Amount of kilometers that customer skied in the date range.
+                        example: 130.25
+                      elevation:
+                        type: number
+                        description: Elevation gained during skiing in the date range in meters.
+                        example: 10000
+                      skier_days:
+                        type: integer
+                        description: Number of days in the date range that a customer used his entrance ticket
+                        example: 20
+                      ski_achievement_text_id:
+                        type: string
+                        description: It represents a ski achievement text ID gained by the customer.
+                        example: blue_powder
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /communication-channels:
     get:
       tags:
@@ -5336,7 +5587,7 @@ paths:
               properties:
                 application_id:
                   type: string
-                  description: ID of the application. Application is the source of the token.
+                  description: ID of the original external application.The ID represents the external application where the token was created.
                   example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
@@ -5703,6 +5954,68 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /customers/actions/check-registration-ability:
+    post:
+      tags:
+        - Customers actions
+      summary: Check ability to register a customer
+      description: |
+        Check ability to register a customer with his identifier (email or phone number).
+      operationId: postCustomersCheckRegistrationAbility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - email
+                    - phone
+                  description: Type of the customer identifier.
+                  example: email
+                value:
+                  type: string
+                  description: Value of the customer identifier.
+                  example: example@crmcarecloud.com
+              required:
+                - type
+                - value
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      registration_ability:
+                        type: boolean
+                        description: |
+                          Result of the possibility to register a customer with his identifier.
+                          *Possible results are: false - The identifier cannot be use for the registration / true - Identifier can be use for the registration *
+                        example: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customer-address-types:
     get:
       tags:
@@ -5796,6 +6109,93 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$customer_address_type_id = '86e05affc7a7abefcd513ab400'; // string | The unique ID of the customer address type in CareCloud\n\n// Call endpoint and get data\ntry\n{\n    $get_customer_address_type = $care_cloud->customerAddressTypesApi()->getCustomerAddressType(\n        $customer_address_type_id,\n        $accept_language\n    );\n    $customer_address_type = $get_customer_address_type->getData();\n    var_dump($customer_address_type);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /customer-engagement-setups:
+    get:
+      tags:
+        - Customer engagement
+      summary: Get all customer engagement setups
+      description: The endpoint returns all available setups for customer engagement
+      operationId: getCustomerEngagementSetups
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/application_url'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      customer_engagement_setups:
+                        type: array
+                        description: List of all setups.
+                        items:
+                          $ref: '#/components/schemas/CustomerEngagementSetup'
+                      total_items:
+                        type: integer
+                        description: The number of all found setups.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/customer-engagement-setups/{customer_engagement_setup_id}':
+    get:
+      tags:
+        - Customer engagement
+      summary: Get a customer engagement setup
+      description: Get information about a specific customer engagement setup.
+      operationId: getCustomerEngagementSetup
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/ce_setup_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerEngagementSetup'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customer-external-applications:
     get:
       tags:
@@ -12176,255 +12576,6 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$segment_group_id = '86e05affc7a7abefcd513ab400'; // string | The unique ID of the segment group\n\n// Call endpoint and get data\ntry\n{\n    $get_segment_group = $care_cloud->segmentsApi()->getSegmentGroup($segment_group_id, $accept_language);\n    $segment_group = $get_segment_group->getData();\n    var_dump($segment_group);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
-  /entrances:
-    get:
-      tags:
-        - Charged entrances
-      summary: Get all entrances
-      description: Get a list of entrances in CRM CareCloud.
-      operationId: getEntrances
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/count'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/sort_field'
-        - $ref: '#/components/parameters/sort_direction'
-        - $ref: '#/components/parameters/pos_id'
-        - $ref: '#/components/parameters/external_order_id'
-        - $ref: '#/components/parameters/entrance_name'
-        - $ref: '#/components/parameters/resort_name'
-        - $ref: '#/components/parameters/customer_category_name'
-        - $ref: '#/components/parameters/entrance_card_id'
-        - $ref: '#/components/parameters/customer_id'
-        - $ref: '#/components/parameters/entrance_type_id'
-        - $ref: '#/components/parameters/entrance_state'
-        - $ref: '#/components/parameters/external_entrance_id'
-        - $ref: '#/components/parameters/is_valid'
-        - $ref: '#/components/parameters/is_cancelled'
-        - $ref: '#/components/parameters/valid_from'
-        - $ref: '#/components/parameters/valid_to'
-        - $ref: '#/components/parameters/product_id'
-        - $ref: '#/components/parameters/external_turnstile_permission_id'
-        - $ref: '#/components/parameters/entrance_order_item_id'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      entrances:
-                        type: array
-                        description: List of available entrances.
-                        items:
-                          $ref: '#/components/schemas/Entrance'
-                      total_items:
-                        type: integer
-                        description: The number of all found entrances.
-                        example: 1
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-  '/entrances/{entrance_id}':
-    get:
-      tags:
-        - Charged entrances
-      summary: Get an entrance
-      description: Get information about a specific entrance resource.
-      operationId: getEntrance
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/entrance_id_path'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Entrance'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-    put:
-      tags:
-        - Charged entrances
-      summary: Update an entrance
-      description: This method updates a specific entrance resource.
-      operationId: putEntrance
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/entrance_id_path'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                entrance:
-                  $ref: '#/components/schemas/Entrance'
-              required:
-                - entrance
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-  /entrances/actions/overview:
-    get:
-      tags:
-        - Charged entrances
-      summary: Get entrances overview
-      description: Get information about entrances in time interval.
-      operationId: getEntrancesOverview
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/valid_from'
-        - $ref: '#/components/parameters/valid_to'
-        - $ref: '#/components/parameters/pos_id'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      active_entrances:
-                        type: integer
-                        description: Amount of active entrances in date range. Active entrances can be used by customers in their validity range.
-                        example: 113655
-                      canceled_entrances:
-                        type: integer
-                        description: Amount of canceled entrances in date range. Canceled entrances in production systems and in CareCloud. Customers cannot use them anymore.
-                        example: 446
-                      deactivated_entrances:
-                        type: integer
-                        description: Amount of deactivated entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud.
-                        example: 233834
-                      sold_entrances:
-                        type: integer
-                        description: Amount of sold entrances in date range. Entrances deactivated in CareCloud only. These entrances are usually not sent to production systems. Deactivation have been done in system CareCloud.
-                        example: 347489
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-  /entrances/actions/customer-stats:
-    get:
-      tags:
-        - Charged entrances
-      summary: Get a customer entrances usage stats
-      description: 'Get an information about how a customer used the entrances (usage, gamification, etc.)'
-      operationId: getEntrancesCustomerStats
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/customer_id_required'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      distance:
-                        type: number
-                        description: Amount of kilometers that customer skied in the date range.
-                        example: 130.25
-                      elevation:
-                        type: number
-                        description: Elevation gained during skiing in the date range in meters.
-                        example: 10000
-                      skier_days:
-                        type: integer
-                        description: Number of days in the date range that a customer used his entrance ticket
-                        example: 20
-                      ski_achievement_text_id:
-                        type: string
-                        description: It represents a ski achievement text ID gained by the customer.
-                        example: blue_powder
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
   /statuses:
     get:
       tags:
@@ -14226,8 +14377,10 @@ paths:
                 login_type:
                   type: string
                   enum:
-                    - card
                     - email
+                    - phone
+                    - card
+                    - authorization_token
                   description: The unique ID of the login type.
                   example: email
                 login_value:
@@ -14312,6 +14465,71 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->tokensApi()->postTokenLogout($token_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/tokens/{token_id}/actions/authentication-token-login':
+    post:
+      tags:
+        - Tokens
+      summary: Login via authentication token
+      description: |
+        Log in the customer using the provided authentication token for a seamless and secure login experience. <br/> The authentication token can be provided in the method [GET /tokens/{token_id}/actions/auth-token](https://carecloud.readme.io/reference/gettokenauthentication) <br/> ⚠️ Endpoint is available only in Customer interface.<br/>
+      operationId: postTokenAuthTokenLogin
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/token_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                application_id:
+                  type: string
+                  description: ID of the original external application.The ID represents the external application where the token was created.
+                  example: 82de12eb8b138791e678fd11c3
+                token:
+                  type: string
+                  description: Authentication token
+                  example: V952TL
+                token_request_id:
+                  type: string
+                  description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
+                  example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
+              required:
+                - application_id
+                - token
+                - token_request_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      customer_id:
+                        type: string
+                        description: The unique ID of the logged in customer.
+                        example: 8ea6abece4cd0a4ded0a29f093
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/tokens/{token_id}/actions/social-network-login':
     servers:
       - url: 'https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0'
@@ -15075,6 +15293,34 @@ paths:
                   $ref: '#/components/schemas/Voucher'
               required:
                 - voucher
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      tags:
+        - Vouchers
+      summary: Delete a voucher
+      description: With this endpoint you can delete only not used vouchers. The endpoint provides a return of the loyalty points or credits if used for purchase of the voucher.
+      operationId: deleteVoucher
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/voucher_id_path'
       responses:
         '204':
           description: No Content
@@ -16858,6 +17104,34 @@ components:
           example: 1
       required:
         - personal_information
+    CustomerEngagementSetup:
+      type: object
+      description: Customer engagement setup structure.
+      properties:
+        setup_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the customer engagement setup.
+          example: 8bed991c68a470e7aaeffbf048
+        name:
+          type: string
+          readOnly: false
+          description: Name of the flag.
+          example: Portal
+        application_url:
+          type: string
+          readOnly: false
+          description: URL of the application where is the customer engagement setup used.
+          example: 'https://www.crmcarecloud.com'
+        setup:
+          type: string
+          readOnly: false
+          description: Serialized JSON contains the customer engagement setup for the application
+          example: '{"setup": [{"id": 1,"name": "Setup A","parameters": {"param1": "value1","param2": "value2"}}]}'
+      required:
+        - name
+        - setup
+        - application_url
     CustomerResult:
       type: object
       description: Search results for the strict mode.
@@ -21341,6 +21615,22 @@ components:
       schema:
         type: string
       example: United States dollar
+    ce_setup_id_path:
+      name: customer_engagement_setup_id
+      in: path
+      required: true
+      description: The unique ID of the customer engagement setup.
+      schema:
+        type: string
+      example: 8ea2591121e636086a4a9c0992
+    application_url:
+      name: application_url
+      in: query
+      description: Full URL of the application that uses customer engagement setup
+      required: false
+      schema:
+        type: string
+      example: 'https://www.crmcarecloud.com'
     customer_id_path:
       name: customer_id
       in: path

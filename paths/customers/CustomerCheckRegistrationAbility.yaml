@@ -1,0 +1,61 @@
+post:
+  tags:
+    - Customers actions
+  summary: Check ability to register a customer
+  description: >
+    Check ability to register a customer with his identifier (email or phone number).
+  operationId: postCustomersCheckRegistrationAbility
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - email
+                - phone
+              description: Type of the customer identifier.
+              example: "email"
+            value:
+              type: string
+              description: Value of the customer identifier.
+              example: "example@crmcarecloud.com"
+          required:
+            - type
+            - value
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  registration_ability:
+                    type: boolean
+                    description: |
+                      Result of the possibility to register a customer with his identifier.
+                      *Possible results are: false - The identifier cannot be use for the registration / true - Identifier can be use for the registration *
+                    example: true
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

@@ -46,6 +46,8 @@ tags:
     description: Action methods for resource customers.
   - name: Customer address types
     description: You can get the list of the available customer address types here.
+  - name: Customer engagement
+    description: Resource helps tracking of all customer actions in web applications.
   - name: Customer external applications
     description: An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.
   - name: Customer properties

@@ -15,7 +15,7 @@ post:
           properties:
             application_id:
               type: string
-              description: 'ID of the application. Application is the source of the token.'
+              description: 'ID of the original external application.The ID represents the external application where the token was created.'
               example: "82de12eb8b138791e678fd11c3"
             token:
               type: string

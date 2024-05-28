@@ -68,6 +68,17 @@
 /card-types/{card_type_id}/cards:
   $ref: "./cards/SubCardTypeCards.yaml"
 
+#Charged entrances
+/entrances:
+  $ref: "./entrances/Entrances.yaml"
+/entrances/{entrance_id}:
+  $ref: "./entrances/Entrance.yaml"
+#Actions
+/entrances/actions/overview:
+  $ref: "./entrances/EntrancesOverview.yaml"
+/entrances/actions/customer-stats:
+  $ref: "./entrances/EntrancesCustomerStats.yaml"
+
 # Communication channels
 /communication-channels:
   $ref: "./communication_channels/CommunicationChannels.yaml"
@@ -177,11 +188,20 @@
   $ref: "./customers/CustomerSetPushNotifications.yaml"
 /customers/actions/cancel-push-notifications:
   $ref: "./customers/CustomerCancelPushNotifications.yaml"
+/customers/actions/check-registration-ability:
+  $ref: "./customers/CustomerCheckRegistrationAbility.yaml"
 # Customer address types
 /customer-address-types:
   $ref: "./customers/CustomerAddressTypes.yaml"
 /customer-address-types/{customer_address_type_id}:
   $ref: "./customers/CustomerAddressType.yaml"
+
+# Customer engagement setup
+/customer-engagement-setups:
+  $ref: "./customer_engagement/Setups.yaml"
+/customer-engagement-setups/{customer_engagement_setup_id}:
+  $ref: "./customer_engagement/Setup.yaml"
+
 # Customer external applications
 /customer-external-applications:
   $ref: "./customers/CustomerExternalApps.yaml"
@@ -494,16 +514,6 @@
   $ref: "./segments/SegmentGroups.yaml"
 /segment-groups/{segment_group_id}:
   $ref: "./segments/SegmentGroup.yaml"
-#Charged entrances
-/entrances:
-  $ref: "./entrances/Entrances.yaml"
-/entrances/{entrance_id}:
-  $ref: "./entrances/Entrance.yaml"
-#Actions
-/entrances/actions/overview:
-  $ref: "./entrances/EntrancesOverview.yaml"
-/entrances/actions/customer-stats:
-  $ref: "./entrances/EntrancesCustomerStats.yaml"
 
 #Statuses
 /statuses:
@@ -580,6 +590,8 @@
   $ref: "./tokens/TokenLogin.yaml"
 /tokens/{token_id}/actions/logout:
   $ref: "./tokens/TokenLogout.yaml"
+/tokens/{token_id}/actions/authentication-token-login:
+  $ref: "./tokens/TokenAuthTokenLogin.yaml"
 /tokens/{token_id}/actions/social-network-login:
   $ref: "./tokens/TokenSocialLogin.yaml"
 /tokens/{token_id}/actions/send-password-setup-email:
