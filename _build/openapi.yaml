@@ -2066,6 +2066,63 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsGeneratedigitalcardfileBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set info to the request body\n$body = new ActionsGeneratedigitalcardfileBody();\n$body->setCardId('8bd253a890067595008f1d44aa'); // string | ID of the card. It will generate file from this card\n$body->setFileType('png'); // string | Type of the final file Possible values: png - generates picture in png format /wallet - generates pass package file for Apple Wallet\n\n// Call endpoint and post data\ntry\n{\n    $post_generate_card = $care_cloud->cardsApi()->postGenerateDigitalCard($body, $accept_language);\n    $file_url = $post_generate_card->getData()->getFileUrl();\n    var_dump($file_url);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /cards/actions/generate-pass-machine-card:
+    post:
+      tags:
+        - Cards
+      summary: Get a PassMachine digital card
+      description: Generate a link for a PassMachine digital card.
+      operationId: postGeneratePassMachine
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer with PassMachine.
+                  example: 8ea2591121e636086a4a9c0992
+                passmachine_template_id:
+                  type: string
+                  description: 'ID of a template from PassMachine. The ID is available in administration environment of PassMachine. If the parameter is not set, the default template is used.'
+                  example: 8ea2591121e636086a4a9c0992
+              required:
+                - customer_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      file_url:
+                        description: URL address of the PassMachine card.
+                        type: string
+                        example: 'https://dev-carecloud.cortex.cz//crm/scripts/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /cards/batch:
     post:
       tags:
@@ -5009,6 +5066,7 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/related_customer_id'
         - $ref: '#/components/parameters/customer_relation_type_id'
+        - $ref: '#/components/parameters/all_customer_relations'
       responses:
         '200':
           description: OK
@@ -5828,6 +5886,11 @@ paths:
                 agreements:
                   type: object
                   $ref: '#/components/schemas/Agreement'
+                language_id:
+                  type: string
+                  readOnly: false
+                  description: The unique ID of the language by ISO 639-1 code.
+                  example: en
               required:
                 - contact
                 - customer_source_id
@@ -6122,8 +6185,6 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/application_url'
       responses:
         '200':
           description: OK
@@ -6793,7 +6854,7 @@ paths:
                   $ref: '#/components/schemas/Event'
                 property_records:
                   type: array
-                  description: List of an event property records.
+                  description: Additional properties of the event. This parameter contain values in GET response only if query parameter `include_property_records` is set to true.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
               required:
@@ -8673,6 +8734,66 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsTransferpointsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1. Default: cs, en-gb;q=0.8\n\n// Set the request body\n$body = new ActionsTransferpointsBody();\n$body->setAmount(100); // float | Number of transferred points\n$body->setOriginalCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the original point's holder\n$body->setNewCustomerId('88a1b431227d2172d60285b4e1'); // string | The unique ID of the new point's holder\n$body->setPointTypeId('8adcb83164fa7e12668035d43e'); // string | Type of the transferred points\n\n// Call endpoint and post data\ntry\n{\n  $care_cloud->pointsApi()->postPointsTransfer($body, $accept_language);\n}\ncatch(ApiException $e)\n{\n  die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /points/actions/synchronize-points:
+    post:
+      tags:
+        - Points
+      summary: Synchronize customer's points
+      description: |
+        Synchronize the amount of points for the customer's account. Set the value, that will represent how many points the customer carries currently.
+      operationId: postPointsSynchronize
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  readOnly: false
+                  description: ID of the customer you want to synchronize points.
+                  example: 8ea2591121e636086a4a9c0992
+                amount:
+                  type: number
+                  readOnly: false
+                  format: float
+                  description: Amount of points that will represent the current state of customer's points.
+                  example: 100
+                partner_id:
+                  type: string
+                  readOnly: false
+                  description: 'The unique ID of the partner. If not set, default partner on the project is used.'
+                  example: 86e05affc7a7abefcd513ab400
+                note:
+                  type: string
+                  readOnly: false
+                  description: Note for the synchronization record.
+                  example: Initial synchronization of points from production system
+              required:
+                - customer_id
+                - amount
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /point-history:
     get:
       tags:
@@ -12350,6 +12471,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/segment_id_path'
+        - $ref: '#/components/parameters/segment_group_ids'
       responses:
         '200':
           description: OK
@@ -14380,7 +14502,6 @@ paths:
                     - email
                     - phone
                     - card
-                    - authorization_token
                   description: The unique ID of the login type.
                   example: email
                 login_value:
@@ -14485,7 +14606,7 @@ paths:
               properties:
                 application_id:
                   type: string
-                  description: ID of the original external application.The ID represents the external application where the token was created.
+                  description: ID of the external application.The ID represents the application where customer wants to login.
                   example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
@@ -14493,7 +14614,7 @@ paths:
                   example: V952TL
                 token_request_id:
                   type: string
-                  description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
+                  description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents doubled verification to identify the correct token. In case you dont need to have two factor authentication, please send both parameters (token and token_request_id) one way. For example in HTTP Authentication header.'
                   example: 702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a
               required:
                 - application_id
@@ -14660,9 +14781,9 @@ paths:
                   data:
                     type: object
                     properties:
-                      token:
+                      authentication_token:
                         type: string
-                        description: Authentication token for external application.
+                        description: Authentication token allows customer to log in into another external application.
                         example: LQ55EH
                       token_request_id:
                         type: string
@@ -17113,25 +17234,11 @@ components:
           readOnly: true
           description: The unique ID of the customer engagement setup.
           example: 8bed991c68a470e7aaeffbf048
-        name:
-          type: string
-          readOnly: false
-          description: Name of the flag.
-          example: Portal
-        application_url:
-          type: string
-          readOnly: false
-          description: URL of the application where is the customer engagement setup used.
-          example: 'https://www.crmcarecloud.com'
         setup:
           type: string
-          readOnly: false
+          readOnly: true
           description: Serialized JSON contains the customer engagement setup for the application
           example: '{"setup": [{"id": 1,"name": "Setup A","parameters": {"param1": "value1","param2": "value2"}}]}'
-      required:
-        - name
-        - setup
-        - application_url
     CustomerResult:
       type: object
       description: Search results for the strict mode.
@@ -17431,12 +17538,6 @@ components:
             State of the event type.
             *Possible values are: 0 - deleted / 1 - active / 2 - non active*
           example: 1
-        property_records:
-          type: array
-          items:
-            $ref: '#/components/schemas/PropertyRecord'
-          readOnly: false
-          description: Additional properties of the event. This parameter contain values only if `include_property_records` is set to true.
       required:
         - event_type_id
         - customer_id
@@ -17492,6 +17593,11 @@ components:
           readOnly: false
           description: Name of the event type.
           example: Voucher
+        icon_name:
+          type: string
+          readOnly: false
+          description: 'Icon name from [Google Fonts Icons](https://fonts.google.com/icons).'
+          example: check_box
         state:
           type: integer
           enum:
@@ -20883,11 +20989,13 @@ components:
           readOnly: false
           description: Phone number of the user with international prefix (420000000).
           example: '420523828931'
-        user_role_id:
-          type: string
+        user_role_ids:
+          type: array
           readOnly: true
-          description: The unique ID of the user role.
-          example: 86e05affc7a7befcd513ab400
+          description: The list of the user role IDs.
+          example:
+            - 86e05affc7a7befcd513ab400
+            - 89ce2a1b9b01f5c939fb1e20cd
         store_id:
           type: string
           readOnly: true
@@ -21623,14 +21731,6 @@ components:
       schema:
         type: string
       example: 8ea2591121e636086a4a9c0992
-    application_url:
-      name: application_url
-      in: query
-      description: Full URL of the application that uses customer engagement setup
-      required: false
-      schema:
-        type: string
-      example: 'https://www.crmcarecloud.com'
     customer_id_path:
       name: customer_id
       in: path
@@ -22003,6 +22103,17 @@ components:
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048
+    all_customer_relations:
+      name: all_customer_relations
+      in: query
+      description: 'The API call returns all relations (currently valid and relations from the past) in case of true value. If the parameter is not set or has value false, only currently valid relations are returned.'
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+        default: false
     campaign_id_path:
       name: campaign_id
       in: path
@@ -22867,7 +22978,7 @@ components:
       name: external_application_id
       in: query
       required: true
-      description: 'ID of external application. For ID of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications).'
+      description: 'ID of an external application. This is an application that you want to login a customer with an authentication token. For ID of an external application, please contact your CareCloud administrator.'
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048

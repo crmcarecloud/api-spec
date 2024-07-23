@@ -25,6 +25,11 @@ post:
             agreements:
               type: object
               $ref: '../../schemas/_index.yaml#/Agreement'
+            language_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the language by ISO 639-1 code.
+              example: "en"
           required:
             - contact
             - customer_source_id

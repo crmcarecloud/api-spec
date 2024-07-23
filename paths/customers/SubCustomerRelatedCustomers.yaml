@@ -13,6 +13,8 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/related_customer_id'
     - $ref: '../../parameters/_index.yaml#/customer_relation_type_id'
+    - $ref: '../../parameters/_index.yaml#/all_customer_relations'
+
   responses:
     '200':
       description: OK

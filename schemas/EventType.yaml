@@ -16,6 +16,11 @@ properties:
     readOnly: false
     description: Name of the event type.
     example: "Voucher"
+  icon_name:
+    type: string
+    readOnly: false
+    description: Icon name from [Google Fonts Icons](https://fonts.google.com/icons).
+    example: "check_box"
   state:
     type: integer
     enum:

@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Points
+  summary: Synchronize customer's points
+  description: |
+    Synchronize the amount of points for the customer's account. Set the value, that will represent how many points the customer carries currently.
+  operationId: postPointsSynchronize
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              readOnly: false
+              description: ID of the customer you want to synchronize points.
+              example: '8ea2591121e636086a4a9c0992'
+            amount:
+              type: number
+              readOnly: false
+              format: float
+              description: Amount of points that will represent the current state of customer's points.
+              example: 100
+            partner_id:
+              type: string
+              readOnly: false
+              description: The unique ID of the partner. If not set, default partner on the project is used.
+              example: '86e05affc7a7abefcd513ab400'
+            note:
+              type: string
+              readOnly: false
+              description: Note for the synchronization record.
+              example: 'Initial synchronization of points from production system'
+          required:
+            - customer_id
+            - amount
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

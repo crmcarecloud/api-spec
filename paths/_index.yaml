@@ -56,6 +56,8 @@
   $ref: "./cards/CardValidateFree.yaml"
 /cards/actions/generate-digital-card-file:
   $ref: "./cards/CardGenerateDigital.yaml"
+/cards/actions/generate-pass-machine-card:
+  $ref: "./cards/CardGeneratePassMachine.yaml"
 # Batch
 /cards/batch:
   $ref: "./cards/CardsBatch.yaml"
@@ -333,6 +335,8 @@
   $ref: "./points/PointsAssign.yaml"
 /points/actions/transfer-points:
   $ref: "./points/PointsTransfer.yaml"
+/points/actions/synchronize-points:
+  $ref: "./points/PointsSynchronize.yaml"
 #Point history
 /point-history:
   $ref: "./points/PointHistory.yaml"

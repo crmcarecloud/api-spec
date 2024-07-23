@@ -10,8 +10,6 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/name'
-    - $ref: '../../parameters/_index.yaml#/application_url'
   responses:
     '200':
       description: OK

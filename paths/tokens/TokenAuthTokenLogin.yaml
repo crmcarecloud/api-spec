@@ -19,7 +19,7 @@ post:
           properties:
             application_id:
               type: string
-              description: 'ID of the original external application.The ID represents the external application where the token was created.'
+              description: 'ID of the external application.The ID represents the application where customer wants to login.'
               example: "82de12eb8b138791e678fd11c3"
             token:
               type: string
@@ -27,7 +27,7 @@ post:
               example: "V952TL"
             token_request_id:
               type: string
-              description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
+              description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents doubled verification to identify the correct token. In case you dont need to have two factor authentication, please send both parameters (token and token_request_id) one way. For example in HTTP Authentication header.'
               example: "702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a"
           required:
             - application_id

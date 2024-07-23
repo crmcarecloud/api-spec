@@ -24,9 +24,9 @@ get:
               data:
                 type: object
                 properties:
-                  token:
+                  authentication_token:
                     type: string
-                    description: 'Authentication token for external application.'
+                    description: 'Authentication token allows customer to log in into another external application.'
                     example: "LQ55EH"
                   token_request_id:
                     type: string

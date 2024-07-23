@@ -31,11 +31,11 @@ properties:
     readOnly: false
     description: Phone number of the user with international prefix (420000000).
     example: "420523828931"
-  user_role_id:
-    type: string
+  user_role_ids:
+    type: array
     readOnly: true
-    description: The unique ID of the user role.
-    example: "86e05affc7a7befcd513ab400"
+    description: The list of the user role IDs.
+    example: ["86e05affc7a7befcd513ab400","89ce2a1b9b01f5c939fb1e20cd"]
   store_id:
     type: string
     readOnly: true

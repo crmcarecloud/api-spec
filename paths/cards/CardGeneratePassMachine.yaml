@@ -1,0 +1,56 @@
+post:
+  tags:
+    - Cards
+  summary: Get a PassMachine digital card
+  description: Generate a link for a PassMachine digital card.
+  operationId: postGeneratePassMachine
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique ID of the customer with PassMachine.
+              example: "8ea2591121e636086a4a9c0992"
+            passmachine_template_id:
+              type: string
+              description: ID of a template from PassMachine. The ID is available in administration environment of PassMachine. If the parameter is not set, the default template is used.
+              example: "8ea2591121e636086a4a9c0992"
+          required:
+            - customer_id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  file_url:
+                    description: URL address of the PassMachine card.
+                    type: string
+                    example: "https:\/\/dev-carecloud.cortex.cz\/\/crm\/scripts\/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

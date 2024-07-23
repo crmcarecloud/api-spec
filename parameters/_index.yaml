@@ -533,15 +533,6 @@ ce_setup_id_path:
   schema:
     type: string
   example: "8ea2591121e636086a4a9c0992"
-application_url:
-  name: application_url
-  in: query
-  description: Full URL of the application that uses customer engagement setup
-  required: false
-  schema:
-    type: string
-  example: "https://www.crmcarecloud.com"
-
 # Customer parameters
 customer_id_path:
   name: customer_id
@@ -928,6 +919,17 @@ customer_relation_type_id:
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
+all_customer_relations:
+  name: all_customer_relations
+  in: query
+  description: The API call returns all relations (currently valid and relations from the past) in case of true value. If the parameter is not set or has value false, only currently valid relations are returned.
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+    default: false
 # Campaigns
 campaign_id_path:
   name: campaign_id
@@ -1824,7 +1826,7 @@ external_application_id:
   name: external_application_id
   in: query
   required: true
-  description: ID of external application. For ID of external application, please contact your account manager or look to resource [customer-external-applications](#tag/Customer-external-applications).
+  description: ID of an external application. This is an application that you want to login a customer with an authentication token. For ID of an external application, please contact your CareCloud administrator.
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"

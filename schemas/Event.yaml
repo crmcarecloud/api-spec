@@ -52,12 +52,6 @@ properties:
       State of the event type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
-  property_records:
-    type: array
-    items:
-      $ref: '../schemas/_index.yaml#/PropertyRecord'
-    readOnly: false
-    description: Additional properties of the event. This parameter contain values only if `include_property_records` is set to true.
 required:
   - event_type_id
   - customer_id
