@@ -1,9 +1,9 @@
 get:
   tags:
     - Customers
-  summary: Get a collection of recommendation records
-  description: Get information about all recommendation records on a customer account.
-  operationId: getSubCustomerRecommendation
+  summary: Get a collection of Hint records
+  description: Get information about all Hint records on a customer account.
+  operationId: getSubCustomerHintRecords
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/customer_id_path'
@@ -25,12 +25,12 @@ get:
                 properties:
                   recommendations:
                     type: array
-                    description: List of recommendation records.
+                    description: List of Hint records.
                     items:
                       $ref: '../../schemas/_index.yaml#/Recommendation'
                   total_items:
                     type: integer
-                    description: The number of all found recommendation records.
+                    description: The number of all found Hint records.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

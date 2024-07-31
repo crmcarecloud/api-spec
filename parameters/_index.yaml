@@ -467,7 +467,9 @@ credit_type_id_path:
 credit_type_id:
   name: credit_type_id
   in: query
-  description: The unique ID of a credit type.
+  description: |
+    The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type. <br/>
+    In case you want to filter multiple options use array syntax : `credit_type_id[]=8bc8ca16f9c5039951021700a2&credit_type_id[]=82c06812c0756528660784fef`
   required: false
   schema:
     type: string
@@ -793,6 +795,15 @@ reward_id_path:
   schema:
     type: string
   example: "8fd73167342d06899c4c015320"
+reward_id:
+  name: reward_id
+  in: query
+  description: |
+    The unique ID of the reward in CareCloud. In case you want to filter multiple options use array syntax : `reward_id[]=8bc8ca16f9c5039951021700a2&reward_id[]=82c06812c0756528660784fef`
+  required: false
+  schema:
+    type: string
+  example: "81eaeea13b8984a169c490a325"
 reward_property_id_path:
   name: reward_property_id
   in: path

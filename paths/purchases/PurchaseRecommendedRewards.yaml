@@ -1,8 +1,8 @@
 post:
   tags:
     - Purchases
-  summary: Recommended best rewards
-  description: Method returns all available rewards for POS installation. The output contains list of all available and valid rewards. Each reward contains a parameter of maximum usage of rewards in a purchase. If amount equals zero, reward can not be applied. Rewards are allways connected to products through bill items.
+  summary: Best rewards for purchase
+  description: Method returns all available rewards for POS installation. The output contains list of all available and valid rewards. Each reward contains a parameter of maximum usage of rewards in a purchase. If amount equals zero, reward can not be applied. Rewards are always connected to products through bill items.
   operationId: postPurchaseRecommendedRewards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

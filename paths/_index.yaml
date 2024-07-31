@@ -134,6 +134,8 @@
   $ref: "./customers/SubCustomerVouchers.yaml"
 /customers/{customer_id}/rewards:
   $ref: "./customers/SubCustomerRewards.yaml"
+/customers/{customer_id}/reward-recommendations:
+  $ref: "./customers/SubCustomerRewardRecommendations.yaml"
 /customers/{customer_id}/cards:
   $ref: "./customers/SubCustomerCards.yaml"
 /customers/{customer_id}/segment-records:
@@ -489,6 +491,9 @@
   $ref: "./rewards/RewardCreateVoucher.yaml"
 /rewards/{reward_id}/actions/set-products:
   $ref: "./rewards/RewardSynchronizeProducts.yaml"
+/rewards/actions/reward-recommendations:
+  $ref: "./rewards/RewardRecommendations.yaml"
+
 #Reward properties
 /reward-properties:
   $ref: "./rewards/RewardProperties.yaml"

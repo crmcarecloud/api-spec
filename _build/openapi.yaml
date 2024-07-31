@@ -3942,6 +3942,7 @@ paths:
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/is_applied'
         - $ref: '#/components/parameters/without_stores'
+        - $ref: '#/components/parameters/reward_id'
       responses:
         '200':
           description: OK
@@ -4050,6 +4051,70 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameter\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional, default is null)\n$store_id = null; // string | The unique ID of the store where customer can apply the reward (optional, default is null)\n$is_valid = null; // boolean | In validity range - true / before or after validity range - false / no value - all (optional, default is null)\n$valid_from = null; // string | Date from when is record already valid (YYYY-MM-DD) (optional, default is null)\n$valid_to = null; // string | Date to when is record still valid (YYYY-MM-DD) (optional, default is null)\n$code = null; // string | The code of the reward (optional, default is null)\n$is_automated = null; // boolean | Possible values: true - returns all automated rewards / false - returns all non automated rewards / no value - all rewards (optional)\n$reward_group = null; // integer | Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward (optional)\n$customer_type_id = null; // string[] | Select by list of customer types from customer-types resource. Logic OR is used between values (optional)\n$without_stores = null; // boolean | If true, the data will not contain information about business units (stores). If false, or not set resource returns default structure (optional)\n$tag_ids = null; // string[] | Parameter filters values by a list of tag IDs. Logic OR is used between values (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_rewards = $care_cloud->customersApi()->getSubCustomerRewards(\n        $customer_id,\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name,\n        $store_id,\n        $is_valid,\n        $valid_from,\n        $valid_to,\n        $code,\n        $is_automated,\n        $reward_group,\n        $customer_type_id,\n        $without_stores,\n        $tag_ids\n    );\n    $rewards = $get_rewards->getData()->getRewards();\n    $total_items = $get_rewards->getData()->getTotalItems();\n    var_dump($rewards);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/customers/{customer_id}/reward-recommendations':
+    get:
+      tags:
+        - Customers
+      summary: Recommend the best rewards for the customer
+      description: |
+        The endpoint recommends and orders the best rewards for the customer depending on the query parameters setup.
+        This endpoint uses a machine learning-based CareCloud Recommendation Engine. The CareCloud Recommendation Engine requires additional setup and training of AI models. If the recommendation models are not trained for your project, The endpoint returns a list of all rewards filtered by query parameters.    
+        <p class="warning">⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.</p>
+      operationId: getSubCustomerRewardsRecommendation
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/reward_store_id'
+        - $ref: '#/components/parameters/is_valid'
+        - $ref: '#/components/parameters/valid_from'
+        - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/reward_code'
+        - $ref: '#/components/parameters/is_automated'
+        - $ref: '#/components/parameters/reward_group'
+        - $ref: '#/components/parameters/customer_type_id_arr'
+        - $ref: '#/components/parameters/without_stores'
+        - $ref: '#/components/parameters/tag_id_arr'
+        - $ref: '#/components/parameters/partner_id'
+        - $ref: '#/components/parameters/reward_type_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      rewards:
+                        type: array
+                        description: List of recommended best rewards for the customer.
+                        items:
+                          $ref: '#/components/schemas/Reward'
+                      total_items:
+                        type: integer
+                        description: The number of all found rewards.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/customers/{customer_id}/cards':
     get:
       tags:
@@ -4218,9 +4283,9 @@ paths:
     get:
       tags:
         - Customers
-      summary: Get a collection of recommendation records
-      description: Get information about all recommendation records on a customer account.
-      operationId: getSubCustomerRecommendation
+      summary: Get a collection of Hint records
+      description: Get information about all Hint records on a customer account.
+      operationId: getSubCustomerHintRecords
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/customer_id_path'
@@ -4242,12 +4307,12 @@ paths:
                     properties:
                       recommendations:
                         type: array
-                        description: List of recommendation records.
+                        description: List of Hint records.
                         items:
                           $ref: '#/components/schemas/Recommendation'
                       total_items:
                         type: integer
-                        description: The number of all found recommendation records.
+                        description: The number of all found Hint records.
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -6024,6 +6089,7 @@ paths:
       summary: Check ability to register a customer
       description: |
         Check ability to register a customer with his identifier (email or phone number).
+        ⚠️ For use in the Customer interface integration (mobile application, web portal, or kiosk), this action method has to be allowed in CareCloud. Please contact the CareCloud administrator.
       operationId: postCustomersCheckRegistrationAbility
       requestBody:
         required: true
@@ -6037,7 +6103,7 @@ paths:
                   enum:
                     - email
                     - phone
-                  description: Type of the customer identifier.
+                  description: Type of the customer identifier. Phone numbers can be checked only if the phone is unique in the CareCloud project.
                   example: email
                 value:
                   type: string
@@ -10636,8 +10702,8 @@ paths:
     post:
       tags:
         - Purchases
-      summary: Recommended best rewards
-      description: 'Method returns all available rewards for POS installation. The output contains list of all available and valid rewards. Each reward contains a parameter of maximum usage of rewards in a purchase. If amount equals zero, reward can not be applied. Rewards are allways connected to products through bill items.'
+      summary: Best rewards for purchase
+      description: 'Method returns all available rewards for POS installation. The output contains list of all available and valid rewards. Each reward contains a parameter of maximum usage of rewards in a purchase. If amount equals zero, reward can not be applied. Rewards are always connected to products through bill items.'
       operationId: postPurchaseRecommendedRewards
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -12070,7 +12136,7 @@ paths:
         - Rewards
       summary: Create a new voucher
       description: |
-        Create a new voucher for a specific customer based on a reward features definition.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+        Create a new voucher for a specific customer based on a reward features definition.<br/>
       operationId: postRewardCreateVoucher
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -12179,6 +12245,70 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PluId;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ProductBatch;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ProductsBatchBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set products info\n$plu_id = new PluId();\n$plu_id->setListCode('GLOBAL'); // string | Code of the particular product list (“GLOBAL”, “SKU”, “PLU”, etc.)\n$plu_id->setCode('abc123'); // string | Code of product from the product list\n\n$product1 = new ProductBatch();\n$product1->setName('Apple Clock'); // strong | The name of the product\n$product1->setCode(null); // string | The code of the product (optional)\n$product1->setPluIds(array($plu_id)); // array of PluID objects\n$product1->setProductGroupId(null); // string | The unique ID of the product group (optional)\n$product1->setProductGroupExternalId(null); // string | The unique external ID of the product group (optional)\n$product1->setProductBrandId(null); // string | The unique ID of the product brand (optional)\n$product1->setProductBrandExternalId(null); // string | The unique external ID of the product brand (optional)\n$product1->setStoreId(null); // string | The unique ID for the store where the product group is valid (optional)\n\n// Set the request body\n$body = new ProductsBatchBody();\n$body->setProducts(array($product1));\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->productsApi()->postBulkProducts($body, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /rewards/actions/reward-recommendations:
+    get:
+      tags:
+        - Rewards
+      summary: Recommend the best rewards for the customer
+      description: |
+        The endpoint recommends and orders the best rewards for the customer depending on the query parameters setup.
+        This endpoint uses a machine learning-based CareCloud Recommendation Engine. The CareCloud Recommendation Engine requires additional setup and training of AI models. If the recommendation models are not trained for your project, The endpoint returns a list of all rewards filtered by query parameters.    
+        <p class="warning">⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.</p>
+      operationId: getRewardRecommendations
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/reward_store_id'
+        - $ref: '#/components/parameters/is_valid'
+        - $ref: '#/components/parameters/valid_from'
+        - $ref: '#/components/parameters/valid_to'
+        - $ref: '#/components/parameters/reward_code'
+        - $ref: '#/components/parameters/is_automated'
+        - $ref: '#/components/parameters/reward_group'
+        - $ref: '#/components/parameters/customer_type_id_arr'
+        - $ref: '#/components/parameters/without_stores'
+        - $ref: '#/components/parameters/tag_id_arr'
+        - $ref: '#/components/parameters/partner_id'
+        - $ref: '#/components/parameters/reward_type_id'
+        - $ref: '#/components/parameters/customer_id_required'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      rewards:
+                        type: array
+                        description: List of recommended best rewards for the customer.
+                        items:
+                          $ref: '#/components/schemas/Reward'
+                      total_items:
+                        type: integer
+                        description: The number of all found rewards.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /reward-properties:
     get:
       tags:
@@ -14712,9 +14842,9 @@ paths:
     post:
       tags:
         - Tokens
-      summary: Send email for set up of the new customer password
+      summary: Send the message for the setup of a new customer's password
       description: |
-        Send email, that contains link to set up a new customer password.<br/> The use case [Forgotten password](https://www.crmcarecloud.com/build-a-mobile-app/) shows how to use this action method.<br/> ⚠️ Endpoint is available only in Customer interface.<br/> ⚠️ An extra setup of event type in CareCloud could be necessary to make this method work correctly. If so, don't hesitate to get in touch with the CareCloud administrator in your organization.<br/>
+        Send a message, that contains a link to set up a new customer password.<br/> The use case [Forgotten password](https://www.crmcarecloud.com/build-a-mobile-app/#accordion-customer-use-case-customer-account-operations-4) shows how to use this action method.<br/> ⚠️ Endpoint is available only in the Customer interface.<br/> ⚠️ An extra setup of the event type in CareCloud could be necessary to make the endpoint work correctly. If so, don't hesitate to get in touch with the CareCloud administrator in your organization.<br/>
       operationId: postTokenSendPasswordSetup
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -14728,10 +14858,21 @@ paths:
               properties:
                 email:
                   type: string
-                  description: Message with a setup password link will be delivered to this email address.
+                  description: |
+                    Message with a setup password link will be delivered to this email address. <br/>
+                    ⚠️This parameter is deprecated and will be removed in the future versions of CareCloud API.If possible do not use it.
                   example: happy_customer@carecloud.com
-              required:
-                - email
+                  deprecated: true
+                communication_channel_id:
+                  type: string
+                  description: |
+                    ID of communication channels that will be used for password setup. Parameter is required if `email` parameter is not set.The list of all available channels is provided here: [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels) <br/>
+                    The possibility of a password setup message from a channel may vary depending on the project setup. For more information, please contact the CareCloud administrator.
+                  example: 86e05affc7a7abefcd513ab400
+                recipient:
+                  type: string
+                  description: Recipient of the message with a password setup. The value of a parameter depending on `communication_channel_id`. Parameter is required if `email` parameter is not set.
+                  example: happy_customer@crmcarecloud.com
       responses:
         '204':
           description: No Content
@@ -15314,6 +15455,7 @@ paths:
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/is_applied'
         - $ref: '#/components/parameters/without_stores'
+        - $ref: '#/components/parameters/reward_id'
       responses:
         '200':
           description: OK
@@ -15824,6 +15966,7 @@ paths:
         - $ref: '#/components/parameters/customer_id_required'
         - $ref: '#/components/parameters/date_from'
         - $ref: '#/components/parameters/date_to'
+        - $ref: '#/components/parameters/credit_type_id'
       responses:
         '200':
           description: OK
@@ -17239,6 +17382,15 @@ components:
           readOnly: true
           description: Serialized JSON contains the customer engagement setup for the application
           example: '{"setup": [{"id": 1,"name": "Setup A","parameters": {"param1": "value1","param2": "value2"}}]}'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: 'State of the customer engagement setup. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+          example: 1
     CustomerResult:
       type: object
       description: Search results for the strict mode.
@@ -21668,7 +21820,9 @@ components:
     credit_type_id:
       name: credit_type_id
       in: query
-      description: The unique ID of a credit type.
+      description: |
+        The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type. <br/>
+        In case you want to filter multiple options use array syntax : `credit_type_id[]=8bc8ca16f9c5039951021700a2&credit_type_id[]=82c06812c0756528660784fef`
       required: false
       schema:
         type: string
@@ -21983,6 +22137,15 @@ components:
       schema:
         type: string
       example: 8fd73167342d06899c4c015320
+    reward_id:
+      name: reward_id
+      in: query
+      description: |
+        The unique ID of the reward in CareCloud. In case you want to filter multiple options use array syntax : `reward_id[]=8bc8ca16f9c5039951021700a2&reward_id[]=82c06812c0756528660784fef`
+      required: false
+      schema:
+        type: string
+      example: 81eaeea13b8984a169c490a325
     reward_property_id_path:
       name: reward_property_id
       in: path

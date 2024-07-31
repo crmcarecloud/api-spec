@@ -11,3 +11,12 @@ properties:
     readOnly: true
     description: Serialized JSON contains the customer engagement setup for the application
     example: "{\"setup\": [{\"id\": 1,\"name\": \"Setup A\",\"parameters\": {\"param1\": \"value1\",\"param2\": \"value2\"}}]}"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: 'State of the customer engagement setup. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+    example: 1

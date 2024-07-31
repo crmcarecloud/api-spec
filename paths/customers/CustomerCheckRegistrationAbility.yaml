@@ -2,8 +2,9 @@ post:
   tags:
     - Customers actions
   summary: Check ability to register a customer
-  description: >
+  description: |
     Check ability to register a customer with his identifier (email or phone number).
+    ⚠️ For use in the Customer interface integration (mobile application, web portal, or kiosk), this action method has to be allowed in CareCloud. Please contact the CareCloud administrator.
   operationId: postCustomersCheckRegistrationAbility
   requestBody:
     required: true
@@ -17,7 +18,7 @@ post:
               enum:
                 - email
                 - phone
-              description: Type of the customer identifier.
+              description: Type of the customer identifier. Phone numbers can be checked only if the phone is unique in the CareCloud project.
               example: "email"
             value:
               type: string
