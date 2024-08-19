@@ -5646,53 +5646,6 @@ paths:
             {
                 die(var_dump($e->getResponseBody() ?: $e->getMessage()));
             }
-  /customers/actions/search-customers:
-    get:
-      tags:
-        - Customers actions
-      summary: Search customers
-      description: |
-        Search all customers matching for parameters.
-
-        <p class="warning">⚠️ Action method for search customers is available only in Enterprise interface.</p>
-      operationId: getCustomerSearch
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/first_name'
-        - $ref: '#/components/parameters/last_name'
-        - $ref: '#/components/parameters/birthdate'
-        - $ref: '#/components/parameters/card_number'
-        - $ref: '#/components/parameters/searchMode'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/CustomerSearchResult'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      x-codeSamples:
-        - lang: PHP
-          label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$first_name = 'Andrew'; // string | Search by first name (optional)\n$lastname = 'Black'; // string | Search by last name (optional)\n$birthdate = '1980-12-02'; // string | Customer's date of birth. Possible values are: YYYY-MM-DD / DD.MM.YYYY (optional)\n$card_number = '1000000000016'; // string | Number of the customer card (optional)\n$mode = 'strict'; // string | Possible values are: strict - return only 100% matching results (all path parameters are required)\n\n// Call endpoint and get data\ntry\n{\n    $get_customers = $care_cloud->customersActionsApi()->getCustomerSearch(\n        $accept_language,\n        $first_name,\n        $lastname,\n        $birthdate,\n        $card_number,\n        $mode\n    );\n    $customers = $get_customers->getData();\n    var_dump($customers);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customers/actions/verify-auth-token:
     post:
       tags:
@@ -5759,6 +5712,114 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsVerifyauthtokenBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'token';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Set query parameters\n$external_application_id = '82de12eb8b138791e678fd11c3'; // string | ID of the external application\n$token_type = 1; // integer | Possible values: 1 - alphanumeric, 2 - numeric\n\n// Set the request body\n$body = new ActionsVerifyauthtokenBody();\n$body->setApplicationId($external_application_id);\n$body->setToken('V952TL');\n$body->setTokenRequestId('326a3adc83f925a27cb8c0318d9bbceeb00f65e4');\n\n// Call endpoint and post data\ntry\n{\n    $post_verify_token = $care_cloud->customersActionsApi()->postCustomersVerifyAuthToken($body);\n    $customer_id = $post_verify_token->getData()->getCustomerId();\n    var_dump($customer_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /customers/actions/validate-customer-data:
+    post:
+      tags:
+        - Customers actions
+      summary: Validation of the customer data
+      description: |
+        The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
+      operationId: postCustomersValidateCustomerData
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - password
+                  description: Type of the customer data for the CareCloud validation.
+                  example: password
+                value:
+                  type: string
+                  description: Value of the customer data for the CareCloud validation.
+                  example: neGIecAcu#Tawp0b@Kir
+              required:
+                - type
+                - value
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      is_valid:
+                        type: boolean
+                        description: |
+                          Result of the CareCloud validation.
+                          *Possible results are: false - The parameter has not valid value by CareCloud standard / true - The parameter has value value by CareCloud standard *
+                        example: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /customers/actions/search-customers:
+    get:
+      tags:
+        - Customers actions
+      summary: Search customers
+      description: |
+        Search all customers matching for parameters.
+
+        <p class="warning">⚠️ Action method for search customers is available only in Enterprise interface.</p>
+      operationId: getCustomerSearch
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/first_name'
+        - $ref: '#/components/parameters/last_name'
+        - $ref: '#/components/parameters/birthdate'
+        - $ref: '#/components/parameters/card_number'
+        - $ref: '#/components/parameters/searchMode'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerSearchResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$first_name = 'Andrew'; // string | Search by first name (optional)\n$lastname = 'Black'; // string | Search by last name (optional)\n$birthdate = '1980-12-02'; // string | Customer's date of birth. Possible values are: YYYY-MM-DD / DD.MM.YYYY (optional)\n$card_number = '1000000000016'; // string | Number of the customer card (optional)\n$mode = 'strict'; // string | Possible values are: strict - return only 100% matching results (all path parameters are required)\n\n// Call endpoint and get data\ntry\n{\n    $get_customers = $care_cloud->customersActionsApi()->getCustomerSearch(\n        $accept_language,\n        $first_name,\n        $lastname,\n        $birthdate,\n        $card_number,\n        $mode\n    );\n    $customers = $get_customers->getData();\n    var_dump($customers);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customers/actions/upload-customer-photo:
     post:
       tags:
@@ -11021,7 +11082,7 @@ paths:
       tags:
         - Purchase item types
       summary: Get all purchase item types
-      description: Get a list of purchase item types accepted in CRM CareCloud.
+      description: 'Get a list of purchase item types accepted in CRM CareCloud. There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.'
       operationId: getPurchaseItemTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -18762,7 +18823,7 @@ components:
           readOnly: true
           description: The unique ID of the customer.
           example: 87af991126405bf8e7dfb36045
-        amount:
+        point_amount:
           type: number
           format: float
           readOnly: true
@@ -19713,7 +19774,7 @@ components:
         purchase_item_type_id:
           type: string
           readOnly: false
-          description: Type of the purchase item.
+          description: 'Type of the purchase item.There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.'
           example: 86e05affc7a7abefcd513ab400
         price:
           type: number

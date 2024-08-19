@@ -1,0 +1,60 @@
+post:
+  tags:
+    - Customers actions
+  summary: Validation of the customer data
+  description: |
+    The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
+  operationId: postCustomersValidateCustomerData
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - password
+              description: Type of the customer data for the CareCloud validation.
+              example: "password"
+            value:
+              type: string
+              description: Value of the customer data for the CareCloud validation.
+              example: "neGIecAcu#Tawp0b@Kir"
+          required:
+            - type
+            - value
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  is_valid:
+                    type: boolean
+                    description: |
+                      Result of the CareCloud validation.
+                      *Possible results are: false - The parameter has not valid value by CareCloud standard / true - The parameter has value value by CareCloud standard *
+                    example: true
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

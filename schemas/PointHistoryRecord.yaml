@@ -6,7 +6,7 @@ properties:
     readOnly: true
     description: The unique ID of the customer.
     example: "87af991126405bf8e7dfb36045"
-  amount:
+  point_amount:
     type: number
     format: float
     readOnly: true

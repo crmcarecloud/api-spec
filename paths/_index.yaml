@@ -176,10 +176,12 @@
   $ref: "./customers/CustomerVerifyCredentials.yaml"
 /customers/actions/verify-social-network-credentials:
   $ref: "./customers/CustomerVerifySocialNetworkCredentials.yaml"
-/customers/actions/search-customers:
-  $ref: "./customers/CustomersSearch.yaml"
 /customers/actions/verify-auth-token:
   $ref: "./customers/CustomerVerifyAuthToken.yaml"
+/customers/actions/validate-customer-data:
+  $ref: "./customers/CustomerValidateCustomerData.yaml"
+/customers/actions/search-customers:
+  $ref: "./customers/CustomersSearch.yaml"
 /customers/actions/upload-customer-photo:
   $ref: "./customers/CustomerUploadPhoto.yaml"
 /customers/actions/set-partners:

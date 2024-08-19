@@ -2,7 +2,7 @@ get:
   tags:
     - Purchase item types
   summary: Get all purchase item types
-  description: Get a list of purchase item types accepted in CRM CareCloud.
+  description: Get a list of purchase item types accepted in CRM CareCloud. There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.
   operationId: getPurchaseItemTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
