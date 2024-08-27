@@ -6922,6 +6922,8 @@ paths:
         - $ref: '#/components/parameters/external_id'
         - $ref: '#/components/parameters/event_type_ids'
         - $ref: '#/components/parameters/include_property_records'
+        - $ref: '#/components/parameters/time_from_full'
+        - $ref: '#/components/parameters/time_to_full'
       responses:
         '200':
           description: OK
@@ -16642,7 +16644,7 @@ components:
         purchase_item_type_id:
           type: string
           readOnly: false
-          description: 'Type of the purchase item from resource [purchase-item-types](#tag/Purchase-item-types).'
+          description: 'Type of the purchase item from resource [purchase-item-types](https://carecloud.readme.io/reference/getpurchaseitemtypes).There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.'
           example: 86e05affc7a7abefcd513ab400
         customer_id:
           type: string
@@ -18666,9 +18668,8 @@ components:
             - 3
             - 4
             - 5
-            - null
           readOnly: false
-          description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other / null - Not set *'
+          description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
           example: 1
         first_name:
           type: string
