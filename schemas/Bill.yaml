@@ -24,7 +24,7 @@ properties:
   currency_id:
     type: string
     readOnly: false
-    description: ID of the currency from resource [currencies](#tag/Currencies).
+    description: ID of the currency from resource [currencies](https://carecloud.readme.io/reference/getcurrencies).
     example: "8bed991c68a470e7aaeffbf048"
   total_price:
     type: number
