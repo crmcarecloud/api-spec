@@ -7,12 +7,14 @@ properties:
     description: Code of discount (set value “offline” for offline mode discounts).
     example:
   discount_value:
-    type: string
+    type: number
+    format: float
     readOnly: false
     description: Value of discount in the currency of the bill.
     example:
   discount_percent:
-    type: string
+    type: number
+    format: float
     readOnly: false
     description: Discount percentage of the bill.
     example:

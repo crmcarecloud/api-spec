@@ -33,6 +33,8 @@ properties:
     example: "420523828931"
   user_role_ids:
     type: array
+    items:
+      type: string
     readOnly: true
     description: The list of the user role IDs.
     example: ["86e05affc7a7befcd513ab400","89ce2a1b9b01f5c939fb1e20cd"]

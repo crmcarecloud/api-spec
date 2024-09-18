@@ -2,11 +2,11 @@ type: object
 description: Final bill structure.
 properties:
   fiscal:
+    deprecated: true
     type: boolean
     enum:
       - true
       - false
-    readOnly: false
     description: Information, whether it is a fiscal bill.
     example: true
   purchase_type_id:
@@ -86,7 +86,6 @@ required:
   - currency_id
   - total_price
   - bill_items
-  - fiscal
   - purchase_type_id
   - canceled
   - payment_type

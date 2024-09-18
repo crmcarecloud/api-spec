@@ -122,9 +122,10 @@ put:
             password:
               type: string
               format: password
-              description: 'Password of customer.'
+              description: 'This is the customer’s password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
               example: "fbsdfbkjebf$2,4d4fnb#,ds4@fnm,2dsf6sa"
             social_network_credentials:
+              description: 'This is the customer’s social media credentials. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
           required:
             - customer

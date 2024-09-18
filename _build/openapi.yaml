@@ -3750,9 +3750,10 @@ paths:
                 password:
                   type: string
                   format: password
-                  description: Password of customer.
+                  description: 'This is the customer’s password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
                   example: 'fbsdfbkjebf$2,4d4fnb#,ds4@fnm,2dsf6sa'
                 social_network_credentials:
+                  description: 'This is the customer’s social media credentials. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
                   $ref: '#/components/schemas/SocialNetworkCredentials'
               required:
                 - customer
@@ -14907,7 +14908,7 @@ paths:
         - Tokens
       summary: Send the message for the setup of a new customer's password
       description: |
-        Send a message, that contains a link to set up a new customer password.<br/> The use case [Forgotten password](https://www.crmcarecloud.com/build-a-mobile-app/#accordion-customer-use-case-customer-account-operations-4) shows how to use this action method.<br/> ⚠️ Endpoint is available only in the Customer interface.<br/> ⚠️ An extra setup of the event type in CareCloud could be necessary to make the endpoint work correctly. If so, don't hesitate to get in touch with the CareCloud administrator in your organization.<br/>
+        Send a message, that contains a link to set up a new customer password.<br/> The use case [Forgotten password](https://www.crmcarecloud.com/build-a-mobile-app/#accordion-customer-use-case-customer-account-operations-4) shows how to use this action method.<br/> ⚠️ Endpoint is available only in the Customer interface.<br/> ⚠️ An extra setup of the Marketing Automation scenario in CareCloud could be necessary to make the endpoint work correctly. If so, don't hesitate to get in touch with the CareCloud administrator in your organization.<br/>
       operationId: postTokenSendPasswordSetup
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16564,7 +16565,7 @@ components:
         currency_id:
           type: string
           readOnly: false
-          description: 'ID of the currency from resource [currencies](#tag/Currencies).'
+          description: 'ID of the currency from resource [currencies](https://carecloud.readme.io/reference/getcurrencies).'
           example: 8bed991c68a470e7aaeffbf048
         total_price:
           type: number
@@ -16647,6 +16648,7 @@ components:
           description: 'Type of the purchase item from resource [purchase-item-types](https://carecloud.readme.io/reference/getpurchaseitemtypes).There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.'
           example: 86e05affc7a7abefcd513ab400
         customer_id:
+          deprecated: true
           type: string
           readOnly: false
           description: The ID of the customer.
@@ -17677,12 +17679,14 @@ components:
           description: Code of discount (set value “offline” for offline mode discounts).
           example: null
         discount_value:
-          type: string
+          type: number
+          format: float
           readOnly: false
           description: Value of discount in the currency of the bill.
           example: null
         discount_percent:
-          type: string
+          type: number
+          format: float
           readOnly: false
           description: Discount percentage of the bill.
           example: null
@@ -17883,11 +17887,11 @@ components:
       description: Final bill structure.
       properties:
         fiscal:
+          deprecated: true
           type: boolean
           enum:
             - true
             - false
-          readOnly: false
           description: 'Information, whether it is a fiscal bill.'
           example: true
         purchase_type_id:
@@ -17967,7 +17971,6 @@ components:
         - currency_id
         - total_price
         - bill_items
-        - fiscal
         - purchase_type_id
         - canceled
         - payment_type
@@ -21205,6 +21208,8 @@ components:
           example: '420523828931'
         user_role_ids:
           type: array
+          items:
+            type: string
           readOnly: true
           description: The list of the user role IDs.
           example:
