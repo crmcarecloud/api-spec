@@ -198,6 +198,14 @@ Reward:
   $ref: "./Reward.yaml"
 RewardProduct:
   $ref: "./RewardProduct.yaml"
+RewardProductBrand:
+  $ref: "./RewardProductBrand.yaml"
+RewardProductGroup:
+  $ref: "./RewardProductGroup.yaml"
+RewardProductRelationBonus:
+  $ref: "./RewardProductRelationBonus.yaml"
+RewardProductRelationCondition:
+  $ref: "./RewardProductRelationCondition.yaml"
 RewardProperties:
   $ref: "./RewardProperties.yaml"
 RewardType:

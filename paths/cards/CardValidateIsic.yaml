@@ -1,0 +1,120 @@
+post:
+  tags:
+    - Cards
+  summary: Validate ISIC card
+  description: |
+    Method validates if a card is valid ISIC card and there is a possibility to check if the card is already present in CareCloud database.
+
+  operationId: postValidateIsicCard
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            card_number:
+              type: string
+              description: Number of the ISIC card to validate.
+              example: "S123456789012X"
+            last_name:
+              type: string
+              description: Last name of the ISIC card holder.
+              example: "Bright"
+            check_usage:
+              type: boolean
+              enum:
+                - true
+                - false
+              description: If true, check if the card can be used in CareCloud, or if the ISIC  with this number already exists. If not set, this check is ignored.
+              example: true
+              default: false
+          required:
+            - card_number
+            - last_name
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  valid_isic:
+                    type: boolean
+                    enum:
+                      - true
+                      - false
+                    readOnly: true
+                    description: An information if ISIC card is valid.
+                    example: "false"
+                  is_free_to_use:
+                    type: boolean
+                    enum:
+                      - true
+                      - false
+                    readOnly: true
+                    description: An information if the card is free to use in CareCloud. If the request parameter `check_usage` is not set or false, the value is not set.
+                    example: "false"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsAssignfreecardBody;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+        require_once '../vendor/autoload.php';
+
+        $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+        $login = 'login';
+        $password = 'password';
+        $external_app_id = 'application_id';
+        $auth_type = AuthTypes::BEARER_AUTH;
+
+        $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+        $care_cloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set card info to the request body
+        $body = new ActionsAssignfreecardBody();
+        $body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder
+        $body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type
+
+        // Call endpoint and post data
+        try
+        {
+            $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);
+            $card_id = $post_assign_card->getData()->getCardId();
+            var_dump($card_id);
+        }
+        catch(ApiException $e)
+        {
+            die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }

@@ -102,17 +102,43 @@ properties:
     type: boolean
     readOnly: true
     description: Parameter says, if there is product condition on reward.
-    example: false
+    example: true
   has_group_condition:
     type: boolean
     readOnly: true
     description: Parameter says, if there is group condition on reward.
-    example: true
+    example: false
   has_brand_condition:
     type: boolean
     readOnly: true
     description: Parameter says, if there is brand condition on reward.
     example: false
+  has_product_bonus:
+    type: boolean
+    readOnly: true
+    description: Parameter says, if there is product bonus on reward.
+    example: true
+  has_group_bonus:
+    type: boolean
+    description: Parameter says, if there is group bonus on reward.
+    example: false
+  has_brand_bonus:
+    type: boolean
+    readOnly: true
+    description: Parameter says, if there is brand bonus on reward.
+    example: false
+  reward_product_relation_conditions:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/RewardProductRelationCondition'
+    readOnly: true
+    description: Conditions between reward and product.
+  reward_product_relation_bonuses:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/RewardProductRelationBonus'
+    readOnly: true
+    description: Bonuses between reward and product.
   is_automated:
     type: boolean
     readOnly: false

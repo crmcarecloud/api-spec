@@ -2,11 +2,10 @@ type: object
 description: External code resource.
 properties:
   external_code_type_id:
-    type: integer
+    type: string
     readOnly: false
     description: The unique ID of the external code type (provided in [GET /product-reservation-external-list-types](https://carecloud.readme.io/reference/getproductreservationexternallisttypes)).
     example: "86e05affc7a7abefcd513ab400"
-    default: "86e05affc7a7abefcd513ab400"
   value:
     type: string
     readOnly: false

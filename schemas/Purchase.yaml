@@ -68,6 +68,13 @@ properties:
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-01-17 00:00:00"
+  purchase_property_records:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
+    readOnly: true
+    default: false
+    description: List of purchase property records.
 required:
   - customer_id
   - store_id

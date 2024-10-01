@@ -8,3 +8,11 @@ allOf:
         readOnly: true
         description: A minimal amount of purchase products to apply reward.
         example: 2
+      reward_product_relation_type:
+        type: string
+        enum:
+          - "condition"
+          - "bonus"
+        readOnly: true
+        description: Parameter identify type of the relation between reward and product.
+        example: "condition"

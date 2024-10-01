@@ -11,6 +11,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/reward_product_relation_type'
   responses:
     '200':
       description: OK
@@ -26,7 +27,7 @@ get:
                     type: array
                     description: List of product groups tied to the reward.
                     items:
-                      $ref: '../../schemas/_index.yaml#/ProductGroup'
+                      $ref: '../../schemas/_index.yaml#/RewardProductGroup'
                   total_items:
                     type: integer
                     description: The number of all found product groups.

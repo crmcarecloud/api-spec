@@ -80,6 +80,11 @@ properties:
       $ref: '../schemas/_index.yaml#/BillItem'
     readOnly: false
     description: List of bill items.
+  property_records:
+    type: array
+    description: List of a purchase property records
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
 required:
   - bill_id
   - payment_time

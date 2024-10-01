@@ -1,0 +1,25 @@
+type: object
+description: Customer's consents.
+properties:
+  related_to:
+    type: string
+    enum:
+      - "product"
+      - "product_group"
+      - "product_brand"
+    description: 'Parameter defines where is the reward condition related to. *Possible values: product - relation between reward and product / product_group - relation between reward and product group / product_brand - relation between reward and product brand *'
+    example: "product"
+  count:
+    type: integer
+    description: 'Count of the type(product, group or brand) in the shopping cart to fulfill the condition.'
+    example: 3
+  min_price:
+    type: number
+    format: float
+    description: 'Minimum price of the type (product, group, brand) in the shopping cart to fulfill the condition.'
+    example: 11.3
+  max_price:
+    type: number
+    format: float
+    description: 'Maximum price of the type (product, group, brand) in the shopping cart to fulfill the condition.'
+    example: 22

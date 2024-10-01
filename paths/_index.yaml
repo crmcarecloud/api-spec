@@ -58,6 +58,8 @@
   $ref: "./cards/CardGenerateDigital.yaml"
 /cards/actions/generate-pass-machine-card:
   $ref: "./cards/CardGeneratePassMachine.yaml"
+/cards/actions/validate-isic-card:
+  $ref: "./cards/CardValidateIsic.yaml"
 # Batch
 /cards/batch:
   $ref: "./cards/CardsBatch.yaml"
@@ -447,7 +449,11 @@
 #  Purchase types
 /purchase-types:
   $ref: "./purchases/PurchaseTypes.yaml"
-
+# Purchase properties
+/purchase-properties:
+  $ref: "./purchases/PurchaseProperties.yaml"
+/purchase-properties/{purchase_property_id}:
+  $ref: "./purchases/PurchaseProperty.yaml"
 #  Recommendations
 /recommendations:
   $ref: "./recommendations/Recommendations.yaml"

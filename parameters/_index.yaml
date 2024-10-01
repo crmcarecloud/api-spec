@@ -884,6 +884,16 @@ reward_store_id:
   schema:
     type: string
   example: "81eaeea13b8984a169c490a325"
+reward_product_relation_type:
+  name: reward_product_relation_type
+  in: query
+  description: Parameter identify type of the relation between reward and product | product group | product brand.
+  schema:
+    type: string
+    enum:
+      - "condition"
+      - "bonus"
+  example: "condition"
 
 # Customer External applications
 customer_external_application_id_path:
@@ -1081,6 +1091,18 @@ language_list_type:
       - customer-communication
     default: carecloud-api
   example: "customer-communication"
+default_language:
+  name: default_language
+  in: query
+  description: "Default language of the project. If true, the endpoint returns only default language of the project."
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+    default: false
+  example: "false"
 
 # Messages
 message_id_path:
@@ -1459,7 +1481,15 @@ purchase_items_extension:
       - true
       - false
     default: false
-
+# Purchase properties
+purchase_property_id_path:
+  name: purchase_property_id
+  in: path
+  description: The unique ID of the purchase property.
+  required: true
+  schema:
+    type: string
+  example: "customers_note"
 # Recommendation
 recommendation_id_path:
   name: recommendation_id

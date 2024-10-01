@@ -392,6 +392,8 @@ tags:
       </table>
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
+  - name: Purchase properties
+    description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
   - name: Reservable products
@@ -411,7 +413,13 @@ tags:
   - name: Store groups
     description: List of store groups.
   - name: Store properties
-    description: Store properties are list of available properties for store resource.
+    description: Store properties are list of available properties for the store resource.
+  - name: Tasks
+    description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
+  - name: Task properties
+    description: Task properties are list of available properties for the task resource.
+  - name: Tests
+    description: Test resource lets you check if the API is currently available.
   - name: Tokens
     description: |
       Management of token resources. Tokens are used for identification of the application installation on a device and for setup of basic application parameters (permissions, language, notification identification). <p class="warning">⚠️ Warning: Tokens resource is available only in Customer interface.</p> <p class="warning">Note: The process of authentication and login to customer account using the HTTP methods  /tokens and  /tokens/{token_id}/actions/login is desribed in the section <a href="#section/Use-cases/Authentication-and-login-process-for-customer-interface">Use cases</a>.</p>
@@ -2071,7 +2079,7 @@ paths:
       tags:
         - Cards
       summary: Get a PassMachine digital card
-      description: Generate a link for a PassMachine digital card.
+      description: 'Generate a link for a PassMachine digital card. This endpoint generate PassMachine from an existing customer card. If the card is missing, the PassMachine link can''t be generated.'
       operationId: postGeneratePassMachine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2123,6 +2131,89 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /cards/actions/validate-isic-card:
+    post:
+      tags:
+        - Cards
+      summary: Validate ISIC card
+      description: |
+        Method validates if a card is valid ISIC card and there is a possibility to check if the card is already present in CareCloud database.
+      operationId: postValidateIsicCard
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_number:
+                  type: string
+                  description: Number of the ISIC card to validate.
+                  example: S123456789012X
+                last_name:
+                  type: string
+                  description: Last name of the ISIC card holder.
+                  example: Bright
+                check_usage:
+                  type: boolean
+                  enum:
+                    - true
+                    - false
+                  description: 'If true, check if the card can be used in CareCloud, or if the ISIC  with this number already exists. If not set, this check is ignored.'
+                  example: true
+                  default: false
+              required:
+                - card_number
+                - last_name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      valid_isic:
+                        type: boolean
+                        enum:
+                          - true
+                          - false
+                        readOnly: true
+                        description: An information if ISIC card is valid.
+                        example: 'false'
+                      is_free_to_use:
+                        type: boolean
+                        enum:
+                          - true
+                          - false
+                        readOnly: true
+                        description: 'An information if the card is free to use in CareCloud. If the request parameter `check_usage` is not set or false, the value is not set.'
+                        example: 'false'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsAssignfreecardBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set card info to the request body\n$body = new ActionsAssignfreecardBody();\n$body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder\n$body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type\n\n// Call endpoint and post data\ntry\n{\n    $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);\n    $card_id = $post_assign_card->getData()->getCardId();\n    var_dump($card_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /cards/batch:
     post:
       tags:
@@ -7555,6 +7646,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/language_list_type'
+        - $ref: '#/components/parameters/default_language'
       responses:
         '200':
           description: OK
@@ -10414,6 +10506,7 @@ paths:
         - $ref: '#/components/parameters/payment_time_to'
         - $ref: '#/components/parameters/purchase_items_extension'
         - $ref: '#/components/parameters/external_purchase_id'
+        - $ref: '#/components/parameters/include_property_records'
       responses:
         '200':
           description: OK
@@ -11186,6 +11279,92 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_purchase_types = $care_cloud->purchaseTypesApi()->getPurchaseTypes(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction\n    );\n    $purchase_types = $get_purchase_types->getData()->getPurchaseTypes();\n    $total_items = $get_purchase_types->getData()->getTotalItems();\n    var_dump($purchase_types);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /purchase-properties:
+    get:
+      tags:
+        - Purchase properties
+      summary: Get all purchase properties list
+      description: This is a list of possible properties that can be set to purchase.
+      operationId: getPurchaseProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      purchase_properties:
+                        type: array
+                        description: List of all purchase properties.
+                        items:
+                          $ref: '#/components/schemas/Property'
+                      total_items:
+                        type: integer
+                        description: The number of all found purchase properties.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/purchase-properties/{purchase_property_id}':
+    get:
+      tags:
+        - Purchase properties
+      summary: Get a purchase property
+      description: Get a purchase property detail. The property can be assigned to a purchase.
+      operationId: getPurchaseProperty
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/purchase_property_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Property'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /recommendations:
     get:
       tags:
@@ -11936,6 +12115,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/reward_product_relation_type'
       responses:
         '200':
           description: OK
@@ -11990,6 +12170,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/reward_product_relation_type'
       responses:
         '200':
           description: OK
@@ -12005,7 +12186,7 @@ paths:
                         type: array
                         description: List of product groups tied to the reward.
                         items:
-                          $ref: '#/components/schemas/ProductGroup'
+                          $ref: '#/components/schemas/RewardProductGroup'
                       total_items:
                         type: integer
                         description: The number of all found product groups.
@@ -12044,6 +12225,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/reward_product_relation_type'
       responses:
         '200':
           description: OK
@@ -12059,7 +12241,7 @@ paths:
                         type: array
                         description: List of product brands tied to the reward.
                         items:
-                          $ref: '#/components/schemas/ProductBrand'
+                          $ref: '#/components/schemas/RewardProductBrand'
                       total_items:
                         type: integer
                         description: Number of all found product brands.
@@ -16219,7 +16401,13 @@ components:
                               type: object
                               properties:
                                 name:
-                                  type: string
+                                  oneOf:
+                                    - type: string
+                                    - type: array
+                                    - type: number
+                                    - type: integer
+                                    - type: boolean
+                                    - type: object
                                   example: event_id_event_type_id_customer_id_external_id_secondary_external_id
                                 reason:
                                   type: string
@@ -17869,11 +18057,10 @@ components:
       description: External code resource.
       properties:
         external_code_type_id:
-          type: integer
+          type: string
           readOnly: false
           description: 'The unique ID of the external code type (provided in [GET /product-reservation-external-list-types](https://carecloud.readme.io/reference/getproductreservationexternallisttypes)).'
           example: 86e05affc7a7abefcd513ab400
-          default: 86e05affc7a7abefcd513ab400
         value:
           type: string
           readOnly: false
@@ -17965,6 +18152,11 @@ components:
             $ref: '#/components/schemas/BillItem'
           readOnly: false
           description: List of bill items.
+        property_records:
+          type: array
+          description: List of a purchase property records
+          items:
+            $ref: '#/components/schemas/PropertyRecord'
       required:
         - bill_id
         - payment_time
@@ -19656,6 +19848,13 @@ components:
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-01-17 00:00:00'
+        purchase_property_records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyRecord'
+          readOnly: true
+          default: false
+          description: List of purchase property records.
       required:
         - customer_id
         - store_id
@@ -20112,17 +20311,43 @@ components:
           type: boolean
           readOnly: true
           description: 'Parameter says, if there is product condition on reward.'
-          example: false
+          example: true
         has_group_condition:
           type: boolean
           readOnly: true
           description: 'Parameter says, if there is group condition on reward.'
-          example: true
+          example: false
         has_brand_condition:
           type: boolean
           readOnly: true
           description: 'Parameter says, if there is brand condition on reward.'
           example: false
+        has_product_bonus:
+          type: boolean
+          readOnly: true
+          description: 'Parameter says, if there is product bonus on reward.'
+          example: true
+        has_group_bonus:
+          type: boolean
+          description: 'Parameter says, if there is group bonus on reward.'
+          example: false
+        has_brand_bonus:
+          type: boolean
+          readOnly: true
+          description: 'Parameter says, if there is brand bonus on reward.'
+          example: false
+        reward_product_relation_conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RewardProductRelationCondition'
+          readOnly: true
+          description: Conditions between reward and product.
+        reward_product_relation_bonuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/RewardProductRelationBonus'
+          readOnly: true
+          description: Bonuses between reward and product.
         is_automated:
           type: boolean
           readOnly: false
@@ -20166,6 +20391,94 @@ components:
               readOnly: true
               description: A minimal amount of purchase products to apply reward.
               example: 2
+            reward_product_relation_type:
+              type: string
+              enum:
+                - condition
+                - bonus
+              readOnly: true
+              description: Parameter identify type of the relation between reward and product.
+              example: condition
+    RewardProductBrand:
+      allOf:
+        - $ref: '#/components/schemas/ProductBrand'
+        - type: object
+        - description: RewardProductBrand resource.
+        - properties:
+            reward_product_relation_type:
+              type: string
+              enum:
+                - condition
+                - bonus
+              readOnly: true
+              description: Parameter identify type of the relation between reward and product brand.
+              example: condition
+    RewardProductGroup:
+      allOf:
+        - $ref: '#/components/schemas/ProductGroup'
+        - type: object
+        - description: RewardProductGroup resource.
+        - properties:
+            reward_product_relation_type:
+              type: string
+              enum:
+                - condition
+                - bonus
+              readOnly: true
+              description: Parameter identify type of the relation between reward and product group.
+              example: condition
+    RewardProductRelationBonus:
+      type: object
+      description: Customer's consents.
+      properties:
+        related_to:
+          type: string
+          enum:
+            - product
+            - product_group
+            - product_brand
+          description: 'Parameter defines where is the reward condition related to. *Possible values: product - relation between reward and product / product_group - relation between reward and product group / product_brand - relation between reward and product brand *'
+          example: product
+        count:
+          type: integer
+          description: 'Count of the type(product, group or brand) in the shopping cart to fulfill the bonus.'
+          example: 3
+        min_price:
+          type: number
+          format: float
+          description: 'Minimum price of the type (product, group, brand) in the shopping cart to fulfill the bonus.'
+          example: 11.3
+        max_price:
+          type: number
+          format: float
+          description: 'Maximum price of the type (product, group, brand) in the shopping cart to fulfill the bonus.'
+          example: 22
+    RewardProductRelationCondition:
+      type: object
+      description: Customer's consents.
+      properties:
+        related_to:
+          type: string
+          enum:
+            - product
+            - product_group
+            - product_brand
+          description: 'Parameter defines where is the reward condition related to. *Possible values: product - relation between reward and product / product_group - relation between reward and product group / product_brand - relation between reward and product brand *'
+          example: product
+        count:
+          type: integer
+          description: 'Count of the type(product, group or brand) in the shopping cart to fulfill the condition.'
+          example: 3
+        min_price:
+          type: number
+          format: float
+          description: 'Minimum price of the type (product, group, brand) in the shopping cart to fulfill the condition.'
+          example: 11.3
+        max_price:
+          type: number
+          format: float
+          description: 'Maximum price of the type (product, group, brand) in the shopping cart to fulfill the condition.'
+          example: 22
     RewardProperties:
       type: object
       description: Properties of the reward.
@@ -22293,6 +22606,16 @@ components:
       schema:
         type: string
       example: 81eaeea13b8984a169c490a325
+    reward_product_relation_type:
+      name: reward_product_relation_type
+      in: query
+      description: Parameter identify type of the relation between reward and product | product group | product brand.
+      schema:
+        type: string
+        enum:
+          - condition
+          - bonus
+      example: condition
     customer_external_application_id_path:
       name: customer_external_application_id
       in: path
@@ -22476,6 +22799,18 @@ components:
           - customer-communication
         default: carecloud-api
       example: customer-communication
+    default_language:
+      name: default_language
+      in: query
+      description: 'Default language of the project. If true, the endpoint returns only default language of the project.'
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+        default: false
+      example: 'false'
     message_id_path:
       name: message_id
       in: path
@@ -22842,6 +23177,14 @@ components:
           - true
           - false
         default: false
+    purchase_property_id_path:
+      name: purchase_property_id
+      in: path
+      description: The unique ID of the purchase property.
+      required: true
+      schema:
+        type: string
+      example: customers_note
     recommendation_id_path:
       name: recommendation_id
       in: path

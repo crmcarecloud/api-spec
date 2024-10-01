@@ -396,6 +396,8 @@ tags:
       </table>
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
+  - name: Purchase properties
+    description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
   - name: Reservable products
@@ -415,7 +417,13 @@ tags:
   - name: Store groups
     description: List of store groups.
   - name: Store properties
-    description: Store properties are list of available properties for store resource.
+    description: Store properties are list of available properties for the store resource.
+  - name: Tasks
+    description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
+  - name: Task properties
+    description: Task properties are list of available properties for the task resource.
+  - name: Tests
+    description: Test resource lets you check if the API is currently available.
   - name: Tokens
     description: >
       Management of token resources. Tokens are used for identification of the application installation on a device and for setup of basic application parameters (permissions, language, notification identification).

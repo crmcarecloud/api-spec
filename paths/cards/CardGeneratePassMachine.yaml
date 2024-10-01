@@ -2,7 +2,7 @@ post:
   tags:
     - Cards
   summary: Get a PassMachine digital card
-  description: Generate a link for a PassMachine digital card.
+  description: Generate a link for a PassMachine digital card. This endpoint generate PassMachine from an existing customer card. If the card is missing, the PassMachine link can't be generated.
   operationId: postGeneratePassMachine
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

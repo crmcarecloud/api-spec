@@ -1,0 +1,13 @@
+allOf:
+  - $ref: "./ProductBrand.yaml"
+  - type: object
+  - description: RewardProductBrand resource.
+  - properties:
+      reward_product_relation_type:
+        type: string
+        enum:
+          - "condition"
+          - "bonus"
+        readOnly: true
+        description: Parameter identify type of the relation between reward and product brand.
+        example: "condition"

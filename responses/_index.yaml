@@ -20,7 +20,13 @@ BadRequest:
                           type: object
                           properties:
                             name:
-                              type: string
+                              oneOf:
+                                - type: string
+                                - type: array
+                                - type: number
+                                - type: integer
+                                - type: boolean
+                                - type: object
                               example: "event_id_event_type_id_customer_id_external_id_secondary_external_id"
                             reason:
                               type: string
