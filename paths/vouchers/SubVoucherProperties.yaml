@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubVoucherProperties200Response
             type: object
             properties:
               data:

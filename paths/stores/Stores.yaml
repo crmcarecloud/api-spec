@@ -20,6 +20,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetStores200Response
             type: object
             properties:
               data:
@@ -130,6 +131,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostStores201Response
             type: object
             properties:
               data:

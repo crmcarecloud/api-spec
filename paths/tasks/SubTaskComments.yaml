@@ -18,6 +18,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubTaskComments200Response
             type: object
             properties:
               data:
@@ -129,6 +130,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostSubTaskComments201Response
             type: object
             properties:
               data:

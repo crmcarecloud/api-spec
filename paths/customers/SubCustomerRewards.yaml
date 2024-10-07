@@ -32,6 +32,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubCustomerRewards200Response
             type: object
             properties:
               data:

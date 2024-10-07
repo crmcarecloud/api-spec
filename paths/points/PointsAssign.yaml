@@ -49,6 +49,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostPointsAssign201Response
             type: object
             properties:
               data:

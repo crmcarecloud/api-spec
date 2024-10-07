@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetEntrancesCustomerStats200Response
             type: object
             properties:
               data:

@@ -33,6 +33,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetEntrances200Response
             type: object
             properties:
               data:

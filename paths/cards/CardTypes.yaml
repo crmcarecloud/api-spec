@@ -17,6 +17,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetCardTypes200Response
             type: object
             properties:
               data:
@@ -116,6 +117,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCardTypes201Response
             type: object
             properties:
               data:

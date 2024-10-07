@@ -55,6 +55,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCreditDeposit201Response
             type: object
             properties:
               data:

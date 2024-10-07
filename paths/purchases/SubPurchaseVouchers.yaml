@@ -17,6 +17,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubPurchaseVouchers200Response
             type: object
             properties:
               data:

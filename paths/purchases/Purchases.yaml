@@ -24,6 +24,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetPurchases200Response
             type: object
             properties:
               data:

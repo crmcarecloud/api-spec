@@ -36,6 +36,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCardAssign200Response
             type: object
             properties:
               data:

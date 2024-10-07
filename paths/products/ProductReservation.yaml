@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetProductReservation200Response
             type: object
             properties:
               data:

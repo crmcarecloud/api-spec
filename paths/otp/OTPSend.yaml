@@ -54,6 +54,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostOTPSend200Response
             type: object
             properties:
               data:

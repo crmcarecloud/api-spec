@@ -27,6 +27,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCardValidateFree200Response
             type: object
             properties:
               data:

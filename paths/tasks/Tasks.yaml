@@ -23,6 +23,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetTasks200Response
             type: object
             properties:
               data:
@@ -150,6 +151,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostTasks201Response
             type: object
             properties:
               data:

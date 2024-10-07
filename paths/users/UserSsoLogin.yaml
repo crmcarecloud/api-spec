@@ -32,6 +32,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostUserSsoLogin200Response
             type: object
             properties:
               data:

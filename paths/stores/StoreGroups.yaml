@@ -17,6 +17,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetStoreGroups200Response
             type: object
             properties:
               data:

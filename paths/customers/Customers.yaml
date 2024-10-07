@@ -42,6 +42,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCustomers201Response
             type: object
             properties:
               data:
@@ -231,6 +232,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetCustomers200Response
             type: object
             properties:
               data:

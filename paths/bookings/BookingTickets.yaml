@@ -22,6 +22,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetBookingTickets200Response
             type: object
             properties:
               data:

@@ -35,6 +35,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostRecommendationProductCombine200Response
             type: object
             properties:
               data:

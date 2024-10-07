@@ -16,6 +16,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetCreditTypes200Response
             type: object
             properties:
               data:

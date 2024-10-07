@@ -23,6 +23,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetEvents200Response
             type: object
             properties:
               data:
@@ -139,6 +140,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostEvents201Response
             type: object
             properties:
               data:

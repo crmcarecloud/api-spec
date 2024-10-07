@@ -25,6 +25,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetPointHistory200Response
             type: object
             properties:
               data:

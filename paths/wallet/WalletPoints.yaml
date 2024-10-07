@@ -15,6 +15,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetWalletPoints200Response
             type: object
             properties:
               data:

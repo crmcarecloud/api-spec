@@ -15,6 +15,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetUser200Response
             type: object
             properties:
               data:

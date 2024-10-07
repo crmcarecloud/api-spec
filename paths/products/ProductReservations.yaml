@@ -21,6 +21,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetProductReservations200Response
             type: object
             properties:
               data:
@@ -132,6 +133,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostProductReservation200Response
             type: object
             properties:
               data:

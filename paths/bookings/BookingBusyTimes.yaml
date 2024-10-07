@@ -50,6 +50,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostBookingBusyTimes200Response
             type: object
             properties:
               data:
