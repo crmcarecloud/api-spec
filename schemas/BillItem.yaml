@@ -15,8 +15,8 @@ properties:
   category_plu_id:
     type: string
     readOnly: false
-    description: Product category ID from Global product list (consist cleaned data - unique ID of every category across all POS systems).
-    example: "8fbea1c1ea8edda5e67f27Q"
+    description: Product group ID identify the product group in the system outside of CareCloud (POS, e-shop, etc.). Consist cleaned data - unique ID of every product group across all POS systems. This parameter needs to be set only if product learning is activated. If not set during product learning the default product group will be used.
+    example: "CA234B"
   vat_rate:
     type: number
     format: float

@@ -1,9 +1,9 @@
 get:
   tags:
-    - Agreements
-  summary: Get all agreements
-  description: Get a list of agreements accepted in CRM CareCloud.
-  operationId: getAgreements
+    - Consents
+  summary: Get all consents
+  description: Get a list of consents accepted in CRM CareCloud.
+  operationId: getConsents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
@@ -24,12 +24,12 @@ get:
                 properties:
                   agreements:
                     type: array
-                    description: List of the agreements.
+                    description: List of the consents.
                     items:
                       $ref: '../../schemas/_index.yaml#/AgreementList'
                   total_items:
                     type: integer
-                    description: Number of all found agreements.
+                    description: Number of all found consents.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

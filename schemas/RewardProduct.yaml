@@ -6,13 +6,18 @@ allOf:
       minimum_number_of_products:
         type: integer
         readOnly: true
-        description: A minimal amount of purchase products to apply reward.
+        deprecated: true
+        description: |
+          A minimal amount of purchase products to apply reward.
+          This parameter is deprecated, for minimal amount of product in the reward condition, please look at [GET /rewards](https://carecloud.readme.io/reference/getrewards) structure `reward_product_relation_conditions`.
+          If the query parameter `reward_product_relation_type` is not set. The amount of product for condition is returned.
         example: 2
-      reward_product_relation_type:
-        type: string
-        enum:
-          - "condition"
-          - "bonus"
+      reward_product_relation_types:
+        type: array
+        items:
+          type: string
         readOnly: true
-        description: Parameter identify type of the relation between reward and product.
-        example: "condition"
+        description: |
+          Parameter identify type of the relation between reward and product.
+           *Possible values are: `condition` - product is part of a reward condition / `bonus` - product is part of a reward condition*
+        example: ["condition","bonus"]

@@ -12,7 +12,8 @@ Accept-Language:
 count:
   name: count
   in: query
-  description: The number of records to return.
+  description: |
+    The number of records to return in API response. <br/>⚠️ We recommended adjust the batch size based on processing time. Depending on the response time of the request. Default value of 100 records is used if `count` parameter is not set.
   required: false
   schema:
     type: integer
@@ -22,7 +23,7 @@ count:
 offset:
   name: offset
   in: query
-  description: The number of records from a collection to skip.
+  description: The number of records from a collection to skip. Default value of 0 is used when parameter `offset` is not set.
   required: false
   schema:
     type: integer
@@ -319,7 +320,7 @@ agreement_id_path:
   name: agreement_id
   in: path
   required: true
-  description: The unique ID of an agreement in CareCloud.
+  description: The unique ID of a consent in CareCloud.
   schema:
     type: string
   example: "81eaeea13b8984a169c490a325"

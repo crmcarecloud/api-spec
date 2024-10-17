@@ -1,9 +1,9 @@
 get:
   tags:
-    - Agreements
-  summary: Detail of an agreement
-  description: Get information about a specific agreement.
-  operationId: getAgreement
+    - Consents
+  summary: Detail of an consent
+  description: Get information about a specific consent.
+  operationId: getConsent
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/agreement_id_path'

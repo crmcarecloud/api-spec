@@ -3,11 +3,12 @@ allOf:
   - type: object
   - description: RewardProductBrand resource.
   - properties:
-      reward_product_relation_type:
-        type: string
-        enum:
-          - "condition"
-          - "bonus"
+      reward_product_relation_types:
+        type: array
+        items:
+          type: string
         readOnly: true
-        description: Parameter identify type of the relation between reward and product brand.
-        example: "condition"
+        description: |
+          Parameter identify type of the relation between reward and product brand.
+           *Possible values are: `condition` - product brand is part of a reward condition / `bonus` - product brand is part of a reward condition*
+        example: [ "condition","bonus" ]

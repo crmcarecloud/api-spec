@@ -8,8 +8,6 @@ info:
   contact:
     email: support@carecloud.cz
 tags:
-  - name: Agreements
-    description: 'Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent (agreement). You can manage the content and status of Customers'' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.'
   - name: Bookings
     description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Booking tickets
@@ -30,6 +28,8 @@ tags:
     description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
     description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
+  - name: Consents
+    description: 'Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers'' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.'
   - name: Countries
     description: 'Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.'
   - name: Credits
@@ -457,10 +457,10 @@ paths:
   /agreements:
     get:
       tags:
-        - Agreements
-      summary: Get all agreements
-      description: Get a list of agreements accepted in CRM CareCloud.
-      operationId: getAgreements
+        - Consents
+      summary: Get all consents
+      description: Get a list of consents accepted in CRM CareCloud.
+      operationId: getConsents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/count'
@@ -481,12 +481,12 @@ paths:
                     properties:
                       agreements:
                         type: array
-                        description: List of the agreements.
+                        description: List of the consents.
                         items:
                           $ref: '#/components/schemas/AgreementList'
                       total_items:
                         type: integer
-                        description: Number of all found agreements.
+                        description: Number of all found consents.
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -550,10 +550,10 @@ paths:
   '/agreements/{agreement_id}':
     get:
       tags:
-        - Agreements
-      summary: Detail of an agreement
-      description: Get information about a specific agreement.
-      operationId: getAgreement
+        - Consents
+      summary: Detail of an consent
+      description: Get information about a specific consent.
+      operationId: getConsent
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/agreement_id_path'
@@ -9474,9 +9474,9 @@ paths:
     post:
       tags:
         - Products
-      summary: 'Create a batch of products. If a product already exists, an update is applied.'
+      summary: Create a batch of products
       description: |
-        Batch process helps to add multiple products in one request.<br/>  ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+        Batch process helps to add multiple products in one request.<br/>  ⚠️ If a product already exists, an update is applied. Missing parameters (first level parameters) in update will be erased from existing product.<br/> ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
       operationId: postBulkProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -14982,7 +14982,7 @@ paths:
               properties:
                 application_id:
                   type: string
-                  description: ID of the external application.The ID represents the application where customer wants to login.
+                  description: 'The ID of the application you need to login to with an authentication token. For the ID of an external application, please contact your CareCloud administrator.'
                   example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
@@ -16656,7 +16656,7 @@ components:
           items:
             $ref: '#/components/schemas/CustomAgreements'
           readOnly: false
-          description: Custom agreements.
+          description: Custom consents.
       required:
         - agreement_marketing_communication
         - agreement_profiling
@@ -16667,22 +16667,22 @@ components:
         agreement_id:
           type: string
           readOnly: true
-          description: The unique ID of the agreement in CareCloud.
+          description: The unique ID of the consents in CareCloud.
           example: 8fd73167342d06899c4c015320
         name:
           type: string
           readOnly: true
-          description: Name of the agreement in CareCloud.
+          description: Name of the consent in CareCloud.
           example: Custom agreement
         text:
           type: string
           readOnly: true
-          description: Text of the agreement in CareCloud. The language version of the text is returned by language setup in the HTTP header of the request.
+          description: Text of the consent in CareCloud. The language version of the text is returned by language setup in the HTTP header of the request.
           example: '<h1>Souhlas se zpracováním osobních údajů</h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:</p><h2>Operací spojených s provozováním systému card</h2><ul><li>Zařazení do databáze členů card systému</li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)</li><li>Zasílání obchodních sdělení</li></ul>'
         withdrawal_text:
           type: string
           readOnly: true
-          description: Text when a customer wants to withdraw his agreement. The language version of the text is returned by language setup in the HTTP header of the request.
+          description: Text when a customer wants to withdraw his consent. The language version of the text is returned by language setup in the HTTP header of the request.
           example: '<h1>Souhlas se zpracováním osobních údajů</h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:</p><h2>Operací spojených s provozováním systému card</h2><ul><li>Zařazení do databáze členů card systému</li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)</li><li>Zasílání obchodních sdělení</li></ul>'
         communication_channel_id:
           type: string
@@ -16791,8 +16791,8 @@ components:
         category_plu_id:
           type: string
           readOnly: false
-          description: Product category ID from Global product list (consist cleaned data - unique ID of every category across all POS systems).
-          example: 8fbea1c1ea8edda5e67f27Q
+          description: 'Product group ID identify the product group in the system outside of CareCloud (POS, e-shop, etc.). Consist cleaned data - unique ID of every product group across all POS systems. This parameter needs to be set only if product learning is activated. If not set during product learning the default product group will be used.'
+          example: CA234B
         vat_rate:
           type: number
           format: float
@@ -17576,11 +17576,11 @@ components:
         - code
     CustomAgreements:
       type: object
-      description: Custom agreements.
+      description: Custom consents.
       properties:
         agreement_id:
           type: string
-          description: 'The unique ID of the agreement in CareCloud from [agreements](#tag/Agreements) resource.'
+          description: 'The unique ID of the consent in CareCloud from [consents](https://carecloud.readme.io/reference/getconsents) resource.'
           example: 8fd73167342d06899c4c015320
         agreement_value:
           type: integer
@@ -17588,7 +17588,7 @@ components:
             - 0
             - 1
             - 2
-          description: 'Value of the specific agreement. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+          description: 'Value of the specific consent. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
           example: 2
       required:
         - agreement_id
@@ -17605,11 +17605,21 @@ components:
         personal_information:
           type: object
           $ref: '#/components/schemas/PersonalInformation'
+        doi_email:
+          type: string
+          readOnly: true
+          description: 'Date and time of obtaining the customer''s email consent (Double opt-in confirmation). *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-06-23 11:47:22'
+        doi_phone:
+          type: string
+          readOnly: true
+          description: 'Date and time of obtaining the customer''s phone consent (Double opt-in confirmation). *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2019-06-23 11:47:23'
         last_change:
           type: string
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2019-06-23 11:47:22'
+          example: '2019-06-23 11:47:23'
         state:
           type: integer
           enum:
@@ -20389,44 +20399,57 @@ components:
             minimum_number_of_products:
               type: integer
               readOnly: true
-              description: A minimal amount of purchase products to apply reward.
+              deprecated: true
+              description: |
+                A minimal amount of purchase products to apply reward.
+                This parameter is deprecated, for minimal amount of product in the reward condition, please look at [GET /rewards](https://carecloud.readme.io/reference/getrewards) structure `reward_product_relation_conditions`.
+                If the query parameter `reward_product_relation_type` is not set. The amount of product for condition is returned.
               example: 2
-            reward_product_relation_type:
-              type: string
-              enum:
+            reward_product_relation_types:
+              type: array
+              items:
+                type: string
+              readOnly: true
+              description: |
+                Parameter identify type of the relation between reward and product.
+                 *Possible values are: `condition` - product is part of a reward condition / `bonus` - product is part of a reward condition*
+              example:
                 - condition
                 - bonus
-              readOnly: true
-              description: Parameter identify type of the relation between reward and product.
-              example: condition
     RewardProductBrand:
       allOf:
         - $ref: '#/components/schemas/ProductBrand'
         - type: object
         - description: RewardProductBrand resource.
         - properties:
-            reward_product_relation_type:
-              type: string
-              enum:
+            reward_product_relation_types:
+              type: array
+              items:
+                type: string
+              readOnly: true
+              description: |
+                Parameter identify type of the relation between reward and product brand.
+                 *Possible values are: `condition` - product brand is part of a reward condition / `bonus` - product brand is part of a reward condition*
+              example:
                 - condition
                 - bonus
-              readOnly: true
-              description: Parameter identify type of the relation between reward and product brand.
-              example: condition
     RewardProductGroup:
       allOf:
         - $ref: '#/components/schemas/ProductGroup'
         - type: object
         - description: RewardProductGroup resource.
         - properties:
-            reward_product_relation_type:
-              type: string
-              enum:
+            reward_product_relation_types:
+              type: array
+              items:
+                type: string
+              readOnly: true
+              description: |
+                Parameter identify type of the relation between reward and product group.
+                 *Possible values are: `condition` - product group is part of a reward condition / `bonus` - product group is part of a reward condition*
+              example:
                 - condition
                 - bonus
-              readOnly: true
-              description: Parameter identify type of the relation between reward and product group.
-              example: condition
     RewardProductRelationBonus:
       type: object
       description: Customer's consents.
@@ -21754,7 +21777,8 @@ components:
     count:
       name: count
       in: query
-      description: The number of records to return.
+      description: |
+        The number of records to return in API response. <br/>⚠️ We recommended adjust the batch size based on processing time. Depending on the response time of the request. Default value of 100 records is used if `count` parameter is not set.
       required: false
       schema:
         type: integer
@@ -21764,7 +21788,7 @@ components:
     offset:
       name: offset
       in: query
-      description: The number of records from a collection to skip.
+      description: The number of records from a collection to skip. Default value of 0 is used when parameter `offset` is not set.
       required: false
       schema:
         type: integer
@@ -22058,7 +22082,7 @@ components:
       name: agreement_id
       in: path
       required: true
-      description: The unique ID of an agreement in CareCloud.
+      description: The unique ID of a consent in CareCloud.
       schema:
         type: string
       example: 81eaeea13b8984a169c490a325

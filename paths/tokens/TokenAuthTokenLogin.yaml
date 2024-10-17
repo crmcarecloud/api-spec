@@ -19,7 +19,7 @@ post:
           properties:
             application_id:
               type: string
-              description: 'ID of the external application.The ID represents the application where customer wants to login.'
+              description: 'The ID of the application you need to login to with an authentication token. For the ID of an external application, please contact your CareCloud administrator.'
               example: "82de12eb8b138791e678fd11c3"
             token:
               type: string

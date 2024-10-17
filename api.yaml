@@ -8,8 +8,6 @@ info:
   contact:
     email: support@carecloud.cz
 tags:
-  - name: Agreements
-    description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent (agreement). You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents (agreements) here.
   - name: Bookings
     description: Bookings of the services. Meetings, restaurant reservations, client appointments.
   - name: Booking tickets
@@ -30,6 +28,8 @@ tags:
     description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
     description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
+  - name: Consents
+    description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.
   - name: Countries
     description: Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.
   - name: Credits

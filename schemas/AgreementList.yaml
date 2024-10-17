@@ -3,22 +3,22 @@ properties:
   agreement_id:
     type: string
     readOnly: true
-    description: The unique ID of the agreement in CareCloud.
+    description: The unique ID of the consents in CareCloud.
     example: "8fd73167342d06899c4c015320"
   name:
     type: string
     readOnly: true
-    description: Name of the agreement in CareCloud.
+    description: Name of the consent in CareCloud.
     example: "Custom agreement"
   text:
     type: string
     readOnly: true
-    description: Text of the agreement in CareCloud. The language version of the text is returned by language setup in the HTTP header of the request.
+    description: Text of the consent in CareCloud. The language version of the text is returned by language setup in the HTTP header of the request.
     example: "<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>"
   withdrawal_text:
     type: string
     readOnly: true
-    description: Text when a customer wants to withdraw his agreement. The language version of the text is returned by language setup in the HTTP header of the request.
+    description: Text when a customer wants to withdraw his consent. The language version of the text is returned by language setup in the HTTP header of the request.
     example: "<h1>Souhlas se zpracováním osobních údajů<\/h1><p>Tímto se dobrovolně a svobodně registruji do systému card a uděluji souhlas se zpracováním osobních údajů poskytnutých při registraci, jakožto i dalších osobních údajů získaných při obchodním styku a v souvislosti s členstvím v systému za účelem:<\/p><h2>Operací spojených s provozováním systému card<\/h2><ul><li>Zařazení do databáze členů card systému<\/li><li>Nabízení slev členům systému (zvýhodněné ceny a zboží, sbírání bodů)<\/li><li>Zasílání obchodních sdělení<\/li><\/ul>"
 
   communication_channel_id:

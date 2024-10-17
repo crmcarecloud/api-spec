@@ -33,7 +33,7 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/CustomAgreements'
     readOnly: false
-    description: Custom agreements.
+    description: Custom consents.
 required:
   - agreement_marketing_communication
   - agreement_profiling
