@@ -5167,6 +5167,8 @@ paths:
         - $ref: '#/components/parameters/external_id'
         - $ref: '#/components/parameters/event_type_ids'
         - $ref: '#/components/parameters/include_property_records'
+        - $ref: '#/components/parameters/time_from_full'
+        - $ref: '#/components/parameters/time_to_full'
       responses:
         '200':
           description: OK

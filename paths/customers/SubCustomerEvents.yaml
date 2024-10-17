@@ -15,6 +15,8 @@ get:
     - $ref: '../../parameters/_index.yaml#/external_id'
     - $ref: '../../parameters/_index.yaml#/event_type_ids'
     - $ref: '../../parameters/_index.yaml#/include_property_records'
+    - $ref: '../../parameters/_index.yaml#/time_from_full'
+    - $ref: '../../parameters/_index.yaml#/time_to_full'
   responses:
     '200':
       description: OK
