@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetEventType200Response
             type: object
             properties:
               data:

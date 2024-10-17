@@ -70,6 +70,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostPurchaseAcceptPayment200Response
             type: object
             properties:
               data:

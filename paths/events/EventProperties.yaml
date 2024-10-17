@@ -17,6 +17,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetEventProperties200Response
             type: object
             properties:
               data:

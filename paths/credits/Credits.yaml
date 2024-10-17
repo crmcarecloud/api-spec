@@ -20,6 +20,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetCredits200Response
             type: object
             properties:
               data:

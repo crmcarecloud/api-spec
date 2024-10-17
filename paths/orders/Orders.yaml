@@ -18,6 +18,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetOrders200Response
             type: object
             properties:
               data:
@@ -73,6 +74,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostOrders201Response
             type: object
             properties:
               data:

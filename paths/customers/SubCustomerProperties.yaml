@@ -17,6 +17,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubCustomerProperties200Response
             type: object
             properties:
               data:
@@ -113,6 +114,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostSubCustomerProperties201Response
             type: object
             properties:
               data:

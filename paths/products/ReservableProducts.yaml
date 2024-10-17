@@ -18,6 +18,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetReservableProducts200Response
             type: object
             properties:
               data:

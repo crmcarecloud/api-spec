@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetPartnerProperty200Response
             type: object
             properties:
               data:

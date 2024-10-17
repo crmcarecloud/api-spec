@@ -23,6 +23,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubCustomerEvents200Response
             type: object
             properties:
               data:

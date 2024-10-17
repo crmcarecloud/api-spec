@@ -40,6 +40,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCardValidateIsic200Response
             type: object
             properties:
               data:

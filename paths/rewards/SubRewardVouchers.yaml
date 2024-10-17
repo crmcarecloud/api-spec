@@ -19,6 +19,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubRewardVouchers200Response
             type: object
             properties:
               data:

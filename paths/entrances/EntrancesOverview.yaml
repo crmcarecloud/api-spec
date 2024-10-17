@@ -15,6 +15,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetEntrancesOverview200Response
             type: object
             properties:
               data:

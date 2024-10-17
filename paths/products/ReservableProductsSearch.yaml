@@ -28,6 +28,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostReservableProductsSearch200Response
             type: object
             properties:
               data:

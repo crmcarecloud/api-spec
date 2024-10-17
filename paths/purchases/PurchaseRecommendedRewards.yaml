@@ -53,6 +53,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostPurchaseRecommendedRewards200Response
             type: object
             properties:
               data:

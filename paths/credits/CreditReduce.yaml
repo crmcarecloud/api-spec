@@ -55,6 +55,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCreditReduce201Response
             type: object
             properties:
               data:

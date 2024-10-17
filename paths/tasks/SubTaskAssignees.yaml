@@ -17,6 +17,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubTaskAssignees200Response
             type: object
             properties:
               data:
@@ -128,6 +129,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostSubTaskAssignees201Response
             type: object
             properties:
               data:

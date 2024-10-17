@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetStoreGroup200Response
             type: object
             properties:
               data:

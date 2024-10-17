@@ -474,6 +474,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetConsents200Response
                 type: object
                 properties:
                   data:
@@ -563,6 +564,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetConsent200Response
                 type: object
                 properties:
                   data:
@@ -610,6 +612,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookings200Response
                 type: object
                 properties:
                   data:
@@ -669,6 +672,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostBookings201Response
                 type: object
                 properties:
                   data:
@@ -714,6 +718,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBooking200Response
                 type: object
                 properties:
                   data:
@@ -859,6 +864,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookingTickets200Response
                 type: object
                 properties:
                   data:
@@ -909,6 +915,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookingTicket200Response
                 type: object
                 properties:
                   data:
@@ -959,6 +966,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubBookingTicketsTimeSlots200Response
                 type: object
                 properties:
                   data:
@@ -1013,6 +1021,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookingTicketProperties200Response
                 type: object
                 properties:
                   data:
@@ -1063,6 +1072,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookingTicketProperty200Response
                 type: object
                 properties:
                   data:
@@ -1139,6 +1149,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostBookingBusyTimes200Response
                 type: object
                 properties:
                   data:
@@ -1193,6 +1204,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookingStatuses200Response
                 type: object
                 properties:
                   data:
@@ -1243,6 +1255,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetBookingStatus200Response
                 type: object
                 properties:
                   data:
@@ -1287,6 +1300,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCampaigns200Response
                 type: object
                 properties:
                   data:
@@ -1346,6 +1360,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCampaigns201Response
                 type: object
                 properties:
                   data:
@@ -1391,6 +1406,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCampaign200Response
                 type: object
                 properties:
                   data:
@@ -1443,6 +1459,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCampaignProducts200Response
                 type: object
                 properties:
                   data:
@@ -1502,6 +1519,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCampaignProduct201Response
                 type: object
                 properties:
                   data:
@@ -1547,6 +1565,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCampaignProduct200Response
                 type: object
                 properties:
                   data:
@@ -1591,6 +1610,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCampaignProductStoreRecords200Response
                 type: object
                 properties:
                   data:
@@ -1651,6 +1671,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCampaignProductStoreRecords201Response
                 type: object
                 properties:
                   data:
@@ -1706,6 +1727,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCards200Response
                 type: object
                 properties:
                   data:
@@ -1766,6 +1788,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCards201Response
                 type: object
                 properties:
                   data:
@@ -1811,6 +1834,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCard200Response
                 type: object
                 properties:
                   data:
@@ -1916,6 +1940,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCardAssign200Response
                 type: object
                 properties:
                   data:
@@ -1975,6 +2000,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCardValidateFree200Response
                 type: object
                 properties:
                   data:
@@ -2045,6 +2071,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCardGenerateDigital200Response
                 type: object
                 properties:
                   data:
@@ -2106,6 +2133,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCardGeneratePassMachine200Response
                 type: object
                 properties:
                   data:
@@ -2173,6 +2201,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCardValidateIsic200Response
                 type: object
                 properties:
                   data:
@@ -2284,6 +2313,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCardTypes200Response
                 type: object
                 properties:
                   data:
@@ -2343,6 +2373,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCardTypes201Response
                 type: object
                 properties:
                   data:
@@ -2388,6 +2419,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCardType200Response
                 type: object
                 properties:
                   data:
@@ -2477,6 +2509,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCardTypeCards200Response
                 type: object
                 properties:
                   data:
@@ -2547,6 +2580,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEntrances200Response
                 type: object
                 properties:
                   data:
@@ -2593,6 +2627,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEntrance200Response
                 type: object
                 properties:
                   data:
@@ -2670,6 +2705,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEntrancesOverview200Response
                 type: object
                 properties:
                   data:
@@ -2723,6 +2759,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEntrancesCustomerStats200Response
                 type: object
                 properties:
                   data:
@@ -2779,6 +2816,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCommunicationChannels200Response
                 type: object
                 properties:
                   data:
@@ -2829,6 +2867,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCommunicationChannel200Response
                 type: object
                 properties:
                   data:
@@ -2874,6 +2913,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCountries200Response
                 type: object
                 properties:
                   data:
@@ -2931,6 +2971,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCredits200Response
                 type: object
                 properties:
                   data:
@@ -2981,6 +3022,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCredit200Response
                 type: object
                 properties:
                   data:
@@ -3031,6 +3073,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCreditPurchases200Response
                 type: object
                 properties:
                   data:
@@ -3123,6 +3166,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCreditReduce201Response
                 type: object
                 properties:
                   data:
@@ -3207,6 +3251,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCreditDeposit201Response
                 type: object
                 properties:
                   data:
@@ -3329,6 +3374,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCreditHistory200Response
                 type: object
                 properties:
                   data:
@@ -3382,6 +3428,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCreditTypes200Response
                 type: object
                 properties:
                   data:
@@ -3432,6 +3479,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCreditType200Response
                 type: object
                 properties:
                   data:
@@ -3477,6 +3525,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCurrencies200Response
                 type: object
                 properties:
                   data:
@@ -3527,6 +3576,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCurrency200Response
                 type: object
                 properties:
                   data:
@@ -3596,6 +3646,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCustomers201Response
                 type: object
                 properties:
                   data:
@@ -3680,6 +3731,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomers200Response
                 type: object
                 properties:
                   data:
@@ -3768,6 +3820,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomer200Response
                 type: object
                 properties:
                   data:
@@ -3926,6 +3979,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerPurchases200Response
                 type: object
                 properties:
                   data:
@@ -3981,6 +4035,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerPoints200Response
                 type: object
                 properties:
                   data:
@@ -4041,6 +4096,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerVouchers200Response
                 type: object
                 properties:
                   data:
@@ -4109,6 +4165,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerRewards200Response
                 type: object
                 properties:
                   data:
@@ -4177,6 +4234,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerRewardRecommendations200Response
                 type: object
                 properties:
                   data:
@@ -4231,6 +4289,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerCards200Response
                 type: object
                 properties:
                   data:
@@ -4282,6 +4341,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerSegment200Response
                 type: object
                 properties:
                   data:
@@ -4337,6 +4397,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerStatus200Response
                 type: object
                 properties:
                   data:
@@ -4392,6 +4453,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerRecommendation200Response
                 type: object
                 properties:
                   data:
@@ -4449,6 +4511,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerSource200Response
                 type: object
                 properties:
                   data:
@@ -4509,6 +4572,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCustomerSource201Response
                 type: object
                 properties:
                   data:
@@ -4558,6 +4622,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerProperties200Response
                 type: object
                 properties:
                   data:
@@ -4618,6 +4683,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCustomerProperties201Response
                 type: object
                 properties:
                   data:
@@ -4787,6 +4853,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerInterests200Response
                 type: object
                 properties:
                   data:
@@ -4847,6 +4914,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCustomerInterests201Response
                 type: object
                 properties:
                   data:
@@ -4975,6 +5043,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerAddresses200Response
                 type: object
                 properties:
                   data:
@@ -5035,6 +5104,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCustomerAddresses201Response
                 type: object
                 properties:
                   data:
@@ -5081,6 +5151,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerAddress200Response
                 type: object
                 properties:
                   data:
@@ -5175,6 +5246,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerEvents200Response
                 type: object
                 properties:
                   data:
@@ -5232,6 +5304,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerRelatedCustomers200Response
                 type: object
                 properties:
                   data:
@@ -5292,6 +5365,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCustomerRelatedCustomers201Response
                 type: object
                 properties:
                   data:
@@ -5338,6 +5412,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerRelatedCustomer200Response
                 type: object
                 properties:
                   data:
@@ -5416,6 +5491,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubCustomerPartners200Response
                 type: object
                 properties:
                   data:
@@ -5476,6 +5552,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubCustomerPartners201Response
                 type: object
                 properties:
                   data:
@@ -5582,6 +5659,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCustomerVerifyCredentials200Response
                 type: object
                 properties:
                   data:
@@ -5672,6 +5750,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCustomerVerifySocialNetworkCredentials200Response
                 type: object
                 properties:
                   data:
@@ -5777,6 +5856,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCustomerVerifyAuthToken200Response
                 type: object
                 properties:
                   data:
@@ -5840,6 +5920,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCustomerValidateCustomerData200Response
                 type: object
                 properties:
                   data:
@@ -5890,6 +5971,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomersSearch200Response
                 type: object
                 properties:
                   data:
@@ -6053,6 +6135,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostCustomersSetStatusRecord200Response
                 type: object
                 properties:
                   data:
@@ -6273,6 +6356,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerCheckRegistrationAbility200Response
                 type: object
                 properties:
                   data:
@@ -6319,6 +6403,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerAddressTypes200Response
                 type: object
                 properties:
                   data:
@@ -6369,6 +6454,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerAddressType200Response
                 type: object
                 properties:
                   data:
@@ -6412,6 +6498,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSetups200Response
                 type: object
                 properties:
                   data:
@@ -6458,6 +6545,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSetup200Response
                 type: object
                 properties:
                   data:
@@ -6497,6 +6585,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerExternalApps200Response
                 type: object
                 properties:
                   data:
@@ -6547,6 +6636,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerExternalApp200Response
                 type: object
                 properties:
                   data:
@@ -6591,6 +6681,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerProperties200Response
                 type: object
                 properties:
                   data:
@@ -6641,6 +6732,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerProperty200Response
                 type: object
                 properties:
                   data:
@@ -6684,6 +6776,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerRelationTypes200Response
                 type: object
                 properties:
                   data:
@@ -6734,6 +6827,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerRelationType200Response
                 type: object
                 properties:
                   data:
@@ -6778,6 +6872,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerSources200Response
                 type: object
                 properties:
                   data:
@@ -6828,6 +6923,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerSource200Response
                 type: object
                 properties:
                   data:
@@ -6871,6 +6967,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerSourceRecord200Response
                 type: object
                 properties:
                   data:
@@ -6924,6 +7021,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerTypes200Response
                 type: object
                 properties:
                   data:
@@ -6974,6 +7072,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetCustomerType200Response
                 type: object
                 properties:
                   data:
@@ -7024,6 +7123,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEvents200Response
                 type: object
                 properties:
                   data:
@@ -7088,6 +7188,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostEvents201Response
                 type: object
                 properties:
                   data:
@@ -7133,6 +7234,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEvent200Response
                 type: object
                 properties:
                   data:
@@ -7173,6 +7275,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubEventProperties200Response
                 type: object
                 properties:
                   data:
@@ -7228,6 +7331,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEventGroups200Response
                 type: object
                 properties:
                   data:
@@ -7278,6 +7382,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEventGroup200Response
                 type: object
                 properties:
                   data:
@@ -7322,6 +7427,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEventProperties200Response
                 type: object
                 properties:
                   data:
@@ -7372,6 +7478,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEventProperty200Response
                 type: object
                 properties:
                   data:
@@ -7416,6 +7523,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEventTypes200Response
                 type: object
                 properties:
                   data:
@@ -7466,6 +7574,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetEventType200Response
                 type: object
                 properties:
                   data:
@@ -7510,6 +7619,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubEventTypeProperties200Response
                 type: object
                 properties:
                   data:
@@ -7564,6 +7674,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetInterests200Response
                 type: object
                 properties:
                   data:
@@ -7614,6 +7725,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetInterest200Response
                 type: object
                 properties:
                   data:
@@ -7655,6 +7767,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetLanguages200Response
                 type: object
                 properties:
                   data:
@@ -7713,6 +7826,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetMessages200Response
                 type: object
                 properties:
                   data:
@@ -7763,6 +7877,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetMessage200Response
                 type: object
                 properties:
                   data:
@@ -7803,6 +7918,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubMessageDetail200Response
                 type: object
                 properties:
                   data:
@@ -7893,6 +8009,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetMessageTemplates200Response
                 type: object
                 properties:
                   data:
@@ -7943,6 +8060,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetMessageTemplate200Response
                 type: object
                 properties:
                   data:
@@ -8024,6 +8142,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostOTPSend200Response
                 type: object
                 properties:
                   data:
@@ -8092,6 +8211,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostOTPVerify200Response
                 type: object
                 properties:
                   data:
@@ -8142,6 +8262,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetOrders200Response
                 type: object
                 properties:
                   data:
@@ -8197,6 +8318,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostOrders201Response
                 type: object
                 properties:
                   data:
@@ -8238,6 +8360,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetOrder200Response
                 type: object
                 properties:
                   data:
@@ -8277,6 +8400,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPartners200Response
                 type: object
                 properties:
                   data:
@@ -8327,6 +8451,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPartner200Response
                 type: object
                 properties:
                   data:
@@ -8367,6 +8492,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubPartnerProperties200Response
                 type: object
                 properties:
                   data:
@@ -8418,6 +8544,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPartnerProperties200Response
                 type: object
                 properties:
                   data:
@@ -8464,6 +8591,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPartnerProperty200Response
                 type: object
                 properties:
                   data:
@@ -8503,6 +8631,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPaymentTypes200Response
                 type: object
                 properties:
                   data:
@@ -8549,6 +8678,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPaymentType200Response
                 type: object
                 properties:
                   data:
@@ -8592,6 +8722,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPoints200Response
                 type: object
                 properties:
                   data:
@@ -8642,6 +8773,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPoint200Response
                 type: object
                 properties:
                   data:
@@ -8693,6 +8825,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubPointPurchases200Response
                 type: object
                 properties:
                   data:
@@ -8779,6 +8912,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostPointsRedemption201Response
                 type: object
                 properties:
                   data:
@@ -8861,6 +8995,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostPointsAssign201Response
                 type: object
                 properties:
                   data:
@@ -9045,6 +9180,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPointHistory200Response
                 type: object
                 properties:
                   data:
@@ -9100,6 +9236,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPointReservations200Response
                 type: object
                 properties:
                   data:
@@ -9150,6 +9287,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPointReservation200Response
                 type: object
                 properties:
                   data:
@@ -9301,6 +9439,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPointTypes200Response
                 type: object
                 properties:
                   data:
@@ -9351,6 +9490,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPointType200Response
                 type: object
                 properties:
                   data:
@@ -9398,6 +9538,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProducts200Response
                 type: object
                 properties:
                   data:
@@ -9448,6 +9589,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProduct200Response
                 type: object
                 properties:
                   data:
@@ -9542,6 +9684,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductBrands200Response
                 type: object
                 properties:
                   data:
@@ -9592,6 +9735,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductBrand200Response
                 type: object
                 properties:
                   data:
@@ -9689,6 +9833,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductGroups200Response
                 type: object
                 properties:
                   data:
@@ -9739,6 +9884,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductGroup200Response
                 type: object
                 properties:
                   data:
@@ -9833,6 +9979,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductProperties200Response
                 type: object
                 properties:
                   data:
@@ -9883,6 +10030,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductProperty200Response
                 type: object
                 properties:
                   data:
@@ -9931,6 +10079,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductReservations200Response
                 type: object
                 properties:
                   data:
@@ -9990,6 +10139,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostProductReservation200Response
                 type: object
                 properties:
                   data:
@@ -10031,6 +10181,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductReservation200Response
                 type: object
                 properties:
                   data:
@@ -10160,6 +10311,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductReservationSources200Response
                 type: object
                 properties:
                   data:
@@ -10210,6 +10362,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductReservationSource200Response
                 type: object
                 properties:
                   data:
@@ -10254,6 +10407,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductReservationExternalListTypes200Response
                 type: object
                 properties:
                   data:
@@ -10304,6 +10458,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetProductReservationExternalListType200Response
                 type: object
                 properties:
                   data:
@@ -10349,6 +10504,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetReservableProducts200Response
                 type: object
                 properties:
                   data:
@@ -10399,6 +10555,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetReservableProduct200Response
                 type: object
                 properties:
                   data:
@@ -10454,6 +10611,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostReservableProductsSearch200Response
                 type: object
                 properties:
                   data:
@@ -10515,6 +10673,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchases200Response
                 type: object
                 properties:
                   data:
@@ -10565,6 +10724,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchase200Response
                 type: object
                 properties:
                   data:
@@ -10649,6 +10809,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubPurchaseItems200Response
                 type: object
                 properties:
                   data:
@@ -10703,6 +10864,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubPurchaseVouchers200Response
                 type: object
                 properties:
                   data:
@@ -10757,6 +10919,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubPurchasePoints200Response
                 type: object
                 properties:
                   data:
@@ -10807,6 +10970,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchasePaymentSummary200Response
                 type: object
                 properties:
                   data:
@@ -10912,6 +11076,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostPurchaseRecommendedRewards200Response
                 type: object
                 properties:
                   data:
@@ -11019,6 +11184,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostPurchaseAcceptPayment200Response
                 type: object
                 properties:
                   data:
@@ -11087,6 +11253,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostPurchaseSend200Response
                 type: object
                 properties:
                   data:
@@ -11194,6 +11361,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchaseItemTypes200Response
                 type: object
                 properties:
                   data:
@@ -11247,6 +11415,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchaseTypes200Response
                 type: object
                 properties:
                   data:
@@ -11301,6 +11470,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchaseProperties200Response
                 type: object
                 properties:
                   data:
@@ -11347,6 +11517,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetPurchaseProperty200Response
                 type: object
                 properties:
                   data:
@@ -11387,6 +11558,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRecommendations200Response
                 type: object
                 properties:
                   data:
@@ -11437,6 +11609,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRecommendation200Response
                 type: object
                 properties:
                   data:
@@ -11497,6 +11670,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRecommendationProductEliminate200Response
                 type: object
                 properties:
                   data:
@@ -11567,6 +11741,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRecommendationProductOrder200Response
                 type: object
                 properties:
                   data:
@@ -11637,6 +11812,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRecommendationProductCombine200Response
                 type: object
                 properties:
                   data:
@@ -11711,6 +11887,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRecommendationCartEliminate200Response
                 type: object
                 properties:
                   data:
@@ -11785,6 +11962,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRecommendationCartOrder200Response
                 type: object
                 properties:
                   data:
@@ -11863,6 +12041,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRecommendationCartCombine200Response
                 type: object
                 properties:
                   data:
@@ -11973,6 +12152,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRewards200Response
                 type: object
                 properties:
                   data:
@@ -12023,6 +12203,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetReward200Response
                 type: object
                 properties:
                   data:
@@ -12069,6 +12250,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubRewardVouchers200Response
                 type: object
                 properties:
                   data:
@@ -12124,6 +12306,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubRewardProducts200Response
                 type: object
                 properties:
                   data:
@@ -12179,6 +12362,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubRewardProductGroups200Response
                 type: object
                 properties:
                   data:
@@ -12234,6 +12418,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubRewardProductBrands200Response
                 type: object
                 properties:
                   data:
@@ -12289,6 +12474,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubRewardStores200Response
                 type: object
                 properties:
                   data:
@@ -12344,6 +12530,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubRewardTags200Response
                 type: object
                 properties:
                   data:
@@ -12416,6 +12603,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostRewardCreateVoucher201Response
                 type: object
                 properties:
                   data:
@@ -12527,6 +12715,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRewardRecommendations200Response
                 type: object
                 properties:
                   data:
@@ -12577,6 +12766,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRewardProperties200Response
                 type: object
                 properties:
                   data:
@@ -12627,6 +12817,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRewardProperty200Response
                 type: object
                 properties:
                   data:
@@ -12671,6 +12862,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRewardTypes200Response
                 type: object
                 properties:
                   data:
@@ -12721,6 +12913,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetRewardType200Response
                 type: object
                 properties:
                   data:
@@ -12765,6 +12958,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSegments200Response
                 type: object
                 properties:
                   data:
@@ -12815,6 +13009,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSegment200response
                 type: object
                 properties:
                   data:
@@ -12856,6 +13051,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubSegmentRecords200Response
                 type: object
                 properties:
                   data:
@@ -13002,6 +13198,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSegmentGroups200Response
                 type: object
                 properties:
                   data:
@@ -13052,6 +13249,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSegmentGroup200Response
                 type: object
                 properties:
                   data:
@@ -13095,6 +13293,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStatuses200Response
                 type: object
                 properties:
                   data:
@@ -13145,6 +13344,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStatus200Response
                 type: object
                 properties:
                   data:
@@ -13192,6 +13392,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStores200Response
                 type: object
                 properties:
                   data:
@@ -13251,6 +13452,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostStores201Response
                 type: object
                 properties:
                   data:
@@ -13296,6 +13498,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStore200Response
                 type: object
                 properties:
                   data:
@@ -13379,6 +13582,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubStoreProperties200Response
                 type: object
                 properties:
                   data:
@@ -13439,6 +13643,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubStoreProperties201Response
                 type: object
                 properties:
                   data:
@@ -13484,6 +13689,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubStoreGroups200Response
                 type: object
                 properties:
                   data:
@@ -13616,6 +13822,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStoreGroups200Response
                 type: object
                 properties:
                   data:
@@ -13666,6 +13873,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStoreGroup200Response
                 type: object
                 properties:
                   data:
@@ -13710,6 +13918,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStoreProperties200Response
                 type: object
                 properties:
                   data:
@@ -13760,6 +13969,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetStoreProperty200Response
                 type: object
                 properties:
                   data:
@@ -13810,6 +14020,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTasks200Response
                 type: object
                 properties:
                   data:
@@ -13879,6 +14090,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostTasks201Response
                 type: object
                 properties:
                   data:
@@ -13924,6 +14136,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTask200Response
                 type: object
                 properties:
                   data:
@@ -14012,6 +14225,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubTaskComments200Response
                 type: object
                 properties:
                   data:
@@ -14072,6 +14286,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubTaskComments201Response
                 type: object
                 properties:
                   data:
@@ -14118,6 +14333,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubTaskComment200Response
                 type: object
                 properties:
                   data:
@@ -14162,6 +14378,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubTaskAssignees200Response
                 type: object
                 properties:
                   data:
@@ -14223,6 +14440,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostSubTaskAssignees201Response
                 type: object
                 properties:
                   data:
@@ -14269,6 +14487,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubTaskAssignee200Response
                 type: object
                 properties:
                   data:
@@ -14346,6 +14565,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTaskTypes200Response
                 type: object
                 properties:
                   data:
@@ -14396,6 +14616,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTaskType200Response
                 type: object
                 properties:
                   data:
@@ -14439,6 +14660,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTaskStates200Response
                 type: object
                 properties:
                   data:
@@ -14489,6 +14711,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTaskState200Response
                 type: object
                 properties:
                   data:
@@ -14533,6 +14756,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTaskProperties200Response
                 type: object
                 properties:
                   data:
@@ -14583,6 +14807,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTaskProperty200Response
                 type: object
                 properties:
                   data:
@@ -14623,6 +14848,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubTaskProperties200Response
                 type: object
                 properties:
                   data:
@@ -14673,6 +14899,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetConnection200Response
                 type: object
                 properties:
                   data:
@@ -14774,6 +15001,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostTokens201Response
                 type: object
                 properties:
                   data:
@@ -14900,6 +15128,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostTokenLogin200Response
                 type: object
                 properties:
                   data:
@@ -15004,6 +15233,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostTokenAuthTokenLogin200Response
                 type: object
                 properties:
                   data:
@@ -15059,6 +15289,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTokenSocialLogin200Response
                 type: object
                 properties:
                   data:
@@ -15165,6 +15396,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTokenAuthentication200Response
                 type: object
                 properties:
                   data:
@@ -15221,6 +15453,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetTokenTestCustomerLogin200Response
                 type: object
                 properties:
                   data:
@@ -15276,6 +15509,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetUsers200Response
                 type: object
                 properties:
                   data:
@@ -15327,6 +15561,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetUser200Response
                 type: object
                 properties:
                   data:
@@ -15378,6 +15613,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostUserVerifyAuthToken200Response
                 type: object
                 properties:
                   data:
@@ -15440,6 +15676,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostUserLogin200Response
                 type: object
                 properties:
                   data:
@@ -15507,6 +15744,7 @@ paths:
           content:
             application/json:
               schema:
+                title: PostUserSsoLogin200Response
                 type: object
                 properties:
                   data:
@@ -15609,6 +15847,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetUserRoles200Response
                 type: object
                 properties:
                   data:
@@ -15660,6 +15899,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetUserRole200Response
                 type: object
                 properties:
                   data:
@@ -15710,6 +15950,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetVouchers200Response
                 type: object
                 properties:
                   data:
@@ -15760,6 +16001,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetVoucher200Response
                 type: object
                 properties:
                   data:
@@ -15867,6 +16109,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetSubVoucherProperties200Response
                 type: object
                 properties:
                   data:
@@ -16017,6 +16260,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetVoucherProperties200Response
                 type: object
                 properties:
                   data:
@@ -16067,6 +16311,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetVoucherProperty200Response
                 type: object
                 properties:
                   data:
@@ -16109,6 +16354,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetWalletSalesTurnover200Response
                 type: object
                 properties:
                   data:
@@ -16157,6 +16403,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetWalletPoints200Response
                 type: object
                 properties:
                   data:
@@ -16221,6 +16468,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetWalletCredits200Response
                 type: object
                 properties:
                   data:
@@ -16282,6 +16530,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetWalletPointsExpiration200Response
                 type: object
                 properties:
                   data:
@@ -16337,6 +16586,7 @@ paths:
           content:
             application/json:
               schema:
+                title: GetWalletCreditsExpiration200Response
                 type: object
                 properties:
                   data:

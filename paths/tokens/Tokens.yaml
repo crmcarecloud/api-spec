@@ -41,6 +41,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostTokens201Response
             type: object
             properties:
               data:

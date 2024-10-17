@@ -25,6 +25,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetCampaignProducts200Response
             type: object
             properties:
               data:
@@ -147,6 +148,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCampaignProduct201Response
             type: object
             properties:
               data:

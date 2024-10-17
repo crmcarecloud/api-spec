@@ -29,6 +29,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostCardGeneratePassMachine200Response
             type: object
             properties:
               data:

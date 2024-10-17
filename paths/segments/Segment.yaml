@@ -13,6 +13,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSegment200response
             type: object
             properties:
               data:

@@ -41,6 +41,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostPurchaseSend200Response
             type: object
             properties:
               data:

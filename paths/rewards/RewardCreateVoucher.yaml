@@ -35,6 +35,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostRewardCreateVoucher201Response
             type: object
             properties:
               data:

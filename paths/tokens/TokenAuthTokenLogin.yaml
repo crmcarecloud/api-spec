@@ -39,6 +39,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostTokenAuthTokenLogin200Response
             type: object
             properties:
               data:

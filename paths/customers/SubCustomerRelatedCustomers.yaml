@@ -21,6 +21,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetSubCustomerRelatedCustomers200Response
             type: object
             properties:
               data:
@@ -134,6 +135,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostSubCustomerRelatedCustomers201Response
             type: object
             properties:
               data:

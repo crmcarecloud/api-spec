@@ -23,6 +23,7 @@ get:
       content:
         application/json:
           schema:
+            title: GetVouchers200Response
             type: object
             properties:
               data:

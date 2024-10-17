@@ -49,6 +49,7 @@ post:
       content:
         application/json:
           schema:
+            title: PostPointsRedemption201Response
             type: object
             properties:
               data:
