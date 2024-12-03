@@ -4,6 +4,7 @@ post:
   summary: Create a new voucher
   description: >
     Create a new voucher for a specific customer based on a reward features definition.<br/>
+    ⚠️Only Coupons & Catalogue reward or Simple reward could be use here.
   operationId: postRewardCreateVoucher
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

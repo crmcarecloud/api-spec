@@ -12,6 +12,8 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/name'
     - $ref: '../../parameters/_index.yaml#/product_code'
+    - $ref: '../../parameters/_index.yaml#/store_id'
+    - $ref: '../../parameters/_index.yaml#/tag_id_arr'
   responses:
     '200':
       description: OK

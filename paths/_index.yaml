@@ -370,6 +370,9 @@
 # Batch
 /products/batch:
   $ref: "./products/ProductsBatch.yaml"
+#Sub-resources
+/products/tags:
+  $ref: "./products/SubProductTags.yaml"
 # Product brands
 /product-brands:
   $ref: "./products/ProductBrands.yaml"
@@ -396,11 +399,19 @@
   $ref: "./products/ProductReservations.yaml"
 /product-reservations/{product_reservation_id}:
   $ref: "./products/ProductReservation.yaml"
-#  Actions
 /product-reservations/{product_reservation_id}/actions/cancel-reservation:
   $ref: "./products/ProductReservationCancel.yaml"
+/product-reservations/actions/change-reservation-state:
+  $ref: "./products/ProductReservationUpdateState.yaml"
 /product-reservations/actions/set-product-reservation-external-codes:
   $ref: "./products/ProductReservationSetExternalReservationCodes.yaml"
+# Product reservation prices
+/product-reservation-prices:
+  $ref: "./products/ProductReservationPrices.yaml"
+/product-reservationprices/{product_reservation_price_id}:
+  $ref: "./products/ProductReservationPrice.yaml"
+/product-reservation-prices/batch:
+  $ref: "./products/ProductReservationPricesBatch.yaml"
 # Product reservation sources
 /product-reservation-sources:
   $ref: "./products/ProductReservationSources.yaml"

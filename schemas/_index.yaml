@@ -158,6 +158,8 @@ ProductReservation:
   $ref: "./ProductReservation.yaml"
 ProductReservationItem:
   $ref: "./ProductReservationItem.yaml"
+ProductReservationPrice:
+  $ref: "./ProductReservationPrice.yaml"
 ProductReservationProgress:
   $ref: "./ProductReservationProgress.yaml"
 ProductReservationComment:

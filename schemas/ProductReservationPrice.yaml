@@ -1,0 +1,55 @@
+type: object
+description: |
+  Product reservation price resource.
+properties:
+  product_reservation_price_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the product reservation price.
+    example: "81eaeea13b8984a169c490a325"
+  reservable_product_id:
+    type: string
+    readOnly: false
+    description:   The unique ID of the reservable product. This represents relation in between price and product. Required if `plu_ids` is not set.
+    example: "8ea2591121e636086a4a9c0992"
+  plu_ids:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PluId'
+    readOnly: false
+    description: An array of all available pluIDs from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).  This is an alternative to  `reservable_product_id`. It will accept only products that could be reserved.  Required if `reservable_product_id` is not set.
+  value:
+    type: number
+    format: float
+    readOnly: false
+    description: Value of a price for store and currency.
+    example: 69
+  currency_id:
+    type: string
+    readOnly: false
+    description: ID of the currency. If total_price is set, then currency_id is mandatory.
+    example: "8bed991c68a470e7aaeffbf048"
+  store_id:
+    type: string
+    readOnly: false
+    description: The unique ID of the store tied to the product reservation price. Prices of product can vary depending on the store.
+    example: "82db62087b0f79a6e14e5747e7"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2020-04-20 11:23:35"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the product reservation.
+      *Possible values are: 0 - deleted / 1 - active *
+    example: 1
+required:
+  - value
+  - currency_id

@@ -3,7 +3,6 @@ description: Information about a tag structure.
 properties:
   tag_id:
     type: string
-    readOnly: true
     description: The unique ID of the tag.
     example: "838b73aacb5ac326cec4030c80"
   name:

@@ -4,7 +4,7 @@ post:
   summary: Create a batch of products
   description: >
     Batch process helps to add multiple products in one request.<br/> 
-    ⚠️ If a product already exists, an update is applied. Missing parameters (first level parameters) in update will be erased from existing product.<br/>
+    ⚠️ If a product already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible<br/>
     ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/>
     ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: postBulkProducts

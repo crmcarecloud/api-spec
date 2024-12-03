@@ -14,7 +14,7 @@ properties:
   external_id:
     type: string
     readOnly: false
-    description: The external unique ID of the product brand.
+    description: The external unique ID of the point reservation. You can use your own ID (could be an order ID or reservation ID from your system/application) that will help you identify and filter the point reservation later.
     example: "123459"
   quantity:
     type: number

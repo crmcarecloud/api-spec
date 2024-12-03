@@ -120,276 +120,12 @@ tags:
     description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
   - name: Product reservation external list types
     description: You can get the list of the available product reservation external list types here.
+  - name: Product reservation prices
+    description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservation sources
     description: You can get the list of the available product reservation sources here.
   - name: Purchases
     description: 'There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.'
-  - name: Purchase error examples
-    description: |
-      <p>Examples of the most occurred extended error codes from purchases resource endpoints and action methods:</p> <table>
-        <thead>
-          <tr>
-            <th>status code</th>
-            <th>exception</th>
-            <th>name</th>
-            <th>reason</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>store_id</td>
-            <td>not_found</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>purchase_type_id</td>
-            <td>not_allowed_value</td>
-          </tr> 
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>bill_item_id</td>
-            <td>item_price_lower_than_paid_amount</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>bill_id</td>
-            <td>already_exists</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>bill_item_id</td>
-            <td>required</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>payment_time</td>
-            <td>invalid_value_format</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>credit_points</td>
-            <td>not_enough_points_for_payment</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>max_number_of_voucher_exceeded</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>system_id</td>
-            <td>different_system_id</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_not_allowed_in_store</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>not_enough_items_for_voucher</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_condition_count_not_satisfied</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_bonus_count_not_satisfied</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>unauthorized_use_vouchers</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>not_enough_items_for_voucher</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>not_enough_points_for_voucher</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_cant_be_applied_by_date</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_cant_be_applied_by_time</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_cant_be_applied_by_validity_days</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_cant_be_applied_by_segment</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_cant_be_used_in_store</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_assigned_to_another_customer</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_already_used</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_already_applied</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_expired</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>insufficient_amount_of_purchase</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_invalid_type_of_usage</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>card_number</td>
-            <td>card_is_blocked</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>benefit_codes</td>
-            <td>voucher_invalid_type_of_usage</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>max_points</td>
-            <td>points_min_amount_of_purchase</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>max_points</td>
-            <td>customer_cant_pay_by_points</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>payment_type</td>
-            <td>customer_cant_pay_by_credits</td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>customer_id</td>
-            <td>customer_was_deleted</td>
-          </tr>
-        </tbody>
-      </table>
-      <table>
-        <thead>
-          <tr>
-            <th>status code</th>
-            <th>exception</th>
-            <th>parameter</th>
-            <th>object_of_parameter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>400</td>
-            <td>missing_argument_exception</td>
-            <td>code</td>
-            <td>PluId</td>
-          </tr>
-        </tbody>
-      </table>
-      <table>
-        <thead>
-          <tr>
-            <th>status code</th>
-            <th>exception</th>
-            <th>expected_type</th>
-            <th>actual_type</th>
-            <th>parameter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-           <td>400</td>
-           <td>invalid_argument_exception</td>
-           <td>string</td>
-           <td>null</td>
-           <td>payment_type</td>
-         </tr>
-        </tbody>
-      </table>
-      <table>
-        <thead>
-          <tr>
-            <th>status code</th>
-            <th>exception</th>
-            <th>title</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>400</td>
-            <td>bad_request_exception</td>
-            <td>'Encoded store ID is invalid.'</td>
-          </tr>
-        </tbody>
-      </table>
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
   - name: Purchase properties
@@ -9317,7 +9053,7 @@ paths:
       tags:
         - Point reservation
       summary: Create point reservation
-      description: New point reservation is created.
+      description: This endpoint allows you to reserve customer points. It is usually used when you are not sure if a customer will really use the point or when you waiting for his confirmation of the point usage. It prevents point frauds.
       operationId: postPointReservationCreate
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -9330,7 +9066,7 @@ paths:
                 external_id:
                   type: string
                   readOnly: false
-                  description: The external unique ID of the product brand.
+                  description: The external unique ID of the point reservation. You can use your own ID (could be an order ID or reservation ID from your system/application) that will help you identify and filter the point reservation later.
                   example: '123459'
                 customer_id:
                   type: string
@@ -9532,6 +9268,7 @@ paths:
         - $ref: '#/components/parameters/product_code'
         - $ref: '#/components/parameters/external_id'
         - $ref: '#/components/parameters/external_type_code'
+        - $ref: '#/components/parameters/tag_id_arr'
       responses:
         '200':
           description: OK
@@ -9620,7 +9357,7 @@ paths:
         - Products
       summary: Create a batch of products
       description: |
-        Batch process helps to add multiple products in one request.<br/>  ⚠️ If a product already exists, an update is applied. Missing parameters (first level parameters) in update will be erased from existing product.<br/> ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+        Batch process helps to add multiple products in one request.<br/>  ⚠️ If a product already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible<br/> ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
       operationId: postBulkProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -9664,6 +9401,58 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PluId;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ProductBatch;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ProductsBatchBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set products info\n$plu_id = new PluId();\n$plu_id->setListCode('GLOBAL'); // string | Code of the particular product list (“GLOBAL”, “SKU”, “PLU”, etc.)\n$plu_id->setCode('abc123'); // string | Code of product from the product list\n\n$product1 = new ProductBatch();\n$product1->setName('Apple Clock'); // strong | The name of the product\n$product1->setCode(null); // string | The code of the product (optional)\n$product1->setPluIds(array($plu_id)); // array of PluID objects\n$product1->setProductGroupId(null); // string | The unique ID of the product group (optional)\n$product1->setProductGroupExternalId(null); // string | The unique external ID of the product group (optional)\n$product1->setProductBrandId(null); // string | The unique ID of the product brand (optional)\n$product1->setProductBrandExternalId(null); // string | The unique external ID of the product brand (optional)\n$product1->setStoreId(null); // string | The unique ID for the store where the product group is valid (optional)\n\n// Set the request body\n$body = new ProductsBatchBody();\n$body->setProducts(array($product1));\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->productsApi()->postBulkProducts($body, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /products/tags:
+    get:
+      tags:
+        - Products
+      summary: Get all tags for resource products
+      description: Get information as a list of all tags of resource products. Tags from the list could be use for product filtering.
+      operationId: getSubProductTags
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/text_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetSubProductTags200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      tags:
+                        type: array
+                        description: List of the all tags assigned to the resource products.
+                        items:
+                          $ref: '#/components/schemas/Tag'
+                      total_items:
+                        type: integer
+                        description: The number of all found tags.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /product-brands:
     get:
       tags:
@@ -10244,6 +10033,64 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /product-reservations/actions/change-reservation-state:
+    post:
+      tags:
+        - Product reservations
+      summary: Change reservation state
+      description: Change a state of existing reservation
+      operationId: postProductReservationChangeState
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_reservation_id:
+                  type: string
+                  description: The unique ID of the product reservation.
+                  example: 81d503b99cc748b3ca189383ad
+                state:
+                  type: integer
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                    - 2
+                    - 4
+                    - 5
+                    - 6
+                    - 7
+                    - 8
+                  description: |
+                    A new state of the product reservation. If the reservation is canceled, it won't appear in the reservation list only in the reservation detail.
+                    *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
+                  example: 5
+              required:
+                - product_reservation_id
+                - state
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /product-reservations/actions/set-product-reservation-external-codes:
     post:
       tags:
@@ -10273,6 +10120,192 @@ paths:
               required:
                 - product_reservation_id
                 - external_reservation_codes
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /product-reservation-prices:
+    get:
+      tags:
+        - Product reservation prices
+      summary: Get all product reservation prices
+      description: Get a list of product reservation prices. Each price represents the value of the product for the reservation for a specific store and currency.
+      operationId: getProductReservationPrices
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/reservable_product_id'
+        - $ref: '#/components/parameters/store_id'
+        - $ref: '#/components/parameters/currency_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetProductReservationPrices200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      product_reservation_prices:
+                        type: array
+                        description: List of the product reservation prices.
+                        items:
+                          $ref: '#/components/schemas/ProductReservationPrice'
+                      total_items:
+                        type: integer
+                        description: The number of all found product reservation prices.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/product-reservationprices/{product_reservation_price_id}':
+    get:
+      tags:
+        - Product reservation prices
+      summary: Get a detail of product reservation price
+      description: Get information about a specific product reservation price. The price represents the value of the product for the reservation for a specific store and currency.
+      operationId: getProductReservationPrice
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/product_reservation_price_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetProductReservationPrice200Response
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProductReservationPrice'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /product-reservation-prices/batch:
+    post:
+      tags:
+        - Product reservation prices
+      summary: Create a batch of product reservation prices
+      description: |
+        Batch process helps to add and synchronize multiple product reservation prices in one request.<br/>  ⚠️ If a product reservation price already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible here.<br/> ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+      operationId: postBulkProductReservationPrices
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products_reservation_prices:
+                  type: array
+                  description: List of the product reservation prices.
+                  items:
+                    $ref: '#/components/schemas/ProductReservationPrice'
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
+              required:
+                - products_reservation_prices
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      tags:
+        - Product reservation prices
+      summary: Delete a batch of product reservation prices
+      description: |
+        Batch process helps to remove multiple product reservation prices in one request.<br/>  ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+      operationId: postBulkDeleteProductReservationPrices
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products_reservation_prices:
+                  type: array
+                  description: List of the product reservation prices.
+                  items:
+                    type: object
+                    properties:
+                      product_reservation_price_id:
+                        type: string
+                        description: The unique ID of the product reservation price.
+                        example: 81eaeea13b8984a169c490a325
+                error_processing:
+                  type: integer
+                  $ref: '#/components/schemas/Error_processing'
+              required:
+                - products_reservation_prices
       responses:
         '204':
           description: No Content
@@ -10498,6 +10531,8 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/product_code'
+        - $ref: '#/components/parameters/store_id'
+        - $ref: '#/components/parameters/tag_id_arr'
       responses:
         '200':
           description: OK
@@ -12571,7 +12606,7 @@ paths:
         - Rewards
       summary: Create a new voucher
       description: |
-        Create a new voucher for a specific customer based on a reward features definition.<br/>
+        Create a new voucher for a specific customer based on a reward features definition.<br/> ⚠️Only Coupons & Catalogue reward or Simple reward could be use here.
       operationId: postRewardCreateVoucher
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -19340,7 +19375,7 @@ components:
         external_id:
           type: string
           readOnly: false
-          description: The external unique ID of the product brand.
+          description: The external unique ID of the point reservation. You can use your own ID (could be an order ID or reservation ID from your system/application) that will help you identify and filter the point reservation later.
           example: '123459'
         quantity:
           type: number
@@ -19478,6 +19513,12 @@ components:
             State of the product.
             *Possible values are: 0 - deleted / 1 - active*
           example: 1
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          readOnly: true
+          description: List of tags assigned to the product.
     ProductIdentification:
       type: object
       description: All possible identifications of the product.
@@ -19553,6 +19594,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Price'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          description: List of tags assigned to the product.
       required:
         - name
         - plu_ids
@@ -19802,6 +19848,62 @@ components:
       required:
         - reservable_product_id
         - amount
+    ProductReservationPrice:
+      type: object
+      description: |
+        Product reservation price resource.
+      properties:
+        product_reservation_price_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the product reservation price.
+          example: 81eaeea13b8984a169c490a325
+        reservable_product_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the reservable product. This represents relation in between price and product. Required if `plu_ids` is not set.
+          example: 8ea2591121e636086a4a9c0992
+        plu_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/PluId'
+          readOnly: false
+          description: An array of all available pluIDs from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).  This is an alternative to  `reservable_product_id`. It will accept only products that could be reserved.  Required if `reservable_product_id` is not set.
+        value:
+          type: number
+          format: float
+          readOnly: false
+          description: Value of a price for store and currency.
+          example: 69
+        currency_id:
+          type: string
+          readOnly: false
+          description: 'ID of the currency. If total_price is set, then currency_id is mandatory.'
+          example: 8bed991c68a470e7aaeffbf048
+        store_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the store tied to the product reservation price. Prices of product can vary depending on the store.
+          example: 82db62087b0f79a6e14e5747e7
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2020-04-20 11:23:35'
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the product reservation.
+            *Possible values are: 0 - deleted / 1 - active *
+          example: 1
+      required:
+        - value
+        - currency_id
     ProductReservationProgress:
       type: object
       description: Product reservation progress history structure.
@@ -21398,7 +21500,6 @@ components:
       properties:
         tag_id:
           type: string
-          readOnly: true
           description: The unique ID of the tag.
           example: 838b73aacb5ac326cec4030c80
         name:
@@ -22210,7 +22311,9 @@ components:
       name: tag_ids
       in: query
       required: false
-      description: Parameter filters values by a list of tag IDs. Logic OR is used between values.
+      description: |
+        Parameter filters values by a list of tag IDs. Logic OR is used between values. <br/>
+        In case you want to filter multiple options use array syntax : `tag_ids[]=8bc8ca16f9c5039951021700a2&tag_ids[]=82c06812c0756528660784fef`
       schema:
         type: array
         items:
@@ -22533,6 +22636,14 @@ components:
       schema:
         type: string
       example: United States dollar
+    currency_id:
+      name: currency_id
+      in: query
+      description: 'The unique ID of a currency from [Currencies resource](https://carecloud.readme.io/reference/getcurrencies).'
+      required: false
+      schema:
+        type: string
+      example: 86e05affc7a7abefcd513ab400
     ce_setup_id_path:
       name: customer_engagement_setup_id
       in: path
@@ -23025,7 +23136,7 @@ components:
     text_id:
       name: text_id
       in: query
-      description: Text ID of an event group.
+      description: You can filter resource results depending on his text ID.
       required: false
       schema:
         type: string
@@ -23276,6 +23387,14 @@ components:
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048
+    reservable_product_id:
+      name: reservable_product_id
+      in: query
+      description: |
+        The unique ID of the reservable product. In case you want to filter multiple options use array syntax : `reservable_product_id[]=8bc8ca16f9c5039951021700a2&reservable_product_id[]=82c06812c0756528660784fef`
+      schema:
+        type: string
+      example: 8bed991c68a470e7aaeffbf048
     product_brand_id_path:
       name: product_brand_id
       in: path
@@ -23304,6 +23423,14 @@ components:
       name: product_reservation_id
       in: path
       description: The unique ID of the product reservation.
+      required: true
+      schema:
+        type: string
+      example: 81d503b99cc748b3ca189383ad
+    product_reservation_price_id_path:
+      name: product_reservation_price_id
+      in: path
+      description: The unique ID of the product reservation price.
       required: true
       schema:
         type: string

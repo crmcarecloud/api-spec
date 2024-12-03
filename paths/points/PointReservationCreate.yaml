@@ -2,7 +2,7 @@ post:
   tags:
     - Point reservation
   summary: Create point reservation
-  description: New point reservation is created.
+  description: This endpoint allows you to reserve customer points. It is usually used when you are not sure if a customer will really use the point or when you waiting for his confirmation of the point usage. It prevents point frauds.
   operationId: postPointReservationCreate
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -16,7 +16,7 @@ post:
             external_id:
               type: string
               readOnly: false
-              description: The external unique ID of the product brand.
+              description: The external unique ID of the point reservation. You can use your own ID (could be an order ID or reservation ID from your system/application) that will help you identify and filter the point reservation later.
               example: '123459'
             customer_id:
               type: string

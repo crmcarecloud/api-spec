@@ -57,6 +57,11 @@ properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Price'
+  tags:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Tag'
+    description: List of tags assigned to the product.
 required:
   - name
   - plu_ids

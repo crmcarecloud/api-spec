@@ -14,6 +14,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/product_code'
     - $ref: '../../parameters/_index.yaml#/external_id'
     - $ref: '../../parameters/_index.yaml#/external_type_code'
+    - $ref: '../../parameters/_index.yaml#/tag_id_arr'
   responses:
     '200':
       description: OK

@@ -71,3 +71,9 @@ properties:
       State of the product.
       *Possible values are: 0 - deleted / 1 - active*
     example: 1
+  tags:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Tag'
+    readOnly: true
+    description: List of tags assigned to the product.

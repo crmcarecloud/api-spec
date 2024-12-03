@@ -1,0 +1,100 @@
+post:
+  tags:
+    - Product reservation prices
+  summary: Create a batch of product reservation prices
+  description: >
+    Batch process helps to add and synchronize multiple product reservation prices in one request.<br/> 
+    ⚠️ If a product reservation price already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible here.<br/>
+    ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  operationId: postBulkProductReservationPrices
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            products_reservation_prices:
+              type: array
+              description: List of the product reservation prices.
+              items:
+                $ref: '../../schemas/_index.yaml#/ProductReservationPrice'
+            error_processing:
+              type: integer
+              $ref: '../../schemas/_index.yaml#/Error_processing'
+          required:
+            - products_reservation_prices
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+delete:
+  tags:
+    - Product reservation prices
+  summary: Delete a batch of product reservation prices
+  description: >
+    Batch process helps to remove multiple product reservation prices in one request.<br/> 
+    ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/>
+    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  operationId: postBulkDeleteProductReservationPrices
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            products_reservation_prices:
+              type: array
+              description: List of the product reservation prices.
+              items:
+                type: object
+                properties:
+                  product_reservation_price_id:
+                    type: string
+                    description: The unique ID of the product reservation price.
+                    example: "81eaeea13b8984a169c490a325"
+            error_processing:
+              type: integer
+              $ref: '../../schemas/_index.yaml#/Error_processing'
+          required:
+            - products_reservation_prices
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

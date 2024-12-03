@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Product reservation prices
+  summary: Get a detail of product reservation price
+  description: Get information about a specific product reservation price. The price represents the value of the product for the reservation for a specific store and currency.
+  operationId: getProductReservationPrice
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/product_reservation_price_id_path'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetProductReservationPrice200Response
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/ProductReservationPrice'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

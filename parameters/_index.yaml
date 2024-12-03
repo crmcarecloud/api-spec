@@ -193,7 +193,9 @@ tag_id_arr:
   name: tag_ids
   in: query
   required: false
-  description: 	Parameter filters values by a list of tag IDs. Logic OR is used between values.
+  description: 	|
+    Parameter filters values by a list of tag IDs. Logic OR is used between values. <br/>
+    In case you want to filter multiple options use array syntax : `tag_ids[]=8bc8ca16f9c5039951021700a2&tag_ids[]=82c06812c0756528660784fef`
   schema:
     type: array
     items:
@@ -526,6 +528,14 @@ currency_name:
   schema:
     type: string
   example: "United States dollar"
+currency_id:
+  name: currency_id
+  in: query
+  description: The unique ID of a currency from [Currencies resource](https://carecloud.readme.io/reference/getcurrencies).
+  required: false
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
 
 #Customer engagement
 ce_setup_id_path:
@@ -1039,7 +1049,7 @@ event_type_ids:
 text_id:
   name: text_id
   in: query
-  description: Text ID of an event group.
+  description: You can filter resource results depending on his text ID.
   required: false
   schema:
     type: string
@@ -1303,6 +1313,14 @@ reservable_product_id_path:
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
+reservable_product_id:
+  name: reservable_product_id
+  in: query
+  description: |
+    The unique ID of the reservable product. In case you want to filter multiple options use array syntax : `reservable_product_id[]=8bc8ca16f9c5039951021700a2&reservable_product_id[]=82c06812c0756528660784fef`
+  schema:
+    type: string
+  example: "8bed991c68a470e7aaeffbf048"
 product_brand_id_path:
   name: product_brand_id
   in: path
@@ -1331,6 +1349,14 @@ product_reservation_id_path:
   name: product_reservation_id
   in: path
   description: The unique ID of the product reservation.
+  required: true
+  schema:
+    type: string
+  example: "81d503b99cc748b3ca189383ad"
+product_reservation_price_id_path:
+  name: product_reservation_price_id
+  in: path
+  description: The unique ID of the product reservation price.
   required: true
   schema:
     type: string

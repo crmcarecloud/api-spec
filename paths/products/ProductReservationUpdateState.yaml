@@ -1,0 +1,57 @@
+post:
+  tags:
+    - Product reservations
+  summary: Change reservation state
+  description: Change a state of existing reservation
+  operationId: postProductReservationChangeState
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            product_reservation_id:
+              type: string
+              description: The unique ID of the product reservation.
+              example: '81d503b99cc748b3ca189383ad'
+            state:
+              type: integer
+              enum:
+                - 0
+                - 1
+                - 2
+                - 2
+                - 4
+                - 5
+                - 6
+                - 7
+                - 8
+              description: |
+                A new state of the product reservation. If the reservation is canceled, it won't appear in the reservation list only in the reservation detail.
+                *Possible values: 0 - Canceled / 1 - Entered / 2 - Accepted / 3 - Ready / 4 - Delivered / 5 - In progress / 6 - Not Picked up / 7 - Ordered / 8 - Being solved /*
+              example: 5
+          required:
+            - product_reservation_id
+            - state
+  responses:
+    '204':
+      description: No Content
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
