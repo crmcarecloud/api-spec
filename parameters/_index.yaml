@@ -1453,7 +1453,17 @@ reservation_state:
       - 7
       - 8
   example: 2
-
+include_reservation_progress_history:
+  name: include_reservation_progress_history
+  in: query
+  description: If true, the response will contain information about the reservation progress history. If false, or not set the response will not return this structure.
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
 # Purchase
 purchase_id_path:
   name: purchase_id

@@ -17,7 +17,7 @@ post:
         schema:
           type: object
           properties:
-            products_reservation_prices:
+            product_reservation_prices:
               type: array
               description: List of the product reservation prices.
               items:
@@ -64,7 +64,7 @@ delete:
         schema:
           type: object
           properties:
-            products_reservation_prices:
+            product_reservation_prices:
               type: array
               description: List of the product reservation prices.
               items:

@@ -128,6 +128,11 @@ put:
             social_network_credentials:
               description: 'This is the customer’s social media credentials. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
+            property_records:
+              type: array
+              description: List of an customer property records.
+              items:
+                $ref: '../../schemas/_index.yaml#/PropertyRecord'
           required:
             - customer
             - autologin

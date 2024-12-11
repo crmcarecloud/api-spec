@@ -15,6 +15,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/reservation_state'
     - $ref: '../../parameters/_index.yaml#/external_reservation_list_type_id'
     - $ref: '../../parameters/_index.yaml#/external_reservation_code'
+    - $ref: '../../parameters/_index.yaml#/include_reservation_progress_history'
   responses:
     '200':
       description: OK

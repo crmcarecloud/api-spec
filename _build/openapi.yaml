@@ -3635,6 +3635,11 @@ paths:
                 social_network_credentials:
                   description: 'This is the customer’s social media credentials. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
                   $ref: '#/components/schemas/SocialNetworkCredentials'
+                property_records:
+                  type: array
+                  description: List of an customer property records.
+                  items:
+                    $ref: '#/components/schemas/PropertyRecord'
               required:
                 - customer
                 - autologin
@@ -9862,6 +9867,7 @@ paths:
         - $ref: '#/components/parameters/reservation_state'
         - $ref: '#/components/parameters/external_reservation_list_type_id'
         - $ref: '#/components/parameters/external_reservation_code'
+        - $ref: '#/components/parameters/include_reservation_progress_history'
       responses:
         '200':
           description: OK
@@ -10246,7 +10252,7 @@ paths:
             schema:
               type: object
               properties:
-                products_reservation_prices:
+                product_reservation_prices:
                   type: array
                   description: List of the product reservation prices.
                   items:
@@ -10291,7 +10297,7 @@ paths:
             schema:
               type: object
               properties:
-                products_reservation_prices:
+                product_reservation_prices:
                   type: array
                   description: List of the product reservation prices.
                   items:
@@ -23527,6 +23533,17 @@ components:
           - 7
           - 8
       example: 2
+    include_reservation_progress_history:
+      name: include_reservation_progress_history
+      in: query
+      description: 'If true, the response will contain information about the reservation progress history. If false, or not set the response will not return this structure.'
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: true
     purchase_id_path:
       name: purchase_id
       in: path
