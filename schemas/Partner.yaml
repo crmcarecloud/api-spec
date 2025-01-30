@@ -4,7 +4,7 @@ properties:
   partner_id:
     type: string
     readOnly: true
-    description: The unique ID of the company.
+    description: The unique ID of the partner. Partner represents business, company, or organization in the CareCloud domain. CareCloud allows single partner setup or multiple partner setup depending on the business setup.
     example: "86e05affc7a7abefcd513ab400"
   name:
     type: string

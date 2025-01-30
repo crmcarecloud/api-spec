@@ -1,0 +1,13 @@
+type: object
+description: Text structure with language variant.
+properties:
+  language_code:
+    type: string
+    readOnly: false
+    description: "The unique ID of the language code by ISO 639-1."
+    example: "en"
+  text:
+    type: string
+    readOnly: false
+    description: This is universal parameter that contain text in the defined language.
+    example: "Shoppers can earn exciting rewards for every purchase made at our store. Accumulated points can be redeemed for discounts, special offers, and exclusive products. Keep an eye out for seasonal promotions where rewards can multiply. Remember to check your rewards balance regularly to take full advantage of your benefits."

@@ -1,0 +1,53 @@
+post:
+  tags:
+    - Rewards
+  summary: Create a Simple reward
+  description: >
+    Create a new simple reward.<br/>
+    ⚠️ Action methods are available only in Enterprise interface.
+  operationId: postRewardCreateSimpleReward
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            simple_reward:
+              $ref: '../../schemas/_index.yaml#/SimpleReward'
+          required:
+            - simple_reward
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            title: PostRewardCreateSimpleReward201Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  reward_id:
+                    type: string
+                    description: The unique ID of the simple reward.
+                    example: "82d0f9d976dee39aacd13dc7ea"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

@@ -1,0 +1,13 @@
+type: object
+description: URL link in language variant.
+properties:
+  language_code:
+    type: string
+    readOnly: false
+    description: "The unique ID of the language code by ISO 639-1."
+    example: "en"
+  url:
+    type: string
+    readOnly: false
+    description: URL address that will link to content in the specific language variant
+    example: "https://example.com/images/voucher.png?lang=en"

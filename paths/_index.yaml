@@ -512,7 +512,8 @@
   $ref: "./rewards/RewardSynchronizeProducts.yaml"
 /rewards/actions/reward-recommendations:
   $ref: "./rewards/RewardRecommendations.yaml"
-
+/rewards/actions/create-simple-reward:
+  $ref: "./rewards/RewardCreateSimpleReward.yaml"
 #Reward properties
 /reward-properties:
   $ref: "./rewards/RewardProperties.yaml"

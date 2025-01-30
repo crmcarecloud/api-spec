@@ -879,7 +879,7 @@ reward_group:
 without_stores:
   name: without_stores
   in: query
-  description: If true, the data will not contain information about business units (stores). If false, or not set resource returns default structure.
+  description: If true or not set, the data will not contain information about business units (stores). If false resource returns full structure with stores.
   required: false
   schema:
     type: boolean

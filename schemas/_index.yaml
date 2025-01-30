@@ -224,6 +224,8 @@ Setup:
   $ref: "./Setup.yaml"
 Entrance:
   $ref: "./Entrance.yaml"
+SimpleReward:
+  $ref: "./SimpleReward.yaml"
 SocialNetworkCredentials:
   $ref: "./SocialNetworkCredentials.yaml"
 Status:
@@ -248,12 +250,16 @@ TaskState:
   $ref: "./TaskState.yaml"
 TaskType:
   $ref: "./TaskType.yaml"
+TextTranslation:
+  $ref: "./TextTranslation.yaml"
 TimeInterval:
   $ref: "./TimeInterval.yaml"
 TimeSlot:
   $ref: "./TimeSlot.yaml"
 ThirdPartyRecommendation:
   $ref: "./ThirdPartyRecommendation.yaml"
+UrlLanguageVariant:
+  $ref: "./UrlLanguageVariant.yaml"
 User:
   $ref: "./User.yaml"
 UserRole:
