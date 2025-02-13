@@ -213,6 +213,8 @@ components:
     $ref: "./schemas/_index.yaml"
   parameters:
     $ref: "./parameters/_index.yaml"
+#  requestBodies:
+#    $ref: "./request_bodies/_index.yaml"
   securitySchemes:
     bearerAuth:
       type: http

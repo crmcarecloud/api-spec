@@ -99,3 +99,65 @@ get:
         {
             die(var_dump($e->getResponseBody() ?: $e->getMessage()));
         }
+post:
+  tags:
+    - Segments
+  summary: Create an empty segment
+  description: Create an empty segment.
+  operationId: PostSegment
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the empty segment.
+              example: "Winter 2025 - Campaign"
+            note:
+              type: string
+              description: Description of the empty segment.
+              example: "All customers that fits into criteria for winter campaign."
+            priority:
+              type: integer
+              readOnly: false
+              description: The priority of defined segment. The possible value range 0 - 100.
+              example: 47
+          required:
+            - name
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            title: PostSegments201Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  segment_id:
+                    type: string
+                    description: The unique ID of the empty segment in CareCloud
+                    example: "86e05affc7a7abefcd513ab400"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

@@ -1,0 +1,9 @@
+type: object
+description: Segment structure.
+properties:
+  segment_id:
+    type: string
+    description: The unique ID of the segment.
+    example: "82de12eb8b138791e678fd11c3"
+required:
+  - segment_id

@@ -8,7 +8,7 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Consent to General Terms & Conditions. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: 'Consent to the Personal data processing. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
     example: 1
   agreement_profiling:
     type: integer
@@ -17,7 +17,7 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Consent to profiling. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: 'Consent to the Profiling. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
     example: 1
   agreement_marketing_communication:
     type: integer
@@ -26,15 +26,11 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Consent to marketing communication. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+    description: 'Consent to the Marketing communication. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
     example: 1
   custom_agreements:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/CustomAgreements'
     readOnly: false
-    description: Custom consents.
-required:
-  - agreement_marketing_communication
-  - agreement_profiling
-  - agreement_gtc
+    description: "Custom consent list. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)"

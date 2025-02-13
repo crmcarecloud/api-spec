@@ -32,8 +32,7 @@ properties:
     readOnly: false
     description: List of reward subtitle translations.
   points_cost:
-    type: number
-    format: float
+    type: integer
     readOnly: false
     description: Specifies the number of loyalty points required for voucher redemption.
     example: 200
@@ -60,6 +59,12 @@ properties:
     readOnly: false
     description: Represents the discount amount, which can be either a percentage, a fixed currency value, or the final price after applying the reward.
     example: 15
+  maximum_discount_value:
+    type: number
+    format: float
+    readOnly: false
+    description: Represents the maximum discount possible if `Product with a discount in percentages` reward type is selected. If not set, the maximum is not limited.
+    example: 15
   minimum_purchase_value:
     type: number
     format: float
@@ -69,13 +74,13 @@ properties:
   stores:
     type: array
     items:
-      $ref: '../schemas/_index.yaml#/Store'
+      $ref: '../schemas/_index.yaml#/StoreID'
     readOnly: false
     description: List of the stores where the reward can be claimed.
   segments:
     type: array
     items:
-      $ref: '../schemas/_index.yaml#/Segment'
+      $ref: '../schemas/_index.yaml#/SegmentID'
     readOnly: false
     description: List of the segments for witch the reward can be applied.
   priority:
@@ -111,11 +116,6 @@ properties:
       $ref: '../schemas/_index.yaml#/Tag'
     readOnly: false
     description: List of the tags assigned to the reward. Tags are used for easier identification of selected rewards. The list of tags for rewards is available at the endpoint [GET /rewards/tags](https://carecloud.readme.io/reference/getsubrewardtags).
-  is_automated:
-    type: boolean
-    readOnly: false
-    description: Parameter says, if reward is automated or not. If reward is automated, means it's applied by rules of the reward. Otherwise have to be applied manually.
-    example: false
   global_reward:
     type: boolean
     enum:
@@ -187,7 +187,7 @@ required:
   - names
   - reward_type_id
   - reward_type_value
+  - voucher_validity
   - global_reward
   - state
-  - voucher_validity
   - voucher_code_generation_preference

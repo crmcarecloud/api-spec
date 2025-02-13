@@ -216,6 +216,8 @@ SearchResult:
   $ref: "./SearchResult.yaml"
 Segment:
   $ref: "./Segment.yaml"
+SegmentID:
+  $ref: "./SegmentID.yaml"
 SegmentGroup:
   $ref: "./SegmentGroup.yaml"
 SegmentRecord:
@@ -234,6 +236,8 @@ StatusRecord:
   $ref: "./StatusRecord.yaml"
 Store:
   $ref: "./Store.yaml"
+StoreID:
+  $ref: "./StoreID.yaml"
 StoreGroup:
   $ref: "./StoreGroup.yaml"
 StoreGroupRecord:

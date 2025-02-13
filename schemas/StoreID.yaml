@@ -1,0 +1,9 @@
+type: object
+description: Store structure.
+properties:
+  store_id:
+    type: string
+    description: The unique ID of the store in CareCloud.
+    example: "81eaeea13b8984a169c490a325"
+required:
+  - store_id

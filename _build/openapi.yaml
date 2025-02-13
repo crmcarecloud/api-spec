@@ -13087,6 +13087,68 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$segment_group_ids = null; // string[] | List of the segment group IDs (optional, default is null)\n\n// Call endpoint and get data\ntry\n{\n    $get_segments = $care_cloud->segmentsApi()->getSegments(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $segment_group_ids\n    );\n    $segments = $get_segments->getData()->getSegments();\n    $total_items = $get_segments->getData()->getTotalItems();\n    var_dump($segments);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+    post:
+      tags:
+        - Segments
+      summary: Create an empty segment
+      description: Create an empty segment.
+      operationId: PostSegment
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the empty segment.
+                  example: Winter 2025 - Campaign
+                note:
+                  type: string
+                  description: Description of the empty segment.
+                  example: All customers that fits into criteria for winter campaign.
+                priority:
+                  type: integer
+                  readOnly: false
+                  description: The priority of defined segment. The possible value range 0 - 100.
+                  example: 47
+              required:
+                - name
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                title: PostSegments201Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      segment_id:
+                        type: string
+                        description: The unique ID of the empty segment in CareCloud
+                        example: 86e05affc7a7abefcd513ab400
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/segments/{segment_id}':
     get:
       tags:
@@ -16977,7 +17039,7 @@ components:
             - 1
             - 2
           readOnly: false
-          description: 'Consent to General Terms & Conditions. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+          description: 'Consent to the Personal data processing. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
           example: 1
         agreement_profiling:
           type: integer
@@ -16986,7 +17048,7 @@ components:
             - 1
             - 2
           readOnly: false
-          description: 'Consent to profiling. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+          description: 'Consent to the Profiling. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
           example: 1
         agreement_marketing_communication:
           type: integer
@@ -16995,18 +17057,14 @@ components:
             - 1
             - 2
           readOnly: false
-          description: 'Consent to marketing communication. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
+          description: 'Consent to the Marketing communication. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*'
           example: 1
         custom_agreements:
           type: array
           items:
             $ref: '#/components/schemas/CustomAgreements'
           readOnly: false
-          description: Custom consents.
-      required:
-        - agreement_marketing_communication
-        - agreement_profiling
-        - agreement_gtc
+          description: 'Custom consent list. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)'
     AgreementList:
       type: object
       properties:
@@ -17187,6 +17245,12 @@ components:
           readOnly: false
           description: The ID of the customer.
           example: 8ea2591121e636086a4a9c0992
+        purchase_item_property_records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyRecord'
+          readOnly: false
+          description: List of properties for the purchase item.
       required:
         - plu_ids
         - plu_name
@@ -21015,6 +21079,16 @@ components:
           example: '2021-06-04 13:25:39'
       required:
         - name
+    SegmentID:
+      type: object
+      description: Segment structure.
+      properties:
+        segment_id:
+          type: string
+          description: The unique ID of the segment.
+          example: 82de12eb8b138791e678fd11c3
+      required:
+        - segment_id
     SegmentGroup:
       type: object
       description: Segment group structure.
@@ -21258,8 +21332,7 @@ components:
           readOnly: false
           description: List of reward subtitle translations.
         points_cost:
-          type: number
-          format: float
+          type: integer
           readOnly: false
           description: Specifies the number of loyalty points required for voucher redemption.
           example: 200
@@ -21267,12 +21340,12 @@ components:
           type: string
           readOnly: false
           description: Indicates the date when the reward's validity period begins *(YYYY-MM-DD)*.
-          example: 2025-01-01T00:00:00.000Z
+          example: '2025-01-01'
         valid_date_to:
           type: string
           readOnly: false
           description: Indicates the date when the reward's validity period ends *(YYYY-MM-DD)*.
-          example: 2027-12-01T00:00:00.000Z
+          example: '2027-12-01'
         reward_type_id:
           type: string
           readOnly: false
@@ -21286,6 +21359,12 @@ components:
           readOnly: false
           description: 'Represents the discount amount, which can be either a percentage, a fixed currency value, or the final price after applying the reward.'
           example: 15
+        maximum_discount_value:
+          type: number
+          format: float
+          readOnly: false
+          description: 'Represents the maximum discount possible if `Product with a discount in percentages` reward type is selected. If not set, the maximum is not limited.'
+          example: 15
         minimum_purchase_value:
           type: number
           format: float
@@ -21295,13 +21374,13 @@ components:
         stores:
           type: array
           items:
-            $ref: '#/components/schemas/Store'
+            $ref: '#/components/schemas/StoreID'
           readOnly: false
           description: List of the stores where the reward can be claimed.
         segments:
           type: array
           items:
-            $ref: '#/components/schemas/Segment'
+            $ref: '#/components/schemas/SegmentID'
           readOnly: false
           description: List of the segments for witch the reward can be applied.
         priority:
@@ -21337,11 +21416,6 @@ components:
             $ref: '#/components/schemas/Tag'
           readOnly: false
           description: 'List of the tags assigned to the reward. Tags are used for easier identification of selected rewards. The list of tags for rewards is available at the endpoint [GET /rewards/tags](https://carecloud.readme.io/reference/getsubrewardtags).'
-        is_automated:
-          type: boolean
-          readOnly: false
-          description: 'Parameter says, if reward is automated or not. If reward is automated, means it''s applied by rules of the reward. Otherwise have to be applied manually.'
-          example: false
         global_reward:
           type: boolean
           enum:
@@ -21384,8 +21458,8 @@ components:
           description: |
             This parameter controls the method of generating voucher codes within the system. 
             It can be set to one of two values:
-            - 'A' Automatically generate voucher codes. When 'A' is selected, the system will generate voucher codes automatically based on predefined rules and algorithms.
-            - 'M' Manually import voucher codes. When 'M' is chosen, voucher codes will need to be manually inputted into the system by an administrator or user.
+            - `A` Automatically generate voucher codes. When 'A' is selected, the system will generate voucher codes automatically based on predefined rules and algorithms.
+            - `M` Manually import voucher codes. When 'M' is chosen, voucher codes will need to be manually inputted into the system by an administrator or user.
           example: A
         is_portable:
           type: boolean
@@ -21413,9 +21487,9 @@ components:
         - names
         - reward_type_id
         - reward_type_value
+        - voucher_validity
         - global_reward
         - state
-        - voucher_validity
         - voucher_code_generation_preference
     SocialNetworkCredentials:
       type: object
@@ -21699,6 +21773,16 @@ components:
         - name
         - partner_id
         - system_id
+    StoreID:
+      type: object
+      description: Store structure.
+      properties:
+        store_id:
+          type: string
+          description: The unique ID of the store in CareCloud.
+          example: 81eaeea13b8984a169c490a325
+      required:
+        - store_id
     StoreGroup:
       type: object
       description: Store group resource.
