@@ -3633,7 +3633,6 @@ paths:
                   description: 'This is the customer’s password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
                   example: 'fbsdfbkjebf$2,4d4fnb#,ds4@fnm,2dsf6sa'
                 social_network_credentials:
-                  description: 'This is the customer’s social media credentials. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
                   $ref: '#/components/schemas/SocialNetworkCredentials'
                 property_records:
                   type: array
@@ -18166,12 +18165,13 @@ components:
       properties:
         customer_source_record_id:
           type: string
-          description: 'The unique ID of the customer source record. The customer sources are available in [customer-sources](https://carecloud.readme.io/reference/getcustomersources) resource'
+          description: The unique ID of the customer source record.
           readOnly: true
           example: 8fd73167342d06899c4c015320
         customer_source_id:
           type: string
-          description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+          description: |
+            The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created. For the list of all available customer sources please look at: [customer-sources](https://carecloud.readme.io/reference/getcustomersources).
           readOnly: false
           example: 86e05affc7a7abefcd513ab400
         customer_id:
@@ -21493,7 +21493,10 @@ components:
         - voucher_code_generation_preference
     SocialNetworkCredentials:
       type: object
-      description: Customer Social network credentials.
+      description: |
+        This is the customer’s social media credentials. 
+        ## Special Rule for PUT Request
+        Unlike typical HTTP PUT requests, the request will not erase existing data if parameters are missing. If you do not include the social media credentials in the PUT request, the existing credentials will remain unchanged.
       properties:
         social_network_id:
           type: string
