@@ -7,7 +7,6 @@ properties:
     description: The unique ID of the customer.
     example: "8ea2591121e636086a4a9c0992"
   personal_information:
-    type: object
     $ref: '../schemas/_index.yaml#/PersonalInformation'
   doi_email:
     type: string

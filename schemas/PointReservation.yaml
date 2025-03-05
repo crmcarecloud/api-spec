@@ -42,4 +42,3 @@ required:
   - customer_id
   - external_id
   - quantity
-  - partner_id

@@ -1,5 +1,5 @@
 type: object
-description: Address resource.
+description: The Address Structure in the API defines the standardized format for representing addresses throughout the system. This resource ensures consistency and accuracy in capturing address details, facilitating seamless integration and data exchange.
 properties:
   address1:
     type: string

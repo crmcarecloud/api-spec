@@ -122,7 +122,7 @@ post:
             partner_record:
               $ref: '../../schemas/_index.yaml#/PartnerRecord'
           required:
-            - partner_id
+            - partner_record
   responses:
     '201':
       description: Created

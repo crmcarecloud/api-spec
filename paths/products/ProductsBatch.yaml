@@ -23,7 +23,6 @@ post:
               items:
                 $ref: '../../schemas/_index.yaml#/ProductBatch'
             error_processing:
-              type: integer
               $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
             - products

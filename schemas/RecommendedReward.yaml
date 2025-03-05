@@ -37,7 +37,4 @@ properties:
     description: Reward description.
     example: "SVK_wine"
   reward_properties:
-    type: object
     $ref: '../schemas/_index.yaml#/RewardProperties'
-    readOnly: true
-    description: Properties of the reward.

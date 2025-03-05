@@ -17,8 +17,6 @@ properties:
       $ref: '../schemas/_index.yaml#/ProductIdentification'
     description: Products from the shopping cart to which the recommended product is linked. Structure is required only if the parameter `customer_id` is not set.
   recommended_product:
-    description: All recommended products linked to the customer (parameter `customer_id`) or to the shopping cart content (parameter `products`).
-    type: object
     $ref: '../schemas/_index.yaml#/ProductIdentification'
   recommendation_system_id:
     type: string
@@ -53,7 +51,8 @@ properties:
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-01-04 10:31:56"
 required:
-  - recommended_product_id
+  - products
+  - recommended_product
   - recommendation_system_id
   - recommendation_system_dataset_id
   - score

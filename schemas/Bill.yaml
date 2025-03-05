@@ -4,12 +4,19 @@ properties:
   bill_id:
     type: string
     readOnly: false
-    description: Identification number of the bill (must be unique in POS, use prefix 'C' for a canceled bill).
-    example: "8fbea1c1eaa8edd35e7f278"
+    description: |
+      Identification number of the purchase created in the production system like POS, e-commerce solution or ERP (The ID must be unique in the production system).
+      In case you want to send cancelled purchase, please use prefix `C` for the original purchase ID.
+      Example:
+      ```
+      Original purchase ID: 39475X
+      Canceled purchase ID: C39475X
+      ```
+    example: "39475X"
   bill_number:
     type: string
     readOnly: false
-    description: Alternative identification of the bill. In the case of cancelation, there should be bill_id from the original bill.
+    description: Alternative identification of the bill. In the case of cancellation, there should be bill_id from the original bill.
     example:
   payment_time:
     type: string

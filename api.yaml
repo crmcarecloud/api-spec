@@ -2,20 +2,24 @@ openapi: 3.0.2
 info:
   title: REST API Reference
   version: 1.0.0
+  description: |
+    Discover the essentials of the CareCloud platform API, from authentication methods to available resources. Explore the REST API, which allows you to seamlessly connect the CareCloud platform with other systems.
   license:
-    name: EULA
-    url: https://www.crmcarecloud.com/
+    name: "EULA"
+    url: "https://www.crmcarecloud.com/"
   contact:
-    email: support@carecloud.cz
+    name: "CareCloud"
+    url: "https://www.crmcarecloud.com/"
+    email: "support@carecloud.cz"
 tags:
-  - name: Bookings
-    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
   - name: Booking tickets
-    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
-  - name: Booking ticket properties
-    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
+    description: The Booking Tickets resource provides a list of all available tickets that can be booked through the API. This resource enables users to retrieve detailed information about the tickets.
+  - name: Bookings
+    description: The Bookings API resource allows you to manage booking operations within the reservation system. This resource provides endpoints to list all existing bookings, as well as create, update, and delete individual bookings. Additionally, it offers insights into the busiest times in the reservation system, helping users identify peak periods for better planning and optimization.
   - name: Booking statuses
-    description: Bookings of the services. Meetings, restaurant reservations, client appointments.
+    description: The Booking Statuses resource provides a comprehensive list of all possible statuses that a booking can have within the system. This resource allows users to understand the various stages and conditions a booking may go through, such as confirmed, pending, canceled, or completed. It ensures clear communication and transparency about the status of each booking, facilitating efficient management and tracking of reservations.
+  - name: Booking ticket properties
+    description: The Booking Ticket Properties resource provides a detailed list of all possible properties that a booking can have. These properties enable customization of the data collected during the booking process, allowing for a tailored experience based on specific requirements. Users can define and manage various attributes, such as seating preferences, special requests, and personal information, to ensure a seamless and personalized booking experience.
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
@@ -42,12 +46,12 @@ tags:
     description: Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.
   - name: Customers
     description: CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.
+  - name: Customer engagement
+    description: Resource helps tracking of all customer actions in web applications.
   - name: Customers actions
     description: Action methods for resource customers.
   - name: Customer address types
     description: You can get the list of the available customer address types here.
-  - name: Customer engagement
-    description: Resource helps tracking of all customer actions in web applications.
   - name: Customer external applications
     description: An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.
   - name: Customer properties
@@ -116,20 +120,20 @@ tags:
     description: Product properties are list of available properties for the products resource.
   - name: Product recommendation engine
     description: There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.
+  - name: Product reservation prices
+    description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservations
     description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
   - name: Product reservation external list types
     description: You can get the list of the available product reservation external list types here.
-  - name: Product reservation prices
-    description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservation sources
     description: You can get the list of the available product reservation sources here.
+  - name: Purchase properties
+    description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchases
     description: There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
-  - name: Purchase properties
-    description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
   - name: Reservable products
@@ -144,12 +148,12 @@ tags:
     description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
   - name: Statuses
     description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.
+  - name: Store properties
+    description: Store properties are list of available properties for the store resource.
   - name: Stores
     description: A store is a building, part of a building, or a virtual place where products are sold. You can manage the network of your business units (shops, stores, company branches, warehouses, kiosks, e-shops, mobile, or any other applications) via this resource. Many properties like an address, GPS coordinates, opening hours, or contact details can be synchronized with any other system.
   - name: Store groups
     description: List of store groups.
-  - name: Store properties
-    description: Store properties are list of available properties for the store resource.
   - name: Tasks
     description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
   - name: Task properties

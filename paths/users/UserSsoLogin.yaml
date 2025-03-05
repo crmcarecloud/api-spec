@@ -25,7 +25,8 @@ post:
               description: Single sign-on token from CareCloud.
               example: "ae11e710ea4d9495da43c7ae11e71b4e723e7bce494a"
           required:
-            - social_network_credentials
+            - user_external_application_id
+            - sso_token
   responses:
     '200':
       description: OK

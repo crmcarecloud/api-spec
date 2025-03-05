@@ -77,16 +77,12 @@ properties:
     description: The unique external ID of the purchase.
     example: "20231412"
   utm:
-    type: object
     $ref: '../schemas/_index.yaml#/UTM'
-    readOnly: false
-    description: UTM structure for data from email campaign.
   actual_state:
     type: integer
     enum:
       - 0
       - 1
-      - 2
       - 2
       - 4
       - 5

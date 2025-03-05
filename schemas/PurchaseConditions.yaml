@@ -1,5 +1,6 @@
 type: object
 description: Structure contains purchase conditions of the status record.
+readOnly: true
 properties:
   keep_status_turnover:
     type: array

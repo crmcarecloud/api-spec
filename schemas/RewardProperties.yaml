@@ -1,4 +1,5 @@
 type: object
+readOnly: true
 description: Properties of the reward.
 properties:
   image:

@@ -28,7 +28,6 @@ properties:
     example: "2021-05-28 23:59:59"
   purchase_conditions:
     $ref: '../schemas/_index.yaml#/PurchaseConditions'
-    readOnly: true
   last_change:
     type: string
     readOnly: true

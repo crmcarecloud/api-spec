@@ -110,7 +110,7 @@ post:
             card_type:
               $ref: '../../schemas/_index.yaml#/CardType'
           required:
-            - card
+            - card_type
   responses:
     '201':
       description: Created

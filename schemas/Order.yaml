@@ -41,13 +41,9 @@ properties:
     readOnly: false
     description: List of the OrderItems.
   invoicing_data:
-    type: object
     $ref: '../schemas/_index.yaml#/OrderInvoicing'
-    readOnly: false
   shipping_data:
-    type: object
     $ref: '../schemas/_index.yaml#/OrderShipping'
-    readOnly: false
   customer_note:
     type: string
     readOnly: false

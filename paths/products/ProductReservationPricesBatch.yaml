@@ -23,10 +23,9 @@ post:
               items:
                 $ref: '../../schemas/_index.yaml#/ProductReservationPrice'
             error_processing:
-              type: integer
               $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
-            - products_reservation_prices
+            - product_reservation_prices
   responses:
     '204':
       description: No Content
@@ -75,10 +74,9 @@ delete:
                     description: The unique ID of the product reservation price.
                     example: "81eaeea13b8984a169c490a325"
             error_processing:
-              type: integer
               $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
-            - products_reservation_prices
+            - product_reservation_prices
   responses:
     '204':
       description: No Content

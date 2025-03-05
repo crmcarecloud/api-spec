@@ -12,7 +12,6 @@ properties:
     description: Date and time of the order payment. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-07-15 13:26:34"
   personal_information:
-    type: object
     $ref: '../schemas/_index.yaml#/PersonalInformation'
 required:
   - payment_id

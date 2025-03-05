@@ -19,7 +19,6 @@ post:
               items:
                 $ref: '../../schemas/_index.yaml#/ThirdPartyRecommendation'
             error_processing:
-              type: integer
               $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
             - third_party_recommendations

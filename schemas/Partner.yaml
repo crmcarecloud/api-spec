@@ -12,9 +12,7 @@ properties:
     description: Name of the company.
     example: "Demo"
   address:
-    type: object
     $ref: '../schemas/_index.yaml#/Address'
-    description: Address of the company.
   registration_id:
     type: string
     readOnly: false

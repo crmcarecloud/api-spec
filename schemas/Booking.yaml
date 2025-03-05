@@ -21,10 +21,7 @@ properties:
     description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
     example: "81eaeea13b8984a169c490a325"
   utm:
-    type: object
     $ref: '../schemas/_index.yaml#/UTM'
-    readOnly: false
-    description: "UTM structure for data from a campaign."
   data:
     oneOf:
       - type: string

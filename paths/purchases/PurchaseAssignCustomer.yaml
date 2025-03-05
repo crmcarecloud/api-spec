@@ -21,7 +21,10 @@ post:
               example: "81eaeea13b8984a169c490a325"
             external_purchase_id:
               type: string
-              description: The unique external ID of the purchase.
+              description: |
+                A unique identifier for an existing purchase in the production system (e.g., E-commerce, POS, ERP). This ID must be unique within the system and reference an actual purchase or order.
+                
+                If the purchase was created in CareCloud using the CareCloud API, use the same value as the bill_id parameter from the [POST /send-purchase](https://carecloud.readme.io/reference/postpurchasesend) endpoint.
               example: "8fbea1c1eaa8edd35e7f288"
             card_number:
               type: string

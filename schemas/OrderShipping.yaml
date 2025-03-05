@@ -22,7 +22,6 @@ properties:
     description: Phone number of the contact with international prefix (420000000).
     example: "38612345678"
   address:
-    type: object
     $ref: '../schemas/_index.yaml#/Address'
 required:
   - shipping_id

@@ -2,20 +2,24 @@ openapi: 3.0.2
 info:
   title: REST API Reference
   version: 1.0.0
+  description: |
+    Discover the essentials of the CareCloud platform API, from authentication methods to available resources. Explore the REST API, which allows you to seamlessly connect the CareCloud platform with other systems.
   license:
     name: EULA
     url: 'https://www.crmcarecloud.com/'
   contact:
+    name: CareCloud
+    url: 'https://www.crmcarecloud.com/'
     email: support@carecloud.cz
 tags:
-  - name: Bookings
-    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
   - name: Booking tickets
-    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
-  - name: Booking ticket properties
-    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
+    description: The Booking Tickets resource provides a list of all available tickets that can be booked through the API. This resource enables users to retrieve detailed information about the tickets.
+  - name: Bookings
+    description: 'The Bookings API resource allows you to manage booking operations within the reservation system. This resource provides endpoints to list all existing bookings, as well as create, update, and delete individual bookings. Additionally, it offers insights into the busiest times in the reservation system, helping users identify peak periods for better planning and optimization.'
   - name: Booking statuses
-    description: 'Bookings of the services. Meetings, restaurant reservations, client appointments.'
+    description: 'The Booking Statuses resource provides a comprehensive list of all possible statuses that a booking can have within the system. This resource allows users to understand the various stages and conditions a booking may go through, such as confirmed, pending, canceled, or completed. It ensures clear communication and transparency about the status of each booking, facilitating efficient management and tracking of reservations.'
+  - name: Booking ticket properties
+    description: 'The Booking Ticket Properties resource provides a detailed list of all possible properties that a booking can have. These properties enable customization of the data collected during the booking process, allowing for a tailored experience based on specific requirements. Users can define and manage various attributes, such as seating preferences, special requests, and personal information, to ensure a seamless and personalized booking experience.'
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
@@ -42,12 +46,12 @@ tags:
     description: 'Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.'
   - name: Customers
     description: 'CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.'
+  - name: Customer engagement
+    description: Resource helps tracking of all customer actions in web applications.
   - name: Customers actions
     description: Action methods for resource customers.
   - name: Customer address types
     description: You can get the list of the available customer address types here.
-  - name: Customer engagement
-    description: Resource helps tracking of all customer actions in web applications.
   - name: Customer external applications
     description: 'An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.'
   - name: Customer properties
@@ -116,20 +120,20 @@ tags:
     description: Product properties are list of available properties for the products resource.
   - name: Product recommendation engine
     description: 'There is the possibility to recommend the customer the most related product or service based on customer purchasing behavior. The product recommendation helps you guide customers on the products they should buy based on their previous shopping tendencies or shopping cart content. CareCloud Recommendation engine enables the personalization of content by listing the most likely items of high value to the customer based on his previous shopping behavior or current shopping cart content. The most typical use cases are recommendations at any customer touchpoint, such as POS, e-shop, e-mail, mobile app, etc.'
+  - name: Product reservation prices
+    description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservations
     description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
   - name: Product reservation external list types
     description: You can get the list of the available product reservation external list types here.
-  - name: Product reservation prices
-    description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservation sources
     description: You can get the list of the available product reservation sources here.
+  - name: Purchase properties
+    description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchases
     description: 'There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.'
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
-  - name: Purchase properties
-    description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
   - name: Reservable products
@@ -144,12 +148,12 @@ tags:
     description: 'Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.'
   - name: Statuses
     description: 'Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.'
+  - name: Store properties
+    description: Store properties are list of available properties for the store resource.
   - name: Stores
     description: 'A store is a building, part of a building, or a virtual place where products are sold. You can manage the network of your business units (shops, stores, company branches, warehouses, kiosks, e-shops, mobile, or any other applications) via this resource. Many properties like an address, GPS coordinates, opening hours, or contact details can be synchronized with any other system.'
   - name: Store groups
     description: List of store groups.
-  - name: Store properties
-    description: Store properties are list of available properties for the store resource.
   - name: Tasks
     description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
   - name: Task properties
@@ -2002,7 +2006,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/Card'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - cards
@@ -2102,7 +2105,7 @@ paths:
                 card_type:
                   $ref: '#/components/schemas/CardType'
               required:
-                - card
+                - card_type
       responses:
         '201':
           description: Created
@@ -3641,7 +3644,6 @@ paths:
                     $ref: '#/components/schemas/PropertyRecord'
               required:
                 - customer
-                - autologin
       responses:
         '204':
           description: No Content
@@ -4554,7 +4556,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - property_records
@@ -4705,7 +4706,7 @@ paths:
                 interest_record:
                   $ref: '#/components/schemas/InterestRecord'
               required:
-                - property_record
+                - interest_record
       responses:
         '204':
           description: No Content
@@ -5285,7 +5286,7 @@ paths:
                 partner_record:
                   $ref: '#/components/schemas/PartnerRecord'
               required:
-                - partner_id
+                - partner_record
       responses:
         '201':
           description: Created
@@ -5927,7 +5928,6 @@ paths:
                   description: The unique ID of the customer source.
                   example: 86e05affc7a7abefcd513ab400
                 agreements:
-                  type: object
                   $ref: '#/components/schemas/Agreement'
                 language_id:
                   type: string
@@ -9378,7 +9378,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/ProductBatch'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - products
@@ -9576,7 +9575,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/ProductBrand'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - product_brands
@@ -9725,7 +9723,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/ProductGroup'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - product_groups
@@ -10064,7 +10061,6 @@ paths:
                     - 0
                     - 1
                     - 2
-                    - 2
                     - 4
                     - 5
                     - 6
@@ -10257,10 +10253,9 @@ paths:
                   items:
                     $ref: '#/components/schemas/ProductReservationPrice'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
-                - products_reservation_prices
+                - product_reservation_prices
       responses:
         '204':
           description: No Content
@@ -10307,10 +10302,9 @@ paths:
                         description: The unique ID of the product reservation price.
                         example: 81eaeea13b8984a169c490a325
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
-                - products_reservation_prices
+                - product_reservation_prices
       responses:
         '204':
           description: No Content
@@ -11346,7 +11340,10 @@ paths:
                   example: 81eaeea13b8984a169c490a325
                 external_purchase_id:
                   type: string
-                  description: The unique external ID of the purchase.
+                  description: |
+                    A unique identifier for an existing purchase in the production system (e.g., E-commerce, POS, ERP). This ID must be unique within the system and reference an actual purchase or order.
+
+                    If the purchase was created in CareCloud using the CareCloud API, use the same value as the bill_id parameter from the [POST /send-purchase](https://carecloud.readme.io/reference/postpurchasesend) endpoint.
                   example: 8fbea1c1eaa8edd35e7f288
                 card_number:
                   type: string
@@ -12134,7 +12131,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/ThirdPartyRecommendation'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - third_party_recommendations
@@ -15275,8 +15271,9 @@ paths:
                   description: Password of the customer.
                   example: password_example
               required:
-                - device
-                - setup
+                - login_type
+                - login_value
+                - password
       responses:
         '200':
           description: OK
@@ -15892,7 +15889,8 @@ paths:
                   description: Single sign-on token from CareCloud.
                   example: ae11e710ea4d9495da43c7ae11e71b4e723e7bce494a
               required:
-                - social_network_credentials
+                - user_external_application_id
+                - sso_token
       responses:
         '200':
           description: OK
@@ -16372,7 +16370,6 @@ paths:
                   items:
                     $ref: '#/components/schemas/VoucherBatch'
                 error_processing:
-                  type: integer
                   $ref: '#/components/schemas/Error_processing'
               required:
                 - vouchers
@@ -16985,7 +16982,7 @@ components:
           description: A recommendation messages for the cashier in his language localization.
     Address:
       type: object
-      description: Address resource.
+      description: 'The Address Structure in the API defines the standardized format for representing addresses throughout the system. This resource ensures consistency and accuracy in capturing address details, facilitating seamless integration and data exchange.'
       properties:
         address1:
           type: string
@@ -17136,12 +17133,19 @@ components:
         bill_id:
           type: string
           readOnly: false
-          description: 'Identification number of the bill (must be unique in POS, use prefix ''C'' for a canceled bill).'
-          example: 8fbea1c1eaa8edd35e7f278
+          description: |
+            Identification number of the purchase created in the production system like POS, e-commerce solution or ERP (The ID must be unique in the production system).
+            In case you want to send cancelled purchase, please use prefix `C` for the original purchase ID.
+            Example:
+            ```
+            Original purchase ID: 39475X
+            Canceled purchase ID: C39475X
+            ```
+          example: 39475X
         bill_number:
           type: string
           readOnly: false
-          description: 'Alternative identification of the bill. In the case of cancelation, there should be bill_id from the original bill.'
+          description: 'Alternative identification of the bill. In the case of cancellation, there should be bill_id from the original bill.'
           example: null
         payment_time:
           type: string
@@ -17284,10 +17288,7 @@ components:
           description: 'Current status of the booking from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.'
           example: 81eaeea13b8984a169c490a325
         utm:
-          type: object
           $ref: '#/components/schemas/UTM'
-          readOnly: false
-          description: UTM structure for data from a campaign.
         data:
           oneOf:
             - type: string
@@ -17578,7 +17579,6 @@ components:
           description: Type of a campaign product.
           example: 86e05affc7a7abefcd513ab400
         presentation_data:
-          type: object
           $ref: '#/components/schemas/CampaignPresentationData'
         last_change:
           type: string
@@ -17786,7 +17786,6 @@ components:
           description: Text representation of communication channel ID.
           example: email
       required:
-        - currency_id
         - name
         - text_id
     Country:
@@ -18012,7 +18011,6 @@ components:
           description: The unique ID of the customer.
           example: 8ea2591121e636086a4a9c0992
         personal_information:
-          type: object
           $ref: '#/components/schemas/PersonalInformation'
         doi_email:
           type: string
@@ -18243,7 +18241,6 @@ components:
           description: Type of the address. Address type is set only for additional customer addresses. Default address in customer structure has no type.
           example: 86e05affc7a7abefcd513ab400
         address:
-          type: object
           $ref: '#/components/schemas/Address'
       required:
         - address_type
@@ -18527,14 +18524,19 @@ components:
             *Possible values are: "S" - with standard setup checkout process allows you to collect points, but isn't possible to apply overall discounts  / "A"- checkout process allows you to collect points and apply overall discounts too / "C" - use credits for payment, allows you to collect points, but isn't possible to apply overall discounts / "D"- will enable you to use overall discounts, but you are not able to collect points with this setup*
           example: A
         payment_recap:
-          type: object
           $ref: '#/components/schemas/PaymentRecap'
-          readOnly: false
         bill_id:
           type: string
           readOnly: false
-          description: 'Identification number of the bill (must be unique in POS, use prefix ''C'' for a canceled bill).'
-          example: 8fbea1c1eaa8edd35e7f278
+          description: |
+            Identification number of the purchase created in the production system like POS, e-commerce solution or ERP (The ID must be unique in the production system).
+            In case you want to send cancelled purchase, please use prefix `C` for the original purchase ID.
+            Example:
+            ```
+            Original purchase ID: 39475X
+            Canceled purchase ID: C39475X
+            ```
+          example: 39475X
         bill_number:
           type: string
           readOnly: false
@@ -18562,10 +18564,7 @@ components:
           description: The total price of the bill as a sum of all items.
           example: 700
         utm:
-          type: object
           $ref: '#/components/schemas/UTM'
-          readOnly: false
-          description: UTM structure for data from email campaign.
         bill_items:
           type: array
           items:
@@ -18961,13 +18960,9 @@ components:
           readOnly: false
           description: List of the OrderItems.
         invoicing_data:
-          type: object
           $ref: '#/components/schemas/OrderInvoicing'
-          readOnly: false
         shipping_data:
-          type: object
           $ref: '#/components/schemas/OrderShipping'
-          readOnly: false
         customer_note:
           type: string
           readOnly: false
@@ -19024,7 +19019,6 @@ components:
           description: 'Date and time of the order payment. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-07-15 13:26:34'
         personal_information:
-          type: object
           $ref: '#/components/schemas/PersonalInformation'
       required:
         - payment_id
@@ -19095,7 +19089,6 @@ components:
           description: Phone number of the contact with international prefix (420000000).
           example: '38612345678'
         address:
-          type: object
           $ref: '#/components/schemas/Address'
       required:
         - shipping_id
@@ -19131,9 +19124,7 @@ components:
           description: Name of the company.
           example: Demo
         address:
-          type: object
           $ref: '#/components/schemas/Address'
-          description: Address of the company.
         registration_id:
           type: string
           readOnly: false
@@ -19190,6 +19181,7 @@ components:
         - partner_id
     PaymentRecap:
       type: object
+      readOnly: false
       description: Alternative payment methods summary.
       properties:
         credit_points:
@@ -19340,16 +19332,14 @@ components:
           description: 'URL address of the customer photo. If customer has no photo, this parameter is not send.'
           example: null
         address:
-          type: object
           $ref: '#/components/schemas/Address'
         agreement:
-          type: object
           $ref: '#/components/schemas/Agreement'
       required:
         - language_id
     PluId:
       type: object
-      description: PLU Id structure.
+      description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set or not requested in the request.
       properties:
         list_code:
           type: string
@@ -19526,7 +19516,6 @@ components:
         - customer_id
         - external_id
         - quantity
-        - partner_id
     PointType:
       type: object
       description: Points reservation resource.
@@ -19888,16 +19877,12 @@ components:
           description: The unique external ID of the purchase.
           example: '20231412'
         utm:
-          type: object
           $ref: '#/components/schemas/UTM'
-          readOnly: false
-          description: UTM structure for data from email campaign.
         actual_state:
           type: integer
           enum:
             - 0
             - 1
-            - 2
             - 2
             - 4
             - 5
@@ -20114,10 +20099,7 @@ components:
           description: The unique ID of the product. Product ID is required when parameter `plu_ids` is not set.
           example: 85d6598db0bf3f62afd5db8507
         plu_id:
-          type: object
           $ref: '#/components/schemas/PluId'
-          readOnly: false
-          description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set.
         reward_product_relation_type:
           type: integer
           enum:
@@ -20387,6 +20369,7 @@ components:
     PurchaseConditions:
       type: object
       description: Structure contains purchase conditions of the status record.
+      readOnly: true
       properties:
         keep_status_turnover:
           type: array
@@ -20632,10 +20615,7 @@ components:
           description: Reward description.
           example: SVK_wine
         reward_properties:
-          type: object
           $ref: '#/components/schemas/RewardProperties'
-          readOnly: true
-          description: Properties of the reward.
     RelatedCustomer:
       type: object
       description: Basic information about a relation between customers.
@@ -20695,6 +20675,7 @@ components:
         - is_leading
     Reward:
       type: object
+      readOnly: true
       description: Reward structure.
       properties:
         reward_id:
@@ -20981,6 +20962,7 @@ components:
           example: 22
     RewardProperties:
       type: object
+      readOnly: true
       description: Properties of the reward.
       properties:
         image:
@@ -21495,8 +21477,7 @@ components:
       type: object
       description: |
         This is the customer’s social media credentials. 
-        ## Special Rule for PUT Request
-        Unlike typical HTTP PUT requests, the request will not erase existing data if parameters are missing. If you do not include the social media credentials in the PUT request, the existing credentials will remain unchanged.
+        Special Rule for PUT Request with social network credentials:  _Unlike typical HTTP PUT requests, the request will not erase existing data if parameters are missing. If you do not include the social media credentials in the PUT request, the existing credentials will remain unchanged._
       properties:
         social_network_id:
           type: string
@@ -21642,7 +21623,6 @@ components:
           example: '2021-05-28 23:59:59'
         purchase_conditions:
           $ref: '#/components/schemas/PurchaseConditions'
-          readOnly: true
         last_change:
           type: string
           readOnly: true
@@ -22175,8 +22155,6 @@ components:
             $ref: '#/components/schemas/ProductIdentification'
           description: Products from the shopping cart to which the recommended product is linked. Structure is required only if the parameter `customer_id` is not set.
         recommended_product:
-          description: All recommended products linked to the customer (parameter `customer_id`) or to the shopping cart content (parameter `products`).
-          type: object
           $ref: '#/components/schemas/ProductIdentification'
         recommendation_system_id:
           type: string
@@ -22211,7 +22189,8 @@ components:
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2019-01-04 10:31:56'
       required:
-        - recommended_product_id
+        - products
+        - recommended_product
         - recommendation_system_id
         - recommendation_system_dataset_id
         - score
@@ -22376,7 +22355,6 @@ components:
           description: Voucher's note.
           example: Contact before use
         reward:
-          readOnly: true
           $ref: '#/components/schemas/Reward'
         created_at:
           type: string
@@ -23887,7 +23865,6 @@ components:
         enum:
           - 0
           - 1
-          - 2
           - 2
           - 4
           - 5

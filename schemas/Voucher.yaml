@@ -53,7 +53,6 @@ properties:
     description: Voucher's note.
     example: "Contact before use"
   reward:
-    readOnly: true
     $ref: '../schemas/_index.yaml#/Reward'
   created_at:
     type: string

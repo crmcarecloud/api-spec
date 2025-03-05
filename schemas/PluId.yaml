@@ -1,5 +1,5 @@
 type: object
-description: PLU Id structure.
+description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set or not requested in the request.
 properties:
   list_code:
     type: string

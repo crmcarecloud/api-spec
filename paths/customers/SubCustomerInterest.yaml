@@ -18,7 +18,7 @@ put:
             interest_record:
               $ref: '../../schemas/_index.yaml#/InterestRecord'
           required:
-            - property_record
+            - interest_record
   responses:
     '204':
       description: No Content

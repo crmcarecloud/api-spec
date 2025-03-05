@@ -58,7 +58,6 @@ properties:
     description: Type of a campaign product.
     example: "86e05affc7a7abefcd513ab400"
   presentation_data:
-    type: object
     $ref: '../schemas/_index.yaml#/CampaignPresentationData'
   last_change:
     type: string

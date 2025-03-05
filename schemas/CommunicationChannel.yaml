@@ -17,6 +17,5 @@ properties:
     description: Text representation of communication channel ID.
     example: "email"
 required:
-  - currency_id
   - name
   - text_id

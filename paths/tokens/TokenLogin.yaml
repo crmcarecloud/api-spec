@@ -36,8 +36,9 @@ post:
               description: Password of the customer.
               example: "password_example"
           required:
-            - device
-            - setup
+            - login_type
+            - login_value
+            - password
   responses:
     '200':
       description: OK

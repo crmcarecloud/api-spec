@@ -22,7 +22,6 @@ post:
               items:
                 $ref: '../../schemas/_index.yaml#/Card'
             error_processing:
-              type: integer
               $ref: '../../schemas/_index.yaml#/Error_processing'
           required:
             - cards

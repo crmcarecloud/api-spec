@@ -72,10 +72,8 @@ properties:
     description: URL address of the customer photo. If customer has no photo, this parameter is not send.
     example:
   address:
-    type: object
     $ref: '../schemas/_index.yaml#/Address'
   agreement:
-    type: object
     $ref: '../schemas/_index.yaml#/Agreement'
 required:
   - language_id
