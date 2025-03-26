@@ -132,6 +132,8 @@ tags:
     description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchases
     description: 'There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.'
+  - name: Purchase item properties
+    description: 'It refers to a set of attributes or metadata that can be associated with a purchase item to extend its standard functionality. Essentially, it provides a way to add custom properties to purchase items beyond their default structure.'
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
@@ -11575,6 +11577,94 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
+  /purchase-item-properties:
+    get:
+      tags:
+        - Purchase item properties
+      summary: Get all purchase item properties list
+      description: This is a list of possible properties that can be set to purchase item.
+      operationId: getPurchaseItemProperties
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetPurchaseItemProperties200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      purchase_item_properties:
+                        type: array
+                        description: List of all purchase item properties.
+                        items:
+                          $ref: '#/components/schemas/Property'
+                      total_items:
+                        type: integer
+                        description: The number of all found purchase item properties.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  '/purchase-item-properties/{purchase_item_property_id}':
+    get:
+      tags:
+        - Purchase item properties
+      summary: Get a purchase item property
+      description: Get a purchase item property detail. The property can be assigned to a purchase item.
+      operationId: getPurchaseItemProperty
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/purchase_item_property_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetPurchaseItemProperty200Response
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Property'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /recommendations:
     get:
       tags:
@@ -21314,7 +21404,8 @@ components:
           readOnly: false
           description: List of reward subtitle translations.
         points_cost:
-          type: integer
+          type: number
+          format: float
           readOnly: false
           description: Specifies the number of loyalty points required for voucher redemption.
           example: 200
@@ -23936,6 +24027,14 @@ components:
           - true
           - false
         default: false
+    purchase_item_property_id_path:
+      name: purchase_item_property_id
+      in: path
+      description: The unique ID of the purchase item property.
+      required: true
+      schema:
+        type: string
+      example: customer_saved_money
     purchase_property_id_path:
       name: purchase_property_id
       in: path

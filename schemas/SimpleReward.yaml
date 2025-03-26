@@ -32,7 +32,8 @@ properties:
     readOnly: false
     description: List of reward subtitle translations.
   points_cost:
-    type: integer
+    type: number
+    format: float
     readOnly: false
     description: Specifies the number of loyalty points required for voucher redemption.
     example: 200

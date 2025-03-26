@@ -465,6 +465,11 @@
   $ref: "./purchases/PurchaseProperties.yaml"
 /purchase-properties/{purchase_property_id}:
   $ref: "./purchases/PurchaseProperty.yaml"
+# Purchase item properties
+/purchase-item-properties:
+  $ref: "./purchases/PurchaseItemProperties.yaml"
+/purchase-item-properties/{purchase_item_property_id}:
+  $ref: "./purchases/PurchaseItemProperty.yaml"
 #  Recommendations
 /recommendations:
   $ref: "./recommendations/Recommendations.yaml"

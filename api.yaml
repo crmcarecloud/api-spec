@@ -132,6 +132,8 @@ tags:
     description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchases
     description: There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.
+  - name: Purchase item properties
+    description: It refers to a set of attributes or metadata that can be associated with a purchase item to extend its standard functionality. Essentially, it provides a way to add custom properties to purchase items beyond their default structure.
   - name: Purchase item types
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
