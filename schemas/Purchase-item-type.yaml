@@ -10,6 +10,11 @@ properties:
     type: string
     readOnly: false
     description: Name of the purchase item type.
-    example: "purchase in store"
+    example: "Store purchase"
+  text_id:
+    type: string
+    readOnly: true
+    description: Text ID of the purchase item type.
+    example: "store_purchase"
 required:
   - name

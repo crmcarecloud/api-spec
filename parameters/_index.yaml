@@ -1053,7 +1053,7 @@ text_id:
   required: false
   schema:
     type: string
-  example: "shopping_cart"
+  example: "store_purchase"
 event_group_id_path:
   name: event_group_id
   in: path

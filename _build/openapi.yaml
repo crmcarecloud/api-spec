@@ -11394,6 +11394,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/text_id'
       responses:
         '200':
           description: OK
@@ -11448,6 +11449,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/text_id'
       responses:
         '200':
           description: OK
@@ -19801,6 +19803,15 @@ components:
           items:
             $ref: '#/components/schemas/Tag'
           description: List of tags assigned to the product.
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+          readOnly: false
+          description: |
+            State of the product. If not set, the product is synchronized as active(`state=1`).
+            *Possible values are: 0 - deleted / 1 - active*
       required:
         - name
         - plu_ids
@@ -20437,7 +20448,12 @@ components:
           type: string
           readOnly: false
           description: Name of the purchase item type.
-          example: purchase in store
+          example: Store purchase
+        text_id:
+          type: string
+          readOnly: true
+          description: Text ID of the purchase item type.
+          example: store_purchase
       required:
         - name
     Purchase-type:
@@ -20454,6 +20470,11 @@ components:
           readOnly: false
           description: Name of the purchase type.
           example: Store purchase
+        text_id:
+          type: string
+          readOnly: true
+          description: Text ID of an event group.
+          example: store_purchase
       required:
         - name
     PurchaseConditions:
@@ -23577,7 +23598,7 @@ components:
       required: false
       schema:
         type: string
-      example: shopping_cart
+      example: store_purchase
     event_group_id_path:
       name: event_group_id
       in: path

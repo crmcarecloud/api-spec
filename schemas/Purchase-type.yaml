@@ -11,5 +11,10 @@ properties:
     readOnly: false
     description: Name of the purchase type.
     example: "Store purchase"
+  text_id:
+    type: string
+    readOnly: true
+    description: Text ID of an event group.
+    example: "store_purchase"
 required:
   - name

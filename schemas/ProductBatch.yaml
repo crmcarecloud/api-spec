@@ -62,6 +62,15 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/Tag'
     description: List of tags assigned to the product.
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      State of the product. If not set, the product is synchronized as active(`state=1`).
+      *Possible values are: 0 - deleted / 1 - active*
 required:
   - name
   - plu_ids
