@@ -19,6 +19,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/is_valid'
     - $ref: '../../parameters/_index.yaml#/valid_from_full'
     - $ref: '../../parameters/_index.yaml#/valid_to_full'
+    - $ref: '../../parameters/_index.yaml#/campaign_id'
   responses:
     '200':
       description: OK

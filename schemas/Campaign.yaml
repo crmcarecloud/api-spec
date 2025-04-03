@@ -4,7 +4,9 @@ properties:
   idcampaign:
     type: string
     readOnly: true
-    description: The unique ID of the campaign.
+    description: |
+      The unique ID of the campaign. 
+      Please be aware this parameter can be referred in different endpoints as `campaign_id`.
     example: "8bed991c68a470e7aaeffbf048"
   external_id:
     type: string

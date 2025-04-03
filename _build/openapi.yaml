@@ -1036,6 +1036,7 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/external_id'
       responses:
         '200':
           description: OK
@@ -1195,6 +1196,7 @@ paths:
         - $ref: '#/components/parameters/is_valid'
         - $ref: '#/components/parameters/valid_from_full'
         - $ref: '#/components/parameters/valid_to_full'
+        - $ref: '#/components/parameters/campaign_id'
       responses:
         '200':
           description: OK
@@ -17574,7 +17576,9 @@ components:
         idcampaign:
           type: string
           readOnly: true
-          description: The unique ID of the campaign.
+          description: |
+            The unique ID of the campaign. 
+            Please be aware this parameter can be referred in different endpoints as `campaign_id`.
           example: 8bed991c68a470e7aaeffbf048
         external_id:
           type: string
@@ -23517,6 +23521,14 @@ components:
       in: path
       description: The unique ID of the campaign in CareCloud.
       required: true
+      schema:
+        type: string
+      example: 81eaeea13b8984a169c490a325
+    campaign_id:
+      name: campaign_id
+      in: query
+      description: |
+        The unique ID of the campaign in CareCloud. The list of campaigns is available in [GET /campaigns](https://carecloud.readme.io/reference/getcampaigns).
       schema:
         type: string
       example: 81eaeea13b8984a169c490a325
