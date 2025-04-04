@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Stamper
+  summary: Get all stamper campaigns
+  description: Get a list of stamper campaigns from CRM CareCloud.
+  operationId: getStamperCampaigns
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/valid_from_full'
+    - $ref: '../../parameters/_index.yaml#/valid_to_full'
+    - $ref: '../../parameters/_index.yaml#/partner_id'
+    - $ref: '../../parameters/_index.yaml#/is_valid'
+
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetStamperCampaigns200Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  stamper_campaigns:
+                    type: array
+                    description: List of stamper campaigns.
+                    items:
+                      $ref: '../../schemas/_index.yaml#/StamperCampaign'
+                  total_items:
+                    type: integer
+                    description: The number of all found stamper campaigns.
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

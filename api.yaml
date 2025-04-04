@@ -148,6 +148,9 @@ tags:
     description: Reward types represent list of all rewards types available in CareCloud.
   - name: Segments
     description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
+  - name: Stamper
+    description: |
+      Our Digital Stamper simulates a store loyalty program where customers collect digital stamps with each purchase. Stamps are stored securely and linked to a unique customer ID, ensuring seamless tracking. Once a customer reaches the required number of stamps, they automatically unlock a reward. Expiration rules and tiered rewards can be configured to match business needs. This system eliminates lost paper cards and enhances customer engagement with a frictionless, automated experience.
   - name: Statuses
     description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.
   - name: Store properties

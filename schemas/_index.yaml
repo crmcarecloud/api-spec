@@ -230,6 +230,16 @@ SimpleReward:
   $ref: "./SimpleReward.yaml"
 SocialNetworkCredentials:
   $ref: "./SocialNetworkCredentials.yaml"
+StamperCampaign:
+  $ref: "./StamperCampaign.yaml"
+StamperCard:
+  $ref: "./StamperCard.yaml"
+StamperCondition:
+  $ref: "./StamperCondition.yaml"
+StamperBonusCheckpoint:
+  $ref: "./StamperBonusCheckpoint.yaml"
+StamperStamp:
+  $ref: "./StamperStamp.yaml"
 Status:
   $ref: "./Status.yaml"
 StatusRecord:

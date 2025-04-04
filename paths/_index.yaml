@@ -549,6 +549,20 @@
 /segment-groups/{segment_group_id}:
   $ref: "./segments/SegmentGroup.yaml"
 
+#Stamper
+/stamper-campaigns:
+  $ref: "./stamper/StamperCampaigns.yaml"
+/stamper-campaigns/{stamper_campaign_id}:
+  $ref: "./stamper/StamperCampaign.yaml"
+/stamper-cards:
+  $ref: "./stamper/StamperCards.yaml"
+/stamper-cards/{stamper_card_id}:
+  $ref: "./stamper/StamperCard.yaml"
+/stamps:
+  $ref: "./stamper/StamperStamps.yaml"
+/stamps/{stamper_stamp_id}:
+  $ref: "./stamper/StamperStamp.yaml"
+
 #Statuses
 /statuses:
   $ref: "./statuses/Statuses.yaml"

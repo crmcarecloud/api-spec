@@ -1,0 +1,53 @@
+type: object
+description: Stamp resource.
+properties:
+  stamp_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper stamp.
+    example: "81eaeea13b8984a169c490a325"
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper card holder.
+    example: "8ea2591121e636086a4a9c0992"
+  purchase_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the purchase that triggered the stamp to be collected.
+    example: "81eaeea13b8984a169c490a325"
+  stamper_card_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper card.
+    example: "8bed991c68a470e7aaeffbf048"
+  stamp_order:
+    type: integer
+    readOnly: true
+    description: An order of the stamp in the card. If null, the stamp is not assign to any stamper card.
+    example: 7
+  stamper_condition_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper condition. An information about condition is available at the stamper campaign that stamp is part of.
+    example: "8bed991c68a470e7aaeffbf048"
+  created_at:
+    type: string
+    readOnly: false
+    description: Date and time when the customer collected the stamp. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2024-07-15 17:26:34"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2025-03-15 17:26:34"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      State of the stamp.
+      *Possible values are: 0 - deleted / 1 - active*
+    example: 1

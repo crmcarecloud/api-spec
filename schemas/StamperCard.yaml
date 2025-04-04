@@ -1,0 +1,48 @@
+type: object
+description: Stamper card resource.
+properties:
+  stamper_card_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper card.
+    example: "81eaeea13b8984a169c490a325"
+  stamper_campaign_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper campaign that the card is part of. The list of stamper campaign is available at [GET /stamper-campaigns](https://carecloud.readme.io/reference/getstampercampaigns)
+    example: "8bed991c68a470e7aaeffbf048"
+  customer_id:
+    type: string
+    readOnly: false
+    description: The unique ID of the card holder.
+    example: "8ea2591121e636086a4a9c0992"
+  stamper_card_order:
+    type: integer
+    readOnly: true
+    description: An order of the stamper card in the stamper campaign. The stamper campaign can have multiple stamper cards and this parameter determine the order how they were used in the campaign.
+    example: 2
+  is_filled_up:
+    type: boolean
+    readOnly: true
+    description: If true, the card contain all stamps. If false, the card has still free spots for the stamp.
+    example: false
+  created_at:
+    type: string
+    readOnly: true
+    description: Date and time when stamper card was created. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2023-03-28 16:59:49"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2019-07-15 17:26:34"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      State of the card.
+      *Possible values are: 0 - blocked / 1 - active*
+    example: 1

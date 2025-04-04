@@ -1,0 +1,13 @@
+type: object
+description: Stamper condition resource.
+properties:
+  stamper_condition_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper condition.
+    example: "8bd48117006496e0b1788109b8"
+  description:
+    type: string
+    description: |
+      Stamper condition description. The translation is return depending on the language value in the HTTP request header Accept-Language.
+    example: "Buy 2 doughnuts"

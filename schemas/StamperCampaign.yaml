@@ -1,0 +1,70 @@
+type: object
+description: Stamper campaign resource.
+properties:
+  stamper_campaign_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper campaign.
+    example: "81eaeea13b8984a169c490a325"
+  partner_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the CareCloud partner.
+    example: "8bed991c68a470e7aaeffbf048"
+  name:
+    type: string
+    readOnly: false
+    description: Name of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+    example: "First customers"
+  description:
+    type: string
+    readOnly: false
+    description: Description of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+    example: |
+      Be among the first to join our exclusive loyalty program and start collecting digital stamps! For every purchase, you earn a stamp—collect 10 stamps to unlock a special reward. As a bonus, stamp #5 is a checkpoint that gives you an extra perk along the way! Start stamping today and enjoy exclusive rewards!
+  stamp_count:
+    type: integer
+    readOnly: true
+    description: |
+      The amount of stamps on the stamp card.
+    example: 10
+  valid_from:
+    type: string
+    readOnly: false
+    description: Stamp campaign validity from. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2025-03-15 17:00:00"
+  valid_to:
+    type: string
+    readOnly: false
+    description: Stamp campaign validity to. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2025-07-15 17:00:00"
+  is_campaign_repeatable:
+    type: boolean
+    readOnly: true
+    description: If true, the campaign is repeatable and the customer can use multiple stamper cards and get rewards and bonuses multiple times. If false, the customer can collect stamps only for one stamper card.
+    example: true
+  stamper_conditions:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/StamperCondition'
+    description: List of defined stamper conditions.
+  stamper_bonus_checkpoints:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/StamperBonusCheckpoint'
+    description: List of defined stamper checkpoints for bonuses.
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2024-07-15 17:26:34"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    readOnly: false
+    description: |
+      State of the stamper campaign.
+      *Possible values are: 0 - deleted / 1 - active*
+    example: 1

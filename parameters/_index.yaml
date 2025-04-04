@@ -1199,7 +1199,7 @@ partner_id:
   name: partner_id
   in: query
   required: false
-  description: Unique ID of the partner from the resource [GET /partners](/#tag/Partners).
+  description: Unique ID of the partner from the resource [GET /partners](https://carecloud.readme.io/reference/getpartners).
   schema:
     type: string
   example: "86e05affc7a7abefcd513ab400"
@@ -1710,6 +1710,62 @@ entrance_order_item_id:
   schema:
     type: string
   example: "84947e1aa1ad6982cc8188d15c"
+
+#Stamper
+stamper_campaign_id_path:
+  name: stamper_campaign_id
+  in: path
+  description: The unique ID of the stamper campaign.
+  required: true
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
+stamper_campaign_id:
+  name: stamper_campaign_id
+  in: query
+  description: The unique ID of the stamper campaign.
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
+stamper_card_id_path:
+  name: stamper_card_id
+  in: path
+  description: The unique ID of the stamper card.
+  required: true
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
+stamper_card_id:
+  name: stamper_card_id
+  in: query
+  description: The unique ID of the stamper card.
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
+stamper_stamp_id_path:
+  name: stamper_stamp_id
+  in: path
+  description: The unique ID of the stamper stamp.
+  required: true
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
+stamper_condition_id:
+  name: stamper_condition_id
+  in: query
+  description: The unique ID of the stamper condition.
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
+stamper_card_filled_up:
+  name: filled_up
+  in: query
+  description: |
+    The filter where you can decide what kind of stamper card you want. If the filter is not use, all cards are returned.
+    Possible values: true - Filter returns only cards that has all stamps / false - Filter returns all cards that have still free at least one for the stamp.
+  schema:
+    type: string
+  example: "86e05affc7a7abefcd513ab400"
 # Statuses
 status_id_path:
   name: status_id

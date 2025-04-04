@@ -1,0 +1,17 @@
+type: object
+description: Stamper bonus checkpoint resource.
+properties:
+  stamper_bonus_checkpoint_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the stamper bonus checkpoint.
+    example: "8bd48117006496e0b1788109b8"
+  description:
+    type: string
+    description: |
+      Stamper bonus checkpoint description. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+    example: "5% off next purchase"
+  stamp_number:
+    type: integer
+    description: Number of stamp in the stamp card that unlock the bonus checkpoint.
+    example: 5
