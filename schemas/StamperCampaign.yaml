@@ -38,11 +38,10 @@ properties:
     readOnly: false
     description: Stamp campaign validity to. *(YYYY-MM-DD HH:MM:SS)*
     example: "2025-07-15 17:00:00"
-  is_campaign_repeatable:
-    type: boolean
-    readOnly: true
-    description: If true, the campaign is repeatable and the customer can use multiple stamper cards and get rewards and bonuses multiple times. If false, the customer can collect stamps only for one stamper card.
-    example: true
+  count_of_campaign_repetitions:
+    type: integer
+    description: The number how many times can be campaign repeated. The number says how many stamper cards could be filled by customer in that campaign.
+    example: 3
   stamper_conditions:
     type: array
     items:

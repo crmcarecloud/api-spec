@@ -26,6 +26,11 @@ properties:
     readOnly: true
     description: If true, the card contain all stamps. If false, the card has still free spots for the stamp.
     example: false
+  stamps:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/StamperStamp'
+    description: List of all stamps related to the card.
   created_at:
     type: string
     readOnly: true

@@ -3,10 +3,18 @@ description: Campaign resource.
 properties:
   idcampaign:
     type: string
+    deprecated: true
     readOnly: true
     description: |
       The unique ID of the campaign. 
+      ⚠️ This parameter is deprecated, please use `campaign_id` instead.
       Please be aware this parameter can be referred in different endpoints as `campaign_id`.
+    example: "8bed991c68a470e7aaeffbf048"
+  campaign_id:
+    type: string
+    readOnly: true
+    description: |
+      The unique ID of the campaign.
     example: "8bed991c68a470e7aaeffbf048"
   external_id:
     type: string

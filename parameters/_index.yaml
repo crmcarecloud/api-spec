@@ -1723,7 +1723,9 @@ stamper_campaign_id_path:
 stamper_campaign_id:
   name: stamper_campaign_id
   in: query
-  description: The unique ID of the stamper campaign.
+  description: |
+    The unique ID of the stamper campaign. The filter reduces data in the response related only to the selected stamper campaign.
+    In case you want to filter multiple options use array syntax: `stamper_campaign_id[]=8bc8ca16f9c5039951021700a2&stamper_campaign_id[]=82c06812c0756528660784fef`
   schema:
     type: string
   example: "86e05affc7a7abefcd513ab400"
@@ -1738,7 +1740,9 @@ stamper_card_id_path:
 stamper_card_id:
   name: stamper_card_id
   in: query
-  description: The unique ID of the stamper card.
+  description: |
+    The unique ID of the stamper card. The filter reduces data in the response related only to the selected stamper cards.
+    In case you want to filter multiple options use array syntax: `stamper_card_id[]=8bc8ca16f9c5039951021700a2&stamper_card_id[]=82c06812c0756528660784fef`
   schema:
     type: string
   example: "86e05affc7a7abefcd513ab400"

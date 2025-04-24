@@ -48,7 +48,10 @@ properties:
     type: string
     pattern: ^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
     readOnly: false
-    description: Email of the customer.
+    description: |
+      Email of the customer.
+      If you enter the email we are validating his format and validity of the domain. 
+      Here is the general regular expression that is used for validation: `^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
     example: "happy_customer@crmcarecloud.com"
   phone:
     type: string
