@@ -181,23 +181,8 @@ tags:
   - name: Wallet
     description: 'The Wallet in the CareCloud platform contains Rewards Points and Credits. It is assigned to each customer on his customer account. The content of the wallet is available in the Customer 360 View App. You get the Wallet content details included expirations, here.'
 servers:
-  - url: 'https://{project_url}/webservice/rest-api/{api_interface}/{version}'
+  - url: 'https://test.crmcarecloud.com/webservice/rest-api/enterprise-interface/v1.0'
     description: 'The **Enterprise API**. More in [Domain structure](#section/Getting-started/Domain-structure)'
-    variables:
-      project_url:
-        default: sandbox.crmcarecloud.com
-        description: domain of the CareCloud project
-      api_interface:
-        enum:
-          - enterprise-interface
-          - customer-interface
-        default: enterprise-interface
-        description: 'Two different kinds of interfaces are used depending on the type of data required from CareCloud API and the character of integration (mobile application, webshop, POS, or BI tool).'
-      version:
-        enum:
-          - v1.0
-        default: v1.0
-        description: Version of the CareCloud API
 paths:
   /agreements:
     get:
@@ -1200,6 +1185,7 @@ paths:
         - $ref: '#/components/parameters/valid_from_full'
         - $ref: '#/components/parameters/valid_to_full'
         - $ref: '#/components/parameters/campaign_id'
+        - $ref: '#/components/parameters/include_property_records'
       responses:
         '200':
           description: OK
@@ -17964,6 +17950,13 @@ components:
           example: 86e05affc7a7abefcd513ab400
         presentation_data:
           $ref: '#/components/schemas/CampaignPresentationData'
+        campaign_product_property_records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PropertyRecord'
+          readOnly: true
+          default: false
+          description: List of campaign product property records.
         last_change:
           type: string
           readOnly: true
@@ -23685,7 +23678,9 @@ components:
       name: customer_type_id
       in: query
       required: false
-      description: Select by list of customer types from customer-types resource. Logic OR is used between values.
+      description: |
+        Select by list of customer types from customer-types resource. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
+        Logic OR is used between values.
       schema:
         type: array
         items:
@@ -24048,7 +24043,7 @@ components:
     type_id:
       name: type_id
       in: query
-      description: Type of the customer for a campaign product.
+      description: 'Type of the customer for a campaign product. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).'
       required: false
       schema:
         type: array

@@ -59,6 +59,13 @@ properties:
     example: "86e05affc7a7abefcd513ab400"
   presentation_data:
     $ref: '../schemas/_index.yaml#/CampaignPresentationData'
+  campaign_product_property_records:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/PropertyRecord'
+    readOnly: true
+    default: false
+    description: List of campaign product property records.
   last_change:
     type: string
     readOnly: true

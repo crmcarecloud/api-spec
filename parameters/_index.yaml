@@ -617,7 +617,9 @@ customer_type_id_arr:
   name: customer_type_id
   in: query
   required: false
-  description: 	Select by list of customer types from customer-types resource. Logic OR is used between values.
+  description: |
+      Select by list of customer types from customer-types resource. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
+      Logic OR is used between values.
   schema:
     type: array
     items:
@@ -994,7 +996,7 @@ display_in:
 type_id:
   name: type_id
   in: query
-  description: Type of the customer for a campaign product.
+  description: Type of the customer for a campaign product. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
   required: false
   schema:
     type: array
