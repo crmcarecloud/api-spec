@@ -181,8 +181,23 @@ tags:
   - name: Wallet
     description: 'The Wallet in the CareCloud platform contains Rewards Points and Credits. It is assigned to each customer on his customer account. The content of the wallet is available in the Customer 360 View App. You get the Wallet content details included expirations, here.'
 servers:
-  - url: 'https://test.crmcarecloud.com/webservice/rest-api/enterprise-interface/v1.0'
+  - url: 'https://{project_url}/webservice/rest-api/{api_interface}/{version}'
     description: 'The **Enterprise API**. More in [Domain structure](#section/Getting-started/Domain-structure)'
+    variables:
+      project_url:
+        default: sandbox.crmcarecloud.com
+        description: domain of the CareCloud project
+      api_interface:
+        enum:
+          - enterprise-interface
+          - customer-interface
+        default: enterprise-interface
+        description: 'Two different kinds of interfaces are used depending on the type of data required from CareCloud API and the character of integration (mobile application, webshop, POS, or BI tool).'
+      version:
+        enum:
+          - v1.0
+        default: v1.0
+        description: Version of the CareCloud API
 paths:
   /agreements:
     get:
@@ -1642,6 +1657,7 @@ paths:
       summary: Assign free card
       description: |
         Assign a free card in order to the customer.
+        The method is currently limited. You can assign one card of a certain type to one customer. In case of your project allows customers with multiple cards of one type, please use [PUT /cards](https://carecloud.readme.io/reference/putcard)
       operationId: postAssignCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -9354,7 +9370,10 @@ paths:
         - Products
       summary: Create a batch of products
       description: |
-        Batch process helps to add multiple products in one request.<br/>  ⚠️ If a product already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible<br/> ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+        Batch process helps to add multiple products in one request. 
+        ⚠️ If a product already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible.
+        ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
+        ⚠️ Endpoint is available only in the Enterprise interface.
       operationId: postBulkProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -13426,6 +13445,7 @@ paths:
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/segment_group_name'
+        - $ref: '#/components/parameters/text_id'
       responses:
         '200':
           description: OK
@@ -21494,6 +21514,11 @@ components:
           readOnly: false
           description: Short description of the segment group.
           example: RFM Badges for tagging customers
+        text_id:
+          type: string
+          readOnly: true
+          description: It represents unique readable ID of the segment group.
+          example: rfm_badges
         last_change:
           type: string
           readOnly: true

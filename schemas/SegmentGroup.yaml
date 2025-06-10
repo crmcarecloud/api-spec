@@ -21,6 +21,11 @@ properties:
     readOnly: false
     description: Short description of the segment group.
     example: "RFM Badges for tagging customers"
+  text_id:
+    type: string
+    readOnly: true
+    description: It represents unique readable ID of the segment group.
+    example: rfm_badges
   last_change:
     type: string
     readOnly: true
