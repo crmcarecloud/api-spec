@@ -254,6 +254,8 @@ StoreGroupRecord:
   $ref: "./StoreGroupRecord.yaml"
 Tag:
   $ref: "./Tag.yaml"
+TargetGroup:
+  $ref: "./TargetGroup.yaml"
 Task:
   $ref: "./Task.yaml"
 TaskAssignee:

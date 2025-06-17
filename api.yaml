@@ -159,6 +159,10 @@ tags:
     description: A store is a building, part of a building, or a virtual place where products are sold. You can manage the network of your business units (shops, stores, company branches, warehouses, kiosks, e-shops, mobile, or any other applications) via this resource. Many properties like an address, GPS coordinates, opening hours, or contact details can be synchronized with any other system.
   - name: Store groups
     description: List of store groups.
+  - name: Target groups
+    description: |
+      Retrieves a list of target groups, which are predefined segments of selected customers used in omnichannel marketing campaigns. These groups are typically created based on customer attributes, behavior, or preferences, and serve as recipient lists for communication channels such as email and push notifications.
+      Target groups help marketers personalize messaging and coordinate campaigns across channels by ensuring the right audience is addressed.
   - name: Tasks
     description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
   - name: Task properties

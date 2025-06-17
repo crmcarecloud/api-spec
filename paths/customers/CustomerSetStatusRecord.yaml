@@ -3,7 +3,7 @@ post:
     - Customers actions
   summary: Set a new customer status
   description: |
-    The method sets a new customer status. If another valid status exists, CareCloud deactivates it.<br/>
+    The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
     ⚠️ Action method is available only in the Enterprise interface.
   operationId: postCustomersSetStatusRecord
   requestBody:
@@ -21,6 +21,10 @@ post:
               type: string
               description: The unique ID of the customer.
               example: "89ac83ca207a820c62c79bf03a"
+            valid_from:
+              type: string
+              description: Date and time of the status record starts its validity. If not set, current date and time is applied. *(YYYY-MM-DD HH:MM:SS)*
+              example: "2021-01-28 00:00:00"
             valid_to:
               type: string
               description: Date and time of the record valid to. If not set, validity from the status definition is applied. *(YYYY-MM-DD HH:MM:SS)*

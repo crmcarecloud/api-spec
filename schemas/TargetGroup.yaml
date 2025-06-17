@@ -1,0 +1,29 @@
+type: object
+description: Target group resource.
+properties:
+  target_group_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the target group.
+    example: "8fd73167342d06899c4c015320"
+  name:
+    type: string
+    readOnly: true
+    description: Name of the target group
+    example: "Newsletter july 2024"
+  communication_channel_id:
+    type: string
+    readOnly: true
+    description: |
+      The unique ID of the communication channel. Possible values are available at [GET /communication-channel](carecloud.readme.io/reference/getcommunicationchannels)
+    example: "8fd73167342d06899c4c015320"
+  created_at:
+    type: string
+    readOnly: true
+    description: Date of the target group creation. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2024-07-03 21:33:13"
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2024-07-05 11:24:12"

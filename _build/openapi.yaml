@@ -159,6 +159,10 @@ tags:
     description: 'A store is a building, part of a building, or a virtual place where products are sold. You can manage the network of your business units (shops, stores, company branches, warehouses, kiosks, e-shops, mobile, or any other applications) via this resource. Many properties like an address, GPS coordinates, opening hours, or contact details can be synchronized with any other system.'
   - name: Store groups
     description: List of store groups.
+  - name: Target groups
+    description: |
+      Retrieves a list of target groups, which are predefined segments of selected customers used in omnichannel marketing campaigns. These groups are typically created based on customer attributes, behavior, or preferences, and serve as recipient lists for communication channels such as email and push notifications.
+      Target groups help marketers personalize messaging and coordinate campaigns across channels by ensuring the right audience is addressed.
   - name: Tasks
     description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
   - name: Task properties
@@ -5854,7 +5858,7 @@ paths:
         - Customers actions
       summary: Set a new customer status
       description: |
-        The method sets a new customer status. If another valid status exists, CareCloud deactivates it.<br/>
+        The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
         ⚠️ Action method is available only in the Enterprise interface.
       operationId: postCustomersSetStatusRecord
       requestBody:
@@ -5872,6 +5876,10 @@ paths:
                   type: string
                   description: The unique ID of the customer.
                   example: 89ac83ca207a820c62c79bf03a
+                valid_from:
+                  type: string
+                  description: 'Date and time of the status record starts its validity. If not set, current date and time is applied. *(YYYY-MM-DD HH:MM:SS)*'
+                  example: '2021-01-28 00:00:00'
                 valid_to:
                   type: string
                   description: 'Date and time of the record valid to. If not set, validity from the status definition is applied. *(YYYY-MM-DD HH:MM:SS)*'
@@ -7834,6 +7842,103 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$message_template_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the message template\n\n// Call endpoint and get data\ntry\n{\n    $get_message_template = $care_cloud->messageTemplatesApi()->getMessageTemplate($message_template_id, $accept_language);\n    $message_template = $get_message_template->getData();\n    var_dump($message_template);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /target-groups:
+    get:
+      tags:
+        - Target groups
+      summary: Get all target groups
+      description: |
+        Get information about available target groups.
+        ⚠️ The endpoint is available only in the Enterprise interface.
+      operationId: getTargetGroups
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/communication_channel_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetTargetGroups200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      target_groups:
+                        type: array
+                        description: List of all target groups.
+                        items:
+                          $ref: '#/components/schemas/TargetGroup'
+                      total_items:
+                        type: integer
+                        description: The number of all found target groups.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once 'vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = null; // string | The unique ID of the customer (optional)\n$contact = null; // string | Email of phone number that was used as a contact in message (optional)\n$communication_channel_id = null; // integer | The unique ID of the communication channel. Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification (optional)\n$send_time_from = null; // string | Start date and time of the time interval YYYY-MM-DD HH:MM:SS (optional)\n$send_time_to = null; // string | End date and time of the time interval YYYY-MM-DD HH:MM:SS (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_messages = $care_cloud->messagesApi()->getMessages(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $customer_id,\n        $contact,\n        $communication_channel_id,\n        $send_time_from,\n        $send_time_to\n    );\n    $messages = $get_messages->getData()->getMessages();\n    $total_items = $get_messages->getData()->getTotalItems();\n    var_dump($messages);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/target-groups/{target_group_id}':
+    get:
+      tags:
+        - Target groups
+      summary: Get a target group
+      description: |
+        Get information about a specific target group.
+        ⚠️ The endpoint is available only in the Enterprise interface.
+      operationId: getTargetGroup
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/target_group_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetTargetGroup200Response
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TargetGroup'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /one-time-password/actions/send:
     post:
       tags:
@@ -22483,6 +22588,36 @@ components:
           readOnly: true
           description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2019-01-04 10:31:56'
+    TargetGroup:
+      type: object
+      description: Target group resource.
+      properties:
+        target_group_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the target group.
+          example: 8fd73167342d06899c4c015320
+        name:
+          type: string
+          readOnly: true
+          description: Name of the target group
+          example: Newsletter july 2024
+        communication_channel_id:
+          type: string
+          readOnly: true
+          description: |
+            The unique ID of the communication channel. Possible values are available at [GET /communication-channel](carecloud.readme.io/reference/getcommunicationchannels)
+          example: 8fd73167342d06899c4c015320
+        created_at:
+          type: string
+          readOnly: true
+          description: 'Date of the target group creation. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2024-07-03 21:33:13'
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2024-07-05 11:24:12'
     Task:
       type: object
       description: Task resource.
@@ -24240,6 +24375,14 @@ components:
         type: string
       allowReserved: true
       example: '2015-01-05 23:59:00'
+    target_group_id_path:
+      name: target_group_id
+      in: path
+      description: The unique ID of the target group.
+      required: true
+      schema:
+        type: string
+      example: 8bed991c68a470e7aaeffbf048
     order_id_path:
       name: order_id
       in: path

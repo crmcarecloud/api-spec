@@ -1177,7 +1177,14 @@ send_time_to:
     type: string
   allowReserved: true
   example: "2015-01-05 23:59:00"
-
+target_group_id_path:
+  name: target_group_id
+  in: path
+  description: The unique ID of the target group.
+  required: true
+  schema:
+    type: string
+  example: "8bed991c68a470e7aaeffbf048"
 #Order
 order_id_path:
   name: order_id

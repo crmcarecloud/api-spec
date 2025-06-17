@@ -1,0 +1,38 @@
+get:
+  tags:
+    - Target groups
+  summary: Get a target group
+  description: |
+    Get information about a specific target group.
+    ⚠️ The endpoint is available only in the Enterprise interface.
+  operationId: getTargetGroup
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/target_group_id_path'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetTargetGroup200Response
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/TargetGroup'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

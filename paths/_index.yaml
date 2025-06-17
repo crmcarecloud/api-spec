@@ -291,6 +291,11 @@
   $ref: "./messages/MessageTemplates.yaml"
 /message-templates/{message_template_id}:
   $ref: "./messages/MessageTemplate.yaml"
+# Target groups
+/target-groups:
+  $ref: "./messages/TargetGroups.yaml"
+/target-groups/{target_group_id}:
+  $ref: "./messages/TargetGroup.yaml"
 
 # One Time Password
 #Actions
