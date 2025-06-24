@@ -15,7 +15,12 @@ properties:
     type: string
     readOnly: false
     description: Name of the event type.
-    example: "Voucher"
+    example: "Voucher activation"
+  text_id:
+    type: string
+    readOnly: true
+    description: Text identification of the event type.
+    example: "voucher_activation"
   icon_name:
     type: string
     readOnly: false
