@@ -84,6 +84,11 @@ properties:
     readOnly: true
     description: If true, overall discounts can be applied on already discounted purchase items in purchase checkout process.
     example: true
+  text_id:
+    type: string
+    readOnly: true
+    description: Text identification of the status.
+    example: "basic"
   last_change:
     type: string
     readOnly: true
