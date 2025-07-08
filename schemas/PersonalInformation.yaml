@@ -77,6 +77,15 @@ properties:
   address:
     $ref: '../schemas/_index.yaml#/Address'
   agreement:
+    deprecated: true
     $ref: '../schemas/_index.yaml#/Agreement'
+  consents:
+      type: array
+      items:
+        $ref: '../schemas/_index.yaml#/Consents'
+      readOnly: false
+      description: |
+        The list of all customer consents. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)
+        This parameter replacing parameter `agreement`. If both parameters are set (`agreement` and `consents`), the `consents` has priority while creating or updating the record.
 required:
   - language_id

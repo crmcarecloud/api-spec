@@ -40,6 +40,8 @@ ChartPointData:
   $ref: "./ChartPointData.yaml"
 CommunicationChannel:
   $ref: "./CommunicationChannel.yaml"
+Consents:
+  $ref: "./Consents.yaml"
 Country:
   $ref: "./Country.yaml"
 Credit:

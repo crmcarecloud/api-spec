@@ -1,11 +1,11 @@
 type: object
 description: Consents.
 properties:
-  agreement_id:
+  consent_id:
     type: string
     description: The unique ID of the consent in CareCloud from [consents](https://carecloud.readme.io/reference/getconsents) resource.
     example: "8fd73167342d06899c4c015320"
-  agreement_value:
+  consent_value:
     type: integer
     enum:
       - 0
@@ -13,6 +13,11 @@ properties:
       - 2
     description: "Value of the specific consent. *Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set*"
     example: 2
+  last_change:
+    type: string
+    readOnly: true
+    description: Date and time of the last change of the record. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2024-06-23 11:47:23"
 required:
-  - agreement_id
-  - agreement_value
+  - consent_id
+  - consent_value
