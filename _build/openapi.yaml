@@ -16835,6 +16835,61 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsApplyvoucherBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$voucher_id = '85d6598db0bf3f62afd5db8507'; // string | The unique ID of the voucher\n\n// Set the request body\n$body = new ActionsApplyvoucherBody();\n$body->setStoreId(null); // string | The unique ID of the store (optional)\n$body->setDateApplied('2022-10-28 15:52:00'); // string | Date (ISO 8601) of voucher application (YYYY-MM-DD HH:MM:SS)\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->vouchersApi()->postVoucherApply($body, $voucher_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /vouchers/actions/gift-card-balance:
+    post:
+      tags:
+        - Vouchers
+      summary: Gift Card Balance
+      description: The endpoint returns information about the balance of the Gift Card (Multi purpose reward).
+      operationId: postVoucherGiftCardBalance
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voucher_id:
+                  type: string
+                  description: The unique ID of the voucher. One of the parameters `voucher_id` or `code` is mandatory in request.
+                  example: 8bb7345976bbc9ed20e5083dd6
+                code:
+                  type: string
+                  description: Code of the voucher. One of the parameters `voucher_id` or `code` is mandatory in request.
+                  example: w7TU7KfeE
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: PostVoucherGiftCardBalance200Response
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/VoucherGiftCardBalance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      x-codeSamples:
+        - lang: PHP
+          label: CareCloud SDK
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsApplyvoucherBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$voucher_id = '85d6598db0bf3f62afd5db8507'; // string | The unique ID of the voucher\n\n// Set the request body\n$body = new ActionsApplyvoucherBody();\n$body->setStoreId(null); // string | The unique ID of the store (optional)\n$body->setDateApplied('2022-10-28 15:52:00'); // string | Date (ISO 8601) of voucher application (YYYY-MM-DD HH:MM:SS)\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->vouchersApi()->postVoucherApply($body, $voucher_id, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /vouchers/batch:
     post:
       tags:
@@ -19885,7 +19940,7 @@ components:
           readOnly: false
           description: |
             The list of all customer consents. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)
-            If both parameters are set (`agreement` and `consents`), the `consents` has priority while creating or updating the record.
+            This parameter replacing parameter `agreement`. If both parameters are set (`agreement` and `consents`), the `consents` has priority while creating or updating the record.
       required:
         - language_id
     PluId:
@@ -23253,6 +23308,27 @@ components:
       required:
         - reward_id
         - customer_id
+    VoucherGiftCardBalance:
+      type: object
+      description: Customer's voucher balance.
+      properties:
+        voucher_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the voucher.
+          example: 8bb7345976bbc9ed20e5083dd6
+        current_balance:
+          type: number
+          format: float
+          readOnly: false
+          description: Balance left on the Gift card voucher.
+          example: 75
+        original_balance:
+          type: number
+          format: float
+          readOnly: false
+          description: Original balance value of the voucher. The number represents the value before the first usage of the Gift card voucher.
+          example: 75
     BasicError:
       type: object
       required:

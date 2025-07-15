@@ -684,6 +684,8 @@
 #  Actions
 /vouchers/{voucher_id}/actions/apply-voucher:
   $ref: "./vouchers/VoucherApply.yaml"
+/vouchers/actions/gift-card-balance:
+  $ref: "./vouchers/VoucherGiftCardBalance.yaml"
 # Batch
 /vouchers/batch:
   $ref: "./vouchers/VouchersBatch.yaml"

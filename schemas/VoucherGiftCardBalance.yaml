@@ -1,0 +1,20 @@
+type: object
+description: Customer's voucher balance.
+properties:
+  voucher_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the voucher.
+    example: "8bb7345976bbc9ed20e5083dd6"
+  current_balance:
+    type: number
+    format: float
+    readOnly: false
+    description: Balance left on the Gift card voucher.
+    example: 75
+  original_balance:
+    type: number
+    format: float
+    readOnly: false
+    description: Original balance value of the voucher. The number represents the value before the first usage of the Gift card voucher.
+    example: 75

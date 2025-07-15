@@ -288,6 +288,8 @@ Voucher:
   $ref: "./Voucher.yaml"
 VoucherBatch:
   $ref: "./VoucherBatch.yaml"
+VoucherGiftCardBalance:
+  $ref: "./VoucherGiftCardBalance.yaml"
 
 BasicError:
   type: object
