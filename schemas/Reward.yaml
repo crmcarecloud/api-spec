@@ -53,7 +53,7 @@ properties:
     readOnly: false
     description: |
       The unique ID of the reward group.
-      *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
+      *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward / 5 - gift reward (Multi Purpose Reward)*
     example: 0
   reward_type_id:
     type: string

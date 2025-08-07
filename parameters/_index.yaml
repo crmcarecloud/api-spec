@@ -868,7 +868,7 @@ reward_group:
   in: query
   description: |
     The unique ID of the reward group.
-    *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward*
+    *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward / 5 - gift reward (Multi Purpose Reward)*
   required: false
   schema:
     type: integer

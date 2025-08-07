@@ -19299,10 +19299,11 @@ components:
             - -2
             - 2
             - 4
+            - 5
           readOnly: true
           description: |
             The status ID of the message.
-            *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR)*
+            *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 -Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status won't change.)*
           example: 1
         message_template_id:
           type: string
@@ -19776,7 +19777,10 @@ components:
     PaymentRecap:
       type: object
       readOnly: false
-      description: Alternative payment methods summary.
+      description: |
+        Alternative payment methods summary.
+        ⚠️ Ensure that all relevant parameters received in the response from the `POST /accept-payment` endpoint are correctly transferred to the `payment_recap` structure.
+        This is essential for accurate calculation of rewards, discounts, and other customer benefits.
       properties:
         credit_points:
           type: number
@@ -21354,7 +21358,7 @@ components:
           readOnly: false
           description: |
             The unique ID of the reward group.
-            *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward*
+            *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward / 5 - gift reward (Multi Purpose Reward)*
           example: 0
         reward_type_id:
           type: string
@@ -24209,7 +24213,7 @@ components:
       in: query
       description: |
         The unique ID of the reward group.
-        *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward*
+        *Possible values: 0 - cash desk reward (party time reward) / 1 - catalog reward / 2 - campaign reward / 4 - simple reward / 5 - gift reward (Multi Purpose Reward)*
       required: false
       schema:
         type: integer

@@ -15,10 +15,11 @@ properties:
       - -2
       - 2
       - 4
+      - 5
     readOnly: true
     description: |
       The status ID of the message.
-      *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR)*
+      *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 -Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status won't change.)*
     example: 1
   message_template_id:
     type: string

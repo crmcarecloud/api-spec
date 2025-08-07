@@ -1,6 +1,9 @@
 type: object
 readOnly: false
-description: Alternative payment methods summary.
+description: |
+  Alternative payment methods summary.
+  ⚠️ Ensure that all relevant parameters received in the response from the `POST /accept-payment` endpoint are correctly transferred to the `payment_recap` structure.
+  This is essential for accurate calculation of rewards, discounts, and other customer benefits.
 properties:
   credit_points:
     type: number
