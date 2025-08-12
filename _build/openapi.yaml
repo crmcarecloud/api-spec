@@ -12878,6 +12878,78 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsCreatevoucherBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$reward_id = '8fd73167342d06899c4c015320'; // string | The unique ID of the reward\n\n// Set the request body\n$body = new ActionsCreatevoucherBody();\n$body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer\n$body->setCode('e1234'); // string | Code of the voucher (optional)\n$body->setNote('test voucher 2'); // string | Note for the voucher\n\n// Call endpoint and post data\ntry\n{\n    $post_voucher = $care_cloud->rewardsApi()->postRewardCreateVoucher(\n        $body,\n        $reward_id,\n        $accept_language\n    );\n    $voucher_id = $post_voucher->getData()->getVoucherId();\n    var_dump($voucher_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  '/rewards/{reward_id}/actions/create-custom-voucher':
+    post:
+      tags:
+        - Rewards
+      summary: Create a new custom voucher
+      description: |
+        This endpoint allows clients to specify the money value to be used for the voucher, overriding standard reward calculation logic.
+        ⚠️ Only applicable to Simple rewards. To generate standard voucher from a reward, please use [POST /create-voucher](https://carecloud.readme.io/reference/postrewardcreatevoucher).
+        ⚠️ This endpoint is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
+      operationId: postRewardCreateCustomVoucher
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/reward_id_path'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: The unique ID of the customer.
+                  example: 8ea2591121e636086a4a9c0992
+                value:
+                  type: number
+                  format: float
+                  description: Parameter represents money value of the voucher.
+                  example: 754.5
+                code:
+                  type: string
+                  description: Code of the voucher.
+                  example: w7TU7KfeE1
+                note:
+                  type: string
+                  description: The voucher note.
+                  example: Use before 28.03.2024 get another one for free
+              required:
+                - customer_id
+                - value
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                title: PostRewardCreateVoucher201Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      voucher_id:
+                        type: string
+                        description: The unique ID of the custom voucher.
+                        example: 82d0f9d976dee39aacd13dc7ea
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   '/rewards/{reward_id}/actions/set-products':
     post:
       tags:

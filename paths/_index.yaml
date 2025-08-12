@@ -518,6 +518,8 @@
 #Actions
 /rewards/{reward_id}/actions/create-voucher:
   $ref: "./rewards/RewardCreateVoucher.yaml"
+/rewards/{reward_id}/actions/create-custom-voucher:
+  $ref: "./rewards/RewardCreateCustomVoucher.yaml"
 /rewards/{reward_id}/actions/set-products:
   $ref: "./rewards/RewardSynchronizeProducts.yaml"
 /rewards/actions/reward-recommendations:
