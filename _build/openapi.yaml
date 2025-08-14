@@ -7276,6 +7276,7 @@ paths:
         - $ref: '#/components/parameters/sort_direction'
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/text_id'
+        - $ref: '#/components/parameters/event_group_text_id_arr'
       responses:
         '200':
           description: OK
@@ -24478,6 +24479,17 @@ components:
       schema:
         type: string
       example: 8bd253a890067595008f1d44aa
+    event_group_text_id_arr:
+      name: event_group_text_id
+      in: query
+      required: false
+      description: |
+        Select by one value or list of event group text IDs from event-groups resource. The list of values is available at [GET /event-groups](https://carecloud.readme.io/reference/geteventgroups).
+        In case you want to filter multiple options use array syntax : `event_group_text_id[]=8bc8ca16f9c5039951021700a2&event_group_text_id[]=82c06812c0756528660784fef`
+        Logic OR is used between values.
+      schema:
+        type: string
+      example: 8bed991c68a470e7aaeffbf048
     event_property_id_path:
       name: event_property_id
       in: path

@@ -12,6 +12,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/name'
     - $ref: '../../parameters/_index.yaml#/text_id'
+    - $ref: '../../parameters/_index.yaml#/event_group_text_id_arr'
   responses:
     '200':
       description: OK
