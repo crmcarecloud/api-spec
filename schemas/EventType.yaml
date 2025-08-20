@@ -11,6 +11,11 @@ properties:
     readOnly: false
     description: ID of the event type group.
     example: "8bed991c68a470eaaeffbf048"
+  event_group_text_id:
+    type: string
+    readOnly: true
+    description: Text identification of the event group.
+    example: "shopping"
   name:
     type: string
     readOnly: false

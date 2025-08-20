@@ -19074,6 +19074,11 @@ components:
           readOnly: false
           description: ID of the event type group.
           example: 8bed991c68a470eaaeffbf048
+        event_group_text_id:
+          type: string
+          readOnly: true
+          description: Text identification of the event group.
+          example: shopping
         name:
           type: string
           readOnly: false
@@ -19376,7 +19381,7 @@ components:
           readOnly: true
           description: |
             The status ID of the message.
-            *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 -Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status won't change.)*
+            *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 -Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status will change to error.)*
           example: 1
         message_template_id:
           type: string
@@ -24485,11 +24490,11 @@ components:
       required: false
       description: |
         Select by one value or list of event group text IDs from event-groups resource. The list of values is available at [GET /event-groups](https://carecloud.readme.io/reference/geteventgroups).
-        In case you want to filter multiple options use array syntax : `event_group_text_id[]=8bc8ca16f9c5039951021700a2&event_group_text_id[]=82c06812c0756528660784fef`
+        In case you want to filter multiple options use array syntax : `event_group_text_id[]=shopping&event_group_text_id[]=customers`
         Logic OR is used between values.
       schema:
         type: string
-      example: 8bed991c68a470e7aaeffbf048
+      example: shopping
     event_property_id_path:
       name: event_property_id
       in: path
