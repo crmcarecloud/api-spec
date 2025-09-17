@@ -23,10 +23,9 @@ post:
               description: The unique ID of the customer.
               example: "8ea2591121e636086a4a9c0992"
             value:
-              type: number
-              format: float
+              type: integer
               description: Parameter represents money value of the voucher.
-              example: 754.50
+              example: 754
             code:
               type: string
               description: Code of the voucher.

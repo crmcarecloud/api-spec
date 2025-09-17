@@ -84,6 +84,8 @@ Event:
   $ref: "./Event.yaml"
 EventGroup:
   $ref: "./EventGroup.yaml"
+EventPost:
+  $ref: "./EventPost.yaml"
 EventType:
   $ref: "./EventType.yaml"
 ExternalApplication:

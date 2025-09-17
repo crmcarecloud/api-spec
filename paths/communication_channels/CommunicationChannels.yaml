@@ -10,6 +10,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+  security: []
   responses:
     '200':
       description: OK
@@ -33,8 +34,6 @@ get:
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
-    '401':
-      $ref: '../../api.yaml#/components/responses/Unauthorized'
     '403':
       $ref: '../../api.yaml#/components/responses/Forbidden'
     '404':

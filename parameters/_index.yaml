@@ -567,7 +567,10 @@ customer_ids:
   name: customer_ids
   in: query
   required: false
-  description: List of the customer IDs.
+  description: |
+    List of the customer IDs.
+    In case you want to filter multiple options use array syntax : `customer_ids[]=8ea2591121e636086a4a9c0992&customer_ids[]=8bed991c68a470e7aaeffbf048`
+        Logic OR is used between values.
   schema:
     type: array
     items:

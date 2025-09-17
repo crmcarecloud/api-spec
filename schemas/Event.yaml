@@ -14,7 +14,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the card holder.
+    description: The platform unique customer ID.
     example: "8ea2591121e636086a4a9c0992"
   external_id:
     type: string

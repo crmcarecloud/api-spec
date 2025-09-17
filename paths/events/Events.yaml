@@ -125,7 +125,7 @@ post:
           type: object
           properties:
             event:
-              $ref: '../../schemas/_index.yaml#/Event'
+              $ref: '../../schemas/_index.yaml#/EventPost'
             property_records:
               type: array
               description: Additional properties of the event. This parameter contain values in GET response only if query parameter `include_property_records` is set to true.

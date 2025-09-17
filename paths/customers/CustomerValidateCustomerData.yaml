@@ -5,6 +5,7 @@ post:
   description: |
     The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
   operationId: postCustomersValidateCustomerData
+  security: []
   requestBody:
     required: true
     content:
@@ -45,8 +46,6 @@ post:
                     example: true
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
-    '401':
-      $ref: '../../api.yaml#/components/responses/Unauthorized'
     '403':
       $ref: '../../api.yaml#/components/responses/Forbidden'
     '404':

@@ -2563,6 +2563,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+      security: []
       responses:
         '200':
           description: OK
@@ -2586,8 +2587,6 @@ paths:
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -2614,6 +2613,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/communication_channel_id_path'
+      security: []
       responses:
         '200':
           description: OK
@@ -2627,8 +2627,6 @@ paths:
                     $ref: '#/components/schemas/CommunicationChannel'
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -5649,6 +5647,7 @@ paths:
       description: |
         The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
       operationId: postCustomersValidateCustomerData
+      security: []
       requestBody:
         required: true
         content:
@@ -5689,8 +5688,6 @@ paths:
                         example: true
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -6250,6 +6247,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+      security: []
       responses:
         '200':
           description: OK
@@ -6273,8 +6271,6 @@ paths:
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -6297,6 +6293,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/ce_setup_id_path'
+      security: []
       responses:
         '200':
           description: OK
@@ -6310,8 +6307,6 @@ paths:
                     $ref: '#/components/schemas/CustomerEngagementSetup'
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -6337,6 +6332,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+      security: []
       responses:
         '200':
           description: OK
@@ -6360,8 +6356,6 @@ paths:
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -6388,6 +6382,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/customer_external_application_id_path'
+      security: []
       responses:
         '200':
           description: OK
@@ -6401,8 +6396,6 @@ paths:
                     $ref: '#/components/schemas/ExternalApplication'
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -6932,7 +6925,7 @@ paths:
               type: object
               properties:
                 event:
-                  $ref: '#/components/schemas/Event'
+                  $ref: '#/components/schemas/EventPost'
                 property_records:
                   type: array
                   description: Additional properties of the event. This parameter contain values in GET response only if query parameter `include_property_records` is set to true.
@@ -7521,6 +7514,7 @@ paths:
         - $ref: '#/components/parameters/Accept-Language'
         - $ref: '#/components/parameters/language_list_type'
         - $ref: '#/components/parameters/default_language'
+      security: []
       responses:
         '200':
           description: OK
@@ -7544,8 +7538,6 @@ paths:
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -12904,10 +12896,9 @@ paths:
                   description: The unique ID of the customer.
                   example: 8ea2591121e636086a4a9c0992
                 value:
-                  type: number
-                  format: float
+                  type: integer
                   description: Parameter represents money value of the voucher.
-                  example: 754.5
+                  example: 754
                 code:
                   type: string
                   description: Code of the voucher.
@@ -15623,8 +15614,6 @@ paths:
                         example: '!dlroW olleH'
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -15684,6 +15673,7 @@ paths:
       operationId: postToken
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
+      security: []
       requestBody:
         required: true
         content:
@@ -15725,8 +15715,6 @@ paths:
                         example: 4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -16476,8 +16464,6 @@ paths:
                         $ref: '#/components/schemas/User'
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -18986,7 +18972,7 @@ components:
         customer_id:
           type: string
           readOnly: false
-          description: The unique ID of the card holder.
+          description: The platform unique customer ID.
           example: 8ea2591121e636086a4a9c0992
         external_id:
           type: string
@@ -19060,6 +19046,120 @@ components:
           example: 1
       required:
         - event_group_id
+    EventPost:
+      type: object
+      description: Event resource.
+      properties:
+        event_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the event.
+          example: 82de12eb8b138791e678fd11c3
+        event_type_id:
+          type: string
+          readOnly: false
+          description: The unique ID of the event type.
+          example: 8bda8a4854394325e2748a5005
+        customer_id:
+          type: string
+          description: |
+            The unique platform customer ID.  
+            If this field is provided, it will always be used and any alternative identifier parameters
+            (`customer_identifier_type` and `customer_identifier_value`) **must not** be included.  
+            If both are present, the request will be rejected.
+          example: 8ea2591121e636086a4a9c0992
+        customer_identifier_type:
+          type: string
+          enum:
+            - email
+            - phone
+            - external_id
+          description: |
+            Alternative identifier type to use when `customer_id` is not provided.  
+            If `customer_id` is missing, both `customer_identifier_type` and `customer_identifier_value`
+            are required.  
+
+            Accepted values:
+            - `email` – identify customer by e-mail address  
+            - `phone` – identify customer by phone number  
+            - `external_id` – identify customer by an external system ID (e-shop, POS, portal, etc.)  
+
+            If `customer_id` and an alternative identifier are both provided, the request will be rejected.
+          example: email
+        customer_identifier_value:
+          oneOf:
+            - type: string
+              description: String value when type is `email` or `phone`.
+              example: demo@demo.com
+            - type: object
+              description: Object value when type is `external_id`.
+              required:
+                - customer_source_id
+                - external_id
+              properties:
+                customer_source_id:
+                  type: string
+                  description: 'The ID of the customer source (e.g., e-shop, POS).'
+                external_id:
+                  type: string
+                  description: The identifier of the customer in that customer source.
+          description: |
+            Alternative identifier value to use when `customer_id` is not provided.  
+            The value must match the format expected for the selected `customer_identifier_type`.  
+
+            - For `email` or `phone`, provide a string.  
+            - For `external_id`, provide an object with the following structure:  
+              ```json
+              {
+                "customer_source_id": "8795d942b31990e944c2ab1254",
+                "external_id": "7ACFY3R"
+              }
+              ```
+
+            These parameters follow the same conventions as customer search by external ID in
+            [GET /customer-source-records](https://carecloud.readme.io/reference/getcustomersourcerecords).  
+
+            If both `customer_id` and an alternative identifier are included, the request will be rejected.
+          example: demo@demo.com
+        external_id:
+          type: string
+          readOnly: false
+          description: The unique external ID of the event. It may be ID from other system.
+          example: '157613'
+        data:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+            - type: object
+          readOnly: false
+          description: Additional data of the event. Serialized data in JSON.
+          example: '{"id_account_history_change":6}'
+        created_at:
+          type: string
+          readOnly: false
+          description: 'Date and time of the event. *(YYYY-MM-DD HH:MM:SS)*'
+          example: '2021-04-29 14:51:43'
+        secondary_external_id:
+          type: string
+          readOnly: false
+          description: 'Additional external ID of the event. It''s used in case, when differentiation of external_id needed.'
+          example: null
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+            - 2
+          readOnly: true
+          description: |
+            State of the event type.
+            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+          example: 1
+      required:
+        - event_type_id
+        - external_id
     EventType:
       type: object
       description: Event type resource.
@@ -23997,7 +24097,10 @@ components:
       name: customer_ids
       in: query
       required: false
-      description: List of the customer IDs.
+      description: |
+        List of the customer IDs.
+        In case you want to filter multiple options use array syntax : `customer_ids[]=8ea2591121e636086a4a9c0992&customer_ids[]=8bed991c68a470e7aaeffbf048`
+            Logic OR is used between values.
       schema:
         type: array
         items:

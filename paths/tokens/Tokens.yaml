@@ -12,6 +12,7 @@ post:
   operationId: postToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  security: []
   requestBody:
     required: true
     content:
@@ -53,8 +54,6 @@ post:
                     example: "4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
-    '401':
-      $ref: '../../api.yaml#/components/responses/Unauthorized'
     '403':
       $ref: '../../api.yaml#/components/responses/Forbidden'
     '404':

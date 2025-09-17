@@ -51,8 +51,6 @@ post:
                     $ref: '../../schemas/_index.yaml#/User'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
-    '401':
-      $ref: '../../api.yaml#/components/responses/Unauthorized'
     '403':
       $ref: '../../api.yaml#/components/responses/Forbidden'
     '404':

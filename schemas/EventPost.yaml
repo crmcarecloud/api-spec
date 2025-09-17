@@ -1,0 +1,112 @@
+type: object
+description: Event resource.
+properties:
+  event_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the event.
+    example: "82de12eb8b138791e678fd11c3"
+  event_type_id:
+    type: string
+    readOnly: false
+    description: The unique ID of the event type.
+    example: "8bda8a4854394325e2748a5005"
+  customer_id:
+    type: string
+    description: |
+      The unique platform customer ID.  
+      If this field is provided, it will always be used and any alternative identifier parameters
+      (`customer_identifier_type` and `customer_identifier_value`) **must not** be included.  
+      If both are present, the request will be rejected.
+    example: "8ea2591121e636086a4a9c0992"
+  customer_identifier_type:
+    type: string
+    enum:
+      - "email"
+      - "phone"
+      - "external_id"
+    description: |
+      Alternative identifier type to use when `customer_id` is not provided.  
+      If `customer_id` is missing, both `customer_identifier_type` and `customer_identifier_value`
+      are required.  
+      
+      Accepted values:
+      - `email` – identify customer by e-mail address  
+      - `phone` – identify customer by phone number  
+      - `external_id` – identify customer by an external system ID (e-shop, POS, portal, etc.)  
+
+      If `customer_id` and an alternative identifier are both provided, the request will be rejected.
+    example: email
+  customer_identifier_value:
+    oneOf:
+      - type: string
+        description: String value when type is `email` or `phone`.
+        example: "demo@demo.com"
+      - type: object
+        description: Object value when type is `external_id`.
+        required: [ customer_source_id, external_id ]
+        properties:
+          customer_source_id:
+            type: string
+            description: The ID of the customer source (e.g., e-shop, POS).
+          external_id:
+            type: string
+            description: The identifier of the customer in that customer source.
+    description: |
+      Alternative identifier value to use when `customer_id` is not provided.  
+      The value must match the format expected for the selected `customer_identifier_type`.  
+      
+      - For `email` or `phone`, provide a string.  
+      - For `external_id`, provide an object with the following structure:  
+        ```json
+        {
+          "customer_source_id": "8795d942b31990e944c2ab1254",
+          "external_id": "7ACFY3R"
+        }
+        ```
+      
+      These parameters follow the same conventions as customer search by external ID in
+      [GET /customer-source-records](https://carecloud.readme.io/reference/getcustomersourcerecords).  
+
+      If both `customer_id` and an alternative identifier are included, the request will be rejected.
+    example: "demo@demo.com"
+
+  external_id:
+    type: string
+    readOnly: false
+    description: The unique external ID of the event. It may be ID from other system.
+    example: "157613"
+  data:
+    oneOf:
+      - type: string
+      - type: array
+        items:
+          type: string
+      - type: object
+    readOnly: false
+    description: Additional data of the event. Serialized data in JSON.
+    example: '{"id_account_history_change":6}'
+  created_at:
+    type: string
+    readOnly: false
+    description: Date and time of the event. *(YYYY-MM-DD HH:MM:SS)*
+    example: "2021-04-29 14:51:43"
+  secondary_external_id:
+    type: string
+    readOnly: false
+    description: Additional external ID of the event. It's used in case, when differentiation of external_id needed.
+    example:
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the event type.
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+required:
+  - event_type_id
+  - external_id

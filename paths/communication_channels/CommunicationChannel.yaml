@@ -7,6 +7,7 @@ get:
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/communication_channel_id_path'
+  security: []
   responses:
     '200':
       description: OK
@@ -20,8 +21,6 @@ get:
                 $ref: '../../schemas/_index.yaml#/CommunicationChannel'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
-    '401':
-      $ref: '../../api.yaml#/components/responses/Unauthorized'
     '403':
       $ref: '../../api.yaml#/components/responses/Forbidden'
     '404':
