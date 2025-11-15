@@ -2,7 +2,7 @@ get:
   tags:
     - Wallet
   summary: Get points expiration overview
-  description: Get information about points expiration overview of the customer.
+  description: Get information about points of the customer that will expire in the future. You can communicate this information to the customer or you can active him to use these points.
   operationId: getWalletPointsExpiration
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -22,16 +22,19 @@ get:
                   next_amount:
                     type: number
                     format: float
-                    description: Date (ISO 8601) when first points will expire.
+                    description: The amount of customer's points that will expire in the closest future. The exact date of expiration is in the related parameter.
                     example: 77.36
                   next_date:
                     type: string
-                    description: Amount of redeemed points in time interval. *(YYYY-MM-DD)*
+                    description: |
+                      Exact date in local time zone when the customer's points will expire. The date format follows ISO-8601.
+                      *YYYY-MM-DD*
+                    format: YYYY-MM-DD
                     example: "2022-01-01"
                   current_month_amount:
                     type: number
                     format: float
-                    description: Amount of points that will expire in current month.
+                    description: The amount of customer's points that will expire in current month.
                     example: 0
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

@@ -38,6 +38,10 @@ properties:
     readOnly: false
     description: The unique ID of the product brand.
     example: "82db62087b0f79a6e14e5747e7"
+  partner_id:
+    type: string
+    description: The unique ID of the partner.
+    example: "86e05affc7a7abefcd513ab400"
   prices:
     type: array
     items:

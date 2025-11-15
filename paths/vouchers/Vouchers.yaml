@@ -2,7 +2,7 @@ get:
   tags:
     - Vouchers
   summary: Get all vouchers
-  description: Get information as a list o all vouchers.
+  description: Get information as a list of all vouchers.
   operationId: getVouchers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

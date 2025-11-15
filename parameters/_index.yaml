@@ -2005,7 +2005,10 @@ external_application_id:
   name: external_application_id
   in: query
   required: true
-  description: ID of an external application. This is an application that you want to login a customer with an authentication token. For ID of an external application, please contact your CareCloud administrator.
+  description: |
+    ID of the destination external application.
+    Please provide the destination external application ID, not the token-issuing external application ID.
+    Need a destination external application ID? Please contact your CareCloud administrator.
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"

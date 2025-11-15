@@ -3,10 +3,10 @@ servers:
 get:
   tags:
     - Tokens
-  summary: Get authentication token
-  description: > 
-    Returns authentication token for specific external application. <br/>
-    ⚠️ Endpoint is available only in Customer interface.<br/>
+  summary: Get authentication token that allows customer to log in or verified in other applications.
+  description: |
+    This endpoint returns an authentication token. Another application that uses the CareCloud API can use this token to verify the customer or sign the customer in. Typical uses include redirecting a logged-in customer from one app to another, or completing sign-in in an in-app browser for a different application or portal.
+    ⚠️ Endpoint is available only in Customer interface.
   operationId: getTokenAuthentication
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

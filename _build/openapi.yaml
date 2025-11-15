@@ -5589,7 +5589,10 @@ paths:
               properties:
                 application_id:
                   type: string
-                  description: ID of the original external application.The ID represents the external application where the token was created.
+                  description: |
+                    ID of the destination external application where the customer is being verified.
+                    Provide the destination external application ID, not the token-issuing external application ID.
+                    Need a destination external application ID? Please contact your CareCloud administrator.
                   example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
@@ -9382,6 +9385,7 @@ paths:
         - $ref: '#/components/parameters/external_id'
         - $ref: '#/components/parameters/external_type_code'
         - $ref: '#/components/parameters/tag_id_arr'
+        - $ref: '#/components/parameters/partner_id'
       responses:
         '200':
           description: OK
@@ -9730,6 +9734,7 @@ paths:
         - $ref: '#/components/parameters/store_id'
         - $ref: '#/components/parameters/product_group_code'
         - $ref: '#/components/parameters/external_id'
+        - $ref: '#/components/parameters/partner_id'
       responses:
         '200':
           description: OK
@@ -15914,7 +15919,10 @@ paths:
               properties:
                 application_id:
                   type: string
-                  description: 'The ID of the application you need to login to with an authentication token. For the ID of an external application, please contact your CareCloud administrator.'
+                  description: |
+                    ID of the destination external application.
+                    Please provide the destination external application ID, not the token-issuing external application ID.
+                    Need a destination external application ID? Please contact your CareCloud administrator.
                   example: 82de12eb8b138791e678fd11c3
                 token:
                   type: string
@@ -16082,9 +16090,10 @@ paths:
     get:
       tags:
         - Tokens
-      summary: Get authentication token
+      summary: Get authentication token that allows customer to log in or verified in other applications.
       description: |
-        Returns authentication token for specific external application. <br/> ⚠️ Endpoint is available only in Customer interface.<br/>
+        This endpoint returns an authentication token. Another application that uses the CareCloud API can use this token to verify the customer or sign the customer in. Typical uses include redirecting a logged-in customer from one app to another, or completing sign-in in an in-app browser for a different application or portal.
+        ⚠️ Endpoint is available only in Customer interface.
       operationId: getTokenAuthentication
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16393,6 +16402,27 @@ paths:
                         example: '2019-01-04 10:31:56'
                       user:
                         $ref: '#/components/schemas/User'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                title: PostUserLogin200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      bearer_token:
+                        type: string
+                        description: 'Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](#section/Authorization/bearerAuth)).'
+                        example: 09359095c5da43c7ae11e710eabce49418715a6a
+                      valid_to:
+                        type: string
+                        description: 'Date and time (local time zone of the project) of the token validity.   *(YYYY-MM-DD HH:MM:SS)*'
+                        example: '2019-01-04 10:31:56'
+                      user:
+                        $ref: '#/components/schemas/User'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -16629,7 +16659,7 @@ paths:
       tags:
         - Vouchers
       summary: Get all vouchers
-      description: Get information as a list o all vouchers.
+      description: Get information as a list of all vouchers.
       operationId: getVouchers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17273,7 +17303,7 @@ paths:
       tags:
         - Wallet
       summary: Get points expiration overview
-      description: Get information about points expiration overview of the customer.
+      description: Get information about points of the customer that will expire in the future. You can communicate this information to the customer or you can active him to use these points.
       operationId: getWalletPointsExpiration
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17293,16 +17323,19 @@ paths:
                       next_amount:
                         type: number
                         format: float
-                        description: Date (ISO 8601) when first points will expire.
+                        description: The amount of customer's points that will expire in the closest future. The exact date of expiration is in the related parameter.
                         example: 77.36
                       next_date:
                         type: string
-                        description: Amount of redeemed points in time interval. *(YYYY-MM-DD)*
+                        description: |
+                          Exact date in local time zone when the customer's points will expire. The date format follows ISO-8601.
+                          *YYYY-MM-DD*
+                        format: YYYY-MM-DD
                         example: '2022-01-01'
                       current_month_amount:
                         type: number
                         format: float
-                        description: Amount of points that will expire in current month.
+                        description: The amount of customer's points that will expire in current month.
                         example: 0
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -20380,6 +20413,10 @@ components:
           readOnly: false
           description: The unique ID of the product brand.
           example: 82db62087b0f79a6e14e5747e7
+        partner_id:
+          type: string
+          description: The unique ID of the partner.
+          example: 86e05affc7a7abefcd513ab400
         prices:
           type: array
           items:
@@ -20484,6 +20521,10 @@ components:
           readOnly: false
           description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
           example: 83d1d11ea3884a5d33253fe214
+        partner_id:
+          type: string
+          description: 'The unique ID of the partner.  If the partner is not set, the partner is selected from the logged in user.'
+          example: 86e05affc7a7abefcd513ab400
         property_records:
           type: array
           items:
@@ -20572,6 +20613,10 @@ components:
           readOnly: false
           description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
           example: 83d1d11ea3884a5d33253fe214
+        partner_id:
+          type: string
+          description: 'The unique ID of the partner.  If the partner is not set, the partner is selected from the logged in user.'
+          example: 86e05affc7a7abefcd513ab400
         last_change:
           type: string
           readOnly: true
@@ -25487,7 +25532,10 @@ components:
       name: external_application_id
       in: query
       required: true
-      description: 'ID of an external application. This is an application that you want to login a customer with an authentication token. For ID of an external application, please contact your CareCloud administrator.'
+      description: |
+        ID of the destination external application.
+        Please provide the destination external application ID, not the token-issuing external application ID.
+        Need a destination external application ID? Please contact your CareCloud administrator.
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048

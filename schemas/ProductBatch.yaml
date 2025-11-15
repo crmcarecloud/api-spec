@@ -47,6 +47,10 @@ properties:
     readOnly: false
     description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
     example: "83d1d11ea3884a5d33253fe214"
+  partner_id:
+    type: string
+    description: The unique ID of the partner.  If the partner is not set, the partner is selected from the logged in user.
+    example: "86e05affc7a7abefcd513ab400"
   property_records:
     type: array
     items:
