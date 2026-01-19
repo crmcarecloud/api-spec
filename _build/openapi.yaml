@@ -11176,8 +11176,12 @@ paths:
     post:
       tags:
         - Purchases
-      summary: Best rewards for purchase
-      description: 'Method returns all available rewards for POS installation. The output contains list of all available and valid rewards. Each reward contains a parameter of maximum usage of rewards in a purchase. If amount equals zero, reward can not be applied. Rewards are always connected to products through bill items.'
+      summary: Provides a list of rewards available for purchase closure
+      description: |
+        Method returns all rewards available for a specific client application (e-commerce, POS, etc.).
+        The response includes all rewards that are valid at the time of the request. For each reward, a parameter defines the maximum usage per purchase.
+        If the value of this parameter is zero, the reward cannot be applied.
+        Rewards are always associated with products via bill items.
       operationId: postPurchaseRecommendedRewards
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -11190,11 +11194,14 @@ paths:
               properties:
                 store_id:
                   type: string
-                  description: ID of the store.
+                  description: |
+                    The store ID identifies the store or business unit that will close the purchase for the customer.
+                    The list of all stores is available at the endpoint [GET /stores](https://carecloud.readme.io/reference/getstores)
                   example: 8bed991c68a470e7aaeffbf048
                 cashdesk_number:
                   type: integer
-                  description: Number of the cash-desk in the store.
+                  description: |
+                    Number of the cash desk in the store. Used to identify a specific cash desk when multiple are available.
                   example: 1
                 card_number:
                   type: string
@@ -11202,7 +11209,8 @@ paths:
                   example: '1000000000016'
                 customer_id:
                   type: string
-                  description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
+                  description: |
+                    ID of the customer who is closing the purchase. You can search for customers by various parameters in the [GET /customers](https://carecloud.readme.io/reference/getcustomers) endpoint.
                   example: 8ea2591121e636086a4a9c0992
                 reward_list_type:
                   type: string
@@ -11211,9 +11219,12 @@ paths:
                     - C
                     - A
                   description: |
-                    Type of the rewards.
-                    *Possible values: F - full (all manual rewards available and valid of the specific POS)/ C -condensed (only manual rewards corresponding to items on the bill - maxCount not equals zero)/ A - all rewards list including automatic apply this is only for the DATA CUBE*
-                  example: A
+                    Specifies the type of rewards to be listed in the response.
+                    Possible values:
+                     - F (full) - All manual rewards that are valid in the in the defined store
+                     - C (condensed) -  Returns manual rewards that are related to the items from provided purchase. If application is not possible, the reward is not returned.
+                     - A (all) -  List of all available rewards on the project (including automatic rewards). Extended information about rewards is available at the endpoint [GET /rewards](https://carecloud.readme.io/reference/getrewards)
+                  example: C
                 bill:
                   $ref: '#/components/schemas/Bill'
               required:
@@ -11235,7 +11246,7 @@ paths:
                     properties:
                       recommended_best_rewards:
                         type: array
-                        description: List of the best rewards for POS.
+                        description: 'List of the best rewards for a specific client application (e-commerce, POS, etc.).'
                         items:
                           $ref: '#/components/schemas/RecommendedReward'
                       total_items:
@@ -22149,8 +22160,10 @@ components:
           type: string
           readOnly: false
           description: |
-            Unique code of the simple reward.<br/>
-            <i>The unique code serves as an identifier for specific rewards, allowing for easy recognition and application during transactions. For instance, a customer might enter the code BIRTHDAY20 to receive a 20% discount in celebration of their birthday. This system simplifies the process of tracking and redeeming rewards, ensuring that customers can easily access their benefits while businesses can efficiently manage promotional offers.</i>
+            Unique code of the simple reward.
+            The unique code serves as an identifier for specific rewards, allowing for easy recognition and application during transactions. 
+            For instance, a customer might enter the code BIRTHDAY20 to receive a 20% discount in celebration of their birthday. This system simplifies the process of tracking and redeeming rewards, ensuring that customers can easily access their benefits while businesses can efficiently manage promotional offers.
+            ⚠️ The special characters `|` and `-` are not allowed in the code.
           example: BIRTHDAY20
         names:
           type: array
