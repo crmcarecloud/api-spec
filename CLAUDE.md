@@ -50,7 +50,7 @@ api.yaml                    ← Entry point; references all sections below
 All endpoints are served under one of two interfaces, controlled by the `{api_interface}` server variable:
 
 - **`enterprise-interface`** — For backend/POS/BI integrations. Uses Bearer token auth.
-- **`customer-interface`** — For mobile apps and web microsites. Uses Basic auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one interface.
+- **`customer-interface`** — For mobile apps and web microsites. Uses Bearer token auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one interface.
 
 ### Endpoint File Naming
 
