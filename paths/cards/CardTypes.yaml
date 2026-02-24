@@ -2,7 +2,7 @@ get:
   tags:
     - Card types
   summary: Get information about all card types
-  description: Get information about all card types as a list of all customer card types.
+  description: Get a list of all customer card types.
   operationId: getCardTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

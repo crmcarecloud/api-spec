@@ -23,7 +23,7 @@ properties:
   communication_channel_id:
     type: string
     readOnly: true
-    description: The unique ID of the communication channel from resource [GET /communication-channels](#tag/Communication-channels).
+    description: The unique ID of the communication channel. [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)
     example: "86e05affc7a7abefcd513ab400"
   text_id:
     type: string

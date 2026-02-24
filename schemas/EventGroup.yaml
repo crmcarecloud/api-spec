@@ -4,12 +4,12 @@ properties:
   event_group_id:
     type: string
     readOnly: false
-    description: The unique ID of the event.
+    description: The unique ID of the event group.
     example: "86e05affc7a7abefc513ab4tt0"
   name:
     type: string
     readOnly: false
-    description: The unique ID of the event type.
+    description: Name of the event group.
     example: "Shopping Cart"
   text_id:
     type: string
@@ -24,7 +24,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type.
+      State of the event group.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

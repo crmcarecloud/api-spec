@@ -1,7 +1,7 @@
 get:
   tags:
     - Customer sources
-  summary: Detail of a customer source
+  summary: Get a customer source
   description: Get information about a specific customer source.
   operationId: getCustomerSource
   parameters:

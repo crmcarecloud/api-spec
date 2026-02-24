@@ -103,7 +103,7 @@ post:
   tags:
     - Campaign products
   summary: Add a store to the campaign product
-  description: Add one of the [stores](#tag/Stores) to a campaign product.
+  description: Add a store to a campaign product. [GET /stores](https://carecloud.readme.io/reference/getstores)
   operationId: postCampaignProductStoreRecord
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

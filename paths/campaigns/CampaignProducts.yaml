@@ -1,7 +1,7 @@
 get:
   tags:
     - Campaign products
-  summary: Collection of campaign products
+  summary: Get all campaign products
   description: Get information about all available campaign products.
   operationId: getCampaignProducts
   parameters:

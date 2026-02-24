@@ -7,7 +7,7 @@ properties:
     example: "8fd73167342d0689c4c015320"
   customer_id:
     type: string
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea6abece4cd0a4ded0a29f093"
   time_slot_id:
     type: string
@@ -35,7 +35,7 @@ properties:
   booking_item_status:
     type: string
     readOnly: false
-    description: Current status of the booking item from resource [booking-statuses](#tag/Booking-statuses). If not set, CareCloud uses default booking status.
+    description: The current status of the booking item. If not set, CareCloud uses the default booking status. [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)
     example: "86e05affc7a7abefcd513ab400"
   additional_properties:
     type: array

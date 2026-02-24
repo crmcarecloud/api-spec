@@ -2,7 +2,7 @@ get:
   tags:
     - Customer engagement
   summary: Get all customer engagement setups
-  description: The endpoint returns all available setups for customer engagement
+  description: Get all available setups for customer engagement.
   operationId: getCustomerEngagementSetups
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

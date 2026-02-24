@@ -1,7 +1,7 @@
 get:
   tags:
     - Customer external applications
-  summary: Detail of a customer external application
+  summary: Get a customer external application
   description: Get information about a specific customer external application.
   operationId: getCustomerExternalApp
   parameters:

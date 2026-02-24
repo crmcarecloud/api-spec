@@ -2,7 +2,7 @@ get:
   tags:
     - Customer source records
   summary: Get customer source records
-  description: Get information about all customer source records.
+  description: Get all customer source records.
   operationId: getCustomerSourceRecords
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

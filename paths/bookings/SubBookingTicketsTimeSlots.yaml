@@ -1,8 +1,8 @@
 get:
   tags:
     - Booking tickets
-  summary: Get a collection time slots depends on booking ticket
-  description: Get information about all time slots depends on booking ticket.
+  summary: Get all time slots for a booking ticket
+  description: Get all time slots for a specific booking ticket.
   operationId: getSubBookingTicketsTimeSlots
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

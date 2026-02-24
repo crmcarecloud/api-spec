@@ -2,7 +2,7 @@ get:
   tags:
     - Event properties
   summary: Get all event properties
-  description: Get information about event properties.
+  description: Get a list of all event properties.
   operationId: getEventProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

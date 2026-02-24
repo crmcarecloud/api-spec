@@ -19,12 +19,12 @@ properties:
   valid_from:
     type: string
     readOnly: false
-    description: Date and time from when is ticket valid already. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time from when the ticket is valid. *(YYYY-MM-DD HH:MM:SS)*
     example:
   valid_to:
     type: string
     readOnly: false
-    description: Date and time to when is ticket still valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time until which the ticket is valid. *(YYYY-MM-DD HH:MM:SS)*
     example:
   state:
     type: integer

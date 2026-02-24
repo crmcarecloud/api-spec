@@ -1,5 +1,5 @@
 type: object
-description: Credits reservation resource.
+description: Credit type resource.
 properties:
   credit_type_id:
     type: string

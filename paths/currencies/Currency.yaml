@@ -1,7 +1,7 @@
 get:
   tags:
     - Currencies
-  summary: Detail of a currency
+  summary: Get a currency
   description: Get information about a specific currency.
   operationId: getCurrency
   parameters:

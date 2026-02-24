@@ -1,7 +1,7 @@
 get:
   tags:
     - Events
-  summary: Get information about all events
+  summary: Get all events
   description: Get a list of events in CRM CareCloud.
   operationId: getEvents
   parameters:

@@ -2,7 +2,7 @@ get:
   tags:
     - Charged entrances
   summary: Get a customer entrances usage stats
-  description: Get an information about how a customer used the entrances (usage, gamification, etc.)
+  description: Get information about how a customer used the entrances (usage, gamification, etc.)
   operationId: getEntrancesCustomerStats
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -29,7 +29,7 @@ get:
                     example: 10000
                   skier_days:
                     type: integer
-                    description: Number of days in the date range that a customer used his entrance ticket
+                    description: Number of days in the date range that a customer used their entrance ticket.
                     example: 20
                   ski_achievement_text_id:
                     type: string

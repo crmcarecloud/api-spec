@@ -23,7 +23,7 @@ properties:
   customer_id:
     type: string
     readOnly: true
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example:
   resort_name:
     type: string
@@ -38,17 +38,17 @@ properties:
   external_order_id:
     type: string
     readOnly: true
-    description: ID of an external order creaded in POS system.
+    description: ID of an external order created in the POS system.
     example: "d03df0e0-959a-11e4-a6ce-0050569b002b"
   external_entrance_id:
     type: string
     readOnly: true
-    description: External ID of the entrance. Structure can be different depends of the POS system, that created the entrance.
+    description: External ID of the entrance. Structure can be different depending on the POS system that created the entrance.
     example: "1-1760-61-107788"
   external_turnstile_permission_id:
     type: string
     readOnly: true
-    description: External ID of the permission to open a turnstile. Structure can be different depends of the POS system, that created the permission.
+    description: External ID of the permission to open a turnstile. Structure can be different depending on the POS system that created the permission.
     example: "1-1760-61-107788"
 
   entrance_type_id:
@@ -68,7 +68,7 @@ properties:
   card_id:
     type: string
     readOnly: true
-    description: ID of card used for charge entrance.
+    description: The unique ID of the card used to charge the entrance. [GET /cards](https://carecloud.readme.io/reference/getcards)
     example: "8c9fd120242ef646f477a5ed80"
   created_at:
     type: string
@@ -117,7 +117,7 @@ properties:
       - 0
       - 1
     readOnly: false
-    description: 'State of the event type. *Possible values are: 0 - cancelled / 1- active*'
+    description: 'State of the entrance. *Possible values are: 0 - cancelled / 1 - active*'
     example: 1
 required:
   - entrance_id

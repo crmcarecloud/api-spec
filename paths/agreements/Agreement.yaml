@@ -1,7 +1,7 @@
 get:
   tags:
     - Consents
-  summary: Detail of an consent
+  summary: Get a consent
   description: Get information about a specific consent.
   operationId: getConsent
   parameters:

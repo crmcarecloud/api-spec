@@ -2,7 +2,7 @@ get:
   tags:
     - Card types
   summary: Get a collection of cards
-  description: Get information about all cards by card types resource.
+  description: Get all cards belonging to a specific card type.
   operationId: getSubCardTypeCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -42,7 +42,7 @@ post:
                     type: boolean
                     description: |
                       Result of the CareCloud validation.
-                      *Possible results are: false - The parameter has not valid value by CareCloud standard / true - The parameter has value value by CareCloud standard *
+                      *Possible results are: false - The parameter does not have a valid value by CareCloud standard / true - The parameter has a valid value by CareCloud standard*
                     example: true
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

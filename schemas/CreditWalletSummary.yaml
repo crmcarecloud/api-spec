@@ -4,7 +4,7 @@ properties:
   currency_id:
     type: string
     readOnly: true
-    description: The unique ID of the currency from the API resource [GET /currencies](#tag/Currencies).
+    description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "86e05affc7a7abefcd513ab400"
   earned_credits:
     type: number

@@ -9,7 +9,7 @@ properties:
   event_group_id:
     type: string
     readOnly: false
-    description: ID of the event type group.
+    description: The unique ID of the event group. [GET /event-groups](https://carecloud.readme.io/reference/geteventgroups)
     example: "8bed991c68a470eaaeffbf048"
   event_group_text_id:
     type: string

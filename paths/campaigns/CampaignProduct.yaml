@@ -1,8 +1,8 @@
 get:
   tags:
     - Campaign products
-  summary: Detail of a specific campaign product
-  description: Get information about all details of a specific campaign product.
+  summary: Get a campaign product
+  description: Get information about a specific campaign product.
   operationId: getCampaignProduct
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

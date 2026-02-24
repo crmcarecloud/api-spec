@@ -9,17 +9,17 @@ properties:
   product_id:
     type: string
     readOnly: false
-    description: The unique ID of the product.
+    description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
     example: "8ad4ff4db9d628f2c8cb6181a4"
   currency_id:
     type: string
     readOnly: false
-    description: The unique ID of the currency.
+    description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470e7aaeffbf048"
   campaign_id:
     type: string
     readOnly: false
-    description: The unique ID of the campaign.
+    description: The unique ID of the campaign. [GET /campaigns](https://carecloud.readme.io/reference/getcampaigns)
     example: "8ad8b2b701199684f1222961d6"
   value:
     type: number
@@ -78,7 +78,7 @@ properties:
       - 1
     readOnly: true
     description: |
-      State of the card.
+      State of the campaign product.
       *Possible values are: 0 - blocked / 1 - active*
     example: 1
 required:

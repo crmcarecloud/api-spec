@@ -9,7 +9,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   assigned_credits:
     type: number
@@ -26,12 +26,12 @@ properties:
   credit_type_id:
     type: string
     readOnly: false
-    description: Type of the credit record.
+    description: The unique ID of the credit type. [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes)
     example: "86e05affc7a7abefcd513ab400"
   partner_id:
     type: string
     readOnly: false
-    description: The unique ID of the partner company.
+    description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string
@@ -41,7 +41,7 @@ properties:
   currency_id:
     type: string
     readOnly: true
-    description: The unique ID of the currency.
+    description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "86e05affc7a7abefcd513ab400"
   state:
     type: integer

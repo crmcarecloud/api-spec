@@ -9,7 +9,7 @@ properties:
   event_type_id:
     type: string
     readOnly: false
-    description: The unique ID of the event type.
+    description: The unique ID of the event type. [GET /event-types](https://carecloud.readme.io/reference/geteventtypes)
     example: "8bda8a4854394325e2748a5005"
   customer_id:
     type: string
@@ -104,7 +104,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type.
+      State of the event.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

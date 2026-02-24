@@ -9,12 +9,12 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the card holder.
+    description: The unique ID of the card holder. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   card_type_id:
     type: string
     readOnly: false
-    description: The unique ID of the card type.
+    description: The unique ID of the card type. [GET /card-types](https://carecloud.readme.io/reference/getcardtypes)
     example: "8bed991c68a470e7aaeffbf048"
   card_number:
     type: string
@@ -39,7 +39,7 @@ properties:
   store_id:
     type: string
     readOnly: false
-    description: The unique ID of the store, where the card was assigned to a customer.
+    description: The unique ID of the store where the card was assigned to a customer. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example:
   last_change:
     type: string

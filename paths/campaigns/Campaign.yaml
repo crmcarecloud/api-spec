@@ -1,7 +1,7 @@
 get:
   tags:
     - Campaigns
-  summary: Detail of a specific campaign
+  summary: Get a campaign
   description: Get information about a specific campaign.
   operationId: getCampaign
   parameters:

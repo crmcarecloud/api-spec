@@ -3,7 +3,7 @@ post:
     - Cards
   summary: Validate ISIC card
   description: |
-    Method validates if a card is valid ISIC card and there is a possibility to check if the card is already present in CareCloud database.
+    Validates whether a card is a valid ISIC card. Optionally checks whether the card is already present in the CareCloud database.
 
   operationId: postValidateIsicCard
   parameters:
@@ -28,7 +28,7 @@ post:
               enum:
                 - true
                 - false
-              description: If true, check if the card can be used in CareCloud, or if the ISIC  with this number already exists. If not set, this check is ignored.
+              description: If true, checks whether the card can be used in CareCloud, or whether an ISIC card with this number already exists. If not set, this check is ignored.
               example: true
               default: false
           required:

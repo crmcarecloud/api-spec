@@ -24,7 +24,7 @@ properties:
   parent_id:
     type: string
     readOnly: false
-    description: ID of the parent campaign.
+    description: The unique ID of the parent campaign.
     example: null
   name:
     type: string

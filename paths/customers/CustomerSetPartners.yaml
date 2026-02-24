@@ -23,7 +23,7 @@ post:
               example: "8ea2591121e636086a4a9c0992"
             partner_records:
               type: array
-              description: Collection of all customer  partner records.
+              description: Collection of all customer partner records.
               items:
                 $ref: '../../schemas/_index.yaml#/PartnerRecord'
           required:

@@ -1,8 +1,8 @@
 get:
   tags:
     - Credits
-  summary: Get a collection of purchases
-  description: Get information about all purchases by credit resource.
+  summary: Get all purchases for a credit
+  description: Get all purchases associated with a specific credit record.
   operationId: getSubCreditPurchases
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

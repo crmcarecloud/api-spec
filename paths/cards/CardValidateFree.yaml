@@ -3,7 +3,7 @@ post:
     - Cards
   summary: Validate free card
   description: |
-    Method validates if a card is free to use(it is not blocked, used by somebody else or even not exists).
+    Validates whether a card is free to use — meaning it is not blocked, not assigned to another customer, and exists in the system.
 
   operationId: postValidateFreeCard
   parameters:

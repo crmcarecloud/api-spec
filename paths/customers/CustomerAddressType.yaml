@@ -1,7 +1,7 @@
 get:
   tags:
     - Customer address types
-  summary: Detail of a customer address type
+  summary: Get a customer address type
   description: Get information about a specific customer address type.
   operationId: getCustomerAddressType
   parameters:

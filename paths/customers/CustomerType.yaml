@@ -1,7 +1,7 @@
 get:
   tags:
     - Customer types
-  summary: Detail of a customer type
+  summary: Get a customer type
   description: Get information about a specific customer type.
   operationId: getCustomerType
   parameters:

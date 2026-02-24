@@ -38,7 +38,7 @@ put:
   tags:
     - Charged entrances
   summary: Update an entrance
-  description: This method updates a specific entrance resource.
+  description: Update a specific entrance.
   operationId: putEntrance
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

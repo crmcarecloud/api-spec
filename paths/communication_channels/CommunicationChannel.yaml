@@ -1,7 +1,7 @@
 get:
   tags:
     - Communication channels
-  summary: Detail of a communication channel
+  summary: Get a communication channel
   description: Get information about a specific communication channel.
   operationId: getCommunicationChannel
   parameters:
