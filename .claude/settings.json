@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bin/swagger-cli.sh)",
+      "Bash(bin/redocly-openapi-cli.sh)",
+      "Bash(chmod +x bin/swagger-cli.sh bin/redocly-openapi-cli.sh)"
+    ]
+  }
+}

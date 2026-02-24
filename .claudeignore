@@ -1,0 +1,17 @@
+# Compiled output — always edit source files, not this
+_build/
+
+# Generated SDK client code
+gen/
+
+# PHP vendor dependencies
+vendor/
+
+# Standalone files not relevant to spec editing
+basicAuth.md
+example.php
+index.html
+
+# Image assets
+img/
+assets/

@@ -31,6 +31,8 @@ Always run in this order:
 
 If either step fails, fix the error and **repeat both steps from the start**. The most common errors are broken `$ref` paths and typos in property names. The validator (Redocly) catches these and will block progress until resolved.
 
+Run the full bundle → lint cycle automatically after **every editing session** — including when the user asks to commit or says they are done.
+
 ## Architecture
 
 The spec is split into modular files referenced from `api.yaml`:
@@ -65,7 +67,7 @@ Follow existing file and schema patterns strictly. If you notice conflicting pat
 
 ### Linking between resources
 
-When a field references an ID or entity from another resource, add a markdown URL link to that endpoint at the end of the field's description. Use the full readme.io URL format that is already established across the spec:
+When a field references an ID or entity from another resource, add a markdown URL link to that endpoint at the end of the field's description. Always link to the list endpoint (e.g., `GET /customers`), not the single-resource endpoint (e.g., `GET /customers/{customer_id}`). Use the full readme.io URL format that is already established across the spec:
 
 ```
 [GET /customers](https://carecloud.readme.io/reference/getcustomers)
@@ -89,6 +91,21 @@ Apply these rules to all description fields across the spec (paths, schemas, par
 - Write for a technical business audience that may not be native English speakers — prefer short, direct sentences over complex constructions
 - Spell out terms in full where possible; avoid abbreviations and acronyms unless they are standard in the industry and well-known (for example, API, ID, URL, CRM are acceptable)
 - Avoid buzzwords and marketing language; describe what things do, not how impressive they are
+
+### HTML in descriptions
+
+If a description field contains inline HTML, replace it with a YAML block scalar (`|`) and reformat the content as equivalent plain text or Markdown, preserving the same visual structure:
+
+- `<br/>` or `<br>` → a blank line between paragraphs, or leave as a line break where appropriate
+- `<p>...</p>` → a plain paragraph (blank line above and below)
+- `<h1>`, `<h2>`, etc. → Markdown headings (`#`, `##`, etc.)
+- `<ul>`/`<li>` → Markdown bullet list (`-`)
+- `<ol>`/`<li>` → Markdown numbered list (`1.`, `2.`, etc.)
+- `<strong>` or `<b>` → `**bold**`
+- `<em>` or `<i>` → `*italic*`
+- Escaped HTML entities (e.g. `\/`) → unescaped equivalents (`/`)
+
+Always use the `|` block scalar style when the description spans multiple lines. Keep the content and meaning identical — do not add, remove, or rephrase anything.
 
 ### Examples of the target style
 - Instead of: *"Leverage this endpoint to seamlessly sync customer data"* → write: *"Use this endpoint to synchronize customer data"*
