@@ -178,6 +178,8 @@
   $ref: "./customers/CustomerVerifyCredentials.yaml"
 /customers/actions/verify-social-network-credentials:
   $ref: "./customers/CustomerVerifySocialNetworkCredentials.yaml"
+/customers/actions/auth-token:
+  $ref: "./customers/CustomerAuthToken.yaml"
 /customers/actions/verify-auth-token:
   $ref: "./customers/CustomerVerifyAuthToken.yaml"
 /customers/actions/validate-customer-data:

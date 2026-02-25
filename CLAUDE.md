@@ -121,6 +121,10 @@ If you are unsure of the correct target URL, ask the user rather than removing t
 - Instead of: *"Leverage this endpoint to seamlessly sync customer data"* → write: *"Use this endpoint to synchronize customer data"*
 - Instead of: *"Utilize the ID param"* → write: *"Use the ID parameter"*
 
+## Git Commits
+
+Do not include any Claude attribution in commit messages. No `Co-Authored-By` trailer, no mention of Claude or AI tooling. Write commit messages as if authored entirely by the developer.
+
 ## Common Tasks
 
 ### Backward compatibility (critical)

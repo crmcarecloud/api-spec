@@ -1,0 +1,128 @@
+post:
+  tags:
+    - Customers actions
+  summary: Get authentication token for a customer
+  description: |
+    Returns an authentication token for a specific customer. Another application that uses the CareCloud API can use this token to verify the customer's identity or authenticate the customer.
+
+    Typical uses include initiating customer sign-in in another application or portal, or passing a customer's identity to an in-app browser for a different application.
+
+    ⚠️ Endpoint is available only in the Enterprise interface.
+  operationId: postCustomersAuthToken
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+              example: "8ea2591121e636086a4a9c0992"
+            external_application_id:
+              type: string
+              description: |
+                ID of the destination external application.
+                Please provide the destination external application ID, not the token-issuing external application ID.
+                Need a destination external application ID? Please contact your CareCloud administrator.
+              example: "82de12eb8b138791e678fd11c3"
+            token_type:
+              type: integer
+              description: 'Sets which token type should be generated. *Possible values: 1 - alphanumeric, 2 - numeric*'
+              enum:
+                - 1
+                - 2
+              default: 1
+              example: 2
+          required:
+            - customer_id
+            - external_application_id
+            - token_type
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: PostCustomersAuthToken200Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  authentication_token:
+                    type: string
+                    description: 'Authentication token that allows the customer to log in to another external application.'
+                    example: "LQ55EH"
+                  token_request_id:
+                    type: string
+                    description: 'The parameter specifies the request that caused the token to be created. If two customers generated an authentication token at the same time and in the same application, the token_request_id parameter represents additional verification to identify the correct token.'
+                    example: "6fb977c6fce6da6c0fa32aa1bc6417c621c116c65a5d638fefac1488334d67e33867675d"
+                  valid_to:
+                    type: string
+                    description: Date and time of the token validity. *(YYYY-MM-DD HH:MM:SS)*
+                    example: "2019-01-04 10:31:56"
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+  x-codeSamples:
+    - lang: PHP
+      label: CareCloud SDK
+      source: |
+        use CrmCareCloud\Webservice\RestApi\Client\ApiException;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsAuthtokenBody;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
+        use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
+
+        require_once '../vendor/autoload.php';
+
+        $project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';
+        $login = 'login';
+        $password = 'password';
+        $external_app_id = 'application_id';
+        $auth_type = AuthTypes::BEARER_AUTH;
+
+        $config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);
+
+        $care_cloud = new CareCloud($config);
+
+        // Set Header parameter Accept-Language
+        $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
+
+        // Set the request body
+        $body = new ActionsAuthtokenBody();
+        $body->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID of the customer
+        $body->setExternalApplicationId('82de12eb8b138791e678fd11c3'); // string | ID of the destination external application
+        $body->setTokenType(1); // integer | Possible values: 1 - alphanumeric, 2 - numeric
+
+        // Call endpoint and post data
+        try
+        {
+            $post_auth_token = $care_cloud->customersActionsApi()->postCustomersAuthToken(
+                $body,
+                $accept_language
+            );
+            $token = $post_auth_token->getData();
+            var_dump($token);
+        }
+        catch(ApiException $e)
+        {
+            die(var_dump($e->getResponseBody() ?: $e->getMessage()));
+        }
