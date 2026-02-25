@@ -1,8 +1,8 @@
 get:
   tags:
     - Segments
-  summary: Get a collection of segment records
-  description: Get information about all segment records on segments resource.
+  summary: Get all segment records
+  description: Get information about all segment records for a segment.
   operationId: getSubSegmentRecords
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

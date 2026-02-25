@@ -1,7 +1,7 @@
 get:
   tags:
     - Product reservation sources
-  summary: Detail of a product reservation source
+  summary: Get a product reservation source
   description: Get information about a specific product reservation source.
   operationId: getProductReservationSource
   parameters:

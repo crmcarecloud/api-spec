@@ -24,7 +24,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the event type.
+      State of the task type.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
 required:

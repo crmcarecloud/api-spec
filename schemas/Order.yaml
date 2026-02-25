@@ -14,12 +14,12 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the customer, owner of the order.
+    description: The unique ID of the customer, owner of the order. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "87a6f37e138c1ef18918e747d"
   currency_id:
     type: string
     readOnly: false
-    description: ID of the currency.
+    description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470eaaeffbf048"
   total_price:
     type: number

@@ -25,7 +25,7 @@ get:
                 properties:
                   communication_channels:
                     type: array
-                    description: Structure of the communication channel.
+                    description: List of communication channels.
                     items:
                       $ref: '../../schemas/_index.yaml#/CommunicationChannel'
                   total_items:

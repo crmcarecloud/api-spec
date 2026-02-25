@@ -2,7 +2,7 @@ get:
   tags:
     - Statuses
   summary: Get all statuses
-  description: Get information as a collection of all recent statuses.
+  description: Get a list of all statuses.
   operationId: getStatuses
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

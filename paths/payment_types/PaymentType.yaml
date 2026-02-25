@@ -1,7 +1,7 @@
 get:
   tags:
     - Payment types
-  summary: Detail of an payment type
+  summary: Get a payment type
   description: Get information about a specific payment type.
   operationId: getPaymentType
   parameters:

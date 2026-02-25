@@ -28,7 +28,7 @@ properties:
   resort_name:
     type: string
     readOnly: true
-    description: Name of the resort where is an entrance charged.
+    description: Name of the resort where the entrance is charged.
     example:
   customer_category_name:
     type: string
@@ -58,7 +58,7 @@ properties:
       - 1
       - 2
     readOnly: false
-    description: 'Type of the entrance *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*'
+    description: 'Type of the entrance. *Possible values are: season ticket - 0 / one day ticket - 1 / multiple day ticket - 2*'
     example: 1
   order_item_id:
     type: string
@@ -89,7 +89,7 @@ properties:
   product_ids:
     type: string
     readOnly: true
-    description: The unique ID of the product.
+    description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
     example:
   charge_date:
     type: string

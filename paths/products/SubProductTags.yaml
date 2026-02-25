@@ -2,7 +2,7 @@ get:
   tags:
     - Products
   summary: Get all tags for resource products
-  description: Get information as a list of all tags of resource products. Tags from the list could be use for product filtering.
+  description: Get a list of all tags for products. Tags from the list can be used for product filtering.
   operationId: getSubProductTags
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

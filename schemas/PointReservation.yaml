@@ -30,7 +30,7 @@ properties:
       - 2
     readOnly: true
     description: |
-      State of the point record.
+      State of the point reservation.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active(expired)*
     example: 1
   expiration:

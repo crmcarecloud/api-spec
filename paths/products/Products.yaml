@@ -1,7 +1,7 @@
 get:
   tags:
     - Products
-  summary: Collection of available products
+  summary: Get all products
   description: Get information about all available products.
   operationId: getProducts
   parameters:

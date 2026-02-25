@@ -1,7 +1,7 @@
 get:
   tags:
     - Partners
-  summary: Get a collection of property records
+  summary: Get all property records for a partner
   description: Get information about all property records tied to the partner.
   operationId: getSubPartnerProperties
   parameters:

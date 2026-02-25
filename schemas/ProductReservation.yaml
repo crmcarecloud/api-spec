@@ -2,7 +2,7 @@ type: object
 description: |
   Product reservation resource.
 
-  <p class="warning">⚠️Structure has to contain reservation codes or product reservation items</p>
+  > ⚠️ Structure has to contain reservation codes or product reservation items.
 properties:
   product_reservation_id:
     type: string
@@ -12,7 +12,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description:   The unique ID of the customer, owner of the product reservation.
+    description: The unique ID of the customer, owner of the product reservation. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   store_id:
     type: string
@@ -63,7 +63,7 @@ properties:
   currency_id:
     type: string
     readOnly: false
-    description: ID of the currency. If total_price is set, then currency_id is mandatory.
+    description: The unique ID of the currency. If total_price is set, then currency_id is mandatory. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470e7aaeffbf048"
   product_reservation_items:
     type: array

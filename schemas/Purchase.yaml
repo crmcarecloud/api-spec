@@ -9,12 +9,12 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   store_id:
     type: string
     readOnly: true
-    description: The unique ID of the store in CareCloud.
+    description: The unique ID of the store. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "81eaeea13b8984a169c490a325"
   external_purchase_id:
     type: string
@@ -51,7 +51,7 @@ properties:
   currency_id:
     type: string
     readOnly: true
-    description: The unique ID of the currency.
+    description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470e7aaeffbf048"
   card_number:
     type: string

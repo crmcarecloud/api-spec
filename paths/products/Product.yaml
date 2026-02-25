@@ -1,7 +1,7 @@
 get:
   tags:
     - Products
-  summary: Detail of a product
+  summary: Get a product
   description: Get information about a specific product.
   operationId: getProduct
   parameters:

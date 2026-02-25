@@ -58,7 +58,7 @@ properties:
   reward_type_id:
     type: string
     readOnly: true
-    description: "The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others."
+    description: "The unique ID of the reward type. The reward type describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others. [GET /reward-types](https://carecloud.readme.io/reference/getrewardtypes)"
     example: "8fdd651ff3f615bcebebad87ce"
   store_list:
     type: array

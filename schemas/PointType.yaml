@@ -1,5 +1,5 @@
 type: object
-description: Points reservation resource.
+description: Point type resource.
 properties:
   point_type_id:
     type: string

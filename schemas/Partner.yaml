@@ -42,7 +42,7 @@ properties:
     readOnly: false
     description: |
       State of the partner.
-      *Possible values are: 0 - deleted / 1- active *
+      *Possible values are: 0 - deleted / 1 - active*
     example: 1
 required:
   - name

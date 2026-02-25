@@ -31,16 +31,16 @@ properties:
   product_group_id:
     type: string
     readOnly: false
-    description: The unique ID of the product group.
+    description: The unique ID of the product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
     example: "82de12eb8b138791e678fd11c3"
   product_brand_id:
     type: string
     readOnly: false
-    description: The unique ID of the product brand.
+    description: The unique ID of the product brand. [GET /product-brands](https://carecloud.readme.io/reference/getproductbrands)
     example: "82db62087b0f79a6e14e5747e7"
   partner_id:
     type: string
-    description: The unique ID of the partner.
+    description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   prices:
     type: array

@@ -9,7 +9,7 @@ properties:
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "87af991126405bf8e7dfb36045"
   assigned_points:
     type: number
@@ -26,12 +26,12 @@ properties:
   point_type_id:
     type: string
     readOnly: false
-    description: Type of the point record.
+    description: The unique ID of the point type. [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
     example: "81eaeea13b8984a169c490a325"
   partner_id:
     type: string
     readOnly: false
-    description: The unique ID of the partner company.
+    description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string

@@ -1,8 +1,8 @@
 get:
   tags:
     - Points
-  summary: Get a collection of purchases
-  description: Get information about all purchases by points resource.
+  summary: Get all purchases by a point record
+  description: Get information about all purchases linked to a point record.
   operationId: getSubPointPurchases
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

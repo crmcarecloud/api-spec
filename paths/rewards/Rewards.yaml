@@ -3,9 +3,9 @@ get:
     - Rewards
   summary: Get all rewards
   description: |
-    Get information about rewards as a list of all rewards.
+    Get information about all rewards.
 
-    <p class="warning">⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.</p>
+    > ⚠️ There is a logical AND between the query parameters `is_valid`, `valid_from`, and `valid_to`.
 
   operationId: getRewards
   parameters:

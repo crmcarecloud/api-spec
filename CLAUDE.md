@@ -107,6 +107,16 @@ If a description field contains inline HTML, replace it with a YAML block scalar
 
 Always use the `|` block scalar style when the description spans multiple lines. Keep the content and meaning identical — do not add, remove, or rephrase anything.
 
+Also replace folded scalar (`>`) style with `|` when the description contains `<br/>` or other HTML, since `>` collapses line breaks and makes HTML invisible.
+
+### Anchor links in descriptions
+
+When a description contains an anchor-style link (e.g., `[here](#section/Authentication)` or `[text](#operation/operationId)`), replace it with the equivalent full readme.io absolute URL. Never remove a link or replace it with plain text — preserve the original meaning and the link itself. Use the URL format:
+- Section links: `https://carecloud.readme.io/reference/<section-name>`
+- Operation links: `https://carecloud.readme.io/reference/<operationId-lowercase>`
+
+If you are unsure of the correct target URL, ask the user rather than removing the link.
+
 ### Examples of the target style
 - Instead of: *"Leverage this endpoint to seamlessly sync customer data"* → write: *"Use this endpoint to synchronize customer data"*
 - Instead of: *"Utilize the ID param"* → write: *"Use the ID parameter"*

@@ -15,7 +15,7 @@ properties:
     type: string
     readOnly: true
     description: |
-      The unique ID of the communication channel. Possible values are available at [GET /communication-channel](carecloud.readme.io/reference/getcommunicationchannels)
+      The unique ID of the communication channel. Possible values are available at [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)
     example: "8fd73167342d06899c4c015320"
   created_at:
     type: string

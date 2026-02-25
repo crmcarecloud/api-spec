@@ -14,7 +14,7 @@ properties:
   segment_group_id:
     type: string
     readOnly: true
-    description: Segment group ID from the resource [GET /segment-groups](#tag/SegmentGroups).
+    description: The unique ID of the segment group. [GET /segment-groups](https://carecloud.readme.io/reference/getsegmentgroups)
     example: "8bed991c68a470e7aaeffbf048"
   segment_picture_url:
     type: string

@@ -24,7 +24,7 @@ properties:
   product_group_name:
     type: string
     readOnly: true
-    description: The unique ID of the product group.
+    description: The name of the product group.
     example: "Smart watch"
   product_brand_id:
     type: string
@@ -34,7 +34,7 @@ properties:
   product_brand_name:
     type: string
     readOnly: true
-    description: The unique ID of the product brand.
+    description: The name of the product brand.
     example: "Apple"
   external_id:
     type: string

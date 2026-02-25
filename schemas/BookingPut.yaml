@@ -8,7 +8,7 @@ properties:
   booking_status:
     type: string
     readOnly: false
-    description: Current status of the booking from resource [booking-statuses](#tag/Booking-statuses).
+    description: Current status of the booking. [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)
     example: "83d1d11ea3884a5d33253fe214"
   data:
     oneOf:

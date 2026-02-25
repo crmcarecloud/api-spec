@@ -17,5 +17,5 @@ properties:
       - 2
     description: |
       State of the country.
-      *Possible values are: 0 - deleted / 1- active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1

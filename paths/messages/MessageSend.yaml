@@ -4,7 +4,7 @@ post:
   summary: Send message
   description: |
     Send message (email, SMS or PUSH notification) to customer.
-    ⚠️ Action methods are available only in theEnterprise interface.
+    ⚠️ Action methods are available only in the Enterprise interface.
   operationId: postMessageSend
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

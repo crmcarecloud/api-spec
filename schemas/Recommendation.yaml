@@ -9,7 +9,7 @@ properties:
   name:
     type: string
     readOnly: false
-    description: Name of a the recommendation.
+    description: Name of the recommendation.
     example: "Health recommendation"
   brief_description:
     type: string

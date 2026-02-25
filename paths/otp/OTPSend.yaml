@@ -16,7 +16,7 @@ post:
           type: object
           properties:
             external_application_id:
-              description: ID of the external application that requested one time password. If you dont have external application id, guide how to get it is available [here](#section/Authentication).
+              description: The unique ID of the external application that requested the one-time password. If you do not have an external application ID, see the [authentication documentation](https://carecloud.readme.io/reference/authentication#external-applications).
               type: string
               example: "82de12eb8b138791e678fd11c3"
             communication_channel_id:
@@ -42,7 +42,7 @@ post:
               default: 1
             message_template_id:
               type: string
-              description: The unique ID of the message_template. If not set, CareCloud uses default value from the system configuration.
+              description: The unique ID of the message template. If not set, CareCloud uses the default value from the system configuration.
               example:
           required:
             - communication_channel_id
@@ -62,7 +62,7 @@ post:
                 properties:
                   request_id:
                     type: string
-                    description: The parameter specifies the request that caused the OTP to be created. Request ID will be used as one of the parameter in method [/one-time-password/actions/verify](#operation/postVerifyOtp).
+                    description: The parameter specifies the request that caused the OTP to be created. The request ID is used as a parameter in [POST /one-time-password/actions/verify](https://carecloud.readme.io/reference/postverifyotp).
                     example: "c27c29917a1dec03ef0673d823619b776ab93353"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

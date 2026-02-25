@@ -19,17 +19,17 @@ properties:
     readOnly: true
     description: |
       The status ID of the message.
-      *Possible values are: 0 - message was not send / 1 - message was send successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 -Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status will change to error.)*
+      *Possible values are: 0 - message was not sent / 1 - message was sent successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 - Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status will change to error.)*
     example: 1
   message_template_id:
     type: string
     readOnly: false
-    description: The unique ID of the message_template.
+    description: The unique ID of the message template. [GET /message-templates](https://carecloud.readme.io/reference/getmessagetemplates)
     example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
     readOnly: false
-    description: The unique ID of the card holder.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   contact:
     type: string
@@ -44,7 +44,7 @@ properties:
   send_time:
     type: string
     readOnly: true
-    description: Date and time when message was send from server to recipient. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time when the message was sent from the server to the recipient. *(YYYY-MM-DD HH:MM:SS)*
     example: "2015-01-05 11:24:12"
   opened_time:
     type: string
