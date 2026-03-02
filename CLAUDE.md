@@ -56,10 +56,12 @@ All endpoints are served under one of two interfaces, controlled by the `{api_in
 
 ### Endpoint File Naming
 
-Each resource directory under `paths/` typically contains files named by HTTP method and sub-resource, e.g.:
-- `paths/customers/get.yaml` — `GET /customers`
-- `paths/customers/{customer_id}/get.yaml` — `GET /customers/{customer_id}`
-- `paths/customers/{customer_id}/actions/` — Action sub-resources (non-CRUD operations)
+Files under `paths/` are named descriptively in PascalCase after the resource or action they represent:
+
+- **List endpoint** — plural resource name, e.g., `Customers.yaml`, `Cards.yaml`
+- **Single resource endpoint** — singular resource name, e.g., `Customer.yaml`, `Card.yaml`
+- **Action endpoint** — descriptive action name, e.g., `CustomerAuthToken.yaml`, `CardAssign.yaml`, `CardGenerateDigital.yaml`
+- **Sub-resource relationship** — `Sub` prefix followed by the relationship name, e.g., `SubCardTypeCards.yaml`, `SubCampaignProductStoreRecords.yaml`
 
 ### Patterns and Conventions
 
