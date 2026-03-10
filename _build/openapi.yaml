@@ -11600,7 +11600,38 @@ paths:
       tags:
         - Purchase item types
       summary: Get all purchase item types
-      description: 'Get a list of purchase item types accepted in CRM CareCloud. There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.'
+      description: |
+        Get a list of purchase item types accepted in CRM CareCloud. Each type determines how CareCloud processes the item within a purchase, including which loyalty rules and discounts apply.
+
+        > **Note:** Type names may vary between CareCloud projects and can be customized per deployment. The names listed here are approximate references only. Always use `type_id` to identify a purchase item type in your integration — do not rely on the name.
+
+        ---
+
+        ## Often used types
+
+        **Transaction in a store**
+        The standard type for items purchased in a brick-and-mortar retail store. This is the most commonly used type for in-store transactions. All standard loyalty and discount rules apply.
+
+        **E-commerce transaction**
+        The standard type for items purchased through an online store or e-commerce channel. This is the most commonly used type for online transactions. All standard loyalty and discount rules apply.
+
+        **Cancel**
+        Used to mark canceled purchase items. Assigning this type to an item identifies it as a cancellation within the purchase, making it easier to track and process.
+
+        ---
+
+        ## Special types with effects
+
+        These types alter the default loyalty and discount behavior in CareCloud.
+
+        **Item without reward application**
+        Items of this type are excluded from all reward and discount calculations — no discounts or rewards can be applied. However, loyalty points can still be collected for these items, and customers can use loyalty points to pay for them.
+
+        **OTC without loyalty**
+        Over-the-counter (OTC) refers to products sold without a prescription, most commonly in pharmacy retail. In wider retail contexts, the term also covers items sold at a service counter that are typically excluded from promotions, such as tobacco, lottery tickets, or gift cards. Items of this type do not earn loyalty points and are not eligible for any discounts or rewards.
+
+        **Point payments only**
+        Items of this type can only be paid for using loyalty points. No discounts or rewards are applied.
       operationId: getPurchaseItemTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -21180,7 +21211,84 @@ components:
               items: {}
             - type: object
           readOnly: false
-          description: Value of the property.
+          description: |
+            Value of the property record. The format depends on the data type of the property.
+
+            - **string** – a plain text value:
+              ```json
+              {
+                "property_id": "p1_note",
+                "property_value": "VIP customer"
+              }
+              ```
+
+            - **date** – a date string in `YYYY-MM-DD` format:
+              ```json
+              {
+                "property_id": "p1_birth_date",
+                "property_value": "1985-06-15"
+              }
+              ```
+
+            - **integer** – a whole number:
+              ```json
+              {
+                "property_id": "p1_visit_count",
+                "property_value": 42
+              }
+              ```
+
+            - **float** – a decimal number:
+              ```json
+              {
+                "property_id": "p1_average_spend",
+                "property_value": 149.90
+              }
+              ```
+
+            - **enum** – a single-item array containing a PropertyItem object:
+              ```json
+              {
+                "property_id": "p1_favourite_color",
+                "property_value": [
+                  {
+                    "id": "86e05affc7a7abefcd513ab400",
+                    "name": "Blue",
+                    "resource_record_id": null,
+                    "state": 1
+                  }
+                ]
+              }
+              ```
+
+            - **multiselect** – a multi-item array of PropertyItem objects:
+              ```json
+              {
+                "property_id": "p1_favourite_color",
+                "property_value": [
+                  {
+                    "id": "86e05affc7a7abefcd513ab400",
+                    "name": "Blue",
+                    "resource_record_id": null,
+                    "state": 1
+                  },
+                  {
+                    "id": "81eaeea13b8984a169c490a325",
+                    "name": "Green",
+                    "resource_record_id": null,
+                    "state": 1
+                  }
+                ]
+              }
+              ```
+
+            - **custom data type** – the format depends on the specific data type configuration. For example, a serialized JSON object:
+              ```json
+              {
+                "property_id": "p1_address",
+                "property_value": "{\"street\":\"Main St\",\"city\":\"Prague\"}"
+              }
+              ```
           example: '2002-02-02'
         last_change:
           type: string
@@ -25502,7 +25610,7 @@ components:
       name: property_value
       in: query
       required: false
-      description: 'Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.'
+      description: 'Store property record value from resource [GET /stores/{store_id}/property-records](https://carecloud.readme.io/reference/getsubstoreproperties) or [store-properties](https://carecloud.readme.io/reference/store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request. For a list of stores, see [GET /stores](https://carecloud.readme.io/reference/getstores).'
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048

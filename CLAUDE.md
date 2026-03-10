@@ -123,10 +123,6 @@ If you are unsure of the correct target URL, ask the user rather than removing t
 - Instead of: *"Leverage this endpoint to seamlessly sync customer data"* → write: *"Use this endpoint to synchronize customer data"*
 - Instead of: *"Utilize the ID param"* → write: *"Use the ID parameter"*
 
-## Git Commits
-
-Do not include any Claude attribution in commit messages. No `Co-Authored-By` trailer, no mention of Claude or AI tooling. Write commit messages as if authored entirely by the developer.
-
 ## Common Tasks
 
 ### Backward compatibility (critical)
@@ -140,14 +136,6 @@ This API must remain backward compatible within the current major version. All c
 - **Deprecating parameters** — mark with `deprecated: true` and add a description explaining the replacement; never remove in the same major version
 - **Modifying descriptions** — safe to change at any time; keep consistent tone and style with surrounding text
 - **Linking resources** — use `$ref` to existing schemas/parameters rather than duplicating definitions; check `schemas/_index.yaml` and `parameters/_index.yaml` before creating anything new
-
-### Adding a new endpoint
-
-1. Create the path file(s) under `paths/{resource}/` following the naming pattern of existing resources
-2. Register the new path in `paths/_index.yaml`
-3. Reuse schemas from `schemas/` and parameters from `parameters/` via `$ref` wherever possible
-4. Add or reuse a tag in `api.yaml` for the resource group
-5. Run bundle → lint cycle to validate
 
 ### Key Resource Categories
 
