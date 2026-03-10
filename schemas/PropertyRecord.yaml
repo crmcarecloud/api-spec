@@ -26,7 +26,84 @@ properties:
         items: { }
       - type: object
     readOnly: false
-    description: Value of the property.
+    description: |
+      Value of the property record. The format depends on the data type of the property.
+
+      - **string** – a plain text value:
+        ```json
+        {
+          "property_id": "p1_note",
+          "property_value": "VIP customer"
+        }
+        ```
+
+      - **date** – a date string in `YYYY-MM-DD` format:
+        ```json
+        {
+          "property_id": "p1_birth_date",
+          "property_value": "1985-06-15"
+        }
+        ```
+
+      - **integer** – a whole number:
+        ```json
+        {
+          "property_id": "p1_visit_count",
+          "property_value": 42
+        }
+        ```
+
+      - **float** – a decimal number:
+        ```json
+        {
+          "property_id": "p1_average_spend",
+          "property_value": 149.90
+        }
+        ```
+
+      - **enum** – a single-item array containing a PropertyItem object:
+        ```json
+        {
+          "property_id": "p1_favourite_color",
+          "property_value": [
+            {
+              "id": "86e05affc7a7abefcd513ab400",
+              "name": "Blue",
+              "resource_record_id": null,
+              "state": 1
+            }
+          ]
+        }
+        ```
+
+      - **multiselect** – a multi-item array of PropertyItem objects:
+        ```json
+        {
+          "property_id": "p1_favourite_color",
+          "property_value": [
+            {
+              "id": "86e05affc7a7abefcd513ab400",
+              "name": "Blue",
+              "resource_record_id": null,
+              "state": 1
+            },
+            {
+              "id": "81eaeea13b8984a169c490a325",
+              "name": "Green",
+              "resource_record_id": null,
+              "state": 1
+            }
+          ]
+        }
+        ```
+
+      - **custom data type** – the format depends on the specific data type configuration. For example, a serialized JSON object:
+        ```json
+        {
+          "property_id": "p1_address",
+          "property_value": "{\"street\":\"Main St\",\"city\":\"Prague\"}"
+        }
+        ```
     example: "2002-02-02"
   last_change:
     type: string

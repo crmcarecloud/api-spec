@@ -1868,7 +1868,7 @@ property_value:
   name: property_value
   in: query
   required: false
-  description: Store property record value from resource [/stores/{store_id}/property-records](#operation/getSubStoreProperties) or [store-properties](#tag/Store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request.
+  description: Store property record value from resource [GET /stores/{store_id}/property-records](https://carecloud.readme.io/reference/getsubstoreproperties) or [store-properties](https://carecloud.readme.io/reference/store-properties) in case of datatype with multiple values. Parameter filters stores depends of store property record value. The parameter must be used in combination with property_id otherwise is ignored in the request. For a list of stores, see [GET /stores](https://carecloud.readme.io/reference/getstores).
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
