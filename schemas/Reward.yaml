@@ -31,7 +31,7 @@ properties:
     type: number
     format: float
     readOnly: false
-    description: Number of points, that will be spent by the voucher redemption.
+    description: Number of points that will be spent by the voucher redemption.
     example: 200
   valid_time_from:
     type: string
@@ -143,7 +143,7 @@ properties:
   is_automated:
     type: boolean
     readOnly: false
-    description: Parameter says, if reward is automated or not. If reward is automated, means it's applied by rules of the reward. Otherwise have to be applied manually.
+    description: Parameter says, if reward is automated or not. If the reward is automated, it means it is applied by the rules of the reward. Otherwise, it has to be applied manually.
     example: false
   tags:
     type: array

@@ -2,7 +2,7 @@ get:
   tags:
     - Countries
   summary: Get all countries
-  description: Get a list of countries accepted in CRM CareCloud.
+  description: Get a list of countries accepted in the CareCloud platform.
   operationId: getCountries
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

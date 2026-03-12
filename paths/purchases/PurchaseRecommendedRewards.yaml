@@ -46,7 +46,7 @@ post:
               description: |
                 Specifies the type of rewards to be listed in the response.
                 Possible values:
-                 - F (full) - All manual rewards that are valid in the in the defined store
+                 - F (full) - All manual rewards that are valid in the defined store
                  - C (condensed) -  Returns manual rewards that are related to the items from provided purchase. If application is not possible, the reward is not returned.
                  - A (all) -  List of all available rewards on the project (including automatic rewards). Extended information about rewards is available at the endpoint [GET /rewards](https://carecloud.readme.io/reference/getrewards)
               example: "C"

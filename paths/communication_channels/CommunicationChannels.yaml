@@ -2,7 +2,7 @@ get:
   tags:
     - Communication channels
   summary: Get all communication channels
-  description: Get a list of communication channels accepted in CRM CareCloud.
+  description: Get a list of communication channels accepted in the CareCloud platform.
   operationId: getCommunicationChannels
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

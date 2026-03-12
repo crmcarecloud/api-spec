@@ -40,7 +40,7 @@ get:
                     type: array
                     items:
                       $ref: '../../schemas/_index.yaml#/MoneyValue'
-                    description: Parameter shows money representation of the 'available_points' parameter. CareCloud calculates money value for every system currency. The calculation is available only if the customer  status allows a point payment. This setup is possible in CareCloud administration.
+                    description: Parameter shows money representation of the 'available_points' parameter. CareCloud calculates money value for every system currency. The calculation is available only if the customer status allows a point payment. This setup is possible in CareCloud administration.
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

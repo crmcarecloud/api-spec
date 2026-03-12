@@ -2,7 +2,7 @@ get:
   tags:
     - Languages
   summary: Get all languages
-  description: Get a list of all languages accepted in CRM CareCloud.
+  description: Get a list of all languages accepted in the CareCloud platform.
   operationId: getLanguages
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

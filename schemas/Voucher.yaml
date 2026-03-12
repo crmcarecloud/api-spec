@@ -35,12 +35,12 @@ properties:
   valid_from:
     type: string
     readOnly: false
-    description: Date from the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date from which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
     example: "2013-07-10 21:33:13"
   valid_to:
     type: string
     readOnly: false
-    description: Date to the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date until which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
     example: "2013-07-30 21:33:13"
   reward_group:
     type: string

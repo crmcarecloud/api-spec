@@ -1,8 +1,8 @@
 get:
   tags:
     - Customers
-  summary: Get information about all customer  events
-  description: Get a list of customer  events in CRM CareCloud.
+  summary: Get information about all customer events
+  description: Get a list of customer events in the CareCloud platform.
   operationId: getSubCustomerEvents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

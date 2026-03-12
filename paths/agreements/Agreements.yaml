@@ -2,7 +2,7 @@ get:
   tags:
     - Consents
   summary: Get all consents
-  description: Get a list of consents accepted in CRM CareCloud.
+  description: Get a list of consents accepted in the CareCloud platform.
   operationId: getConsents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

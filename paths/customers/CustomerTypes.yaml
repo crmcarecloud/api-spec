@@ -2,7 +2,7 @@ get:
   tags:
     - Customer types
   summary: Get all customer types
-  description: Get a list of customer types accepted in CRM CareCloud.
+  description: Get a list of customer types accepted in the CareCloud platform.
   operationId: getCustomerTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

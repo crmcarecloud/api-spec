@@ -2,7 +2,7 @@ get:
   tags:
     - Stamper
   summary: Get all stamper campaigns
-  description: Get a list of stamper campaigns from CRM CareCloud.
+  description: Get a list of stamper campaigns from the CareCloud platform.
   operationId: getStamperCampaigns
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

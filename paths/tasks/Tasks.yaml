@@ -216,8 +216,8 @@ post:
         // Set the request body
         $body = new TasksBody();
         $body->setTask($task);
-        $body->setAssignees(null); // array of objects | List of an task assignees (optional)
-        $body->setPropertyRecords(null); // array of objects | List of an task property records (optional)
+        $body->setAssignees(null); // array of objects | List of task assignees (optional)
+        $body->setPropertyRecords(null); // array of objects | List of task property records (optional)
 
         // Call endpoint and post data
         try

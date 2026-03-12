@@ -31,12 +31,12 @@ properties:
   valid_from:
     type: string
     readOnly: false
-    description: Stamp campaign validity from. *(YYYY-MM-DD HH:MM:SS)*
+    description: Validity start date. *(YYYY-MM-DD HH:MM:SS)*
     example: "2025-03-15 17:00:00"
   valid_to:
     type: string
     readOnly: false
-    description: Stamp campaign validity to. *(YYYY-MM-DD HH:MM:SS)*
+    description: Validity end date. *(YYYY-MM-DD HH:MM:SS)*
     example: "2025-07-15 17:00:00"
   count_of_campaign_repetitions:
     type: integer

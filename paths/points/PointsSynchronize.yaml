@@ -3,7 +3,7 @@ post:
     - Points
   summary: Synchronize customer's points
   description: |
-    Synchronize the amount of points for the customer's account. Set the value, that will represent how many points the customer carries currently.
+    Synchronize the amount of points for the customer's account. Set the value that will represent how many points the customer carries currently.
   operationId: postPointsSynchronize
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

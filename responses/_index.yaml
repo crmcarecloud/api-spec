@@ -54,7 +54,7 @@ Unauthorized:
                     description: Data in case of an exception.
                     example:
 Forbidden:
-  description: The client does not exist or the client tried to access non authorized property/resource.
+  description: The client does not exist or the client tried to access an unauthorized property or resource.
   content:
     application/json:
       schema:

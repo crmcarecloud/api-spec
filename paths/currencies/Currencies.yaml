@@ -2,7 +2,7 @@ get:
   tags:
     - Currencies
   summary: Get all currencies
-  description: Get a list of currencies accepted in CRM CareCloud.
+  description: Get a list of currencies accepted in the CareCloud platform.
   operationId: getCurrencies
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,7 @@ get:
   tags:
     - Partners
   summary: Get all partners
-  description: Get a list of partners accepted in CRM CareCloud.
+  description: Get a list of partners accepted in the CareCloud platform.
   operationId: getPartners
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

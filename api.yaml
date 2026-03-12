@@ -23,11 +23,11 @@ tags:
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
-    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in CRM CareCloud directly or via CareCloud API.
+    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud API.
   - name: Cards
     description: The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.
   - name: Card types
-    description: Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
+    description: Different customer card types can be managed in the CareCloud platform. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.
   - name: Charged entrances
     description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
@@ -35,7 +35,7 @@ tags:
   - name: Consents
     description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.
   - name: Countries
-    description: Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.
+    description: Some data, especially addresses are tied to a Country, which is listed in the CareCloud platform. You can get here the list of countries available.
   - name: Credits
     description: Resource represents all credit records.
   - name: Credit history
@@ -43,9 +43,9 @@ tags:
   - name: Credit types
     description: Credit can have multiple types. This resource contain all types of credit available in API.
   - name: Currencies
-    description: Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.
+    description: Some data, especially Products can be tied to a Currency which is listed in the CareCloud platform. You can get here the list of currencies available.
   - name: Customers
-    description: CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.
+    description: The CareCloud platform provides a 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.
   - name: Customer engagement
     description: Resource helps tracking of all customer actions in web applications.
   - name: Customers actions
@@ -83,11 +83,11 @@ tags:
       <br />**Scheme of the MA related resources and their relations:**<br />
       <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
   - name: Hints
-    description: There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.
+    description: There is the possibility to recommend the customers a product, a service, or just information in the CareCloud platform based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.
   - name: Interests
     description: There are different areas that customers are interested in, that they enjoy, that they like or prefer. You can use resource interests to manage all of this customer project-specific preferences, personal interests, passions, or hobbies.
   - name: Languages
-    description: Some data, especially Customer accounts or Tokens, are tied to a Language listed in CRM CareCloud. You can get here the list of languages available.
+    description: Some data, especially Customer accounts or Tokens, are tied to a Language listed in the CareCloud platform. You can get here the list of languages available.
   - name: Messages
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message details and deliver the messages to customers through this resource.
   - name: Message templates
@@ -103,17 +103,17 @@ tags:
   - name: Payment types
     description: All payment types from CareCloud. Payment types can be used while creating an order.
   - name: Points
-    description: If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.
+    description: If the CareCloud platform manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.
   - name: Point history
-    description: If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions like points collection and points redemption is listed in point history resource.
+    description: If the CareCloud platform manages a Loyalty program based on points collection to a customer account, the points transactions like points collection and points redemption is listed in point history resource.
   - name: Point reservation
-    description: When CRM CareCloud manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.
+    description: When the CareCloud platform manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.
   - name: Point types
     description: You can create different types of loyalty points in the CareCloud platform and get the details of loyalty point types in this resource.
   - name: Products
-    description: A Product is an item offered for sale to the customers. The Product could be goods, a service, a ticket, or even an experience. You can manage all different Product types and their properties in the CareCloud platform, define product brands and classify Products into product groups. You get the list of Products and it's properties in this resource.
+    description: A Product is an item offered for sale to the customers. The Product could be goods, a service, a ticket, or even an experience. You can manage all different Product types and their properties in the CareCloud platform, define product brands and classify Products into product groups. You get the list of Products and its properties in this resource.
   - name: Product brands
-    description: You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product brands and it's properties in this resource.
+    description: You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product brands and its properties in this resource.
   - name: Product groups
     description: You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product groups in this resource.
   - name: Product properties
@@ -123,7 +123,7 @@ tags:
   - name: Product reservation prices
     description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservations
-    description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
+    description: The CareCloud platform allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
   - name: Product reservation external list types
     description: You can get the list of the available product reservation external list types here.
   - name: Product reservation sources
@@ -131,7 +131,7 @@ tags:
   - name: Purchase properties
     description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchases
-    description: There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.
+    description: There are the purchases tied to customer accounts stored in the CareCloud platform. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.
   - name: Purchase item properties
     description: It refers to a set of attributes or metadata that can be associated with a purchase item to extend its standard functionality. Essentially, it provides a way to add custom properties to purchase items beyond their default structure.
   - name: Purchase item types
@@ -141,18 +141,18 @@ tags:
   - name: Reservable products
     description: The set of Products that could be reserved can be limited. We call this group Reservable Products. You can get the details of Reservable Products and search within this group by this resource.
   - name: Rewards
-    description: Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.
+    description: Different types of Rewards for Customers can be created and managed in the CareCloud platform. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in the CareCloud platform by this resource.
   - name: Reward properties
     description: Reward properties are list of the available properties for the rewards resource.
   - name: Reward types
     description: Reward types represent list of all rewards types available in CareCloud.
   - name: Segments
-    description: Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
+    description: Segments are the customer groups, that can be defined and created in the CareCloud platform according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
   - name: Stamper
     description: |
       Our Digital Stamper simulates a store loyalty program where customers collect digital stamps with each purchase. Stamps are stored securely and linked to a unique customer ID, ensuring seamless tracking. Once a customer reaches the required number of stamps, they automatically unlock a reward. Expiration rules and tiered rewards can be configured to match business needs. This system eliminates lost paper cards and enhances customer engagement with a frictionless, automated experience.
   - name: Statuses
-    description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.
+    description: Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used to manage loyalty membership levels, employees, or VIP customers within the loyalty scheme setup and can be processed by this resource.
   - name: Store properties
     description: Store properties are list of available properties for the store resource.
   - name: Stores

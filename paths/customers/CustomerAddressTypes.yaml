@@ -2,7 +2,7 @@ get:
   tags:
     - Customer address types
   summary: Get all customer address types
-  description: Get a list of customer address types accepted in CRM CareCloud.
+  description: Get a list of customer address types accepted in the CareCloud platform.
   operationId: getCustomerAddressTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

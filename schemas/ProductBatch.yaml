@@ -56,7 +56,7 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: false
-    description: List of an additional properties.
+    description: List of additional properties.
   prices:
     type: array
     items:

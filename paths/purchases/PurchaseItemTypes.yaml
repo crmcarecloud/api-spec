@@ -3,7 +3,7 @@ get:
     - Purchase item types
   summary: Get all purchase item types
   description: |
-    Get a list of purchase item types accepted in CRM CareCloud. Each type determines how CareCloud processes the item within a purchase, including which loyalty rules and discounts apply.
+    Get a list of purchase item types accepted in the CareCloud platform. Each type determines how CareCloud processes the item within a purchase, including which loyalty rules and discounts apply.
 
     > **Note:** Type names may vary between CareCloud projects and can be customized per deployment. The names listed here are approximate references only. Always use `type_id` to identify a purchase item type in your integration — do not rely on the name.
 

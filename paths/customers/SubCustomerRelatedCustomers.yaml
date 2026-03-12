@@ -2,7 +2,7 @@ get:
   tags:
     - Customers
   summary: Get information about all related customers
-  description: Get a list of customers' relations in CRM CareCloud.
+  description: Get a list of customers' relations in the CareCloud platform.
   operationId: getSubCustomerRelatedCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -112,8 +112,8 @@ get:
 post:
   tags:
     - Customers
-  summary: Create the customer  relation
-  description: Add a new customer  relation to the customer  account.
+  summary: Create the customer relation
+  description: Add a new customer relation to the customer account.
   operationId: postSubCustomerRelatedCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -143,7 +143,7 @@ post:
                 properties:
                   customer_relation_id:
                     type: string
-                    description: The unique ID of the customer  relation.
+                    description: The unique ID of the customer relation.
                     example: "81eaeea13b8984a169c490a325"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

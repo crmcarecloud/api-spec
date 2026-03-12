@@ -112,7 +112,7 @@ post:
   tags:
     - Product reservations
   summary: Create a reservation
-  description: Create a new product reservation in CRM CareCloud.
+  description: Create a new product reservation in the CareCloud platform.
   operationId: postProductReservation
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

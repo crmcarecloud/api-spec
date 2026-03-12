@@ -19,12 +19,12 @@ properties:
   valid_from:
     type: string
     readOnly: true
-    description: Date and time of the record valid from. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
     example: "2019-05-29 00:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time of the record valid to. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
     example: "2021-05-28 23:59:59"
   purchase_conditions:
     $ref: '../schemas/_index.yaml#/PurchaseConditions'

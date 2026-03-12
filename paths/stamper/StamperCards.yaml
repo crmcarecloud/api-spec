@@ -3,7 +3,7 @@ get:
     - Stamper
   summary: Get all stamper cards
   description: |
-    Get a list of stamper cards from CRM CareCloud.
+    Get a list of stamper cards from the CareCloud platform.
     ⚠️ If no card is returned for active campaign, that means a customer did not collect any stamps yet, so card was not created. After he collects fist stamp, the card will be automatically generated.
   operationId: getStamperCards
   parameters:

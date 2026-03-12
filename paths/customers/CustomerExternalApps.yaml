@@ -2,7 +2,7 @@ get:
   tags:
     - Customer external applications
   summary: Get all customer external applications
-  description: Get a list of customer external applications accepted in CRM CareCloud.
+  description: Get a list of customer external applications accepted in the CareCloud platform.
   operationId: getCustomerExternalApps
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

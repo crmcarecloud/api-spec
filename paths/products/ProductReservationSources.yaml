@@ -2,7 +2,7 @@ get:
   tags:
     - Product reservation sources
   summary: Get all product reservation sources
-  description: Get a list of product reservation sources accepted in CRM CareCloud.
+  description: Get a list of product reservation sources accepted in the CareCloud platform.
   operationId: getProductReservationSources
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

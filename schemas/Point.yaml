@@ -36,7 +36,7 @@ properties:
   valid_to:
     type: string
     readOnly: false
-    description: Date and time of the point record validity to. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time until which the point record is valid. *(YYYY-MM-DD HH:MM:SS)*
     example: "2023-09-16 23:59:59"
   state:
     type: integer

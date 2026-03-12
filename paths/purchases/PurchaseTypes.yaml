@@ -2,7 +2,7 @@ get:
   tags:
     - Purchase types
   summary: Get all purchase types
-  description: Get a list of purchase types accepted in CRM CareCloud.
+  description: Get a list of purchase types accepted in the CareCloud platform.
   operationId: getPurchaseTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

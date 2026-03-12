@@ -39,7 +39,7 @@ properties:
     type: number
     format: float
     readOnly: false
-    description: Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer  health insurance.
+    description: Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer health insurance.
     example: 1200
   bill_item_id:
     type: string

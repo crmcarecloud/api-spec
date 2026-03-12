@@ -80,7 +80,7 @@ is_valid:
 valid_from:
   name: valid_from
   in: query
-  description: Date from when is record already valid. *(YYYY-MM-DD)*
+  description: Date from which the record is valid. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -88,7 +88,7 @@ valid_from:
 valid_from_full:
   name: valid_from
   in: query
-  description: Date and time from when is record already valid. *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -97,7 +97,7 @@ valid_from_full:
 valid_to:
   name: valid_to
   in: query
-  description: Date to when is record still valid. *(YYYY-MM-DD)*
+  description: Date until which the record is valid. *(YYYY-MM-DD)*
   required: false
   schema:
     type: string
@@ -105,7 +105,7 @@ valid_to:
 valid_to_full:
   name: valid_to
   in: query
-  description: Date and time to when is record still valid. *(YYYY-MM-DD HH:MM:SS)*
+  description: Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
   required: false
   schema:
     type: string
@@ -596,7 +596,7 @@ customer_external_id:
   name: external_id
   in: query
   required: false
-  description: The parameter contains a unique ID from an external system (POS, webshop,  mobile app, ERP, and others ). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).
+  description: The parameter contains a unique ID from an external system (POS, webshop, mobile app, ERP, and others). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).
   schema:
     type: string
   example: "A798274529"

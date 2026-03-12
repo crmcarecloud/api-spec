@@ -2,7 +2,7 @@ get:
   tags:
     - Charged entrances
   summary: Get all entrances
-  description: Get a list of entrances in CRM CareCloud.
+  description: Get a list of entrances in the CareCloud platform.
   operationId: getEntrances
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

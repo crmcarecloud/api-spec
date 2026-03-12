@@ -36,7 +36,7 @@ properties:
   valid_to:
     type: string
     readOnly: false
-    description: Date and time of the credit record validity to. *(YYYY-MM-DD HH:MM:SS)*
+    description: Date and time until which the credit record is valid. *(YYYY-MM-DD HH:MM:SS)*
     example: "2027-12-12 00:00:00"
   currency_id:
     type: string

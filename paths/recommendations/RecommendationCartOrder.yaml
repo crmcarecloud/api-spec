@@ -2,7 +2,7 @@ post:
   tags:
     - Product recommendation engine
   summary: Order products for the best recommendation for a shopping cart
-  description: The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer  shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.
+  description: The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.
   operationId: postRecommendationCartOrder
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,7 @@ get:
   tags:
     - Events
   summary: Get all events
-  description: Get a list of events in CRM CareCloud.
+  description: Get a list of events in the CareCloud platform.
   operationId: getEvents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -209,7 +209,7 @@ post:
         // Set the request body
         $body = new EventsBody();
         $body->setEvent($event);
-        $body->setPropertyRecords(array($property_record)); // array of objects | List of an event property records (optional)
+        $body->setPropertyRecords(array($property_record)); // array of objects | List of event property records (optional)
 
         // Call endpoint and post data
         try

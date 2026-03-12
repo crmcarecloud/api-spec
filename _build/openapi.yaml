@@ -23,11 +23,11 @@ tags:
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
-    description: 'The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in CRM CareCloud directly or via CareCloud API.'
+    description: 'The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud API.'
   - name: Cards
     description: 'The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.'
   - name: Card types
-    description: 'Different customer card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.'
+    description: 'Different customer card types can be managed in the CareCloud platform. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of customer unique personal ID or any other customer identification method like barcode, QR code or any other key can be used. The customer card types can be differenciated by a prefix, name or design and managed by this resource.'
   - name: Charged entrances
     description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
@@ -35,7 +35,7 @@ tags:
   - name: Consents
     description: 'Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers'' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.'
   - name: Countries
-    description: 'Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.'
+    description: 'Some data, especially addresses are tied to a Country, which is listed in the CareCloud platform. You can get here the list of countries available.'
   - name: Credits
     description: Resource represents all credit records.
   - name: Credit history
@@ -43,9 +43,9 @@ tags:
   - name: Credit types
     description: Credit can have multiple types. This resource contain all types of credit available in API.
   - name: Currencies
-    description: 'Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.'
+    description: 'Some data, especially Products can be tied to a Currency which is listed in the CareCloud platform. You can get here the list of currencies available.'
   - name: Customers
-    description: 'CRM CareCloud is about 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.'
+    description: 'The CareCloud platform provides a 360 view on a Customer and all relationships of the Customer. Resource Customers is used for managing this basic entity, which contains personal and all additional related information about the Customer.'
   - name: Customer engagement
     description: Resource helps tracking of all customer actions in web applications.
   - name: Customers actions
@@ -83,11 +83,11 @@ tags:
       <br />**Scheme of the MA related resources and their relations:**<br />
       <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
   - name: Hints
-    description: 'There is the possibility to recommend the customers a product, a service, or just information in CRM CareCloud based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.'
+    description: 'There is the possibility to recommend the customers a product, a service, or just information in the CareCloud platform based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.'
   - name: Interests
     description: 'There are different areas that customers are interested in, that they enjoy, that they like or prefer. You can use resource interests to manage all of this customer project-specific preferences, personal interests, passions, or hobbies.'
   - name: Languages
-    description: 'Some data, especially Customer accounts or Tokens, are tied to a Language listed in CRM CareCloud. You can get here the list of languages available.'
+    description: 'Some data, especially Customer accounts or Tokens, are tied to a Language listed in the CareCloud platform. You can get here the list of languages available.'
   - name: Messages
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message details and deliver the messages to customers through this resource.
   - name: Message templates
@@ -103,17 +103,17 @@ tags:
   - name: Payment types
     description: All payment types from CareCloud. Payment types can be used while creating an order.
   - name: Points
-    description: 'If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.'
+    description: 'If the CareCloud platform manages a Loyalty program based on points collection to a customer account, the points transactions and records like points collection and points redemption can be controlled by this resource.'
   - name: Point history
-    description: 'If CRM CareCloud manages a Loyalty program based on points collection to a customer account, the points transactions like points collection and points redemption is listed in point history resource.'
+    description: 'If the CareCloud platform manages a Loyalty program based on points collection to a customer account, the points transactions like points collection and points redemption is listed in point history resource.'
   - name: Point reservation
-    description: 'When CRM CareCloud manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.'
+    description: 'When the CareCloud platform manages a Loyalty program based on points collection to a customer account, the point reservations can be managed by this resource.'
   - name: Point types
     description: You can create different types of loyalty points in the CareCloud platform and get the details of loyalty point types in this resource.
   - name: Products
-    description: 'A Product is an item offered for sale to the customers. The Product could be goods, a service, a ticket, or even an experience. You can manage all different Product types and their properties in the CareCloud platform, define product brands and classify Products into product groups. You get the list of Products and it''s properties in this resource.'
+    description: 'A Product is an item offered for sale to the customers. The Product could be goods, a service, a ticket, or even an experience. You can manage all different Product types and their properties in the CareCloud platform, define product brands and classify Products into product groups. You get the list of Products and its properties in this resource.'
   - name: Product brands
-    description: 'You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product brands and it''s properties in this resource.'
+    description: 'You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product brands and its properties in this resource.'
   - name: Product groups
     description: 'You can manage all different Product types and their properties, define product brands and classify Products into product groups in the CareCloud platform. You get the list of product groups in this resource.'
   - name: Product properties
@@ -123,7 +123,7 @@ tags:
   - name: Product reservation prices
     description: Prices represents the value of the product for the reservation for a specific store and currency.
   - name: Product reservations
-    description: CRM CareCloud allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
+    description: The CareCloud platform allows to reserve Products or Product sets and manages the reservation process. There is the possibility to create a particular group of Products that can be reserved - Reservable products. This resource can make the Reservation of a Product.
   - name: Product reservation external list types
     description: You can get the list of the available product reservation external list types here.
   - name: Product reservation sources
@@ -131,7 +131,7 @@ tags:
   - name: Purchase properties
     description: Purchase properties are list of available properties for the purchases resource.
   - name: Purchases
-    description: 'There are the purchases tied to customer accounts stored in CRM CareCloud. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.'
+    description: 'There are the purchases tied to customer accounts stored in the CareCloud platform. After the purchase, the purchases are saved online when closing the bill or imported by the offline web service. Many parameters specify the purchase, like bill items and their prices, date and time of the purchase, which store made the purchase, or loyalty card number. All these data are used for segmentation or voucher creation.'
   - name: Purchase item properties
     description: 'It refers to a set of attributes or metadata that can be associated with a purchase item to extend its standard functionality. Essentially, it provides a way to add custom properties to purchase items beyond their default structure.'
   - name: Purchase item types
@@ -141,18 +141,18 @@ tags:
   - name: Reservable products
     description: The set of Products that could be reserved can be limited. We call this group Reservable Products. You can get the details of Reservable Products and search within this group by this resource.
   - name: Rewards
-    description: 'Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.'
+    description: 'Different types of Rewards for Customers can be created and managed in the CareCloud platform. The Reward and its features are a pattern for creating individual customer Vouchers that can be applied to the Customer purchases directly. It is defined by parameters like Reward validity, priority or number of points that will be spent by application, and many others. You can create rewards and get the information about actual rewards processed in the CareCloud platform by this resource.'
   - name: Reward properties
     description: Reward properties are list of the available properties for the rewards resource.
   - name: Reward types
     description: Reward types represent list of all rewards types available in CareCloud.
   - name: Segments
-    description: 'Segments are the customer groups, that can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.'
+    description: 'Segments are the customer groups, that can be defined and created in the CareCloud platform according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.'
   - name: Stamper
     description: |
       Our Digital Stamper simulates a store loyalty program where customers collect digital stamps with each purchase. Stamps are stored securely and linked to a unique customer ID, ensuring seamless tracking. Once a customer reaches the required number of stamps, they automatically unlock a reward. Expiration rules and tiered rewards can be configured to match business needs. This system eliminates lost paper cards and enhances customer engagement with a frictionless, automated experience.
   - name: Statuses
-    description: 'Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels, employees or VIP customers within the loyalty scheme setup and can be processed by this resource.'
+    description: 'Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used to manage loyalty membership levels, employees, or VIP customers within the loyalty scheme setup and can be processed by this resource.'
   - name: Store properties
     description: Store properties are list of available properties for the store resource.
   - name: Stores
@@ -208,7 +208,7 @@ paths:
       tags:
         - Consents
       summary: Get all consents
-      description: Get a list of consents accepted in CRM CareCloud.
+      description: Get a list of consents accepted in the CareCloud platform.
       operationId: getConsents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2302,7 +2302,7 @@ paths:
       tags:
         - Charged entrances
       summary: Get all entrances
-      description: Get a list of entrances in CRM CareCloud.
+      description: Get a list of entrances in the CareCloud platform.
       operationId: getEntrances
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2555,7 +2555,7 @@ paths:
       tags:
         - Communication channels
       summary: Get all communication channels
-      description: Get a list of communication channels accepted in CRM CareCloud.
+      description: Get a list of communication channels accepted in the CareCloud platform.
       operationId: getCommunicationChannels
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2648,7 +2648,7 @@ paths:
       tags:
         - Countries
       summary: Get all countries
-      description: Get a list of countries accepted in CRM CareCloud.
+      description: Get a list of countries accepted in the CareCloud platform.
       operationId: getCountries
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3260,7 +3260,7 @@ paths:
       tags:
         - Currencies
       summary: Get all currencies
-      description: Get a list of currencies accepted in CRM CareCloud.
+      description: Get a list of currencies accepted in the CareCloud platform.
       operationId: getCurrencies
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3357,7 +3357,7 @@ paths:
       tags:
         - Customers
       summary: Create a new customer
-      description: Add a new customer account in CRM CareCloud.
+      description: Add a new customer account in the CareCloud platform.
       operationId: postCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3384,7 +3384,7 @@ paths:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
                 property_records:
                   type: array
-                  description: List of an customer property records.
+                  description: List of customer property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
               required:
@@ -3426,7 +3426,7 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Address;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Agreement;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomAgreements;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Customer;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomersBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerSourceRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PersonalInformation;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\SocialNetworkCredentials;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set address of a new customer (optional)\n$address = new Address();\n$address->setAddress1('Old Town Square') // string | Street name of the address (optional)\n->setAddress2('34') // string | Street number/land registry number (optional)\n->setAddress3('12') // string | House number (optional)\n->setZip('11000') // string | ZIP code (optional)\n->setCity('Prague 1') // string | City (optional)\n->setCountryCode('cz'); // string | ISO code of the country Possible values de / gb / us / it / cz / etc. (optional)\n\n// Set custom agreements of a new customer (optional)\n$custom_agreement1 = new CustomAgreements();\n$custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd'); // string | The unique ID of the agreement in CareCloud\n$custom_agreement1->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n$custom_agreement2 = new CustomAgreements();\n$custom_agreement2->setAgreementId('8fd73167342d06899c4c015320'); // string | The unique ID of the agreement in CareCloud\n$custom_agreement2->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n\n$custom_agreements = array(\n    $custom_agreement1,\n    $custom_agreement2,\n);\n\n// Set agreement of a new customer\n$agreement = new Agreement();\n$agreement->setAgreementGtc(1) // integer | Consent to General Terms & Conditions Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n->setAgreementProfiling(1) // integer | Consent to profiling Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n->setAgreementMarketingCommunication(0) // integer | Consent to marketing communication Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n->setCustomAgreements($custom_agreements);\n\n// Set personal information of a new customer\n$personal_information = new PersonalInformation();\n$personal_information->setSalutation('Mr. Doe') // string | Customers salutation (optional)\n->setGender(1) // integer | Gender of the customer Possible values: 1 - male, 2 - female (optional)\n->setFirstName('John') // string | First name of the customer (optional)\n->setLastName('Doe') // string | Last name of the customer (optional)\n->setBirthdate('1990-01-01') // string <date> | Customer's date of birth (YYYY-MM-DD) (optional)\n->setEmail('doe@crmcarecloud.com') // string | Email of the customer (optional)\n->setPhone('420523828932') // string | Phone number of the customer with international prefix (420000000000) (optional)\n->setLanguageId('cs') // string | The unique ID for the language by ISO 639 code\n->setStoreId(null) // string | The unique ID for the original customer account store of registration (optional)\n->setPhotoUrl(null) // string | URL address of the customer photo (optional)\n->setAddress($address)\n    ->setAgreement($agreement);\n\n$customer = new Customer();\n$customer->setPersonalInformation($personal_information);\n\n// Set source record of a new customer\n$customer_source = new CustomerSourceRecord();\n$customer_source->setCustomerSourceId('8fd73167342d06899c4c015320'); // string | The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created\n$customer_source->setExternalId('external-id'); // string | The unique external id of the customer. It may be id from the other system\n\n// Set the customer  social network credentials (optional)\n$social_network_credentials = new SocialNetworkCredentials();\n$social_network_credentials->setSocialNetworkId('instagram'); // string | The unique ID of the social network\n$social_network_credentials->setSocialNetworkToken('38e223j1jedu12d1jnjqwd'); // string | Social network customer's token\n\n// Set basic information about new customer to the request body\n$body = new CustomersBody();\n$body->setCustomer($customer)\n    ->setCustomerSource($customer_source)\n    ->setPassword(null) // string | If parameter autologin=true, password is required, otherwise is optional.\n    ->setAutologin(false) // boolean | If true, password is required and customer is logged in\n    ->setSocialNetworkCredentials($social_network_credentials);\n\n// Call endpoint and post data\ntry\n{\n    $post_customer = $care_cloud->customersApi()->postCustomer($body, $accept_language);\n    $customer_id = $post_customer->getData()->getCustomerId();\n    var_dump($customer_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Address;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Agreement;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomAgreements;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Customer;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomersBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerSourceRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PersonalInformation;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\SocialNetworkCredentials;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set address of a new customer (optional)\n$address = new Address();\n$address->setAddress1('Old Town Square') // string | Street name of the address (optional)\n->setAddress2('34') // string | Street number/land registry number (optional)\n->setAddress3('12') // string | House number (optional)\n->setZip('11000') // string | ZIP code (optional)\n->setCity('Prague 1') // string | City (optional)\n->setCountryCode('cz'); // string | ISO code of the country Possible values de / gb / us / it / cz / etc. (optional)\n\n// Set custom agreements of a new customer (optional)\n$custom_agreement1 = new CustomAgreements();\n$custom_agreement1->setAgreementId('89ce2a1b9b01f5c939fb1e20cd'); // string | The unique ID of the agreement in CareCloud\n$custom_agreement1->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n$custom_agreement2 = new CustomAgreements();\n$custom_agreement2->setAgreementId('8fd73167342d06899c4c015320'); // string | The unique ID of the agreement in CareCloud\n$custom_agreement2->setAgreementValue(1); // integer | Value of the specific agreement Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n\n$custom_agreements = array(\n    $custom_agreement1,\n    $custom_agreement2,\n);\n\n// Set agreement of a new customer\n$agreement = new Agreement();\n$agreement->setAgreementGtc(1) // integer | Consent to General Terms & Conditions Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n->setAgreementProfiling(1) // integer | Consent to profiling Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n->setAgreementMarketingCommunication(0) // integer | Consent to marketing communication Possible values: 0 - no, consent canceled / 1 - yes, consent given / 2 - consent not set\n->setCustomAgreements($custom_agreements);\n\n// Set personal information of a new customer\n$personal_information = new PersonalInformation();\n$personal_information->setSalutation('Mr. Doe') // string | Customers salutation (optional)\n->setGender(1) // integer | Gender of the customer Possible values: 1 - male, 2 - female (optional)\n->setFirstName('John') // string | First name of the customer (optional)\n->setLastName('Doe') // string | Last name of the customer (optional)\n->setBirthdate('1990-01-01') // string <date> | Customer's date of birth (YYYY-MM-DD) (optional)\n->setEmail('doe@crmcarecloud.com') // string | Email of the customer (optional)\n->setPhone('420523828932') // string | Phone number of the customer with international prefix (420000000000) (optional)\n->setLanguageId('cs') // string | The unique ID for the language by ISO 639 code\n->setStoreId(null) // string | The unique ID for the original customer account store of registration (optional)\n->setPhotoUrl(null) // string | URL address of the customer photo (optional)\n->setAddress($address)\n    ->setAgreement($agreement);\n\n$customer = new Customer();\n$customer->setPersonalInformation($personal_information);\n\n// Set source record of a new customer\n$customer_source = new CustomerSourceRecord();\n$customer_source->setCustomerSourceId('8fd73167342d06899c4c015320'); // string | The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created\n$customer_source->setExternalId('external-id'); // string | The unique external id of the customer. It may be id from the other system\n\n// Set the customer social network credentials (optional)\n$social_network_credentials = new SocialNetworkCredentials();\n$social_network_credentials->setSocialNetworkId('instagram'); // string | The unique ID of the social network\n$social_network_credentials->setSocialNetworkToken('38e223j1jedu12d1jnjqwd'); // string | Social network customer's token\n\n// Set basic information about new customer to the request body\n$body = new CustomersBody();\n$body->setCustomer($customer)\n    ->setCustomerSource($customer_source)\n    ->setPassword(null) // string | If parameter autologin=true, password is required, otherwise is optional.\n    ->setAutologin(false) // boolean | If true, password is required and customer is logged in\n    ->setSocialNetworkCredentials($social_network_credentials);\n\n// Call endpoint and post data\ntry\n{\n    $post_customer = $care_cloud->customersApi()->postCustomer($body, $accept_language);\n    $customer_id = $post_customer->getData()->getCustomerId();\n    var_dump($customer_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
         - lang: PHP
           label: CareCloud Client
           source: |
@@ -3651,7 +3651,7 @@ paths:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
                 property_records:
                   type: array
-                  description: List of an customer property records.
+                  description: List of customer property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
               required:
@@ -4977,8 +4977,8 @@ paths:
     get:
       tags:
         - Customers
-      summary: Get information about all customer  events
-      description: Get a list of customer  events in CRM CareCloud.
+      summary: Get information about all customer events
+      description: Get a list of customer events in the CareCloud platform.
       operationId: getSubCustomerEvents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5039,7 +5039,7 @@ paths:
       tags:
         - Customers
       summary: Get information about all related customers
-      description: Get a list of customers' relations in CRM CareCloud.
+      description: Get a list of customers' relations in the CareCloud platform.
       operationId: getSubCustomerRelatedCustomers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5095,8 +5095,8 @@ paths:
     post:
       tags:
         - Customers
-      summary: Create the customer  relation
-      description: Add a new customer  relation to the customer  account.
+      summary: Create the customer relation
+      description: Add a new customer relation to the customer account.
       operationId: postSubCustomerRelatedCustomers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5126,7 +5126,7 @@ paths:
                     properties:
                       customer_relation_id:
                         type: string
-                        description: The unique ID of the customer  relation.
+                        description: The unique ID of the customer relation.
                         example: 81eaeea13b8984a169c490a325
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -5193,7 +5193,7 @@ paths:
     delete:
       tags:
         - Customers
-      summary: Delete the customer  relation
+      summary: Delete the customer relation
       description: Delete a specific customer relation.
       operationId: deleteSubCustomerRelatedCustomer
       parameters:
@@ -5227,9 +5227,9 @@ paths:
     get:
       tags:
         - Customers
-      summary: Get information about all customer  partners
+      summary: Get information about all customer partners
       description: |
-        Get a list of customer  partners in CareCloud.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+        Get a list of customer partners in CareCloud.<br/> ⚠️ Endpoint is available only in the Enterprise interface.<br/>
       operationId: getSubCustomerPartners
       parameters:
         - $ref: '#/components/parameters/customer_id_path'
@@ -5252,12 +5252,12 @@ paths:
                     properties:
                       partner_records:
                         type: array
-                        description: Collection of all customer  partner records.
+                        description: Collection of all customer partner records.
                         items:
                           $ref: '#/components/schemas/PartnerRecord'
                       total_items:
                         type: integer
-                        description: The number of all found customer  partners.
+                        description: The number of all found customer partners.
                         example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -6235,7 +6235,7 @@ paths:
       tags:
         - Customer address types
       summary: Get all customer address types
-      description: Get a list of customer address types accepted in CRM CareCloud.
+      description: Get a list of customer address types accepted in the CareCloud platform.
       operationId: getCustomerAddressTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6415,7 +6415,7 @@ paths:
       tags:
         - Customer external applications
       summary: Get all customer external applications
-      description: Get a list of customer external applications accepted in CRM CareCloud.
+      description: Get a list of customer external applications accepted in the CareCloud platform.
       operationId: getCustomerExternalApps
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6849,7 +6849,7 @@ paths:
       tags:
         - Customer types
       summary: Get all customer types
-      description: Get a list of customer types accepted in CRM CareCloud.
+      description: Get a list of customer types accepted in the CareCloud platform.
       operationId: getCustomerTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6944,7 +6944,7 @@ paths:
       tags:
         - Events
       summary: Get all events
-      description: Get a list of events in CRM CareCloud.
+      description: Get a list of events in the CareCloud platform.
       operationId: getEvents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -7059,7 +7059,7 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Event;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\EventsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PropertyRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the event data\n$event = new Event();\n$event->setEventTypeId('82d0f9d976dee39aacd13dc7ea'); // string | The unique ID of the event type\n$event->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID for the card holder\n$event->setExternalId('e123'); // string | The unique external ID of the event\n$event->setData(null); // string, string[] or object | Additional data of the event. Serialized data in JSON (optional)\n$event->setCreatedAt(null); // string | Date and time of the event (YYYY-MM-DD HH:MM:SS) (optional)\n$event->setSecondaryExternalId(null); // string | Additional external ID of the event (optional)\n\n$property_record = new PropertyRecord();\n$property_record->setPropertyId('account_event_type_records_count'); // string | The unique ID of the property\n$property_record->setPropertyValue(2); // (string or null) or (number or null) or (integer or null) or (boolean or null) or (Array of any or null) or (object or null) | Value of the property (optional)\n\n// Set the request body\n$body = new EventsBody();\n$body->setEvent($event);\n$body->setPropertyRecords(array($property_record)); // array of objects | List of an event property records (optional)\n\n// Call endpoint and post data\ntry\n{\n    $post_event = $care_cloud->eventsApi()->postEvent($body, $accept_language);\n    $event_id = $post_event->getData()->getEventId();\n    var_dump($event_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Event;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\EventsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\PropertyRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the event data\n$event = new Event();\n$event->setEventTypeId('82d0f9d976dee39aacd13dc7ea'); // string | The unique ID of the event type\n$event->setCustomerId('8ea2591121e636086a4a9c0992'); // string | The unique ID for the card holder\n$event->setExternalId('e123'); // string | The unique external ID of the event\n$event->setData(null); // string, string[] or object | Additional data of the event. Serialized data in JSON (optional)\n$event->setCreatedAt(null); // string | Date and time of the event (YYYY-MM-DD HH:MM:SS) (optional)\n$event->setSecondaryExternalId(null); // string | Additional external ID of the event (optional)\n\n$property_record = new PropertyRecord();\n$property_record->setPropertyId('account_event_type_records_count'); // string | The unique ID of the property\n$property_record->setPropertyValue(2); // (string or null) or (number or null) or (integer or null) or (boolean or null) or (Array of any or null) or (object or null) | Value of the property (optional)\n\n// Set the request body\n$body = new EventsBody();\n$body->setEvent($event);\n$body->setPropertyRecords(array($property_record)); // array of objects | List of event property records (optional)\n\n// Call endpoint and post data\ntry\n{\n    $post_event = $care_cloud->eventsApi()->postEvent($body, $accept_language);\n    $event_id = $post_event->getData()->getEventId();\n    var_dump($event_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/events/{event_id}':
     get:
       tags:
@@ -7599,7 +7599,7 @@ paths:
       tags:
         - Languages
       summary: Get all languages
-      description: Get a list of all languages accepted in CRM CareCloud.
+      description: Get a list of all languages accepted in the CareCloud platform.
       operationId: getLanguages
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -8326,7 +8326,7 @@ paths:
       tags:
         - Partners
       summary: Get all partners
-      description: Get a list of partners accepted in CRM CareCloud.
+      description: Get a list of partners accepted in the CareCloud platform.
       operationId: getPartners
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -8557,7 +8557,7 @@ paths:
       tags:
         - Payment types
       summary: Get all payment types
-      description: Get a list of payment types accepted in CRM CareCloud.
+      description: Get a list of payment types accepted in the CareCloud platform.
       operationId: getPaymentTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -8887,7 +8887,7 @@ paths:
     post:
       tags:
         - Points
-      summary: Assign of points
+      summary: Assign points
       description: |
         Creates a new point collection record with the corresponding value.
         ⚠️ Action methods are available only in Enterprise interface.
@@ -9039,7 +9039,7 @@ paths:
         - Points
       summary: Synchronize customer's points
       description: |
-        Synchronize the amount of points for the customer's account. Set the value, that will represent how many points the customer carries currently.
+        Synchronize the amount of points for the customer's account. Set the value that will represent how many points the customer carries currently.
       operationId: postPointsSynchronize
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10114,7 +10114,7 @@ paths:
       tags:
         - Product reservations
       summary: Create a reservation
-      description: Create a new product reservation in CRM CareCloud.
+      description: Create a new product reservation in the CareCloud platform.
       operationId: postProductReservation
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10534,7 +10534,7 @@ paths:
       tags:
         - Product reservation sources
       summary: Get all product reservation sources
-      description: Get a list of product reservation sources accepted in CRM CareCloud.
+      description: Get a list of product reservation sources accepted in the CareCloud platform.
       operationId: getProductReservationSources
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -11309,7 +11309,7 @@ paths:
                   description: |
                     Specifies the type of rewards to be listed in the response.
                     Possible values:
-                     - F (full) - All manual rewards that are valid in the in the defined store
+                     - F (full) - All manual rewards that are valid in the defined store
                      - C (condensed) -  Returns manual rewards that are related to the items from provided purchase. If application is not possible, the reward is not returned.
                      - A (all) -  List of all available rewards on the project (including automatic rewards). Extended information about rewards is available at the endpoint [GET /rewards](https://carecloud.readme.io/reference/getrewards)
                   example: C
@@ -11387,7 +11387,7 @@ paths:
                   example: 1
                 card_number:
                   type: string
-                  description: The customer  card number.
+                  description: The customer card number.
                   example: '1000000000016'
                 customer_id:
                   type: string
@@ -11563,7 +11563,7 @@ paths:
                   example: 8fbea1c1eaa8edd35e7f288
                 card_number:
                   type: string
-                  description: Number of the customer  card. Parameter is mandatory only if customer_id is not set.
+                  description: Number of the customer card. Parameter is mandatory only if customer_id is not set.
                   example: '1000000000016'
                 customer_id:
                   type: string
@@ -11594,14 +11594,14 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsAssigncustomerBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the request body\n$body = new ActionsAssigncustomerBody();\n$body->setStoreId('8fd73167342d06899c4c015320'); // string | The unique ID of the store\n$body->setExternalPurchaseId('123'); // string | The unique external id of the purchase\n$body->setCardNumber(null); // string | Number of the customer  card. Parameter is mandatory only if customer_id is not set\n$body->setCustomerId('8ea02b112ccac496a3d423c5b1'); // string | Number of the customer  card. The unique ID of the customer. Parameter is mandatory only if card_number is not set\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->purchasesApi()->postPurchaseAssignCustomer($body, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsAssigncustomerBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the request body\n$body = new ActionsAssigncustomerBody();\n$body->setStoreId('8fd73167342d06899c4c015320'); // string | The unique ID of the store\n$body->setExternalPurchaseId('123'); // string | The unique external id of the purchase\n$body->setCardNumber(null); // string | Number of the customer card. Parameter is mandatory only if customer_id is not set\n$body->setCustomerId('8ea02b112ccac496a3d423c5b1'); // string | Number of the customer card. The unique ID of the customer. Parameter is mandatory only if card_number is not set\n\n// Call endpoint and post data\ntry\n{\n    $care_cloud->purchasesApi()->postPurchaseAssignCustomer($body, $accept_language);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /purchase-item-types:
     get:
       tags:
         - Purchase item types
       summary: Get all purchase item types
       description: |
-        Get a list of purchase item types accepted in CRM CareCloud. Each type determines how CareCloud processes the item within a purchase, including which loyalty rules and discounts apply.
+        Get a list of purchase item types accepted in the CareCloud platform. Each type determines how CareCloud processes the item within a purchase, including which loyalty rules and discounts apply.
 
         > **Note:** Type names may vary between CareCloud projects and can be customized per deployment. The names listed here are approximate references only. Always use `type_id` to identify a purchase item type in your integration — do not rely on the name.
 
@@ -11686,7 +11686,7 @@ paths:
       tags:
         - Purchase types
       summary: Get all purchase types
-      description: Get a list of purchase types accepted in CRM CareCloud.
+      description: Get a list of purchase types accepted in the CareCloud platform.
       operationId: getPurchaseTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -12297,7 +12297,7 @@ paths:
       tags:
         - Product recommendation engine
       summary: Order products for the best recommendation for a shopping cart
-      description: 'The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer  shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.'
+      description: 'The method returns the algorithm ordered products from the initial list (best first). Results depend on the customer shopping cart and his previous shopping behavior. If needed, the initial parameter might define the number of results.'
       operationId: postRecommendationCartOrder
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -13841,7 +13841,7 @@ paths:
       tags:
         - Stamper
       summary: Get all stamper campaigns
-      description: Get a list of stamper campaigns from CRM CareCloud.
+      description: Get a list of stamper campaigns from the CareCloud platform.
       operationId: getStamperCampaigns
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -13934,7 +13934,7 @@ paths:
         - Stamper
       summary: Get all stamper cards
       description: |
-        Get a list of stamper cards from CRM CareCloud.
+        Get a list of stamper cards from the CareCloud platform.
         ⚠️ If no card is returned for active campaign, that means a customer did not collect any stamps yet, so card was not created. After he collects fist stamp, the card will be automatically generated.
       operationId: getStamperCards
       parameters:
@@ -14959,7 +14959,7 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Task;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\TasksBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once 'vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the task info\n$task = new Task();\n$task->setTaskTypeId('8bed991c68a470e7aaeffbf048') // string | The unique ID of the task type\n->setTaskStateId('86e05affc7a7abefcd513ab400') // string | The unique ID of the task state\n->setCustomerId('85aae99524edceec17682e01b9') // string | The unique ID of the customer\n->setTaskNote(null) // string | Text note of the task (optional)\n->setTaskTitle('Test task n.1') // string | Title of the task\n->setTaskPriority(3) // integer | The parameter filters tasks by their priority. Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor.\n->setDueDate(null); // string | Due date of the task (YYYY-MM-DD) (optional)\n\n// Set the request body\n$body = new TasksBody();\n$body->setTask($task);\n$body->setAssignees(null); // array of objects | List of an task assignees (optional)\n$body->setPropertyRecords(null); // array of objects | List of an task property records (optional)\n\n// Call endpoint and post data\ntry\n{\n    $post_task = $care_cloud->tasksApi()->postTasks($body, $accept_language);\n    $task_id = $post_task->getData()->getTaskId();\n    var_dump($task_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\Task;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\TasksBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once 'vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set the task info\n$task = new Task();\n$task->setTaskTypeId('8bed991c68a470e7aaeffbf048') // string | The unique ID of the task type\n->setTaskStateId('86e05affc7a7abefcd513ab400') // string | The unique ID of the task state\n->setCustomerId('85aae99524edceec17682e01b9') // string | The unique ID of the customer\n->setTaskNote(null) // string | Text note of the task (optional)\n->setTaskTitle('Test task n.1') // string | Title of the task\n->setTaskPriority(3) // integer | The parameter filters tasks by their priority. Possible values are: 1 - Critical / 2 - Major / 3 - Normal / 4 - Minor.\n->setDueDate(null); // string | Due date of the task (YYYY-MM-DD) (optional)\n\n// Set the request body\n$body = new TasksBody();\n$body->setTask($task);\n$body->setAssignees(null); // array of objects | List of task assignees (optional)\n$body->setPropertyRecords(null); // array of objects | List of task property records (optional)\n\n// Call endpoint and post data\ntry\n{\n    $post_task = $care_cloud->tasksApi()->postTasks($body, $accept_language);\n    $task_id = $post_task->getData()->getTaskId();\n    var_dump($task_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   '/tasks/{task_id}':
     get:
       tags:
@@ -16960,7 +16960,7 @@ paths:
       tags:
         - Vouchers
       summary: Get a collection of voucher properties records
-      description: Get information about all property records on an voucher.
+      description: Get information about all property records on a voucher.
       operationId: getSubVoucherProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17344,7 +17344,7 @@ paths:
                         type: array
                         items:
                           $ref: '#/components/schemas/MoneyValue'
-                        description: Parameter shows money representation of the 'available_points' parameter. CareCloud calculates money value for every system currency. The calculation is available only if the customer  status allows a point payment. This setup is possible in CareCloud administration.
+                        description: Parameter shows money representation of the 'available_points' parameter. CareCloud calculates money value for every system currency. The calculation is available only if the customer status allows a point payment. This setup is possible in CareCloud administration.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -17606,7 +17606,7 @@ components:
                         description: Data in case of an exception.
                         example: null
     Forbidden:
-      description: The client does not exist or the client tried to access non authorized property/resource.
+      description: The client does not exist or the client tried to access an unauthorized property or resource.
       content:
         application/json:
           schema:
@@ -17994,7 +17994,7 @@ components:
           type: number
           format: float
           readOnly: false
-          description: 'Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer  health insurance.'
+          description: 'Value of parameter "paid_amount". In the case of a pharmaceutical client, add to the value of "paid_amount" a value of money covered by the customer health insurance.'
           example: 1200
         bill_item_id:
           type: string
@@ -18474,17 +18474,17 @@ components:
         secondary_card_number:
           type: string
           readOnly: false
-          description: Secondary card number represents alternative card number of the card.
+          description: Alternative card number for this card.
           example: AXNFUAIOHFDSNKA
         valid_from:
           type: string
           readOnly: false
-          description: 'Card validity from. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Validity start date. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-04-14'
         valid_to:
           type: string
           readOnly: false
-          description: 'Card validity to. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Validity end date. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2059-07-05'
         store_id:
           type: string
@@ -18662,7 +18662,7 @@ components:
         valid_to:
           type: string
           readOnly: false
-          description: 'Date and time of the credit record validity to. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time until which the credit record is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2027-12-12 00:00:00'
         currency_id:
           type: string
@@ -19162,7 +19162,7 @@ components:
         secondary_external_id:
           type: string
           readOnly: false
-          description: 'Additional external ID of the event. It''s used in case, when differentiation of external_id needed.'
+          description: Additional external ID of the event. Used when differentiation of external_id is needed.
           example: null
         state:
           type: integer
@@ -19309,7 +19309,7 @@ components:
         secondary_external_id:
           type: string
           readOnly: false
-          description: 'Additional external ID of the event. It''s used in case, when differentiation of external_id needed.'
+          description: Additional external ID of the event. Used when differentiation of external_id is needed.
           example: null
         state:
           type: integer
@@ -20346,7 +20346,7 @@ components:
         valid_to:
           type: string
           readOnly: false
-          description: 'Date and time of the point record validity to. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time until which the point record is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2023-09-16 23:59:59'
         state:
           type: integer
@@ -20565,7 +20565,7 @@ components:
             type: string
             example: null
           readOnly: true
-          description: A list of an image URLs.
+          description: A list of image URLs.
         last_change:
           type: string
           readOnly: true
@@ -20662,7 +20662,7 @@ components:
           items:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: false
-          description: List of an additional properties.
+          description: List of additional properties.
         prices:
           type: array
           items:
@@ -21768,7 +21768,7 @@ components:
           type: number
           format: float
           readOnly: false
-          description: 'Number of points, that will be spent by the voucher redemption.'
+          description: Number of points that will be spent by the voucher redemption.
           example: 200
         valid_time_from:
           type: string
@@ -21880,7 +21880,7 @@ components:
         is_automated:
           type: boolean
           readOnly: false
-          description: 'Parameter says, if reward is automated or not. If reward is automated, means it''s applied by rules of the reward. Otherwise have to be applied manually.'
+          description: 'Parameter says, if reward is automated or not. If the reward is automated, it means it is applied by the rules of the reward. Otherwise, it has to be applied manually.'
           example: false
         tags:
           type: array
@@ -22595,12 +22595,12 @@ components:
         valid_from:
           type: string
           readOnly: false
-          description: 'Stamp campaign validity from. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Validity start date. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2025-03-15 17:00:00'
         valid_to:
           type: string
           readOnly: false
-          description: 'Stamp campaign validity to. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Validity end date. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2025-07-15 17:00:00'
         count_of_campaign_repetitions:
           type: integer
@@ -22898,12 +22898,12 @@ components:
         valid_from:
           type: string
           readOnly: true
-          description: 'Date and time of the record valid from. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2019-05-29 00:00:00'
         valid_to:
           type: string
           readOnly: true
-          description: 'Date and time of the record valid to. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2021-05-28 23:59:59'
         purchase_conditions:
           $ref: '#/components/schemas/PurchaseConditions'
@@ -23651,12 +23651,12 @@ components:
         valid_from:
           type: string
           readOnly: false
-          description: 'Date from the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date from which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2013-07-10 21:33:13'
         valid_to:
           type: string
           readOnly: false
-          description: 'Date to the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date until which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: '2013-07-30 21:33:13'
         reward_group:
           type: string
@@ -23731,12 +23731,12 @@ components:
         valid_from:
           type: string
           readOnly: false
-          description: 'Date from the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date from which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: null
         valid_to:
           type: string
           readOnly: false
-          description: 'Date to the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Date until which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
           example: null
         note:
           type: string
@@ -23879,7 +23879,7 @@ components:
     valid_from:
       name: valid_from
       in: query
-      description: Date from when is record already valid. *(YYYY-MM-DD)*
+      description: Date from which the record is valid. *(YYYY-MM-DD)*
       required: false
       schema:
         type: string
@@ -23887,7 +23887,7 @@ components:
     valid_from_full:
       name: valid_from
       in: query
-      description: 'Date and time from when is record already valid. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
       required: false
       schema:
         type: string
@@ -23896,7 +23896,7 @@ components:
     valid_to:
       name: valid_to
       in: query
-      description: Date to when is record still valid. *(YYYY-MM-DD)*
+      description: Date until which the record is valid. *(YYYY-MM-DD)*
       required: false
       schema:
         type: string
@@ -23904,7 +23904,7 @@ components:
     valid_to_full:
       name: valid_to
       in: query
-      description: 'Date and time to when is record still valid. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
       required: false
       schema:
         type: string
@@ -24382,7 +24382,7 @@ components:
       name: external_id
       in: query
       required: false
-      description: 'The parameter contains a unique ID from an external system (POS, webshop,  mobile app, ERP, and others ). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).'
+      description: 'The parameter contains a unique ID from an external system (POS, webshop, mobile app, ERP, and others). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).'
       schema:
         type: string
       example: A798274529

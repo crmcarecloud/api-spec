@@ -1,9 +1,9 @@
 get:
   tags:
     - Customers
-  summary: Get information about all customer  partners
+  summary: Get information about all customer partners
   description: >
-    Get a list of customer  partners in CareCloud.<br/>
+    Get a list of customer partners in CareCloud.<br/>
     ⚠️ Endpoint is available only in the Enterprise interface.<br/>
   operationId: getSubCustomerPartners
   parameters:
@@ -27,12 +27,12 @@ get:
                 properties:
                   partner_records:
                     type: array
-                    description: Collection of all customer  partner records.
+                    description: Collection of all customer partner records.
                     items:
                       $ref: '../../schemas/_index.yaml#/PartnerRecord'
                   total_items:
                     type: integer
-                    description: The number of all found customer  partners.
+                    description: The number of all found customer partners.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

@@ -77,7 +77,7 @@ get:
 delete:
   tags:
     - Customers
-  summary: Delete the customer  relation
+  summary: Delete the customer relation
   description: Delete a specific customer relation.
   operationId: deleteSubCustomerRelatedCustomer
   parameters:

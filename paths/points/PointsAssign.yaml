@@ -1,7 +1,7 @@
 post:
   tags:
     - Points
-  summary: Assign of points
+  summary: Assign points
   description: |
     Creates a new point collection record with the corresponding value.
     ⚠️ Action methods are available only in Enterprise interface.

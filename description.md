@@ -1,15 +1,15 @@
-Learn here the basics of the Customer Data Platform CareCloud API, from authentication to usage of available resources. Learn about the CDP CareCloud REST API, which Systems can use API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other similar production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need to get the unique customer data.  
+Learn here the basics of the Customer Data Platform CareCloud API, from authentication to usage of available resources. Learn about the CareCloud REST API, which systems can use the API to connect with the CareCloud platform. Like e-shops, POS, kiosks, booking, and other similar production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need to get the unique customer data.  
 
-This is the description of the basics of the CDP CareCloud API. It is described here the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between  Enterprise  and  Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
+This is the description of the basics of the CareCloud API. This describes the [domain structure](#section/Getting-started/Domain-structure) and the parameters of the URL, the difference between Enterprise and Customer API, [HTTP methods](#section/Getting-started/HTTPS-Methods) used in the API, [authentication details](#section/Authentication) and more.
 If you need to make your integration a little easier, please look at our toolkit in [Tools](#section/Tools).
 
-#### [CRM CareCloud API Reference](#section/CRM-CareCloud-API-Reference)
+#### [CareCloud API Reference](#section/CRM-CareCloud-API-Reference)
 
-[CRM CareCloud API Reference](#section/CRM-CareCloud-API-Reference) describes each available [Resource](#section/CRM-CareCloud-API-Reference/Available-resources-overview) in the API, you can learn more about parameters, errors, and how to format your requests. Review all available resources for CRM CareCloud REST API with this reference overview.
+[CareCloud API Reference](#section/CRM-CareCloud-API-Reference) describes each available [Resource](#section/CRM-CareCloud-API-Reference/Available-resources-overview) in the API, you can learn more about parameters, errors, and how to format your requests. Review all available resources for CareCloud REST API with this reference overview.
 
 # Getting started
 
-CRM CareCloud REST API allows you to create and manage the customer accounts and related resources like countries, languages, currencies, sources or customer account statuses. You can use the API for management of vouchers, rewards, customer cards, segments and other structures related to customer account.
+CareCloud REST API allows you to create and manage the customer accounts and related resources like countries, languages, currencies, sources or customer account statuses. You can use the API to manage vouchers, rewards, customer cards, segments and other structures related to customer account.
 
 
 ## What is the best interface for my use case?
@@ -21,30 +21,30 @@ Now, when it is all clear, let's continue with API call structure
 
 ### Domain structure
 
-The domain structure is like  `<projectURL>/webservice/rest-api/customer-interface/v1.0/customers` where  `<projectURL>`  corresponds to the specific URL of your project. For example for project of company called Cortex, the  `<projectURL>`  could be `https://cortex.crmcarecloud.com/` or  `https://project.carecloud.cz/` or any other URL. REST API is available only through secure protocol HTTPS.
+The domain structure is like `<projectURL>/webservice/rest-api/customer-interface/v1.0/customers` where `<projectURL>` corresponds to the specific URL of your project. For example for project of company called Cortex, the `<projectURL>` could be `https://cortex.crmcarecloud.com/` or `https://project.carecloud.cz/` or any other URL. REST API is available only through secure protocol HTTPS.
 
 We have created and described two API types, where the main difference is the authentication method and the purpose of the systems for which the API is created.
 
 #### Enterprise API
 
-The  Enterprise interface client authenticates with login and password. The Enterprise API is mainly created for e-shops, POS, kiosks, booking and other similar production systems which needs to get the data lists.
-The domain structure for Enterprise interface API is like  `<projectURL>/webservice/rest-api/enterprise-interface/v1.0/customers`, where :
+The Enterprise interface client authenticates with login and password. The Enterprise API is mainly created for e-shops, POS, kiosks, booking and other similar production systems which need to get the data lists.
+The domain structure for Enterprise interface API is like `<projectURL>/webservice/rest-api/enterprise-interface/v1.0/customers`, where:
 
 -   `<projectURL>`  the specific URL of your project
 -   `enterprise-interface`  represents the type of API
--   `v1.0`  is the version of the API (this is only example, please the check actual version with your integration support)
--   `customers`  is an example of the resource. List of resources is available in  CRM CareCloud API Reference
+-   `v1.0`  is the version of the API (this is only example, please check the actual version with your integration support)
+-   `customers`  is an example of the resource. List of resources is available in CareCloud API Reference
 
 #### Customer API
 
-The  Customer interface client authenticates  with user name and token. The Customer API is created and used mainly for end user applications like mobile Android and iOS APPs or web customer microsites which needs to get the unique customer data.
-The domain structure for the Customer interface API is like  `<projectURL>/webservice/rest-api/customer-interface/v1.0/customers`
+The Customer interface client authenticates with user name and token. The Customer API is created and used mainly for end user applications like mobile Android and iOS APPs or web customer microsites which need to get the unique customer data.
+The domain structure for the Customer interface API is like `<projectURL>/webservice/rest-api/customer-interface/v1.0/customers`
 Where :
 
 -   `<projectURL>`  the specific URL of your project
 -   `customer-interface`  represents the type of API
 -   `v1.0`  is the version of the API (this is only example, please check the actual version with your integration support)
--   `customers`  is an example of the resource. List of resources is available in  CRM CareCloud API Reference
+-   `customers`  is an example of the resource. List of resources is available in CareCloud API Reference
 
 ### API call parameters
 
@@ -53,11 +53,11 @@ Every API call has the following parameters:
 -   Path - contains domain, version, resource, identifier of resource, subresource and the subresource unique id: `https://project.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0/resource-name/resource_id/actions/action_id`
 -   Query string - uses as filter for results, pagination and limitation of results
 -   Request body - contains structures for methods POST, PUT
--   Response body - contains all result data (resources or error information) in  standard response structure
+-   Response body - contains all result data (resources or error information) in standard response structure
 
 ### HTTPS Verbs
 
-REST API is available only through the secure protocol HTTPS. CRM CareCloud REST API supports the following selection of HTTP verbs:
+REST API is available only through the secure protocol HTTPS. CareCloud REST API supports the following selection of HTTP verbs:
 - Make a `GET ` request to retrieve data depending on URI and query string <br>
   Read more about GET here: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-get">RFC9110</a>
 - `POST ` is used to create new resource/resources, and CareCloud API uses the POST verb for action methods calls.
@@ -105,7 +105,7 @@ Status codes represent a status of the API response.
 | ----------- | ----------- |
 | 400 Bad Request | Bad input parameter. Error message specifies the detail |
 | 401 Unauthorized | The client has invalid credentials or auth token |
-| 403 Forbidden | The client does not exist or the client tried to access non authorized property/resource |
+| 403 Forbidden | The client does not exist or the client tried to access an unauthorized property or resource |
 | 404 Not Found | The resource was not found |
 | 405 Method Not Allowed | The resource does not support the specified HTTP method |
 | 429 Too Many Requests | Too many requests - more than the resource limit |
@@ -114,7 +114,7 @@ Status codes represent a status of the API response.
 
 ### Language version
 
-It is used, when the integrator needs to get the right language version of the requested information (like name, description or note). To be able to identify the language version it is necessary to set HTTP header field accept-language.
+It is used when the integrator needs to get the right language version of the requested information (like name, description or note). To be able to identify the language version it is necessary to set HTTP header field accept-language.
 
 ```http request
 GET / HTTP/1.1
@@ -136,7 +136,7 @@ We try to make your life easier all the time. And one of these things that might
 It contains support tools for PHP developers but also platform-independent tools.
 
 ## POSTMAN collection 
-Easy way how to start using CareCloud API. Simply just download the collection and import it into your Postman installation. In matter of minutes you will be able to do API calls on your own.
+Easy way to start using CareCloud API. Simply just download the collection and import it into your Postman installation. In a matter of minutes you will be able to do API calls on your own.
 [https://github.com/crmcarecloud/postman-api-collection](https://github.com/crmcarecloud/postman-api-collection)
 ## SDK
 The SDK for the CareCloud REST API contains a list of resources and uses them with the best practices. That should make your integration easier. SDK was created for PHP developers only, and you can find it with its documentation on our GitHub:<br/>
@@ -181,7 +181,7 @@ HTTP PUT doesn't support updating a single parameter. You need to send the whole
 
 ## How do I create a customer account?
 
-In the CareCloud platform, each customer has their customer account, to which all data related to this customer are assigned. The customer  account can be found and identified by any unique identifier (such as a customer card) associated with that account.
+In the CareCloud platform, each customer has their customer account, to which all data related to this customer are assigned. The customer account can be found and identified by any unique identifier (such as a customer card) associated with that account.
 You can create a customer account using the method [[POST] /customers](#operation/postCustomer) as described [here](#section/Use-cases/Creation-of-a-customer-account-process).
 
 ## How does the authentication process work in the customer interface?
@@ -222,7 +222,7 @@ HTTP Authorization header looks similar to:
 ```http request
 Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOiA=
 ```
-5. For the customer login use the method [[POST] /tokens/{token_id}/actions/login](#operation/postTokenLogin). Remember to set `<token_id>` in the  HTTP Authorization header as is in step nr. 4. Put right customer credentials in the request's body after.
+5. For the customer login use the method [[POST] /tokens/{token_id}/actions/login](#operation/postTokenLogin). Remember to set `<token_id>` in the HTTP Authorization header as is in step nr. 4. Put right customer credentials in the request's body after.
 
 <p class="warning"> Note: Do not copy the credentials below. Code is just an example of a method used.</p>
 
@@ -435,24 +435,24 @@ For more information, please look at the picture below:
 
 ## Update of a forgotten password - customer
 
-Use case covers update of the customer  password through REST API. In this case, an external application operates the whole process and updates the the customer  password after a new password confirmation.
+Use case covers update of the customer password through REST API. In this case, an external application operates the whole process and updates the customer password after a new password confirmation.
 
 <img src="https://cdn.carecloud.cz/static/developers/img/forgotten_password_1.png">
 
-Use case covers update of the customer  password through REST API. It includes sending a forgotten password email to the customer.
+Use case covers update of the customer password through REST API. It includes sending a forgotten password email to the customer.
 
 <img src="https://cdn.carecloud.cz/static/developers/img/forgotten_password_rest_api-send-fp-email.png">
 
 
 ## Newsletter sign-up
-CDP CareCloud creates a customer account if it doesn't exist. And add a customer source dedicated to newsletters. This use case covers existing customers, customers signed to the newsletter, and new customers.
+The CareCloud platform creates a customer account if it doesn't exist. And add a customer source dedicated to newsletters. This use case covers existing customers, customers signed to the newsletter, and new customers.
 Customer source identifies the source of the customer (email, Facebook, registration, campaign summer 2021). It will tell you what the source of sign-up or registration is. Customers can have multiple sources.
 List of available customer sources is available in resource [[GET] /cusomer-sources](/#tag/Customer-sources). If you want to create a new customer source for an existing customer, you can do it at [[POST] /customers/{cusomer_id}/customer-source-records](#operation/postSubCustomerSource). If you're going to add a customer source to the customer while registering, you can do it right at [[POST] /customers](#operation/postCustomer).
 Following flowchart covers all three states of the customer:
 <br/>
 <img src="https://cdn.carecloud.cz/static/developers/img/customer_sign_up_for_newsletter.png">
 
-If it's a customer already signed up for the newsletter and wants to registred. You don't have to worry. Just follow the use case below. CPD CareCloud will handle this situation. You need to create a new customer with [[POST] /customers](#operation/postCustomer). In the end, you will have a customer with newsletter and registration sources.
+If it's a customer already signed up for the newsletter and wants to register. You don't have to worry. Just follow the use case below. CPD CareCloud will handle this situation. You need to create a new customer with [[POST] /customers](#operation/postCustomer). In the end, you will have a customer with newsletter and registration sources.
 
 ## Use of the resource properties
 
@@ -1183,16 +1183,16 @@ Authorization: Bearer Y3VzdG9tZXJfaW50ZXJmYWNlOmNlMzZjMDg2YmZjN2U3YjBkMjNjNjY3Yj
 4. POS system marks the purchase as successfully transferred to CareCloud.
 
 
-# CRM CareCloud API Reference
+# CareCloud API Reference
 
-CRM CareCloud API Reference describes each available resource in the API. Learn more about parameters, errors, and how to format your requests.  
-Review all available resources for CRM CareCloud API with this reference overview. Learn the basics of the API in CRM CareCloud  [Documentation](#).
+CareCloud API Reference describes each available resource in the API. Learn more about parameters, errors, and how to format your requests.
+Review all available resources for CareCloud API with this reference overview. Learn the basics of the API in the CareCloud platform [Documentation](#).
 
 ## Available resources overview
 
 ### [Campaign products](#tag/Campaign-products)
 
-Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in CRM CareCloud directly or via CareCloud API.
+Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud API.
 
 ### [Cards](#tag/Cards)
 
@@ -1200,15 +1200,15 @@ The Customer can be identified by different unique identificators - cards relate
 
 ### [Card types](#tag/Card-types)
 
-Different card types can be managed in CRM CareCloud. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of unique personal ID or any other identification method like barcode, QR code or any other key can be used. The card types can be differenciated by a prefix, name or design and managed by this resource.
+Different card types can be managed in the CareCloud platform. Credit Card, Loyalty Card, mobile Card, skipass, virtual Card or any other type of unique personal ID or any other identification method like barcode, QR code or any other key can be used. The card types can be differenciated by a prefix, name or design and managed by this resource.
 
 ### [Countries](#tag/Countries)
 
-Some data, especially addresses are tied to a Country, which is listed in CRM CareCloud. You can get here the list of countries available.
+Some data, especially addresses are tied to a Country, which is listed in the CareCloud platform. You can get here the list of countries available.
 
 ### [Customers](#tag/Customers)
 
-CRM CareCloud like a Customer Relationship Management system is about 360 view on a Customer and all relationships of the uinque Customer. Resource Customers is used for creation, processing and managing this basic entity, which contains personal and all additional related information about the Customer.
+The CareCloud platform is a Customer Relationship Management system with a 360 view on a Customer and all relationships of the unique Customer. Resource Customers is used for creation, processing and managing this basic entity, which contains personal and all additional related information about the Customer.
 
 ### [Customer source](#tag/Customer-sources)
 
@@ -1216,19 +1216,19 @@ Customer account can be created and tied to different sources, like online regis
 
 ### [Currencies](#tag/Currencies)
 
-Some data, especially Products can be tied to a Currency which is listed in CRM CareCloud. You can get here the list of currencies available.
+Some data, especially Products can be tied to a Currency which is listed in the CareCloud platform. You can get here the list of currencies available.
 
 ### [Languages](#tag/Languages)
 
-Some data, especially Customer accounts or Tokens are tied to a Language, which is listed in CRM CareCloud. You can get here the list of languages available.
+Some data, especially Customer accounts or Tokens are tied to a Language, which is listed in the CareCloud platform. You can get here the list of languages available.
 
 ### [Points](#tag/Points)
 
-If there is a Loyalty program managed by CRM CareCloud based on points collection, the points collection and redemption can be managed by this resource.
+If there is a Loyalty program managed by the CareCloud platform based on points collection, the points collection and redemption can be managed by this resource.
 
 ### [Products](#tag/Products)
 
-There is a Product database in CRM CareCloud that is available via this resource. Products are related to Product Groups, Product Brands and Stores. All this related information can be used for creation of Customer benefits tied to Products.
+There is a Product database in the CareCloud platform that is available via this resource. Products are related to Product Groups, Product Brands and Stores. All this related information can be used for creation of Customer benefits tied to Products.
 
 ### [Product Brands](#tag/Product-brands)
 
@@ -1240,7 +1240,7 @@ There is a possibility to create sets of Products with similar properties, calle
 
 ### [Product Reservations](#tag/Product-reservations)
 
-CRM CareCloud allows to reserve Products or Product sets and manage the reservation process. There is the possibility to create a special group of Products that can be reserved - Reservable products. The Reservation of a Product can be created by this resource.
+The CareCloud platform allows to reserve Products or Product sets and manage the reservation process. There is the possibility to create a special group of Products that can be reserved - Reservable products. The Reservation of a Product can be created by this resource.
 
 ### [Reservable Products](#tag/Reservable-products)
 
@@ -1248,23 +1248,23 @@ The set of Products that could be reserved can be limited. We call this group Re
 
 ### [Purchases](#tag/Purchases)
 
-There are the purchases tied to customer accounts stored in CRM CareCloud. The purchases are saved online when closing the bill or imported by the offline web service after the purchase. There are many parameters that specifies the purchase like bill items and its prices, date and time of the purchase, store, where purchase was made or loyalty card number. All this data are used for segmentation or voucher creation.
+There are the purchases tied to customer accounts stored in the CareCloud platform. The purchases are saved online when closing the bill or imported by the offline web service after the purchase. There are many parameters that specifies the purchase like bill items and its prices, date and time of the purchase, store, where purchase was made or loyalty card number. All this data are used for segmentation or voucher creation.
 
 ### [Recommendations](#tag/Recommendations)
 
-There is the possibility to recommend the customers a product, a service or just an information in CRM CareCloud based on customer purchasing behavior and many other criteria. All recommendations can be viewed by this resource.
+There is the possibility to recommend the customers a product, a service or just an information in the CareCloud platform based on customer purchasing behavior and many other criteria. All recommendations can be viewed by this resource.
 
 ### [Rewards](#tag/Rewards)
 
-Different types of Rewards for Customers can be created and managed in CRM CareCloud. The Reward is a pattern for creation of individual customer Vouchers that can be applicated to the Customer purchases directly. It is defined by a set of parameters like Reward validity, prioroty or number of points, that will be spent by application and many other. You can create rewards and get the information about actual rewards processed in CRM CareCloud by this resource.
+Different types of Rewards for Customers can be created and managed in the CareCloud platform. The Reward is a pattern for creation of individual customer Vouchers that can be applicated to the Customer purchases directly. It is defined by a set of parameters like Reward validity, prioroty or number of points, that will be spent by application and many other. You can create rewards and get the information about actual rewards processed in the CareCloud platform by this resource.
 
 ### [Segment](#tag/Segments)
 
-Segments are customer groups, which can be defined and created in CRM CareCloud according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
+Segments are customer groups, which can be defined and created in the CareCloud platform according to many different criteria. Customers in the Segment share some specific common information or property and can be managed via this resource.
 
 ### [Statuses](#tag/Statuses)
 
-Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used for management of loyalty membership levels within the loyalty scheme setup and can be processed by this resource.
+Status is a specific property of a customer account which can be achieved based on the defined criteria, like its validity, achieving principle or loyalty switch. It is often used to manage loyalty membership levels within the loyalty scheme setup and can be processed by this resource.
 
 ### [Stores](#tag/Stores)
 

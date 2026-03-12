@@ -58,7 +58,7 @@ properties:
       type: string
       example:
     readOnly: true
-    description: A list of an image URLs.
+    description: A list of image URLs.
   last_change:
     type: string
     readOnly: true

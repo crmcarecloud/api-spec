@@ -39,7 +39,7 @@ properties:
   secondary_external_id:
     type: string
     readOnly: false
-    description: Additional external ID of the event. It's used in case, when differentiation of external_id needed.
+    description: Additional external ID of the event. Used when differentiation of external_id is needed.
     example:
   state:
     type: integer

@@ -2,7 +2,7 @@ get:
   tags:
     - Vouchers
   summary: Get a collection of voucher properties records
-  description: Get information about all property records on an voucher.
+  description: Get information about all property records on a voucher.
   operationId: getSubVoucherProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
