@@ -1,6 +1,6 @@
-CareCloud API allows you to create and manage customer accounts and related resources like countries, languages, currencies, sources, or customer account statuses. You can use the API to manage vouchers, rewards, customer cards, segments, and other structures related to the customer account.
+CareCloud API is a REST API for integrating external systems with the CDP CareCloud platform. It provides endpoints for managing customer accounts and related structures, including loyalty cards, vouchers, rewards, points, credits, and reference data such as countries, languages, currencies, and customer statuses.
 
-Learn about the CareCloud API, which systems can use the API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need unique customer data.
+The API is used by two types of integration: backend systems such as e-commerce platforms, point-of-sale systems, kiosks, and booking platforms that process and synchronise customer data; and end-user applications such as mobile applications and web microsites that provide customers with access to their own account data.
 
 ## Just getting started?
 
@@ -22,10 +22,10 @@ The domain of your CDP CareCloud installation. In the Reference guide, we use <h
 
 The interface describes what kind of data access your application will have. In CareCloud API we use two kinds of interface:
 
-- Enterprise interface (URL part: `enterprise-interface`)  
+- Enterprise interface (URL part: `enterprise-interface`)
   It is mainly created for e-shops, POS, kiosks, booking, and other similar production systems that need to get the data lists.
 
-- Customer interface (URL part: `customer-interface`)  
+- Customer interface (URL part: `customer-interface`)
   It is created and used mainly for end-user applications like mobile Android and iOS APPs or web customer microsites needing unique customer data.
 
 We have created and described two API interfaces, where the main difference is the purpose of the systems for which the API is created.
@@ -49,13 +49,13 @@ This URL part represents the name of the resource you need to get data from. The
 
 A resource ID is used when you need to identify an accurate resource record. For example, while getting, updating, or deleting this record.
 
-#### (query_parameters)
+#### {query_parameters}
 
 All query parameters are documented and described with every resource. CareCloud API uses query parameters for pagination, filtration, or sorting of the API call results.
 
 ### Request body
 
-CareCloud API has a request body in [JSON format](https://www.json.org/json-en.html).  
+CareCloud API has a request body in [JSON format](https://www.json.org/json-en.html).
 The request body is used in case of creating a new record, updating an existing record, or in the action method call. In the request body, CareCloud API works with two kinds of parameters described below.
 
 #### Read-only parameters
@@ -67,6 +67,39 @@ These parameters are used only in response to API calls and should not be set in
 If a parameter is marked as `required` in the documentation, it is mandatory to use it in the CareCloud API call.
 
 If a parent structure of the parameter is not mandatory and you won't use it, child parameters of that structure won't be required. If you use the parent structure in the API call, all child parameters marked as mandatory will be required. Every data structure parameter is marked in the documentation, so you can see if the parameter is mandatory or not.
+
+### Response format
+
+Every API response uses `Content-Type: application/json`. All response payloads are wrapped in a top-level `data` object. List responses also include a `total_items` field at the root of `data`, which represents the total count of matching records across all pages (not just the current page). Example:
+
+```json
+{
+  "data": {
+    "customers": [ ... ],
+    "total_items": 342
+  }
+}
+```
+
+### Pagination and sorting
+
+All list endpoints support pagination via two query parameters:
+
+| Parameter | Default | Description |
+| --- | --- | --- |
+| `count` | 100 | Number of records to return per page (minimum: 1) |
+| `offset` | 0 | Number of records to skip before the first returned record |
+
+Use `total_items` from the response to determine whether additional pages exist.
+
+Sorting is supported via:
+
+| Parameter | Values | Description |
+| --- | --- | --- |
+| `sort_field` | Any first-level response field name | Field to sort by |
+| `sort_direction` | `ASC`, `DESC` | Sort order |
+
+All parameters are optional. Supported parameters for each endpoint are listed in the API reference for that endpoint.
 
 ### HTTP headers
 
@@ -130,7 +163,7 @@ In this example, the response can be cached for up to 3600 seconds (1 hour).
 
 Caching can impact data freshness. If you require real-time data, consider disabling caching for specific endpoints or consult with your CareCloud administrator.
 
-## HTTPS Verbs
+## HTTP verbs
 
 CareCloud API is available only through the secure protocol HTTPS. CareCloud API supports the following selection of HTTP verbs:
 
@@ -166,7 +199,7 @@ Status codes represent the status of the API response.
 | ------------------- | -------------------------------------------- |
 | 200 OK              | Successful                                   |
 | 201 Created         | Resource was created                         |
-| 204 No Content      | In case of success without any response data |
+| 204 No Content      | Successful response with no content returned |
 
 | Error status code         | Description                                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -179,34 +212,90 @@ Status codes represent the status of the API response.
 | 500 Internal Server Error | The server is not working as expected                                                                     |
 | 503 Service Unavailable   | Temporary state when the service is temporarily unavailable, overloaded, or there is a maintenance window |
 
-### List or all error reasons from general API endpoints
+### List of all error reasons from general API endpoints
 
-[block:html]
-{
-"html": "<p>When an HTTP 400 error occurs, the response includes the parameter <code>reason</code>, which specifies the type of problem identified in the API request structure.</p>\n<table>\n  <thead>\n    <tr>\n      <th>status</th>\n      <th>exception</th>\n      <th>reason</th>\n      <th>description</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>already_exists</td>\n      <td>The value already exists in CareCloud. For example, creating a customer with an email address that is already registered.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>empty</td>\n      <td>A parameter value is expected but not provided in the request. For example, a missing <code>customer_id</code> value.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>not_found</td>\n      <td>The request contains a non-existing resource ID, but the API expects an existing one.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>required</td>\n      <td>A required parameter is missing from the request.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>not_allowed_value</td>\n      <td>The request contains a value that is not allowed for the parameter according to the API specification.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>invalid_value_format</td>\n      <td>The parameter value does not match the required format defined in the API specification.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>relation_already_exists</td>\n      <td>The request attempts to create a parameter combination that already exists in CareCloud and must be unique.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>not_belong_to_logged_in_customer</td>\n      <td>The parameter value does not belong to the currently logged-in customer. This prevents unauthorized data access.</td>\n    </tr>\n    <tr>\n      <td>400</td>\n      <td>bad_request_exception</td>          \n      <td>deleted</td>\n      <td>The request tries to access or modify a resource that has already been deleted.</td>\n    </tr>\n  </tbody>\n</table>"
-}
-[/block]
+When an HTTP 400 error occurs, the response includes the parameter `reason`, which specifies the type of problem identified in the API request structure.
 
+| status | exception | reason | description |
+| --- | --- | --- | --- |
+| 400 | bad_request_exception | already_exists | The value already exists in CareCloud. For example, creating a customer with an email address that is already registered. |
+| 400 | bad_request_exception | empty | A parameter value is expected but not provided in the request. For example, a missing `customer_id` value. |
+| 400 | bad_request_exception | not_found | The request contains a non-existing resource ID, but the API expects an existing one. |
+| 400 | bad_request_exception | required | A required parameter is missing from the request. |
+| 400 | bad_request_exception | not_allowed_value | The request contains a value that is not allowed for the parameter according to the API specification. |
+| 400 | bad_request_exception | invalid_value_format | The parameter value does not match the required format defined in the API specification. |
+| 400 | bad_request_exception | relation_already_exists | The request attempts to create a parameter combination that already exists in CareCloud and must be unique. |
+| 400 | bad_request_exception | not_belong_to_logged_in_customer | The parameter value does not belong to the currently logged-in customer. This prevents unauthorized data access. |
+| 400 | bad_request_exception | deleted | The request tries to access or modify a resource that has already been deleted. |
 
 ### Specific error messages for the purchase closure process
 
-[block:html]
-{
-"html": "<p>Examples of the most occurred extended error codes from purchases resource endpoints and action methods:</p>\n      <table>\n        <thead>\n          <tr>\n            <th>status code</th>\n            <th>exception</th>\n            <th>name</th>\n            <th>reason</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>store_id</td>\n            <td>not_found</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>purchase_type_id</td>\n            <td>not_allowed_value</td>\n          </tr> \n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>bill_item_id</td>\n            <td>item_price_lower_than_paid_amount</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>bill_id</td>\n            <td>already_exists</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>bill_item_id</td>\n            <td>required</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>payment_time</td>\n            <td>invalid_value_format</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>credit_points</td>\n            <td>not_enough_points_for_payment</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>max_number_of_voucher_exceeded</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>system_id</td>\n            <td>different_system_id</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_not_allowed_in_store</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>not_enough_items_for_voucher</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_condition_count_not_satisfied</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_bonus_count_not_satisfied</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>unauthorized_use_vouchers</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>not_enough_items_for_voucher</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>not_enough_points_for_voucher</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_cant_be_applied_by_date</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_cant_be_applied_by_time</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_cant_be_applied_by_validity_days</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_cant_be_applied_by_segment</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_cant_be_used_in_store</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_assigned_to_another_customer</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_already_used</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_already_applied</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_expired</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>insufficient_amount_of_purchase</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_invalid_type_of_usage</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>card_number</td>\n            <td>card_is_blocked</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>benefit_codes</td>\n            <td>voucher_invalid_type_of_usage</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>max_points</td>\n            <td>points_min_amount_of_purchase</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>max_points</td>\n            <td>customer_cant_pay_by_points</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>payment_type</td>\n            <td>customer_cant_pay_by_credits</td>\n          </tr>\n          <tr>\n            <td>400</td>\n            <td>bad_request_exception</td>\n            <td>customer_id</td>\n            <td>customer_was_deleted</td>\n          </tr>\n        </tbody>\n      </table>\n      \n      <table>\n        <thead>\n          <tr>\n            <th>status code</th>\n            <th>exception</th>\n            <th>parameter</th>\n            <th>object_of_parameter</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>400</td>\n            <td>missing_argument_exception</td>\n            <td>code</td>\n            <td>PluId</td>\n          </tr>\n        </tbody>\n      </table>\n      \n      <table>\n        <thead>\n          <tr>\n            <th>status code</th>\n            <th>exception</th>\n            <th>expected_type</th>\n            <th>actual_type</th>\n            <th>parameter</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n           <td>400</td>\n           <td>invalid_argument_exception</td>\n           <td>string</td>\n           <td>null</td>\n           <td>payment_type</td>\n         </tr>\n        </tbody>\n      </table>\n      "
-}
-[/block]
+Examples of the most occurred extended error codes from purchases resource endpoints and action methods:
 
+| status code | exception | name | reason |
+| --- | --- | --- | --- |
+| 400 | bad_request_exception | store_id | not_found |
+| 400 | bad_request_exception | purchase_type_id | not_allowed_value |
+| 400 | bad_request_exception | bill_item_id | item_price_lower_than_paid_amount |
+| 400 | bad_request_exception | bill_id | already_exists |
+| 400 | bad_request_exception | bill_item_id | required |
+| 400 | bad_request_exception | payment_time | invalid_value_format |
+| 400 | bad_request_exception | credit_points | not_enough_points_for_payment |
+| 400 | bad_request_exception | benefit_codes | max_number_of_voucher_exceeded |
+| 400 | bad_request_exception | system_id | different_system_id |
+| 400 | bad_request_exception | benefit_codes | voucher_not_allowed_in_store |
+| 400 | bad_request_exception | benefit_codes | not_enough_items_for_voucher |
+| 400 | bad_request_exception | benefit_codes | voucher_condition_count_not_satisfied |
+| 400 | bad_request_exception | benefit_codes | voucher_bonus_count_not_satisfied |
+| 400 | bad_request_exception | benefit_codes | unauthorized_use_vouchers |
+| 400 | bad_request_exception | benefit_codes | not_enough_items_for_voucher |
+| 400 | bad_request_exception | benefit_codes | not_enough_points_for_voucher |
+| 400 | bad_request_exception | benefit_codes | voucher_cant_be_applied_by_date |
+| 400 | bad_request_exception | benefit_codes | voucher_cant_be_applied_by_time |
+| 400 | bad_request_exception | benefit_codes | voucher_cant_be_applied_by_validity_days |
+| 400 | bad_request_exception | benefit_codes | voucher_cant_be_applied_by_segment |
+| 400 | bad_request_exception | benefit_codes | voucher_cant_be_used_in_store |
+| 400 | bad_request_exception | benefit_codes | voucher_assigned_to_another_customer |
+| 400 | bad_request_exception | benefit_codes | voucher_already_used |
+| 400 | bad_request_exception | benefit_codes | voucher_already_applied |
+| 400 | bad_request_exception | benefit_codes | voucher_expired |
+| 400 | bad_request_exception | benefit_codes | insufficient_amount_of_purchase |
+| 400 | bad_request_exception | benefit_codes | voucher_invalid_type_of_usage |
+| 400 | bad_request_exception | card_number | card_is_blocked |
+| 400 | bad_request_exception | benefit_codes | voucher_invalid_type_of_usage |
+| 400 | bad_request_exception | max_points | points_min_amount_of_purchase |
+| 400 | bad_request_exception | max_points | customer_cant_pay_by_points |
+| 400 | bad_request_exception | payment_type | customer_cant_pay_by_credits |
+| 400 | bad_request_exception | customer_id | customer_was_deleted |
 
-<br />
+| status code | exception | parameter | object_of_parameter |
+| --- | --- | --- | --- |
+| 400 | missing_argument_exception | code | PluId |
+
+| status code | exception | expected_type | actual_type | parameter |
+| --- | --- | --- | --- | --- |
+| 400 | invalid_argument_exception | string | null | payment_type |
+
+## Rate limiting
+
+CareCloud API enforces request rate limits. When a client exceeds the configured limit, the API returns HTTP `429 Too Many Requests`. Retrying immediately after a `429` response will continue to fail. Use an exponential backoff strategy before retrying. See the [Integration best practices](https://carecloud.readme.io/reference/integration-best-practices) guide for a detailed approach.
 
 ## Action methods
 
-We use procedural calls in CareCloud API when resolving logic in CareCloud. For example, making product recommendations or recommending the best reward for customers depending on the purchase. We call them Action methods. The Action method can be called by existing resources, as in the example below:
+CareCloud API uses procedural calls to resolve logic within the platform, such as making product recommendations or determining the best reward for a customer based on a purchase. These are called action methods.
+
+Action methods follow one of two URI patterns, depending on whether the action applies to a specific record or to the resource as a whole:
+
+**Resource-level action** - applies to the resource without targeting a specific record:
 
 > 📘 POST  <https://{project_domain}/webservice/rest-api/{interface}/{version}/{resource_name}/actions/{action_method_name}>
 
-Where `{resource_name}` represents a resource. The keyword `actions` identify the procedural call, and `{action_method_name}` is a unique name for the action. Action name is unique across the CareCloud API.
+**Record-level action** - applies to a specific record identified by `{resource_id}`:
 
-This is the example of the action “add customer” by resource segments:
+> 📘 POST  <https://{project_domain}/webservice/rest-api/{interface}/{version}/{resource_name}/{resource_id}/actions/{action_method_name}>
+
+The keyword `actions` identifies the procedural call, and `{action_method_name}` is a unique name for the action. Action names are unique across the CareCloud API.
+
+This is an example of the record-level action "add customer" on the segments resource:
 
 `POST  https://{project_domain}/webservice/rest-api/enterprise-interface/v1.0/segments/{segment_id}/actions/add-customer`
