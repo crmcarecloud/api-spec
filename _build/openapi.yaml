@@ -24077,7 +24077,7 @@ components:
     phone:
       name: phone
       in: query
-      description: Phone number with international prefix (420000000).
+      description: Phone number of the customer with international prefix (420000000000).
       required: false
       schema:
         type: string

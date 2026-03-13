@@ -1,6 +1,13 @@
-# Enterprise interface
+The CareCloud REST API lets you read and write customer data, manage loyalty programs, process transactions, and trigger marketing automation - all from your own applications.
 
-> 👍 If you are building a mobile application, a customer portal, or a kiosk, see [Customer interface](https://carecloud.readme.io/reference/authentication-copy#customer-interface) instead.
+The API is served through two distinct interfaces, each designed for a different integration context. Choose the one that matches your use case:
+
+- **[Enterprise interface](#enterprise-interface)** - for backend systems, POS integrations, e-commerce platforms, and business intelligence tools.
+- **[Customer interface](#customer-interface)** - for mobile applications, web portals, kiosks, and smart device applications.
+
+Follow the guide for your interface below to make your first API call.
+
+# Enterprise interface
 
 Use this guide if you are building a POS system, an e-commerce backend, or a business intelligence integration.
 
@@ -16,7 +23,7 @@ You need the following before making your first API call:
 
 ## Step 1: Get a Bearer token
 
-Call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) to authenticate and receive a Bearer token. No `Authorization` header is required for this request.
+Call <a href="https://carecloud.readme.io/reference/postuserlogin" target="_blank">POST /users/actions/login</a> to authenticate and receive a Bearer token. No `Authorization` header is required for this request.
 
 ```http User login request
 POST https://sandbox.crmcarecloud.com/webservice/rest-api/enterprise-interface/v1.0/users/actions/login
@@ -114,15 +121,15 @@ A successful response returns a list of customers and the total number of matchi
 
 ## Step 3: What to do next
 
-- **Token validity and re-authentication** - tokens expire after 7 hours by default. For details on expiry handling and re-authentication, see [Enterprise interface authentication](https://carecloud.readme.io/reference/authentication#enterprise-interface-http-bearer-authentication).
-- **Production integration guidance** - before deploying, review the [Integration best practices](https://carecloud.readme.io/reference/best-practices) page.
-- **Postman collection** - to explore the API interactively before writing code, import the Postman collection. See [Tools](https://carecloud.readme.io/reference/tools).
+- **API overview** - for general and detailed information about the API, see the <a href="https://carecloud.readme.io/reference/getting-started-with-your-api" target="_blank">API overview</a>.
+- **Token validity and re-authentication** - tokens expire after 7 hours by default. For details on expiry handling and re-authentication, see <a href="https://carecloud.readme.io/reference/authentication#enterprise-interface-http-bearer-authentication" target="_blank">Enterprise interface authentication</a>.
+- **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practices" target="_blank">Integration best practices</a> page.
+- **Tools** - to explore the API interactively before writing code, import the Postman collection or use the SDK. See <a href="https://carecloud.readme.io/reference/tools" target="_blank">Tools</a>.
+- **Integration use cases** - to see what you can build with the Enterprise interface, browse the <a href="https://www.crmcarecloud.com/build-and-e-shop/#use-cases" target="_blank">integration use cases</a>.
 
 ---
 
 # Customer interface
-
-> 👍 If you are building a POS system, an e-commerce backend, or a business intelligence integration, see [Enterprise interface](https://carecloud.readme.io/reference/authentication-copy#enterprise-interface) instead.
 
 Use this guide if you are building a mobile application, a web portal, a kiosk, or a smart device application.
 
@@ -137,7 +144,7 @@ You need the following before making your first API call:
 
 ## Step 1: Create a device token
 
-Call [POST /tokens](https://carecloud.readme.io/reference/posttoken) to create an access token for your application installation. This request does not require an `Authorization` header.
+Call <a href="https://carecloud.readme.io/reference/posttoken" target="_blank">POST /tokens</a> to create an access token for your application installation. This request does not require an `Authorization` header.
 
 ```http request
 POST https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0/tokens
@@ -174,7 +181,7 @@ The response returns a `token_id`. This value is your Bearer token for all subse
 
 > 📘 Skip this step if your application does not need customer-specific data. The device token alone is sufficient for endpoints that do not require a logged-in customer.
 
-Call [POST /tokens/{token_id}/actions/login](https://carecloud.readme.io/reference/posttokenlogin) to associate the token with a customer account. Use the `token_id` from step 1 in both the URL path and the `Authorization` header.
+Call <a href="https://carecloud.readme.io/reference/posttokenlogin" target="_blank">POST /tokens/{token_id}/actions/login</a> to associate the token with a customer account. Use the `token_id` from step 1 in both the URL path and the `Authorization` header.
 
 ```http Customer login request
 POST https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0/tokens/4d8121dea8ae3c7b7fc66e6924ecc466dc7aa13e299ac757d87533ab2630f31bd906aadf/actions/login
@@ -262,6 +269,8 @@ A successful response returns the customer record for the logged-in customer:
 
 ## Step 4: What to do next
 
-- **Token behaviour and device identifier requirements** - for details on token lifecycle and how `device_id` affects token validity, see [Customer interface authentication](https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication).
-- **Production integration guidance** - before deploying, review the [Integration best practices](https://carecloud.readme.io/reference/best-practices) page.
-- **Postman collection** - to explore the API interactively before writing code, import the Postman collection. See [Tools](https://carecloud.readme.io/reference/tools).
+- **API overview** - for general and detailed information about the API, see the <a href="https://carecloud.readme.io/reference/getting-started-with-your-api" target="_blank">API overview</a>.
+- **Token behaviour and device identifier requirements** - for details on token lifecycle and how `device_id` affects token validity, see <a href="https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication" target="_blank">Customer interface authentication</a>.
+- **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practices" target="_blank">Integration best practices</a> page.
+- **Tools** - to explore the API interactively before writing code, import the Postman collection or use the SDK. See <a href="https://carecloud.readme.io/reference/tools" target="_blank">Tools</a>.
+- **Integration use cases** - to see what you can build with the Customer interface, browse the <a href="https://www.crmcarecloud.com/build-a-mobile-app/#use-cases" target="_blank">integration use cases</a>.

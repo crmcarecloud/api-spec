@@ -2,6 +2,10 @@ CareCloud API allows you to create and manage customer accounts and related reso
 
 Learn about the CareCloud API, which systems can use the API to connect with CDP CareCloud. Like e-shops, POS, kiosks, booking, and other production systems. These systems usually process the customer data sets with their relationships or end-user applications like mobile Android and iOS APPs or web microsites that need unique customer data.
 
+## Just getting started?
+
+Check out our <a href="https://carecloud.readme.io/reference/quickstart" target="_blank">quick-start guide</a> to make your first API call.
+
 ## CareCloud API call structure
 
 ### URI syntax
