@@ -14,12 +14,12 @@ properties:
   created_at:
     type: string
     readOnly: true
-    description: Date and time when was the segment record created. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the segment record creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-06-20 16:59:49"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-08-29 13:04:45"
 required:
   - segment_id

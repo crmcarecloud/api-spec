@@ -30,17 +30,17 @@ properties:
   applied_date:
     type: string
     readOnly: false
-    description: Voucher application date. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the voucher application. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2013-07-24 21:33:13"
   valid_from:
     type: string
     readOnly: false
-    description: Date from which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp from which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example:
   valid_to:
     type: string
     readOnly: false
-    description: Date until which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp until which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example:
   note:
     type: string

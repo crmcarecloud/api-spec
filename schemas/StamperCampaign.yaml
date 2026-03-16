@@ -31,12 +31,12 @@ properties:
   valid_from:
     type: string
     readOnly: false
-    description: Validity start date. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp from which the stamper campaign is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2025-03-15 17:00:00"
   valid_to:
     type: string
     readOnly: false
-    description: Validity end date. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp until which the stamper campaign is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2025-07-15 17:00:00"
   count_of_campaign_repetitions:
     type: integer

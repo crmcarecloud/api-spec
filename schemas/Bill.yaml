@@ -21,8 +21,8 @@ properties:
   payment_time:
     type: string
     readOnly: false
-    description: "Date and time of bill creation. *Possible value: 2016-06-30T15:51:49+02:00*"
-    example: "2016-06-30T15:5:49+02:00"
+    description: "Timestamp of the payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
+    example: "2016-06-30 15:05:49"
   created_by:
     type: string
     readOnly: false

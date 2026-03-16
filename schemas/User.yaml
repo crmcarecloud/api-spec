@@ -46,7 +46,7 @@ properties:
   last_login:
     type: string
     readOnly: true
-    description: Date and time of the last user login. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last user login. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-04-16 18:22:35.052987"
 required:
   - login

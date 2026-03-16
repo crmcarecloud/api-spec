@@ -25,7 +25,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. (YYYY-MM-DD HH:MM:SS)
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-23 11:47:22"
 required:
   - customer_source_id

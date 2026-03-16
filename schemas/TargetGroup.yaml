@@ -20,10 +20,10 @@ properties:
   created_at:
     type: string
     readOnly: true
-    description: Date of the target group creation. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the target group creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2024-07-03 21:33:13"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2024-07-05 11:24:12"

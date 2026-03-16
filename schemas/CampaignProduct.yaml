@@ -38,12 +38,12 @@ properties:
   valid_from:
     type: string
     readOnly: false
-    description: Validity of the campaign product from the date. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp from which the campaign product is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-04-16 00:00:00"
   valid_to:
     type: string
     readOnly: false
-    description: Validity of the campaign product to the date. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp until which the campaign product is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-05-16 23:59:59"
   display_in:
     type: array
@@ -69,7 +69,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-04-16 19:02:22"
   state:
     type: integer

@@ -35,7 +35,7 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: Date and time of the booking. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the booking. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2022-08-11 11:15:33"
   last_change:
     type: string

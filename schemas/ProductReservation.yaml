@@ -47,7 +47,7 @@ properties:
   pickup_date:
     type: string
     readOnly: true
-    description: Date of the reservation pickup in the tied store. *(YYYY-MM-DD)*
+    description: "Date of the reservation pickup in the tied store in ISO-8601 format (`YYYY-MM-DD`)."
     example: "2020-04-20"
   customers_note:
     type: string
@@ -109,7 +109,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2020-04-20 11:23:35"
   state:
     type: integer

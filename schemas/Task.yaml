@@ -45,12 +45,12 @@ properties:
     type: string
     format: date
     readOnly: false
-    description: Due date of the task. *(YYYY-MM-DD)*
+    description: "Due date of the task in ISO-8601 format (`YYYY-MM-DD`)."
     example: "2023-04-01"
   created_at:
     type: string
     readOnly: true
-    description: Date and time when task was created. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the task creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2023-03-28 16:59:49"
   state:
     type: integer

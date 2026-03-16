@@ -42,12 +42,12 @@ properties:
   valid_date_from:
     type: string
     readOnly: false
-    description: Indicates the date when the reward's validity period begins *(YYYY-MM-DD)*.
+    description: "Start date of the reward's validity period in ISO-8601 format (`YYYY-MM-DD`)."
     example: "2025-01-01"
   valid_date_to:
     type: string
     readOnly: false
-    description: Indicates the date when the reward's validity period ends *(YYYY-MM-DD)*.
+    description: "End date of the reward's validity period in ISO-8601 format (`YYYY-MM-DD`)."
     example: "2027-12-01"
   reward_type_id:
     type: string

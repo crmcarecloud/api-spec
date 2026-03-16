@@ -9,7 +9,7 @@ properties:
   paid_date:
     type: string
     readOnly: false
-    description: Date and time of the order payment. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the order payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-07-15 13:26:34"
   personal_information:
     $ref: '../schemas/_index.yaml#/PersonalInformation'

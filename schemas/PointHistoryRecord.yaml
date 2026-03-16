@@ -40,7 +40,7 @@ properties:
   point_history_record_time:
     type: string
     readOnly: true
-    description: Date and time of the point record from the point history. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the point record in the point history. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-09-16 15:33:11"
   extended_data:
     type: string

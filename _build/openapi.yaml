@@ -17864,7 +17864,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-12-16 17:42:28.248955'
     Attachment:
       type: object
@@ -17922,8 +17922,8 @@ components:
         payment_time:
           type: string
           readOnly: false
-          description: 'Date and time of bill creation. *Possible value: 2016-06-30T15:51:49+02:00*'
-          example: '2016-06-30T15:5:49+02:00'
+          description: 'Timestamp of the payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
+          example: '2016-06-30 15:05:49'
         created_by:
           type: string
           readOnly: false
@@ -18074,7 +18074,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the booking. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the booking. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2022-08-11 11:15:33'
         last_change:
           type: string
@@ -18144,7 +18144,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the booking item. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the booking item. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2017-06-20 16:59:49'
         state:
           type: integer
@@ -18160,7 +18160,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2013-07-24 21:33:33'
       required:
         - time_slot_id
@@ -18182,17 +18182,17 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time when ticket was created. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the ticket creation. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2022-07-26 11:38:22'
         valid_from:
           type: string
           readOnly: false
-          description: 'Date and time from when the ticket is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp from which the ticket is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: null
         valid_to:
           type: string
           readOnly: false
-          description: 'Date and time until which the ticket is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the ticket is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: null
         state:
           type: integer
@@ -18228,7 +18228,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of booking status creation. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the booking status creation. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2022-09-14 07:39:08.99493'
         state:
           type: integer
@@ -18284,7 +18284,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-04-16 18:22:35.052987'
         state:
           type: integer
@@ -18340,12 +18340,12 @@ components:
         valid_from:
           type: string
           readOnly: false
-          description: 'Validity of the campaign product from the date. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp from which the campaign product is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2021-04-16 00:00:00'
         valid_to:
           type: string
           readOnly: false
-          description: 'Validity of the campaign product to the date. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the campaign product is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2021-05-16 23:59:59'
         display_in:
           type: array
@@ -18372,7 +18372,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-04-16 19:02:22'
         state:
           type: integer
@@ -18479,13 +18479,13 @@ components:
         valid_from:
           type: string
           readOnly: false
-          description: 'Validity start date. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2021-04-14'
+          description: 'Timestamp from which the card is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
+          example: '2021-04-14 00:00:00'
         valid_to:
           type: string
           readOnly: false
-          description: 'Validity end date. *(YYYY-MM-DD HH:MM:SS)*'
-          example: '2059-07-05'
+          description: 'Timestamp until which the card is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
+          example: '2059-07-05 00:00:00'
         store_id:
           type: string
           readOnly: false
@@ -18596,7 +18596,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change of the record. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change of the record. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2024-06-23 11:47:23'
       required:
         - consent_id
@@ -18662,7 +18662,7 @@ components:
         valid_to:
           type: string
           readOnly: false
-          description: 'Date and time until which the credit record is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the credit record is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2027-12-12 00:00:00'
         currency_id:
           type: string
@@ -18727,7 +18727,7 @@ components:
         credit_history_record_time:
           type: string
           readOnly: true
-          description: 'Date and time of the credit record from the credit history. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the credit record in the credit history. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2023-03-07 09:53:55'
     CreditType:
       type: object
@@ -18746,7 +18746,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-04-05 07:46:44.190403'
     CreditWalletSummary:
       type: object
@@ -18998,7 +18998,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. (YYYY-MM-DD HH:MM:SS)'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-23 11:47:22'
       required:
         - customer_source_id
@@ -19157,7 +19157,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the event. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the event. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2021-04-29 14:51:43'
         secondary_external_id:
           type: string
@@ -19304,7 +19304,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of the event. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the event. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2021-04-29 14:51:43'
         secondary_external_id:
           type: string
@@ -19482,8 +19482,8 @@ components:
         payment_time:
           type: string
           readOnly: false
-          description: 'Date and time of bill creation *Possible value: 2016-06-30T15:51:49+02:00*'
-          example: '2016-06-30T15:5:49+02:00'
+          description: 'Timestamp of the payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
+          example: '2016-06-30 15:05:49'
         created_by:
           type: string
           readOnly: false
@@ -19671,12 +19671,12 @@ components:
         send_time:
           type: string
           readOnly: true
-          description: 'Date and time when the message was sent from the server to the recipient. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp when the message was sent from the server to the recipient. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-05 11:24:12'
         opened_time:
           type: string
           readOnly: true
-          description: 'Date and time when message was opened by recipient. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp when the message was opened by the recipient. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-05 13:24:12'
         mail_client_user_agent:
           type: string
@@ -19713,7 +19713,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-05 11:24:12'
       required:
         - message_template_id
@@ -19813,7 +19813,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-11-25 16:57:09'
       required:
         - subject
@@ -19914,7 +19914,7 @@ components:
         shipping_date:
           type: string
           readOnly: true
-          description: 'Date of the order shipping. If the date is in future, order should be shipped in this date.'
+          description: 'Timestamp of the order shipping. If the date is in the future, the order will be shipped on that date. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-07-19 17:26:34'
         program_ranking:
           type: integer
@@ -19934,7 +19934,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-07-15 17:26:34'
       required:
         - customer_id
@@ -19954,7 +19954,7 @@ components:
         paid_date:
           type: string
           readOnly: false
-          description: 'Date and time of the order payment. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the order payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2021-07-15 13:26:34'
         personal_information:
           $ref: '#/components/schemas/PersonalInformation'
@@ -20243,7 +20243,7 @@ components:
           type: string
           format: date
           readOnly: false
-          description: Customer's date of birth. *(YYYY-MM-DD)*
+          description: Customer's date of birth in ISO-8601 format (`YYYY-MM-DD`).
           example: '1985-02-12'
         email:
           type: string
@@ -20346,7 +20346,7 @@ components:
         valid_to:
           type: string
           readOnly: false
-          description: 'Date and time until which the point record is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the point record is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2023-09-16 23:59:59'
         state:
           type: integer
@@ -20362,8 +20362,8 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time of point record creation. *Possible value: 2016-06-30T15:51:49+02:00*'
-          example: '2016-06-30T15:5:49+02:00'
+          description: 'Timestamp of the point record creation. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
+          example: '2016-06-30 15:05:49'
         note:
           type: string
           readOnly: false
@@ -20416,7 +20416,7 @@ components:
         point_history_record_time:
           type: string
           readOnly: true
-          description: 'Date and time of the point record from the point history. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the point record in the point history. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-09-16 15:33:11'
         extended_data:
           type: string
@@ -20463,7 +20463,7 @@ components:
         expiration:
           type: string
           readOnly: false
-          description: 'Date and time of the point reservation expiration. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the point reservation expiration. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2023-10-31 00:00:00'
       required:
         - customer_id
@@ -20486,7 +20486,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-04-16 13:47:53'
     Price:
       type: object
@@ -20569,7 +20569,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-11-01 13:15:24'
         state:
           type: integer
@@ -20752,7 +20752,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-04-16 15:55:44.33538'
         state:
           type: integer
@@ -20821,7 +20821,7 @@ components:
         pickup_date:
           type: string
           readOnly: true
-          description: Date of the reservation pickup in the tied store. *(YYYY-MM-DD)*
+          description: Date of the reservation pickup in the tied store in ISO-8601 format (`YYYY-MM-DD`).
           example: '2020-04-20'
         customers_note:
           type: string
@@ -20883,7 +20883,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-04-20 11:23:35'
         state:
           type: integer
@@ -21003,7 +21003,7 @@ components:
         reservation_progress_time:
           type: string
           readOnly: true
-          description: 'Date and time of the change of the product reservation progress. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the product reservation progress change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2012-11-22 20:57:04'
     ProductReservationComment:
       type: object
@@ -21017,7 +21017,7 @@ components:
         comment_time:
           type: string
           readOnly: true
-          description: 'Date and time of the product reservation comment. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the product reservation comment. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2012-11-22 20:57:04'
     ProductReservationSource:
       type: object
@@ -21324,7 +21324,7 @@ components:
         payment_time:
           type: string
           readOnly: true
-          description: 'Date and time of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the purchase payment. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-02-24 00:00:00'
         items_count:
           type: integer
@@ -21366,7 +21366,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-01-17 00:00:00'
         purchase_property_records:
           type: array
@@ -21558,7 +21558,7 @@ components:
         due_date:
           type: string
           readOnly: false
-          description: 'Date until the turnover conditions need to be fulfilled. If the value is null, the date is unlimited.'
+          description: 'Due date by which the turnover conditions must be fulfilled in ISO-8601 format (`YYYY-MM-DD`). If the value is null, the date is unlimited.'
       required:
         - currency_id
         - value
@@ -21606,7 +21606,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-04-16 09:53:08'
         state:
           type: integer
@@ -21773,12 +21773,12 @@ components:
         valid_time_from:
           type: string
           readOnly: false
-          description: 'Time the reward is valid from. *(HH:MM:SS)*'
+          description: 'Time from which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone.'
           example: null
         valid_time_to:
           type: string
           readOnly: false
-          description: 'Time the reward is valid to. *(HH:MM:SS)*'
+          description: 'Time until which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone.'
           example: null
         reward_group:
           type: integer
@@ -22118,7 +22118,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-06-04 13:25:39'
       required:
         - name
@@ -22164,7 +22164,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-04-21 08:26:36.058922'
       required:
         - name
@@ -22185,12 +22185,12 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: 'Date and time when was the segment record created. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the segment record creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-06-20 16:59:49'
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-08-29 13:04:45'
       required:
         - segment_id
@@ -22294,12 +22294,12 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: 'Date and time when entrance was created in CareCloud. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the entrance creation in CareCloud. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-06 12:54:46'
         cancelled_at:
           type: string
           readOnly: true
-          description: 'Date and time when entrance was cancelled in CareCloud. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the entrance cancellation in CareCloud. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-09 22:38:48.088'
         charged_price:
           type: number
@@ -22315,22 +22315,22 @@ components:
         charge_date:
           type: string
           readOnly: true
-          description: 'Date and time when entrance will be/was charged to the POS system. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp when the entrance will be or was charged to the POS system. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-10 00:00:00'
         valid_from:
           type: string
           readOnly: true
-          description: Date of the first day when customer can use entrance. *(YYYY-MM-DD)*
+          description: Date of the first day when the customer can use the entrance in ISO-8601 format (`YYYY-MM-DD`).
           example: null
         valid_to:
           type: string
           readOnly: true
-          description: Date of the last day when customer can use entrance. *(YYYY-MM-DD)*
+          description: Date of the last day when the customer can use the entrance in ISO-8601 format (`YYYY-MM-DD`).
           example: null
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-08-29 13:04:45'
         state:
           type: integer
@@ -22390,12 +22390,12 @@ components:
         valid_date_from:
           type: string
           readOnly: false
-          description: Indicates the date when the reward's validity period begins *(YYYY-MM-DD)*.
+          description: Start date of the reward's validity period in ISO-8601 format (`YYYY-MM-DD`).
           example: '2025-01-01'
         valid_date_to:
           type: string
           readOnly: false
-          description: Indicates the date when the reward's validity period ends *(YYYY-MM-DD)*.
+          description: End date of the reward's validity period in ISO-8601 format (`YYYY-MM-DD`).
           example: '2027-12-01'
         reward_type_id:
           type: string
@@ -22595,12 +22595,12 @@ components:
         valid_from:
           type: string
           readOnly: false
-          description: 'Validity start date. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp from which the stamper campaign is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2025-03-15 17:00:00'
         valid_to:
           type: string
           readOnly: false
-          description: 'Validity end date. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the stamper campaign is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2025-07-15 17:00:00'
         count_of_campaign_repetitions:
           type: integer
@@ -22668,12 +22668,12 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: 'Date and time when stamper card was created. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the stamper card creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2023-03-28 16:59:49'
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-07-15 17:26:34'
         state:
           type: integer
@@ -22754,7 +22754,7 @@ components:
         created_at:
           type: string
           readOnly: false
-          description: 'Date and time when the customer collected the stamp. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp when the customer collected the stamp. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2024-07-15 17:26:34'
         last_change:
           type: string
@@ -22866,7 +22866,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-01-04 10:31:56'
       required:
         - name
@@ -22898,19 +22898,19 @@ components:
         valid_from:
           type: string
           readOnly: true
-          description: 'Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp from which the status record is valid. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-05-29 00:00:00'
         valid_to:
           type: string
           readOnly: true
-          description: 'Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the status record is valid. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-05-28 23:59:59'
         purchase_conditions:
           $ref: '#/components/schemas/PurchaseConditions'
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-08-06 10:31:09'
         state:
           type: integer
@@ -23155,12 +23155,12 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: 'Date of the target group creation. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the target group creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2024-07-03 21:33:13'
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2024-07-05 11:24:12'
     Task:
       type: object
@@ -23210,12 +23210,12 @@ components:
           type: string
           format: date
           readOnly: false
-          description: Due date of the task. *(YYYY-MM-DD)*
+          description: Due date of the task in ISO-8601 format (`YYYY-MM-DD`).
           example: '2023-04-01'
         created_at:
           type: string
           readOnly: true
-          description: 'Date and time when task was created. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the task creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2023-03-28 16:59:49'
         state:
           type: integer
@@ -23573,7 +23573,7 @@ components:
         last_login:
           type: string
           readOnly: true
-          description: 'Date and time of the last user login. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last user login. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-04-16 18:22:35.052987'
       required:
         - login
@@ -23646,17 +23646,17 @@ components:
         applied_date:
           type: string
           readOnly: false
-          description: 'Voucher application date. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the voucher application. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2013-07-24 21:33:13'
         valid_from:
           type: string
           readOnly: false
-          description: 'Date from which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp from which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2013-07-10 21:33:13'
         valid_to:
           type: string
           readOnly: false
-          description: 'Date until which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2013-07-30 21:33:13'
         reward_group:
           type: string
@@ -23673,12 +23673,12 @@ components:
         created_at:
           type: string
           readOnly: true
-          description: 'Date of the voucher creation. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the voucher creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-07-24 21:33:13'
         last_change:
           type: string
           readOnly: true
-          description: 'Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-07-24 21:33:33'
         state:
           type: integer
@@ -23726,17 +23726,17 @@ components:
         applied_date:
           type: string
           readOnly: false
-          description: 'Voucher application date. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp of the voucher application. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: '2013-07-24 21:33:13'
         valid_from:
           type: string
           readOnly: false
-          description: 'Date from which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp from which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: null
         valid_to:
           type: string
           readOnly: false
-          description: 'Date until which the voucher is valid. *(YYYY-MM-DD HH:MM:SS)*'
+          description: 'Timestamp until which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.'
           example: null
         note:
           type: string
@@ -23879,7 +23879,7 @@ components:
     valid_from:
       name: valid_from
       in: query
-      description: Date from which the record is valid. *(YYYY-MM-DD)*
+      description: Start of the validity period for filtering in ISO-8601 format (`YYYY-MM-DD`).
       required: false
       schema:
         type: string
@@ -23887,7 +23887,7 @@ components:
     valid_from_full:
       name: valid_from
       in: query
-      description: 'Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Start of the validity period for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -23896,7 +23896,7 @@ components:
     valid_to:
       name: valid_to
       in: query
-      description: Date until which the record is valid. *(YYYY-MM-DD)*
+      description: End of the validity period for filtering in ISO-8601 format (`YYYY-MM-DD`).
       required: false
       schema:
         type: string
@@ -23904,7 +23904,7 @@ components:
     valid_to_full:
       name: valid_to
       in: query
-      description: 'Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'End of the validity period for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -23938,7 +23938,7 @@ components:
     date_from:
       name: date_from
       in: query
-      description: Date (ISO 8601) start of the time interval. *(YYYY-MM-DD)*
+      description: Start of the time interval in ISO-8601 format (`YYYY-MM-DD`).
       required: false
       schema:
         type: string
@@ -23946,7 +23946,7 @@ components:
     date_to:
       name: date_to
       in: query
-      description: Date (ISO 8601) end of the time interval. *(YYYY-MM-DD)*
+      description: End of the time interval in ISO-8601 format (`YYYY-MM-DD`).
       required: false
       schema:
         type: string
@@ -24002,7 +24002,7 @@ components:
     time_from_full:
       name: time_from
       in: query
-      description: 'Filter results on the start of the time interval. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Start of the time interval for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -24011,7 +24011,7 @@ components:
     time_to_full:
       name: time_to
       in: query
-      description: 'Filter results on the end of the time interval. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'End of the time interval for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -24109,11 +24109,11 @@ components:
     birthdate:
       name: birthdate
       in: query
-      description: 'Customer''s date of birth. *Possible values are: YYYY-MM-DD / DD.MM.YYYY*'
+      description: Customer's date of birth. Accepts the format `YYYY-MM-DD` or `DD.MM.YYYY`.
       required: false
       schema:
         type: string
-      example: 985-02-12
+      example: '1985-02-12'
     agreement_id_path:
       name: agreement_id
       in: path
@@ -24270,21 +24270,21 @@ components:
     create_credit_time_from:
       name: create_credit_time_from
       in: query
-      description: 'Date and time from of the create credit record. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Start of the time interval for filtering credit records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
       allowReserved: true
-      example: '2015-01-05 1:00:00'
+      example: '2015-01-05 01:00:00'
     create_credit_time_to:
       name: create_credit_time_to
       in: query
-      description: 'Date and time to of the create credit record. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'End of the time interval for filtering credit records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
       allowReserved: true
-      example: '2020-01-05 1:00:00'
+      example: '2020-01-05 01:00:00'
     credit_operation_type:
       name: credit_operation_type
       in: query
@@ -24939,16 +24939,16 @@ components:
     send_time_from:
       name: send_time_from
       in: query
-      description: 'Start date and time of the time interval. *YYYY-MM-DD HH:MM:SS*'
+      description: 'Start of the time interval for filtering by send time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
       allowReserved: true
-      example: '2015-01-05 1:00:00'
+      example: '2015-01-05 01:00:00'
     send_time_to:
       name: send_time_to
       in: query
-      description: 'End date and time of the time interval. *YYYY-MM-DD HH:MM:SS*'
+      description: 'End of the time interval for filtering by send time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -25045,7 +25045,7 @@ components:
     create_point_time_from:
       name: create_point_time_from
       in: query
-      description: 'Date and time from of the create point record. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Start of the time interval for filtering point records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -25054,7 +25054,7 @@ components:
     create_point_time_to:
       name: create_point_time_to
       in: query
-      description: 'Date and time to of the create point record. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'End of the time interval for filtering point records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -25277,7 +25277,7 @@ components:
     payment_time_from:
       name: payment_time_from
       in: query
-      description: 'Date and time from of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'Start of the time interval for filtering purchases by payment time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -25286,7 +25286,7 @@ components:
     payment_time_to:
       name: payment_time_to
       in: query
-      description: 'Date and time to of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*'
+      description: 'End of the time interval for filtering purchases by payment time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.'
       required: false
       schema:
         type: string
@@ -25678,7 +25678,7 @@ components:
     task_due_date:
       name: due_date
       in: query
-      description: Date (ISO 8601) when the task due. *(YYYY-MM-DD)*
+      description: Due date of the task in ISO-8601 format (`YYYY-MM-DD`).
       required: false
       schema:
         type: string

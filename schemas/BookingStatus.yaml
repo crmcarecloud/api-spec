@@ -14,7 +14,7 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: Date and time of booking status creation. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the booking status creation. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2022-09-14 07:39:08.99493"
   state:
     type: integer

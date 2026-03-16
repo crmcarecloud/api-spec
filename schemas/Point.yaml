@@ -36,7 +36,7 @@ properties:
   valid_to:
     type: string
     readOnly: false
-    description: Date and time until which the point record is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp until which the point record is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2023-09-16 23:59:59"
   state:
     type: integer
@@ -52,8 +52,8 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: "Date and time of point record creation. *Possible value: 2016-06-30T15:51:49+02:00*"
-    example: "2016-06-30T15:5:49+02:00"
+    description: "Timestamp of the point record creation. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
+    example: "2016-06-30 15:05:49"
   note:
     type: string
     readOnly: false

@@ -19,19 +19,19 @@ properties:
   valid_from:
     type: string
     readOnly: true
-    description: Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp from which the status record is valid. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-05-29 00:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp until which the status record is valid. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-05-28 23:59:59"
   purchase_conditions:
     $ref: '../schemas/_index.yaml#/PurchaseConditions'
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2020-08-06 10:31:09"
   state:
     type: integer

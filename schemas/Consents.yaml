@@ -16,7 +16,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change of the record. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change of the record. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2024-06-23 11:47:23"
 required:
   - consent_id

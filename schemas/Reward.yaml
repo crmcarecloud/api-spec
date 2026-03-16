@@ -36,12 +36,12 @@ properties:
   valid_time_from:
     type: string
     readOnly: false
-    description: Time the reward is valid from. *(HH:MM:SS)*
+    description: "Time from which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone."
     example:
   valid_time_to:
     type: string
     readOnly: false
-    description: Time the reward is valid to. *(HH:MM:SS)*
+    description: "Time until which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone."
     example:
   reward_group:
     type: integer

@@ -123,7 +123,7 @@ A successful response returns a list of customers and the total number of matchi
 
 - **API overview** - for general and detailed information about the API, see the <a href="https://carecloud.readme.io/reference/getting-started-with-your-api" target="_blank">API overview</a>.
 - **Token validity and re-authentication** - tokens expire after 7 hours by default. For details on expiry handling and re-authentication, see <a href="https://carecloud.readme.io/reference/authentication#enterprise-interface-http-bearer-authentication" target="_blank">Enterprise interface authentication</a>.
-- **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practices" target="_blank">Integration best practices</a> page.
+- **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practice-as-an-api-client" target="_blank">Integration best practices</a> page.
 - **Tools** - to explore the API interactively before writing code, import the Postman collection or use the SDK. See <a href="https://carecloud.readme.io/reference/tools" target="_blank">Tools</a>.
 - **Integration use cases** - to see what you can build with the Enterprise interface, browse the <a href="https://www.crmcarecloud.com/build-and-e-shop/#use-cases" target="_blank">integration use cases</a>.
 
@@ -271,6 +271,6 @@ A successful response returns the customer record for the logged-in customer:
 
 - **API overview** - for general and detailed information about the API, see the <a href="https://carecloud.readme.io/reference/getting-started-with-your-api" target="_blank">API overview</a>.
 - **Token behaviour and device identifier requirements** - for details on token lifecycle and how `device_id` affects token validity, see <a href="https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication" target="_blank">Customer interface authentication</a>.
-- **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practices" target="_blank">Integration best practices</a> page.
+- **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practice-as-an-api-client" target="_blank">Integration best practices</a> page.
 - **Tools** - to explore the API interactively before writing code, import the Postman collection or use the SDK. See <a href="https://carecloud.readme.io/reference/tools" target="_blank">Tools</a>.
 - **Integration use cases** - to see what you can build with the Customer interface, browse the <a href="https://www.crmcarecloud.com/build-a-mobile-app/#use-cases" target="_blank">integration use cases</a>.

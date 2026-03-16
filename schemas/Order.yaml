@@ -57,7 +57,7 @@ properties:
   shipping_date:
     type: string
     readOnly: true
-    description: Date of the order shipping. If the date is in future, order should be shipped in this date.
+    description: "Timestamp of the order shipping. If the date is in the future, the order will be shipped on that date. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-07-19 17:26:34"
   program_ranking:
     type: integer
@@ -77,7 +77,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-07-15 17:26:34"
 required:
   - customer_id

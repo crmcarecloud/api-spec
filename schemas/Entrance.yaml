@@ -73,12 +73,12 @@ properties:
   created_at:
     type: string
     readOnly: true
-    description: Date and time when entrance was created in CareCloud. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the entrance creation in CareCloud. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2015-01-06 12:54:46"
   cancelled_at:
     type: string
     readOnly: true
-    description: Date and time when entrance was cancelled in CareCloud. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the entrance cancellation in CareCloud. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2015-01-09 22:38:48.088"
   charged_price:
     type: number
@@ -94,22 +94,22 @@ properties:
   charge_date:
     type: string
     readOnly: true
-    description: Date and time when entrance will be/was charged to the POS system. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp when the entrance will be or was charged to the POS system. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2015-01-10 00:00:00"
   valid_from:
     type: string
     readOnly: true
-    description: Date of the first day when customer can use entrance. *(YYYY-MM-DD)*
+    description: "Date of the first day when the customer can use the entrance in ISO-8601 format (`YYYY-MM-DD`)."
     example:
   valid_to:
     type: string
     readOnly: true
-    description: Date of the last day when customer can use entrance. *(YYYY-MM-DD)*
+    description: "Date of the last day when the customer can use the entrance in ISO-8601 format (`YYYY-MM-DD`)."
     example:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-08-29 13:04:45"
   state:
     type: integer

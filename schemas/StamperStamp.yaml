@@ -34,7 +34,7 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: Date and time when the customer collected the stamp. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp when the customer collected the stamp. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2024-07-15 17:26:34"
   last_change:
     type: string

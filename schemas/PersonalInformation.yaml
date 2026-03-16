@@ -42,7 +42,7 @@ properties:
     type: string
     format: date
     readOnly: false
-    description: Customer's date of birth. *(YYYY-MM-DD)*
+    description: "Customer's date of birth in ISO-8601 format (`YYYY-MM-DD`)."
     example: "1985-02-12"
   email:
     type: string

@@ -34,12 +34,12 @@ properties:
   created_at:
     type: string
     readOnly: true
-    description: Date and time when stamper card was created. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the stamper card creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2023-03-28 16:59:49"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-07-15 17:26:34"
   state:
     type: integer

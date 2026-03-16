@@ -46,7 +46,7 @@ properties:
   created_at:
     type: string
     readOnly: false
-    description: Date and time of the booking item. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the booking item. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2017-06-20 16:59:49"
   state:
     type: integer
@@ -62,7 +62,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: '2013-07-24 21:33:33'
 required:
   - time_slot_id

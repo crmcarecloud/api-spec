@@ -36,7 +36,7 @@ properties:
   expiration:
     type: string
     readOnly: false
-    description: Date and time of the point reservation expiration. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the point reservation expiration. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2023-10-31 00:00:00"
 required:
   - customer_id

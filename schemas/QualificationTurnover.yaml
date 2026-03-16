@@ -15,7 +15,7 @@ properties:
   due_date:
     type: string
     readOnly: false
-    description: Date until the turnover conditions need to be fulfilled. If the value is null, the date is unlimited.
+    description: "Due date by which the turnover conditions must be fulfilled in ISO-8601 format (`YYYY-MM-DD`). If the value is null, the date is unlimited."
 required:
   - currency_id
   - value

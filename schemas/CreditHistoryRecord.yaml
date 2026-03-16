@@ -40,5 +40,5 @@ properties:
   credit_history_record_time:
     type: string
     readOnly: true
-    description: Date and time of the credit record from the credit history. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the credit record in the credit history. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2023-03-07 09:53:55"

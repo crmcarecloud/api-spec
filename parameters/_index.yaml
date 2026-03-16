@@ -80,7 +80,7 @@ is_valid:
 valid_from:
   name: valid_from
   in: query
-  description: Date from which the record is valid. *(YYYY-MM-DD)*
+  description: "Start of the validity period for filtering in ISO-8601 format (`YYYY-MM-DD`)."
   required: false
   schema:
     type: string
@@ -88,7 +88,7 @@ valid_from:
 valid_from_full:
   name: valid_from
   in: query
-  description: Date and time from which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
+  description: "Start of the validity period for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -97,7 +97,7 @@ valid_from_full:
 valid_to:
   name: valid_to
   in: query
-  description: Date until which the record is valid. *(YYYY-MM-DD)*
+  description: "End of the validity period for filtering in ISO-8601 format (`YYYY-MM-DD`)."
   required: false
   schema:
     type: string
@@ -105,7 +105,7 @@ valid_to:
 valid_to_full:
   name: valid_to
   in: query
-  description: Date and time until which the record is valid. *(YYYY-MM-DD HH:MM:SS)*
+  description: "End of the validity period for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -139,7 +139,7 @@ valid_only:
 date_from:
   name: date_from
   in: query
-  description: Date (ISO 8601) start of the time interval. *(YYYY-MM-DD)*
+  description: "Start of the time interval in ISO-8601 format (`YYYY-MM-DD`)."
   required: false
   schema:
     type: string
@@ -147,7 +147,7 @@ date_from:
 date_to:
   name: date_to
   in: query
-  description: Date (ISO 8601) end of the time interval. *(YYYY-MM-DD)*
+  description: "End of the time interval in ISO-8601 format (`YYYY-MM-DD`)."
   required: false
   schema:
     type: string
@@ -203,7 +203,7 @@ tag_id_arr:
 time_from_full:
   name: time_from
   in: query
-  description: Filter results on the start of the time interval. *(YYYY-MM-DD HH:MM:SS)*
+  description: "Start of the time interval for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -212,7 +212,7 @@ time_from_full:
 time_to_full:
   name: time_to
   in: query
-  description: Filter results on the end of the time interval. *(YYYY-MM-DD HH:MM:SS)*
+  description: "End of the time interval for filtering. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -311,11 +311,11 @@ last_name:
 birthdate:
   name: birthdate
   in: query
-  description: "Customer's date of birth. *Possible values are: YYYY-MM-DD / DD.MM.YYYY*"
+  description: "Customer's date of birth. Accepts the format `YYYY-MM-DD` or `DD.MM.YYYY`."
   required: false
   schema:
     type: string
-  example: "985-02-12"
+  example: "1985-02-12"
 
 # Agreement parameters
 agreement_id_path:
@@ -480,21 +480,21 @@ credit_type_id:
 create_credit_time_from:
   name: create_credit_time_from
   in: query
-  description: Date and time from of the create credit record. *(YYYY-MM-DD HH:MM:SS)*
+  description: "Start of the time interval for filtering credit records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
   allowReserved: true
-  example: "2015-01-05 1:00:00"
+  example: "2015-01-05 01:00:00"
 create_credit_time_to:
   name: create_credit_time_to
   in: query
-  description: Date and time to of the create credit record. *(YYYY-MM-DD HH:MM:SS)*
+  description: "End of the time interval for filtering credit records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
   allowReserved: true
-  example: "2020-01-05 1:00:00"
+  example: "2020-01-05 01:00:00"
 credit_operation_type:
   name: credit_operation_type
   in: query
@@ -1177,16 +1177,16 @@ communication_channel_id:
 send_time_from:
   name: send_time_from
   in: query
-  description: "Start date and time of the time interval. *YYYY-MM-DD HH:MM:SS*"
+  description: "Start of the time interval for filtering by send time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
   allowReserved: true
-  example: "2015-01-05 1:00:00"
+  example: "2015-01-05 01:00:00"
 send_time_to:
   name: send_time_to
   in: query
-  description: "End date and time of the time interval. *YYYY-MM-DD HH:MM:SS*"
+  description: "End of the time interval for filtering by send time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -1288,7 +1288,7 @@ point_type_id:
 create_point_time_from:
   name: create_point_time_from
   in: query
-  description: Date and time from of the create point record. *(YYYY-MM-DD HH:MM:SS)*
+  description: "Start of the time interval for filtering point records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -1297,7 +1297,7 @@ create_point_time_from:
 create_point_time_to:
   name: create_point_time_to
   in: query
-  description: Date and time to of the create point record. *(YYYY-MM-DD HH:MM:SS)*
+  description: "End of the time interval for filtering point records by creation time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -1523,7 +1523,7 @@ purchase_type_id:
 payment_time_from:
   name: payment_time_from
   in: query
-  description: Date and time from of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*
+  description: "Start of the time interval for filtering purchases by payment time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -1532,7 +1532,7 @@ payment_time_from:
 payment_time_to:
   name: payment_time_to
   in: query
-  description: Date and time to of the purchase payment. *(YYYY-MM-DD HH:MM:SS)*
+  description: "End of the time interval for filtering purchases by payment time. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone."
   required: false
   schema:
     type: string
@@ -1937,7 +1937,7 @@ task_priority:
 task_due_date:
   name: due_date
   in: query
-  description: Date (ISO 8601) when the task due. *(YYYY-MM-DD)*
+  description: "Due date of the task in ISO-8601 format (`YYYY-MM-DD`)."
   required: false
   schema:
     type: string

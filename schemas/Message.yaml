@@ -44,12 +44,12 @@ properties:
   send_time:
     type: string
     readOnly: true
-    description: Date and time when the message was sent from the server to the recipient. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp when the message was sent from the server to the recipient. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2015-01-05 11:24:12"
   opened_time:
     type: string
     readOnly: true
-    description: Date and time when message was opened by recipient. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp when the message was opened by the recipient. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2015-01-05 13:24:12"
   mail_client_user_agent:
     type: string
@@ -86,7 +86,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2015-01-05 11:24:12"
 required:
   - message_template_id

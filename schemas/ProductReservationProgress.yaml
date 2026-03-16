@@ -14,5 +14,5 @@ properties:
   reservation_progress_time:
     type: string
     readOnly: true
-    description: Date and time of the change of the product reservation progress. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the product reservation progress change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2012-11-22 20:57:04"
