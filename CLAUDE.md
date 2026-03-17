@@ -67,6 +67,57 @@ Files under `paths/` are named descriptively in PascalCase after the resource or
 
 Follow existing file and schema patterns strictly. If you notice conflicting patterns across files, **do not guess which one is correct** — flag the conflict to the user and ask how to resolve it. Log conflicts that require a breaking change to resolve (they can be addressed in the next major API version).
 
+### Date and time fields
+
+Use these labels consistently:
+- Date + time field → **Timestamp**
+- Date-only field → **Date**
+- Time-only field → **Time**
+
+**Format conventions:**
+
+| Context | Format |
+|---|---|
+| API response (readOnly) | `YYYY-MM-DD HH:MM:SS` (space-delimited, no timezone indicator) |
+| API request (writable) | Accepts `YYYY-MM-DD HH:MM:SS` or ISO-8601 (`YYYY-MM-DDTHH:MM:SS`) |
+| Date-only | ISO-8601 `YYYY-MM-DD` |
+| Time-only | ISO-8601 `HH:MM:SS` |
+
+All times are always in the **local timezone** — never UTC. State this in every datetime description.
+
+**Description templates:**
+
+Datetime — readOnly:
+```
+Timestamp of [event]. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.
+```
+
+Datetime — writable:
+```
+Timestamp of [event]. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.
+```
+
+Datetime — query parameter:
+```
+[Filter context]. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.
+```
+
+Date only:
+```
+[Description] in ISO-8601 format (`YYYY-MM-DD`).
+```
+
+Time only:
+```
+[Description] in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone.
+```
+
+**Examples:**
+- readOnly datetime → `"2023-03-28 16:59:49"`
+- writable datetime → `"2021-04-14 00:00:00"`
+- query parameter datetime → `"2021-01-05 00:00:00"`
+- date-only → `"2023-04-01"`
+
 ### Linking between resources
 
 When a field references an ID or entity from another resource, add a markdown URL link to that endpoint at the end of the field's description. Always link to the list endpoint (e.g., `GET /customers`), not the single-resource endpoint (e.g., `GET /customers/{customer_id}`). Use the full readme.io URL format that is already established across the spec:
@@ -78,6 +129,12 @@ When a field references an ID or entity from another resource, add a markdown UR
 The URL slug pattern is: HTTP method + resource name, all lowercase and concatenated — e.g., `getcustomers`, `getstores`, `getbookingticketproperties`, `postpurchasesend`.
 
 There is no OpenAPI standard for cross-referencing operations in description fields. Full absolute URLs are the most portable format across documentation tools.
+
+When linking to another endpoint from a description, read the target endpoint file and check whether it carries an interface restriction (look for `⚠️ Endpoint is available only in the Enterprise interface` or equivalent). If it does, note the restriction in the link text — for example:
+
+```
+[POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only)
+```
 
 ## Writing Style and Grammar
 
@@ -132,7 +189,7 @@ If a requested change would break backward compatibility, **always notify the us
 This API must remain backward compatible within the current major version. All changes must follow these rules:
 
 - **Adding query parameters** — always optional, never required; include a description and an example
-- **Extending request/response bodies** — new fields must be optional; do not remove or rename existing fields
+- **Extending request/response bodies** — new fields must be optional; do not remove or rename existing fields. Before removing or renaming a field, verify it exists in the committed specification — a field added in the current editing session is not yet published and can be changed freely; a field present in a prior commit cannot be removed or renamed without a breaking change
 - **Deprecating parameters** — mark with `deprecated: true` and add a description explaining the replacement; never remove in the same major version
 - **Modifying descriptions** — safe to change at any time; keep consistent tone and style with surrounding text
 - **Linking resources** — use `$ref` to existing schemas/parameters rather than duplicating definitions; check `schemas/_index.yaml` and `parameters/_index.yaml` before creating anything new

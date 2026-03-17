@@ -107,7 +107,7 @@ post:
   tags:
     - Customers
   summary: Add a partner to the customer
-  description: Add a new partner to the customer.
+  description: Add a new partner to the customer. To replace all partner assignments in a single call, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only) instead.
   operationId: postSubCustomerPartnerRecord
   parameters:
     - $ref: '../../parameters/_index.yaml#/customer_id_path'

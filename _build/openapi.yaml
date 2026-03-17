@@ -3357,7 +3357,17 @@ paths:
       tags:
         - Customers
       summary: Create a new customer
-      description: Add a new customer account in the CareCloud platform.
+      description: |
+        Add a new customer account in the CareCloud platform.
+
+        **Partner assignment**
+
+        When a new customer account is created, CareCloud creates one or more customer-partner relations automatically. The assignment depends on the project configuration:
+
+        - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
+        - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
+
+        To control partner assignment explicitly after registration, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only), which replaces all partner assignments in a single call.
       operationId: postCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5283,7 +5293,7 @@ paths:
       tags:
         - Customers
       summary: Add a partner to the customer
-      description: Add a new partner to the customer.
+      description: 'Add a new partner to the customer. To replace all partner assignments in a single call, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only) instead.'
       operationId: postSubCustomerPartnerRecord
       parameters:
         - $ref: '#/components/parameters/customer_id_path'
@@ -6016,6 +6026,16 @@ paths:
       description: |
         Sign up a contact for the newsletter. The contact does not need to be an existing customer.
         ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud API.
+
+        **Partner assignment**
+
+        When a contact is signed up, CareCloud creates one or more customer-partner relations. The assignment is determined as follows:
+
+        - If `partner_records` is provided (non-empty array) - relations are created for exactly those partners.
+        - If `partner_records` is an empty array (`[]`) - no partner relations are created.
+        - If `partner_records` is omitted - relations are created for all partners accessible to the authenticated API user.
+
+        Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
       operationId: postCustomerNewslettersSignUp
       requestBody:
         required: true
@@ -6040,6 +6060,14 @@ paths:
                   readOnly: false
                   description: The unique ID of the language by ISO 639-1 code.
                   example: en
+                partner_records:
+                  type: array
+                  description: |
+                    List of partners to associate with the signed-up contact. When provided, partner assignment is based solely on this list. See the partner assignment rules in the endpoint description for the full precedence logic. [GET /partners](https://carecloud.readme.io/reference/getpartners)
+                  items:
+                    $ref: '#/components/schemas/PartnerRecord'
+                  example:
+                    - partner_id: 86e05affc7a7abefcd513ab400
               required:
                 - contact
                 - customer_source_id
@@ -20268,7 +20296,8 @@ components:
         store_id:
           type: string
           readOnly: false
-          description: 'The unique ID of the original customer account store of registration. In case of customer update, the value can only be updated, not removed. [GET /stores](https://carecloud.readme.io/reference/getstores)'
+          description: |
+            The unique ID of the original customer account store of registration. In case of customer update, the value can only be updated, not removed. When provided during customer registration and the project is configured for store-based partner assignment, the system derives the partner from the store and creates a single customer-partner relation. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 8bed991c68a4
         photo_url:
           type: string

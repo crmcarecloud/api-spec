@@ -5,6 +5,16 @@ post:
   description: |
     Sign up a contact for the newsletter. The contact does not need to be an existing customer.
     ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud API.
+
+    **Partner assignment**
+
+    When a contact is signed up, CareCloud creates one or more customer-partner relations. The assignment is determined as follows:
+
+    - If `partner_records` is provided (non-empty array) - relations are created for exactly those partners.
+    - If `partner_records` is an empty array (`[]`) - no partner relations are created.
+    - If `partner_records` is omitted - relations are created for all partners accessible to the authenticated API user.
+
+    Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
   operationId: postCustomerNewslettersSignUp
   requestBody:
     required: true
@@ -29,6 +39,14 @@ post:
               readOnly: false
               description: The unique ID of the language by ISO 639-1 code.
               example: "en"
+            partner_records:
+              type: array
+              description: |
+                List of partners to associate with the signed-up contact. When provided, partner assignment is based solely on this list. See the partner assignment rules in the endpoint description for the full precedence logic. [GET /partners](https://carecloud.readme.io/reference/getpartners)
+              items:
+                $ref: '../../schemas/_index.yaml#/PartnerRecord'
+              example:
+                - partner_id: "86e05affc7a7abefcd513ab400"
           required:
             - contact
             - customer_source_id

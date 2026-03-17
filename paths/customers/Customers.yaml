@@ -2,7 +2,17 @@ post:
   tags:
     - Customers
   summary: Create a new customer
-  description: Add a new customer account in the CareCloud platform.
+  description: |
+    Add a new customer account in the CareCloud platform.
+
+    **Partner assignment**
+
+    When a new customer account is created, CareCloud creates one or more customer-partner relations automatically. The assignment depends on the project configuration:
+
+    - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
+    - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
+
+    To control partner assignment explicitly after registration, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only), which replaces all partner assignments in a single call.
   operationId: postCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
