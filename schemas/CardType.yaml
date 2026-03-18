@@ -6,6 +6,11 @@ properties:
     readOnly: true
     description: The unique ID of the card type.
     example: "8bd48117006496e0b1788109b8"
+  text_id:
+    type: string
+    readOnly: true
+    description: The unique text identifier of the card type.
+    example: "isic_card"
   name:
     type: string
     readOnly: false

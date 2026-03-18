@@ -718,6 +718,17 @@ card_type_id:
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
+card_type_text_id_arr:
+  name: text_id
+  in: query
+  required: false
+  description: |
+    Filter by one value or a list of card type text IDs. The list of values is available at [GET /card-types](https://carecloud.readme.io/reference/getcardtypes).
+    In case you want to filter multiple options use array syntax: `text_id[]=isic_card&text_id[]=loyalty_card`
+    Logic OR is used between values.
+  schema:
+    type: string
+  example: "isic_card"
 card_state:
   name: state
   in: query
