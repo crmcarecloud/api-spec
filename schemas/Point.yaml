@@ -8,7 +8,6 @@ properties:
     example: "8bd48117006496e0b1788109b8"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "87af991126405bf8e7dfb36045"
   assigned_points:
@@ -25,17 +24,14 @@ properties:
     example: 700
   point_type_id:
     type: string
-    readOnly: false
     description: The unique ID of the point type. [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
     example: "81eaeea13b8984a169c490a325"
   partner_id:
     type: string
-    readOnly: false
     description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string
-    readOnly: false
     description: "Timestamp until which the point record is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2023-09-16 23:59:59"
   state:
@@ -51,12 +47,10 @@ properties:
     example: 1
   created_at:
     type: string
-    readOnly: false
     description: "Timestamp of the point record creation. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2016-06-30 15:05:49"
   note:
     type: string
-    readOnly: false
     description: Note for the new point record.
     example: "Birthdate point reward"
 required:

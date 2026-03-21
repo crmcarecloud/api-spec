@@ -8,23 +8,19 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   product_id:
     type: string
-    readOnly: false
     description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
     example: "8ad4ff4db9d628f2c8cb6181a4"
   currency_id:
     type: string
-    readOnly: false
     description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470e7aaeffbf048"
   campaign_id:
     type: string
-    readOnly: false
     description: The unique ID of the campaign. [GET /campaigns](https://carecloud.readme.io/reference/getcampaigns)
     example: "8ad8b2b701199684f1222961d6"
   value:
     type: number
     format: float
-    readOnly: false
     description: Value of the product.
     example: 50
   value_type_id:
@@ -32,29 +28,24 @@ properties:
     enum:
       - 1
       - 2
-    readOnly: false
     description: Type of value (1 - percentage discount value, 2 - final price).
     example: 1
   valid_from:
     type: string
-    readOnly: false
     description: "Timestamp from which the campaign product is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-04-16 00:00:00"
   valid_to:
     type: string
-    readOnly: false
     description: "Timestamp until which the campaign product is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-05-16 23:59:59"
   display_in:
     type: array
     items:
       type: string
-    readOnly: false
     description: List of possible display places.
     example: [ "mapi" ]
   type_id:
     type: string
-    readOnly: false
     description: Type of a campaign product.
     example: "86e05affc7a7abefcd513ab400"
   presentation_data:

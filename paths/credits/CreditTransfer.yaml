@@ -31,17 +31,14 @@ post:
               example: 100
             credit_type_id:
               type: string
-              readOnly: false
               description: The unique ID of the credit type for the transferred credits. [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes)
               example: '8adcb83164fa7e12668035d43e'
             currency_id:
               type: string
-              readOnly: false
               description: The unique ID of the currency. If not set, the default currency of the project is used. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
               example: "8bed991c68a470e7aaeffbf048"
             note:
               type: string
-              readOnly: false
               description: Note for the credit transfer.
               example: 'Merging customer account'
           required:

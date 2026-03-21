@@ -24,12 +24,10 @@ properties:
     example: "Manual rewards points for the product purchase collection"
   point_type_id:
     type: string
-    readOnly: false
     description: Type of the point record.
     example: "81eaeea13b8984a169c490a325"
   partner_id:
     type: string
-    readOnly: false
     description: The unique ID of the partner company.
     example: "86e05affc7a7abefcd513ab400"
   store_id:

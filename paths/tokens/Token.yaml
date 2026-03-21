@@ -4,9 +4,9 @@ put:
   tags:
     - Tokens
   summary: Edit a push token
-  description: >
-    Update a push token and installation setup. <br/>
-    ⚠️ Endpoint is available only in Customer interface. <br/>
+  description: |
+    Update a push token and installation setup.
+    ⚠️ Endpoint is available only in Customer interface.
   operationId: putToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

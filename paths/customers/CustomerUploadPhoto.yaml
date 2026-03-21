@@ -3,7 +3,8 @@ post:
     - Customers actions
   summary: Upload a customer profile photo
   description: |
-    Upload a customer profile photo. If the customer already has a photo, the new photo replaces the old one. Maximum size is 2 MB. <br/>
+    Upload a customer profile photo. If the customer already has a photo, the new photo replaces the old one. Maximum size is 2 MB.
+
     Available formats: `.jpg, .jpeg, .png`
   operationId: postCustomersUploadPhoto
   requestBody:

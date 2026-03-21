@@ -4,11 +4,11 @@ post:
   tags:
     - Tokens
   summary: Create a token
-  description: >
-    Create a token and setup of the client application. <br/>
-    ⚠️ The endpoint is available only in the Customer interface.<br/>
-    ⚠️ When creating a new token, the request doesn't need to contain an Authentication header.<br/>
-    ⚠️ Warning: We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.<br/>
+  description: |
+    Create a token and setup of the client application.
+    ⚠️ The endpoint is available only in the Customer interface.
+    ⚠️ When creating a new token, the request doesn't need to contain an Authentication header.
+    ⚠️ Warning: We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.
   operationId: postToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

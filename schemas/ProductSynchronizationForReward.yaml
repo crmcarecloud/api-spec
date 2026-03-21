@@ -3,7 +3,6 @@ description: Product resource.
 properties:
   product_id:
     type: string
-    readOnly: false
     description: The unique ID of the product. Product ID is required when parameter `plu_ids` is not set.
     example: "85d6598db0bf3f62afd5db8507"
   plu_id:
@@ -13,7 +12,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: |
       Describes the relation between the product and the reward.
       *Possible values:  0 - Condition - It is used when you need to list mandatory products in the shopping cart for reward application  / 1 - Bonus - It is used when products are part of a reward to the customer*

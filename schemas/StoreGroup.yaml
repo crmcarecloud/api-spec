@@ -8,7 +8,6 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
-    readOnly: false
     description: Name of the store group.
     example: "Groceries"
   last_change:

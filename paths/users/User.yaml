@@ -2,9 +2,9 @@ get:
   tags:
     - Users
   summary: Get information about a user
-  description: >
-    Get information about a specific user.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    Get information about a specific user.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: getUser
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

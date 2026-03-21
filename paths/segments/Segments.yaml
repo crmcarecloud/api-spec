@@ -124,7 +124,6 @@ post:
               example: "All customers that fits into criteria for winter campaign."
             priority:
               type: integer
-              readOnly: false
               description: The priority of defined segment. The possible value range 0 - 100.
               example: 47
           required:

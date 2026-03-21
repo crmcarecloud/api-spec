@@ -8,7 +8,6 @@ properties:
     example: "82de12eb8b138791e678fd11c3"
   name:
     type: string
-    readOnly: false
     description: Name of the segment.
     example: "VIP customers"
   segment_group_id:
@@ -23,7 +22,6 @@ properties:
     example:
   note:
     type: string
-    readOnly: false
     description: Short description of the segment.
     example: "VIP customers note test"
   last_change:

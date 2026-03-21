@@ -1,5 +1,4 @@
 type: object
-readOnly: false
 description: |
   Alternative payment methods summary.
   ⚠️ Ensure that all relevant parameters received in the response from the `POST /accept-payment` endpoint are correctly transferred to the `payment_recap` structure.
@@ -8,24 +7,20 @@ properties:
   credit_points:
     type: number
     format: float
-    readOnly: false
     description: Amount of the points used for payment of the purchase.
     example: 7.0
   amount_for_credit:
     type: number
     format: float
-    readOnly: false
     description: Amount of the credits used for payment of the purchase.
     example: 4.2
   vouchers:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PaymentVoucher'
-    readOnly: false
     description: List of used vouchers/rewards for the payment of purchases.
   recommended_discounts:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/DiscountItem'
-    readOnly: false
     description: List of applied discounts where the service did not use the voucher/reward.

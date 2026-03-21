@@ -3,7 +3,6 @@ description: Structure of bill from POS.
 properties:
   bill_id:
     type: string
-    readOnly: false
     description: |
       Identification number of the purchase created in the production system like POS, e-commerce solution or ERP (The ID must be unique in the production system).
       In case you want to send cancelled purchase, please use prefix `C` for the original purchase ID.
@@ -15,35 +14,29 @@ properties:
     example: "39475X"
   bill_number:
     type: string
-    readOnly: false
     description: Alternative identification of the bill. In the case of cancellation, there should be bill_id from the original bill.
     example:
   payment_time:
     type: string
-    readOnly: false
     description: "Timestamp of the payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2016-06-30 15:05:49"
   created_by:
     type: string
-    readOnly: false
     description: Name of the user who created a bill.
     example: "API user"
   currency_id:
     type: string
-    readOnly: false
     description: ID of the currency from resource [currencies](https://carecloud.readme.io/reference/getcurrencies).
     example: "8bed991c68a470e7aaeffbf048"
   total_price:
     type: number
     format: float
-    readOnly: false
     description: The total price of the bill as a sum of all items.
     example: 700
   bill_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/BillItem'
-    readOnly: false
     description: List of bill items.
 required:
   - bill_id

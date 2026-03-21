@@ -2,9 +2,9 @@ post:
   tags:
     - Users
   summary: User login
-  description: >
-    User login to external application.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    User login to external application.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postUserLogin
   security: []
   parameters:
@@ -18,7 +18,7 @@ post:
           properties:
             user_external_application_id:
               type: string
-              description: ID of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications).
+              description: ID of an external application where user wants to be logged in from resource [customer-external-applications](https://carecloud.readme.io/reference/customer-external-applications).
               example: "89d1a6111b3fb6e74665d948"
             login:
               type: string
@@ -43,7 +43,7 @@ post:
                 properties:
                   bearer_token:
                     type: string
-                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](#section/Authorization/bearerAuth)).
+                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](https://carecloud.readme.io/reference/authorization#bearerauth)).
                     example: "09359095c5da43c7ae11e710eabce49418715a6a"
                   valid_to:
                     type: string
@@ -64,7 +64,7 @@ post:
                 properties:
                   bearer_token:
                     type: string
-                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](#section/Authorization/bearerAuth)).
+                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](https://carecloud.readme.io/reference/authorization#bearerauth)).
                     example: "09359095c5da43c7ae11e710eabce49418715a6a"
                   valid_to:
                     type: string

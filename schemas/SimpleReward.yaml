@@ -8,7 +8,6 @@ properties:
     example: "83cfee22eabfbbb15a14815e30"
   code:
     type: string
-    readOnly: false
     description: |
       Unique code of the simple reward.
       The unique code serves as an identifier for specific rewards, allowing for easy recognition and application during transactions. 
@@ -19,39 +18,32 @@ properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/TextTranslation'
-    readOnly: false
     description: List of reward name translations.
   notes:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/TextTranslation'
-    readOnly: false
     description: List of note translations.
   subtitles:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/TextTranslation'
-    readOnly: false
     description: List of reward subtitle translations.
   points_cost:
     type: number
     format: float
-    readOnly: false
     description: Specifies the number of loyalty points required for voucher redemption.
     example: 200
   valid_date_from:
     type: string
-    readOnly: false
     description: "Start date of the reward's validity period in ISO-8601 format (`YYYY-MM-DD`)."
     example: "2025-01-01"
   valid_date_to:
     type: string
-    readOnly: false
     description: "End date of the reward's validity period in ISO-8601 format (`YYYY-MM-DD`)."
     example: "2027-12-01"
   reward_type_id:
     type: string
-    readOnly: false
     description: |
       Indicates the unique ID for the reward type, defining its behavior. Current supported types: *Product with fixed discount / Product with a discount in percentages / Product for discounted price*.
       See the [GET/reward−types](https://carecloud.readme.io/reference/getrewardtypes) endpoint for additional information.
@@ -59,32 +51,27 @@ properties:
   reward_type_value:
     type: number
     format: float
-    readOnly: false
     description: Represents the discount amount, which can be either a percentage, a fixed currency value, or the final price after applying the reward.
     example: 15
   maximum_discount_value:
     type: number
     format: float
-    readOnly: false
     description: Represents the maximum discount possible if `Product with a discount in percentages` reward type is selected. If not set, the maximum is not limited.
     example: 15
   minimum_purchase_value:
     type: number
     format: float
-    readOnly: false
     description: Specifies the minimum total purchase amount required to apply the reward's discount. If not set, the reward can be applied to any purchase regardless of the total price.
     example: 3000
   stores:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/StoreID'
-    readOnly: false
     description: List of the stores where the reward can be claimed.
   segments:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/SegmentID'
-    readOnly: false
     description: List of the segments for witch the reward can be applied.
   priority:
     type: integer
@@ -98,33 +85,28 @@ properties:
       - 7
       - 8
       - 9
-    readOnly: false
     description: Priority of the reward. *1 is the highest priority*
     example: 5
   image_urls:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/UrlLanguageVariant'
-    readOnly: false
     description: List of URLs linking to reward images in the chosen language.
   reward_external_urls:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/UrlLanguageVariant'
-    readOnly: false
     description: A list of URLs and their corresponding language versions, linking to external resources and information about rewards.
   tags:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Tag'
-    readOnly: false
     description: List of the tags assigned to the reward. Tags are used for easier identification of selected rewards. The list of tags for rewards is available at the endpoint [GET /rewards/tags](https://carecloud.readme.io/reference/getsubrewardtags).
   global_reward:
     type: boolean
     enum:
       - true
       - false
-    readOnly: false
     description: |
       The parameter describes if the reward is available for all CareCloud partners or only for selected one. If the reward is for selected partner only, the parameter partner_id is required in the request.
       Possible values:
@@ -133,7 +115,6 @@ properties:
     example: true
   partner_id:
     type: string
-    readOnly: false
     description: The unique ID of the partner. Partner represents business, company, or organization in the CareCloud domain. CareCloud allows single partner setup or multiple partner setup depending on the business setup.
     example: "86e05affc7a7abefcd513ab400"
   voucher_validity:
@@ -142,7 +123,6 @@ properties:
       - interval
       - end_of_time_unit
       - reward_validity
-    readOnly: false
     description: |
       This parameter determines the type of validity period applied to the voucher. It can be one of the following values:
         - `interval`  The voucher is valid for a specific time interval after issuance. If you use this value, the parameter voucher_validity_value is mandatory and you need to add there an interval. For example *7 days, 1 year, 10 weeks, 30 minutes, etc*
@@ -151,13 +131,11 @@ properties:
     example: "end_of_time_unit"
   voucher_validity_value:
     type: string
-    readOnly: false
     description: |
       This parameter determines the value of validity period applied to the voucher. Depending on the `voucher_validity` it can have multiple values. For a list of possible values, please read the description of `voucher_valdity` parameter.
     example: "2 years"
   voucher_code_generation_preference:
     type: string
-    readOnly: false
     description: |
       This parameter controls the method of generating voucher codes within the system. 
       It can be set to one of two values:
@@ -169,7 +147,6 @@ properties:
     enum:
       - true
       - false
-    readOnly: false
     description: |
       This parameter determines whether the voucher can be transferred to a customer other than the one it was originally assigned to. 
       The parameter can be set to:
@@ -180,7 +157,6 @@ properties:
     enum:
       - 1
       - 2
-    readOnly: false
     description: |
       State of the simple reward.
       *Possible values are: 1 - active / 2 - non active *

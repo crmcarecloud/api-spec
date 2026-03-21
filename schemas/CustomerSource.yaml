@@ -6,12 +6,10 @@ description: |
 properties:
   customer_source_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer source.
     example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
-    readOnly: false
     description: Name of the customer source.
     example: Webshop registration
   customer_source_text_id:

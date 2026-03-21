@@ -4,13 +4,11 @@ properties:
   gps_longitude:
     type: number
     format: float
-    readOnly: false
     description: GPS longitude.
     example: 0
   gps_latitude:
     type: number
     format: float
-    readOnly: false
     description: GPS latitude.
     example: 0
 required:

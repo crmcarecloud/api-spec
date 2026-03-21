@@ -87,7 +87,7 @@ post:
       label: CareCloud SDK
       source: |
         use CrmCareCloud\Webservice\RestApi\Client\ApiException;
-        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsAssignfreecardBody;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsAveragebookingbusytimesBody;
         use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
         use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
         use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
@@ -107,17 +107,17 @@ post:
         // Set Header parameter Accept-Language
         $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
-        // Set card info to the request body
-        $body = new ActionsAssignfreecardBody();
-        $body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder
-        $body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type
+        // Set request body
+        $body = new ActionsAveragebookingbusytimesBody();
+        $body->setBookingDate('2023-01-15'); // string | The date when you want to check how busy the bookings are
+        $body->setTimePeriod('week'); // string | The period for calculating past busy times. Possible values: day, week, month, year
 
         // Call endpoint and post data
         try
         {
-            $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);
-            $card_id = $post_assign_card->getData()->getCardId();
-            var_dump($card_id);
+            $post_booking_busy_times = $care_cloud->bookingsApi()->postBookingBusyTimes($body, $accept_language);
+            $time_unit = $post_booking_busy_times->getData()->getTimeUnit();
+            var_dump($time_unit);
         }
         catch(ApiException $e)
         {

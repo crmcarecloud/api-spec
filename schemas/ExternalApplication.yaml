@@ -3,12 +3,10 @@ description: External application structure.
 properties:
   external_application_id:
     type: string
-    readOnly: false
     description: The unique ID of the client external application.
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
-    readOnly: false
     description: The name of the external application.
     example: "Sandbox app"
   last_change:

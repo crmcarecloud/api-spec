@@ -2,10 +2,10 @@ post:
   tags:
     - Rewards
   summary: Set all products that reward can be applied to
-  description: >
-    Batch process helps to set all products in one request. Request needs to contain all the products, because previous products will be erased.<br/> 
-    ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    Batch process helps to set all products in one request. Request needs to contain all the products, because previous products will be erased.
+    ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postRewardSynchronizeProducts
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

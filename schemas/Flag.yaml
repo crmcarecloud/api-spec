@@ -3,12 +3,10 @@ description: Flag resource.
 properties:
   name:
     type: string
-    readOnly: false
     description: Name of the flag.
     example:
   text_id:
     type: string
-    readOnly: false
     description: The unique ID of the flag.
     example:
 required:

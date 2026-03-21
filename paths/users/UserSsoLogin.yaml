@@ -2,9 +2,9 @@ post:
   tags:
     - Users
   summary: User SSO login
-  description: >
-    User Signe sign-on login to external application. In this case it is necessary cary SSO token from CareCloud to login user.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    User Signe sign-on login to external application. In this case it is necessary cary SSO token from CareCloud to login user.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postUserSsoLogin
   security: []
   parameters:
@@ -41,7 +41,7 @@ post:
                 properties:
                   bearer_token:
                     type: string
-                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](#section/Authorization/bearerAuth))
+                    description: Authentication bearer token for an user. Token can be used for authentication in REST API with Bearer Authentication (more information about it [here](https://carecloud.readme.io/reference/authorization#bearerauth))
                     example: "09359095c5da43c7ae11e710eabce49418715a6a"
                   valid_to:
                     type: string

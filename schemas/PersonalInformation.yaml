@@ -3,7 +3,6 @@ description: Personal information of the customer.
 properties:
   salutation:
     type: string
-    readOnly: false
     description: Customer's salutation. If it is not set in POST or PUT calls, it will be generated automatically.
     example: "Dear Mr. Smith"
   gender:
@@ -15,39 +14,32 @@ properties:
       - 3
       - 4
       - 5
-    readOnly: false
     description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
     example: 1
   first_name:
     type: string
-    readOnly: false
     description: First name of the customer.
     example: "John"
   last_name:
     type: string
-    readOnly: false
     description: Last name of the customer.
     example: "Smith"
   pre_nominals:
     type: string
-    readOnly: false
     description: Academic degrees, academic titles, other titles of customer placed before name.
     example: "Dr."
   post_nominals:
     type: string
-    readOnly: false
     description: Academic degrees, academic titles, other titles of customer placed after name.
     example: "Ph.D"
   birthdate:
     type: string
     format: date
-    readOnly: false
     description: "Customer's date of birth in ISO-8601 format (`YYYY-MM-DD`)."
     example: "1985-02-12"
   email:
     type: string
     pattern: ^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
-    readOnly: false
     description: |
       Email of the customer.
       If you provide an email address, CareCloud validates its format and the validity of the domain.
@@ -56,17 +48,14 @@ properties:
   phone:
     type: string
     pattern: ^[1-9][0-9]*$
-    readOnly: false
     description: Phone number of the customer with international prefix (420000000000).
     example: "420523828931"
   language_id:
     type: string
-    readOnly: false
     description: The unique ID of the language by ISO 639-1 code.
     example: "en"
   store_id:
     type: string
-    readOnly: false
     description: |
       The unique ID of the original customer account store of registration. In case of customer update, the value can only be updated, not removed. When provided during customer registration and the project is configured for store-based partner assignment, the system derives the partner from the store and creates a single customer-partner relation. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "8bed991c68a4"
@@ -74,7 +63,7 @@ properties:
     type: string
     readOnly: true
     description: URL address of the customer photo. If customer has no photo, this parameter is not send.
-    example:
+    example: "https://example.com/photos/customer.jpg"
   address:
     $ref: '../schemas/_index.yaml#/Address'
   agreement:
@@ -84,9 +73,8 @@ properties:
       type: array
       items:
         $ref: '../schemas/_index.yaml#/Consents'
-      readOnly: false
       description: |
-        The list of all customer consents. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)
-        This parameter replacing parameter `agreement`. If both parameters are set (`agreement` and `consents`), the `consents` has priority while creating or updating the record.
+        The list of all customer consents. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents).
+        This parameter replaces the deprecated `agreement` parameter. If both parameters are provided, `consents` takes effect and `agreement` is ignored entirely.
 required:
   - language_id

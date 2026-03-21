@@ -8,7 +8,6 @@ properties:
     example: "8fd73167342d0689c4c015320"
   name:
     type: string
-    readOnly: false
     description: Name of the property item.
     example: '{"en":"evening","cz":"vecer"}'
   resource_record_id:

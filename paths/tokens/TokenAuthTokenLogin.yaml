@@ -2,10 +2,10 @@ post:
   tags:
     - Tokens
   summary: Login via authentication token
-  description: >
-    Log in the customer using the provided authentication token for a seamless and secure login experience. <br/>
-    The authentication token can be provided in the method [GET /tokens/{token_id}/actions/auth-token](https://carecloud.readme.io/reference/gettokenauthentication) <br/>
-    ⚠️ Endpoint is available only in Customer interface.<br/>
+  description: |
+    Log in the customer using the provided authentication token for a seamless and secure login experience.
+    The authentication token can be provided in the method [GET /tokens/{token_id}/actions/auth-token](https://carecloud.readme.io/reference/gettokenauthentication)
+    ⚠️ Endpoint is available only in Customer interface.
   operationId: postTokenAuthTokenLogin
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -33,7 +33,6 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   created_at:
     type: string
-    readOnly: false
     description: "Timestamp when the customer collected the stamp. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2024-07-15 17:26:34"
   last_change:
@@ -46,7 +45,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: |
       State of the stamp.
       *Possible values are: 0 - deleted / 1 - active*

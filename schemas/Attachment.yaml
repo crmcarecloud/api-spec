@@ -6,7 +6,6 @@ properties:
     enum:
       - url
       - base64
-    readOnly: false
     description: Method how to upload attachment file.
     example: "url"
   file_data:

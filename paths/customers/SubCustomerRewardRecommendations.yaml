@@ -4,8 +4,9 @@ get:
   summary: Recommend the best rewards for the customer
   description: |
     The endpoint recommends and orders the best rewards for the customer depending on the query parameters setup.
-    This endpoint uses a machine learning-based CareCloud Recommendation Engine. The CareCloud Recommendation Engine requires additional setup and training of AI models. If the recommendation models are not trained for your project, The endpoint returns a list of all rewards filtered by query parameters.    
-    <p class="warning">⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.</p>
+    This endpoint uses a machine learning-based CareCloud Recommendation Engine. The CareCloud Recommendation Engine requires additional setup and training of AI models. If the recommendation models are not trained for your project, The endpoint returns a list of all rewards filtered by query parameters.
+
+    ⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.
 
   operationId: getSubCustomerRewardsRecommendation
   parameters:

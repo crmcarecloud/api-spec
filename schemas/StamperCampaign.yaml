@@ -13,12 +13,10 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
-    readOnly: false
     description: Name of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
     example: "First customers"
   description:
     type: string
-    readOnly: false
     description: Description of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
     example: |
       Be among the first to join our exclusive loyalty program and start collecting digital stamps! For every purchase, you earn a stamp—collect 10 stamps to unlock a special reward. As a bonus, stamp #5 is a checkpoint that gives you an extra perk along the way! Start stamping today and enjoy exclusive rewards!
@@ -30,12 +28,10 @@ properties:
     example: 10
   valid_from:
     type: string
-    readOnly: false
     description: "Timestamp from which the stamper campaign is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2025-03-15 17:00:00"
   valid_to:
     type: string
-    readOnly: false
     description: "Timestamp until which the stamper campaign is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2025-07-15 17:00:00"
   count_of_campaign_repetitions:
@@ -62,7 +58,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: |
       State of the stamper campaign.
       *Possible values are: 0 - deleted / 1 - active*

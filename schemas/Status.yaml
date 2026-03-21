@@ -8,44 +8,36 @@ properties:
     example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
-    readOnly: false
     description: Name of the status.
     example: "Basic"
   description:
     type: string
-    readOnly: false
     description: Short description of the status.
     example:
   qualification_period:
     type: integer
-    readOnly: false
     description: The period of time (in months) in which it is necessary to qualify for the status based on defined conditions.
     example: 12
   qualification_turnover:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/QualificationTurnover'
-    readOnly: false
     description: The turnover necessary to qualify for the status based on defined conditions.
   qualification_points:
     type: number
     format: float
-    readOnly: false
     description: Amount of points necessary to qualify for the status based on defined conditions.
     example: 3000
   previous_status:
     type: string
-    readOnly: false
     description: The previous status required to qualify for the next status based on defined conditions. The conditions are defined in parameters qualification_period and qualification_turnover.
     example:
   next_status:
     type: string
-    readOnly: false
     description: ID of the following status.
     example: "83d1d11ea3884a5d33253fe214"
   validity_period:
     type: string
-    readOnly: false
     description: Definition of the status validity period.
     example: "2 years"
   collection_points:
@@ -53,7 +45,6 @@ properties:
     enum:
       - true
       - false
-    readOnly: false
     description: Enable / disable points collection.
     example: true
   payment_points:
@@ -61,19 +52,16 @@ properties:
     enum:
       - true
       - false
-    readOnly: false
     description: Enable / disable payment by points.
     example: true
   qualification_type:
     type: integer
-    readOnly: false
     description: |
       The status achieving principle.
       *(0 - after creation of the account / 1 - manually / 2 - after the defined conditions are met)*
     example: 1
   discount:
     type: integer
-    readOnly: false
     description: The basic loyalty discount.
     example: 0
   overall_discount_on_discounted_purchase_items:

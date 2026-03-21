@@ -13,12 +13,10 @@ properties:
     example: "isic_card"
   name:
     type: string
-    readOnly: false
     description: Name of the card type.
     example: "Postman test type"
   prefix:
     type: string
-    readOnly: false
     description: Prefix of the specific card type cards.
     example: "092"
 required:

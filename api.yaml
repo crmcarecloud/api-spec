@@ -67,21 +67,26 @@ tags:
   - name: Events
     description: |
       Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application.
+
       **Scheme of the MA related resources and their relations:**
-      <br />
-      <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
+
+      ![](https://cdn.carecloud.cz/static/developers/img/event_group.png)
   - name: Event groups
     description: |
       Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event groups below.
-      <br />**Scheme of the MA related resources and their relations:**<br />
-      <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
+
+      **Scheme of the MA related resources and their relations:**
+
+      ![](https://cdn.carecloud.cz/static/developers/img/event_group.png)
   - name: Event properties
     description: Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of available properties for the events resource below.
   - name: Event types
     description: |
       Events are a unique entity that you can use to record various activities on the customer account. The structure of events allows you to define different types of events with specific properties, group them, and link to an individual customer account. You can use events to trigger, manage, and create workflow conditions in the Marketing Automation application. You find the list of marketing automation event types below.
-      <br />**Scheme of the MA related resources and their relations:**<br />
-      <img src="https://cdn.carecloud.cz/static/developers/img/event_group.png">
+
+      **Scheme of the MA related resources and their relations:**
+
+      ![](https://cdn.carecloud.cz/static/developers/img/event_group.png)
   - name: Hints
     description: There is the possibility to recommend the customers a product, a service, or just information in the CareCloud platform based on customer purchasing behavior and many other criteria. This resource can return all hints for the customer.
   - name: Interests
@@ -170,18 +175,22 @@ tags:
   - name: Tests
     description: Test resource lets you check if the API is currently available.
   - name: Tokens
-    description: >
+    description: |
       Management of token resources. Tokens are used for identification of the application installation on a device and for setup of basic application parameters (permissions, language, notification identification).
-      <p class="warning">⚠️ Warning: Tokens resource is available only in Customer interface.</p>
-      <p class="warning">Note: The process of authentication and login to customer account using the HTTP methods  /tokens and  /tokens/{token_id}/actions/login is desribed in the section <a href="#section/Use-cases/Authentication-and-login-process-for-customer-interface">Use cases</a>.</p>
+
+      ⚠️ Warning: Tokens resource is available only in Customer interface.
+
+      Note: The process of authentication and login to customer account using the HTTP methods /tokens and /tokens/{token_id}/actions/login is described in the section [Use cases](https://carecloud.readme.io/reference/use-cases#authentication-and-login-process-for-customer-interface).
   - name: Users
-    description: >
+    description: |
       A user is a person who utilizes an Application, a computer or network service. A user has a user account and is identified to the system by a username and password. The user is assigned a user role and user permissions in the Application.
-      <br/><p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>
+
+      ⚠️ Warning: Resource is available only in Enterprise interface.
   - name: User roles
-    description: >
+    description: |
       User role is a permission set that controls access to Applications, actions and features within the CareCloud Platform. Each User account requires a User role assignment.
-      <br/><p class="warning">⚠️ Warning: Resource is available only in Enterprise interface.</p>
+
+      ⚠️ Warning: Resource is available only in Enterprise interface.
   - name: Vouchers
     description: Vouchers are generated by the Rewards for a specific Customer account and they are applied during the purchasing process. They are defined by its value, validity and related Reward. Vouchers can be managed by this resource.
   - name: Voucher properties

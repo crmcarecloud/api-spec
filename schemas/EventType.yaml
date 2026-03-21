@@ -3,12 +3,10 @@ description: Event type resource.
 properties:
   event_type_id:
     type: string
-    readOnly: false
     description: The unique ID of the event type.
     example: "82d0f9d976dee39aac13dc7ea"
   event_group_id:
     type: string
-    readOnly: false
     description: The unique ID of the event group. [GET /event-groups](https://carecloud.readme.io/reference/geteventgroups)
     example: "8bed991c68a470eaaeffbf048"
   event_group_text_id:
@@ -18,7 +16,6 @@ properties:
     example: "shopping"
   name:
     type: string
-    readOnly: false
     description: Name of the event type.
     example: "Voucher activation"
   text_id:
@@ -28,7 +25,6 @@ properties:
     example: "voucher_activation"
   icon_name:
     type: string
-    readOnly: false
     description: Icon name from [Google Fonts Icons](https://fonts.google.com/icons).
     example: "check_box"
   state:

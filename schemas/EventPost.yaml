@@ -8,7 +8,6 @@ properties:
     example: "82de12eb8b138791e678fd11c3"
   event_type_id:
     type: string
-    readOnly: false
     description: The unique ID of the event type. [GET /event-types](https://carecloud.readme.io/reference/geteventtypes)
     example: "8bda8a4854394325e2748a5005"
   customer_id:
@@ -73,7 +72,6 @@ properties:
 
   external_id:
     type: string
-    readOnly: false
     description: The unique external ID of the event. It may be ID from other system.
     example: "157613"
   data:
@@ -83,17 +81,14 @@ properties:
         items:
           type: string
       - type: object
-    readOnly: false
     description: Additional data of the event. Serialized data in JSON.
     example: '{"id_account_history_change":6}'
   created_at:
     type: string
-    readOnly: false
     description: "Timestamp of the event. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-04-29 14:51:43"
   secondary_external_id:
     type: string
-    readOnly: false
     description: Additional external ID of the event. Used when differentiation of external_id is needed.
     example:
   state:

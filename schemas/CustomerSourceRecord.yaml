@@ -10,7 +10,6 @@ properties:
     type: string
     description: >
       The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created. For the list of all available customer sources please look at: [customer-sources](https://carecloud.readme.io/reference/getcustomersources).
-    readOnly: false
     example: "86e05affc7a7abefcd513ab400"
   customer_id:
     type: string
@@ -20,7 +19,6 @@ properties:
   external_id:
     type: string
     description: The unique external ID of the customer. It may be ID from the other system.
-    readOnly: false
     example: "A66854921C"
   last_change:
     type: string

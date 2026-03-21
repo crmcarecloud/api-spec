@@ -8,12 +8,10 @@ properties:
     example: "87ac34ef46f3858a4ece61fb43"
   status_id:
     type: string
-    readOnly: false
     description: The unique ID of the status.
     example: "86e05affc7a7abefcd513ab400"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer.
     example: "89ac83ca207a820c62c79bf03a"
   valid_from:

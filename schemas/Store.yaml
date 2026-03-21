@@ -8,54 +8,45 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   store_code:
     type: string
-    readOnly: false
     description: External code of the store.
     example: "84a169c490a325"
   name:
     type: string
-    readOnly: false
     description: Name of the store.
     example: "Another good store"
   store_address:
     $ref: '../schemas/_index.yaml#/Address'
   contact_email:
     type: string
-    readOnly: false
     description: Contact email of the store.
     example: "good.store@crmcarecloud.com"
   manager_name:
     type: string
-    readOnly: false
     description: Name of the store manager.
     example: "Andrew Black"
   phone_number:
     type: string
     pattern: ^[1-9][0-9]*$
-    readOnly: false
     description: Phone number of the store with international prefix (420000000000).
     example: "420523828931"
   partner_id:
     type: string
-    readOnly: false
     description: The unique ID of the partner.
     example: "86e05affc7a7abefcd513ab400"
   system_id:
     type: string
-    readOnly: false
     description: The external unique ID of the store in external system.
     example: "2375303497"
   gps_coordinates:
     $ref: '../schemas/_index.yaml#/GPSCoordinates'
   url_address:
     type: string
-    readOnly: false
     description: URL address of the store.
     example: "www.crmcarecloud.com"
   opening:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/OpeningDay'
-    readOnly: false
     description: List of opening days.
   image_urls:
     type: array
@@ -76,17 +67,14 @@ properties:
     example: 1
   short_description:
     type: string
-    readOnly: false
     description: Short description of the store.
     example: "Another good store for buying beverages"
   description:
     type: string
-    readOnly: false
     description: Long description of the store.
     example: "Another good store for buying beverages: beer, wine, juice, soda"
   registration_id:
     type: string
-    readOnly: false
     description: Legal registration number of the store.
     example: "81eaeea13b89"
   last_change:

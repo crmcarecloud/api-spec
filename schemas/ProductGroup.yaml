@@ -8,32 +8,26 @@ properties:
     example: "8fd73167342d06899c4c015320"
   name:
     type: string
-    readOnly: false
     description: Name of the product group.
     example: "Accessories"
   parent_product_group_id:
     type: string
-    readOnly: false
     description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.
     example: "83d1d11ea3884a5d33253fe214"
   parent_external_id:
     type: string
-    readOnly: false
     description: The unique external ID of the parent product group. If `parent_product_group_id` is also set, both parameters have to represent the same product group.
     example: "678"
   code:
     type: string
-    readOnly: false
     description: Code of the product group.
     example: "567829"
   external_id:
     type: string
-    readOnly: false
     description: The external unique ID of the product group.
     example: "953"
   store_id:
     type: string
-    readOnly: false
     description: The unique ID of the store where the product group is valid. The product group is global if this value is not set. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "83d1d11ea3884a5d33253fe214"
   partner_id:

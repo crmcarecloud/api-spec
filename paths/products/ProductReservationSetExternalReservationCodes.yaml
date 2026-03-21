@@ -2,9 +2,9 @@ post:
   tags:
     - Product reservations
   summary: Set one or multiple external reservation codes of different types to the product reservation
-  description: >
-    Set one or multiple external reservation codes of different types to the product reservation.<br/>
-    The method will set all the reservation codes from the request.<br/>
+  description: |
+    Set one or multiple external reservation codes of different types to the product reservation.
+    The method will set all the reservation codes from the request.
     If a reservation code type already exists in the reservation, it will be replaced with a new value from the request. If the request does not contain the reservation code type already in the reservation, CareCloud will make no changes to the reservation code.
   operationId: postProductReservationSetExternalReservationCode
   parameters:

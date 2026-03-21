@@ -36,7 +36,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: |
       State of the booking ticket.
       *Possible values are: 0 - blocked / 1 - active*

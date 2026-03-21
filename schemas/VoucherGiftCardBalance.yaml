@@ -9,12 +9,10 @@ properties:
   current_balance:
     type: number
     format: float
-    readOnly: false
     description: Balance left on the Gift card voucher.
     example: 75
   original_balance:
     type: number
     format: float
-    readOnly: false
     description: Original balance value of the voucher. The number represents the value before the first usage of the Gift card voucher.
     example: 75

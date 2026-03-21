@@ -2,8 +2,8 @@ post:
   tags:
     - Rewards
   summary: Create a Simple reward
-  description: >
-    Create a new simple reward.<br/>
+  description: |
+    Create a new simple reward.
     ⚠️ Action methods are available only in Enterprise interface.
   operationId: postRewardCreateSimpleReward
   parameters:

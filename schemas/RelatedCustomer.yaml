@@ -8,7 +8,6 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   related_customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the related customer.
     example: "8aa68a112c62ad5f84a22a0652"
   short_name:
@@ -18,12 +17,10 @@ properties:
     example: "Peter D."
   customer_relation_type_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer relation type.
     example: "8bed991c68a470e7aaeffbf048"
   is_leading:
     type: boolean
-    readOnly: false
     description: 'Parameter says, if related customer is a leader in their relationship. *Example: Parent is a leader, child is a follower*'
     example: false
   valid_from:

@@ -3,12 +3,10 @@ description: Parameter resource.
 properties:
   parameter_name:
     type: string
-    readOnly: false
     description: Name of the parameter.
     example:
   value:
     type: string
-    readOnly: false
     description: Value of the parameter.
     example:
 required:

@@ -8,37 +8,30 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the card holder. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   card_type_id:
     type: string
-    readOnly: false
     description: The unique ID of the card type. [GET /card-types](https://carecloud.readme.io/reference/getcardtypes)
     example: "8bed991c68a470e7aaeffbf048"
   card_number:
     type: string
-    readOnly: false
     description: Card number.
     example: "1000000000016"
   secondary_card_number:
     type: string
-    readOnly: false
     description: Alternative card number for this card.
     example: "AXNFUAIOHFDSNKA"
   valid_from:
     type: string
-    readOnly: false
     description: "Timestamp from which the card is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-04-14 00:00:00"
   valid_to:
     type: string
-    readOnly: false
     description: "Timestamp until which the card is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2059-07-05 00:00:00"
   store_id:
     type: string
-    readOnly: false
     description: The unique ID of the store where the card was assigned to a customer. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example:
   last_change:
@@ -51,7 +44,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: |
       State of the card.
       *Possible values are: 0 - blocked / 1 - active*

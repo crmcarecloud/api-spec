@@ -105,9 +105,9 @@ post:
   tags:
     - Tasks
   summary: Create a task assignee
-  description: >
-    Add a new assignee to the task.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    Add a new assignee to the task.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postTaskAssignee
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

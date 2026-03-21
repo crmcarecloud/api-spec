@@ -8,7 +8,6 @@ properties:
     example: "docasna_blokace_darce_do:8ea2591121e636086a4a9c0992"
   property_id:
     type: string
-    readOnly: false
     description: The unique ID of the property.
     example: "docasna_blokace_darce_do"
   property_name:
@@ -25,7 +24,6 @@ properties:
       - type: array
         items: { }
       - type: object
-    readOnly: false
     description: |
       Value of the property record. The format depends on the data type of the property.
 

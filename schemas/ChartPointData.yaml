@@ -8,6 +8,5 @@ properties:
     example: "7"
   y_axis_value:
     type: string
-    readOnly: false
     description: The Y-axis value
     example: "32"

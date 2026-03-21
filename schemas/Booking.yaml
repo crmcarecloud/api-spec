@@ -17,7 +17,6 @@ properties:
     description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`.
   booking_status:
     type: string
-    readOnly: false
     description: The current status of the booking. If not set, CareCloud uses the default booking status. [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)
     example: "81eaeea13b8984a169c490a325"
   utm:
@@ -29,12 +28,10 @@ properties:
         items:
           type: string
       - type: object
-    readOnly: false
     description: Additional data of the booking. Serialized data in JSON.
     example: '"{\"size\":20, \"unit\": \"cm\"}"'
   created_at:
     type: string
-    readOnly: false
     description: "Timestamp of the booking. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2022-08-11 11:15:33"
   last_change:

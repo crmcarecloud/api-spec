@@ -9,40 +9,33 @@ properties:
     example: "83cfee22eabfbbb15a14815e30"
   code:
     type: string
-    readOnly: false
     description: Code of the reward.
-    example:
+    example: "REWARD-001"
   name:
     type: string
-    readOnly: false
     description: Name of the reward.
     example: "Dessert+Caffe"
   note:
     type: string
-    readOnly: false
     description: Additional text.
     example: ""
   subtitle:
     type: string
-    readOnly: false
     description: Text of subtitle.
-    example:
+    example: "Valid for all menu items"
   points_cost:
     type: number
     format: float
-    readOnly: false
     description: Number of points that will be spent by the voucher redemption.
     example: 200
   valid_time_from:
     type: string
-    readOnly: false
     description: "Time from which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone."
-    example:
+    example: "09:00:00"
   valid_time_to:
     type: string
-    readOnly: false
     description: "Time until which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone."
-    example:
+    example: "22:00:00"
   reward_group:
     type: integer
     enum:
@@ -50,7 +43,6 @@ properties:
       - 1
       - 2
       - 4
-    readOnly: false
     description: |
       The unique ID of the reward group.
       *Possible values: 0 - party time voucher / 1 - catalog voucher / 2 - campaign voucher/ 4 - simple reward / 5 - gift reward (Multi Purpose Reward)*
@@ -64,13 +56,11 @@ properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Store'
-    readOnly: false
     description: List of the stores where the reward can be redeemed.
   additional_properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
-    readOnly: false
     description: Additional properties.
   priority:
     type: integer
@@ -84,7 +74,6 @@ properties:
       - 7
       - 8
       - 9
-    readOnly: false
     description: Priority of the reward. *1 is the highest priority*
     example:
   image_urls:
@@ -142,7 +131,6 @@ properties:
     description: Bonuses between reward and product.
   is_automated:
     type: boolean
-    readOnly: false
     description: Parameter says, if reward is automated or not. If the reward is automated, it means it is applied by the rules of the reward. Otherwise, it has to be applied manually.
     example: false
   tags:

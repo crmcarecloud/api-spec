@@ -8,31 +8,26 @@ properties:
     example: "size"
   name:
     type: string
-    readOnly: false
     description: Name of the property.
     example: "Size"
   description:
     type: string
-    readOnly: false
     description: User defined description of the property.
     example: "size"
   data_type:
     type: string
-    readOnly: false
     description: 'Data type of the final value. * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
     example: "string"
   items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyItem'
-    readOnly: false
     description: List of possible values. Used for multivalued data types (like enum, multiselect).
   is_required:
     type: boolean
     enum:
       - true
       - false
-    readOnly: false
     description: The settings whether the property is a required parameter of the specific entity.
     example: false
   is_unique:
@@ -40,7 +35,6 @@ properties:
     enum:
       - true
       - false
-    readOnly: false
     description: The setting whether the property contains a unique value within the specific entity.
     example: false
   last_change:

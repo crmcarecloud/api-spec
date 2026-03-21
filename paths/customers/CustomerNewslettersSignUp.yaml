@@ -29,14 +29,12 @@ post:
               example: "happy_customer@crmcarecloud.com"
             customer_source_id:
               type: string
-              readOnly: false
               description: The unique ID of the customer source.
               example: "86e05affc7a7abefcd513ab400"
             agreements:
               $ref: '../../schemas/_index.yaml#/Agreement'
             language_id:
               type: string
-              readOnly: false
               description: The unique ID of the language by ISO 639-1 code.
               example: "en"
             partner_records:

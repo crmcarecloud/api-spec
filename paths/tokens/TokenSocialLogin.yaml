@@ -4,9 +4,9 @@ post:
   tags:
     - Tokens
   summary: Login via social network
-  description: >
-    Login of a customer account to client's application via social network. <br/>
-    ⚠️ Endpoint is available only in Customer interface.<br/>
+  description: |
+    Login of a customer account to client's application via social network.
+    ⚠️ Endpoint is available only in Customer interface.
   operationId: postTokenSocialLogin
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

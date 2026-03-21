@@ -13,7 +13,6 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the card holder.
     example: "8ea2591121e636086a4a9c0992"
   stamper_card_order:
@@ -46,7 +45,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: |
       State of the card.
       *Possible values are: 0 - blocked / 1 - active*

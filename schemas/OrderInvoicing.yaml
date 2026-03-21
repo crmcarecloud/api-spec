@@ -3,12 +3,10 @@ description: Structure of OrderInvoicing. Contains necessary data for invoicing 
 properties:
   payment_id:
     type: string
-    readOnly: false
     description: The unique ID of the payment type from resource [GET /payment-types](#tag/Payment-types).
     example: "8bd481170064960b1788109b8"
   paid_date:
     type: string
-    readOnly: false
     description: "Timestamp of the order payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2021-07-15 13:26:34"
   personal_information:

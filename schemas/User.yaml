@@ -8,27 +8,22 @@ properties:
     example: "838b73aacb5ac326cec4030c80"
   login:
     type: string
-    readOnly: false
     description: Login ID of the user.
     example: "happy_user"
   first_name:
     type: string
-    readOnly: false
     description: First name of the user.
     example: "Happy"
   last_name:
     type: string
-    readOnly: false
     description: Last name of the user.
     example: "User"
   email:
     type: string
-    readOnly: false
     description: Email of the user.
     example: "happy_user@crmcarcloud.com"
   phone:
     type: string
-    readOnly: false
     description: Phone number of the user with international prefix (420000000).
     example: "420523828931"
   user_role_ids:

@@ -3,18 +3,15 @@ description: Qualification turnover.
 properties:
   currency_id:
     type: string
-    readOnly: false
     description: The unique ID of the currency.
     example: "86e05affc7a7abefcd513ab400"
   value:
     type: number
     format: float
-    readOnly: false
     description: Value of turnover in the currency
     example: 1500
   due_date:
     type: string
-    readOnly: false
     description: "Due date by which the turnover conditions must be fulfilled in ISO-8601 format (`YYYY-MM-DD`). If the value is null, the date is unlimited."
 required:
   - currency_id

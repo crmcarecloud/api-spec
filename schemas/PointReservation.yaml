@@ -8,18 +8,15 @@ properties:
     example: "8fd73167342d06899c4c015320"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer.
     example: "8ea2591121e636086a4a9c0992"
   external_id:
     type: string
-    readOnly: false
     description: The external unique ID of the point reservation. You can use your own ID (could be an order ID or reservation ID from your system/application) that will help you identify and filter the point reservation later.
     example: "123459"
   quantity:
     type: number
     format: float
-    readOnly: false
     description: The number of reserved points.
     example: 10
   state:
@@ -35,7 +32,6 @@ properties:
     example: 1
   expiration:
     type: string
-    readOnly: false
     description: "Timestamp of the point reservation expiration. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2023-10-31 00:00:00"
 required:

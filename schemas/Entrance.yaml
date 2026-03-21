@@ -3,11 +3,9 @@ description: Entrance structure.
 properties:
   entrance_id:
     type: string
-    readOnly: false
     description: The unique ID of the entrance.
     example: "80a7be2e78aabc1454ca817265"
   pos_id:
-    readOnly: false
     description:  'ID of POS system for tickets. Required with path parameter entrance ID. *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
     type: integer
     enum:
@@ -57,7 +55,6 @@ properties:
       - 0
       - 1
       - 2
-    readOnly: false
     description: 'Type of the entrance. *Possible values are: season ticket - 0 / one day ticket - 1 / multiple day ticket - 2*'
     example: 1
   order_item_id:
@@ -116,7 +113,6 @@ properties:
     enum:
       - 0
       - 1
-    readOnly: false
     description: 'State of the entrance. *Possible values are: 0 - cancelled / 1 - active*'
     example: 1
 required:

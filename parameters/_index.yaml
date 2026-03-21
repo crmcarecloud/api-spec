@@ -13,7 +13,9 @@ count:
   name: count
   in: query
   description: |
-    The number of records to return in API response. <br/>⚠️ We recommended adjust the batch size based on processing time. Depending on the response time of the request. Default value of 100 records is used if `count` parameter is not set.
+    The number of records to return in API response.
+
+    ⚠️ We recommended adjust the batch size based on processing time. Depending on the response time of the request. Default value of 100 records is used if `count` parameter is not set.
   required: false
   schema:
     type: integer
@@ -55,10 +57,11 @@ searchMode:
   description: |
     Mode of search results.
 
-    *Possible values are: strict - return only 100% matching results / none - return results in strict mode*
+    *Possible values are: strict - return only 100% matching results / none - return results without strict matching (default behavior, all query parameters are optional)*
 
-    <p class="warning">⚠️ Caution: Strict mode makes all query parameters required. For a successful result you have to set all parameters.</p>
-    <p class="warning">⚠️ Caution: Currently the whole resource is returning results only in strict mode.</p>
+    ⚠️ Caution: Strict mode makes all query parameters required. For a successful result you have to set all parameters.
+
+    ⚠️ Caution: Currently the whole resource is returning results only in strict mode.
   required: false
   schema:
     type: string
@@ -193,8 +196,9 @@ tag_id_arr:
   name: tag_ids
   in: query
   required: false
-  description: 	|
-    Parameter filters values by a list of tag IDs. Logic OR is used between values. <br/>
+  description: |
+    Parameter filters values by a list of tag IDs. Logic OR is used between values.
+
     In case you want to filter multiple options use array syntax : `tag_ids[]=8bc8ca16f9c5039951021700a2&tag_ids[]=82c06812c0756528660784fef`
   schema:
     type: array
@@ -471,7 +475,8 @@ credit_type_id:
   name: credit_type_id
   in: query
   description: |
-    The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type. <br/>
+    The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type.
+
     In case you want to filter multiple options use array syntax : `credit_type_id[]=8bc8ca16f9c5039951021700a2&credit_type_id[]=82c06812c0756528660784fef`
   required: false
   schema:

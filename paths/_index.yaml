@@ -415,7 +415,7 @@
 # Product reservation prices
 /product-reservation-prices:
   $ref: "./products/ProductReservationPrices.yaml"
-/product-reservationprices/{product_reservation_price_id}:
+/product-reservation-prices/{product_reservation_price_id}:
   $ref: "./products/ProductReservationPrice.yaml"
 /product-reservation-prices/batch:
   $ref: "./products/ProductReservationPricesBatch.yaml"

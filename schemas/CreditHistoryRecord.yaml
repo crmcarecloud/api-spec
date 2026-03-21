@@ -24,7 +24,6 @@ properties:
     example: "Addition"
   partner_id:
     type: string
-    readOnly: false
     description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   currency_id:

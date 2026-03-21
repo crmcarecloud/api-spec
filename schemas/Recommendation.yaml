@@ -8,22 +8,18 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
-    readOnly: false
     description: Name of the recommendation.
     example: "Health recommendation"
   brief_description:
     type: string
-    readOnly: false
     description: Brief description of the recommendation.
     example: "Health recommendation for the customer"
   detailed_description:
     type: string
-    readOnly: false
     description: Detailed recommendation description.
     example: "Detail description of the recommendation"
   content:
     type: string
-    readOnly: false
     description: Content of the recommendation as a text.
     example: '<h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br><\/h4><h5>Donec nisl libero, finibus malesuada finibus a, sollicitudin eget erat. <br><\/h5><p>Duis vitae pharetra mauris, ID ornare urna. Ut in volutpat ipsum. Aliquam euismod nibh est. Ut maximus risus ID malesuada egestas. Nunc nunc erat, porta ID lectus at, semper pulvinar orci. Maecenas lobortis ex non euismod vulputate. Aliquam erat volutpat. Mauris mauris ligula, eleifend vitae lectus non, hendrerit pharetra leo. <br><\/p><p><br><\/p><ul><li>dsadsaddsadsad<\/li><li>dasdsadsadsad<\/li><li>dsadasdsadsa<br><\/li><\/ul><p><br><\/p><p>Duis vitae pharetra mauris, ID ornare urna. Ut in volutpat ipsum. Aliquam euismod nibh est. Ut maximus risus ID malesuada egestas. Nunc nunc erat, porta ID lectus at, semper pulvinar orci. Maecenas lobortis ex non euismod vulputate. Aliquam erat volutpat. Mauris mauris ligula, eleifend vitae lectus non, hendrerit pharetra leo. <\/p> -a"'
   picture_urls:
@@ -31,11 +27,9 @@ properties:
     items:
       type: string
       example: "https://<projectURL>/health_recommendations_pictures/img_health_recommendations_16"
-    readOnly: false
     description: URL addresses of the pictures of the recommendation.
   web_url:
     type: string
-    readOnly: false
     description: URL address of the recommendation website.
     example: ""
   last_change:

@@ -18,17 +18,14 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   external_id:
     type: string
-    readOnly: false
     description: The external ID of the campaign.
     example: 1
   parent_id:
     type: string
-    readOnly: false
     description: The unique ID of the parent campaign.
     example: null
   name:
     type: string
-    readOnly: false
     description: Name of the campaign.
     example: "Standard campaign"
   last_change:

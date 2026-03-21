@@ -11,12 +11,10 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer, owner of the product reservation. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   store_id:
     type: string
-    readOnly: false
     description: The unique ID of the store tied to the reservation.
     example: "82db62087b0f79a6e14e5747e7"
   reservation_codes:
@@ -30,18 +28,15 @@ properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/ExternalCode'
-    readOnly: false
     description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.
   benefit_codes:
     type: array
     items:
       type: string
-    readOnly: false
     description: List of the benefit (rewards, vouchers) codes used in a reservation. After the reservation is delivered, all benefits are applied on the customer account.
     example: [ "PTV116", "PTV120" ]
   product_reservation_source_id:
     type: string
-    readOnly: false
     description: The unique ID of the product reservation source.
     example: "8bed991c68a470e7aaeffbf048"
   pickup_date:
@@ -51,29 +46,24 @@ properties:
     example: "2020-04-20"
   customers_note:
     type: string
-    readOnly: false
     description: Customer’s note for the merchant.
     example: "Please add a gift package"
   total_price:
     type: number
     format: float
-    readOnly: false
     description: Total price of reservation. If currency_id is set, then total_price is mandatory.
     example: 69
   currency_id:
     type: string
-    readOnly: false
     description: The unique ID of the currency. If total_price is set, then currency_id is mandatory. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470e7aaeffbf048"
   product_reservation_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationItem'
-    readOnly: false
     description: List of the Product Reservation Items.
   external_purchase_id:
     type: string
-    readOnly: false
     description: The unique external ID of the purchase.
     example: "20231412"
   utm:

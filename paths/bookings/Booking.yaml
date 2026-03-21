@@ -99,7 +99,6 @@ put:
                   example: "8ea6abece4cd0a4ded0a29f093"
                 booking_status:
                   type: string
-                  readOnly: false
                   description: |
                     Current status of the booking.
                     *Possible values are available in [booking-statuses](#tag/Booking-statuses)*
@@ -111,7 +110,6 @@ put:
                       items:
                         type: string
                     - type: object
-                  readOnly: false
                   description: Additional data of the booking. Serialized data in JSON.
                   example: '"{\"size\":20, \"unit\": \"cm\"}"'
           required:

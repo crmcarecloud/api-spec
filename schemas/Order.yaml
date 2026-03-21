@@ -8,37 +8,31 @@ properties:
     example: "80af8a5dcc0702daf336f4de41"
   order_number:
     type: string
-    readOnly: false
     description: External order number. If not set, internal order number will be set.
     example: "A3NKI89NFDS82434B"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer, owner of the order. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "87a6f37e138c1ef18918e747d"
   currency_id:
     type: string
-    readOnly: false
     description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "8bed991c68a470eaaeffbf048"
   total_price:
     type: number
     format: float
-    readOnly: false
     description: Total price of the order.
     example: 36.00
   discount_codes:
     type: array
     items:
       type: string
-    readOnly: false
     description: Discount codes used in the order.
     example:
   order_items:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/OrderItem'
-    readOnly: false
     description: List of the OrderItems.
   invoicing_data:
     $ref: '../schemas/_index.yaml#/OrderInvoicing'
@@ -46,7 +40,6 @@ properties:
     $ref: '../schemas/_index.yaml#/OrderShipping'
   customer_note:
     type: string
-    readOnly: false
     description: Customer’s note for the merchant.
     example: "Have a nice day!"
   order_status:

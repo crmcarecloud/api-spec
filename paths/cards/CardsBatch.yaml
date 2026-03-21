@@ -2,10 +2,10 @@ post:
   tags:
     - Cards
   summary: Create a batch of cards
-  description: >
-    Batch process helps to add multiple cards in one request.<br/>
-    ⚠️ Adjust batch sizes based on processing times. We recommend using a maximum of 1000 records and adjusting the batch size based on processing time.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    Batch process helps to add multiple cards in one request.
+    ⚠️ Adjust batch sizes based on processing times. We recommend using a maximum of 1000 records and adjusting the batch size based on processing time.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postBatchCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,9 +2,9 @@ get:
   tags:
     - Users
   summary: Get all users
-  description: >
-    Get a list of all users in CareCloud.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    Get a list of all users in CareCloud.
+    ⚠️ Endpoint is available only in the Enterprise interface.
     ⚠️ This endpoint is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
   operationId: getUsers
   parameters:

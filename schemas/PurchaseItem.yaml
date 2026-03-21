@@ -8,7 +8,6 @@ properties:
     example: "84b757641df03b1529c2c7f66c"
   product_id:
     type: string
-    readOnly: false
     description: The unique ID of the [product](https://carecloud.readme.io/reference/getproducts).
     example: "89b3b24b405f461c63d8fcaa0c"
   product_name:
@@ -38,37 +37,31 @@ properties:
     example: "Apple"
   external_id:
     type: string
-    readOnly: false
     description: Identifier of the purchase item in external system.
     example:
   purchase_item_type_id:
     type: string
-    readOnly: false
     description: Type of the purchase item.There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.
     example: "86e05affc7a7abefcd513ab400"
   price:
     type: number
     format: float
-    readOnly: false
     description: Price of the purchase item.
     example: 1.99
   amount:
     type: number
     format: float
-    readOnly: false
     description: Amount of the purchase item.
     example:
   vat_rate:
     type: number
     format: float
-    readOnly: false
     description: The rate of an item VAT.
     example:
   additional_properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
-    readOnly: false
     description: List of additional properties.
 required:
   - product_id

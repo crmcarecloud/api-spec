@@ -13,7 +13,6 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   text:
     type: string
-    readOnly: false
     description: Text of the comment.
     example: "Could you please send me last invoice to my email?."
   last_change:

@@ -3,8 +3,8 @@ post:
     - Customers actions
   summary: Set the customer's push notifications
   description: |
-    ⚠️ The endpoint is available only in the Enterprise interface.<br/>
-    ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.<br/>
+    ⚠️ The endpoint is available only in the Enterprise interface.
+    ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.
     Method will set up customer's push notifications to specified application and device.
   operationId: postCustomerSetPushNotifications
   requestBody:

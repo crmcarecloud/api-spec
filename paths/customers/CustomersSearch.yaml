@@ -5,7 +5,7 @@ get:
   description: |
     Search all customers matching for parameters.
 
-    <p class="warning">⚠️ Action method for search customers is available only in Enterprise interface.</p>
+    ⚠️ Action method for search customers is available only in Enterprise interface.
   operationId: getCustomerSearch
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -8,12 +8,10 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   store_id:
     type: string
-    readOnly: false
     description: The unique ID of the store. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "8bed991c68a470e7aaeffbf048"
   campaign_product_id:
     type: string
-    readOnly: false
     description: The unique ID of the campaign product. [GET /campaign-products](https://carecloud.readme.io/reference/getcampaignproducts)
     example: "81eaeea13b8984a169c490a325"
 required:

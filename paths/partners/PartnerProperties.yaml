@@ -2,9 +2,9 @@ get:
   tags:
     - Partner properties
   summary: Get all partner properties
-  description: >
-    Get information about partner properties.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    Get information about partner properties.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: getPartnerProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

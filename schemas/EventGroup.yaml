@@ -3,12 +3,10 @@ description: Event group resource.
 properties:
   event_group_id:
     type: string
-    readOnly: false
     description: The unique ID of the event group.
     example: "86e05affc7a7abefc513ab4tt0"
   name:
     type: string
-    readOnly: false
     description: Name of the event group.
     example: "Shopping Cart"
   text_id:

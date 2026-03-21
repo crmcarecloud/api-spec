@@ -83,7 +83,7 @@ post:
       label: CareCloud SDK
       source: |
         use CrmCareCloud\Webservice\RestApi\Client\ApiException;
-        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsAssignfreecardBody;
+        use CrmCareCloud\Webservice\RestApi\Client\Model\ActionsValidateisiccardBody;
         use CrmCareCloud\Webservice\RestApi\Client\SDK\CareCloud;
         use CrmCareCloud\Webservice\RestApi\Client\SDK\Config;
         use CrmCareCloud\Webservice\RestApi\Client\SDK\Data\AuthTypes;
@@ -103,17 +103,18 @@ post:
         // Set Header parameter Accept-Language
         $accept_language = 'en'; //	string | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8
 
-        // Set card info to the request body
-        $body = new ActionsAssignfreecardBody();
-        $body->setCustomerId('83ad6b11209eaf4e2a18e0b319'); // string | The unique ID for the card holder
-        $body->setCardTypeId('8bed991c68a470e7aaeffbf048'); // string | The unique ID for the card type
+        // Set request body
+        $body = new ActionsValidateisiccardBody();
+        $body->setCardNumber('S123456789012X'); // string | Number of the ISIC card to validate
+        $body->setLastName('Bright'); // string | Last name of the ISIC card holder
+        $body->setCheckUsage(true); // bool | If true, checks whether the card can be used in CareCloud
 
         // Call endpoint and post data
         try
         {
-            $post_assign_card = $care_cloud->cardsApi()->postAssignCard($body, $accept_language);
-            $card_id = $post_assign_card->getData()->getCardId();
-            var_dump($card_id);
+            $post_validate_isic_card = $care_cloud->cardsApi()->postValidateIsicCard($body, $accept_language);
+            $valid_isic = $post_validate_isic_card->getData()->getValidIsic();
+            var_dump($valid_isic);
         }
         catch(ApiException $e)
         {

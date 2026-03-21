@@ -8,7 +8,6 @@ properties:
     example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
-    readOnly: false
     description: Name of the purchase type.
     example: "Store purchase"
   text_id:

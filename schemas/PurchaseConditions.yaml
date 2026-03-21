@@ -17,13 +17,11 @@ properties:
   keep_status_points:
     type: number
     format: float
-    readOnly: false
     description: Amount of points a customer needs to keep current status.
     example: 300
   next_status_points:
     type: number
     format: float
-    readOnly: false
     description: Amount of points a customer needs to move to the following status.
     example: 1500
   next_status_id:

@@ -8,7 +8,6 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   assigned_credits:
@@ -25,17 +24,14 @@ properties:
     example: 1000
   credit_type_id:
     type: string
-    readOnly: false
     description: The unique ID of the credit type. [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes)
     example: "86e05affc7a7abefcd513ab400"
   partner_id:
     type: string
-    readOnly: false
     description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string
-    readOnly: false
     description: "Timestamp until which the credit record is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
     example: "2027-12-12 00:00:00"
   currency_id:

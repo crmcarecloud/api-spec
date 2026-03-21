@@ -8,12 +8,10 @@ properties:
     example: "86e05affc7a7abefcd513ab400"
   name:
     type: string
-    readOnly: false
     description: Name of the communication channel.
     example: "Email"
   text_id:
     type: string
-    readOnly: false
     description: Text representation of communication channel ID.
     example: "email"
 required:

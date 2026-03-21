@@ -3,7 +3,7 @@ post:
     - Customers actions
   summary: Cancel the customer's push notifications subscription from all devices if push token not specified.
   description: |
-    ⚠️ The endpoint is available only in the Enterprise interface.<br/>
+    ⚠️ The endpoint is available only in the Enterprise interface.
   operationId: postCustomerCancelPushNotifications
   requestBody:
     required: true

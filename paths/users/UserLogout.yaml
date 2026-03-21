@@ -2,9 +2,9 @@ post:
   tags:
     - Users
   summary: User logout
-  description: >
-    User logout from external application.<br/>
-    ⚠️ Endpoint is available only in the Enterprise interface.<br/>
+  description: |
+    User logout from external application.
+    ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postUserLogout
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -17,7 +17,7 @@ post:
           properties:
             user_external_application_id:
               type: string
-              description: ID of an external application where user wants to be logged in from resource [user-external-application](#tag/Customer-external-applications).
+              description: ID of an external application where user wants to be logged in from resource [customer-external-applications](https://carecloud.readme.io/reference/customer-external-applications).
               example: "89d1a6111b3fb6e74665d948"
             bearer_token:
               type: string

@@ -8,7 +8,6 @@ properties:
     example: "83d1d11ea3884a5d33253fe214"
   name:
     type: string
-    readOnly: false
     description: Name of the segment group.
     example: "RFM Badges"
   parent_group_id:
@@ -18,7 +17,6 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   note:
     type: string
-    readOnly: false
     description: Short description of the segment group.
     example: "RFM Badges for tagging customers"
   text_id:

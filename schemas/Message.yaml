@@ -23,17 +23,14 @@ properties:
     example: 1
   message_template_id:
     type: string
-    readOnly: false
     description: The unique ID of the message template. [GET /message-templates](https://carecloud.readme.io/reference/getmessagetemplates)
     example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
-    readOnly: false
     description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   contact:
     type: string
-    readOnly: false
     description: Email address or phone number of customer in case of send message to different contact than customer has in database.
     example: "happy_customer@crmcarecloud.com"
   title:
@@ -68,20 +65,17 @@ properties:
       - 2
       - 4
       - 5
-    readOnly: false
     description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
     example: 1
   message_data:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Parameter'
-    readOnly: false
     description: Message data could contains array of customized parameters. They may have influence on message display or add values to message.
   attachments:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Attachment'
-    readOnly: false
     description: "List of the attachments for the message. A single attachment has a size limit of 1 MB. File type restrictions: .jpg, .jpeg, .png, .gif, and .pdf."
   last_change:
     type: string

@@ -27,22 +27,18 @@ post:
               example: '8ea2591121e636086a4a9c0992'
             partner_id:
               type: string
-              readOnly: false
               description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
               example: '86e05affc7a7abefcd513ab400'
             credit_type_id:
               type: string
-              readOnly: false
               description: The unique ID of the credit type. If the parameter is not set, a default credit type is set. [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes)
               example: '86e05affc7a7abefcd513ab400'
             currency_id:
               type: string
-              readOnly: false
               description: The unique ID of the currency. If not set, the default currency of the project is used. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
               example: "8bed991c68a470e7aaeffbf048"
             note:
               type: string
-              readOnly: false
               description: Note for the new credit deposit.
               example: 'Birthdate point reward'
           required:
