@@ -186,7 +186,10 @@ external_ids:
   name: external_ids
   in: query
   required: false
-  description: The list of IDs from other system than CareCloud. It is usually used for the synchronization or identification of the records in between CareCloud and other system. The IDs don't need to be necessary unique. Usage of other parameter could be required to return more specific results.
+  description: >
+    Filter records by one or more external IDs. Returns records where any stored external ID matches
+    any of the provided values. Use together with `customer_source_id` to scope the filter to a specific
+    customer source.
   schema:
     type: array
     items:
@@ -601,7 +604,11 @@ customer_external_id:
   name: external_id
   in: query
   required: false
-  description: The parameter contains a unique ID from an external system (POS, webshop, mobile app, ERP, and others). ID should be unique within a customer source for better identification (For example, the process of customer synchronization between systems).
+  deprecated: true
+  description: >
+    The external ID of the customer in the external system. Deprecated - use `external_ids` instead.
+    To filter by external ID within a specific customer source, combine `external_ids` with the
+    `customer_source_id` parameter.
   schema:
     type: string
   example: "A798274529"

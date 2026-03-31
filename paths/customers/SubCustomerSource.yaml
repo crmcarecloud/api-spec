@@ -192,7 +192,8 @@ post:
         // Set customer source info
         $customer_source_record = new CustomerSourceRecord();
         $customer_source_record->setCustomerSourceId('8fdd651ff3f615bcebebad87ce'); // string | The unique external id of the customer source
-        $customer_source_record->setExternalId(null); // string | The unique external id of the customer (optional)
+        $customer_source_record->setExternalIds(['external-id-1', 'external-id-2']); // string[] | The list of external IDs of the customer in the external system (optional)
+        // $customer_source_record->setExternalId(null); // Deprecated - use setExternalIds() instead
 
         // Set info to the request body
         $body = new CustomerIdCustomersourcerecordsBody();

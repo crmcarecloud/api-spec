@@ -160,7 +160,8 @@ post:
         // Set source record of a new customer
         $customer_source = new CustomerSourceRecord();
         $customer_source->setCustomerSourceId('8fd73167342d06899c4c015320'); // string | The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created
-        $customer_source->setExternalId('external-id'); // string | The unique external id of the customer. It may be id from the other system
+        $customer_source->setExternalIds(['external-id-1', 'external-id-2']); // string[] | The list of external IDs of the customer in the external system
+        // $customer_source->setExternalId('external-id'); // Deprecated - use setExternalIds() instead
 
         // Set the customer social network credentials (optional)
         $social_network_credentials = new SocialNetworkCredentials();

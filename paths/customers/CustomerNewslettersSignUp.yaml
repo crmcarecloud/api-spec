@@ -11,8 +11,7 @@ post:
     When a contact is signed up, CareCloud creates one or more customer-partner relations. The assignment is determined as follows:
 
     - If `partner_records` is provided (non-empty array) - relations are created for exactly those partners.
-    - If `partner_records` is an empty array (`[]`) - no partner relations are created.
-    - If `partner_records` is omitted - relations are created for all partners accessible to the authenticated API user.
+    - If `partner_records` is an empty array (`[]`) or omitted - relations are created for all partners accessible to the authenticated API user.
 
     Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
   operationId: postCustomerNewslettersSignUp
@@ -40,7 +39,7 @@ post:
             partner_records:
               type: array
               description: |
-                List of partners to associate with the signed-up contact. When provided, partner assignment is based solely on this list. See the partner assignment rules in the endpoint description for the full precedence logic. [GET /partners](https://carecloud.readme.io/reference/getpartners)
+                List of partners to associate with the signed-up contact. When provided as a non-empty array, partner assignment is based solely on this list. An empty array is treated the same as omitting this field. See the partner assignment rules in the endpoint description for the full precedence logic. [GET /partners](https://carecloud.readme.io/reference/getpartners)
               items:
                 $ref: '../../schemas/_index.yaml#/PartnerRecord'
               example:
