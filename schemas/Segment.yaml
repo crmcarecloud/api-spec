@@ -19,7 +19,6 @@ properties:
     type: string
     readOnly: true
     description: URL of the picture assigned to the segment.
-    example:
   note:
     type: string
     description: Short description of the segment.

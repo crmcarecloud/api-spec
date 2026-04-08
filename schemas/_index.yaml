@@ -315,7 +315,6 @@ BasicError:
     detail:
       type: string
       description: The details of the error message.
-      example:
 Error_processing:
     type: integer
     enum:

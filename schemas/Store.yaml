@@ -52,7 +52,6 @@ properties:
     type: array
     items:
       type: string
-      example:
     readOnly: true
     description: A list of image URL addresses.
   visibility_for_customer:

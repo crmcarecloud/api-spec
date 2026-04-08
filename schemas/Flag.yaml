@@ -4,11 +4,9 @@ properties:
   name:
     type: string
     description: Name of the flag.
-    example:
   text_id:
     type: string
     description: The unique ID of the flag.
-    example:
 required:
   - name
   - text_id

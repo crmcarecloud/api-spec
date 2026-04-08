@@ -5,7 +5,6 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the order item.
-    example:
   product_variant_id:
     type: string
     description: The unique ID of the web-shop product.
@@ -13,7 +12,6 @@ properties:
   customer_id:
     type: string
     description: The unique ID of the customer, owner of the order item. If not set, customer_id from order will be saved.
-    example:
   amount:
     type: number
     format: float

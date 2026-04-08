@@ -40,7 +40,7 @@ post:
                       - false
                     readOnly: true
                     description: An information if the card is free to use.
-                    example: "false"
+                    example: false
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

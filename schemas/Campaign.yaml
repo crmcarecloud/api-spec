@@ -19,11 +19,10 @@ properties:
   external_id:
     type: string
     description: The external ID of the campaign.
-    example: 1
+    example: "CAMP-EXT-001"
   parent_id:
     type: string
     description: The unique ID of the parent campaign.
-    example: null
   name:
     type: string
     description: Name of the campaign.

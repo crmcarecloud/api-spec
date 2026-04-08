@@ -53,7 +53,7 @@ post:
                       - false
                     readOnly: true
                     description: An information if ISIC card is valid.
-                    example: "false"
+                    example: false
                   is_free_to_use:
                     type: boolean
                     enum:
@@ -61,7 +61,7 @@ post:
                       - false
                     readOnly: true
                     description: An information if the card is free to use in CareCloud. If the request parameter `check_usage` is not set or false, the value is not set.
-                    example: "false"
+                    example: false
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

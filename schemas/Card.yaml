@@ -33,7 +33,6 @@ properties:
   store_id:
     type: string
     description: The unique ID of the store where the card was assigned to a customer. [GET /stores](https://carecloud.readme.io/reference/getstores)
-    example:
   last_change:
     type: string
     readOnly: true

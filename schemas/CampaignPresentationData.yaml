@@ -16,7 +16,6 @@ properties:
   description:
     type: string
     description: Text of the campaign product description.
-    example:
   image_url:
     type: string
     description: URL address of the image.

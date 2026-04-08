@@ -28,7 +28,6 @@ properties:
     items:
       type: string
     description: Discount codes used in the order.
-    example:
   order_items:
     type: array
     items:

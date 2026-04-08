@@ -30,7 +30,6 @@ properties:
     type: integer
     readOnly: true
     description: Maximum number of the reward applications.
-    example:
   description:
     type: string
     readOnly: true

@@ -29,11 +29,9 @@ properties:
   valid_from:
     type: string
     description: "Timestamp from which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
-    example:
   valid_to:
     type: string
     description: "Timestamp until which the voucher is valid. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
-    example:
   note:
     type: string
     description: Voucher's note.

@@ -75,19 +75,16 @@ properties:
       - 8
       - 9
     description: Priority of the reward. *1 is the highest priority*
-    example:
   image_urls:
     type: array
     items:
       type: string
-      example:
     readOnly: true
     description: List of reward image URL addresses.
   reward_external_url:
     type: string
     readOnly: true
     description: External URL addresses.
-    example:
   has_product_condition:
     type: boolean
     readOnly: true

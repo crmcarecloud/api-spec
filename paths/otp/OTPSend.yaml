@@ -43,7 +43,6 @@ post:
             message_template_id:
               type: string
               description: The unique ID of the message template. If not set, CareCloud uses the default value from the system configuration.
-              example:
           required:
             - communication_channel_id
             - recipient

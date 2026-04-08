@@ -14,6 +14,5 @@ properties:
     type: string
     readOnly: true
     description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
-    example:
 required:
   - partner_id

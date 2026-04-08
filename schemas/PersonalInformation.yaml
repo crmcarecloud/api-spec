@@ -39,11 +39,11 @@ properties:
     example: "1985-02-12"
   email:
     type: string
-    pattern: ^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
+    pattern: ^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
     description: |
       Email of the customer.
       If you provide an email address, CareCloud validates its format and the validity of the domain.
-      Here is the general regular expression that is used for validation: `^[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&\'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
+      Here is the general regular expression that is used for validation: `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
     example: "happy_customer@crmcarecloud.com"
   phone:
     type: string

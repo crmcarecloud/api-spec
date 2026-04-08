@@ -4,21 +4,17 @@ properties:
   discount_code:
     type: string
     description: Code of discount (set value “offline” for offline mode discounts).
-    example:
   discount_value:
     type: number
     format: float
     description: Value of discount in the currency of the bill.
-    example:
   discount_percent:
     type: number
     format: float
     description: Discount percentage of the bill.
-    example:
   description:
     type: string
     description: Text description of the discount reason.
-    example:
   bill_item_id:
     type: string
     description: ID of the related bill item.

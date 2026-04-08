@@ -47,7 +47,6 @@ properties:
   bill_number:
     type: string
     description: Alternative identification of the bill. In the case of cancellation, there should be bill_id from the original bill.
-    example:
   payment_time:
     type: string
     description: "Timestamp of the payment. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone."
@@ -55,7 +54,6 @@ properties:
   created_by:
     type: string
     description: Name of the user who created a bill.
-    example:
   currency_id:
     type: string
     description: ID of the currency from resource [currencies](#tag/Currencies).

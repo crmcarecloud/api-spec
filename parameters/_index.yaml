@@ -7,6 +7,7 @@ Accept-Language:
   schema:
     type: string
     default: 'cs, en-gb;q=0.8'
+  example: "en-gb"
 
 # Universal parameters
 count:
@@ -194,7 +195,8 @@ external_ids:
     type: array
     items:
       type: string
-  example: "ACSDOIDF23"
+  example:
+    - "ACSDOIDF23"
 tag_id_arr:
   name: tag_ids
   in: query
@@ -207,6 +209,8 @@ tag_id_arr:
     type: array
     items:
       type: string
+  example:
+    - "8bc8ca16f9c5039951021700a2"
 time_from_full:
   name: time_from
   in: query
@@ -282,7 +286,8 @@ email_list:
     type: array
     items:
       type: string
-  example: "happy_customer@crmcarecloud.com"
+  example:
+    - "happy_customer@crmcarecloud.com"
 phone:
   name: phone
   in: query
@@ -429,7 +434,8 @@ booking_statuses:
     items:
       type: string
   description: List of current statuses of the bookings from resource [booking-statuses](#tag/Booking-statuses).
-  example: "a820c6a820c62c79b2c79b"
+  example:
+    - "a820c6a820c62c79b2c79b"
 
 #Communication channel
 communication_channel_id_path:
@@ -583,7 +589,8 @@ customer_ids:
     type: array
     items:
       type: string
-  example: "8bed991c68a470e7aaeffbf048"
+  example:
+    - "8bed991c68a470e7aaeffbf048"
 related_customer_id:
   name: related_customer_id
   in: query
@@ -639,6 +646,8 @@ customer_type_id_arr:
     type: array
     items:
       type: string
+  example:
+    - "86e05affc7a7abefcd513ab400"
 customer_source_id_path:
   name: customer_source_id
   in: path
@@ -721,7 +730,8 @@ card_number_list:
     type: array
     items:
       type: string
-  example: "1000000000016"
+  example:
+    - "1000000000016"
 card_type_id:
   name: card_type_id
   in: query
@@ -990,6 +1000,7 @@ all_customer_relations:
       - true
       - false
     default: false
+  example: false
 # Campaigns
 campaign_id_path:
   name: campaign_id
@@ -1028,6 +1039,8 @@ type_id:
     type: array
     items:
       type: string
+  example:
+    - "86e05affc7a7abefcd513ab400"
 campaign_store_id:
   name: store_id
   in: query
@@ -1081,7 +1094,8 @@ event_type_ids:
     type: array
     items:
       type: string
-  example: "8bda8a4854394325e2748a5005"
+  example:
+    - "8bda8a4854394325e2748a5005"
 text_id:
   name: text_id
   in: query
@@ -1161,7 +1175,7 @@ default_language:
       - true
       - false
     default: false
-  example: "false"
+  example: false
 
 # Messages
 message_id_path:
@@ -1572,6 +1586,7 @@ purchase_items_extension:
       - true
       - false
     default: false
+  example: false
 # Purchase item properties
 purchase_item_property_id_path:
   name: purchase_item_property_id
@@ -1627,7 +1642,8 @@ segment_group_ids:
     type: array
     items:
       type: string
-  example: "8bed991c68a470e7aaeffbf048"
+  example:
+    - "8bed991c68a470e7aaeffbf048"
 segment_group_name:
   name: name
   in: query
@@ -1657,6 +1673,7 @@ pos_id:
       - 6
       - 9
       - 11
+  example: 6
 external_order_id:
   name: external_order_id
   in: query
@@ -1729,6 +1746,7 @@ external_entrance_id:
   description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
   schema:
     type: string
+  example: "EXT-ENT-00123"
 external_turnstile_permission_id:
   name: external_turnstile_permission_id
   in: query
@@ -1736,6 +1754,7 @@ external_turnstile_permission_id:
   description: External ID of the turnstile permission. Structure can be different depends of the POS system, that created the permission.
   schema:
     type: string
+  example: "EXT-PERM-00456"
 is_cancelled:
   name: is_cancelled
   in: query

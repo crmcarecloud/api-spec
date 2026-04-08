@@ -38,7 +38,6 @@ properties:
   external_id:
     type: string
     description: Identifier of the purchase item in external system.
-    example:
   purchase_item_type_id:
     type: string
     description: Type of the purchase item.There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.
@@ -52,12 +51,10 @@ properties:
     type: number
     format: float
     description: Amount of the purchase item.
-    example:
   vat_rate:
     type: number
     format: float
     description: The rate of an item VAT.
-    example:
   additional_properties:
     type: array
     items:

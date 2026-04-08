@@ -13,7 +13,6 @@ properties:
   description:
     type: string
     description: Short description of the status.
-    example:
   qualification_period:
     type: integer
     description: The period of time (in months) in which it is necessary to qualify for the status based on defined conditions.
@@ -31,7 +30,6 @@ properties:
   previous_status:
     type: string
     description: The previous status required to qualify for the next status based on defined conditions. The conditions are defined in parameters qualification_period and qualification_turnover.
-    example:
   next_status:
     type: string
     description: ID of the following status.

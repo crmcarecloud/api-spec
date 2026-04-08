@@ -39,7 +39,7 @@ The spec is split into modular files referenced from `api.yaml`:
 
 ```
 api.yaml                    ← Entry point; references all sections below
-├── paths/_index.yaml       ← Endpoint definitions (~282 files, organized by resource)
+├── paths/_index.yaml       ← Endpoint definitions (~282 files, organized into subdirectories by resource)
 ├── schemas/_index.yaml     ← Reusable data models (~149 files)
 ├── parameters/_index.yaml  ← Reusable query/header params (pagination, sorting, filters)
 └── responses/_index.yaml   ← Standard HTTP response templates
@@ -47,12 +47,25 @@ api.yaml                    ← Entry point; references all sections below
 
 `_build/openapi.yaml` is the compiled output — edit the source files, not this file.
 
+Each section uses an `_index.yaml` file as its registry, mapping keys to `$ref` pointers to individual files.
+
+### Paths subdirectory structure
+
+Files under `paths/` are organized into subdirectories by resource type (e.g., `paths/customers/`, `paths/cards/`, `paths/bookings/`). Each subdirectory contains all endpoint files for that resource, including list, single-resource, action, and sub-resource files.
+
 ### Two API Interfaces
 
 All endpoints are served under one of two interfaces, controlled by the `{api_interface}` server variable:
 
 - **`enterprise-interface`** — For backend/POS/BI integrations. Uses Bearer token auth.
 - **`customer-interface`** — For mobile apps and web microsites. Uses Bearer token auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one interface.
+
+Interface-restricted endpoints include a warning in their `description` field:
+
+```
+⚠️ Endpoint is available only in the Enterprise interface.
+⚠️ Endpoint is available only in Customer interface.
+```
 
 ### Endpoint File Naming
 
@@ -62,6 +75,25 @@ Files under `paths/` are named descriptively in PascalCase after the resource or
 - **Single resource endpoint** — singular resource name, e.g., `Customer.yaml`, `Card.yaml`
 - **Action endpoint** — descriptive action name, e.g., `CustomerAuthToken.yaml`, `CardAssign.yaml`, `CardGenerateDigital.yaml`
 - **Sub-resource relationship** — `Sub` prefix followed by the relationship name, e.g., `SubCardTypeCards.yaml`, `SubCampaignProductStoreRecords.yaml`
+
+### Operation IDs
+
+Every endpoint operation must have an `operationId` following this convention: HTTP verb + resource name in camelCase, e.g., `getCustomers`, `getCustomer`, `postCustomer`, `putCustomer`. The operationId lowercased and concatenated is the slug used in readme.io URLs (e.g., `getcustomers`, `postcustomer`).
+
+### Standard Error Responses
+
+Error responses reference templates via `api.yaml`, not directly to `responses/_index.yaml`:
+
+```yaml
+$ref: '../../api.yaml#/components/responses/BadRequest'
+$ref: '../../api.yaml#/components/responses/Unauthorized'
+$ref: '../../api.yaml#/components/responses/Forbidden'
+$ref: '../../api.yaml#/components/responses/NotFound'
+$ref: '../../api.yaml#/components/responses/NotAllowed'
+$ref: '../../api.yaml#/components/responses/TooManyRequests'
+$ref: '../../api.yaml#/components/responses/InternalServerError'
+$ref: '../../api.yaml#/components/responses/ServiceUnavailable'
+```
 
 ### Patterns and Conventions
 

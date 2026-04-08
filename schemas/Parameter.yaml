@@ -4,11 +4,9 @@ properties:
   parameter_name:
     type: string
     description: Name of the parameter.
-    example:
   value:
     type: string
     description: Value of the parameter.
-    example:
 required:
   - parameter_name
   - value

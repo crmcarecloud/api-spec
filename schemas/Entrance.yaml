@@ -22,17 +22,14 @@ properties:
     type: string
     readOnly: true
     description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
-    example:
   resort_name:
     type: string
     readOnly: true
     description: Name of the resort where the entrance is charged.
-    example:
   customer_category_name:
     type: string
     readOnly: true
     description: Name of the customer category.
-    example:
   external_order_id:
     type: string
     readOnly: true
@@ -82,12 +79,10 @@ properties:
     format: float
     readOnly: true
     description: Price charged to POS system.
-    example:
   product_ids:
     type: string
     readOnly: true
     description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
-    example:
   charge_date:
     type: string
     readOnly: true
@@ -97,12 +92,10 @@ properties:
     type: string
     readOnly: true
     description: "Date of the first day when the customer can use the entrance in ISO-8601 format (`YYYY-MM-DD`)."
-    example:
   valid_to:
     type: string
     readOnly: true
     description: "Date of the last day when the customer can use the entrance in ISO-8601 format (`YYYY-MM-DD`)."
-    example:
   last_change:
     type: string
     readOnly: true

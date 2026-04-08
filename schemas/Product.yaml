@@ -49,7 +49,6 @@ properties:
     type: array
     items:
       type: string
-      example:
     readOnly: true
     description: A list of image URLs.
   last_change:
