@@ -2,7 +2,8 @@ get:
   tags:
     - Bookings
   summary: Get all bookings
-  description: Get information about all bookings.
+  description: |
+    Get a list of all bookings. A booking is a customer reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Use filters such as `customer_id` and `booking_status` to narrow results. Set `add_booking_items` to include the individual time slot reservations in the response.
   operationId: getBookings
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -110,7 +111,8 @@ post:
   tags:
     - Bookings
   summary: Create a new booking
-  description: Add a new booking.
+  description: |
+    Create a new booking for a customer. A booking is a reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Each booking item references a time slot from a booking ticket ([GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)). If no `booking_status` is provided, the default booking status is applied.
   operationId: postBooking
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

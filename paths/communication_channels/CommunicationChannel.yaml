@@ -2,7 +2,7 @@ get:
   tags:
     - Communication channels
   summary: Get a communication channel
-  description: Get information about a specific communication channel.
+  description: Get information about a specific communication channel. This endpoint does not require authentication.
   operationId: getCommunicationChannel
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

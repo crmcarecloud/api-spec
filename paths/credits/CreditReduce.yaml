@@ -3,8 +3,13 @@ post:
     - Credits
   summary: Credit reduction
   description: |
-    Endpoint for reducing credits on the customer's account. 
-    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+    Endpoint for reducing credits on the customer's account.
+
+    A credit reduction creates a negative credit record, decreasing the customer's wallet balance. Use this endpoint to apply a credit spend, expiration, or manual correction. The response returns the ID of the newly created reduction record.
+
+    If `credit_type_id` is not provided, the project-default credit type is used. The `note` field is optional and is recorded in the credit history audit log, visible via [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
+
+    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
     ⚠️ Action methods are available only in the Enterprise interface.
   operationId: postCreditReduction
   parameters:

@@ -2,7 +2,8 @@ post:
   tags:
     - Cards
   summary: Generate virtual card file
-  description: Generate a virtual card file. The file can be a PNG image (barcode or QR code) or a pass package for Apple Wallet.
+  description: |
+    Generate a virtual card file. The file can be a PNG image (barcode or QR code) or a pass package for Apple Wallet. Use the returned URL to display or distribute the digital card in a mobile application or by email.
   operationId: postGenerateDigitalCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

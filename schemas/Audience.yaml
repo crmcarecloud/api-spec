@@ -1,0 +1,42 @@
+type: object
+description: An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are created by filtering customer data across multiple dimensions - including demographics, purchase history, campaign responses, consent preferences, and activity events.
+properties:
+  audience_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the audience.
+    example: "8bed991c68a470e7aaeffbf048"
+  name:
+    type: string
+    description: Name of the audience.
+    example: "Newsletter subscribers"
+  communication_channel_id:
+    type: string
+    description: The unique ID of the communication channel from CareCloud. The list of communication channels is available at [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels).
+    example: "8bed991c68a470e7aaeffbf048"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+    description: 'State of the audience. *Possible values are: 0 - deleted / 1 - active*'
+    example: 1
+  last_change:
+    type: string
+    readOnly: true
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2019-07-15 17:26:34"
+  created_by:
+    type: string
+    readOnly: true
+    description: The unique ID of the user that created the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+    example: "8bed991c68a470e7aaeffbf048"
+  updated_by:
+    type: string
+    readOnly: true
+    description: The unique ID of the user that last updated the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+    example: "8bed991c68a470e7aaeffbf048"
+required:
+  - name
+  - communication_channel_id
+  - state

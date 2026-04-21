@@ -4,6 +4,9 @@ post:
   summary: Check ability to register a customer
   description: |
     Check ability to register a customer with his identifier (email or phone number).
+
+    Determines whether the given identifier is available for new customer registration - for example, whether it is already associated with an existing account. Use this endpoint before submitting a registration form to provide early feedback to the user.
+
     ⚠️ For use in the Customer interface integration (mobile application, web portal, or kiosk), this action method has to be allowed in CareCloud. Please contact the CareCloud administrator.
   operationId: postCustomersCheckRegistrationAbility
   requestBody:

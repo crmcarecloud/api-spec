@@ -2,7 +2,12 @@ get:
   tags:
     - Customer source records
   summary: Get customer source records
-  description: Get all customer source records.
+  description: |
+    Get all customer source records.
+
+    Customer source records link customer accounts to the external systems that created or track them. Each record includes the source ID and one or more external IDs from that system. This endpoint returns source records across all customers. To retrieve source records for a specific customer, use [GET /customers/{customer_id}/sources](https://carecloud.readme.io/reference/getsubcustomersource).
+
+    When both the `external_ids` and `external_id` filter parameters are provided, `external_ids` takes priority and `external_id` is ignored.
   operationId: getCustomerSourceRecords
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,10 @@ get:
   tags:
     - Customer relation types
   summary: Get all customer relation types
-  description: Get a list of customer relation types from CareCloud.
+  description: |
+    Get a list of customer relation types from CareCloud.
+
+    Customer relation types define the categories of relationships that can exist between customer accounts - for example, household members, referral relationships, or account groupings. Use the returned IDs when creating related customer records.
   operationId: getCustomerRelationTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

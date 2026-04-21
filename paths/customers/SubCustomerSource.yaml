@@ -2,7 +2,14 @@ get:
   tags:
     - Customers
   summary: Get customer source records
-  description: Get information about all customer account source records.
+  description: |
+    Get information about all customer account source records.
+
+    Customer source records identify the external systems or applications where the customer account is tracked - for example, a mobile application, e-commerce platform, or POS system. Each record links the customer to a customer source and can include one or more external IDs used by that source system.
+
+    When both the `external_ids` and `external_id` filter parameters are provided, `external_ids` takes priority and `external_id` is ignored.
+
+    Related: [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
   operationId: getSubCustomerSource
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -192,8 +199,7 @@ post:
         // Set customer source info
         $customer_source_record = new CustomerSourceRecord();
         $customer_source_record->setCustomerSourceId('8fdd651ff3f615bcebebad87ce'); // string | The unique external id of the customer source
-        $customer_source_record->setExternalIds(['external-id-1', 'external-id-2']); // string[] | The list of external IDs of the customer in the external system (optional)
-        // $customer_source_record->setExternalId(null); // Deprecated - use setExternalIds() instead
+        $customer_source_record->setExternalId('external-id-1'); // string | The external ID of the customer in the external system (optional)
 
         // Set info to the request body
         $body = new CustomerIdCustomersourcerecordsBody();

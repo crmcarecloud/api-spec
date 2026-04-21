@@ -5,6 +5,7 @@ post:
   description: |
     Assign a free card to a customer.
     This action is limited to one card per card type per customer. If your project allows customers to have multiple cards of one type, use [PUT /cards/{card_id}](https://carecloud.readme.io/reference/putcard) instead.
+    See [Assign card to customer](https://help.crmcarecloud.com/en/marketing-automation/actions/assign-card-to-customer) for details.
 
   operationId: postAssignCard
   parameters:

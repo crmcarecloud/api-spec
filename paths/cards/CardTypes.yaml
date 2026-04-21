@@ -2,7 +2,8 @@ get:
   tags:
     - Card types
   summary: Get information about all card types
-  description: Get a list of all customer card types.
+  description: |
+    Get a list of all card types configured in the CareCloud platform. Card types define categories of customer cards - for example, a loyalty card, a digital membership card, or a prepaid card - including their name and number prefix. Filter by name or `text_id` to find a specific card type. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
   operationId: getCardTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -97,7 +98,8 @@ post:
   tags:
     - Card types
   summary: Create a new card type
-  description: Add a new customer card type.
+  description: |
+    Create a new card type. Card types define the categories of cards that can be issued to customers, including the name and the prefix applied to card numbers of that type.
   operationId: postCardType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

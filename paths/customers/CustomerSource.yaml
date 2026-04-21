@@ -2,7 +2,10 @@ get:
   tags:
     - Customer sources
   summary: Get a customer source
-  description: Get information about a specific customer source.
+  description: |
+    Get information about a specific customer source.
+
+    Returns the detail of a single customer source record. Customer sources identify the external systems or applications where customer accounts originate. To retrieve all sources, use [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources).
   operationId: getCustomerSource
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

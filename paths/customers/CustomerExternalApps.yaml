@@ -2,7 +2,12 @@ get:
   tags:
     - Customer external applications
   summary: Get all customer external applications
-  description: Get a list of customer external applications accepted in the CareCloud platform.
+  description: |
+    Get a list of customer external applications accepted in the CareCloud platform.
+
+    External applications are third-party or in-house systems registered to interact with the CareCloud API on behalf of customers. They are used for generating authentication tokens and managing push notification registrations. Use the returned IDs in authentication token and push notification requests.
+
+    Related: [POST /customers/actions/auth-token](https://carecloud.readme.io/reference/postcustomersauthtoken) (enterprise interface only), [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (enterprise interface only)
   operationId: getCustomerExternalApps
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -10,6 +15,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/external_application_text_id'
   security: []
   responses:
     '200':

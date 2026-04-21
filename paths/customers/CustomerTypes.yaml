@@ -2,7 +2,12 @@ get:
   tags:
     - Customer types
   summary: Get all customer types
-  description: Get a list of customer types accepted in the CareCloud platform.
+  description: |
+    Get a list of customer types accepted in the CareCloud platform.
+
+    Customer types categorise customer accounts by their role or origin - for example, a standard loyalty member, a staff account, or a B2B contact. The customer type is assigned when the account is created and can be used to filter or segment customers.
+
+    Use this endpoint to retrieve the available customer type IDs for use when creating or updating customer accounts.
   operationId: getCustomerTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

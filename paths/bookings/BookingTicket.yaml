@@ -2,7 +2,7 @@ get:
   tags:
     - Booking tickets
   summary: Get a booking ticket
-  description: Get information about a specific booking ticket.
+  description: Get information about a specific booking ticket, including its properties and validity period.
   operationId: getBookingTicket
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

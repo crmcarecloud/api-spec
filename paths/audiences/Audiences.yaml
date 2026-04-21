@@ -1,46 +1,44 @@
 get:
   tags:
-    - Customer engagement
-  summary: Get all customer engagement setups
+    - Audiences
+  summary: Get all audiences
   description: |
-    Get all available setups for customer engagement.
+    Get a list of all audiences available in CareCloud. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
 
-    Customer engagement setups define the configuration for the CareCloud JavaScript tracking script, which captures browser-based events on websites and links them to customer profiles. Each setup specifies the tracking behaviour for a particular website or deployment context.
-
-    This endpoint does not require authentication. It is typically called by the tracking script during initialisation to load the applicable configuration.
-
-    Related: [GET /customer-engagement-setups/{customer_engagement_setup_id}](https://carecloud.readme.io/reference/getcustomerengagementsetup)
-  operationId: getCustomerEngagementSetups
+    ⚠️ Endpoint is available only in the Enterprise interface.
+  operationId: getAudiences
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
     - $ref: '../../parameters/_index.yaml#/count'
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-  security: []
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/communication_channel_id'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            title: GetSetups200Response
             type: object
             properties:
               data:
                 type: object
                 properties:
-                  customer_engagement_setups:
+                  audiences:
                     type: array
-                    description: List of all setups.
+                    description: List of all audiences.
                     items:
-                      $ref: '../../schemas/_index.yaml#/CustomerEngagementSetup'
+                      $ref: '../../schemas/_index.yaml#/Audience'
                   total_items:
                     type: integer
-                    description: The number of all found setups.
+                    description: The number of all found audiences.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
     '403':
       $ref: '../../api.yaml#/components/responses/Forbidden'
     '404':

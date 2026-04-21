@@ -2,7 +2,7 @@ get:
   tags:
     - Booking ticket properties
   summary: Get a booking ticket property
-  description: Get information about a specific booking ticket property.
+  description: Get information about a specific booking ticket property. Property IDs and values are used as filters in [GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets).
   operationId: getBookingTicketProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

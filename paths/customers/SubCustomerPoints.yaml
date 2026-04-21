@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get all customer point records
-  description: Get information about all customer point records.
+  description: |
+    Get information about all customer point records.
+
+    Reward points are the non-monetary loyalty currency earned by customers through purchases and other qualifying actions. Each point record represents a single earning or redemption event. Filter by `point_type_id` to narrow results to a specific point program.
+
+    Related: [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
   operationId: getSubCustomerPoints
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

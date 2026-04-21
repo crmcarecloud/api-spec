@@ -2,7 +2,8 @@ get:
   tags:
     - Campaign products
   summary: Get a campaign product store records
-  description: Get information about all campaign products store records.
+  description: |
+    Get all store records associated with a specific campaign product. Store records define which stores the campaign product applies to. See [Campaign products](https://help.crmcarecloud.com/en/loyalty-engine/campaign-products) for details.
   operationId: getCampaignProductStoreRecords
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

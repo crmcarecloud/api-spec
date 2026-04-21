@@ -2,7 +2,8 @@ get:
   tags:
     - Booking tickets
   summary: Get all booking tickets
-  description: Get information about all booking tickets.
+  description: |
+    Get a list of all booking tickets. A booking ticket defines a type of bookable resource or service - for example, a therapist, a consultation room, or an event. Use filters such as `customer_id`, validity range, or ticket properties to narrow results.
   operationId: getBookingTickets
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

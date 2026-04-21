@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get all customer credit records
-  description: Get information about all customer credit records.
+  description: |
+    Get information about all customer credit records.
+
+    Returns all credit records on the customer's account. Credits are the monetary loyalty currency stored in a customer's wallet. Each record has an amount, credit type, currency, partner, and creation timestamp.
+
+    To see a chronological audit log of all credit operations (deposits, reductions, transfers), use [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
   operationId: getSubCustomerCredits
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -6,6 +6,8 @@ Agreement:
   $ref: "./Agreement.yaml"
 AgreementList:
   $ref: "./AgreementList.yaml"
+Audience:
+  $ref: "./Audience.yaml"
 Attachment:
   $ref: "./Attachment.yaml"
 AttachmentInfo:
@@ -258,8 +260,6 @@ StoreGroupRecord:
   $ref: "./StoreGroupRecord.yaml"
 Tag:
   $ref: "./Tag.yaml"
-TargetGroup:
-  $ref: "./TargetGroup.yaml"
 Task:
   $ref: "./Task.yaml"
 TaskAssignee:

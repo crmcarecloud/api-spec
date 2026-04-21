@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get all customer vouchers
-  description: Get information about all customer vouchers.
+  description: |
+    Get information about all customer vouchers.
+
+    Vouchers are redeemable discount or reward certificates stored on a customer's account. They are typically issued as part of a reward redemption or marketing campaign. Each voucher has a value, validity period, and redemption status.
+
+    Related: [GET /vouchers](https://carecloud.readme.io/reference/getvouchers)
   operationId: getSubCustomerVouchers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

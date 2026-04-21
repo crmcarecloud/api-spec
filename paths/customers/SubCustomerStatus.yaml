@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get a collection of status records
-  description: Get information about all status records on a customer account.
+  description: |
+    Get information about all status records on a customer account.
+
+    Customer statuses represent the customer's standing or tier within a loyalty program - for example, Silver, Gold, or Platinum. Each status record has a validity period; only one status can be active at a time. This endpoint returns all status records, including expired and inactive ones.
+
+    To assign a new status, use [POST /customers/actions/set-status-record](https://carecloud.readme.io/reference/postcustomerssetstatusrecord) (enterprise interface only).
   operationId: getSubCustomerStatus
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

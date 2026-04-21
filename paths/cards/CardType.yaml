@@ -2,7 +2,7 @@ get:
   tags:
     - Card types
   summary: Get a card type
-  description: Get information about a specific customer card type.
+  description: Get information about a specific card type, including its name, number prefix, and associated configuration.
   operationId: getCardType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -76,7 +76,7 @@ put:
   tags:
     - Card types
   summary: Update a card type
-  description: Update a specific customer card type.
+  description: Update the name or number prefix of an existing card type.
   operationId: putCardType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,12 @@ get:
   tags:
     - Credits
   summary: Get a credit record
-  description: Get information about a specific credit transaction.
+  description: |
+    Get information about a specific credit transaction.
+
+    Returns the full detail of a single credit record, including its amount, credit type, currency, associated customer and partner, creation timestamp, and note.
+
+    To query all credits for a customer, use [GET /credits](https://carecloud.readme.io/reference/getcredits). To see the full history of operations on a customer's credits, use [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
   operationId: getCredit
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

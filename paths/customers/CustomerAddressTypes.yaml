@@ -2,7 +2,12 @@ get:
   tags:
     - Customer address types
   summary: Get all customer address types
-  description: Get a list of customer address types accepted in the CareCloud platform.
+  description: |
+    Get a list of customer address types accepted in the CareCloud platform.
+
+    Address types categorise the additional addresses stored on a customer account - for example, delivery, billing, or work address. Use the returned IDs when creating or updating additional customer address records.
+
+    Related: [GET /customers/{customer_id}/addresses](https://carecloud.readme.io/reference/getsubcustomeraddresses)
   operationId: getCustomerAddressTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

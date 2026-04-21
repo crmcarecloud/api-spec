@@ -4,6 +4,9 @@ delete:
   summary: Delete a partner record from an account
   description: |
     Delete a specific customer partner record from a customer account.
+
+    Removes the association between a customer and the specified partner. Once deleted, the partner's loyalty programs and communications will no longer apply to the customer. To add or replace partner assignments, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only).
+
     ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: deleteSubCustomerPartner
   parameters:

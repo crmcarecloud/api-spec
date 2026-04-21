@@ -2,7 +2,10 @@ get:
   tags:
     - Customers
   summary: Get an additional customer address
-  description: Get information about an additional customer address.
+  description: |
+    Get information about an additional customer address.
+
+    Returns the full detail of a single additional address record on the customer account, including its address type, street, city, ZIP code, and country. To retrieve all addresses for a customer, use [GET /customers/{customer_id}/addresses](https://carecloud.readme.io/reference/getsubcustomeraddresses).
   operationId: getSubCustomerAddress
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

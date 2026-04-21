@@ -1,25 +1,25 @@
 get:
   tags:
-    - Target groups
-  summary: Get a target group
+    - Audiences
+  summary: Get an audience
   description: |
-    Get information about a specific target group.
-    ⚠️ The endpoint is available only in the Enterprise interface.
-  operationId: getTargetGroup
+    Get information about a specific audience. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
+
+    ⚠️ Endpoint is available only in the Enterprise interface.
+  operationId: getAudience
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
-    - $ref: '../../parameters/_index.yaml#/target_group_id_path'
+    - $ref: '../../parameters/_index.yaml#/audience_id_path'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            title: GetTargetGroup200Response
             type: object
             properties:
               data:
-                $ref: '../../schemas/_index.yaml#/TargetGroup'
+                $ref: '../../schemas/_index.yaml#/Audience'
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
     '401':

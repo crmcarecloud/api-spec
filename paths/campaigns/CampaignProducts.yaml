@@ -2,7 +2,8 @@ get:
   tags:
     - Campaign products
   summary: Get all campaign products
-  description: Get information about all available campaign products.
+  description: |
+    Get a list of all campaign products. A campaign product defines a discount promotion on a specific product, with configurable pricing (percentage discount or final price), a validity period, and optional restrictions by store or display channel. Use filters such as `campaign_id`, `is_valid`, and `display_in` to narrow results. See [Campaign products](https://help.crmcarecloud.com/en/loyalty-engine/campaign-products) for details.
   operationId: getCampaignProducts
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -129,7 +130,8 @@ post:
   tags:
     - Campaign products
   summary: Create a campaign product
-  description: Add a new campaign product.
+  description: |
+    Create a new campaign product. A campaign product defines a discount promotion on a specific product, including the discount type (percentage or final price), validity dates, and which stores and channels the promotion applies to. See [Campaign products](https://help.crmcarecloud.com/en/loyalty-engine/campaign-products) for details.
   operationId: postCampaignProduct
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

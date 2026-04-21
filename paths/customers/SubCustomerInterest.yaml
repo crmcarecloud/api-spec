@@ -2,7 +2,10 @@ put:
   tags:
     - Customers
   summary: Update an interest record on an account
-  description: Update a specific customer interest record on a customer account.
+  description: |
+    Update a specific customer interest record on a customer account.
+
+    Replaces the assignment or value of a single interest record on the customer account. To retrieve the current interest records, use [GET /customers/{customer_id}/interests](https://carecloud.readme.io/reference/getsubcustomerinterests).
   operationId: putSubCustomerInterest
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

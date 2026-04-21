@@ -2,7 +2,10 @@ get:
   tags:
     - Customers
   summary: Detail of a relation between customers
-  description: Get information about a specific customer relation.
+  description: |
+    Get information about a specific customer relation.
+
+    Returns the detail of a single relationship record between two customer accounts, including the related customer ID and the relation type. To retrieve all relations for a customer, use [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers).
   operationId: getSubCustomerRelatedCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

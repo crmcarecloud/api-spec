@@ -33,6 +33,8 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
+  - name: Audiences
+    description: An API resource containing all endpoints related to CareCloud Audiences.
   - name: Booking tickets
     description: The Booking Tickets resource provides a list of all available tickets that can be booked through the API. This resource enables users to retrieve detailed information about the tickets.
   - name: Bookings
@@ -185,10 +187,6 @@ tags:
     description: A store is a building, part of a building, or a virtual place where products are sold. You can manage the network of your business units (shops, stores, company branches, warehouses, kiosks, e-shops, mobile, or any other applications) via this resource. Many properties like an address, GPS coordinates, opening hours, or contact details can be synchronized with any other system.
   - name: Store groups
     description: List of store groups.
-  - name: Target groups
-    description: |
-      Retrieves a list of target groups, which are predefined segments of selected customers used in omnichannel marketing campaigns. These groups are typically created based on customer attributes, behavior, or preferences, and serve as recipient lists for communication channels such as email and push notifications.
-      Target groups help marketers personalize messaging and coordinate campaigns across channels by ensuring the right audience is addressed.
   - name: Tasks
     description: Task functionality was created to track the work progress of CareCloud users and is a good tool for complaints or other customer requests.
   - name: Task properties
@@ -224,7 +222,8 @@ paths:
       tags:
         - Consents
       summary: Get all consents
-      description: Get a list of consents accepted in the CareCloud platform.
+      description: |
+        Get a list of all consent types configured in the CareCloud platform. Consents are the primary mechanism for GDPR compliance - they control which customers are eligible to receive marketing communications and which can be included in segmented audiences. Three consent types exist by default: processing of personal data, marketing communication, and profiling. The `communication_channel_id` filter returns only consents associated with a specific channel. See [Consent impact on segmentation and communication](https://help.crmcarecloud.com/en/campaigns-and-segmentation/constent-impact-on-segmentation-and-communication) for details.
       operationId: getConsents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -319,7 +318,8 @@ paths:
       tags:
         - Consents
       summary: Get a consent
-      description: Get information about a specific consent.
+      description: |
+        Get the details of a specific consent type, including its name and associated communication channels. Consent type IDs are used when reading or updating consent records on a customer. See [Consent impact on segmentation and communication](https://help.crmcarecloud.com/en/campaigns-and-segmentation/constent-impact-on-segmentation-and-communication) for details.
       operationId: getConsent
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -355,12 +355,106 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1, Default: cs, en-gb;q=0.8\n\n// Set path parameter\n$agreement_id = '8fd73167342d06899c4c015320';\n\n// Call endpoint and get data\ntry\n{\n  $get_agreement = $care_cloud->agreementsApi()->getAgreement($agreement_id, $accept_language);\n  $agreement = $get_agreement->getData();\n  var_dump($agreement);\n}\ncatch(ApiException $e)\n{\n  die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /audiences:
+    get:
+      tags:
+        - Audiences
+      summary: Get all audiences
+      description: |
+        Get a list of all audiences available in CareCloud. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
+
+        ⚠️ Endpoint is available only in the Enterprise interface.
+      operationId: getAudiences
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/communication_channel_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      audiences:
+                        type: array
+                        description: List of all audiences.
+                        items:
+                          $ref: '#/components/schemas/Audience'
+                      total_items:
+                        type: integer
+                        description: The number of all found audiences.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /audiences/{audience_id}:
+    get:
+      tags:
+        - Audiences
+      summary: Get an audience
+      description: |
+        Get information about a specific audience. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
+
+        ⚠️ Endpoint is available only in the Enterprise interface.
+      operationId: getAudience
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/audience_id_path'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Audience'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /bookings:
     get:
       tags:
         - Bookings
       summary: Get all bookings
-      description: Get information about all bookings.
+      description: |
+        Get a list of all bookings. A booking is a customer reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Use filters such as `customer_id` and `booking_status` to narrow results. Set `add_booking_items` to include the individual time slot reservations in the response.
       operationId: getBookings
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -417,7 +511,8 @@ paths:
       tags:
         - Bookings
       summary: Create a new booking
-      description: Add a new booking.
+      description: |
+        Create a new booking for a customer. A booking is a reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Each booking item references a time slot from a booking ticket ([GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)). If no `booking_status` is provided, the default booking status is applied.
       operationId: postBooking
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -473,7 +568,7 @@ paths:
       tags:
         - Bookings
       summary: Get a booking
-      description: Get information about a specific booking.
+      description: Get information about a specific booking, including the customer, status, booking items, and any additional data.
       operationId: getBooking
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -513,7 +608,7 @@ paths:
       tags:
         - Bookings
       summary: Update a booking
-      description: Update a specific booking.
+      description: Update a specific booking. Use this endpoint to change the booking status or reassign the booking to a different customer.
       operationId: putBooking
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -535,7 +630,7 @@ paths:
                       type: string
                       description: |
                         Current status of the booking.
-                        *Possible values are available in [booking-statuses](#tag/Booking-statuses)*
+                        *Possible values are available in [booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)*
                       example: 86e05affc7a7abefcd513ab400
                     data:
                       oneOf:
@@ -575,7 +670,7 @@ paths:
       tags:
         - Bookings
       summary: Delete a booking
-      description: Delete selected booking.
+      description: Delete a specific booking and all its associated booking items.
       operationId: deleteBooking
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -608,7 +703,8 @@ paths:
       tags:
         - Booking tickets
       summary: Get all booking tickets
-      description: Get information about all booking tickets.
+      description: |
+        Get a list of all booking tickets. A booking ticket defines a type of bookable resource or service - for example, a therapist, a consultation room, or an event. Use filters such as `customer_id`, validity range, or ticket properties to narrow results.
       operationId: getBookingTickets
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -668,7 +764,7 @@ paths:
       tags:
         - Booking tickets
       summary: Get a booking ticket
-      description: Get information about a specific booking ticket.
+      description: Get information about a specific booking ticket, including its properties and validity period.
       operationId: getBookingTicket
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -709,7 +805,8 @@ paths:
       tags:
         - Booking tickets
       summary: Get all time slots for a booking ticket
-      description: Get all time slots for a specific booking ticket.
+      description: |
+        Get all available time slots for a specific booking ticket. Time slots represent the individual available appointment or event times for a bookable resource. Time slot IDs are used when creating booking items within a booking ([POST /bookings](https://carecloud.readme.io/reference/postbooking)).
       operationId: getSubBookingTicketsTimeSlots
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -770,7 +867,8 @@ paths:
       tags:
         - Booking ticket properties
       summary: Get all booking ticket properties
-      description: Get information about booking ticket properties.
+      description: |
+        Get a list of all booking ticket properties. Booking ticket properties define the custom attributes that can be attached to booking tickets - for example, service type, location, or capacity. Property IDs and values are used as filters in [GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets).
       operationId: getBookingTicketProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -825,7 +923,7 @@ paths:
       tags:
         - Booking ticket properties
       summary: Get a booking ticket property
-      description: Get information about a specific booking ticket property.
+      description: Get information about a specific booking ticket property. Property IDs and values are used as filters in [GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets).
       operationId: getBookingTicketProperty
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -867,8 +965,9 @@ paths:
         - Bookings
       summary: Get information about booking busy times
       description: |
-        The action method provides data on the busiest times of bookings in a period. The period can change depending on the parameters set up.
+        Returns booking occupancy data for a specified date and time period. The action method provides data on the busiest times of bookings in a period. The period can change depending on the parameters set up.
         The chart contains time intervals on the X axis and Percentage information about reserved time slots (70% of slots for the time is reserved) on the Y axis.
+        Filter by booking ticket or ticket property to narrow the scope of the data.
       operationId: postBookingBusyTimes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -954,7 +1053,8 @@ paths:
       tags:
         - Booking statuses
       summary: Get all booking statuses
-      description: Get information about all booking statuses.
+      description: |
+        Get a list of all booking statuses available in the CareCloud platform. Booking statuses represent the lifecycle states of a booking - for example, pending, confirmed, or cancelled. These IDs are used when creating or updating bookings ([POST /bookings](https://carecloud.readme.io/reference/postbooking)).
       operationId: getBookingStatuses
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1008,7 +1108,7 @@ paths:
       tags:
         - Booking statuses
       summary: Get a booking status
-      description: Get information about a specific booking status.
+      description: Get information about a specific booking status. Booking status IDs are used when creating or updating bookings ([POST /bookings](https://carecloud.readme.io/reference/postbooking)).
       operationId: getBookingStatus
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1049,7 +1149,8 @@ paths:
       tags:
         - Campaigns
       summary: Get all campaigns
-      description: Get information about all available campaigns.
+      description: |
+        Get a list of all campaigns in the CareCloud platform. A campaign is a planned sequence of activities that promotes a product or service. Campaigns group related campaign products and messages, and can target customers across multiple communication channels. Use the `name` filter for name-based lookup and `external_id` to retrieve campaigns linked to external systems. See [Campaigns](https://help.crmcarecloud.com/en/campaigns-and-segmentation/e-mailing/campaigns) for details.
       operationId: getCampaigns
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1104,7 +1205,8 @@ paths:
       tags:
         - Campaigns
       summary: Create a campaign
-      description: Add a new campaign.
+      description: |
+        Create a new campaign. A campaign is a planned sequence of activities that promotes a product or service. After creating a campaign, use [POST /campaign-products](https://carecloud.readme.io/reference/postcampaignproduct) to attach discounted products to it. See [Campaigns](https://help.crmcarecloud.com/en/campaigns-and-segmentation/e-mailing/campaigns) for details.
       operationId: postCampaign
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1160,7 +1262,7 @@ paths:
       tags:
         - Campaigns
       summary: Get a campaign
-      description: Get information about a specific campaign.
+      description: Get information about a specific campaign, including its name, external ID, and parent campaign if applicable.
       operationId: getCampaign
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1201,7 +1303,8 @@ paths:
       tags:
         - Campaign products
       summary: Get all campaign products
-      description: Get information about all available campaign products.
+      description: |
+        Get a list of all campaign products. A campaign product defines a discount promotion on a specific product, with configurable pricing (percentage discount or final price), a validity period, and optional restrictions by store or display channel. Use filters such as `campaign_id`, `is_valid`, and `display_in` to narrow results. See [Campaign products](https://help.crmcarecloud.com/en/loyalty-engine/campaign-products) for details.
       operationId: getCampaignProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1265,7 +1368,8 @@ paths:
       tags:
         - Campaign products
       summary: Create a campaign product
-      description: Add a new campaign product.
+      description: |
+        Create a new campaign product. A campaign product defines a discount promotion on a specific product, including the discount type (percentage or final price), validity dates, and which stores and channels the promotion applies to. See [Campaign products](https://help.crmcarecloud.com/en/loyalty-engine/campaign-products) for details.
       operationId: postCampaignProduct
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1321,7 +1425,7 @@ paths:
       tags:
         - Campaign products
       summary: Get a campaign product
-      description: Get information about a specific campaign product.
+      description: Get information about a specific campaign product, including its pricing, validity period, store restrictions, and presentation data such as name, subtitle, and image.
       operationId: getCampaignProduct
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1362,7 +1466,8 @@ paths:
       tags:
         - Campaign products
       summary: Get a campaign product store records
-      description: Get information about all campaign products store records.
+      description: |
+        Get all store records associated with a specific campaign product. Store records define which stores the campaign product applies to. See [Campaign products](https://help.crmcarecloud.com/en/loyalty-engine/campaign-products) for details.
       operationId: getCampaignProductStoreRecords
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1473,7 +1578,8 @@ paths:
       tags:
         - Cards
       summary: Get all cards
-      description: Get information about all customer cards.
+      description: |
+        Get a list of all customer cards. Cards are the primary customer identification mechanism in CareCloud. Each card carries a unique number regardless of its format - plastic, electronic, virtual, or membership. A customer can hold multiple cards of different types. Use filters such as `customer_id`, `card_type_id`, and `card_state` to narrow results. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
       operationId: getCards
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1534,7 +1640,7 @@ paths:
         - Cards
       summary: Create a card
       description: |
-        Add a new customer card.
+        Add a new customer card. For bulk creation, use [POST /cards/batch](https://carecloud.readme.io/reference/postbatchcards) instead. To assign an existing free card from a pre-imported pool, use [POST /cards/actions/assign-free-card](https://carecloud.readme.io/reference/postassigncard) instead.
         ⚠️ Endpoint is available only in the Enterprise interface.
       operationId: postCard
       parameters:
@@ -1591,7 +1697,8 @@ paths:
       tags:
         - Cards
       summary: Get a card
-      description: Get information about a specific customer card.
+      description: |
+        Get information about a specific customer card, including its number, type, validity period, state, and the customer it is assigned to. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
       operationId: getCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1631,7 +1738,7 @@ paths:
       tags:
         - Cards
       summary: Update a card
-      description: Update a specific customer card.
+      description: Update a specific customer card. Use this endpoint to change the card's validity period, state, or assigned customer.
       operationId: putCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1678,6 +1785,7 @@ paths:
       description: |
         Assign a free card to a customer.
         This action is limited to one card per card type per customer. If your project allows customers to have multiple cards of one type, use [PUT /cards/{card_id}](https://carecloud.readme.io/reference/putcard) instead.
+        See [Assign card to customer](https://help.crmcarecloud.com/en/marketing-automation/actions/assign-card-to-customer) for details.
       operationId: postAssignCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1808,7 +1916,8 @@ paths:
       tags:
         - Cards
       summary: Generate virtual card file
-      description: Generate a virtual card file. The file can be a PNG image (barcode or QR code) or a pass package for Apple Wallet.
+      description: |
+        Generate a virtual card file. The file can be a PNG image (barcode or QR code) or a pass package for Apple Wallet. Use the returned URL to display or distribute the digital card in a mobile application or by email.
       operationId: postGenerateDigitalCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2018,7 +2127,7 @@ paths:
         - Cards
       summary: Create a batch of cards
       description: |
-        Batch process helps to add multiple cards in one request.
+        Create multiple customer cards in a single request. Use this endpoint to import a large number of cards efficiently.
         ⚠️ Adjust batch sizes based on processing times. We recommend using a maximum of 1000 records and adjusting the batch size based on processing time.
         ⚠️ Endpoint is available only in the Enterprise interface.
       operationId: postBatchCards
@@ -2068,7 +2177,8 @@ paths:
       tags:
         - Card types
       summary: Get information about all card types
-      description: Get a list of all customer card types.
+      description: |
+        Get a list of all card types configured in the CareCloud platform. Card types define categories of customer cards - for example, a loyalty card, a digital membership card, or a prepaid card - including their name and number prefix. Filter by name or `text_id` to find a specific card type. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
       operationId: getCardTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2123,7 +2233,8 @@ paths:
       tags:
         - Card types
       summary: Create a new card type
-      description: Add a new customer card type.
+      description: |
+        Create a new card type. Card types define the categories of cards that can be issued to customers, including the name and the prefix applied to card numbers of that type.
       operationId: postCardType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2179,7 +2290,7 @@ paths:
       tags:
         - Card types
       summary: Get a card type
-      description: Get information about a specific customer card type.
+      description: Get information about a specific card type, including its name, number prefix, and associated configuration.
       operationId: getCardType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2219,7 +2330,7 @@ paths:
       tags:
         - Card types
       summary: Update a card type
-      description: Update a specific customer card type.
+      description: Update the name or number prefix of an existing card type.
       operationId: putCardType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2263,7 +2374,8 @@ paths:
       tags:
         - Card types
       summary: Get a collection of cards
-      description: Get all cards belonging to a specific card type.
+      description: |
+        Get all cards belonging to a specific card type. Use filters such as `customer_id` and `is_valid` to narrow results. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
       operationId: getSubCardTypeCards
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2573,7 +2685,8 @@ paths:
       tags:
         - Communication channels
       summary: Get all communication channels
-      description: Get a list of communication channels accepted in the CareCloud platform.
+      description: |
+        Get a list of all communication channels available in the CareCloud platform. Communication channels represent the delivery methods used for customer outreach: email, SMS, web push notifications, mobile app push notifications, Viber, WhatsApp, and White Post. Channel IDs are used when filtering consent records ([GET /consents](https://carecloud.readme.io/reference/getconsents)). This endpoint does not require authentication.
       operationId: getCommunicationChannels
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2626,7 +2739,7 @@ paths:
       tags:
         - Communication channels
       summary: Get a communication channel
-      description: Get information about a specific communication channel.
+      description: Get information about a specific communication channel. This endpoint does not require authentication.
       operationId: getCommunicationChannel
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2666,7 +2779,8 @@ paths:
       tags:
         - Countries
       summary: Get all countries
-      description: Get a list of countries accepted in the CareCloud platform.
+      description: |
+        Get a list of all countries available in the CareCloud platform. Country records are reference data used in customer address fields and other resources that reference geographic location. Filter by `country_id` or `country_name` to find a specific country.
       operationId: getCountries
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2722,7 +2836,14 @@ paths:
       tags:
         - Credits
       summary: Get all credit records
-      description: Get a list of all credit transactions and their current values.
+      description: |
+        Get a list of all credit transactions and their current values.
+
+        Credits are the monetary loyalty currency stored in a customer's wallet alongside reward points. Each credit record captures the amount, credit type, currency, customer, partner, creation timestamp, and an optional note.
+
+        Use the `customer_id` filter to retrieve credits for a specific customer, `credit_type_id` to narrow results to a specific loyalty program or promotional category, and the `create_credit_time_from`/`create_credit_time_to` parameters to filter by creation date.
+
+        Related: [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes), [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory)
       operationId: getCredits
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2780,7 +2901,12 @@ paths:
       tags:
         - Credits
       summary: Get a credit record
-      description: Get information about a specific credit transaction.
+      description: |
+        Get information about a specific credit transaction.
+
+        Returns the full detail of a single credit record, including its amount, credit type, currency, associated customer and partner, creation timestamp, and note.
+
+        To query all credits for a customer, use [GET /credits](https://carecloud.readme.io/reference/getcredits). To see the full history of operations on a customer's credits, use [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
       operationId: getCredit
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2821,7 +2947,12 @@ paths:
       tags:
         - Credits
       summary: Get all purchases for a credit
-      description: Get all purchases associated with a specific credit record.
+      description: |
+        Get all purchases associated with a specific credit record.
+
+        Credits can be earned through customer purchases. This endpoint returns the purchases linked to a specific credit record, allowing you to trace which purchase transaction originated the credit. Supports filtering by store, customer, purchase type, and payment date range.
+
+        Use the `purchase_items_extension` parameter to include individual line items in the response. To retrieve all purchases for a customer, use [GET /customers/{customer_id}/purchases](https://carecloud.readme.io/reference/getsubcustomerpurchases).
       operationId: getSubCreditPurchases
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2883,8 +3014,13 @@ paths:
         - Credits
       summary: Credit reduction
       description: |
-        Endpoint for reducing credits on the customer's account. 
-        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+        Endpoint for reducing credits on the customer's account.
+
+        A credit reduction creates a negative credit record, decreasing the customer's wallet balance. Use this endpoint to apply a credit spend, expiration, or manual correction. The response returns the ID of the newly created reduction record.
+
+        If `credit_type_id` is not provided, the project-default credit type is used. The `note` field is optional and is recorded in the credit history audit log, visible via [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
+
+        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
         ⚠️ Action methods are available only in the Enterprise interface.
       operationId: postCreditReduction
       parameters:
@@ -2965,7 +3101,12 @@ paths:
       summary: Deposit of credits
       description: |
         Creates a new credit record with the corresponding value.
-        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+
+        A deposit adds a positive credit record to the customer account, increasing the wallet balance. The response returns the ID of the newly created credit record.
+
+        If `credit_type_id` is not provided, the project-default credit type is assigned. If `currency_id` is not provided, the project-default currency is used. The `note` field is optional and is recorded in the credit history audit log, visible via [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
+
+        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
         ⚠️ Action methods are available only in Enterprise interface.
       operationId: postCreditDeposit
       parameters:
@@ -3045,7 +3186,14 @@ paths:
       summary: Transfer credits
       description: |
         Transfers credits from one customer to another.
-        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+
+        A credit transfer moves a specified amount from one customer's wallet to another. This is typically used when merging duplicate customer accounts or redistributing loyalty balances. Both the deduction from the original customer and the addition to the new customer are recorded in the credit history.
+
+        The `credit_type_id` parameter is required. If `currency_id` is not provided, the project-default currency is used. Returns HTTP 204 on success.
+
+        Related: [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory), [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+
+        ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
         ⚠️ Action methods are available only in the Enterprise interface.
       operationId: postCreditTransfer
       parameters:
@@ -3111,7 +3259,14 @@ paths:
       tags:
         - Credit history
       summary: Get credit transaction history
-      description: Get a list of credit transactions of the customer.
+      description: |
+        Get a list of credit transactions of the customer.
+
+        Credit history is a chronological audit log of all credit operations on a customer account. Each record captures the operation type (deposit, reduction, or transfer), the amount, timestamp, store, partner, and an optional note.
+
+        The `customer_id` parameter is required. Filter by operation type using `credit_operation_type`, or search within notes using `credit_operation_note`. Use `time_from` and `time_to` to scope results to a date range.
+
+        Related: [GET /credits](https://carecloud.readme.io/reference/getcredits), [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
       operationId: getCreditHistory
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3172,7 +3327,14 @@ paths:
       tags:
         - Credit types
       summary: Get all credit types
-      description: Get a list of all credit types.
+      description: |
+        Get a list of all credit types.
+
+        Credit types are program-based categories that credits belong to. They distinguish between different loyalty programs or purposes - for example, standard loyalty credits, promotional credits, or partner-specific credit programs. Every credit record is assigned to exactly one credit type.
+
+        Use this endpoint to retrieve the available credit type IDs when depositing or reducing credits. If no credit type is specified on a deposit or reduction, the project-default credit type is applied automatically.
+
+        Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [GET /credits](https://carecloud.readme.io/reference/getcredits)
       operationId: getCreditTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3226,7 +3388,12 @@ paths:
       tags:
         - Credit types
       summary: Get a credit type
-      description: Get information about a specific credit type.
+      description: |
+        Get information about a specific credit type.
+
+        Returns the full detail of a single credit type record, including its name and configuration. Credit types categorise credits by loyalty program or business purpose. Each credit record is linked to exactly one credit type.
+
+        To list all available credit types, use [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes).
       operationId: getCreditType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3267,7 +3434,14 @@ paths:
       tags:
         - Currencies
       summary: Get all currencies
-      description: Get a list of currencies accepted in the CareCloud platform.
+      description: |
+        Get a list of currencies accepted in the CareCloud platform.
+
+        Currencies represent the ISO currency codes configured for use in a project. They are used to denominate credit amounts and purchase values. Each project has one default currency; others can be specified explicitly when depositing or reducing credits.
+
+        Use this endpoint to retrieve valid currency IDs for use in credit operations. Filter by `currency_name` or `currency_code` to locate a specific currency.
+
+        Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
       operationId: getCurrencies
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3323,7 +3497,12 @@ paths:
       tags:
         - Currencies
       summary: Get a currency
-      description: Get information about a specific currency.
+      description: |
+        Get information about a specific currency.
+
+        Returns the full detail of a single currency record, including its ISO code and name. Currencies are used to denominate credit amounts and purchase values in the CareCloud platform.
+
+        To retrieve the full list of accepted currencies, use [GET /currencies](https://carecloud.readme.io/reference/getcurrencies).
       operationId: getCurrency
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3476,7 +3655,14 @@ paths:
       tags:
         - Customers
       summary: Get all customers
-      description: Get a list of all customers.
+      description: |
+        Get a list of all customers.
+
+        Customers are the central entity of the CareCloud CRM. Each account stores personal and contact details, loyalty program participation (cards, points, credits, vouchers), communication preferences and consent status, segments, custom properties, related customers, addresses, interests, and partner and source assignments.
+
+        Supports filtering by email, phone, first name, last name, date of birth, customer source, and a list of customer IDs. Use `email_list` to retrieve multiple customers by email in a single request.
+
+        Related: [POST /customers](https://carecloud.readme.io/reference/postcustomer), [GET /customers/{customer_id}](https://carecloud.readme.io/reference/getcustomer), [GET /customers/actions/search-customers](https://carecloud.readme.io/reference/getcustomersearch) (enterprise interface only)
       operationId: getCustomers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3576,7 +3762,14 @@ paths:
       tags:
         - Customers
       summary: Get information about a customer
-      description: Get information about a specific customer account.
+      description: |
+        Get information about a specific customer account.
+
+        Returns the full customer record including personal and contact details, address, consent status, source and partner assignments. The customer is the central entity of the CareCloud CRM and aggregates data from all connected applications and platforms.
+
+        Use the `customer_short_salutation` parameter to include a formatted salutation field in the response. Sub-resources such as purchases, cards, credits, and vouchers are available via dedicated sub-resource endpoints under `/customers/{customer_id}/`.
+
+        Related: [PUT /customers/{customer_id}](https://carecloud.readme.io/reference/putcustomer), [GET /customers](https://carecloud.readme.io/reference/getcustomers)
       operationId: getCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3645,7 +3838,12 @@ paths:
       tags:
         - Customers
       summary: Update a customer
-      description: Update the information on a specific customer account.
+      description: |
+        Update the information on a specific customer account.
+
+        Replaces the customer's personal information, contact details, address, consent records, and optional property records with the values provided in the request body. The customer password is changed only if a new password is provided; omitting the password field leaves it unchanged.
+
+        To update multiple custom property records in bulk without affecting other customer data, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
       operationId: putCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3729,7 +3927,12 @@ paths:
       tags:
         - Customers
       summary: Get all customer purchases
-      description: Get information about all customer account purchases.
+      description: |
+        Get information about all customer account purchases.
+
+        Returns all purchase transactions recorded on the customer's account. Each purchase record includes the total value, payment time, store, and purchase type. Use `purchase_items_extension=true` to include individual line items in the response.
+
+        Filter by store, purchase type, and payment date range to narrow results. To retrieve purchases across all customers, use [GET /purchases](https://carecloud.readme.io/reference/getpurchases).
       operationId: getSubCustomerPurchases
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3790,7 +3993,12 @@ paths:
       tags:
         - Customers
       summary: Get all customer point records
-      description: Get information about all customer point records.
+      description: |
+        Get information about all customer point records.
+
+        Reward points are the non-monetary loyalty currency earned by customers through purchases and other qualifying actions. Each point record represents a single earning or redemption event. Filter by `point_type_id` to narrow results to a specific point program.
+
+        Related: [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
       operationId: getSubCustomerPoints
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3846,7 +4054,12 @@ paths:
       tags:
         - Customers
       summary: Get all customer vouchers
-      description: Get information about all customer vouchers.
+      description: |
+        Get information about all customer vouchers.
+
+        Vouchers are redeemable discount or reward certificates stored on a customer's account. They are typically issued as part of a reward redemption or marketing campaign. Each voucher has a value, validity period, and redemption status.
+
+        Related: [GET /vouchers](https://carecloud.readme.io/reference/getvouchers)
       operationId: getSubCustomerVouchers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3909,6 +4122,10 @@ paths:
       summary: Get all customer rewards
       description: |
         Get information about all customer rewards.
+
+        Rewards are incentives available to customers as part of the loyalty program. This endpoint returns all rewards associated with the customer account. Use `is_valid`, `valid_from`, and `valid_to` to filter by validity status and date range.
+
+        Related: [GET /rewards](https://carecloud.readme.io/reference/getrewards)
 
         ⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.
       operationId: getSubCustomerRewards
@@ -4042,7 +4259,12 @@ paths:
       tags:
         - Customers
       summary: Get all customer cards
-      description: Get information about all customer cards.
+      description: |
+        Get information about all customer cards.
+
+        Cards are the primary loyalty identifiers for customers. A customer can hold multiple cards (physical or virtual), each with a card number, card type, and validity period. Cards are used to identify the customer at a point of sale and to accumulate loyalty points and credits.
+
+        Related: [GET /cards](https://carecloud.readme.io/reference/getcards)
       operationId: getSubCustomerCards
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4101,7 +4323,12 @@ paths:
       tags:
         - Customers
       summary: Get a collection of segment records
-      description: Get information about all segment records on a customer account.
+      description: |
+        Get information about all segment records on a customer account.
+
+        Segments are groupings of customers based on shared attributes or behaviour, used for targeted marketing and personalisation. This endpoint returns all segment memberships currently recorded on the customer account.
+
+        Related: [GET /segments](https://carecloud.readme.io/reference/getsegments)
       operationId: getSubCustomerSegments
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4153,7 +4380,12 @@ paths:
       tags:
         - Customers
       summary: Get a collection of status records
-      description: Get information about all status records on a customer account.
+      description: |
+        Get information about all status records on a customer account.
+
+        Customer statuses represent the customer's standing or tier within a loyalty program - for example, Silver, Gold, or Platinum. Each status record has a validity period; only one status can be active at a time. This endpoint returns all status records, including expired and inactive ones.
+
+        To assign a new status, use [POST /customers/actions/set-status-record](https://carecloud.readme.io/reference/postcustomerssetstatusrecord) (enterprise interface only).
       operationId: getSubCustomerStatus
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4209,7 +4441,10 @@ paths:
       tags:
         - Customers
       summary: Get a collection of Hint records
-      description: Get information about all Hint records on a customer account.
+      description: |
+        Get information about all Hint records on a customer account.
+
+        Hint records are personalised recommendations associated with a customer account. They represent suggested products, offers, or actions identified as relevant to the customer. For AI-ranked reward recommendations, use [GET /customers/{customer_id}/reward-recommendations](https://carecloud.readme.io/reference/getsubcustomerrewardrecommendations).
       operationId: getSubCustomerHintRecords
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4265,7 +4500,14 @@ paths:
       tags:
         - Customers
       summary: Get customer source records
-      description: Get information about all customer account source records.
+      description: |
+        Get information about all customer account source records.
+
+        Customer source records identify the external systems or applications where the customer account is tracked - for example, a mobile application, e-commerce platform, or POS system. Each record links the customer to a customer source and can include one or more external IDs used by that source system.
+
+        When both the `external_ids` and `external_id` filter parameters are provided, `external_ids` takes priority and `external_id` is ignored.
+
+        Related: [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
       operationId: getSubCustomerSource
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4373,13 +4615,18 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerIdCustomersourcerecordsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerSourceRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameter\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer\n\n// Set customer source info\n$customer_source_record = new CustomerSourceRecord();\n$customer_source_record->setCustomerSourceId('8fdd651ff3f615bcebebad87ce'); // string | The unique external id of the customer source\n$customer_source_record->setExternalIds(['external-id-1', 'external-id-2']); // string[] | The list of external IDs of the customer in the external system (optional)\n// $customer_source_record->setExternalId(null); // Deprecated - use setExternalIds() instead\n\n// Set info to the request body\n$body = new CustomerIdCustomersourcerecordsBody();\n$body->setCustomerSourceRecord($customer_source_record);\n\n// Call endpoint and post data\ntry\n{\n    $post_source_record = $care_cloud->customersApi()->postSubCustomerSource($body, $customer_id, $accept_language);\n    $source_record_id = $post_source_record->getData()->getCustomerSourceRecordId();\n    var_dump($source_record_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerIdCustomersourcerecordsBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\CustomerSourceRecord;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameter\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer\n\n// Set customer source info\n$customer_source_record = new CustomerSourceRecord();\n$customer_source_record->setCustomerSourceId('8fdd651ff3f615bcebebad87ce'); // string | The unique external id of the customer source\n$customer_source_record->setExternalId('external-id-1'); // string | The external ID of the customer in the external system (optional)\n\n// Set info to the request body\n$body = new CustomerIdCustomersourcerecordsBody();\n$body->setCustomerSourceRecord($customer_source_record);\n\n// Call endpoint and post data\ntry\n{\n    $post_source_record = $care_cloud->customersApi()->postSubCustomerSource($body, $customer_id, $accept_language);\n    $source_record_id = $post_source_record->getData()->getCustomerSourceRecordId();\n    var_dump($source_record_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /customers/{customer_id}/property-records:
     get:
       tags:
         - Customers
       summary: Get a collection of properties
-      description: Get information about all property records on a customer account.
+      description: |
+        Get information about all property records on a customer account.
+
+        Customer properties are custom data fields defined at the project level. They extend the standard customer record with project-specific attributes - for example, loyalty tier preferences, subscription levels, or other business-specific data. Each property record links a property definition to its value on the customer account.
+
+        To update properties in bulk, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch). To retrieve the available property definitions, use [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties).
       operationId: getSubCustomerProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4490,7 +4737,10 @@ paths:
       tags:
         - Customers
       summary: Update a property of a customer
-      description: Update a specific customer property record on a customer account.
+      description: |
+        Update a specific customer property record on a customer account.
+
+        Replaces the value of a single custom property record on the customer account. To update multiple property records in a single request, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
       operationId: putSubCustomerProperty
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4613,7 +4863,12 @@ paths:
       tags:
         - Customers
       summary: Get a collection of interest records
-      description: Get information about all interest records on a customer account.
+      description: |
+        Get information about all interest records on a customer account.
+
+        Customer interests represent the categories or topics a customer has opted into or been assigned to. They are used to personalise communication and offers. Each interest record links the customer to an interest defined in the CareCloud platform.
+
+        Related: [GET /interests](https://carecloud.readme.io/reference/getinterests)
       operationId: getSubCustomerInterests
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4720,7 +4975,10 @@ paths:
       tags:
         - Customers
       summary: Update an interest record on an account
-      description: Update a specific customer interest record on a customer account.
+      description: |
+        Update a specific customer interest record on a customer account.
+
+        Replaces the assignment or value of a single interest record on the customer account. To retrieve the current interest records, use [GET /customers/{customer_id}/interests](https://carecloud.readme.io/reference/getsubcustomerinterests).
       operationId: putSubCustomerInterest
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4798,7 +5056,12 @@ paths:
       tags:
         - Customers
       summary: Get all additional customer addresses
-      description: Get information about all customer addresses.
+      description: |
+        Get information about all customer addresses.
+
+        Additional addresses are stored on a customer account separately from the primary address recorded in the customer's personal information. Each additional address has an address type (for example, delivery, billing, or work) and full address detail.
+
+        Related: [GET /customer-address-types](https://carecloud.readme.io/reference/getcustomeraddresstypes)
       operationId: getSubCustomerAddresses
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4910,7 +5173,10 @@ paths:
       tags:
         - Customers
       summary: Get an additional customer address
-      description: Get information about an additional customer address.
+      description: |
+        Get information about an additional customer address.
+
+        Returns the full detail of a single additional address record on the customer account, including its address type, street, city, ZIP code, and country. To retrieve all addresses for a customer, use [GET /customers/{customer_id}/addresses](https://carecloud.readme.io/reference/getsubcustomeraddresses).
       operationId: getSubCustomerAddress
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4996,7 +5262,12 @@ paths:
       tags:
         - Customers
       summary: Get information about all customer events
-      description: Get a list of customer events in the CareCloud platform.
+      description: |
+        Get a list of customer events in the CareCloud platform.
+
+        Events represent customer interaction records and marketing automation triggers. They are used as conditions and triggers in CareCloud marketing automation workflows. This endpoint returns all events associated with the customer account.
+
+        Related: [GET /events](https://carecloud.readme.io/reference/getevents)
       operationId: getSubCustomerEvents
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5057,7 +5328,12 @@ paths:
       tags:
         - Customers
       summary: Get information about all related customers
-      description: Get a list of customers' relations in the CareCloud platform.
+      description: |
+        Get a list of customers' relations in the CareCloud platform.
+
+        Related customers are customer accounts linked to each other by a defined relationship type - for example, household members, referral relationships, or account groupings. This endpoint returns all relation records for the specified customer.
+
+        Related: [GET /customer-relation-types](https://carecloud.readme.io/reference/getcustomerrelationtypes)
       operationId: getSubCustomerRelatedCustomers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5171,7 +5447,10 @@ paths:
       tags:
         - Customers
       summary: Detail of a relation between customers
-      description: Get information about a specific customer relation.
+      description: |
+        Get information about a specific customer relation.
+
+        Returns the detail of a single relationship record between two customer accounts, including the related customer ID and the relation type. To retrieve all relations for a customer, use [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers).
       operationId: getSubCustomerRelatedCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5248,6 +5527,9 @@ paths:
       summary: Get information about all customer partners
       description: |
         Get a list of customer partners in CareCloud.
+
+        Customer-partner relations define which partners (retail chains, brands, or business units) a customer account is associated with. A customer can be assigned to one or more partners. This assignment determines which partner's loyalty programs, communications, and rewards are applicable to the customer.
+
         ⚠️ Endpoint is available only in the Enterprise interface.
       operationId: getSubCustomerPartners
       parameters:
@@ -5361,6 +5643,9 @@ paths:
       summary: Delete a partner record from an account
       description: |
         Delete a specific customer partner record from a customer account.
+
+        Removes the association between a customer and the specified partner. Once deleted, the partner's loyalty programs and communications will no longer apply to the customer. To add or replace partner assignments, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only).
+
         ⚠️ Endpoint is available only in the Enterprise interface.
       operationId: deleteSubCustomerPartner
       parameters:
@@ -5397,6 +5682,9 @@ paths:
       summary: Customer's credentials verification
       description: |
         Verification of a customer account credentials.
+
+        Validates a customer's login credentials (email address and password) against their CareCloud account. Returns the customer ID if the credentials are valid. Use this endpoint to authenticate a customer before granting access to a service or application.
+
         ⚠️ Action method for verification credentials is available only in the Enterprise interface.
       operationId: postCustomerVerifyCredentials
       requestBody:
@@ -5504,6 +5792,9 @@ paths:
       summary: Social network credentials verification
       description: |
         Verification of a customer account's social network credentials.
+
+        Validates a customer's social network token against their CareCloud account. Returns the customer ID if the credentials are valid. Use this endpoint to authenticate a customer who has linked a social network account to their CareCloud profile.
+
         ⚠️ Action method for verification credentials is available only in the Enterprise interface.
       operationId: postCustomerVerifySocialNetworkCredentials
       requestBody:
@@ -5758,6 +6049,8 @@ paths:
       summary: Validation of the customer data
       description: |
         The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
+
+        Call this endpoint before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to verify that the proposed password meets the required strength criteria. This endpoint does not require authentication.
       operationId: postCustomersValidateCustomerData
       security: []
       requestBody:
@@ -5819,6 +6112,8 @@ paths:
       summary: Search customers
       description: |
         Search all customers matching for parameters.
+
+        Searches across customer accounts by name, date of birth, card number, email, phone, or external ID simultaneously. Unlike [GET /customers](https://carecloud.readme.io/reference/getcustomers), this endpoint combines all identifying fields in a single search and is optimised for point-of-sale customer lookup and identification workflows.
 
         ⚠️ Action method for search customers is available only in Enterprise interface.
       operationId: getCustomerSearch
@@ -5973,6 +6268,11 @@ paths:
       summary: Set a new customer status
       description: |
         The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
+
+        Customer statuses represent the customer's tier or standing within a loyalty program. Only one status can be active at a time. Setting a new status automatically deactivates any currently active status on the account. The response returns the ID of the created status record.
+
+        To view current and past status records on a customer account, use [GET /customers/{customer_id}/statuses](https://carecloud.readme.io/reference/getsubcustomerstatus).
+
         ⚠️ Action method is available only in the Enterprise interface.
       operationId: postCustomersSetStatusRecord
       requestBody:
@@ -6108,9 +6408,14 @@ paths:
         - Customers actions
       summary: Set the customer's push notifications
       description: |
+        Set up customer push notifications for a specific application and device.
+
+        Registers a push notification token (Apple or Android) for a customer account and links it to the specified external application and device ID. This enables the CareCloud platform to send push notifications to the customer's device. If a token is already registered for the same device ID, it is replaced.
+
+        To unregister a device, use [POST /customers/actions/cancel-push-notifications](https://carecloud.readme.io/reference/postcustomercancelpushnotifications) (enterprise interface only).
+
         ⚠️ The endpoint is available only in the Enterprise interface.
         ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.
-        Method will set up customer's push notifications to specified application and device.
       operationId: postCustomerSetPushNotifications
       requestBody:
         required: true
@@ -6163,6 +6468,12 @@ paths:
         - Customers actions
       summary: Cancel the customer's push notifications subscription from all devices if push token not specified.
       description: |
+        Cancel push notification subscriptions for a customer.
+
+        Unregisters a customer's push notification token for a specified external application. If `push_token` is provided, only that specific device registration is removed. If `push_token` is omitted, all device registrations for the customer and application are cancelled.
+
+        To register a device for push notifications, use [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (enterprise interface only).
+
         ⚠️ The endpoint is available only in the Enterprise interface.
       operationId: postCustomerCancelPushNotifications
       requestBody:
@@ -6213,6 +6524,9 @@ paths:
       summary: Check ability to register a customer
       description: |
         Check ability to register a customer with his identifier (email or phone number).
+
+        Determines whether the given identifier is available for new customer registration - for example, whether it is already associated with an existing account. Use this endpoint before submitting a registration form to provide early feedback to the user.
+
         ⚠️ For use in the Customer interface integration (mobile application, web portal, or kiosk), this action method has to be allowed in CareCloud. Please contact the CareCloud administrator.
       operationId: postCustomersCheckRegistrationAbility
       requestBody:
@@ -6275,7 +6589,12 @@ paths:
       tags:
         - Customer address types
       summary: Get all customer address types
-      description: Get a list of customer address types accepted in the CareCloud platform.
+      description: |
+        Get a list of customer address types accepted in the CareCloud platform.
+
+        Address types categorise the additional addresses stored on a customer account - for example, delivery, billing, or work address. Use the returned IDs when creating or updating additional customer address records.
+
+        Related: [GET /customers/{customer_id}/addresses](https://carecloud.readme.io/reference/getsubcustomeraddresses)
       operationId: getCustomerAddressTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6329,7 +6648,10 @@ paths:
       tags:
         - Customer address types
       summary: Get a customer address type
-      description: Get information about a specific customer address type.
+      description: |
+        Get information about a specific customer address type.
+
+        Returns the detail of a single address type record. To list all available address types, use [GET /customer-address-types](https://carecloud.readme.io/reference/getcustomeraddresstypes).
       operationId: getCustomerAddressType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6370,7 +6692,14 @@ paths:
       tags:
         - Customer engagement
       summary: Get all customer engagement setups
-      description: Get all available setups for customer engagement.
+      description: |
+        Get all available setups for customer engagement.
+
+        Customer engagement setups define the configuration for the CareCloud JavaScript tracking script, which captures browser-based events on websites and links them to customer profiles. Each setup specifies the tracking behaviour for a particular website or deployment context.
+
+        This endpoint does not require authentication. It is typically called by the tracking script during initialisation to load the applicable configuration.
+
+        Related: [GET /customer-engagement-setups/{customer_engagement_setup_id}](https://carecloud.readme.io/reference/getcustomerengagementsetup)
       operationId: getCustomerEngagementSetups
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6419,7 +6748,12 @@ paths:
       tags:
         - Customer engagement
       summary: Get a customer engagement setup
-      description: Get information about a specific customer engagement setup.
+      description: |
+        Get information about a specific customer engagement setup.
+
+        Returns the full configuration of a single customer engagement setup, which defines the tracking behaviour for a specific deployment of the CareCloud JavaScript tracking script. When a visitor is identified (for example, after login), events captured by the script are linked to the corresponding customer profile.
+
+        This endpoint does not require authentication. To retrieve all available setups, use [GET /customer-engagement-setups](https://carecloud.readme.io/reference/getcustomerengagementsetups).
       operationId: getCustomerEngagementSetup
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6455,7 +6789,12 @@ paths:
       tags:
         - Customer external applications
       summary: Get all customer external applications
-      description: Get a list of customer external applications accepted in the CareCloud platform.
+      description: |
+        Get a list of customer external applications accepted in the CareCloud platform.
+
+        External applications are third-party or in-house systems registered to interact with the CareCloud API on behalf of customers. They are used for generating authentication tokens and managing push notification registrations. Use the returned IDs in authentication token and push notification requests.
+
+        Related: [POST /customers/actions/auth-token](https://carecloud.readme.io/reference/postcustomersauthtoken) (enterprise interface only), [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (enterprise interface only)
       operationId: getCustomerExternalApps
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6463,6 +6802,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/external_application_text_id'
       security: []
       responses:
         '200':
@@ -6508,7 +6848,10 @@ paths:
       tags:
         - Customer external applications
       summary: Get a customer external application
-      description: Get information about a specific customer external application.
+      description: |
+        Get information about a specific customer external application.
+
+        Returns the detail of a single external application record. To list all available external applications, use [GET /customer-external-applications](https://carecloud.readme.io/reference/getcustomerexternalapps).
       operationId: getCustomerExternalApp
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6548,7 +6891,10 @@ paths:
       tags:
         - Customer properties
       summary: Get all customer properties
-      description: Get information about customer properties.
+      description: |
+        Get information about customer properties.
+
+        Customer properties are custom data field definitions configured at the project level. They extend the standard customer record with project-specific attributes - for example, loyalty tier preferences, subscription levels, or other business-specific data. This endpoint returns the property definitions; to read or update the values stored on a specific customer account, use [GET /customers/{customer_id}/properties](https://carecloud.readme.io/reference/getsubcustomerproperties).
       operationId: getCustomerProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6603,7 +6949,10 @@ paths:
       tags:
         - Customer properties
       summary: Get a customer property
-      description: Get information about a specific customer property.
+      description: |
+        Get information about a specific customer property.
+
+        Returns the detail of a single customer property definition, including its name, data type, and configuration. To list all available property definitions, use [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties).
       operationId: getCustomerProperty
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6644,7 +6993,10 @@ paths:
       tags:
         - Customer relation types
       summary: Get all customer relation types
-      description: Get a list of customer relation types from CareCloud.
+      description: |
+        Get a list of customer relation types from CareCloud.
+
+        Customer relation types define the categories of relationships that can exist between customer accounts - for example, household members, referral relationships, or account groupings. Use the returned IDs when creating related customer records.
       operationId: getCustomerRelationTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6698,7 +7050,10 @@ paths:
       tags:
         - Customer relation types
       summary: Get a customer relation type
-      description: Get information about a specific customer relation type.
+      description: |
+        Get information about a specific customer relation type.
+
+        Returns the detail of a single customer relation type record. To list all available relation types, use [GET /customer-relation-types](https://carecloud.readme.io/reference/getcustomerrelationtypes).
       operationId: getCustomerRelationType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6739,7 +7094,12 @@ paths:
       tags:
         - Customer sources
       summary: Get customer sources
-      description: Get information about all customer account sources.
+      description: |
+        Get information about all customer account sources.
+
+        Customer sources identify the external systems or applications where customer accounts originate or are tracked - for example, a mobile application, e-commerce platform, POS system, or web portal. Each customer account is assigned to at least one source, and the source record can carry one or more external IDs from that system.
+
+        Related: [GET /customers/{customer_id}/sources](https://carecloud.readme.io/reference/getsubcustomersource)
       operationId: getCustomerSources
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6794,7 +7154,10 @@ paths:
       tags:
         - Customer sources
       summary: Get a customer source
-      description: Get information about a specific customer source.
+      description: |
+        Get information about a specific customer source.
+
+        Returns the detail of a single customer source record. Customer sources identify the external systems or applications where customer accounts originate. To retrieve all sources, use [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources).
       operationId: getCustomerSource
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6831,7 +7194,12 @@ paths:
       tags:
         - Customer source records
       summary: Get customer source records
-      description: Get all customer source records.
+      description: |
+        Get all customer source records.
+
+        Customer source records link customer accounts to the external systems that created or track them. Each record includes the source ID and one or more external IDs from that system. This endpoint returns source records across all customers. To retrieve source records for a specific customer, use [GET /customers/{customer_id}/sources](https://carecloud.readme.io/reference/getsubcustomersource).
+
+        When both the `external_ids` and `external_id` filter parameters are provided, `external_ids` takes priority and `external_id` is ignored.
       operationId: getCustomerSourceRecords
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6889,7 +7257,12 @@ paths:
       tags:
         - Customer types
       summary: Get all customer types
-      description: Get a list of customer types accepted in the CareCloud platform.
+      description: |
+        Get a list of customer types accepted in the CareCloud platform.
+
+        Customer types categorise customer accounts by their role or origin - for example, a standard loyalty member, a staff account, or a B2B contact. The customer type is assigned when the account is created and can be used to filter or segment customers.
+
+        Use this endpoint to retrieve the available customer type IDs for use when creating or updating customer accounts.
       operationId: getCustomerTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6943,7 +7316,10 @@ paths:
       tags:
         - Customer types
       summary: Get a customer type
-      description: Get information about a specific customer type.
+      description: |
+        Get information about a specific customer type.
+
+        Returns the detail of a single customer type record, including its name. To list all available customer types, use [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
       operationId: getCustomerType
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -7968,103 +8344,6 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$message_template_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the message template\n\n// Call endpoint and get data\ntry\n{\n    $get_message_template = $care_cloud->messageTemplatesApi()->getMessageTemplate($message_template_id, $accept_language);\n    $message_template = $get_message_template->getData();\n    var_dump($message_template);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
-  /target-groups:
-    get:
-      tags:
-        - Target groups
-      summary: Get all target groups
-      description: |
-        Get information about available target groups.
-        ⚠️ The endpoint is available only in the Enterprise interface.
-      operationId: getTargetGroups
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/count'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/sort_field'
-        - $ref: '#/components/parameters/sort_direction'
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/communication_channel_id'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                title: GetTargetGroups200Response
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      target_groups:
-                        type: array
-                        description: List of all target groups.
-                        items:
-                          $ref: '#/components/schemas/TargetGroup'
-                      total_items:
-                        type: integer
-                        description: The number of all found target groups.
-                        example: 1
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      x-codeSamples:
-        - lang: PHP
-          label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once 'vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$customer_id = null; // string | The unique ID of the customer (optional)\n$contact = null; // string | Email of phone number that was used as a contact in message (optional)\n$communication_channel_id = null; // integer | The unique ID of the communication channel. Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification (optional)\n$send_time_from = null; // string | Start date and time of the time interval YYYY-MM-DD HH:MM:SS (optional)\n$send_time_to = null; // string | End date and time of the time interval YYYY-MM-DD HH:MM:SS (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_messages = $care_cloud->messagesApi()->getMessages(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $customer_id,\n        $contact,\n        $communication_channel_id,\n        $send_time_from,\n        $send_time_to\n    );\n    $messages = $get_messages->getData()->getMessages();\n    $total_items = $get_messages->getData()->getTotalItems();\n    var_dump($messages);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
-  /target-groups/{target_group_id}:
-    get:
-      tags:
-        - Target groups
-      summary: Get a target group
-      description: |
-        Get information about a specific target group.
-        ⚠️ The endpoint is available only in the Enterprise interface.
-      operationId: getTargetGroup
-      parameters:
-        - $ref: '#/components/parameters/Accept-Language'
-        - $ref: '#/components/parameters/target_group_id_path'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                title: GetTargetGroup200Response
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/TargetGroup'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '405':
-          $ref: '#/components/responses/NotAllowed'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
   /one-time-password/actions/send:
     post:
       tags:
@@ -16874,6 +17153,7 @@ paths:
         - $ref: '#/components/parameters/is_applied'
         - $ref: '#/components/parameters/without_stores'
         - $ref: '#/components/parameters/reward_id'
+        - $ref: '#/components/parameters/include_service_vouchers'
       responses:
         '200':
           description: OK
@@ -16888,7 +17168,7 @@ paths:
                     properties:
                       vouchers:
                         type: array
-                        description: List of all recent vouchers.
+                        description: List of vouchers. Service vouchers (internal records used for history tracking) are excluded by default. Use the `include_service_vouchers` parameter to include them.
                         items:
                           $ref: '#/components/schemas/Voucher'
                       total_items:
@@ -17815,6 +18095,49 @@ components:
         detail:
           type: string
           description: The details of the error message.
+    Audience:
+      type: object
+      description: An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are created by filtering customer data across multiple dimensions - including demographics, purchase history, campaign responses, consent preferences, and activity events.
+      properties:
+        audience_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the audience.
+          example: 8bed991c68a470e7aaeffbf048
+        name:
+          type: string
+          description: Name of the audience.
+          example: Newsletter subscribers
+        communication_channel_id:
+          type: string
+          description: The unique ID of the communication channel from CareCloud. The list of communication channels is available at [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels).
+          example: 8bed991c68a470e7aaeffbf048
+        state:
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: 'State of the audience. *Possible values are: 0 - deleted / 1 - active*'
+          example: 1
+        last_change:
+          type: string
+          readOnly: true
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
+          example: '2019-07-15 17:26:34'
+        created_by:
+          type: string
+          readOnly: true
+          description: The unique ID of the user that created the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+          example: 8bed991c68a470e7aaeffbf048
+        updated_by:
+          type: string
+          readOnly: true
+          description: The unique ID of the user that last updated the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+          example: 8bed991c68a470e7aaeffbf048
+      required:
+        - name
+        - communication_channel_id
+        - state
     BookingTicket:
       type: object
       description: Ticket of the booking item. Structure is filled only when query parameter `add_booking_items` has value `full` or `items-only`.
@@ -19267,21 +19590,9 @@ components:
           readOnly: true
           description: The unique ID of the customer.
           example: 87af991126405bf8e7dfb36045
-        external_ids:
-          type: array
-          items:
-            type: string
-          description: |
-            The list of external IDs of the customer in the external system. Use this field instead of the deprecated `external_id`. Supports multiple identifiers for the same customer source - for example, one ID per browser installation (laptop, phone).
-            In requests: if `external_ids` is provided, `external_id` is ignored. In responses: the deprecated `external_id` field returns the first value from this array.
-          example:
-            - A66854921C
-            - B77965032D
         external_id:
           type: string
-          deprecated: true
-          description: |
-            The external ID of the customer in the external system. Deprecated - use `external_ids` instead. This field is retained for backward compatibility and will be removed in a future major version. In responses, this field returns the first value from `external_ids` when multiple external IDs are present.
+          description: The external ID of the customer in the external system.
           example: A66854921C
         last_change:
           type: string
@@ -20278,6 +20589,11 @@ components:
           type: string
           description: The unique ID of the client external application.
           example: 8bed991c68a470e7aaeffbf048
+        text_id:
+          type: string
+          readOnly: true
+          description: The unique text identifier of the external application.
+          example: sandbox_app
         name:
           type: string
           description: The name of the external application.
@@ -20807,6 +21123,18 @@ components:
           readOnly: true
           description: Name of the message template.
           example: First CareCloud login
+        preview_url:
+          type: string
+          readOnly: true
+          nullable: true
+          description: URL of the full-size preview image of the message template. May be null if no visual preview is available for this template type.
+          example: https://example.com/templates/preview/8bed991c68a470e7aaeffbf048.png
+        icon_url:
+          type: string
+          readOnly: true
+          nullable: true
+          description: URL of the icon image of the message template. May be null if no visual preview is available for this template type.
+          example: https://example.com/templates/icon/8bed991c68a470e7aaeffbf048.png
         message_template_group_id:
           type: integer
           enum:
@@ -20843,36 +21171,6 @@ components:
         - name
         - message_template_group_id
         - communication_channel_id
-    TargetGroup:
-      type: object
-      description: Target group resource.
-      properties:
-        target_group_id:
-          type: string
-          readOnly: true
-          description: The unique ID of the target group.
-          example: 8fd73167342d06899c4c015320
-        name:
-          type: string
-          readOnly: true
-          description: Name of the target group
-          example: Newsletter july 2024
-        communication_channel_id:
-          type: string
-          readOnly: true
-          description: |
-            The unique ID of the communication channel. Possible values are available at [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)
-          example: 8fd73167342d06899c4c015320
-        created_at:
-          type: string
-          readOnly: true
-          description: 'Timestamp of the target group creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
-          example: '2024-07-03 21:33:13'
-        last_change:
-          type: string
-          readOnly: true
-          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
-          example: '2024-07-05 11:24:12'
     OrderItem:
       type: object
       description: Order item resource.
@@ -23486,6 +23784,22 @@ components:
       schema:
         type: string
       example: 81eaeea13b8984a169c490a325
+    name:
+      name: name
+      in: query
+      description: Search record by name or a part of the name.
+      required: false
+      schema:
+        type: string
+      example: Name
+    audience_id_path:
+      name: audience_id
+      in: path
+      required: true
+      description: The unique ID of the audience.
+      schema:
+        type: string
+      example: 8ea2591121e636086a4a9c0992
     customer_id:
       name: customer_id
       in: query
@@ -23622,14 +23936,6 @@ components:
         type: string
       allowReserved: true
       example: '2018-05-07 23:59:59'
-    name:
-      name: name
-      in: query
-      description: Search record by name or a part of the name.
-      required: false
-      schema:
-        type: string
-      example: Name
     booking_ticket_property_id_path:
       name: booking_ticket_property_id
       in: path
@@ -24413,6 +24719,8 @@ components:
       required: false
       description: |
         Filter records by one or more external IDs. Returns records where any stored external ID matches any of the provided values. Use together with `customer_source_id` to scope the filter to a specific customer source.
+
+        To filter by multiple values, use array syntax: `external_ids[]=ACSDOIDF23&external_ids[]=BXTE123456`
       schema:
         type: array
         items:
@@ -24548,6 +24856,17 @@ components:
       schema:
         type: string
       example: 8ea2591121e636086a4a9c0992
+    external_application_text_id:
+      name: text_id
+      in: query
+      required: false
+      description: |
+        Filter by one value or a list of external application text IDs. The list of values is available at [GET /customer-external-applications](https://carecloud.readme.io/reference/getcustomerexternalapps).
+        In case you want to filter multiple options use array syntax: `text_id[]=sandbox_app&text_id[]=other_app`
+        Logic OR is used between values.
+      schema:
+        type: string
+      example: sandbox_app
     customer_external_application_id_path:
       name: customer_external_application_id
       in: path
@@ -24711,14 +25030,6 @@ components:
       name: message_template_id
       in: path
       description: The unique ID of the message template.
-      required: true
-      schema:
-        type: string
-      example: 8bed991c68a470e7aaeffbf048
-    target_group_id_path:
-      name: target_group_id
-      in: path
-      description: The unique ID of the target group.
       required: true
       schema:
         type: string
@@ -25379,6 +25690,18 @@ components:
       schema:
         type: string
       example: 86e05affc7a7abefcd513ab400
+    include_service_vouchers:
+      name: include_service_vouchers
+      in: query
+      description: |
+        If true, the response includes service vouchers alongside standard vouchers. Service vouchers are internal records used for history tracking (for example, vouchers with codes beginning with `canceled_` or `initial_`). If false or not set, service vouchers are excluded from the response.
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: true
     voucher_id_path:
       name: voucher_id
       in: path

@@ -2,7 +2,14 @@ get:
   tags:
     - Currencies
   summary: Get all currencies
-  description: Get a list of currencies accepted in the CareCloud platform.
+  description: |
+    Get a list of currencies accepted in the CareCloud platform.
+
+    Currencies represent the ISO currency codes configured for use in a project. They are used to denominate credit amounts and purchase values. Each project has one default currency; others can be specified explicitly when depositing or reducing credits.
+
+    Use this endpoint to retrieve valid currency IDs for use in credit operations. Filter by `currency_name` or `currency_code` to locate a specific currency.
+
+    Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
   operationId: getCurrencies
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

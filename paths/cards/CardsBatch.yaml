@@ -3,7 +3,7 @@ post:
     - Cards
   summary: Create a batch of cards
   description: |
-    Batch process helps to add multiple cards in one request.
+    Create multiple customer cards in a single request. Use this endpoint to import a large number of cards efficiently.
     ⚠️ Adjust batch sizes based on processing times. We recommend using a maximum of 1000 records and adjusting the batch size based on processing time.
     ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postBatchCards

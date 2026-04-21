@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get information about all related customers
-  description: Get a list of customers' relations in the CareCloud platform.
+  description: |
+    Get a list of customers' relations in the CareCloud platform.
+
+    Related customers are customer accounts linked to each other by a defined relationship type - for example, household members, referral relationships, or account groupings. This endpoint returns all relation records for the specified customer.
+
+    Related: [GET /customer-relation-types](https://carecloud.readme.io/reference/getcustomerrelationtypes)
   operationId: getSubCustomerRelatedCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

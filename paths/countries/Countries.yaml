@@ -2,7 +2,8 @@ get:
   tags:
     - Countries
   summary: Get all countries
-  description: Get a list of countries accepted in the CareCloud platform.
+  description: |
+    Get a list of all countries available in the CareCloud platform. Country records are reference data used in customer address fields and other resources that reference geographic location. Filter by `country_id` or `country_name` to find a specific country.
   operationId: getCountries
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

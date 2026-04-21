@@ -2,7 +2,14 @@ get:
   tags:
     - Credit types
   summary: Get all credit types
-  description: Get a list of all credit types.
+  description: |
+    Get a list of all credit types.
+
+    Credit types are program-based categories that credits belong to. They distinguish between different loyalty programs or purposes - for example, standard loyalty credits, promotional credits, or partner-specific credit programs. Every credit record is assigned to exactly one credit type.
+
+    Use this endpoint to retrieve the available credit type IDs when depositing or reducing credits. If no credit type is specified on a deposit or reduction, the project-default credit type is applied automatically.
+
+    Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [GET /credits](https://carecloud.readme.io/reference/getcredits)
   operationId: getCreditTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

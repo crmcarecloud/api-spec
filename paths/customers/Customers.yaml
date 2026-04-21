@@ -220,7 +220,14 @@ get:
   tags:
     - Customers
   summary: Get all customers
-  description: Get a list of all customers.
+  description: |
+    Get a list of all customers.
+
+    Customers are the central entity of the CareCloud CRM. Each account stores personal and contact details, loyalty program participation (cards, points, credits, vouchers), communication preferences and consent status, segments, custom properties, related customers, addresses, interests, and partner and source assignments.
+
+    Supports filtering by email, phone, first name, last name, date of birth, customer source, and a list of customer IDs. Use `email_list` to retrieve multiple customers by email in a single request.
+
+    Related: [POST /customers](https://carecloud.readme.io/reference/postcustomer), [GET /customers/{customer_id}](https://carecloud.readme.io/reference/getcustomer), [GET /customers/actions/search-customers](https://carecloud.readme.io/reference/getcustomersearch) (enterprise interface only)
   operationId: getCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

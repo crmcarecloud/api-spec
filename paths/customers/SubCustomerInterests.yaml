@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get a collection of interest records
-  description: Get information about all interest records on a customer account.
+  description: |
+    Get information about all interest records on a customer account.
+
+    Customer interests represent the categories or topics a customer has opted into or been assigned to. They are used to personalise communication and offers. Each interest record links the customer to an interest defined in the CareCloud platform.
+
+    Related: [GET /interests](https://carecloud.readme.io/reference/getinterests)
   operationId: getSubCustomerInterests
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

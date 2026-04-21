@@ -2,7 +2,12 @@ get:
   tags:
     - Customer sources
   summary: Get customer sources
-  description: Get information about all customer account sources.
+  description: |
+    Get information about all customer account sources.
+
+    Customer sources identify the external systems or applications where customer accounts originate or are tracked - for example, a mobile application, e-commerce platform, POS system, or web portal. Each customer account is assigned to at least one source, and the source record can carry one or more external IDs from that system.
+
+    Related: [GET /customers/{customer_id}/sources](https://carecloud.readme.io/reference/getsubcustomersource)
   operationId: getCustomerSources
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,10 @@ put:
   tags:
     - Customers
   summary: Update a property of a customer
-  description: Update a specific customer property record on a customer account.
+  description: |
+    Update a specific customer property record on a customer account.
+
+    Replaces the value of a single custom property record on the customer account. To update multiple property records in a single request, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
   operationId: putSubCustomerProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

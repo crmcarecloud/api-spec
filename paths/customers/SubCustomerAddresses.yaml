@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get all additional customer addresses
-  description: Get information about all customer addresses.
+  description: |
+    Get information about all customer addresses.
+
+    Additional addresses are stored on a customer account separately from the primary address recorded in the customer's personal information. Each additional address has an address type (for example, delivery, billing, or work) and full address detail.
+
+    Related: [GET /customer-address-types](https://carecloud.readme.io/reference/getcustomeraddresstypes)
   operationId: getSubCustomerAddresses
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,8 @@ get:
   tags:
     - Cards
   summary: Get all cards
-  description: Get information about all customer cards.
+  description: |
+    Get a list of all customer cards. Cards are the primary customer identification mechanism in CareCloud. Each card carries a unique number regardless of its format - plastic, electronic, virtual, or membership. A customer can hold multiple cards of different types. Use filters such as `customer_id`, `card_type_id`, and `card_state` to narrow results. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
   operationId: getCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -118,7 +119,7 @@ post:
     - Cards
   summary: Create a card
   description: |
-    Add a new customer card.
+    Add a new customer card. For bulk creation, use [POST /cards/batch](https://carecloud.readme.io/reference/postbatchcards) instead. To assign an existing free card from a pre-imported pool, use [POST /cards/actions/assign-free-card](https://carecloud.readme.io/reference/postassigncard) instead.
     ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: postCard
   parameters:

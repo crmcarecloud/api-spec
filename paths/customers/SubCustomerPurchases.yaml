@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get all customer purchases
-  description: Get information about all customer account purchases.
+  description: |
+    Get information about all customer account purchases.
+
+    Returns all purchase transactions recorded on the customer's account. Each purchase record includes the total value, payment time, store, and purchase type. Use `purchase_items_extension=true` to include individual line items in the response.
+
+    Filter by store, purchase type, and payment date range to narrow results. To retrieve purchases across all customers, use [GET /purchases](https://carecloud.readme.io/reference/getpurchases).
   operationId: getSubCustomerPurchases
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

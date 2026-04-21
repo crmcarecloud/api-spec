@@ -2,7 +2,8 @@ get:
   tags:
     - Cards
   summary: Get a card
-  description: Get information about a specific customer card.
+  description: |
+    Get information about a specific customer card, including its number, type, validity period, state, and the customer it is assigned to. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
   operationId: getCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -76,7 +77,7 @@ put:
   tags:
     - Cards
   summary: Update a card
-  description: Update a specific customer card.
+  description: Update a specific customer card. Use this endpoint to change the card's validity period, state, or assigned customer.
   operationId: putCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

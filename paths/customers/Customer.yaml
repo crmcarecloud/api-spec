@@ -2,7 +2,14 @@ get:
   tags:
     - Customers
   summary: Get information about a customer
-  description: Get information about a specific customer account.
+  description: |
+    Get information about a specific customer account.
+
+    Returns the full customer record including personal and contact details, address, consent status, source and partner assignments. The customer is the central entity of the CareCloud CRM and aggregates data from all connected applications and platforms.
+
+    Use the `customer_short_salutation` parameter to include a formatted salutation field in the response. Sub-resources such as purchases, cards, credits, and vouchers are available via dedicated sub-resource endpoints under `/customers/{customer_id}/`.
+
+    Related: [PUT /customers/{customer_id}](https://carecloud.readme.io/reference/putcustomer), [GET /customers](https://carecloud.readme.io/reference/getcustomers)
   operationId: getCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -106,7 +113,12 @@ put:
   tags:
     - Customers
   summary: Update a customer
-  description: Update the information on a specific customer account.
+  description: |
+    Update the information on a specific customer account.
+
+    Replaces the customer's personal information, contact details, address, consent records, and optional property records with the values provided in the request body. The customer password is changed only if a new password is provided; omitting the password field leaves it unchanged.
+
+    To update multiple custom property records in bulk without affecting other customer data, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
   operationId: putCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

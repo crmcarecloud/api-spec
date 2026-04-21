@@ -2,7 +2,8 @@ get:
   tags:
     - Booking ticket properties
   summary: Get all booking ticket properties
-  description: Get information about booking ticket properties.
+  description: |
+    Get a list of all booking ticket properties. Booking ticket properties define the custom attributes that can be attached to booking tickets - for example, service type, location, or capacity. Property IDs and values are used as filters in [GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets).
   operationId: getBookingTicketProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

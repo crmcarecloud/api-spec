@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get all customer cards
-  description: Get information about all customer cards.
+  description: |
+    Get information about all customer cards.
+
+    Cards are the primary loyalty identifiers for customers. A customer can hold multiple cards (physical or virtual), each with a card number, card type, and validity period. Cards are used to identify the customer at a point of sale and to accumulate loyalty points and credits.
+
+    Related: [GET /cards](https://carecloud.readme.io/reference/getcards)
   operationId: getSubCustomerCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

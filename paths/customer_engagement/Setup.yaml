@@ -2,7 +2,12 @@ get:
   tags:
     - Customer engagement
   summary: Get a customer engagement setup
-  description: Get information about a specific customer engagement setup.
+  description: |
+    Get information about a specific customer engagement setup.
+
+    Returns the full configuration of a single customer engagement setup, which defines the tracking behaviour for a specific deployment of the CareCloud JavaScript tracking script. When a visitor is identified (for example, after login), events captured by the script are linked to the corresponding customer profile.
+
+    This endpoint does not require authentication. To retrieve all available setups, use [GET /customer-engagement-setups](https://carecloud.readme.io/reference/getcustomerengagementsetups).
   operationId: getCustomerEngagementSetup
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

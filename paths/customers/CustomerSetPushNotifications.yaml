@@ -3,9 +3,14 @@ post:
     - Customers actions
   summary: Set the customer's push notifications
   description: |
+    Set up customer push notifications for a specific application and device.
+
+    Registers a push notification token (Apple or Android) for a customer account and links it to the specified external application and device ID. This enables the CareCloud platform to send push notifications to the customer's device. If a token is already registered for the same device ID, it is replaced.
+
+    To unregister a device, use [POST /customers/actions/cancel-push-notifications](https://carecloud.readme.io/reference/postcustomercancelpushnotifications) (enterprise interface only).
+
     ⚠️ The endpoint is available only in the Enterprise interface.
     ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.
-    Method will set up customer's push notifications to specified application and device.
   operationId: postCustomerSetPushNotifications
   requestBody:
     required: true

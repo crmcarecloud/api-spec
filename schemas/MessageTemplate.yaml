@@ -28,6 +28,18 @@ properties:
     readOnly: true
     description: Name of the message template.
     example: "First CareCloud login"
+  preview_url:
+    type: string
+    readOnly: true
+    nullable: true
+    description: URL of the full-size preview image of the message template. May be null if no visual preview is available for this template type.
+    example: "https://example.com/templates/preview/8bed991c68a470e7aaeffbf048.png"
+  icon_url:
+    type: string
+    readOnly: true
+    nullable: true
+    description: URL of the icon image of the message template. May be null if no visual preview is available for this template type.
+    example: "https://example.com/templates/icon/8bed991c68a470e7aaeffbf048.png"
   message_template_group_id:
     type: integer
     enum:

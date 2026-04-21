@@ -2,7 +2,14 @@ get:
   tags:
     - Credit history
   summary: Get credit transaction history
-  description: Get a list of credit transactions of the customer.
+  description: |
+    Get a list of credit transactions of the customer.
+
+    Credit history is a chronological audit log of all credit operations on a customer account. Each record captures the operation type (deposit, reduction, or transfer), the amount, timestamp, store, partner, and an optional note.
+
+    The `customer_id` parameter is required. Filter by operation type using `credit_operation_type`, or search within notes using `credit_operation_note`. Use `time_from` and `time_to` to scope results to a date range.
+
+    Related: [GET /credits](https://carecloud.readme.io/reference/getcredits), [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
   operationId: getCreditHistory
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

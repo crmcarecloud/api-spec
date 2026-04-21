@@ -2,7 +2,12 @@ get:
   tags:
     - Credits
   summary: Get all purchases for a credit
-  description: Get all purchases associated with a specific credit record.
+  description: |
+    Get all purchases associated with a specific credit record.
+
+    Credits can be earned through customer purchases. This endpoint returns the purchases linked to a specific credit record, allowing you to trace which purchase transaction originated the credit. Supports filtering by store, customer, purchase type, and payment date range.
+
+    Use the `purchase_items_extension` parameter to include individual line items in the response. To retrieve all purchases for a customer, use [GET /customers/{customer_id}/purchases](https://carecloud.readme.io/reference/getsubcustomerpurchases).
   operationId: getSubCreditPurchases
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

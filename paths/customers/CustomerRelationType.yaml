@@ -2,7 +2,10 @@ get:
   tags:
     - Customer relation types
   summary: Get a customer relation type
-  description: Get information about a specific customer relation type.
+  description: |
+    Get information about a specific customer relation type.
+
+    Returns the detail of a single customer relation type record. To list all available relation types, use [GET /customer-relation-types](https://carecloud.readme.io/reference/getcustomerrelationtypes).
   operationId: getCustomerRelationType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

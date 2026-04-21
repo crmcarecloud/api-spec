@@ -16,27 +16,9 @@ properties:
     readOnly: true
     description: The unique ID of the customer.
     example: "87af991126405bf8e7dfb36045"
-  external_ids:
-    type: array
-    items:
-      type: string
-    description: >
-      The list of external IDs of the customer in the external system. Use this field instead of the
-      deprecated `external_id`. Supports multiple identifiers for the same customer source - for example,
-      one ID per browser installation (laptop, phone).
-
-      In requests: if `external_ids` is provided, `external_id` is ignored.
-      In responses: the deprecated `external_id` field returns the first value from this array.
-    example:
-      - "A66854921C"
-      - "B77965032D"
   external_id:
     type: string
-    deprecated: true
-    description: >
-      The external ID of the customer in the external system. Deprecated - use `external_ids` instead.
-      This field is retained for backward compatibility and will be removed in a future major version.
-      In responses, this field returns the first value from `external_ids` when multiple external IDs are present.
+    description: The external ID of the customer in the external system.
     example: "A66854921C"
   last_change:
     type: string

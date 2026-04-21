@@ -17,6 +17,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/is_applied'
     - $ref: '../../parameters/_index.yaml#/without_stores'
     - $ref: '../../parameters/_index.yaml#/reward_id'
+    - $ref: '../../parameters/_index.yaml#/include_service_vouchers'
   responses:
     '200':
       description: OK
@@ -31,7 +32,7 @@ get:
                 properties:
                   vouchers:
                     type: array
-                    description: List of all recent vouchers.
+                    description: List of vouchers. Service vouchers (internal records used for history tracking) are excluded by default. Use the `include_service_vouchers` parameter to include them.
                     items:
                       $ref: '../../schemas/_index.yaml#/Voucher'
                   total_items:

@@ -4,6 +4,8 @@ post:
   summary: Validation of the customer data
   description: |
     The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
+
+    Call this endpoint before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to verify that the proposed password meets the required strength criteria. This endpoint does not require authentication.
   operationId: postCustomersValidateCustomerData
   security: []
   requestBody:

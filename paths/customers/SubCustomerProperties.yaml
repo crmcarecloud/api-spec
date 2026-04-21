@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get a collection of properties
-  description: Get information about all property records on a customer account.
+  description: |
+    Get information about all property records on a customer account.
+
+    Customer properties are custom data fields defined at the project level. They extend the standard customer record with project-specific attributes - for example, loyalty tier preferences, subscription levels, or other business-specific data. Each property record links a property definition to its value on the customer account.
+
+    To update properties in bulk, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch). To retrieve the available property definitions, use [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties).
   operationId: getSubCustomerProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

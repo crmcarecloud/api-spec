@@ -2,7 +2,10 @@ get:
   tags:
     - Customer address types
   summary: Get a customer address type
-  description: Get information about a specific customer address type.
+  description: |
+    Get information about a specific customer address type.
+
+    Returns the detail of a single address type record. To list all available address types, use [GET /customer-address-types](https://carecloud.readme.io/reference/getcustomeraddresstypes).
   operationId: getCustomerAddressType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -187,10 +187,10 @@ external_ids:
   name: external_ids
   in: query
   required: false
-  description: >
-    Filter records by one or more external IDs. Returns records where any stored external ID matches
-    any of the provided values. Use together with `customer_source_id` to scope the filter to a specific
-    customer source.
+  description: |
+    Filter records by one or more external IDs. Returns records where any stored external ID matches any of the provided values. Use together with `customer_source_id` to scope the filter to a specific customer source.
+
+    To filter by multiple values, use array syntax: `external_ids[]=ACSDOIDF23&external_ids[]=BXTE123456`
   schema:
     type: array
     items:
@@ -338,6 +338,16 @@ agreement_id_path:
   schema:
     type: string
   example: "81eaeea13b8984a169c490a325"
+
+# Audiences parameters
+audience_id_path:
+  name: audience_id
+  in: path
+  required: true
+  description: The unique ID of the audience.
+  schema:
+    type: string
+  example: "8ea2591121e636086a4a9c0992"
 
 #Booking parameters
 booking_id_path:
@@ -818,6 +828,18 @@ is_applied:
       - true
       - false
   example: true
+include_service_vouchers:
+  name: include_service_vouchers
+  in: query
+  description: |
+    If true, the response includes service vouchers alongside standard vouchers. Service vouchers are internal records used for history tracking (for example, vouchers with codes beginning with `canceled_` or `initial_`). If false or not set, service vouchers are excluded from the response.
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
 voucher_code:
   name: code
   in: query
@@ -945,6 +967,17 @@ reward_product_relation_type:
   example: "condition"
 
 # Customer External applications
+external_application_text_id:
+  name: text_id
+  in: query
+  required: false
+  description: |
+    Filter by one value or a list of external application text IDs. The list of values is available at [GET /customer-external-applications](https://carecloud.readme.io/reference/getcustomerexternalapps).
+    In case you want to filter multiple options use array syntax: `text_id[]=sandbox_app&text_id[]=other_app`
+    Logic OR is used between values.
+  schema:
+    type: string
+  example: "sandbox_app"
 customer_external_application_id_path:
   name: customer_external_application_id
   in: path
@@ -1229,14 +1262,6 @@ send_time_to:
     type: string
   allowReserved: true
   example: "2015-01-05 23:59:00"
-target_group_id_path:
-  name: target_group_id
-  in: path
-  description: The unique ID of the target group.
-  required: true
-  schema:
-    type: string
-  example: "8bed991c68a470e7aaeffbf048"
 #Order
 order_id_path:
   name: order_id

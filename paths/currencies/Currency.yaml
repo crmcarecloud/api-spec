@@ -2,7 +2,12 @@ get:
   tags:
     - Currencies
   summary: Get a currency
-  description: Get information about a specific currency.
+  description: |
+    Get information about a specific currency.
+
+    Returns the full detail of a single currency record, including its ISO code and name. Currencies are used to denominate credit amounts and purchase values in the CareCloud platform.
+
+    To retrieve the full list of accepted currencies, use [GET /currencies](https://carecloud.readme.io/reference/getcurrencies).
   operationId: getCurrency
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

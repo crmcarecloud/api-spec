@@ -2,7 +2,7 @@ get:
   tags:
     - Bookings
   summary: Get a booking
-  description: Get information about a specific booking.
+  description: Get information about a specific booking, including the customer, status, booking items, and any additional data.
   operationId: getBooking
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -79,7 +79,7 @@ put:
   tags:
     - Bookings
   summary: Update a booking
-  description: Update a specific booking.
+  description: Update a specific booking. Use this endpoint to change the booking status or reassign the booking to a different customer.
   operationId: putBooking
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -101,7 +101,7 @@ put:
                   type: string
                   description: |
                     Current status of the booking.
-                    *Possible values are available in [booking-statuses](#tag/Booking-statuses)*
+                    *Possible values are available in [booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)*
                   example: "86e05affc7a7abefcd513ab400"
                 data:
                   oneOf:
@@ -187,7 +187,7 @@ delete:
   tags:
     - Bookings
   summary: Delete a booking
-  description: Delete selected booking.
+  description: Delete a specific booking and all its associated booking items.
   operationId: deleteBooking
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

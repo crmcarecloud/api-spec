@@ -2,7 +2,8 @@ get:
   tags:
     - Communication channels
   summary: Get all communication channels
-  description: Get a list of communication channels accepted in the CareCloud platform.
+  description: |
+    Get a list of all communication channels available in the CareCloud platform. Communication channels represent the delivery methods used for customer outreach: email, SMS, web push notifications, mobile app push notifications, Viber, WhatsApp, and White Post. Channel IDs are used when filtering consent records ([GET /consents](https://carecloud.readme.io/reference/getconsents)). This endpoint does not require authentication.
   operationId: getCommunicationChannels
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

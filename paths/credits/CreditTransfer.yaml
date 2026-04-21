@@ -4,7 +4,14 @@ post:
   summary: Transfer credits
   description: |
     Transfers credits from one customer to another.
-    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method. 
+
+    A credit transfer moves a specified amount from one customer's wallet to another. This is typically used when merging duplicate customer accounts or redistributing loyalty balances. Both the deduction from the original customer and the addition to the new customer are recorded in the credit history.
+
+    The `credit_type_id` parameter is required. If `currency_id` is not provided, the project-default currency is used. Returns HTTP 204 on success.
+
+    Related: [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory), [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+
+    ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
     ⚠️ Action methods are available only in the Enterprise interface.
   operationId: postCreditTransfer
   parameters:

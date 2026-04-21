@@ -2,7 +2,10 @@ get:
   tags:
     - Customer types
   summary: Get a customer type
-  description: Get information about a specific customer type.
+  description: |
+    Get information about a specific customer type.
+
+    Returns the detail of a single customer type record, including its name. To list all available customer types, use [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
   operationId: getCustomerType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -2,7 +2,12 @@ get:
   tags:
     - Customers
   summary: Get information about all customer events
-  description: Get a list of customer events in the CareCloud platform.
+  description: |
+    Get a list of customer events in the CareCloud platform.
+
+    Events represent customer interaction records and marketing automation triggers. They are used as conditions and triggers in CareCloud marketing automation workflows. This endpoint returns all events associated with the customer account.
+
+    Related: [GET /events](https://carecloud.readme.io/reference/getevents)
   operationId: getSubCustomerEvents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

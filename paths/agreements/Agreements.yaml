@@ -2,7 +2,8 @@ get:
   tags:
     - Consents
   summary: Get all consents
-  description: Get a list of consents accepted in the CareCloud platform.
+  description: |
+    Get a list of all consent types configured in the CareCloud platform. Consents are the primary mechanism for GDPR compliance - they control which customers are eligible to receive marketing communications and which can be included in segmented audiences. Three consent types exist by default: processing of personal data, marketing communication, and profiling. The `communication_channel_id` filter returns only consents associated with a specific channel. See [Consent impact on segmentation and communication](https://help.crmcarecloud.com/en/campaigns-and-segmentation/constent-impact-on-segmentation-and-communication) for details.
   operationId: getConsents
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

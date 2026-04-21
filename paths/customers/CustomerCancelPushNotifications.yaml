@@ -3,6 +3,12 @@ post:
     - Customers actions
   summary: Cancel the customer's push notifications subscription from all devices if push token not specified.
   description: |
+    Cancel push notification subscriptions for a customer.
+
+    Unregisters a customer's push notification token for a specified external application. If `push_token` is provided, only that specific device registration is removed. If `push_token` is omitted, all device registrations for the customer and application are cancelled.
+
+    To register a device for push notifications, use [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (enterprise interface only).
+
     ⚠️ The endpoint is available only in the Enterprise interface.
   operationId: postCustomerCancelPushNotifications
   requestBody:

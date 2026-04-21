@@ -2,7 +2,8 @@ get:
   tags:
     - Card types
   summary: Get a collection of cards
-  description: Get all cards belonging to a specific card type.
+  description: |
+    Get all cards belonging to a specific card type. Use filters such as `customer_id` and `is_valid` to narrow results. See [Cards](https://help.crmcarecloud.com/en/loyalty-engine/cards) for details.
   operationId: getSubCardTypeCards
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

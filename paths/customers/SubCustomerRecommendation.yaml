@@ -2,7 +2,10 @@ get:
   tags:
     - Customers
   summary: Get a collection of Hint records
-  description: Get information about all Hint records on a customer account.
+  description: |
+    Get information about all Hint records on a customer account.
+
+    Hint records are personalised recommendations associated with a customer account. They represent suggested products, offers, or actions identified as relevant to the customer. For AI-ranked reward recommendations, use [GET /customers/{customer_id}/reward-recommendations](https://carecloud.readme.io/reference/getsubcustomerrewardrecommendations).
   operationId: getSubCustomerHintRecords
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

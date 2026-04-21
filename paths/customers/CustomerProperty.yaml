@@ -2,7 +2,10 @@ get:
   tags:
     - Customer properties
   summary: Get a customer property
-  description: Get information about a specific customer property.
+  description: |
+    Get information about a specific customer property.
+
+    Returns the detail of a single customer property definition, including its name, data type, and configuration. To list all available property definitions, use [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties).
   operationId: getCustomerProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

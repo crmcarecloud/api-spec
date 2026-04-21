@@ -2,7 +2,14 @@ get:
   tags:
     - Credits
   summary: Get all credit records
-  description: Get a list of all credit transactions and their current values.
+  description: |
+    Get a list of all credit transactions and their current values.
+
+    Credits are the monetary loyalty currency stored in a customer's wallet alongside reward points. Each credit record captures the amount, credit type, currency, customer, partner, creation timestamp, and an optional note.
+
+    Use the `customer_id` filter to retrieve credits for a specific customer, `credit_type_id` to narrow results to a specific loyalty program or promotional category, and the `create_credit_time_from`/`create_credit_time_to` parameters to filter by creation date.
+
+    Related: [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes), [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory)
   operationId: getCredits
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -4,6 +4,12 @@
 /agreements/{agreement_id}:
   $ref: "./agreements/Agreement.yaml"
 
+# Audiences
+/audiences:
+  $ref: "./audiences/Audiences.yaml"
+/audiences/{audience_id}:
+  $ref: "./audiences/Audience.yaml"
+
 #Bookings
 /bookings:
   $ref: "./bookings/Bookings.yaml"
@@ -293,11 +299,6 @@
   $ref: "./messages/MessageTemplates.yaml"
 /message-templates/{message_template_id}:
   $ref: "./messages/MessageTemplate.yaml"
-# Target groups
-/target-groups:
-  $ref: "./messages/TargetGroups.yaml"
-/target-groups/{target_group_id}:
-  $ref: "./messages/TargetGroup.yaml"
 
 # One Time Password
 #Actions

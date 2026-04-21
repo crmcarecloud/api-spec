@@ -2,7 +2,10 @@ get:
   tags:
     - Customer properties
   summary: Get all customer properties
-  description: Get information about customer properties.
+  description: |
+    Get information about customer properties.
+
+    Customer properties are custom data field definitions configured at the project level. They extend the standard customer record with project-specific attributes - for example, loyalty tier preferences, subscription levels, or other business-specific data. This endpoint returns the property definitions; to read or update the values stored on a specific customer account, use [GET /customers/{customer_id}/properties](https://carecloud.readme.io/reference/getsubcustomerproperties).
   operationId: getCustomerProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

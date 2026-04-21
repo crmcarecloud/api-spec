@@ -4,6 +4,11 @@ post:
   summary: Set a new customer status
   description: |
     The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
+
+    Customer statuses represent the customer's tier or standing within a loyalty program. Only one status can be active at a time. Setting a new status automatically deactivates any currently active status on the account. The response returns the ID of the created status record.
+
+    To view current and past status records on a customer account, use [GET /customers/{customer_id}/statuses](https://carecloud.readme.io/reference/getsubcustomerstatus).
+
     ⚠️ Action method is available only in the Enterprise interface.
   operationId: postCustomersSetStatusRecord
   requestBody:

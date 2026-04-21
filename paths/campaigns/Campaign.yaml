@@ -2,7 +2,7 @@ get:
   tags:
     - Campaigns
   summary: Get a campaign
-  description: Get information about a specific campaign.
+  description: Get information about a specific campaign, including its name, external ID, and parent campaign if applicable.
   operationId: getCampaign
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

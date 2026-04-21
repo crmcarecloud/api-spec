@@ -2,7 +2,8 @@ get:
   tags:
     - Consents
   summary: Get a consent
-  description: Get information about a specific consent.
+  description: |
+    Get the details of a specific consent type, including its name and associated communication channels. Consent type IDs are used when reading or updating consent records on a customer. See [Consent impact on segmentation and communication](https://help.crmcarecloud.com/en/campaigns-and-segmentation/constent-impact-on-segmentation-and-communication) for details.
   operationId: getConsent
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

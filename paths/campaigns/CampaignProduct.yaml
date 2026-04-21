@@ -2,7 +2,7 @@ get:
   tags:
     - Campaign products
   summary: Get a campaign product
-  description: Get information about a specific campaign product.
+  description: Get information about a specific campaign product, including its pricing, validity period, store restrictions, and presentation data such as name, subtitle, and image.
   operationId: getCampaignProduct
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

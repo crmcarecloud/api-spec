@@ -2,7 +2,8 @@ get:
   tags:
     - Booking tickets
   summary: Get all time slots for a booking ticket
-  description: Get all time slots for a specific booking ticket.
+  description: |
+    Get all available time slots for a specific booking ticket. Time slots represent the individual available appointment or event times for a bookable resource. Time slot IDs are used when creating booking items within a booking ([POST /bookings](https://carecloud.readme.io/reference/postbooking)).
   operationId: getSubBookingTicketsTimeSlots
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

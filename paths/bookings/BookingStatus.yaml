@@ -2,7 +2,7 @@ get:
   tags:
     - Booking statuses
   summary: Get a booking status
-  description: Get information about a specific booking status.
+  description: Get information about a specific booking status. Booking status IDs are used when creating or updating bookings ([POST /bookings](https://carecloud.readme.io/reference/postbooking)).
   operationId: getBookingStatus
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

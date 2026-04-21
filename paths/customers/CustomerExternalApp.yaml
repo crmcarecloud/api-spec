@@ -2,7 +2,10 @@ get:
   tags:
     - Customer external applications
   summary: Get a customer external application
-  description: Get information about a specific customer external application.
+  description: |
+    Get information about a specific customer external application.
+
+    Returns the detail of a single external application record. To list all available external applications, use [GET /customer-external-applications](https://carecloud.readme.io/reference/getcustomerexternalapps).
   operationId: getCustomerExternalApp
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

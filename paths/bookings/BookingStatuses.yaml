@@ -2,7 +2,8 @@ get:
   tags:
     - Booking statuses
   summary: Get all booking statuses
-  description: Get information about all booking statuses.
+  description: |
+    Get a list of all booking statuses available in the CareCloud platform. Booking statuses represent the lifecycle states of a booking - for example, pending, confirmed, or cancelled. These IDs are used when creating or updating bookings ([POST /bookings](https://carecloud.readme.io/reference/postbooking)).
   operationId: getBookingStatuses
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

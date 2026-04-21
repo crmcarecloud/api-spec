@@ -4,6 +4,9 @@ get:
   summary: Get information about all customer partners
   description: |
     Get a list of customer partners in CareCloud.
+
+    Customer-partner relations define which partners (retail chains, brands, or business units) a customer account is associated with. A customer can be assigned to one or more partners. This assignment determines which partner's loyalty programs, communications, and rewards are applicable to the customer.
+
     ⚠️ Endpoint is available only in the Enterprise interface.
   operationId: getSubCustomerPartners
   parameters:

@@ -5,6 +5,10 @@ get:
   description: |
     Get information about all customer rewards.
 
+    Rewards are incentives available to customers as part of the loyalty program. This endpoint returns all rewards associated with the customer account. Use `is_valid`, `valid_from`, and `valid_to` to filter by validity status and date range.
+
+    Related: [GET /rewards](https://carecloud.readme.io/reference/getrewards)
+
     ⚠️ There is the logical AND between query parameters `is_valid`, `valid_from` and `valid to`.
 
   operationId: getSubCustomerRewards

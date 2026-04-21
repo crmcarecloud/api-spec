@@ -2,7 +2,12 @@ get:
   tags:
     - Credit types
   summary: Get a credit type
-  description: Get information about a specific credit type.
+  description: |
+    Get information about a specific credit type.
+
+    Returns the full detail of a single credit type record, including its name and configuration. Credit types categorise credits by loyalty program or business purpose. Each credit record is linked to exactly one credit type.
+
+    To list all available credit types, use [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes).
   operationId: getCreditType
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
