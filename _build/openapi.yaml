@@ -23825,7 +23825,10 @@ components:
         type: array
         items:
           type: string
-      description: List of current statuses of the bookings from resource [booking-statuses](#tag/Booking-statuses).
+      description: |
+        List of current statuses of the bookings from resource [booking-statuses](#tag/Booking-statuses).
+        In case you want to filter multiple options use array syntax : `booking_statuses[]=a820c6a820c62c79b2c79b&booking_statuses[]=b930d7b930d73d80c3d80c`
+        Logic OR is used between values.
       example:
         - a820c6a820c62c79b2c79b
     add_booking_items:
@@ -23991,7 +23994,10 @@ components:
     type_id:
       name: type_id
       in: query
-      description: Type of the customer for a campaign product. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
+      description: |
+        Type of the customer for a campaign product. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
+        In case you want to filter multiple options use array syntax : `type_id[]=86e05affc7a7abefcd513ab400&type_id[]=82c06812c0756528660784fef`
+        Logic OR is used between values.
       required: false
       schema:
         type: array
@@ -24087,7 +24093,10 @@ components:
       name: card_number_list
       in: query
       required: false
-      description: List of the card numbers. If used, a list of cards will be returned if matching card numbers in CareCloud.
+      description: |
+        List of the card numbers. If used, a list of cards will be returned if matching card numbers in CareCloud.
+        In case you want to filter multiple options use array syntax : `card_number_list[]=1000000000016&card_number_list[]=2000000000025`
+        Logic OR is used between values.
       schema:
         type: array
         items:
@@ -24504,7 +24513,10 @@ components:
       name: email_list
       in: query
       required: false
-      description: List of the email addresses of the customers.
+      description: |
+        List of the email addresses of the customers.
+        In case you want to filter multiple options use array syntax : `email_list[]=happy_customer@crmcarecloud.com&email_list[]=another_customer@crmcarecloud.com`
+        Logic OR is used between values.
       schema:
         type: array
         items:
@@ -24650,6 +24662,7 @@ components:
       required: false
       description: |
         Select by list of customer types from customer-types resource. The list of values is available at [GET /customer-types](https://carecloud.readme.io/reference/getcustomertypes).
+        In case you want to filter multiple options use array syntax : `customer_type_id[]=86e05affc7a7abefcd513ab400&customer_type_id[]=82c06812c0756528660784fef`
         Logic OR is used between values.
       schema:
         type: array
@@ -24683,7 +24696,10 @@ components:
       name: segment_group_ids
       in: query
       required: false
-      description: List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).
+      description: |
+        List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).
+        In case you want to filter multiple options use array syntax : `segment_group_ids[]=8bed991c68a470e7aaeffbf048&segment_group_ids[]=9cfe0a2d79b581f8bb5ffc059`
+        Logic OR is used between values.
       schema:
         type: array
         items:
@@ -24771,7 +24787,10 @@ components:
       name: event_type_ids
       in: query
       required: false
-      description: List of the event type IDs from the resource [GET /event-types](https://carecloud.readme.io/reference/geteventtypes).
+      description: |
+        List of the event type IDs from the resource [GET /event-types](https://carecloud.readme.io/reference/geteventtypes).
+        In case you want to filter multiple options use array syntax : `event_type_ids[]=8bda8a4854394325e2748a5005&event_type_ids[]=9ceb9b5965405436f3859b6116`
+        Logic OR is used between values.
       schema:
         type: array
         items:
