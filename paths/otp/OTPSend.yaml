@@ -3,8 +3,9 @@ post:
     - One Time Password
   summary: Send a one-time password to a communication channel.
   description: |
-    Action method sends generated password to the selected communication channel and provides verification string.
-    Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+    Sends a one-time password to the selected communication channel and returns a request ID used for verification.
+    The password is valid for 1 hour by default and can only be used once. Use the request ID with
+    [POST /one-time-password/actions/verify](https://carecloud.readme.io/reference/postverifyotp) to complete verification.
   operationId: postSendOtp
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -26,7 +27,7 @@ post:
                 - 2
                 - 4
                 - 5
-              description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+              description: "The unique ID of the communication channel. Possible values: 1 - email, 2 - SMS, 4 - push notification (Apple or Google), 5 - internal system notification."
               example: 1
             recipient:
               type: string
@@ -34,7 +35,7 @@ post:
               example: "happy_customer@crmcarecloud.com"
             otp_type:
               type: integer
-              description: 'Parameter sets witch OTP type should be generated. *Possible values: 1 - alphanumeric, 2 - numeric*'
+              description: 'Sets the OTP type to generate. Possible values: 1 - alphanumeric, 2 - numeric.'
               enum:
                 - 1
                 - 2

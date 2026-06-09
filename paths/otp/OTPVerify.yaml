@@ -3,7 +3,8 @@ post:
     - One Time Password
   summary: Verify a one-time password
   description: |
-    Action method verify one time password. Resource provides a mechanism OTP for the verification using a unique password that can only be used once.
+    Verifies a one-time password. The password must be submitted within 1 hour of being sent and can only be used once.
+    Use the request ID returned by [POST /one-time-password/actions/send](https://carecloud.readme.io/reference/postsendotp) together with the verification code received by the recipient.
   operationId: postVerifyOtp
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
