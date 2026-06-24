@@ -23,6 +23,7 @@ BadRequest:
                               oneOf:
                                 - type: string
                                 - type: array
+                                  items: {}
                                 - type: number
                                 - type: integer
                                 - type: boolean
