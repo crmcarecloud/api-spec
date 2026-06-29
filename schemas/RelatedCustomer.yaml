@@ -8,7 +8,7 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   related_customer_id:
     type: string
-    description: The unique ID of the related customer.
+    description: The unique ID of the related customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8aa68a112c62ad5f84a22a0652"
   short_name:
     type: string
@@ -17,7 +17,7 @@ properties:
     example: "Peter D."
   customer_relation_type_id:
     type: string
-    description: The unique ID of the customer relation type.
+    description: The unique ID of the customer relation type. [GET /customer-relation-types](https://carecloud.readme.io/reference/getcustomerrelationtypes)
     example: "8bed991c68a470e7aaeffbf048"
   is_leading:
     type: boolean

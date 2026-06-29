@@ -18,6 +18,7 @@ post:
           properties:
             vouchers:
               type: array
+              maxItems: 1000
               description: List of the CareCloud vouchers.
               items:
                 $ref: '../../schemas/_index.yaml#/VoucherBatch'

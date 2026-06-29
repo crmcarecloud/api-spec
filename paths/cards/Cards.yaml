@@ -32,6 +32,7 @@ get:
                 properties:
                   cards:
                     type: array
+                    maxItems: 1000
                     description: Collection of customer cards.
                     items:
                       $ref: '../../schemas/_index.yaml#/Card'
@@ -119,8 +120,21 @@ post:
     - Cards
   summary: Create a card
   description: |
-    Add a new customer card. For bulk creation, use [POST /cards/batch](https://carecloud.readme.io/reference/postbatchcards) instead. To assign an existing free card from a pre-imported pool, use [POST /cards/actions/assign-free-card](https://carecloud.readme.io/reference/postassigncard) instead.
+    Add a new customer card.
+
     ⚠️ Endpoint is available only in the Enterprise interface.
+
+    **What happens when a card is created**
+
+    - A card record is created and its server-generated `card_id` is returned.
+    - The card is linked to the supplied `customer_id`.
+    - A marketing-automation "assign card" event is triggered.
+
+    **Related operations**
+
+    - [POST /cards/batch](https://carecloud.readme.io/reference/postbatchcards) - create multiple cards in a single request.
+    - [POST /cards/actions/assign-free-card](https://carecloud.readme.io/reference/postassigncard) - assign an existing free card from a pre-imported pool.
+    - [PUT /cards/{card_id}](https://carecloud.readme.io/reference/putcard) - update an existing card.
   operationId: postCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

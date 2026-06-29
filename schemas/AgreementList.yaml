@@ -3,7 +3,7 @@ properties:
   agreement_id:
     type: string
     readOnly: true
-    description: The unique ID of the consents in CareCloud.
+    description: The unique ID of the consents in CareCloud. [GET /consents](https://carecloud.readme.io/reference/getconsents)
     example: "8fd73167342d06899c4c015320"
   name:
     type: string

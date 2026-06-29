@@ -315,6 +315,59 @@ BasicError:
     detail:
       type: string
       description: The details of the error message.
+
+BadRequestErrorBody:
+  type: object
+  description: |
+    Body of a `400 Bad Request` response. The `error.error_data.invalid_params[]` array lists the parameters that caused the failure, each carrying a `reason` code drawn from one of two sources:
+
+    - **Generic reasons** (apply across operations): `already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`.
+    - **Operation-specific reasons** (apply to endpoints with domain-specific business rules): documented at the operation level. Examples include reasons used by the purchase-closure pipeline such as `voucher_expired`, `voucher_already_used`, `bill_item_id` `item_price_lower_than_paid_amount`.
+
+    See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+  properties:
+    error:
+      allOf:
+        - $ref: '#/BasicError'
+        - type: object
+          properties:
+            error_data:
+              type: object
+              description: Data accompanying the exception.
+              properties:
+                invalid_params:
+                  type: array
+                  maxItems: 1000
+                  description: List of parameters that caused the error.
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        oneOf:
+                          - type: string
+                          - type: array
+                            items:
+                              type: string
+                          - type: number
+                          - type: integer
+                          - type: boolean
+                          - type: object
+                        description: The name of the parameter that caused the error.
+                        example: "event_id_event_type_id_customer_id_external_id_secondary_external_id"
+                      reason:
+                        type: string
+                        description: |
+                          The error reason code. Generic codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`) apply across operations. Operation-specific codes are documented at the operation level.
+                        example: "relation_already_exists"
+                      value:
+                        type: string
+                        description: The value supplied for the parameter.
+                        example: ""
+                      message:
+                        type: string
+                        description: Human-readable explanation of the error.
+                        example: "Relation for this combination of event type, customer ID and external IDs already exists."
+
 Error_processing:
     type: integer
     enum:

@@ -15,10 +15,11 @@ properties:
     example: "8ea2591121e636086a4a9c0992"
   store_id:
     type: string
-    description: The unique ID of the store tied to the reservation.
+    description: The unique ID of the store tied to the reservation. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "82db62087b0f79a6e14e5747e7"
   reservation_codes:
     type: array
+    maxItems: 1000
     items:
       type: string
     readOnly: true
@@ -26,18 +27,20 @@ properties:
     example: ["3DBKBHA"]
   external_reservation_codes:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/ExternalCode'
     description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.
   benefit_codes:
     type: array
+    maxItems: 1000
     items:
       type: string
     description: List of the benefit (rewards, vouchers) codes used in a reservation. After the reservation is delivered, all benefits are applied on the customer account.
     example: [ "PTV116", "PTV120" ]
   product_reservation_source_id:
     type: string
-    description: The unique ID of the product reservation source.
+    description: The unique ID of the product reservation source. [GET /product-reservation-sources](https://carecloud.readme.io/reference/getproductreservationsources)
     example: "8bed991c68a470e7aaeffbf048"
   pickup_date:
     type: string
@@ -59,6 +62,7 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   product_reservation_items:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationItem'
     description: List of the Product Reservation Items.
@@ -86,12 +90,14 @@ properties:
     example: 5
   reservation_progress_history:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationProgress'
     readOnly: true
     description: History of the product reservation progress. Product reservation progress is sorted in descending order by time.
   comments:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/ProductReservationComment'
     readOnly: true

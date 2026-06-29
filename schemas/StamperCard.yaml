@@ -13,7 +13,7 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
-    description: The unique ID of the card holder.
+    description: The unique ID of the card holder. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   stamper_card_order:
     type: integer

@@ -31,6 +31,7 @@ get:
                 properties:
                   booking_tickets:
                     type: array
+                    maxItems: 1000
                     description: Collection of booking tickets.
                     items:
                       $ref: '../../schemas/_index.yaml#/BookingTicket'

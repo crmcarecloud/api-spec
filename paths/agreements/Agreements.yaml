@@ -27,6 +27,7 @@ get:
                 properties:
                   agreements:
                     type: array
+                    maxItems: 1000
                     description: List of the consents.
                     items:
                       $ref: '../../schemas/_index.yaml#/AgreementList'

@@ -19,12 +19,14 @@ post:
               example: "8ea2591121e636086a4a9c0992"
             cart_product_ids:
               type: array
+              maxItems: 1000
               description: List of the product IDs in the customer shopping cart.
               items:
                 type: string
               example: [ "8fd73167342d0689c4c015320", "84aec0f62c76448621d68d343c" ]
             product_id_list:
               type: array
+              maxItems: 1000
               description: List of the product IDs. Initial products of the recommendation engine.
               items:
                 type: string

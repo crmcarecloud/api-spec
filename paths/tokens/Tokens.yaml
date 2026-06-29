@@ -5,10 +5,19 @@ post:
     - Tokens
   summary: Create a token
   description: |
-    Create a token and setup of the client application.
-    ⚠️ The endpoint is available only in the Customer interface.
-    ⚠️ When creating a new token, the request doesn't need to contain an Authentication header.
-    ⚠️ Warning: We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.
+    Create an authentication token for a client application installation.
+
+    ⚠️ Endpoint is available only in the Customer interface.
+
+    ⚠️ When creating a new token, the request does not need to contain an Authentication header.
+
+    ⚠️ We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.
+
+    **What happens when a token is created**
+
+    - A token record is created and its server-generated `token_id` is returned.
+    - The token is bound to the supplied `device` identification and `setup` parameters (language, GPS permission, notifications permission).
+    - The token is used as the credential on subsequent customer-interface requests, sent as `Authorization: Bearer <token_id>`. See [Authentication](https://carecloud.readme.io/reference/authentication) for the full flow.
   operationId: postToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

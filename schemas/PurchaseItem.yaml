@@ -18,7 +18,7 @@ properties:
   product_group_id:
     type: string
     readOnly: true
-    description: The unique ID of the product group.
+    description: The unique ID of the product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
     example: "82de12eb8b138791e678fd11c3"
   product_group_name:
     type: string
@@ -28,7 +28,7 @@ properties:
   product_brand_id:
     type: string
     readOnly: true
-    description: The unique ID of the product brand.
+    description: The unique ID of the product brand. [GET /product-brands](https://carecloud.readme.io/reference/getproductbrands)
     example: "82db62087b0f79a6e14e5747e7"
   product_brand_name:
     type: string
@@ -40,7 +40,7 @@ properties:
     description: Identifier of the purchase item in external system.
   purchase_item_type_id:
     type: string
-    description: Type of the purchase item.There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.
+    description: Type of the purchase item. There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points. [GET /purchase-item-types](https://carecloud.readme.io/reference/getpurchaseitemtypes)
     example: "86e05affc7a7abefcd513ab400"
   price:
     type: number

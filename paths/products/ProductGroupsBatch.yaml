@@ -17,6 +17,7 @@ post:
           properties:
             product_groups:
               type: array
+              maxItems: 1000
               description: List of the CareCloud product groups.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductGroup'

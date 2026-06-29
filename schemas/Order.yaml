@@ -25,11 +25,13 @@ properties:
     example: 36.00
   discount_codes:
     type: array
+    maxItems: 1000
     items:
       type: string
     description: Discount codes used in the order.
   order_items:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/OrderItem'
     description: List of the OrderItems.

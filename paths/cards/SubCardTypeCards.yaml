@@ -28,6 +28,7 @@ get:
                 properties:
                   cards:
                     type: array
+                    maxItems: 1000
                     description: List of cards.
                     items:
                       $ref: '../../schemas/_index.yaml#/Card'

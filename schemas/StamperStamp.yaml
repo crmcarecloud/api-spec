@@ -9,17 +9,17 @@ properties:
   customer_id:
     type: string
     readOnly: true
-    description: The unique ID of the stamper card holder.
+    description: The unique ID of the stamper card holder. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   purchase_id:
     type: string
     readOnly: true
-    description: The unique ID of the purchase that triggered the stamp to be collected.
+    description: The unique ID of the purchase that triggered the stamp to be collected. [GET /purchases](https://carecloud.readme.io/reference/getpurchases)
     example: "81eaeea13b8984a169c490a325"
   stamper_card_id:
     type: string
     readOnly: true
-    description: The unique ID of the stamper card.
+    description: The unique ID of the stamper card. [GET /stamper-cards](https://carecloud.readme.io/reference/getstampercards)
     example: "8bed991c68a470e7aaeffbf048"
   stamp_order:
     type: integer

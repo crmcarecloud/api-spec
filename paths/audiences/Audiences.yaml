@@ -28,6 +28,7 @@ get:
                 properties:
                   audiences:
                     type: array
+                    maxItems: 1000
                     description: List of all audiences.
                     items:
                       $ref: '../../schemas/_index.yaml#/Audience'

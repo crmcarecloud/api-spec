@@ -22,6 +22,7 @@ post:
               example: "81eaeea13b8984a169c490a325"
             external_reservation_codes:
               type: array
+              maxItems: 1000
               items:
                 $ref: '../../schemas/_index.yaml#/ExternalCode'
               description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.

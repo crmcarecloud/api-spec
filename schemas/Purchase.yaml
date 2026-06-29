@@ -32,6 +32,7 @@ properties:
     example: 1
   purchase_items:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/PurchaseItem'
     readOnly: true
@@ -39,7 +40,7 @@ properties:
   type_id:
     type: string
     readOnly: true
-    description: Purchase type.
+    description: "The unique ID of the purchase type. [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes)"
     example: "86e05affc7a7abefcd513ab400"
   total_price:
     type: number
@@ -68,6 +69,7 @@ properties:
     example: "2021-01-17 00:00:00"
   purchase_property_records:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: true

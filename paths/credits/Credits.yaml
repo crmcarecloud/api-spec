@@ -35,6 +35,7 @@ get:
                 properties:
                   credits:
                     type: array
+                    maxItems: 1000
                     description: List of the credit records.
                     items:
                       $ref: '../../schemas/_index.yaml#/Credit'

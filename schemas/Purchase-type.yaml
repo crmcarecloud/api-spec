@@ -13,7 +13,7 @@ properties:
   text_id:
     type: string
     readOnly: true
-    description: Text ID of an event group.
+    description: Text ID of the purchase type.
     example: "store_purchase"
 required:
   - name

@@ -3,15 +3,15 @@ description: Voucher resource for the batch processing.
 properties:
   reward_id:
     type: string
-    description: The unique ID of the reward.
+    description: The unique ID of the reward. [GET /rewards](https://carecloud.readme.io/reference/getrewards)
     example: "83cfee22eabfbbb15a14815e30"
   customer_id:
     type: string
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "81ceb8582e2d8dbb7e71b7273b"
   store_id:
     type: string
-    description: The unique ID of the store where voucher was applied.
+    description: The unique ID of the store where voucher was applied. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "86e05affc7a7abefcd513ab400"
   code:
     type: string

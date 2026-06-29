@@ -12,7 +12,7 @@ properties:
     example: "Accessories"
   parent_product_group_id:
     type: string
-    description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.
+    description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
     example: "83d1d11ea3884a5d33253fe214"
   parent_external_id:
     type: string

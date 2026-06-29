@@ -65,15 +65,17 @@ properties:
       - 2
       - 4
       - 5
-    description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*"
+    description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification* [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)"
     example: 1
   message_data:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/Parameter'
     description: Message data could contains array of customized parameters. They may have influence on message display or add values to message.
   attachments:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/Attachment'
     description: "List of the attachments for the message. A single attachment has a size limit of 1 MB. File type restrictions: .jpg, .jpeg, .png, .gif, and .pdf."

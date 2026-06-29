@@ -3,7 +3,7 @@ description: Store structure.
 properties:
   store_id:
     type: string
-    description: The unique ID of the store in CareCloud.
+    description: The unique ID of the store in CareCloud. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "81eaeea13b8984a169c490a325"
 required:
   - store_id

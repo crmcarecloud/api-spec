@@ -8,11 +8,11 @@ properties:
     example: "83d1d11ea3884a5d33253fe214"
   store_id:
     type: string
-    description: The unique ID of the store.
+    description: The unique ID of the store. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "8fd7316732d06899c4c015320"
   store_group_id:
     type: string
-    description: The unique ID of the store group.
+    description: The unique ID of the store group. [GET /store-groups](https://carecloud.readme.io/reference/getstoregroups)
     example: "83d1d11ea3884a5d33253fe214"
   last_change:
     type: string

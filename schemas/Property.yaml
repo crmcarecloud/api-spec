@@ -20,6 +20,7 @@ properties:
     example: "string"
   items:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/PropertyItem'
     description: List of possible values. Used for multivalued data types (like enum, multiselect).

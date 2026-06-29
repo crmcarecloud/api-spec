@@ -3,8 +3,21 @@ post:
     - Messages
   summary: Send message
   description: |
-    Send message (email, SMS or PUSH notification) to customer.
+    Send a message to a customer through one of the configured communication channels (email, SMS, or push notification).
+
     ⚠️ Action methods are available only in the Enterprise interface.
+
+    Before sending, the customer's communication consents for the target channel are checked; if consent is missing, the message is not sent. The message is rendered from its template, with personalisation applied if configured.
+
+    **What happens when a message is sent**
+
+    - The rendered message is delivered to the customer through the configured channel.
+    - A message record is persisted on the customer account; the retention period is project-specific.
+
+    **Related operations**
+
+    - [GET /messages](https://carecloud.readme.io/reference/getmessages) - read the catalogue of messages and their delivery status.
+    - [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels) - the catalogue of available channels.
   operationId: postMessageSend
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

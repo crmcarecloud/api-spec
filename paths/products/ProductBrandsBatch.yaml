@@ -17,6 +17,7 @@ post:
           properties:
             product_brands:
               type: array
+              maxItems: 1000
               description: List of the CareCloud product brands.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductBrand'

@@ -31,6 +31,7 @@ get:
                 properties:
                   customer_external_applications:
                     type: array
+                    maxItems: 1000
                     description: List of the customer external applications.
                     items:
                       $ref: '../../schemas/_index.yaml#/ExternalApplication'

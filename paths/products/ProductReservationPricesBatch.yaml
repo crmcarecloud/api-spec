@@ -19,6 +19,7 @@ post:
           properties:
             product_reservation_prices:
               type: array
+              maxItems: 1000
               description: List of the product reservation prices.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductReservationPrice'
@@ -65,6 +66,7 @@ delete:
           properties:
             product_reservation_prices:
               type: array
+              maxItems: 1000
               description: List of the product reservation prices.
               items:
                 type: object

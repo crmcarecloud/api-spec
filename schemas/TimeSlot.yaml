@@ -9,7 +9,7 @@ properties:
   ticket_id:
     type: string
     readOnly: true
-    description: The unique ID of the booking ticket.
+    description: The unique ID of the booking ticket. [GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)
     example: "89ce2a1b9b01f5c939fb1e20cd"
   valid_from:
     type: string

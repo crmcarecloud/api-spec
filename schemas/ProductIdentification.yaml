@@ -3,7 +3,7 @@ description: All possible identifications of the product.
 properties:
   product_id:
     type: string
-    description: The unique CareCloud ID of the product.
+    description: The unique CareCloud ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
     example: "89bdacbffb5c82f2c52cb9ae8f"
   plu_ids:
     type: array

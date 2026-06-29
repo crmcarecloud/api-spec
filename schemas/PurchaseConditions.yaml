@@ -27,5 +27,5 @@ properties:
   next_status_id:
     type: string
     readOnly: true
-    description: ID of the following status.
+    description: ID of the following status. [GET /statuses](https://carecloud.readme.io/reference/getstatuses)
     example: "83d1d11ea3884a5d33253fe214"

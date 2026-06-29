@@ -25,6 +25,7 @@ get:
                 properties:
                   booking_statuses:
                     type: array
+                    maxItems: 1000
                     description: Collection of booking statuses.
                     items:
                       $ref: '../../schemas/_index.yaml#/BookingStatus'

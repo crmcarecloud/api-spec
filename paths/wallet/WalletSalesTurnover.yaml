@@ -23,6 +23,7 @@ get:
                 properties:
                   turnover:
                     type: array
+                    maxItems: 1000
                     description: List of all turnover by currency in time interval.
                     items:
                       $ref: '../../schemas/_index.yaml#/QualificationTurnover'

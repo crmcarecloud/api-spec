@@ -31,6 +31,7 @@ get:
                 properties:
                   credit_types:
                     type: array
+                    maxItems: 1000
                     description: List of the credit types.
                     items:
                       $ref: '../../schemas/_index.yaml#/CreditType'

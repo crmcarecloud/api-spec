@@ -9,7 +9,7 @@ properties:
   partner_id:
     type: string
     readOnly: true
-    description: The unique ID of the CareCloud partner.
+    description: The unique ID of the CareCloud partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string

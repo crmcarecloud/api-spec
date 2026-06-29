@@ -52,7 +52,7 @@ properties:
   customer_id:
     deprecated: true
     type: string
-    description: The ID of the customer.
+    description: The ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   purchase_item_property_records:
     type: array

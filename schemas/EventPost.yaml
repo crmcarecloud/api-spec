@@ -13,9 +13,9 @@ properties:
   customer_id:
     type: string
     description: |
-      The unique platform customer ID.  
+      The unique platform customer ID. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
       If this field is provided, it will always be used and any alternative identifier parameters
-      (`customer_identifier_type` and `customer_identifier_value`) **must not** be included.  
+      (`customer_identifier_type` and `customer_identifier_value`) **must not** be included.
       If both are present, the request will be rejected.
     example: "8ea2591121e636086a4a9c0992"
   customer_identifier_type:
@@ -47,7 +47,7 @@ properties:
         properties:
           customer_source_id:
             type: string
-            description: The ID of the customer source (e.g., e-shop, POS).
+            description: The ID of the customer source (e.g., e-shop, POS). [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
           external_id:
             type: string
             description: The identifier of the customer in that customer source.

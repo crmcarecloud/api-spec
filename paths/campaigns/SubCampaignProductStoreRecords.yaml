@@ -26,6 +26,7 @@ get:
                 properties:
                   campaign_product_store_records:
                     type: array
+                    maxItems: 1000
                     description: List of the campaign product store records.
                     items:
                       $ref: '../../schemas/_index.yaml#/CampaignProductStoreRecord'

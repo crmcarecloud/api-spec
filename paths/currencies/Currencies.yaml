@@ -33,6 +33,7 @@ get:
                 properties:
                   currencies:
                     type: array
+                    maxItems: 1000
                     description: List of currencies.
                     items:
                       $ref: '../../schemas/_index.yaml#/Currency'

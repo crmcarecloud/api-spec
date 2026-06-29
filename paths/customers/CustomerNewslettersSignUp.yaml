@@ -38,6 +38,7 @@ post:
               example: "en"
             partner_records:
               type: array
+              maxItems: 1000
               description: |
                 List of partners to associate with the signed-up contact. When provided as a non-empty array, partner assignment is based solely on this list. An empty array is treated the same as omitting this field. See the partner assignment rules in the endpoint description for the full precedence logic. [GET /partners](https://carecloud.readme.io/reference/getpartners)
               items:

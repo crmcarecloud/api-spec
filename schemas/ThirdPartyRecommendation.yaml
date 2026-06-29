@@ -8,7 +8,7 @@ properties:
     example: "838b73aacb5ac326cec4030c80"
   customer_id:
     type: string
-    description: The unique ID of the CareCloud customer. Required only if `products` parameter is not set.
+    description: The unique ID of the CareCloud customer. Required only if `products` parameter is not set. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea6abece4cd0a4ded0a29f093"
   products:
     type: array

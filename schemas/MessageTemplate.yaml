@@ -58,7 +58,7 @@ properties:
       - 5
       - 9
     readOnly: true
-    description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2 - SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*"
+    description: "The unique ID of the communication channel. *Possible values are: 1 - email / 2 - SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages* [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)"
     example: 1
   template_data:
     type: array

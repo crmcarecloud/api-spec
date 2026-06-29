@@ -16,11 +16,13 @@ properties:
     example: BIRTHDAY20
   names:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/TextTranslation'
     description: List of reward name translations.
   notes:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/TextTranslation'
     description: List of note translations.
@@ -70,6 +72,7 @@ properties:
     description: List of the stores where the reward can be claimed.
   segments:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/SegmentID'
     description: List of the segments for witch the reward can be applied.
@@ -89,6 +92,7 @@ properties:
     example: 5
   image_urls:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/UrlLanguageVariant'
     description: List of URLs linking to reward images in the chosen language.
@@ -115,7 +119,7 @@ properties:
     example: true
   partner_id:
     type: string
-    description: The unique ID of the partner. Partner represents business, company, or organization in the CareCloud domain. CareCloud allows single partner setup or multiple partner setup depending on the business setup.
+    description: The unique ID of the partner. Partner represents business, company, or organization in the CareCloud domain. CareCloud allows single partner setup or multiple partner setup depending on the business setup. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   voucher_validity:
     type: string

@@ -31,7 +31,7 @@ properties:
     example: "420523828931"
   partner_id:
     type: string
-    description: The unique ID of the partner.
+    description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   system_id:
     type: string
@@ -45,11 +45,13 @@ properties:
     example: "www.crmcarecloud.com"
   opening:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/OpeningDay'
     description: List of opening days.
   image_urls:
     type: array
+    maxItems: 1000
     items:
       type: string
     readOnly: true

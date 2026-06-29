@@ -3,6 +3,7 @@ description: Result of the search.
 properties:
   strict:
     type: array
+    maxItems: 1000
     description: Search results for the strict mode.
     items:
       $ref: '../schemas/_index.yaml#/CustomerResult'

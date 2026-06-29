@@ -29,6 +29,7 @@ get:
                 properties:
                   bookings:
                     type: array
+                    maxItems: 1000
                     description: Collection of bookings.
                     items:
                       $ref: '../../schemas/_index.yaml#/Booking'
@@ -112,7 +113,14 @@ post:
     - Bookings
   summary: Create a new booking
   description: |
-    Create a new booking for a customer. A booking is a reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Each booking item references a time slot from a booking ticket ([GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)). If no `booking_status` is provided, the default booking status is applied.
+    Create a new booking for a customer. A booking is a reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Each booking item references a time slot from a booking ticket ([GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)).
+
+    **What happens when a booking is created**
+
+    - A booking record is created and its server-generated `booking_id` is returned.
+    - One booking item is created per supplied time slot.
+    - The available capacity of each referenced time slot is decremented.
+    - If no `booking_status` is supplied, the default booking status configured for the project is applied.
   operationId: postBooking
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

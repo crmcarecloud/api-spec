@@ -39,6 +39,7 @@ get:
                 properties:
                   credit_history:
                     type: array
+                    maxItems: 1000
                     description: List of the credit history records.
                     items:
                       $ref: '../../schemas/_index.yaml#/CreditHistoryRecord'

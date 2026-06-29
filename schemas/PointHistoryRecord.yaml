@@ -4,7 +4,7 @@ properties:
   customer_id:
     type: string
     readOnly: true
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "87af991126405bf8e7dfb36045"
   point_amount:
     type: number
@@ -24,16 +24,16 @@ properties:
     example: "Manual rewards points for the product purchase collection"
   point_type_id:
     type: string
-    description: Type of the point record.
+    description: The unique ID of the point type. [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
     example: "81eaeea13b8984a169c490a325"
   partner_id:
     type: string
-    description: The unique ID of the partner company.
+    description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   store_id:
     type: string
     readOnly: true
-    description: The unique ID of the store in CareCloud.
+    description: The unique ID of the store in CareCloud. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "86e05affc7a7abefcd513ab400"
   point_history_record_time:
     type: string

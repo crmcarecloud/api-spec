@@ -8,7 +8,7 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   user_id:
     type: string
-    description: The unique ID of the assigned user.
+    description: The unique ID of the assigned user. [GET /users](https://carecloud.readme.io/reference/getusers)
     example: "898a6545ed2bfa3f8466d09bc6"
   name:
     type: string

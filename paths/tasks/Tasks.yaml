@@ -135,11 +135,13 @@ post:
               $ref: '../../schemas/_index.yaml#/Task'
             property_records:
               type: array
+              maxItems: 1000
               description: List of a task property records
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
             assignees:
               type: array
+              maxItems: 1000
               description: List of a task assignees
               items:
                 $ref: '../../schemas/_index.yaml#/TaskAssignee'

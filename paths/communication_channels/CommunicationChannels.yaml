@@ -26,6 +26,7 @@ get:
                 properties:
                   communication_channels:
                     type: array
+                    maxItems: 1000
                     description: List of communication channels.
                     items:
                       $ref: '../../schemas/_index.yaml#/CommunicationChannel'

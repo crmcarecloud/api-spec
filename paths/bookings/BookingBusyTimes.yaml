@@ -64,6 +64,7 @@ post:
                     example: "hour"
                   chart_data:
                     type: array
+                    maxItems: 1000
                     description: Data for the chart display. The items are ordered by X-axis values ascending.
                     items:
                       $ref: '../../schemas/_index.yaml#/ChartPointData'

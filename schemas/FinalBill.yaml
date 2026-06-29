@@ -11,7 +11,7 @@ properties:
     example: true
   purchase_type_id:
     type: string
-    description: Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types).
+    description: Type of the purchase. Values are available in resource [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes).
     example: "86e05affc7a7abefcd513ab400"
   canceled:
     type: boolean
@@ -56,7 +56,7 @@ properties:
     description: Name of the user who created a bill.
   currency_id:
     type: string
-    description: ID of the currency from resource [currencies](#tag/Currencies).
+    description: ID of the currency from resource [GET /currencies](https://carecloud.readme.io/reference/getcurrencies).
     example: "8bed991c68a470e7aaeffbf048"
   total_price:
     type: number

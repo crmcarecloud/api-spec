@@ -19,6 +19,7 @@ post:
               example: "8ea2591121e636086a4a9c0992"
             product_id_list:
               type: array
+              maxItems: 1000
               description: List of the product IDs. Initial products of the recommendation engine.
               items:
                 type: string

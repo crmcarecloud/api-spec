@@ -27,6 +27,7 @@ properties:
     example: 1
   custom_agreements:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/CustomAgreements'
     description: "Custom consent list. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)"

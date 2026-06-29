@@ -22,7 +22,7 @@ properties:
     example: "CAMP-EXT-001"
   parent_id:
     type: string
-    description: The unique ID of the parent campaign.
+    description: The unique ID of the parent campaign. [GET /campaigns](https://carecloud.readme.io/reference/getcampaigns)
   name:
     type: string
     description: Name of the campaign.

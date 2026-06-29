@@ -36,6 +36,7 @@ get:
                 properties:
                   purchases:
                     type: array
+                    maxItems: 1000
                     description: List of purchases.
                     items:
                       $ref: '../../schemas/_index.yaml#/Purchase'

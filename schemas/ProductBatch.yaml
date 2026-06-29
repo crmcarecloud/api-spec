@@ -21,7 +21,7 @@ properties:
     description: An array of all available pluIDs from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
   product_group_id:
     type: string
-    description: The unique ID of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.
+    description: The unique ID of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
     example: "83d1d11ea3884a5d33253fe214"
   product_group_external_id:
     type: string
@@ -29,7 +29,7 @@ properties:
     example: "23"
   product_brand_id:
     type: string
-    description: The unique ID of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.
+    description: The unique ID of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand. [GET /product-brands](https://carecloud.readme.io/reference/getproductbrands)
     example: "82db62087b0f79a6e14e5747e7"
   product_brand_external_id:
     type: string
@@ -37,11 +37,11 @@ properties:
     example: "71"
   store_id:
     type: string
-    description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
+    description: The unique ID of the store where the product group is valid. The product group is global if this value is not set. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "83d1d11ea3884a5d33253fe214"
   partner_id:
     type: string
-    description: The unique ID of the partner.  If the partner is not set, the partner is selected from the logged in user.
+    description: The unique ID of the partner. If the partner is not set, the partner is selected from the logged in user. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   property_records:
     type: array

@@ -5,14 +5,24 @@ post:
   description: |
     Add a new customer account in the CareCloud platform.
 
-    **Partner assignment**
+    **What happens when a customer is created**
 
-    When a new customer account is created, CareCloud creates one or more customer-partner relations automatically. The assignment depends on the project configuration:
+    - A customer record is created and its server-generated `customer_id` is returned.
+    - One or more customer-partner relations are created automatically. The assignment depends on the project configuration:
+      - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
+      - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
+    - If called from the customer interface with `autologin=true`, the customer is logged in as part of the response.
 
-    - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
-    - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
+    **Conditional requirements**
 
-    To control partner assignment explicitly after registration, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only), which replaces all partner assignments in a single call.
+    - When `autologin` is `true`, `password` is required.
+    - When `autologin` is `false`, `password` is optional.
+
+    `autologin` is meaningful only when this endpoint is called from the customer interface. In the enterprise interface, `autologin=true` causes the password to be validated but does not log the customer in - the enterprise interface does not establish customer sessions.
+
+    **Related operations**
+
+    - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (enterprise interface only).
   operationId: postCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -39,6 +49,7 @@ post:
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
             property_records:
               type: array
+              maxItems: 1000
               description: List of customer property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'

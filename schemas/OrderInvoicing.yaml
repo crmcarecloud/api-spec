@@ -3,7 +3,7 @@ description: Structure of OrderInvoicing. Contains necessary data for invoicing 
 properties:
   payment_id:
     type: string
-    description: The unique ID of the payment type from resource [GET /payment-types](#tag/Payment-types).
+    description: The unique ID of the payment type from resource [GET /payment-types](https://carecloud.readme.io/reference/getpaymenttypes).
     example: "8bd481170064960b1788109b8"
   paid_date:
     type: string

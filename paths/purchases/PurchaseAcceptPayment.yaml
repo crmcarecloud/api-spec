@@ -2,7 +2,19 @@ post:
   tags:
     - Purchases
   summary: Accept payment
-  description: The method processes bill closure requests. CareCloud returns information about discounts, applied vouchers, and points used for payment that change the bill's final price.
+  description: |
+    Calculate the applicable discounts, vouchers, and points for a bill before it is finalised. The response contains the recommendations the cashier can present to the customer; it does not commit the purchase.
+
+    **What happens when accept-payment is called**
+
+    - CareCloud evaluates the supplied bill items against the customer's eligible benefits (vouchers, discounts, point payment).
+    - The response contains `recommended_discounts`, `vouchers`, `credit_points`, and related fields the cashier can apply.
+    - No purchase record is created and no benefits are consumed by this call. To finalise the bill, call [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend) afterwards.
+
+    **Related operations**
+
+    - [POST /purchases/actions/recommend-best-rewards](https://carecloud.readme.io/reference/postpurchaserecommendedrewards) - get the list of best-fit rewards for a bill before deciding which to apply.
+    - [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend) - finalise the bill after the customer accepts the calculated payment.
   operationId: postPurchaseAcceptPayment
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -52,6 +64,7 @@ post:
               example: 7
             benefit_codes:
               type: array
+              maxItems: 1000
               items:
                 type: string
               description: The bill closure will use present codes and recommend discounts.

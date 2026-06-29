@@ -3,7 +3,81 @@ info:
   title: REST API Reference
   version: 1.0.0
   description: |
-    Discover the essentials of the CareCloud platform API, from authentication methods to available resources. Explore the REST API, which allows you to seamlessly connect the CareCloud platform with other systems.
+    CareCloud REST API connects external systems with the CareCloud Customer Data Platform. It is used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
+
+    For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started) on the documentation portal.
+
+    ## Interfaces
+
+    CareCloud API has two interfaces. The choice determines the URL path segment, the authentication scheme, and the available resources.
+
+    - `enterprise-interface` - for backend integrations (POS, e-shop, BI, kiosks). Uses Bearer token authentication.
+    - `customer-interface` - for end-user applications (mobile, microsite). Uses Basic authentication with a customer-specific token.
+
+    ## Base URL
+
+    `https://{project_url}/webservice/rest-api/{api_interface}/{version}/`
+
+    Where `project_url` is your project domain (e.g. `sandbox.crmcarecloud.com` for the shared sandbox), `api_interface` is `enterprise-interface` or `customer-interface`, and `version` is the major API version (currently `v1.0`).
+
+    ## Authentication
+
+    Both interfaces use HTTP Bearer authentication. The token is obtained differently per interface:
+
+    - **Enterprise interface** - call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager.
+    - **Customer interface** - call [POST /tokens](https://carecloud.readme.io/reference/posttoken).
+
+    Send the token on every subsequent request as `Authorization: Bearer <token>`.
+
+    HTTP Basic authentication is deprecated; new integrations must use Bearer. See [Authentication](https://carecloud.readme.io/reference/authentication) for the full flow.
+
+    ## Pagination
+
+    All list endpoints support pagination via two query parameters:
+
+    - `count` - the number of records to return per page (default 100, minimum 1).
+    - `offset` - the number of records to skip before the first returned record (default 0).
+
+    Responses include `total_items` at the root of the `data` object. It reflects the total number of records matching the filter across all pages.
+
+    ## Sorting and filtering
+
+    Sorting is supported on list endpoints via two query parameters:
+
+    - `sort_field` - any first-level field of the response array element.
+    - `sort_direction` - `ASC` (default) or `DESC`.
+
+    Filters on a list endpoint are combined with logical AND. Array-typed filters (e.g. `email_list`, `customer_ids`) accept multiple values using the bracket syntax `name[]=value1&name[]=value2`. Within a single array filter, values are combined with logical OR.
+
+    Some list endpoints support a strict matching mode via the `mode=strict` query parameter, which makes all declared filters required.
+
+    ## Date and time
+
+    All datetime fields use the project's configured local timezone. Responses do not include a timezone offset suffix. Clients must convert between their own timezone and the project timezone before constructing requests.
+
+    - Datetime fields in **responses** use the format `YYYY-MM-DD HH:MM:SS`.
+    - Datetime fields in **requests** accept either `YYYY-MM-DD HH:MM:SS` or ISO-8601 `YYYY-MM-DDTHH:MM:SS`.
+    - Date-only fields use ISO-8601 `YYYY-MM-DD`.
+    - Time-only fields use ISO-8601 `HH:MM:SS`.
+
+    ## Errors
+
+    All client-side input failures return HTTP 400. The response body's `error.error_data.invalid_params[].reason` field uses one of the generic reason codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`). Operations that involve domain-specific business rules (for example purchase closure, voucher application) may also return more specific reasons documented at the operation level.
+
+    See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+
+    ## Rate limiting and retries
+
+    When a client exceeds the configured request rate, the API returns `429 Too Many Requests`. Retry with exponential backoff. For `5xx` responses, retry with backoff as well. See [Integration best practices](https://carecloud.readme.io/reference/integration-best-practices) for the recommended strategy.
+
+    ## Action methods
+
+    Some operations cannot be modelled as CRUD verbs on a resource path. These are exposed as procedural action methods at one of two URI patterns:
+
+    - Resource-level: `POST /{resource}/actions/{action_name}`
+    - Record-level: `POST /{resource}/{resource_id}/actions/{action_name}`
+
+    Action method paths always contain an `actions` segment (for example `POST /customers/actions/set-partners`, `POST /purchases/actions/send-purchase`). See the per-operation documentation for what each action does.
   license:
     name: "EULA"
     url: "https://www.crmcarecloud.com/"
@@ -237,3 +311,5 @@ components:
     basicAuth:
       type: http
       scheme: basic
+      description: |
+        HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both the Enterprise interface and the Customer interface. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.

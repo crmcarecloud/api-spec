@@ -9,7 +9,7 @@ properties:
   task_id:
     type: string
     readOnly: true
-    description: The unique ID of the task.
+    description: The unique ID of the task. [GET /tasks](https://carecloud.readme.io/reference/gettasks)
     example: "8bed991c68a470e7aaeffbf048"
   text:
     type: string

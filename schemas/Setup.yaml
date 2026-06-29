@@ -3,7 +3,7 @@ description: Setup of a client's device.
 properties:
   language_id:
     type: string
-    description: The unique ID of the language by ISO 639-1 code from [languages resource](#tag/Languages).
+    description: The unique ID of the language by ISO 639-1 code from [GET /languages](https://carecloud.readme.io/reference/getlanguages).
     example: "en"
   allowed_gps:
     type: boolean

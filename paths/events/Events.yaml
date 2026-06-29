@@ -113,7 +113,20 @@ post:
   tags:
     - Events
   summary: Create a new event
-  description: Add a new event.
+  description: |
+    Create a marketing-automation event on a customer account. An event records an activity (for example a customer interaction, a transaction, or an external trigger) that may launch a marketing-automation scenario configured for the corresponding event type.
+
+    **What happens when an event is created**
+
+    - An event record is created and its server-generated `event_id` is returned.
+    - If the corresponding event type is wired to a marketing-automation scenario, that scenario is launched and the event's data is passed to it.
+    - Property records supplied alongside the event are stored as the event's properties; their values are available to the marketing-automation scenario.
+
+    **Related operations**
+
+    - [GET /event-types](https://carecloud.readme.io/reference/geteventtypes) - the catalogue of event types configured for the project.
+    - [GET /event-properties](https://carecloud.readme.io/reference/geteventproperties) - the catalogue of event properties.
+    - [GET /events/{event_id}/property-records](https://carecloud.readme.io/reference/getsubeventproperties) - read the property records of an existing event.
   operationId: postEvent
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -128,6 +141,7 @@ post:
               $ref: '../../schemas/_index.yaml#/EventPost'
             property_records:
               type: array
+              maxItems: 1000
               description: Additional properties of the event. This parameter contain values in GET response only if query parameter `include_property_records` is set to true.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'

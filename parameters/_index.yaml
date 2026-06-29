@@ -193,6 +193,7 @@ external_ids:
     To filter by multiple values, use array syntax: `external_ids[]=ACSDOIDF23&external_ids[]=BXTE123456`
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -207,6 +208,7 @@ tag_id_arr:
     In case you want to filter multiple options use array syntax : `tag_ids[]=8bc8ca16f9c5039951021700a2&tag_ids[]=82c06812c0756528660784fef`
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -287,6 +289,7 @@ email_list:
     Logic OR is used between values.
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -444,10 +447,11 @@ booking_statuses:
   required: false
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   description: |
-    List of current statuses of the bookings from resource [booking-statuses](#tag/Booking-statuses).
+    List of current statuses of the bookings from resource [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses).
     In case you want to filter multiple options use array syntax : `booking_statuses[]=a820c6a820c62c79b2c79b&booking_statuses[]=b930d7b930d73d80c3d80c`
     Logic OR is used between values.
   example:
@@ -500,7 +504,7 @@ credit_type_id:
   name: credit_type_id
   in: query
   description: |
-    The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type.
+    The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type. [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes)
 
     In case you want to filter multiple options use array syntax : `credit_type_id[]=8bc8ca16f9c5039951021700a2&credit_type_id[]=82c06812c0756528660784fef`
   required: false
@@ -589,7 +593,7 @@ customer_id:
   name: customer_id
   in: query
   required: false
-  description: The unique ID of the customer.
+  description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
   schema:
     type: string
   example: "8ea2591121e636086a4a9c0992"
@@ -598,11 +602,12 @@ customer_ids:
   in: query
   required: false
   description: |
-    List of the customer IDs.
+    List of the customer IDs. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     In case you want to filter multiple options use array syntax : `customer_ids[]=8ea2591121e636086a4a9c0992&customer_ids[]=8bed991c68a470e7aaeffbf048`
         Logic OR is used between values.
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -611,7 +616,7 @@ related_customer_id:
   name: related_customer_id
   in: query
   required: false
-  description: The unique ID of the related customer.
+  description: The unique ID of the related customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
   schema:
     type: string
   example: "87af991126405bf8e7dfb36045"
@@ -619,7 +624,7 @@ customer_id_required:
   name: customer_id
   in: query
   required: true
-  description: The unique ID of the customer.
+  description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
   schema:
     type: string
   example: "8ea2591121e636086a4a9c0992"
@@ -639,7 +644,7 @@ customer_source_id:
   name: customer_source_id
   in: query
   required: false
-  description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+  description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created. [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
   schema:
     type: string
   example: "8fdce3475560d56e95a6ab035"
@@ -647,7 +652,7 @@ customer_source_text_id:
   name: customer_source_text_id
   in: query
   required: false
-  description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+  description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created. [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
   schema:
     type: string
   example: "webshop_registration"
@@ -661,6 +666,7 @@ customer_type_id_arr:
     Logic OR is used between values.
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -693,7 +699,7 @@ customer_address_type_id:
   name: customer_address_type_id
   in: query
   required: false
-  description: The unique ID of the customer address type.
+  description: The unique ID of the customer address type. [GET /customer-address-types](https://carecloud.readme.io/reference/getcustomeraddresstypes)
   schema:
     type: string
   example: "86e05affc7a7abefcd513ab400"
@@ -748,6 +754,7 @@ card_number_list:
     Logic OR is used between values.
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -755,7 +762,7 @@ card_number_list:
 card_type_id:
   name: card_type_id
   in: query
-  description: The unique ID of the card type.
+  description: The unique ID of the card type. [GET /card-types](https://carecloud.readme.io/reference/getcardtypes)
   required: false
   schema:
     type: string
@@ -880,7 +887,7 @@ reward_id:
   name: reward_id
   in: query
   description: |
-    The unique ID of the reward in CareCloud. In case you want to filter multiple options use array syntax : `reward_id[]=8bc8ca16f9c5039951021700a2&reward_id[]=82c06812c0756528660784fef`
+    The unique ID of the reward in CareCloud. [GET /rewards](https://carecloud.readme.io/reference/getrewards) In case you want to filter multiple options use array syntax : `reward_id[]=8bc8ca16f9c5039951021700a2&reward_id[]=82c06812c0756528660784fef`
   required: false
   schema:
     type: string
@@ -905,7 +912,7 @@ reward_code:
 reward_type_id:
   name: reward_type_id
   in: query
-  description: "The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others."
+  description: "The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others. [GET /reward-types](https://carecloud.readme.io/reference/getrewardtypes)"
   required: false
   schema:
     type: string
@@ -913,7 +920,7 @@ reward_type_id:
 reward_type_id_path:
   name: reward_type_id
   in: path
-  description: The unique ID of the reward.
+  description: The unique ID of the reward type. [GET /reward-types](https://carecloud.readme.io/reference/getrewardtypes)
   required: true
   schema:
     type: string
@@ -960,7 +967,7 @@ without_stores:
 reward_store_id:
   name: store_id
   in: query
-  description: The unique ID of the store where customer can apply the reward.
+  description: The unique ID of the store where customer can apply the reward. [GET /stores](https://carecloud.readme.io/reference/getstores)
   required: false
   schema:
     type: string
@@ -1083,6 +1090,7 @@ type_id:
   required: false
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -1090,7 +1098,7 @@ type_id:
 campaign_store_id:
   name: store_id
   in: query
-  description: Parameter filters all campaign products from [store](#tag/Stores) by store ID.
+  description: Parameter filters all campaign products from [GET /stores](https://carecloud.readme.io/reference/getstores) by store ID.
   required: false
   schema:
     type: string
@@ -1126,7 +1134,7 @@ event_id_path:
 event_type_id:
   name: event_type_id
   in: query
-  description: The unique ID of the event type.
+  description: The unique ID of the event type. [GET /event-types](https://carecloud.readme.io/reference/geteventtypes)
   required: false
   schema:
     type: string
@@ -1141,6 +1149,7 @@ event_type_ids:
     Logic OR is used between values.
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -1255,7 +1264,7 @@ contact:
 communication_channel_id:
   name: communication_channel_id
   in: query
-  description: "The unique ID of the communication channel. List of values is available in resource [GET /communication-channels](/#tag/Communication-channels)."
+  description: "The unique ID of the communication channel. List of values is available in resource [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)."
   required: false
   schema:
     type: string
@@ -1358,7 +1367,7 @@ point_type_id_path:
 point_type_id:
   name: point_type_id
   in: query
-  description: The unique ID of a point type.
+  description: The unique ID of a point type. [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
   required: false
   schema:
     type: string
@@ -1427,7 +1436,7 @@ reservable_product_id:
   name: reservable_product_id
   in: query
   description: |
-    The unique ID of the reservable product. In case you want to filter multiple options use array syntax : `reservable_product_id[]=8bc8ca16f9c5039951021700a2&reservable_product_id[]=82c06812c0756528660784fef`
+    The unique ID of the reservable product. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts) In case you want to filter multiple options use array syntax : `reservable_product_id[]=8bc8ca16f9c5039951021700a2&reservable_product_id[]=82c06812c0756528660784fef`
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
@@ -1482,7 +1491,7 @@ product_reservation_source_id_path:
 product_id:
   name: product_id
   in: query
-  description: ID of the product.
+  description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
   required: false
   schema:
     type: string
@@ -1522,7 +1531,7 @@ external_reservation_code:
 external_reservation_list_type_id:
   name: external_reservation_list_type_id
   in: query
-  description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.
+  description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too. [GET /product-reservation-external-list-types](https://carecloud.readme.io/reference/getproductreservationexternallisttypes)
   required: false
   schema:
     type: string
@@ -1593,7 +1602,7 @@ external_purchase_id:
 purchase_type_id:
   name: type_id
   in: query
-  description: Purchase type
+  description: The unique ID of the purchase type. [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes)
   required: false
   schema:
     type: string
@@ -1679,11 +1688,12 @@ segment_group_ids:
   in: query
   required: false
   description: |
-    List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).
+    List of the segment group IDs from the resource [GET /segment-groups](https://carecloud.readme.io/reference/getsegmentgroups).
     In case you want to filter multiple options use array syntax : `segment_group_ids[]=8bed991c68a470e7aaeffbf048&segment_group_ids[]=9cfe0a2d79b581f8bb5ffc059`
     Logic OR is used between values.
   schema:
     type: array
+    maxItems: 1000
     items:
       type: string
   example:
@@ -1754,7 +1764,7 @@ entrance_card_id:
   name: card_id
   in: query
   required: false
-  description: ID of a card used for charging entrance.
+  description: ID of a card used for charging entrance. [GET /cards](https://carecloud.readme.io/reference/getcards)
   schema:
     type: string
   example: "8c97533b621490a0b211419086"
@@ -1834,7 +1844,7 @@ stamper_campaign_id:
   name: stamper_campaign_id
   in: query
   description: |
-    The unique ID of the stamper campaign. The filter reduces data in the response related only to the selected stamper campaign.
+    The unique ID of the stamper campaign. The filter reduces data in the response related only to the selected stamper campaign. [GET /stamper-campaigns](https://carecloud.readme.io/reference/getstampercampaigns)
     In case you want to filter multiple options use array syntax: `stamper_campaign_id[]=8bc8ca16f9c5039951021700a2&stamper_campaign_id[]=82c06812c0756528660784fef`
   schema:
     type: string
@@ -1851,7 +1861,7 @@ stamper_card_id:
   name: stamper_card_id
   in: query
   description: |
-    The unique ID of the stamper card. The filter reduces data in the response related only to the selected stamper cards.
+    The unique ID of the stamper card. The filter reduces data in the response related only to the selected stamper cards. [GET /stamper-cards](https://carecloud.readme.io/reference/getstampercards)
     In case you want to filter multiple options use array syntax: `stamper_card_id[]=8bc8ca16f9c5039951021700a2&stamper_card_id[]=82c06812c0756528660784fef`
   schema:
     type: string
@@ -1918,7 +1928,7 @@ store_property_id_path:
 store_id:
   name: store_id
   in: query
-  description: The unique ID of the store in CareCloud.
+  description: The unique ID of the store in CareCloud. [GET /stores](https://carecloud.readme.io/reference/getstores)
   required: false
   schema:
     type: string
@@ -1946,7 +1956,7 @@ property_id:
   name: property_id
   in: query
   required: false
-  description: Store property ID from resource [store-properties](#tag/Store-properties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+  description: Store property ID from resource [GET /store-properties](https://carecloud.readme.io/reference/getstoreproperties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
   schema:
     type: string
   example: "provided_services"
@@ -1995,7 +2005,7 @@ task_state_id:
   name: task_state_id
   in: query
   required: false
-  description: Task state ID from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.
+  description: Task state ID from the resource [GET /task-states](https://carecloud.readme.io/reference/gettaskstates). The parameter filters tasks by their state.
   schema:
     type: string
     example: "86e05affc7a7abefcd513ab400"
@@ -2003,7 +2013,7 @@ task_type_id:
   name: task_type_id
   in: query
   required: false
-  description: Task type ID from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.
+  description: Task type ID from the resource [GET /task-types](https://carecloud.readme.io/reference/gettasktypes). The parameter filters tasks by their type.
   schema:
     type: string
     example: "8bed991c68a470e7aaeffbf048"

@@ -4,10 +4,11 @@ properties:
   product_id:
     type: string
     readOnly: true
-    description: The unique ID of the product.
+    description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
     example: "85d6598db0bf3f62afd5db8507"
   plu_ids:
     type: array
+    maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/PluId'
     readOnly: true

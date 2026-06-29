@@ -3,7 +3,81 @@ info:
   title: REST API Reference
   version: 1.0.0
   description: |
-    Discover the essentials of the CareCloud platform API, from authentication methods to available resources. Explore the REST API, which allows you to seamlessly connect the CareCloud platform with other systems.
+    CareCloud REST API connects external systems with the CareCloud Customer Data Platform. It is used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
+
+    For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started) on the documentation portal.
+
+    ## Interfaces
+
+    CareCloud API has two interfaces. The choice determines the URL path segment, the authentication scheme, and the available resources.
+
+    - `enterprise-interface` - for backend integrations (POS, e-shop, BI, kiosks). Uses Bearer token authentication.
+    - `customer-interface` - for end-user applications (mobile, microsite). Uses Basic authentication with a customer-specific token.
+
+    ## Base URL
+
+    `https://{project_url}/webservice/rest-api/{api_interface}/{version}/`
+
+    Where `project_url` is your project domain (e.g. `sandbox.crmcarecloud.com` for the shared sandbox), `api_interface` is `enterprise-interface` or `customer-interface`, and `version` is the major API version (currently `v1.0`).
+
+    ## Authentication
+
+    Both interfaces use HTTP Bearer authentication. The token is obtained differently per interface:
+
+    - **Enterprise interface** - call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager.
+    - **Customer interface** - call [POST /tokens](https://carecloud.readme.io/reference/posttoken).
+
+    Send the token on every subsequent request as `Authorization: Bearer <token>`.
+
+    HTTP Basic authentication is deprecated; new integrations must use Bearer. See [Authentication](https://carecloud.readme.io/reference/authentication) for the full flow.
+
+    ## Pagination
+
+    All list endpoints support pagination via two query parameters:
+
+    - `count` - the number of records to return per page (default 100, minimum 1).
+    - `offset` - the number of records to skip before the first returned record (default 0).
+
+    Responses include `total_items` at the root of the `data` object. It reflects the total number of records matching the filter across all pages.
+
+    ## Sorting and filtering
+
+    Sorting is supported on list endpoints via two query parameters:
+
+    - `sort_field` - any first-level field of the response array element.
+    - `sort_direction` - `ASC` (default) or `DESC`.
+
+    Filters on a list endpoint are combined with logical AND. Array-typed filters (e.g. `email_list`, `customer_ids`) accept multiple values using the bracket syntax `name[]=value1&name[]=value2`. Within a single array filter, values are combined with logical OR.
+
+    Some list endpoints support a strict matching mode via the `mode=strict` query parameter, which makes all declared filters required.
+
+    ## Date and time
+
+    All datetime fields use the project's configured local timezone. Responses do not include a timezone offset suffix. Clients must convert between their own timezone and the project timezone before constructing requests.
+
+    - Datetime fields in **responses** use the format `YYYY-MM-DD HH:MM:SS`.
+    - Datetime fields in **requests** accept either `YYYY-MM-DD HH:MM:SS` or ISO-8601 `YYYY-MM-DDTHH:MM:SS`.
+    - Date-only fields use ISO-8601 `YYYY-MM-DD`.
+    - Time-only fields use ISO-8601 `HH:MM:SS`.
+
+    ## Errors
+
+    All client-side input failures return HTTP 400. The response body's `error.error_data.invalid_params[].reason` field uses one of the generic reason codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`). Operations that involve domain-specific business rules (for example purchase closure, voucher application) may also return more specific reasons documented at the operation level.
+
+    See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+
+    ## Rate limiting and retries
+
+    When a client exceeds the configured request rate, the API returns `429 Too Many Requests`. Retry with exponential backoff. For `5xx` responses, retry with backoff as well. See [Integration best practices](https://carecloud.readme.io/reference/integration-best-practices) for the recommended strategy.
+
+    ## Action methods
+
+    Some operations cannot be modelled as CRUD verbs on a resource path. These are exposed as procedural action methods at one of two URI patterns:
+
+    - Resource-level: `POST /{resource}/actions/{action_name}`
+    - Record-level: `POST /{resource}/{resource_id}/actions/{action_name}`
+
+    Action method paths always contain an `actions` segment (for example `POST /customers/actions/set-partners`, `POST /purchases/actions/send-purchase`). See the per-operation documentation for what each action does.
   license:
     name: EULA
     url: https://www.crmcarecloud.com/
@@ -247,6 +321,7 @@ paths:
                     properties:
                       agreements:
                         type: array
+                        maxItems: 1000
                         description: List of the consents.
                         items:
                           $ref: '#/components/schemas/AgreementList'
@@ -386,6 +461,7 @@ paths:
                     properties:
                       audiences:
                         type: array
+                        maxItems: 1000
                         description: List of all audiences.
                         items:
                           $ref: '#/components/schemas/Audience'
@@ -480,6 +556,7 @@ paths:
                     properties:
                       bookings:
                         type: array
+                        maxItems: 1000
                         description: Collection of bookings.
                         items:
                           $ref: '#/components/schemas/Booking'
@@ -512,7 +589,14 @@ paths:
         - Bookings
       summary: Create a new booking
       description: |
-        Create a new booking for a customer. A booking is a reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Each booking item references a time slot from a booking ticket ([GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)). If no `booking_status` is provided, the default booking status is applied.
+        Create a new booking for a customer. A booking is a reservation for one or more service time slots - for example, an appointment, an event registration, or a table reservation. Each booking item references a time slot from a booking ticket ([GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)).
+
+        **What happens when a booking is created**
+
+        - A booking record is created and its server-generated `booking_id` is returned.
+        - One booking item is created per supplied time slot.
+        - The available capacity of each referenced time slot is decremented.
+        - If no `booking_status` is supplied, the default booking status configured for the project is applied.
       operationId: postBooking
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -732,6 +816,7 @@ paths:
                     properties:
                       booking_tickets:
                         type: array
+                        maxItems: 1000
                         description: Collection of booking tickets.
                         items:
                           $ref: '#/components/schemas/BookingTicket'
@@ -835,6 +920,7 @@ paths:
                     properties:
                       time_slots:
                         type: array
+                        maxItems: 1000
                         description: List of booking time slots.
                         items:
                           $ref: '#/components/schemas/TimeSlot'
@@ -891,6 +977,7 @@ paths:
                     properties:
                       booking_ticket_properties:
                         type: array
+                        maxItems: 1000
                         description: List of all booking ticket properties.
                         items:
                           $ref: '#/components/schemas/Property'
@@ -1025,6 +1112,7 @@ paths:
                         example: hour
                       chart_data:
                         type: array
+                        maxItems: 1000
                         description: Data for the chart display. The items are ordered by X-axis values ascending.
                         items:
                           $ref: '#/components/schemas/ChartPointData'
@@ -1076,6 +1164,7 @@ paths:
                     properties:
                       booking_statuses:
                         type: array
+                        maxItems: 1000
                         description: Collection of booking statuses.
                         items:
                           $ref: '#/components/schemas/BookingStatus'
@@ -1174,6 +1263,7 @@ paths:
                     properties:
                       campaigns:
                         type: array
+                        maxItems: 1000
                         description: List of the campaigns.
                         items:
                           $ref: '#/components/schemas/Campaign'
@@ -1337,6 +1427,7 @@ paths:
                     properties:
                       campaign_products:
                         type: array
+                        maxItems: 1000
                         description: List of the campaign products.
                         items:
                           $ref: '#/components/schemas/CampaignProduct'
@@ -1490,6 +1581,7 @@ paths:
                     properties:
                       campaign_product_store_records:
                         type: array
+                        maxItems: 1000
                         description: List of the campaign product store records.
                         items:
                           $ref: '#/components/schemas/CampaignProductStoreRecord'
@@ -1608,6 +1700,7 @@ paths:
                     properties:
                       cards:
                         type: array
+                        maxItems: 1000
                         description: Collection of customer cards.
                         items:
                           $ref: '#/components/schemas/Card'
@@ -1640,8 +1733,21 @@ paths:
         - Cards
       summary: Create a card
       description: |
-        Add a new customer card. For bulk creation, use [POST /cards/batch](https://carecloud.readme.io/reference/postbatchcards) instead. To assign an existing free card from a pre-imported pool, use [POST /cards/actions/assign-free-card](https://carecloud.readme.io/reference/postassigncard) instead.
+        Add a new customer card.
+
         ⚠️ Endpoint is available only in the Enterprise interface.
+
+        **What happens when a card is created**
+
+        - A card record is created and its server-generated `card_id` is returned.
+        - The card is linked to the supplied `customer_id`.
+        - A marketing-automation "assign card" event is triggered.
+
+        **Related operations**
+
+        - [POST /cards/batch](https://carecloud.readme.io/reference/postbatchcards) - create multiple cards in a single request.
+        - [POST /cards/actions/assign-free-card](https://carecloud.readme.io/reference/postassigncard) - assign an existing free card from a pre-imported pool.
+        - [PUT /cards/{card_id}](https://carecloud.readme.io/reference/putcard) - update an existing card.
       operationId: postCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2142,6 +2248,7 @@ paths:
               properties:
                 cards:
                   type: array
+                  maxItems: 1000
                   description: List of the CareCloud cards.
                   items:
                     $ref: '#/components/schemas/Card'
@@ -2202,6 +2309,7 @@ paths:
                     properties:
                       card_types:
                         type: array
+                        maxItems: 1000
                         description: Collection of all card types.
                         items:
                           $ref: '#/components/schemas/CardType'
@@ -2400,6 +2508,7 @@ paths:
                     properties:
                       cards:
                         type: array
+                        maxItems: 1000
                         description: List of cards.
                         items:
                           $ref: '#/components/schemas/Card'
@@ -2709,6 +2818,7 @@ paths:
                     properties:
                       communication_channels:
                         type: array
+                        maxItems: 1000
                         description: List of communication channels.
                         items:
                           $ref: '#/components/schemas/CommunicationChannel'
@@ -2804,6 +2914,7 @@ paths:
                     properties:
                       countries:
                         type: array
+                        maxItems: 1000
                         description: List of the countries.
                         items:
                           $ref: '#/components/schemas/Country'
@@ -2869,6 +2980,7 @@ paths:
                     properties:
                       credits:
                         type: array
+                        maxItems: 1000
                         description: List of the credit records.
                         items:
                           $ref: '#/components/schemas/Credit'
@@ -2981,6 +3093,7 @@ paths:
                     properties:
                       purchases:
                         type: array
+                        maxItems: 1000
                         description: List of purchases.
                         items:
                           $ref: '#/components/schemas/Purchase'
@@ -3295,6 +3408,7 @@ paths:
                     properties:
                       credit_history:
                         type: array
+                        maxItems: 1000
                         description: List of the credit history records.
                         items:
                           $ref: '#/components/schemas/CreditHistoryRecord'
@@ -3356,6 +3470,7 @@ paths:
                     properties:
                       credit_types:
                         type: array
+                        maxItems: 1000
                         description: List of the credit types.
                         items:
                           $ref: '#/components/schemas/CreditType'
@@ -3465,6 +3580,7 @@ paths:
                     properties:
                       currencies:
                         type: array
+                        maxItems: 1000
                         description: List of currencies.
                         items:
                           $ref: '#/components/schemas/Currency'
@@ -3546,14 +3662,24 @@ paths:
       description: |
         Add a new customer account in the CareCloud platform.
 
-        **Partner assignment**
+        **What happens when a customer is created**
 
-        When a new customer account is created, CareCloud creates one or more customer-partner relations automatically. The assignment depends on the project configuration:
+        - A customer record is created and its server-generated `customer_id` is returned.
+        - One or more customer-partner relations are created automatically. The assignment depends on the project configuration:
+          - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
+          - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
+        - If called from the customer interface with `autologin=true`, the customer is logged in as part of the response.
 
-        - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
-        - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
+        **Conditional requirements**
 
-        To control partner assignment explicitly after registration, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only), which replaces all partner assignments in a single call.
+        - When `autologin` is `true`, `password` is required.
+        - When `autologin` is `false`, `password` is optional.
+
+        `autologin` is meaningful only when this endpoint is called from the customer interface. In the enterprise interface, `autologin=true` causes the password to be validated but does not log the customer in - the enterprise interface does not establish customer sessions.
+
+        **Related operations**
+
+        - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (enterprise interface only).
       operationId: postCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3580,6 +3706,7 @@ paths:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
                 property_records:
                   type: array
+                  maxItems: 1000
                   description: List of customer property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
@@ -3866,6 +3993,7 @@ paths:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
                 property_records:
                   type: array
+                  maxItems: 1000
                   description: List of customer property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
@@ -4832,6 +4960,7 @@ paths:
               properties:
                 property_records:
                   type: array
+                  maxItems: 1000
                   description: List of property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
@@ -6232,6 +6361,7 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 partner_records:
                   type: array
+                  maxItems: 1000
                   description: Collection of all customer partner records.
                   items:
                     $ref: '#/components/schemas/PartnerRecord'
@@ -6374,6 +6504,7 @@ paths:
                   example: en
                 partner_records:
                   type: array
+                  maxItems: 1000
                   description: |
                     List of partners to associate with the signed-up contact. When provided as a non-empty array, partner assignment is based solely on this list. An empty array is treated the same as omitting this field. See the partner assignment rules in the endpoint description for the full precedence logic. [GET /partners](https://carecloud.readme.io/reference/getpartners)
                   items:
@@ -6616,6 +6747,7 @@ paths:
                     properties:
                       customer_address_types:
                         type: array
+                        maxItems: 1000
                         description: List of the customer address types.
                         items:
                           $ref: '#/components/schemas/CustomerAddressType'
@@ -6722,6 +6854,7 @@ paths:
                     properties:
                       customer_engagement_setups:
                         type: array
+                        maxItems: 1000
                         description: List of all setups.
                         items:
                           $ref: '#/components/schemas/CustomerEngagementSetup'
@@ -6818,6 +6951,7 @@ paths:
                     properties:
                       customer_external_applications:
                         type: array
+                        maxItems: 1000
                         description: List of the customer external applications.
                         items:
                           $ref: '#/components/schemas/ExternalApplication'
@@ -6917,6 +7051,7 @@ paths:
                     properties:
                       customer_properties:
                         type: array
+                        maxItems: 1000
                         description: List of all customer properties.
                         items:
                           $ref: '#/components/schemas/Property'
@@ -7018,6 +7153,7 @@ paths:
                     properties:
                       customer_relation_types:
                         type: array
+                        maxItems: 1000
                         description: List of the customer relation types.
                         items:
                           $ref: '#/components/schemas/CustomerRelationType'
@@ -7420,7 +7556,20 @@ paths:
       tags:
         - Events
       summary: Create a new event
-      description: Add a new event.
+      description: |
+        Create a marketing-automation event on a customer account. An event records an activity (for example a customer interaction, a transaction, or an external trigger) that may launch a marketing-automation scenario configured for the corresponding event type.
+
+        **What happens when an event is created**
+
+        - An event record is created and its server-generated `event_id` is returned.
+        - If the corresponding event type is wired to a marketing-automation scenario, that scenario is launched and the event's data is passed to it.
+        - Property records supplied alongside the event are stored as the event's properties; their values are available to the marketing-automation scenario.
+
+        **Related operations**
+
+        - [GET /event-types](https://carecloud.readme.io/reference/geteventtypes) - the catalogue of event types configured for the project.
+        - [GET /event-properties](https://carecloud.readme.io/reference/geteventproperties) - the catalogue of event properties.
+        - [GET /events/{event_id}/property-records](https://carecloud.readme.io/reference/getsubeventproperties) - read the property records of an existing event.
       operationId: postEvent
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -7435,6 +7584,7 @@ paths:
                   $ref: '#/components/schemas/EventPost'
                 property_records:
                   type: array
+                  maxItems: 1000
                   description: Additional properties of the event. This parameter contain values in GET response only if query parameter `include_property_records` is set to true.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
@@ -8208,8 +8358,21 @@ paths:
         - Messages
       summary: Send message
       description: |
-        Send message (email, SMS or PUSH notification) to customer.
+        Send a message to a customer through one of the configured communication channels (email, SMS, or push notification).
+
         ⚠️ Action methods are available only in the Enterprise interface.
+
+        Before sending, the customer's communication consents for the target channel are checked; if consent is missing, the message is not sent. The message is rendered from its template, with personalisation applied if configured.
+
+        **What happens when a message is sent**
+
+        - The rendered message is delivered to the customer through the configured channel.
+        - A message record is persisted on the customer account; the retention period is project-specific.
+
+        **Related operations**
+
+        - [GET /messages](https://carecloud.readme.io/reference/getmessages) - read the catalogue of messages and their delivery status.
+        - [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels) - the catalogue of available channels.
       operationId: postMessageSend
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -9883,6 +10046,7 @@ paths:
               properties:
                 products:
                   type: array
+                  maxItems: 1000
                   description: List of the CareCloud products.
                   items:
                     $ref: '#/components/schemas/ProductBatch'
@@ -10081,6 +10245,7 @@ paths:
               properties:
                 product_brands:
                   type: array
+                  maxItems: 1000
                   description: List of the CareCloud product brands.
                   items:
                     $ref: '#/components/schemas/ProductBrand'
@@ -10231,6 +10396,7 @@ paths:
               properties:
                 product_groups:
                   type: array
+                  maxItems: 1000
                   description: List of the CareCloud product groups.
                   items:
                     $ref: '#/components/schemas/ProductGroup'
@@ -10629,6 +10795,7 @@ paths:
                   example: 81eaeea13b8984a169c490a325
                 external_reservation_codes:
                   type: array
+                  maxItems: 1000
                   items:
                     $ref: '#/components/schemas/ExternalCode'
                   description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.
@@ -10766,6 +10933,7 @@ paths:
               properties:
                 product_reservation_prices:
                   type: array
+                  maxItems: 1000
                   description: List of the product reservation prices.
                   items:
                     $ref: '#/components/schemas/ProductReservationPrice'
@@ -10812,6 +10980,7 @@ paths:
               properties:
                 product_reservation_prices:
                   type: array
+                  maxItems: 1000
                   description: List of the product reservation prices.
                   items:
                     type: object
@@ -11686,7 +11855,19 @@ paths:
       tags:
         - Purchases
       summary: Accept payment
-      description: The method processes bill closure requests. CareCloud returns information about discounts, applied vouchers, and points used for payment that change the bill's final price.
+      description: |
+        Calculate the applicable discounts, vouchers, and points for a bill before it is finalised. The response contains the recommendations the cashier can present to the customer; it does not commit the purchase.
+
+        **What happens when accept-payment is called**
+
+        - CareCloud evaluates the supplied bill items against the customer's eligible benefits (vouchers, discounts, point payment).
+        - The response contains `recommended_discounts`, `vouchers`, `credit_points`, and related fields the cashier can apply.
+        - No purchase record is created and no benefits are consumed by this call. To finalise the bill, call [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend) afterwards.
+
+        **Related operations**
+
+        - [POST /purchases/actions/recommend-best-rewards](https://carecloud.readme.io/reference/postpurchaserecommendedrewards) - get the list of best-fit rewards for a bill before deciding which to apply.
+        - [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend) - finalise the bill after the customer accepts the calculated payment.
       operationId: postPurchaseAcceptPayment
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -11736,6 +11917,7 @@ paths:
                   example: 7
                 benefit_codes:
                   type: array
+                  maxItems: 1000
                   items:
                     type: string
                   description: The bill closure will use present codes and recommend discounts.
@@ -11784,7 +11966,22 @@ paths:
       tags:
         - Purchases
       summary: Send purchase
-      description: The method sends the final closed bill to CareCloud. It returns info about success/failure in the response.
+      description: |
+        Send a final closed bill to CareCloud. The bill is recorded and processed by the loyalty engine.
+
+        **What happens when a purchase is sent**
+
+        - A purchase record is created and its server-generated `purchase_id` is returned.
+        - The customer's points balance is updated according to the purchase items, applied rewards, and configured loyalty rules.
+        - Vouchers selected at bill closure are marked as used.
+        - A marketing-automation event is triggered.
+        - The customer's status may be recalculated afterwards based on total purchase amount and other configured criteria.
+
+        **Related operations**
+
+        - [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment) - calculate applicable discounts and recommended rewards before bill closure; typically called first.
+        - [POST /purchases/actions/recommend-best-rewards](https://carecloud.readme.io/reference/postpurchaserecommendedrewards) - get the list of best-fit rewards available for a bill before deciding which to apply.
+        - [GET /purchases](https://carecloud.readme.io/reference/getpurchases) - retrieve purchase records after closure.
       operationId: postPurchaseSend
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -12351,6 +12548,7 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 product_id_list:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs. Initial products of the recommendation engine.
                   items:
                     type: string
@@ -12418,6 +12616,7 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 product_id_list:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs. Initial products of the recommendation engine.
                   items:
                     type: string
@@ -12489,6 +12688,7 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 product_id_list:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs. Initial products of the recommendation engine.
                   items:
                     type: string
@@ -12560,6 +12760,7 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 cart_product_ids:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs in the customer shopping cart.
                   items:
                     type: string
@@ -12568,6 +12769,7 @@ paths:
                     - 84aec0f62c76448621d68d343c
                 product_id_list:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs. Initial products of the recommendation engine.
                   items:
                     type: string
@@ -12631,6 +12833,7 @@ paths:
               properties:
                 cart_product_ids:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs in the customer shopping cart.
                   items:
                     type: string
@@ -12639,6 +12842,7 @@ paths:
                     - 84aec0f62c76448621d68d343c
                 product_id_list:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs. Initial products of the recommendation engine.
                   items:
                     type: string
@@ -12710,6 +12914,7 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 cart_product_ids:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs in the customer shopping cart.
                   items:
                     type: string
@@ -12718,6 +12923,7 @@ paths:
                     - 84aec0f62c76448621d68d343c
                 product_id_list:
                   type: array
+                  maxItems: 1000
                   description: List of the product IDs. Initial products of the recommendation engine.
                   items:
                     type: string
@@ -12785,6 +12991,7 @@ paths:
               properties:
                 third_party_recommendations:
                   type: array
+                  maxItems: 1000
                   description: List of the Recommendations from third party system.
                   items:
                     $ref: '#/components/schemas/ThirdPartyRecommendation'
@@ -13422,6 +13629,7 @@ paths:
               properties:
                 products:
                   type: array
+                  maxItems: 1000
                   description: List of the CareCloud products.
                   items:
                     $ref: '#/components/schemas/ProductSynchronizationForReward'
@@ -15238,11 +15446,13 @@ paths:
                   $ref: '#/components/schemas/Task'
                 property_records:
                   type: array
+                  maxItems: 1000
                   description: List of a task property records
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
                 assignees:
                   type: array
+                  maxItems: 1000
                   description: List of a task assignees
                   items:
                     $ref: '#/components/schemas/TaskAssignee'
@@ -16132,10 +16342,19 @@ paths:
         - Tokens
       summary: Create a token
       description: |
-        Create a token and setup of the client application.
-        ⚠️ The endpoint is available only in the Customer interface.
-        ⚠️ When creating a new token, the request doesn't need to contain an Authentication header.
-        ⚠️ Warning: We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.
+        Create an authentication token for a client application installation.
+
+        ⚠️ Endpoint is available only in the Customer interface.
+
+        ⚠️ When creating a new token, the request does not need to contain an Authentication header.
+
+        ⚠️ We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.
+
+        **What happens when a token is created**
+
+        - A token record is created and its server-generated `token_id` is returned.
+        - The token is bound to the supplied `device` identification and `setup` parameters (language, GPS permission, notifications permission).
+        - The token is used as the credential on subsequent customer-interface requests, sent as `Authorization: Bearer <token_id>`. See [Authentication](https://carecloud.readme.io/reference/authentication) for the full flow.
       operationId: postToken
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17482,6 +17701,7 @@ paths:
               properties:
                 vouchers:
                   type: array
+                  maxItems: 1000
                   description: List of the CareCloud vouchers.
                   items:
                     $ref: '#/components/schemas/VoucherBatch'
@@ -17630,6 +17850,7 @@ paths:
                     properties:
                       turnover:
                         type: array
+                        maxItems: 1000
                         description: List of all turnover by currency in time interval.
                         items:
                           $ref: '#/components/schemas/QualificationTurnover'
@@ -17900,45 +18121,12 @@ paths:
 components:
   responses:
     BadRequest:
-      description: Bad input parameter. Error message specifies the detail.
+      description: |
+        Bad input parameter. The response body's `error.error_data.invalid_params[]` array lists the parameters that caused the failure, each carrying a `reason` code. See the `BadRequestErrorBody` schema for the generic reason taxonomy. Operations with domain-specific business rules document additional reasons at the operation level.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              error:
-                allOf:
-                  - $ref: '#/components/schemas/BasicError'
-                  - type: object
-                    properties:
-                      error_data:
-                        type: object
-                        description: Data in case of an exception.
-                        properties:
-                          invalid_params:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                name:
-                                  oneOf:
-                                    - type: string
-                                    - type: array
-                                      items: {}
-                                    - type: number
-                                    - type: integer
-                                    - type: boolean
-                                    - type: object
-                                  example: event_id_event_type_id_customer_id_external_id_secondary_external_id
-                                reason:
-                                  type: string
-                                  example: relation_already_exists
-                                value:
-                                  type: string
-                                  example: ''
-                                message:
-                                  type: string
-                                  example: Relation for this combination of event type, customer ID and external IDs already exists.
+            $ref: '#/components/schemas/BadRequestErrorBody'
     Unauthorized:
       description: The client has invalid credentials or auth token.
       content:
@@ -18044,7 +18232,7 @@ components:
         agreement_id:
           type: string
           readOnly: true
-          description: The unique ID of the consents in CareCloud.
+          description: The unique ID of the consents in CareCloud. [GET /consents](https://carecloud.readme.io/reference/getconsents)
           example: 8fd73167342d06899c4c015320
         name:
           type: string
@@ -18098,6 +18286,57 @@ components:
         detail:
           type: string
           description: The details of the error message.
+    BadRequestErrorBody:
+      type: object
+      description: |
+        Body of a `400 Bad Request` response. The `error.error_data.invalid_params[]` array lists the parameters that caused the failure, each carrying a `reason` code drawn from one of two sources:
+
+        - **Generic reasons** (apply across operations): `already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`.
+        - **Operation-specific reasons** (apply to endpoints with domain-specific business rules): documented at the operation level. Examples include reasons used by the purchase-closure pipeline such as `voucher_expired`, `voucher_already_used`, `bill_item_id` `item_price_lower_than_paid_amount`.
+
+        See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+      properties:
+        error:
+          allOf:
+            - $ref: '#/components/schemas/BasicError'
+            - type: object
+              properties:
+                error_data:
+                  type: object
+                  description: Data accompanying the exception.
+                  properties:
+                    invalid_params:
+                      type: array
+                      maxItems: 1000
+                      description: List of parameters that caused the error.
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            oneOf:
+                              - type: string
+                              - type: array
+                                items:
+                                  type: string
+                              - type: number
+                              - type: integer
+                              - type: boolean
+                              - type: object
+                            description: The name of the parameter that caused the error.
+                            example: event_id_event_type_id_customer_id_external_id_secondary_external_id
+                          reason:
+                            type: string
+                            description: |
+                              The error reason code. Generic codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`) apply across operations. Operation-specific codes are documented at the operation level.
+                            example: relation_already_exists
+                          value:
+                            type: string
+                            description: The value supplied for the parameter.
+                            example: ''
+                          message:
+                            type: string
+                            description: Human-readable explanation of the error.
+                            example: Relation for this combination of event type, customer ID and external IDs already exists.
     Audience:
       type: object
       description: An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are created by filtering customer data across multiple dimensions - including demographics, purchase history, campaign responses, consent preferences, and activity events.
@@ -18205,6 +18444,7 @@ components:
             - type: integer
             - type: boolean
             - type: array
+              maxItems: 1000
               items: {}
             - type: object
           description: |
@@ -18390,6 +18630,7 @@ components:
           example: 85bc5819e09dab95437552ce79
         booking_items:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/BookingItem'
           description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`.
@@ -18443,7 +18684,7 @@ components:
         ticket_id:
           type: string
           readOnly: true
-          description: The unique ID of the booking ticket.
+          description: The unique ID of the booking ticket. [GET /booking-tickets](https://carecloud.readme.io/reference/getbookingtickets)
           example: 89ce2a1b9b01f5c939fb1e20cd
         valid_from:
           type: string
@@ -18535,6 +18776,7 @@ components:
           example: string
         items:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/PropertyItem'
           description: List of possible values. Used for multivalued data types (like enum, multiselect).
@@ -18644,7 +18886,7 @@ components:
           example: CAMP-EXT-001
         parent_id:
           type: string
-          description: The unique ID of the parent campaign.
+          description: The unique ID of the parent campaign. [GET /campaigns](https://carecloud.readme.io/reference/getcampaigns)
         name:
           type: string
           description: Name of the campaign.
@@ -18735,6 +18977,7 @@ components:
           example: '2021-05-16 23:59:59'
         display_in:
           type: array
+          maxItems: 1000
           items:
             type: string
           description: List of possible display places.
@@ -18748,6 +18991,7 @@ components:
           $ref: '#/components/schemas/CampaignPresentationData'
         campaign_product_property_records:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: true
@@ -19118,7 +19362,7 @@ components:
         product_group_id:
           type: string
           readOnly: true
-          description: The unique ID of the product group.
+          description: The unique ID of the product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
           example: 82de12eb8b138791e678fd11c3
         product_group_name:
           type: string
@@ -19128,7 +19372,7 @@ components:
         product_brand_id:
           type: string
           readOnly: true
-          description: The unique ID of the product brand.
+          description: The unique ID of the product brand. [GET /product-brands](https://carecloud.readme.io/reference/getproductbrands)
           example: 82db62087b0f79a6e14e5747e7
         product_brand_name:
           type: string
@@ -19140,7 +19384,7 @@ components:
           description: Identifier of the purchase item in external system.
         purchase_item_type_id:
           type: string
-          description: Type of the purchase item.There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points.
+          description: Type of the purchase item. There is a distinction between a purchase in an e-shop, in a brick-and-mortar store, a mobile application, or a cancellation of the purchase. It also differentiates purchases without the possibility of applying loyalty benefits from ordinary purchases or from purchases with the application of loyalty points. [GET /purchase-item-types](https://carecloud.readme.io/reference/getpurchaseitemtypes)
           example: 86e05affc7a7abefcd513ab400
         price:
           type: number
@@ -19201,6 +19445,7 @@ components:
           example: 1
         purchase_items:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/PurchaseItem'
           readOnly: true
@@ -19208,7 +19453,7 @@ components:
         type_id:
           type: string
           readOnly: true
-          description: Purchase type.
+          description: The unique ID of the purchase type. [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes)
           example: 86e05affc7a7abefcd513ab400
         total_price:
           type: number
@@ -19237,6 +19482,7 @@ components:
           example: '2021-01-17 00:00:00'
         purchase_property_records:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: true
@@ -19429,6 +19675,7 @@ components:
           example: 1
         custom_agreements:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/CustomAgreements'
           description: Custom consent list. The list of consents is available in the [Consents resource](https://carecloud.readme.io/reference/getconsents)
@@ -19511,7 +19758,7 @@ components:
           example: '420523828931'
         language_id:
           type: string
-          description: The unique ID of the language by ISO 639-1 code.
+          description: The unique ID of the language by ISO 639-1 code. [GET /languages](https://carecloud.readme.io/reference/getlanguages)
           example: en
         store_id:
           type: string
@@ -19586,12 +19833,12 @@ components:
         customer_source_id:
           type: string
           description: |
-            The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created. For the list of all available customer sources please look at: [customer-sources](https://carecloud.readme.io/reference/getcustomersources).
+            The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created. For the list of all available customer sources please look at: [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources).
           example: 86e05affc7a7abefcd513ab400
         customer_id:
           type: string
           readOnly: true
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 87af991126405bf8e7dfb36045
         external_id:
           type: string
@@ -19763,7 +20010,7 @@ components:
           example: '420523828931'
         partner_id:
           type: string
-          description: The unique ID of the partner.
+          description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 86e05affc7a7abefcd513ab400
         system_id:
           type: string
@@ -19777,11 +20024,13 @@ components:
           example: www.crmcarecloud.com
         opening:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/OpeningDay'
           description: List of opening days.
         image_urls:
           type: array
+          maxItems: 1000
           items:
             type: string
           readOnly: true
@@ -20154,11 +20403,11 @@ components:
       properties:
         segment_id:
           type: string
-          description: The unique ID of the segment.
+          description: The unique ID of the segment. [GET /segments](https://carecloud.readme.io/reference/getsegments)
           example: 83caed4c60c6be7e4392cc25ed
         customer_id:
           type: string
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 89ac83ca207a820c62c79bf03a
         created_at:
           type: string
@@ -20180,7 +20429,7 @@ components:
       properties:
         currency_id:
           type: string
-          description: The unique ID of the currency.
+          description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
           example: 86e05affc7a7abefcd513ab400
         value:
           type: number
@@ -20223,7 +20472,7 @@ components:
         next_status_id:
           type: string
           readOnly: true
-          description: ID of the following status.
+          description: ID of the following status. [GET /statuses](https://carecloud.readme.io/reference/getstatuses)
           example: 83d1d11ea3884a5d33253fe214
     StatusRecord:
       type: object
@@ -20236,11 +20485,11 @@ components:
           example: 87ac34ef46f3858a4ece61fb43
         status_id:
           type: string
-          description: The unique ID of the status.
+          description: The unique ID of the status. [GET /statuses](https://carecloud.readme.io/reference/getstatuses)
           example: 86e05affc7a7abefcd513ab400
         customer_id:
           type: string
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 89ac83ca207a820c62c79bf03a
         valid_from:
           type: string
@@ -20337,11 +20586,11 @@ components:
           example: 81eaeea13b8984a169c490a325
         interest_id:
           type: string
-          description: The unique ID of the interest.
+          description: The unique ID of the interest. [GET /interests](https://carecloud.readme.io/reference/getinterests)
           example: 81eaeea13b8984a169c490a325
         customer_id:
           type: string
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea2591121e636086a4a9c0992
         last_change:
           type: string
@@ -20440,7 +20689,7 @@ components:
           example: 81eaeea13b8984a169c490a325
         related_customer_id:
           type: string
-          description: The unique ID of the related customer.
+          description: The unique ID of the related customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8aa68a112c62ad5f84a22a0652
         short_name:
           type: string
@@ -20449,7 +20698,7 @@ components:
           example: Peter D.
         customer_relation_type_id:
           type: string
-          description: The unique ID of the customer relation type.
+          description: The unique ID of the customer relation type. [GET /customer-relation-types](https://carecloud.readme.io/reference/getcustomerrelationtypes)
           example: 8bed991c68a470e7aaeffbf048
         is_leading:
           type: boolean
@@ -20494,7 +20743,7 @@ components:
           example: 88bd53f8ac5f3b595d6bc106a4
         partner_id:
           type: string
-          description: The unique ID of the partner.
+          description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 86e05affc7a7abefcd513ab400
         last_change:
           type: string
@@ -20509,7 +20758,7 @@ components:
         customer_id:
           type: string
           readOnly: true
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 84b9167cc2f01ff007d98e1633
         match:
           type: integer
@@ -20522,6 +20771,7 @@ components:
       properties:
         strict:
           type: array
+          maxItems: 1000
           description: Search results for the strict mode.
           items:
             $ref: '#/components/schemas/CustomerResult'
@@ -20733,9 +20983,9 @@ components:
         customer_id:
           type: string
           description: |
-            The unique platform customer ID.  
+            The unique platform customer ID. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
             If this field is provided, it will always be used and any alternative identifier parameters
-            (`customer_identifier_type` and `customer_identifier_value`) **must not** be included.  
+            (`customer_identifier_type` and `customer_identifier_value`) **must not** be included.
             If both are present, the request will be rejected.
           example: 8ea2591121e636086a4a9c0992
         customer_identifier_type:
@@ -20769,7 +21019,7 @@ components:
               properties:
                 customer_source_id:
                   type: string
-                  description: The ID of the customer source (e.g., e-shop, POS).
+                  description: The ID of the customer source (e.g., e-shop, POS). [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
                 external_id:
                   type: string
                   description: The identifier of the customer in that customer source.
@@ -21041,15 +21291,17 @@ components:
             - 2
             - 4
             - 5
-          description: 'The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification*'
+          description: 'The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification* [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)'
           example: 1
         message_data:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/Parameter'
           description: Message data could contains array of customized parameters. They may have influence on message display or add values to message.
         attachments:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/Attachment'
           description: 'List of the attachments for the message. A single attachment has a size limit of 1 MB. File type restrictions: .jpg, .jpeg, .png, .gif, and .pdf.'
@@ -21164,7 +21416,7 @@ components:
             - 5
             - 9
           readOnly: true
-          description: 'The unique ID of the communication channel. *Possible values are: 1 - email / 2 - SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages*'
+          description: 'The unique ID of the communication channel. *Possible values are: 1 - email / 2 - SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification / 9 - Viber messages* [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)'
           example: 1
         template_data:
           type: array
@@ -21196,7 +21448,7 @@ components:
           example: 8fcc724e1514dafb0a70228d3
         customer_id:
           type: string
-          description: The unique ID of the customer, owner of the order item. If not set, customer_id from order will be saved.
+          description: The unique ID of the customer, owner of the order item. If not set, customer_id from order will be saved. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
         amount:
           type: number
           format: float
@@ -21223,7 +21475,7 @@ components:
       properties:
         payment_id:
           type: string
-          description: The unique ID of the payment type from resource [GET /payment-types](#tag/Payment-types).
+          description: The unique ID of the payment type from resource [GET /payment-types](https://carecloud.readme.io/reference/getpaymenttypes).
           example: 8bd481170064960b1788109b8
         paid_date:
           type: string
@@ -21285,11 +21537,13 @@ components:
           example: 36
         discount_codes:
           type: array
+          maxItems: 1000
           items:
             type: string
           description: Discount codes used in the order.
         order_items:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/OrderItem'
           description: List of the OrderItems.
@@ -21405,7 +21659,7 @@ components:
         customer_id:
           type: string
           readOnly: true
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 87af991126405bf8e7dfb36045
         point_amount:
           type: number
@@ -21425,16 +21679,16 @@ components:
           example: Manual rewards points for the product purchase collection
         point_type_id:
           type: string
-          description: Type of the point record.
+          description: The unique ID of the point type. [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
           example: 81eaeea13b8984a169c490a325
         partner_id:
           type: string
-          description: The unique ID of the partner company.
+          description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 86e05affc7a7abefcd513ab400
         store_id:
           type: string
           readOnly: true
-          description: The unique ID of the store in CareCloud.
+          description: The unique ID of the store in CareCloud. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 86e05affc7a7abefcd513ab400
         point_history_record_time:
           type: string
@@ -21458,7 +21712,7 @@ components:
           example: 8fd73167342d06899c4c015320
         customer_id:
           type: string
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea2591121e636086a4a9c0992
         external_id:
           type: string
@@ -21528,7 +21782,7 @@ components:
       properties:
         currency_id:
           type: string
-          description: The unique ID of the currency.
+          description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
           example: 86e05affc7a7abefcd513ab400
         value:
           type: number
@@ -21638,7 +21892,7 @@ components:
           description: An array of all available pluIDs from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
         product_group_id:
           type: string
-          description: The unique ID of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group.
+          description: The unique ID of the product group. If `product_group_external_id` is also set, both parameters have to represent the same product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
           example: 83d1d11ea3884a5d33253fe214
         product_group_external_id:
           type: string
@@ -21646,7 +21900,7 @@ components:
           example: '23'
         product_brand_id:
           type: string
-          description: The unique ID of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand.
+          description: The unique ID of the product brand. If `product_brand_external_id` is also set, both parameters have to represent the same product brand. [GET /product-brands](https://carecloud.readme.io/reference/getproductbrands)
           example: 82db62087b0f79a6e14e5747e7
         product_brand_external_id:
           type: string
@@ -21654,11 +21908,11 @@ components:
           example: '71'
         store_id:
           type: string
-          description: The unique ID of the store where the product group is valid. The product group is global if this value is not set.
+          description: The unique ID of the store where the product group is valid. The product group is global if this value is not set. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 83d1d11ea3884a5d33253fe214
         partner_id:
           type: string
-          description: The unique ID of the partner.  If the partner is not set, the partner is selected from the logged in user.
+          description: The unique ID of the partner. If the partner is not set, the partner is selected from the logged in user. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 86e05affc7a7abefcd513ab400
         property_records:
           type: array
@@ -21720,7 +21974,7 @@ components:
           example: Accessories
         parent_product_group_id:
           type: string
-          description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group.
+          description: The unique ID of the parent product group. If `parent_external_id` is also set, both parameters have to represent the same product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
           example: 83d1d11ea3884a5d33253fe214
         parent_external_id:
           type: string
@@ -21782,7 +22036,7 @@ components:
       properties:
         reservable_product_id:
           type: string
-          description: The unique ID of the reservable product in CareCloud.
+          description: The unique ID of the reservable product in CareCloud. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts)
           example: 81eaeea13b8984a169c490a325
         amount:
           type: number
@@ -21853,10 +22107,11 @@ components:
           example: 8ea2591121e636086a4a9c0992
         store_id:
           type: string
-          description: The unique ID of the store tied to the reservation.
+          description: The unique ID of the store tied to the reservation. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 82db62087b0f79a6e14e5747e7
         reservation_codes:
           type: array
+          maxItems: 1000
           items:
             type: string
           readOnly: true
@@ -21865,11 +22120,13 @@ components:
             - 3DBKBHA
         external_reservation_codes:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/ExternalCode'
           description: List of the external reservation codes. Id codes can have different sources. Please get in touch with your account manager for the list of ID sources.
         benefit_codes:
           type: array
+          maxItems: 1000
           items:
             type: string
           description: List of the benefit (rewards, vouchers) codes used in a reservation. After the reservation is delivered, all benefits are applied on the customer account.
@@ -21878,7 +22135,7 @@ components:
             - PTV120
         product_reservation_source_id:
           type: string
-          description: The unique ID of the product reservation source.
+          description: The unique ID of the product reservation source. [GET /product-reservation-sources](https://carecloud.readme.io/reference/getproductreservationsources)
           example: 8bed991c68a470e7aaeffbf048
         pickup_date:
           type: string
@@ -21900,6 +22157,7 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         product_reservation_items:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/ProductReservationItem'
           description: List of the Product Reservation Items.
@@ -21927,12 +22185,14 @@ components:
           example: 5
         reservation_progress_history:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/ProductReservationProgress'
           readOnly: true
           description: History of the product reservation progress. Product reservation progress is sorted in descending order by time.
         comments:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/ProductReservationComment'
           readOnly: true
@@ -21969,10 +22229,11 @@ components:
           example: 81eaeea13b8984a169c490a325
         reservable_product_id:
           type: string
-          description: The unique ID of the reservable product. This represents relation in between price and product. Required if `plu_ids` is not set.
+          description: The unique ID of the reservable product. This represents relation in between price and product. Required if `plu_ids` is not set. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts)
           example: 8ea2591121e636086a4a9c0992
         plu_ids:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/PluId'
           description: An array of all available pluIDs from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).  This is an alternative to  `reservable_product_id`. It will accept only products that could be reserved.  Required if `reservable_product_id` is not set.
@@ -21983,11 +22244,11 @@ components:
           example: 69
         currency_id:
           type: string
-          description: ID of the currency. If total_price is set, then currency_id is mandatory.
+          description: ID of the currency. If total_price is set, then currency_id is mandatory. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
           example: 8bed991c68a470e7aaeffbf048
         store_id:
           type: string
-          description: The unique ID of the store tied to the product reservation price. Prices of product can vary depending on the store.
+          description: The unique ID of the store tied to the product reservation price. Prices of product can vary depending on the store. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 82db62087b0f79a6e14e5747e7
         last_change:
           type: string
@@ -22139,7 +22400,7 @@ components:
         customer_id:
           deprecated: true
           type: string
-          description: The ID of the customer.
+          description: The ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea2591121e636086a4a9c0992
         purchase_item_property_records:
           type: array
@@ -22421,7 +22682,7 @@ components:
           example: true
         purchase_type_id:
           type: string
-          description: Type of the purchase. Values are available in resource [purchase-types](#tag/Purchase-types).
+          description: Type of the purchase. Values are available in resource [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes).
           example: 86e05affc7a7abefcd513ab400
         canceled:
           type: boolean
@@ -22466,7 +22727,7 @@ components:
           description: Name of the user who created a bill.
         currency_id:
           type: string
-          description: ID of the currency from resource [currencies](#tag/Currencies).
+          description: ID of the currency from resource [GET /currencies](https://carecloud.readme.io/reference/getcurrencies).
           example: 8bed991c68a470e7aaeffbf048
         total_price:
           type: number
@@ -22530,7 +22791,7 @@ components:
         text_id:
           type: string
           readOnly: true
-          description: Text ID of an event group.
+          description: Text ID of the purchase type.
           example: store_purchase
       required:
         - name
@@ -22541,10 +22802,11 @@ components:
         product_id:
           type: string
           readOnly: true
-          description: The unique ID of the product.
+          description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
           example: 85d6598db0bf3f62afd5db8507
         plu_ids:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/PluId'
           readOnly: true
@@ -22555,7 +22817,7 @@ components:
       properties:
         product_id:
           type: string
-          description: The unique CareCloud ID of the product.
+          description: The unique CareCloud ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
           example: 89bdacbffb5c82f2c52cb9ae8f
         plu_ids:
           type: array
@@ -22573,7 +22835,7 @@ components:
           example: 838b73aacb5ac326cec4030c80
         customer_id:
           type: string
-          description: The unique ID of the CareCloud customer. Required only if `products` parameter is not set.
+          description: The unique ID of the CareCloud customer. Required only if `products` parameter is not set. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea6abece4cd0a4ded0a29f093
         products:
           type: array
@@ -22683,7 +22945,7 @@ components:
       properties:
         product_id:
           type: string
-          description: The unique ID of the product. Product ID is required when parameter `plu_ids` is not set.
+          description: The unique ID of the product. Product ID is required when parameter `plu_ids` is not set. [GET /products](https://carecloud.readme.io/reference/getproducts)
           example: 85d6598db0bf3f62afd5db8507
         plu_id:
           $ref: '#/components/schemas/PluId'
@@ -22716,7 +22978,7 @@ components:
       properties:
         store_id:
           type: string
-          description: The unique ID of the store in CareCloud.
+          description: The unique ID of the store in CareCloud. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 81eaeea13b8984a169c490a325
       required:
         - store_id
@@ -22726,7 +22988,7 @@ components:
       properties:
         segment_id:
           type: string
-          description: The unique ID of the segment.
+          description: The unique ID of the segment. [GET /segments](https://carecloud.readme.io/reference/getsegments)
           example: 82de12eb8b138791e678fd11c3
       required:
         - segment_id
@@ -22761,11 +23023,13 @@ components:
           example: BIRTHDAY20
         names:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/TextTranslation'
           description: List of reward name translations.
         notes:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/TextTranslation'
           description: List of note translations.
@@ -22815,6 +23079,7 @@ components:
           description: List of the stores where the reward can be claimed.
         segments:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/SegmentID'
           description: List of the segments for witch the reward can be applied.
@@ -22834,6 +23099,7 @@ components:
           example: 5
         image_urls:
           type: array
+          maxItems: 1000
           items:
             $ref: '#/components/schemas/UrlLanguageVariant'
           description: List of URLs linking to reward images in the chosen language.
@@ -22860,7 +23126,7 @@ components:
           example: true
         partner_id:
           type: string
-          description: The unique ID of the partner. Partner represents business, company, or organization in the CareCloud domain. CareCloud allows single partner setup or multiple partner setup depending on the business setup.
+          description: The unique ID of the partner. Partner represents business, company, or organization in the CareCloud domain. CareCloud allows single partner setup or multiple partner setup depending on the business setup. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 86e05affc7a7abefcd513ab400
         voucher_validity:
           type: string
@@ -22984,7 +23250,7 @@ components:
         parent_group_id:
           type: string
           readOnly: true
-          description: The unique ID of the parent segment group.
+          description: The unique ID of the parent segment group. [GET /segment-groups](https://carecloud.readme.io/reference/getsegmentgroups)
           example: 8bed991c68a470e7aaeffbf048
         note:
           type: string
@@ -23046,7 +23312,7 @@ components:
         partner_id:
           type: string
           readOnly: true
-          description: The unique ID of the CareCloud partner.
+          description: The unique ID of the CareCloud partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
@@ -23111,17 +23377,17 @@ components:
         customer_id:
           type: string
           readOnly: true
-          description: The unique ID of the stamper card holder.
+          description: The unique ID of the stamper card holder. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea2591121e636086a4a9c0992
         purchase_id:
           type: string
           readOnly: true
-          description: The unique ID of the purchase that triggered the stamp to be collected.
+          description: The unique ID of the purchase that triggered the stamp to be collected. [GET /purchases](https://carecloud.readme.io/reference/getpurchases)
           example: 81eaeea13b8984a169c490a325
         stamper_card_id:
           type: string
           readOnly: true
-          description: The unique ID of the stamper card.
+          description: The unique ID of the stamper card. [GET /stamper-cards](https://carecloud.readme.io/reference/getstampercards)
           example: 8bed991c68a470e7aaeffbf048
         stamp_order:
           type: integer
@@ -23167,7 +23433,7 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         customer_id:
           type: string
-          description: The unique ID of the card holder.
+          description: The unique ID of the card holder. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea2591121e636086a4a9c0992
         stamper_card_order:
           type: integer
@@ -23305,11 +23571,11 @@ components:
           example: 83d1d11ea3884a5d33253fe214
         store_id:
           type: string
-          description: The unique ID of the store.
+          description: The unique ID of the store. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 8fd7316732d06899c4c015320
         store_group_id:
           type: string
-          description: The unique ID of the store group.
+          description: The unique ID of the store group. [GET /store-groups](https://carecloud.readme.io/reference/getstoregroups)
           example: 83d1d11ea3884a5d33253fe214
         last_change:
           type: string
@@ -23350,15 +23616,15 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         task_type_id:
           type: string
-          description: The unique ID of the task type.
+          description: The unique ID of the task type. [GET /task-types](https://carecloud.readme.io/reference/gettasktypes)
           example: 8bed991c68a470e7aaeffbf048
         task_state_id:
           type: string
-          description: The unique ID of the task state.
+          description: The unique ID of the task state. [GET /task-states](https://carecloud.readme.io/reference/gettaskstates)
           example: 8bed991c68a470e7aaeffbf048
         customer_id:
           type: string
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 85aae99524edceec17682e01b9
         task_note:
           type: string
@@ -23415,7 +23681,7 @@ components:
           example: 81eaeea13b8984a169c490a325
         user_id:
           type: string
-          description: The unique ID of the assigned user.
+          description: The unique ID of the assigned user. [GET /users](https://carecloud.readme.io/reference/getusers)
           example: 898a6545ed2bfa3f8466d09bc6
         name:
           type: string
@@ -23441,7 +23707,7 @@ components:
         task_id:
           type: string
           readOnly: true
-          description: The unique ID of the task.
+          description: The unique ID of the task. [GET /tasks](https://carecloud.readme.io/reference/gettasks)
           example: 8bed991c68a470e7aaeffbf048
         text:
           type: string
@@ -23536,7 +23802,7 @@ components:
       properties:
         language_id:
           type: string
-          description: The unique ID of the language by ISO 639-1 code from [languages resource](#tag/Languages).
+          description: The unique ID of the language by ISO 639-1 code from [GET /languages](https://carecloud.readme.io/reference/getlanguages).
           example: en
         allowed_gps:
           type: boolean
@@ -23591,7 +23857,7 @@ components:
         store_id:
           type: string
           readOnly: true
-          description: The unique ID of user's original store.
+          description: The unique ID of user's original store. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 86e05affc7a7abecd513ab400
         last_login:
           type: string
@@ -23642,15 +23908,15 @@ components:
       properties:
         reward_id:
           type: string
-          description: The unique ID of the reward.
+          description: The unique ID of the reward. [GET /rewards](https://carecloud.readme.io/reference/getrewards)
           example: 83cfee22eabfbbb15a14815e30
         customer_id:
           type: string
-          description: The unique ID of the customer.
+          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 81ceb8582e2d8dbb7e71b7273b
         store_id:
           type: string
-          description: The unique ID of the store where voucher was applied.
+          description: The unique ID of the store where voucher was applied. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 86e05affc7a7abefcd513ab400
         code:
           type: string
@@ -23685,7 +23951,7 @@ components:
         currency_id:
           type: string
           readOnly: true
-          description: The unique ID of the currency.
+          description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
           example: 86e05affc7a7abefcd513ab400
         value:
           type: number
@@ -23774,7 +24040,7 @@ components:
     communication_channel_id:
       name: communication_channel_id
       in: query
-      description: The unique ID of the communication channel. List of values is available in resource [GET /communication-channels](/#tag/Communication-channels).
+      description: The unique ID of the communication channel. List of values is available in resource [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels).
       required: false
       schema:
         type: string
@@ -23815,7 +24081,7 @@ components:
       name: customer_id
       in: query
       required: false
-      description: The unique ID of the customer.
+      description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
       schema:
         type: string
       example: 8ea2591121e636086a4a9c0992
@@ -23834,10 +24100,11 @@ components:
       required: false
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       description: |
-        List of current statuses of the bookings from resource [booking-statuses](#tag/Booking-statuses).
+        List of current statuses of the bookings from resource [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses).
         In case you want to filter multiple options use array syntax : `booking_statuses[]=a820c6a820c62c79b2c79b&booking_statuses[]=b930d7b930d73d80c3d80c`
         Logic OR is used between values.
       example:
@@ -24012,6 +24279,7 @@ components:
       required: false
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24019,7 +24287,7 @@ components:
     campaign_store_id:
       name: store_id
       in: query
-      description: Parameter filters all campaign products from [store](#tag/Stores) by store ID.
+      description: Parameter filters all campaign products from [GET /stores](https://carecloud.readme.io/reference/getstores) by store ID.
       required: false
       schema:
         type: string
@@ -24083,7 +24351,7 @@ components:
     card_type_id:
       name: card_type_id
       in: query
-      description: The unique ID of the card type.
+      description: The unique ID of the card type. [GET /card-types](https://carecloud.readme.io/reference/getcardtypes)
       required: false
       schema:
         type: string
@@ -24110,6 +24378,7 @@ components:
         Logic OR is used between values.
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24203,7 +24472,7 @@ components:
       name: card_id
       in: query
       required: false
-      description: ID of a card used for charging entrance.
+      description: ID of a card used for charging entrance. [GET /cards](https://carecloud.readme.io/reference/getcards)
       schema:
         type: string
       example: 8c97533b621490a0b211419086
@@ -24272,7 +24541,7 @@ components:
     product_id:
       name: product_id
       in: query
-      description: ID of the product.
+      description: The unique ID of the product. [GET /products](https://carecloud.readme.io/reference/getproducts)
       required: false
       schema:
         type: string
@@ -24305,7 +24574,7 @@ components:
       name: customer_id
       in: query
       required: true
-      description: The unique ID of the customer.
+      description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
       schema:
         type: string
       example: 8ea2591121e636086a4a9c0992
@@ -24337,7 +24606,7 @@ components:
       name: credit_type_id
       in: query
       description: |
-        The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type.
+        The unique ID of a credit type. The filter reduces data in the response related only to the selected credit type. [GET /credit-types](https://carecloud.readme.io/reference/getcredittypes)
 
         In case you want to filter multiple options use array syntax : `credit_type_id[]=8bc8ca16f9c5039951021700a2&credit_type_id[]=82c06812c0756528660784fef`
       required: false
@@ -24373,7 +24642,7 @@ components:
     store_id:
       name: store_id
       in: query
-      description: The unique ID of the store in CareCloud.
+      description: The unique ID of the store in CareCloud. [GET /stores](https://carecloud.readme.io/reference/getstores)
       required: false
       schema:
         type: string
@@ -24381,7 +24650,7 @@ components:
     purchase_type_id:
       name: type_id
       in: query
-      description: Purchase type
+      description: The unique ID of the purchase type. [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes)
       required: false
       schema:
         type: string
@@ -24492,7 +24761,7 @@ components:
       name: customer_source_id
       in: query
       required: false
-      description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+      description: The unique ID of the customer source. It identifies the system where the customer belongs or the customer account was created. [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
       schema:
         type: string
       example: 8fdce3475560d56e95a6ab035
@@ -24530,6 +24799,7 @@ components:
         Logic OR is used between values.
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24539,11 +24809,12 @@ components:
       in: query
       required: false
       description: |
-        List of the customer IDs.
+        List of the customer IDs. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
         In case you want to filter multiple options use array syntax : `customer_ids[]=8ea2591121e636086a4a9c0992&customer_ids[]=8bed991c68a470e7aaeffbf048`
             Logic OR is used between values.
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24575,7 +24846,7 @@ components:
     point_type_id:
       name: point_type_id
       in: query
-      description: The unique ID of a point type.
+      description: The unique ID of a point type. [GET /point-types](https://carecloud.readme.io/reference/getpointtypes)
       required: false
       schema:
         type: string
@@ -24592,7 +24863,7 @@ components:
     reward_store_id:
       name: store_id
       in: query
-      description: The unique ID of the store where customer can apply the reward.
+      description: The unique ID of the store where customer can apply the reward. [GET /stores](https://carecloud.readme.io/reference/getstores)
       required: false
       schema:
         type: string
@@ -24625,7 +24896,7 @@ components:
       name: reward_id
       in: query
       description: |
-        The unique ID of the reward in CareCloud. In case you want to filter multiple options use array syntax : `reward_id[]=8bc8ca16f9c5039951021700a2&reward_id[]=82c06812c0756528660784fef`
+        The unique ID of the reward in CareCloud. [GET /rewards](https://carecloud.readme.io/reference/getrewards) In case you want to filter multiple options use array syntax : `reward_id[]=8bc8ca16f9c5039951021700a2&reward_id[]=82c06812c0756528660784fef`
       required: false
       schema:
         type: string
@@ -24677,6 +24948,7 @@ components:
         Logic OR is used between values.
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24691,6 +24963,7 @@ components:
         In case you want to filter multiple options use array syntax : `tag_ids[]=8bc8ca16f9c5039951021700a2&tag_ids[]=82c06812c0756528660784fef`
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24698,7 +24971,7 @@ components:
     reward_type_id:
       name: reward_type_id
       in: query
-      description: The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others.
+      description: The type of reward describes the reward behavior. For example, a Percentage discount, Buy one + get one discounted product, and others. [GET /reward-types](https://carecloud.readme.io/reference/getrewardtypes)
       required: false
       schema:
         type: string
@@ -24708,11 +24981,12 @@ components:
       in: query
       required: false
       description: |
-        List of the segment group IDs from the resource [GET /segment-groups](#tag/Segments/operation/getSegmentGroups).
+        List of the segment group IDs from the resource [GET /segment-groups](https://carecloud.readme.io/reference/getsegmentgroups).
         In case you want to filter multiple options use array syntax : `segment_group_ids[]=8bed991c68a470e7aaeffbf048&segment_group_ids[]=9cfe0a2d79b581f8bb5ffc059`
         Logic OR is used between values.
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24750,6 +25024,7 @@ components:
         To filter by multiple values, use array syntax: `external_ids[]=ACSDOIDF23&external_ids[]=BXTE123456`
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24774,7 +25049,7 @@ components:
       name: customer_address_type_id
       in: query
       required: false
-      description: The unique ID of the customer address type.
+      description: The unique ID of the customer address type. [GET /customer-address-types](https://carecloud.readme.io/reference/getcustomeraddresstypes)
       schema:
         type: string
       example: 86e05affc7a7abefcd513ab400
@@ -24789,7 +25064,7 @@ components:
     event_type_id:
       name: event_type_id
       in: query
-      description: The unique ID of the event type.
+      description: The unique ID of the event type. [GET /event-types](https://carecloud.readme.io/reference/geteventtypes)
       required: false
       schema:
         type: string
@@ -24804,6 +25079,7 @@ components:
         Logic OR is used between values.
       schema:
         type: array
+        maxItems: 1000
         items:
           type: string
       example:
@@ -24812,7 +25088,7 @@ components:
       name: related_customer_id
       in: query
       required: false
-      description: The unique ID of the related customer.
+      description: The unique ID of the related customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
       schema:
         type: string
       example: 87af991126405bf8e7dfb36045
@@ -24925,7 +25201,7 @@ components:
       name: customer_source_text_id
       in: query
       required: false
-      description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created.
+      description: The unique text representation of the ID of the customer source. It identifies the system where the customer belongs or the customer account was created. [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources)
       schema:
         type: string
       example: webshop_registration
@@ -25245,7 +25521,7 @@ components:
     external_reservation_list_type_id:
       name: external_reservation_list_type_id
       in: query
-      description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too.
+      description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too. [GET /product-reservation-external-list-types](https://carecloud.readme.io/reference/getproductreservationexternallisttypes)
       required: false
       schema:
         type: string
@@ -25281,7 +25557,7 @@ components:
       name: reservable_product_id
       in: query
       description: |
-        The unique ID of the reservable product. In case you want to filter multiple options use array syntax : `reservable_product_id[]=8bc8ca16f9c5039951021700a2&reservable_product_id[]=82c06812c0756528660784fef`
+        The unique ID of the reservable product. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts) In case you want to filter multiple options use array syntax : `reservable_product_id[]=8bc8ca16f9c5039951021700a2&reservable_product_id[]=82c06812c0756528660784fef`
       schema:
         type: string
       example: 8bed991c68a470e7aaeffbf048
@@ -25405,7 +25681,7 @@ components:
     reward_type_id_path:
       name: reward_type_id
       in: path
-      description: The unique ID of the reward.
+      description: The unique ID of the reward type. [GET /reward-types](https://carecloud.readme.io/reference/getrewardtypes)
       required: true
       schema:
         type: string
@@ -25446,7 +25722,7 @@ components:
       name: stamper_campaign_id
       in: query
       description: |
-        The unique ID of the stamper campaign. The filter reduces data in the response related only to the selected stamper campaign.
+        The unique ID of the stamper campaign. The filter reduces data in the response related only to the selected stamper campaign. [GET /stamper-campaigns](https://carecloud.readme.io/reference/getstampercampaigns)
         In case you want to filter multiple options use array syntax: `stamper_campaign_id[]=8bc8ca16f9c5039951021700a2&stamper_campaign_id[]=82c06812c0756528660784fef`
       schema:
         type: string
@@ -25472,7 +25748,7 @@ components:
       name: stamper_card_id
       in: query
       description: |
-        The unique ID of the stamper card. The filter reduces data in the response related only to the selected stamper cards.
+        The unique ID of the stamper card. The filter reduces data in the response related only to the selected stamper cards. [GET /stamper-cards](https://carecloud.readme.io/reference/getstampercards)
         In case you want to filter multiple options use array syntax: `stamper_card_id[]=8bc8ca16f9c5039951021700a2&stamper_card_id[]=82c06812c0756528660784fef`
       schema:
         type: string
@@ -25504,7 +25780,7 @@ components:
       name: property_id
       in: query
       required: false
-      description: Store property ID from resource [store-properties](#tag/Store-properties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
+      description: Store property ID from resource [GET /store-properties](https://carecloud.readme.io/reference/getstoreproperties). The parameter determines property, which is used to filter stores by their properties. The parameter must be used in combination with property_value otherwise is ignored in the request.
       schema:
         type: string
       example: provided_services
@@ -25552,7 +25828,7 @@ components:
       name: task_type_id
       in: query
       required: false
-      description: Task type ID from the resource [task-types](#tag/Task-states). The parameter filters tasks by their type.
+      description: Task type ID from the resource [GET /task-types](https://carecloud.readme.io/reference/gettasktypes). The parameter filters tasks by their type.
       schema:
         type: string
         example: 8bed991c68a470e7aaeffbf048
@@ -25560,7 +25836,7 @@ components:
       name: task_state_id
       in: query
       required: false
-      description: Task state ID from the resource [task-states](#tag/Task-states). The parameter filters tasks by their state.
+      description: Task state ID from the resource [GET /task-states](https://carecloud.readme.io/reference/gettaskstates). The parameter filters tasks by their state.
       schema:
         type: string
         example: 86e05affc7a7abefcd513ab400
@@ -25769,8 +26045,15 @@ components:
       type: http
       scheme: bearer
       description: |
-        ## HTTP Bearer authentication
-        Get a closer look in [Authentication section](https://carecloud.readme.io/reference/authentication)
+        HTTP Bearer authentication. The default authentication scheme for both the Enterprise interface and the Customer interface.
+
+        **Enterprise interface.** Obtain a token by calling [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager. Send the token on every subsequent request as `Authorization: Bearer <token>`.
+
+        **Customer interface.** Obtain a token by calling [POST /tokens](https://carecloud.readme.io/reference/posttoken). Send the token on every subsequent request as `Authorization: Bearer <token>`.
+
+        For the full authentication flow, see [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.
     basicAuth:
       type: http
       scheme: basic
+      description: |
+        HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both the Enterprise interface and the Customer interface. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.

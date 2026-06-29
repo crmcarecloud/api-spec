@@ -22,6 +22,7 @@ properties:
       - type: integer
       - type: boolean
       - type: array
+        maxItems: 1000
         items: { }
       - type: object
     description: |

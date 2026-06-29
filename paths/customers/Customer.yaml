@@ -141,6 +141,7 @@ put:
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
             property_records:
               type: array
+              maxItems: 1000
               description: List of customer property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'

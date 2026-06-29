@@ -4,7 +4,7 @@ properties:
   customer_id:
     type: string
     readOnly: true
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "84b9167cc2f01ff007d98e1633"
   match:
     type: integer

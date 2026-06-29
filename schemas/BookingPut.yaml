@@ -3,7 +3,7 @@ description: Booking structure.
 properties:
   customer_id:
     type: string
-    description: The unique ID of the customer that created the booking.
+    description: The unique ID of the customer that created the booking. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "85bc5819e09dab95437552ce79"
   booking_status:
     type: string

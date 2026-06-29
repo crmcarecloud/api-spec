@@ -19,6 +19,7 @@ post:
           properties:
             products:
               type: array
+              maxItems: 1000
               description: List of the CareCloud products.
               items:
                 $ref: '../../schemas/_index.yaml#/ProductSynchronizationForReward'

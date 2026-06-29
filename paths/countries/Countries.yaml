@@ -27,6 +27,7 @@ get:
                 properties:
                   countries:
                     type: array
+                    maxItems: 1000
                     description: List of the countries.
                     items:
                       $ref: '../../schemas/_index.yaml#/Country'

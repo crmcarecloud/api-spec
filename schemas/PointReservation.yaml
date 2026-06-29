@@ -8,7 +8,7 @@ properties:
     example: "8fd73167342d06899c4c015320"
   customer_id:
     type: string
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   external_id:
     type: string

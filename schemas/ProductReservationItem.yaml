@@ -3,7 +3,7 @@ description: External code resource
 properties:
   reservable_product_id:
     type: string
-    description: The unique ID of the reservable product in CareCloud.
+    description: The unique ID of the reservable product in CareCloud. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts)
     example: "81eaeea13b8984a169c490a325"
   amount:
     type: number

@@ -52,7 +52,7 @@ properties:
     example: "420523828931"
   language_id:
     type: string
-    description: The unique ID of the language by ISO 639-1 code.
+    description: The unique ID of the language by ISO 639-1 code. [GET /languages](https://carecloud.readme.io/reference/getlanguages)
     example: "en"
   store_id:
     type: string

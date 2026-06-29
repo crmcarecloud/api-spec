@@ -13,7 +13,7 @@ properties:
   parent_group_id:
     type: string
     readOnly: true
-    description: The unique ID of the parent segment group.
+    description: The unique ID of the parent segment group. [GET /segment-groups](https://carecloud.readme.io/reference/getsegmentgroups)
     example: "8bed991c68a470e7aaeffbf048"
   note:
     type: string

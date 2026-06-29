@@ -2,7 +2,22 @@ post:
   tags:
     - Purchases
   summary: Send purchase
-  description: The method sends the final closed bill to CareCloud. It returns info about success/failure in the response.
+  description: |
+    Send a final closed bill to CareCloud. The bill is recorded and processed by the loyalty engine.
+
+    **What happens when a purchase is sent**
+
+    - A purchase record is created and its server-generated `purchase_id` is returned.
+    - The customer's points balance is updated according to the purchase items, applied rewards, and configured loyalty rules.
+    - Vouchers selected at bill closure are marked as used.
+    - A marketing-automation event is triggered.
+    - The customer's status may be recalculated afterwards based on total purchase amount and other configured criteria.
+
+    **Related operations**
+
+    - [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment) - calculate applicable discounts and recommended rewards before bill closure; typically called first.
+    - [POST /purchases/actions/recommend-best-rewards](https://carecloud.readme.io/reference/postpurchaserecommendedrewards) - get the list of best-fit rewards available for a bill before deciding which to apply.
+    - [GET /purchases](https://carecloud.readme.io/reference/getpurchases) - retrieve purchase records after closure.
   operationId: postPurchaseSend
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

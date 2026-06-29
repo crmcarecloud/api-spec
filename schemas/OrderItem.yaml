@@ -11,7 +11,7 @@ properties:
     example: "8fcc724e1514dafb0a70228d3"
   customer_id:
     type: string
-    description: The unique ID of the customer, owner of the order item. If not set, customer_id from order will be saved.
+    description: The unique ID of the customer, owner of the order item. If not set, customer_id from order will be saved. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
   amount:
     type: number
     format: float

@@ -27,6 +27,7 @@ get:
                 properties:
                   campaigns:
                     type: array
+                    maxItems: 1000
                     description: List of the campaigns.
                     items:
                       $ref: '../../schemas/_index.yaml#/Campaign'

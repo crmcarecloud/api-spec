@@ -8,15 +8,15 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   task_type_id:
     type: string
-    description: The unique ID of the task type.
+    description: The unique ID of the task type. [GET /task-types](https://carecloud.readme.io/reference/gettasktypes)
     example: "8bed991c68a470e7aaeffbf048"
   task_state_id:
     type: string
-    description: The unique ID of the task state.
+    description: The unique ID of the task state. [GET /task-states](https://carecloud.readme.io/reference/gettaskstates)
     example: "8bed991c68a470e7aaeffbf048"
   customer_id:
     type: string
-    description: The unique ID of the customer.
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "85aae99524edceec17682e01b9"
   task_note:
     type: string
