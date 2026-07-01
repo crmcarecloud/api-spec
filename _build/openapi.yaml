@@ -3669,7 +3669,7 @@ paths:
           - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
           - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
         - If called from the customer interface with `autologin=true`, the customer is logged in as part of the response.
-
+        - If `referral_code` is provided and valid, a customer relation is created between the new customer and the referral code holder. The relation type used is determined by the referral campaign configuration. See [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers) to view the resulting relation.
         **Conditional requirements**
 
         - When `autologin` is `true`, `password` is required.
@@ -3680,6 +3680,7 @@ paths:
         **Related operations**
 
         - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (enterprise interface only).
+        - [POST /customers/actions/validate-customer-data](https://carecloud.readme.io/reference/postcustomersvalidatecustomerdata) - validate a referral code before submitting this request.
       operationId: postCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3710,6 +3711,10 @@ paths:
                   description: List of customer property records.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
+                referral_code:
+                  type: string
+                  description: Referral code of an existing customer who referred the new registrant. When provided, a customer relation is created between the new customer and the referral code holder after successful registration. This field is optional.
+                  example: FRIEND2024
               required:
                 - customer
                 - customer_source
@@ -5649,6 +5654,91 @@ paths:
         - lang: PHP
           label: CareCloud SDK
           source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameter\n$customer_id = '8ea2591121e636086a4a9c0992'; // string | The unique ID of the customer\n$customer_relation_id = '8bed991c68a470e7aaeffbf048'; // string | The unique ID of the relation between two customers\n\n// Call endpoint and delete data\ntry\n{\n    $care_cloud->customersApi()->deleteSubCustomerRelatedCustomer(\n        $customer_id,\n        $customer_relation_id,\n        $accept_language\n    );\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+  /customers/{customer_id}/referrals:
+    get:
+      tags:
+        - Customers
+      summary: Get customer referrals
+      description: |
+        A referral program is a customer acquisition technique in which existing customers invite others to register. Each participating customer receives a unique referral code to share. When a new customer registers using that code, a link is recorded between the two accounts and any configured incentives are applied according to the referral campaign rules.
+
+        The technique is known under several names in the industry:
+
+        - **Member get member (MGM)** - the most common term in loyalty and CRM programs; emphasises that an existing member recruits a new one.
+        - **Refer a friend** - the consumer-facing label most often used in marketing communications.
+        - **Friend referral** - a variant of the above, common in mobile and e-commerce contexts.
+        - **Referral marketing** - the broader marketing discipline term for advocacy-driven acquisition.
+
+        In CareCloud, the referral program is configured at the campaign level. A referral campaign defines the code generation method, validity period, and the customer relation type created on a successful referral. This endpoint returns the referral code assigned to a customer for a given campaign.
+
+        Get the referral code assigned to a customer. Each referral record contains a unique code that the customer can share to invite others to register. When a new customer registers using the code, a customer relation is created between the new customer and the referral code holder.
+
+        **Default campaign behaviour**
+
+        When no `referral_campaign_id` filter is provided, the result contains the code for the project's default referral campaign. To retrieve a code for a specific campaign, pass the `referral_campaign_id` filter.
+
+        Related: [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+      operationId: getSubCustomerReferrals
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/customer_id_path'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/is_valid'
+        - name: referral_campaign_id
+          in: query
+          description: The unique ID of the referral campaign. Filters results to the code belonging to this campaign. If omitted, the project's default referral campaign is used.
+          required: false
+          schema:
+            type: string
+          example: 8bed991c68a470e7aaeffbf048
+        - name: referral_code
+          in: query
+          description: Filters the result to the referral record matching this specific code. Use this to confirm that a known code belongs to the given customer.
+          required: false
+          schema:
+            type: string
+          example: FRIEND2024
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetSubCustomerReferrals200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      referrals:
+                        type: array
+                        maxItems: 1000
+                        description: Collection of customer referral codes.
+                        items:
+                          $ref: '#/components/schemas/Referral'
+                      total_items:
+                        type: integer
+                        description: The number of all found referral codes.
+                        example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /customers/{customer_id}/partner-records:
     get:
       tags:
@@ -6177,9 +6267,14 @@ paths:
         - Customers actions
       summary: Validation of the customer data
       description: |
-        The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
+        Validate customer data following CareCloud validation standards. Supports validation of passwords and referral codes.
 
-        Call this endpoint before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to verify that the proposed password meets the required strength criteria. This endpoint does not require authentication.
+        **Validation types**
+
+        - `password` - validates that the value meets the CareCloud password strength requirements. Call this before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to verify the proposed password.
+        - `referral_code` - validates that the value is an existing, active referral code for a valid referral campaign. Call this before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to confirm a referral code is valid before attempting registration. This endpoint does not create or generate referral codes; it only validates an existing one.
+
+        This endpoint does not require authentication.
       operationId: postCustomersValidateCustomerData
       security: []
       requestBody:
@@ -6193,11 +6288,15 @@ paths:
                   type: string
                   enum:
                     - password
-                  description: Type of the customer data for the CareCloud validation.
+                    - referral_code
+                  description: |
+                    Type of the customer data to validate. Possible values:
+                    - `password` - validates the value against CareCloud password strength requirements.
+                    - `referral_code` - validates that the value is an existing, active referral code.
                   example: password
                 value:
                   type: string
-                  description: Value of the customer data for the CareCloud validation.
+                  description: Value of the customer data to validate. For `password`, provide the proposed password. For `referral_code`, provide the referral code string.
                   example: neGIecAcu#Tawp0b@Kir
               required:
                 - type
@@ -20732,6 +20831,42 @@ components:
         - related_customer_id
         - customer_relation_type_id
         - is_leading
+    Referral:
+      type: object
+      description: A referral code assigned to a customer for a referral campaign. The customer can share this code to invite others to register. One code exists per customer per campaign.
+      properties:
+        referral_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the referral record.
+          example: 82dbab4209c44c5b04dc3e3d47
+        code:
+          type: string
+          readOnly: true
+          description: The referral code to share with others.
+          example: FRIEND2024
+        customer_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the customer who owns the referral code. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+          example: 8ea2591121e636086a4a9c0992
+        referral_campaign_id:
+          type: string
+          readOnly: true
+          description: The unique ID of the referral campaign the code belongs to.
+          example: 8bed991c68a470e7aaeffbf048
+        valid_to:
+          type: string
+          nullable: true
+          readOnly: true
+          description: |
+            Timestamp of when the referral code expires. Null means the code does not expire. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.
+          example: '2025-12-31 23:59:59'
+      required:
+        - referral_id
+        - code
+        - customer_id
+        - referral_campaign_id
     PartnerRecord:
       type: object
       description: Partner record.

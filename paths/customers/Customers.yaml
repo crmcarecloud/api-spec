@@ -12,7 +12,7 @@ post:
       - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
       - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
     - If called from the customer interface with `autologin=true`, the customer is logged in as part of the response.
-
+    - If `referral_code` is provided and valid, a customer relation is created between the new customer and the referral code holder. The relation type used is determined by the referral campaign configuration. See [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers) to view the resulting relation.
     **Conditional requirements**
 
     - When `autologin` is `true`, `password` is required.
@@ -23,6 +23,7 @@ post:
     **Related operations**
 
     - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (enterprise interface only).
+    - [POST /customers/actions/validate-customer-data](https://carecloud.readme.io/reference/postcustomersvalidatecustomerdata) - validate a referral code before submitting this request.
   operationId: postCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -53,6 +54,10 @@ post:
               description: List of customer property records.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
+            referral_code:
+              type: string
+              description: Referral code of an existing customer who referred the new registrant. When provided, a customer relation is created between the new customer and the referral code holder after successful registration. This field is optional.
+              example: "FRIEND2024"
           required:
             - customer
             - customer_source

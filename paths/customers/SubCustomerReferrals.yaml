@@ -1,0 +1,84 @@
+get:
+  tags:
+    - Customers
+  summary: Get customer referrals
+  description: |
+    A referral program is a customer acquisition technique in which existing customers invite others to register. Each participating customer receives a unique referral code to share. When a new customer registers using that code, a link is recorded between the two accounts and any configured incentives are applied according to the referral campaign rules.
+
+    The technique is known under several names in the industry:
+
+    - **Member get member (MGM)** - the most common term in loyalty and CRM programs; emphasises that an existing member recruits a new one.
+    - **Refer a friend** - the consumer-facing label most often used in marketing communications.
+    - **Friend referral** - a variant of the above, common in mobile and e-commerce contexts.
+    - **Referral marketing** - the broader marketing discipline term for advocacy-driven acquisition.
+
+    In CareCloud, the referral program is configured at the campaign level. A referral campaign defines the code generation method, validity period, and the customer relation type created on a successful referral. This endpoint returns the referral code assigned to a customer for a given campaign.
+
+    Get the referral code assigned to a customer. Each referral record contains a unique code that the customer can share to invite others to register. When a new customer registers using the code, a customer relation is created between the new customer and the referral code holder.
+
+    **Default campaign behaviour**
+
+    When no `referral_campaign_id` filter is provided, the result contains the code for the project's default referral campaign. To retrieve a code for a specific campaign, pass the `referral_campaign_id` filter.
+
+    Related: [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+  operationId: getSubCustomerReferrals
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/customer_id_path'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/is_valid'
+    - name: referral_campaign_id
+      in: query
+      description: The unique ID of the referral campaign. Filters results to the code belonging to this campaign. If omitted, the project's default referral campaign is used.
+      required: false
+      schema:
+        type: string
+      example: "8bed991c68a470e7aaeffbf048"
+    - name: referral_code
+      in: query
+      description: Filters the result to the referral record matching this specific code. Use this to confirm that a known code belongs to the given customer.
+      required: false
+      schema:
+        type: string
+      example: "FRIEND2024"
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetSubCustomerReferrals200Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  referrals:
+                    type: array
+                    maxItems: 1000
+                    description: Collection of customer referral codes.
+                    items:
+                      $ref: '../../schemas/_index.yaml#/Referral'
+                  total_items:
+                    type: integer
+                    description: The number of all found referral codes.
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

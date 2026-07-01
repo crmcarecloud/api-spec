@@ -200,6 +200,8 @@ RecommendedProduct:
   $ref: "./RecommendedProduct.yaml"
 RecommendedReward:
   $ref: "./RecommendedReward.yaml"
+Referral:
+  $ref: "./Referral.yaml"
 RelatedCustomer:
   $ref: "./RelatedCustomer.yaml"
 Reward:

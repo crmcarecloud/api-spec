@@ -3,9 +3,15 @@ post:
     - Customers actions
   summary: Validation of the customer data
   description: |
-    The method validates customer data following the CareCloud validation standards. It allows you to validate and avoid creating customers without a valid password. It also validates the strength of the password.
+    Validate customer data following CareCloud validation standards. Supports validation of passwords and referral codes.
 
-    Call this endpoint before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to verify that the proposed password meets the required strength criteria. This endpoint does not require authentication.
+    **Validation types**
+
+    - `password` - validates that the value meets the CareCloud password strength requirements. Call this before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to verify the proposed password.
+    - `referral_code` - validates that the value is an existing, active referral code for a valid referral campaign. Call this before [POST /customers](https://carecloud.readme.io/reference/postcustomer) to confirm a referral code is valid before attempting registration. This endpoint does not create or generate referral codes; it only validates an existing one.
+
+    This endpoint does not require authentication.
+
   operationId: postCustomersValidateCustomerData
   security: []
   requestBody:
@@ -19,11 +25,15 @@ post:
               type: string
               enum:
                 - password
-              description: Type of the customer data for the CareCloud validation.
+                - referral_code
+              description: |
+                Type of the customer data to validate. Possible values:
+                - `password` - validates the value against CareCloud password strength requirements.
+                - `referral_code` - validates that the value is an existing, active referral code.
               example: "password"
             value:
               type: string
-              description: Value of the customer data for the CareCloud validation.
+              description: Value of the customer data to validate. For `password`, provide the proposed password. For `referral_code`, provide the referral code string.
               example: "neGIecAcu#Tawp0b@Kir"
           required:
             - type

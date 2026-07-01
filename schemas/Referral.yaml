@@ -1,0 +1,35 @@
+type: object
+description: A referral code assigned to a customer for a referral campaign. The customer can share this code to invite others to register. One code exists per customer per campaign.
+properties:
+  referral_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the referral record.
+    example: "82dbab4209c44c5b04dc3e3d47"
+  code:
+    type: string
+    readOnly: true
+    description: The referral code to share with others.
+    example: "FRIEND2024"
+  customer_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the customer who owns the referral code. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+    example: "8ea2591121e636086a4a9c0992"
+  referral_campaign_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the referral campaign the code belongs to.
+    example: "8bed991c68a470e7aaeffbf048"
+  valid_to:
+    type: string
+    nullable: true
+    readOnly: true
+    description: |
+      Timestamp of when the referral code expires. Null means the code does not expire. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.
+    example: "2025-12-31 23:59:59"
+required:
+  - referral_id
+  - code
+  - customer_id
+  - referral_campaign_id
