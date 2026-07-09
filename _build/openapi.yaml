@@ -5686,7 +5686,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/sort_field'
         - $ref: '#/components/parameters/sort_direction'
-        - $ref: '#/components/parameters/is_valid'
+        - $ref: '#/components/parameters/is_valid_referral'
         - name: referral_campaign_id
           in: query
           description: The unique ID of the referral campaign. Filters results to the code belonging to this campaign. If omitted, the project's default referral campaign is used.
@@ -5696,7 +5696,7 @@ paths:
           example: 8bed991c68a470e7aaeffbf048
         - name: referral_code
           in: query
-          description: Filters the result to the referral record matching this specific code. Use this to confirm that a known code belongs to the given customer.
+          description: Filters the result to the referral record matching this specific code. Use this to confirm that a known code belongs to the given customer. If the code does not exist, or does not belong to the given customer, the response returns an empty result set rather than an error.
           required: false
           schema:
             type: string
@@ -25255,6 +25255,21 @@ components:
       schema:
         type: string
       example: 81eaeea13b8984a169c490a325
+    is_valid_referral:
+      name: is_valid
+      in: query
+      description: |
+        Filters referral codes by validity.
+
+        - `true` or not set (default) - only valid, currently usable referral codes are returned. A code is valid when it is within its own validity period, and its internal state and referral campaign are both active.
+        - `false` - only invalid referral codes are returned: codes that are expired, deactivated, or whose referral campaign is no longer active.
+      required: false
+      schema:
+        type: boolean
+        enum:
+          - true
+          - false
+      example: true
     partner_record_id_path:
       name: partner_record_id
       in: path

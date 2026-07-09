@@ -81,6 +81,23 @@ is_valid:
       - true
       - false
   example: true
+# Distinct from is_valid: default (not set) returns valid codes only, matching the
+# resource's own no-error-on-invalid-code behavior, instead of returning all codes.
+is_valid_referral:
+  name: is_valid
+  in: query
+  description: |
+    Filters referral codes by validity.
+
+    - `true` or not set (default) - only valid, currently usable referral codes are returned. A code is valid when it is within its own validity period, and its internal state and referral campaign are both active.
+    - `false` - only invalid referral codes are returned: codes that are expired, deactivated, or whose referral campaign is no longer active.
+  required: false
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: true
 valid_from:
   name: valid_from
   in: query

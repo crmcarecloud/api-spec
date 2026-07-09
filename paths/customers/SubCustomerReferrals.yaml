@@ -29,7 +29,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
-    - $ref: '../../parameters/_index.yaml#/is_valid'
+    - $ref: '../../parameters/_index.yaml#/is_valid_referral'
     - name: referral_campaign_id
       in: query
       description: The unique ID of the referral campaign. Filters results to the code belonging to this campaign. If omitted, the project's default referral campaign is used.
@@ -39,7 +39,7 @@ get:
       example: "8bed991c68a470e7aaeffbf048"
     - name: referral_code
       in: query
-      description: Filters the result to the referral record matching this specific code. Use this to confirm that a known code belongs to the given customer.
+      description: Filters the result to the referral record matching this specific code. Use this to confirm that a known code belongs to the given customer. If the code does not exist, or does not belong to the given customer, the response returns an empty result set rather than an error.
       required: false
       schema:
         type: string
