@@ -19094,7 +19094,6 @@ components:
           items:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: true
-          default: false
           description: List of campaign product property records.
         last_change:
           type: string
@@ -19585,7 +19584,6 @@ components:
           items:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: true
-          default: false
           description: List of purchase property records.
       required:
         - customer_id

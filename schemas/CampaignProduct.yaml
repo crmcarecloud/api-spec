@@ -57,7 +57,6 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: true
-    default: false
     description: List of campaign product property records.
   last_change:
     type: string

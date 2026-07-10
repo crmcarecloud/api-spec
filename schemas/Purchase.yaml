@@ -73,7 +73,6 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: true
-    default: false
     description: List of purchase property records.
 required:
   - customer_id
