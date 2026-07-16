@@ -20768,7 +20768,6 @@ components:
           items:
             $ref: '#/components/schemas/PropertyRecord'
           readOnly: true
-          default: null
           description: |
             List of event property records. The field is populated only when the `include_property_records` query parameter is set to `true` on [GET /events](https://carecloud.readme.io/reference/getevents). Otherwise the value is `null`.
       required:
