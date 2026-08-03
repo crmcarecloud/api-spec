@@ -2121,7 +2121,7 @@ external_application_id:
   description: |
     ID of the destination external application.
     Please provide the destination external application ID, not the token-issuing external application ID.
-    Need a destination external application ID? Please contact your CareCloud administrator.
+    Need an external application ID? You can find it in the CareCloud platform as described [here](https://carecloud.readme.io/reference/authentication#external-applications-1) or contact your CareCloud project manager.
   schema:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
