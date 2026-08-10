@@ -10027,7 +10027,10 @@ paths:
       tags:
         - Products
       summary: Get all products
-      description: Get information about all available products.
+      description: |
+        Get information about all available products.
+
+        If the `external_type_code` parameter is not set, the response may contain duplicate `external_id` values because products are returned with external IDs from all available type lists.
       operationId: getProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10081,7 +10084,7 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional, default is null)\n$code = null; // string | The code of the product (optional, default is null)\n$external_id = null; // string | The unique external id (optional, default is null)\n$external_type_code = 'GLOBAL'; // string | If the parameter is not set, API uses as a default value GLOBAL (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_products = $care_cloud->productsApi()->getProducts(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name,\n        $code,\n        $external_id,\n        $external_type_code\n    );\n    $products = $get_products->getData()->getProducts();\n    $total_items = $get_products->getData()->getTotalItems();\n    var_dump($products);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/enterprise-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BEARER_AUTH;\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set query parameters\n$count = 10; // integer >= 1 | The number of records to return (optional, default is 100)\n$offset = 0; // integer | The number of records from a collection to skip (optional, default is 0)\n$sort_field = null; // string | One of the query string parameters for sorting (optional, default is null)\n$sort_direction = 'DESC'; // string | Direction of sorting the response list (optional, default is null)\n$name = null; // string | Search record by name or a part of the name (optional, default is null)\n$code = null; // string | The code of the product (optional, default is null)\n$external_id = null; // string | The unique external id (optional, default is null)\n$external_type_code = 'GLOBAL'; // string | External type code to filter products by a specific external ID list (optional)\n\n// Call endpoint and get data\ntry\n{\n    $get_products = $care_cloud->productsApi()->getProducts(\n        $accept_language,\n        $count,\n        $offset,\n        $sort_field,\n        $sort_direction,\n        $name,\n        $code,\n        $external_id,\n        $external_type_code\n    );\n    $products = $get_products->getData()->getProducts();\n    $total_items = $get_products->getData()->getTotalItems();\n    var_dump($products);\n    var_dump($total_items);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /products/{product_id}:
     get:
       tags:
@@ -25601,7 +25604,10 @@ components:
     external_type_code:
       name: external_type_code
       in: query
-      description: Every product can have more than one external ID depends of the business requirements. This parameter allows to pick from witch list of external IDs you want to choose. For the list of external type codes please contact you account manager. If the parameter is not set, API uses as a default value GLOBAL.
+      description: |
+        Every product can have more than one external ID depending on the business requirements. This parameter allows you to select which list of external IDs to use. For the list of external type codes, please contact your account manager.
+
+        If this parameter is not set, the API returns external IDs from all available type lists. This may result in duplicate `external_id` values in the response.
       required: false
       schema:
         type: string

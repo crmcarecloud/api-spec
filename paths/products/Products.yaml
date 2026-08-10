@@ -2,7 +2,10 @@ get:
   tags:
     - Products
   summary: Get all products
-  description: Get information about all available products.
+  description: |
+    Get information about all available products.
+
+    If the `external_type_code` parameter is not set, the response may contain duplicate `external_id` values because products are returned with external IDs from all available type lists.
   operationId: getProducts
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -85,7 +88,7 @@ get:
         $name = null; // string | Search record by name or a part of the name (optional, default is null)
         $code = null; // string | The code of the product (optional, default is null)
         $external_id = null; // string | The unique external id (optional, default is null)
-        $external_type_code = 'GLOBAL'; // string | If the parameter is not set, API uses as a default value GLOBAL (optional)
+        $external_type_code = 'GLOBAL'; // string | External type code to filter products by a specific external ID list (optional)
 
         // Call endpoint and get data
         try

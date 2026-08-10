@@ -28,10 +28,21 @@ The CI pipeline (`.gitlab-ci.yml`) runs `redocly-openapi-cli.sh` against `_build
 Always run in this order:
 1. `bin/swagger-cli.sh` — bundle the spec
 2. `bin/redocly-openapi-cli.sh` — validate the bundle
+3. Spawn a Sonnet agent to review the language quality of every file that was modified in the current editing session
 
-If either step fails, fix the error and **repeat both steps from the start**. The most common errors are broken `$ref` paths and typos in property names. The validator (Redocly) catches these and will block progress until resolved.
+If step 1 or 2 fails, fix the error and **repeat both steps from the start**. The most common errors are broken `$ref` paths and typos in property names. The validator (Redocly) catches these and will block progress until resolved.
 
-Run the full bundle → lint cycle automatically after **every editing session** — including when the user asks to commit or says they are done.
+Run all three steps automatically after **every editing session**, including when the user asks to commit or says they are done.
+
+#### Language review agent (step 3)
+
+Spawn a **Sonnet** agent (`model: sonnet`) that reviews the **full content** of every endpoint, schema, and parameter file modified in the session. The agent checks:
+- Grammar and spelling errors
+- Clarity and readability (short, direct sentences for a technical audience that may not be native English speakers)
+- Adherence to the writing style rules in this file (no unnecessary abbreviations, no marketing language, professional tone)
+- Consistency with how similar fields are described across the specification
+
+The agent **reports findings only** and does not apply fixes. Present the findings to the user for review before proceeding.
 
 ## Architecture
 

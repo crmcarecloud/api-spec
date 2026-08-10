@@ -1532,7 +1532,10 @@ product_group_code:
 external_type_code:
   name: external_type_code
   in: query
-  description: Every product can have more than one external ID depends of the business requirements. This parameter allows to pick from witch list of external IDs you want to choose. For the list of external type codes please contact you account manager. If the parameter is not set, API uses as a default value GLOBAL.
+  description: |
+    Every product can have more than one external ID depending on the business requirements. This parameter allows you to select which list of external IDs to use. For the list of external type codes, please contact your account manager.
+
+    If this parameter is not set, the API returns external IDs from all available type lists. This may result in duplicate `external_id` values in the response.
   required: false
   schema:
     type: string
