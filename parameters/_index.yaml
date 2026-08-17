@@ -546,6 +546,14 @@ create_credit_time_to:
     type: string
   allowReserved: true
   example: "2020-01-05 01:00:00"
+note:
+  name: note
+  in: query
+  description: 'Search record by the note or a part of the note.'
+  required: false
+  schema:
+    type: string
+  example: "Black Friday"
 credit_operation_type:
   name: credit_operation_type
   in: query

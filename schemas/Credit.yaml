@@ -50,6 +50,11 @@ properties:
       State of the credit record.
       *Possible values are: 0 - deleted / 1 - active / 2 - non active*
     example: 1
+  note:
+    type: string
+    readOnly: true
+    description: Note of the credit record.
+    example: "Black Friday 2024 promotion"
 required:
   - customer_id
   - credit_type_id

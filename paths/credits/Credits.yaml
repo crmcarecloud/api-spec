@@ -21,6 +21,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/credit_type_id'
     - $ref: '../../parameters/_index.yaml#/create_credit_time_from'
     - $ref: '../../parameters/_index.yaml#/create_credit_time_to'
+    - $ref: '../../parameters/_index.yaml#/note'
   responses:
     '200':
       description: OK
@@ -92,6 +93,7 @@ get:
         $credit_type_id = null; // string | The unique ID of the credit type (optional)
         $create_credit_time_from = null; // string | Date and time from of the credit record's creation (YYYY-MM-DD HH:MM:SS) (optional)
         $create_credit_time_to = null; // string | Date and time to of the credit record's creation (YYYY-MM-DD HH:MM:SS) (optional)
+        $note = null; // string | Search record by the note or a part of the note (optional)
 
         // Call endpoint and get data
         try
@@ -105,7 +107,8 @@ get:
                 $customer_id,
                 $credit_type_id,
                 $create_credit_time_from,
-                $create_credit_time_to
+                $create_credit_time_to,
+                $note
             );
             $credit_records = $get_credit_records->getData()->getCredits();
             $total_items = $get_credit_records->getData()->getTotalItems();
