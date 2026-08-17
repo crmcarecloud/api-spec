@@ -4,7 +4,7 @@ post:
   summary: Create a Simple reward
   description: |
     Create a new simple reward.
-    ⚠️ Action methods are available only in Enterprise interface.
+    ⚠️ Action methods are available only in Enterprise API.
   operationId: postRewardCreateSimpleReward
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

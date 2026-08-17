@@ -5,8 +5,8 @@ get:
     - Tokens
   summary: Get an authentication token for customer login or verification in another application.
   description: |
-    This endpoint returns an authentication token. Another application that uses the CareCloud API can use this token to verify the customer or sign the customer in. Typical uses include redirecting a logged-in customer from one app to another, or completing sign-in in an in-app browser for a different application or portal.
-    ⚠️ Endpoint is available only in Customer interface.
+    This endpoint returns an authentication token. Another application that uses the CareCloud APIs can use this token to verify the customer or sign the customer in. Typical uses include redirecting a logged-in customer from one app to another, or completing sign-in in an in-app browser for a different application or portal.
+    ⚠️ Endpoint is available only in Customer API.
   operationId: getTokenAuthentication
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

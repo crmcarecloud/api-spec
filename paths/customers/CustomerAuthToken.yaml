@@ -3,11 +3,11 @@ post:
     - Customers actions
   summary: Get authentication token for a customer
   description: |
-    Returns an authentication token for a specific customer. Another application that uses the CareCloud API can use this token to verify the customer's identity or authenticate the customer.
+    Returns an authentication token for a specific customer. Another application that uses the CareCloud APIs can use this token to verify the customer's identity or authenticate the customer.
 
     Typical uses include initiating customer sign-in in another application or portal, or passing a customer's identity to an in-app browser for a different application.
 
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: postCustomersAuthToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

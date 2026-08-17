@@ -7,7 +7,7 @@ get:
 
     Customer-partner relations define which partners (retail chains, brands, or business units) a customer account is associated with. A customer can be assigned to one or more partners. This assignment determines which partner's loyalty programs, communications, and rewards are applicable to the customer.
 
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: getSubCustomerPartners
   parameters:
     - $ref: '../../parameters/_index.yaml#/customer_id_path'
@@ -110,7 +110,7 @@ post:
   tags:
     - Customers
   summary: Add a partner to the customer
-  description: Add a new partner to the customer. To replace all partner assignments in a single call, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only) instead.
+  description: Add a new partner to the customer. To replace all partner assignments in a single call, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (Enterprise API only) instead.
   operationId: postSubCustomerPartnerRecord
   parameters:
     - $ref: '../../parameters/_index.yaml#/customer_id_path'

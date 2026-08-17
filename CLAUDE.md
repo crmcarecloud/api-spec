@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the **CareCloud REST API specification** — a modular OpenAPI 3.0.2 specification for the CareCloud CRM/CDP platform. The spec is maintained as split YAML files and compiled into a single bundled file for validation and documentation.
+This is the **specification for CareCloud REST APIs** — a modular OpenAPI 3.0.2 specification for the CareCloud CRM/CDP platform. The spec is maintained as split YAML files and compiled into a single bundled file for validation and documentation.
 
 ## Commands
 
@@ -64,18 +64,18 @@ Each section uses an `_index.yaml` file as its registry, mapping keys to `$ref` 
 
 Files under `paths/` are organized into subdirectories by resource type (e.g., `paths/customers/`, `paths/cards/`, `paths/bookings/`). Each subdirectory contains all endpoint files for that resource, including list, single-resource, action, and sub-resource files.
 
-### Two API Interfaces
+### Two APIs
 
-All endpoints are served under one of two interfaces, controlled by the `{api_interface}` server variable:
+All endpoints are served under one of two APIs, controlled by the `{api_interface}` server variable:
 
 - **`enterprise-interface`** — For backend/POS/BI integrations. Uses Bearer token auth.
-- **`customer-interface`** — For mobile apps and web microsites. Uses Bearer token auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one interface.
+- **`customer-interface`** — For mobile apps and web microsites. Uses Bearer token auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one API.
 
-Interface-restricted endpoints include a warning in their `description` field:
+API-restricted endpoints include a warning in their `description` field:
 
 ```
-⚠️ Endpoint is available only in the Enterprise interface.
-⚠️ Endpoint is available only in Customer interface.
+⚠️ Endpoint is available only in Enterprise API.
+⚠️ Endpoint is available only in Customer API.
 ```
 
 ### Endpoint File Naming
@@ -173,10 +173,10 @@ The URL slug pattern is: HTTP method + resource name, all lowercase and concaten
 
 There is no OpenAPI standard for cross-referencing operations in description fields. Full absolute URLs are the most portable format across documentation tools.
 
-When linking to another endpoint from a description, read the target endpoint file and check whether it carries an interface restriction (look for `⚠️ Endpoint is available only in the Enterprise interface` or equivalent). If it does, note the restriction in the link text — for example:
+When linking to another endpoint from a description, read the target endpoint file and check whether it carries an API restriction (look for `⚠️ Endpoint is available only in Enterprise API` or equivalent). If it does, note the restriction in the link text, for example:
 
 ```
-[POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only)
+[POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (Enterprise API only)
 ```
 
 ## Writing Style and Grammar

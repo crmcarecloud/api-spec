@@ -4,7 +4,7 @@ get:
   summary: Get all user roles
   description: |
     Get a list of all user roles in CareCloud.
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: getUserRoles
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

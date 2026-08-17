@@ -6,7 +6,7 @@ post:
   summary: Login to the application
   description: |
     Login of a customer account to client's application.
-    ⚠️ Endpoint is available only in Customer interface.
+    ⚠️ Endpoint is available only in Customer API.
   operationId: postTokenLogin
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -28,7 +28,7 @@ post:
               example: "email"
             login_value:
               type: string
-              description: Value of the login to Customer interface API.
+              description: Value of the login to Customer API.
               example: "example@crmcarecloud.com"
             password:
               type: string
@@ -105,7 +105,7 @@ post:
         // Set the request body
         $body = new ActionsLoginBody();
         $body->setLoginType('email'); // string | The unique ID for the login type ('card' or 'email' only)
-        $body->setLoginValue('happy_customer@example.com'); // string | Value of the login to Customer interface API
+        $body->setLoginValue('happy_customer@example.com'); // string | Value of the login to Customer API
         $body->setPassword('secret_password'); // string | Customer's password
 
         // Call endpoint and post data

@@ -4,9 +4,9 @@ post:
   summary: Set one or multiple partners to the customer
   description: |
     Set one or multiple partners to the customer.
-    The method will set all the partners from the request available to the CareCloud API user and delete all that are not present in the request.
+    The method will set all the partners from the request available to the API user and delete all that are not present in the request.
     If customer has a partner that is unavailable to the user, this partner is not going to be modified or deleted.
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: postSubCustomerSetPartners
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

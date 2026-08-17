@@ -9,7 +9,7 @@ get:
 
     Use this endpoint to retrieve valid currency IDs for use in credit operations. Filter by `currency_name` or `currency_code` to locate a specific currency.
 
-    Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
+    Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (Enterprise API only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (Enterprise API only)
   operationId: getCurrencies
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

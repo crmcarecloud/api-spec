@@ -4,7 +4,7 @@ post:
   summary: Sign up for newsletters
   description: |
     Sign up a contact for the newsletter. The contact does not need to be an existing customer.
-    ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud API.
+    ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud APIs.
 
     **Partner assignment**
 

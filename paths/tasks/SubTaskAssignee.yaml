@@ -80,7 +80,7 @@ delete:
   summary: Delete a task assignee from the task
   description: |
     Delete a new assignee from the task.
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: deleteSubTasksAssignee
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

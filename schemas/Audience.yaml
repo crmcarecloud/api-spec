@@ -29,12 +29,12 @@ properties:
   created_by:
     type: string
     readOnly: true
-    description: The unique ID of the user that created the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+    description: The unique ID of the user that created the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
     example: "8bed991c68a470e7aaeffbf048"
   updated_by:
     type: string
     readOnly: true
-    description: The unique ID of the user that last updated the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+    description: The unique ID of the user that last updated the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
     example: "8bed991c68a470e7aaeffbf048"
 required:
   - name

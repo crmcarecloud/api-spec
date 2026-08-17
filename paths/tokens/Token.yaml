@@ -6,7 +6,7 @@ put:
   summary: Edit a push token
   description: |
     Update a push token and installation setup.
-    ⚠️ Endpoint is available only in Customer interface.
+    ⚠️ Endpoint is available only in Customer API.
   operationId: putToken
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

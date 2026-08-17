@@ -11,18 +11,18 @@ post:
     - One or more customer-partner relations are created automatically. The assignment depends on the project configuration:
       - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
       - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
-    - If called from the customer interface with `autologin=true`, the customer is logged in as part of the response.
+    - If called from Customer API with `autologin=true`, the customer is logged in as part of the response.
     - If `referral_code` is provided and valid, a customer relation is created between the new customer and the referral code holder. The relation type used is determined by the referral campaign configuration. See [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers) to view the resulting relation.
     **Conditional requirements**
 
     - When `autologin` is `true`, `password` is required.
     - When `autologin` is `false`, `password` is optional.
 
-    `autologin` is meaningful only when this endpoint is called from the customer interface. In the enterprise interface, `autologin=true` causes the password to be validated but does not log the customer in - the enterprise interface does not establish customer sessions.
+    `autologin` is meaningful only when this endpoint is called from Customer API. In Enterprise API, `autologin=true` causes the password to be validated but does not log the customer in - Enterprise API does not establish customer sessions.
 
     **Related operations**
 
-    - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (enterprise interface only).
+    - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (Enterprise API only).
     - [POST /customers/actions/validate-customer-data](https://carecloud.readme.io/reference/postcustomersvalidatecustomerdata) - validate a referral code before submitting this request.
   operationId: postCustomer
   parameters:
@@ -243,7 +243,7 @@ get:
 
     Supports filtering by email, phone, first name, last name, date of birth, customer source, and a list of customer IDs. Use `email_list` to retrieve multiple customers by email in a single request.
 
-    Related: [POST /customers](https://carecloud.readme.io/reference/postcustomer), [GET /customers/{customer_id}](https://carecloud.readme.io/reference/getcustomer), [GET /customers/actions/search-customers](https://carecloud.readme.io/reference/getcustomersearch) (enterprise interface only)
+    Related: [POST /customers](https://carecloud.readme.io/reference/postcustomer), [GET /customers/{customer_id}](https://carecloud.readme.io/reference/getcustomer), [GET /customers/actions/search-customers](https://carecloud.readme.io/reference/getcustomersearch) (Enterprise API only)
   operationId: getCustomers
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -12,7 +12,7 @@ post:
     Related: [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory), [GET /customers](https://carecloud.readme.io/reference/getcustomers)
 
     ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
-    ⚠️ Action methods are available only in the Enterprise interface.
+    ⚠️ Action methods are available only in Enterprise API.
   operationId: postCreditTransfer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

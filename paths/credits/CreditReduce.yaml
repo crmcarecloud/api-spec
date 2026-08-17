@@ -10,7 +10,7 @@ post:
     If `credit_type_id` is not provided, the project-default credit type is used. The `note` field is optional and is recorded in the credit history audit log, visible via [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
 
     ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
-    ⚠️ Action methods are available only in the Enterprise interface.
+    ⚠️ Action methods are available only in Enterprise API.
   operationId: postCreditReduction
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

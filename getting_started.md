@@ -1,4 +1,4 @@
-CareCloud API is a REST API for integrating external systems with the CDP CareCloud platform. It provides endpoints for managing customer accounts and related structures, including loyalty cards, vouchers, rewards, points, credits, and reference data such as countries, languages, currencies, and customer statuses.
+CareCloud APIs are REST APIs for integrating external systems with the CDP CareCloud platform. They provide endpoints for managing customer accounts and related structures, including loyalty cards, vouchers, rewards, points, credits, and reference data such as countries, languages, currencies, and customer statuses.
 
 The API is used by two types of integration: backend systems such as e-commerce platforms, point-of-sale systems, kiosks, and booking platforms that process and synchronise customer data; and end-user applications such as mobile applications and web microsites that provide customers with access to their own account data.
 
@@ -6,11 +6,11 @@ The API is used by two types of integration: backend systems such as e-commerce 
 
 Check out our <a href="https://carecloud.readme.io/reference/quickstart" target="_blank">quick-start guide</a> to make your first API call.
 
-## CareCloud API call structure
+## CareCloud APIs call structure
 
 ### URI syntax
 
-CareCloud API URI is assembled from multiple parts that are described in the example below:
+The URI of CareCloud APIs is assembled from multiple parts that are described in the example below:
 
 > 📘 <https://{project_domain}/webservice/rest-api/{interface}/{version}/{resource_name}/{resource_id}?{query_parameters}>
 
@@ -20,26 +20,26 @@ The domain of your CDP CareCloud installation. In the Reference guide, we use <h
 
 #### {interface}
 
-The interface describes what kind of data access your application will have. In CareCloud API we use two kinds of interface:
+This setting determines what kind of data access your application will have. CareCloud APIs offer two options:
 
-- Enterprise interface (URL part: `enterprise-interface`)
+- Enterprise API (URL part: `enterprise-interface`)
   It is mainly created for e-shops, POS, kiosks, booking, and other similar production systems that need to get the data lists.
 
-- Customer interface (URL part: `customer-interface`)
+- Customer API (URL part: `customer-interface`)
   It is created and used mainly for end-user applications like mobile Android and iOS APPs or web customer microsites needing unique customer data.
 
-We have created and described two API interfaces, where the main difference is the purpose of the systems for which the API is created.
+We have created and described two APIs, where the main difference is the purpose of the systems for which the API is created.
 
 #### {version}
 
-It represents the versioning of the CareCloud API. CareCloud API uses the following format:
+It represents the versioning of the CareCloud APIs. CareCloud APIs use the following format:
 
 `vX.Y`
 
 - `X` represents a number of the major versions. The major version number increases when significant changes or improvements are made. Usually, these changes are not backward-compatible with the previous version.
 - `Y` represents a number of the minor versions. The minor version number increases when minor features or bug fixes are applied. These changes should be backward-compatible with the previous version.
 
-The current versions of CareCloud API are available in the Reference guide.
+The current versions of CareCloud APIs are available in the Reference guide.
 
 #### {resource_name}
 
@@ -51,12 +51,12 @@ A resource ID is used when you need to identify an accurate resource record. For
 
 #### {query_parameters}
 
-All query parameters are documented and described with every resource. CareCloud API uses query parameters for pagination, filtration, or sorting of the API call results.
+All query parameters are documented and described with every resource. CareCloud APIs use query parameters for pagination, filtration, or sorting of the API call results.
 
 ### Request body
 
-CareCloud API has a request body in [JSON format](https://www.json.org/json-en.html).
-The request body is used in case of creating a new record, updating an existing record, or in the action method call. In the request body, CareCloud API works with two kinds of parameters described below.
+CareCloud APIs have a request body in [JSON format](https://www.json.org/json-en.html).
+The request body is used in case of creating a new record, updating an existing record, or in the action method call. In the request body, CareCloud APIs work with two kinds of parameters described below.
 
 #### Read-only parameters
 
@@ -64,7 +64,7 @@ These parameters are used only in response to API calls and should not be set in
 
 #### Mandatory parameters
 
-If a parameter is marked as `required` in the documentation, it is mandatory to use it in the CareCloud API call.
+If a parameter is marked as `required` in the documentation, it is mandatory to use it when calling CareCloud APIs.
 
 If a parent structure of the parameter is not mandatory and you won't use it, child parameters of that structure won't be required. If you use the parent structure in the API call, all child parameters marked as mandatory will be required. Every data structure parameter is marked in the documentation, so you can see if the parameter is mandatory or not.
 
@@ -103,11 +103,11 @@ All parameters are optional. Supported parameters for each endpoint are listed i
 
 ### HTTP headers
 
-HTTP headers are an essential part of CareCloud API calls. They are used for language setup, authentication, or content identification.
+HTTP headers are an essential part of calls to CareCloud APIs. They are used for language setup, authentication, or content identification.
 
 #### Request headers
 
-Headers you need to configure before sending a request to the CareCloud API.
+Headers you need to configure before sending a request to CareCloud APIs.
 
 ##### Accept-Language
 
@@ -119,7 +119,7 @@ Accept-Language: cs, en-gb;q=0.8
 
 ##### Content-Type
 
-It indicates the media type of the request body. In CareCloud API, we require content type `application/json`. For more information about Content-Type please check [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type).
+It indicates the media type of the request body. In CareCloud APIs, we require content type `application/json`. For more information about Content-Type please check [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-type).
 
 ```HTTP header
 Content-Type: application/json
@@ -135,15 +135,15 @@ Authorization: Bearer VDFBBAME577QVRSRTRLC93CNBGJYTRA4
 
 #### Response headers
 
-You will receive the headers in the response from the CareCloud API.
+You will receive the headers in the response from CareCloud APIs.
 
 ##### Cache-Control
 
-Every endpoint in CareCloud API could be cached. If this is the case, you can find the Cache-Control header in the response from CareCloud API call. The header will contain information on how long the received data will be cached until refresh. The information  is stored in `max-age` parameter and the value is in seconds. If you do not receive the Cache-Control header, the cache was not applied to your API call.
+Every endpoint in CareCloud APIs could be cached. If this is the case, you can find the Cache-Control header in the response from your call to CareCloud APIs. The header will contain information on how long the received data will be cached until refresh. The information  is stored in `max-age` parameter and the value is in seconds. If you do not receive the Cache-Control header, the cache was not applied to your API call.
 
 ## API Endpoint Caching
 
-CareCloud API supports caching of endpoint responses to improve performance and reduce server load. However, whether a specific endpoint's response is cached and for how long depends on your project's configuration.
+CareCloud APIs support caching of endpoint responses to improve performance and reduce server load. However, whether a specific endpoint's response is cached and for how long depends on your project's configuration.
 
 ### Enable or modify caching for an endpoint
 
@@ -165,7 +165,7 @@ Caching can impact data freshness. If you require real-time data, consider disab
 
 ## HTTP verbs
 
-CareCloud API is available only through the secure protocol HTTPS. CareCloud API supports the following selection of HTTP verbs:
+CareCloud APIs are available only through the secure protocol HTTPS. CareCloud APIs support the following selection of HTTP verbs:
 
 ### GET verb
 
@@ -175,7 +175,7 @@ Read more about GET here: [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#
 
 ### POST verb
 
-`POST` is used to create new resource/resources, and CareCloud API uses the POST verb for action methods calls.
+`POST` is used to create new resource/resources, and CareCloud APIs use the POST verb for action methods calls.
 
 Read more about POST here: [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-post)
 
@@ -278,11 +278,11 @@ Examples of the most occurred extended error codes from purchases resource endpo
 
 ## Rate limiting
 
-CareCloud API enforces request rate limits. When a client exceeds the configured limit, the API returns HTTP `429 Too Many Requests`. Retrying immediately after a `429` response will continue to fail. Use an exponential backoff strategy before retrying. See the [Integration best practices](https://carecloud.readme.io/reference/integration-best-practices) guide for a detailed approach.
+CareCloud APIs enforce request rate limits. When a client exceeds the configured limit, the API returns HTTP `429 Too Many Requests`. Retrying immediately after a `429` response will continue to fail. Use an exponential backoff strategy before retrying. See the [Integration best practices](https://carecloud.readme.io/reference/integration-best-practices) guide for a detailed approach.
 
 ## Action methods
 
-CareCloud API uses procedural calls to resolve logic within the platform, such as making product recommendations or determining the best reward for a customer based on a purchase. These are called action methods.
+CareCloud APIs use procedural calls to resolve logic within the platform, such as making product recommendations or determining the best reward for a customer based on a purchase. These are called action methods.
 
 Action methods follow one of two URI patterns, depending on whether the action applies to a specific record or to the resource as a whole:
 
@@ -294,7 +294,7 @@ Action methods follow one of two URI patterns, depending on whether the action a
 
 > 📘 POST  <https://{project_domain}/webservice/rest-api/{interface}/{version}/{resource_name}/{resource_id}/actions/{action_method_name}>
 
-The keyword `actions` identifies the procedural call, and `{action_method_name}` is a unique name for the action. Action names are unique across the CareCloud API.
+The keyword `actions` identifies the procedural call, and `{action_method_name}` is a unique name for the action. Action names are unique across CareCloud APIs.
 
 This is an example of the record-level action "add customer" on the segments resource:
 

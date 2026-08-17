@@ -3,13 +3,13 @@ info:
   title: REST API Reference
   version: 1.0.0
   description: |
-    CareCloud REST API connects external systems with the CareCloud Customer Data Platform. It is used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
+    CareCloud REST APIs connect external systems with the CareCloud Customer Data Platform. They are used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
 
     For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started) on the documentation portal.
 
-    ## Interfaces
+    ## APIs
 
-    CareCloud API has two interfaces. The choice determines the URL path segment, the authentication scheme, and the available resources.
+    CareCloud has two APIs. The choice determines the URL path segment, the authentication scheme, and the available resources.
 
     - `enterprise-interface` - for backend integrations (POS, e-shop, BI, kiosks). Uses Bearer token authentication.
     - `customer-interface` - for end-user applications (mobile, microsite). Uses Basic authentication with a customer-specific token.
@@ -22,10 +22,10 @@ info:
 
     ## Authentication
 
-    Both interfaces use HTTP Bearer authentication. The token is obtained differently per interface:
+    Both APIs use HTTP Bearer authentication. The token is obtained differently per API:
 
-    - **Enterprise interface** - call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager.
-    - **Customer interface** - call [POST /tokens](https://carecloud.readme.io/reference/posttoken).
+    - **Enterprise API** - call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager.
+    - **Customer API** - call [POST /tokens](https://carecloud.readme.io/reference/posttoken).
 
     Send the token on every subsequent request as `Authorization: Bearer <token>`.
 
@@ -99,7 +99,7 @@ tags:
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
-    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud API.
+    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud APIs.
   - name: Cards
     description: The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.
   - name: Card types
@@ -107,7 +107,7 @@ tags:
   - name: Charged entrances
     description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
-    description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
+    description: CareCloud APIs allow you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
   - name: Consents
     description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.
   - name: Countries
@@ -131,7 +131,7 @@ tags:
   - name: Customer external applications
     description: An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.
   - name: Customer properties
-    description: You can store an unlimited amount of linked customer data for each customer account in the CareCloud platform. Standard data structures are available for common customer data. For project-specific data, it is possible to create user-defined data structures called Customer properties. You can customize the Customer properties based on your needs and populate them with data from various sources. You can also work with account properties across the CareCloud ecosystem via the CareCloud API.
+    description: You can store an unlimited amount of linked customer data for each customer account in the CareCloud platform. Standard data structures are available for common customer data. For project-specific data, it is possible to create user-defined data structures called Customer properties. You can customize the Customer properties based on your needs and populate them with data from various sources. You can also work with account properties across the CareCloud ecosystem via CareCloud APIs.
   - name: Customer relation types
     description: It is possible to create different relations between Customer accounts in the CareCloud platform. You can define the principle of the Customer account relation, set the specific properties of the relation type, and create customized Customer relations between two or more customer accounts.
   - name: Customer sources
@@ -250,19 +250,19 @@ tags:
     description: |
       Management of token resources. Tokens are used for identification of the application installation on a device and for setup of basic application parameters (permissions, language, notification identification).
 
-      ⚠️ Warning: Tokens resource is available only in Customer interface.
+      ⚠️ Warning: Tokens resource is available only in Customer API.
 
       Note: The process of authentication and login to customer account using the HTTP methods /tokens and /tokens/{token_id}/actions/login is described in the section [Use cases](https://carecloud.readme.io/reference/use-cases#authentication-and-login-process-for-customer-interface).
   - name: Users
     description: |
       A user is a person who utilizes an Application, a computer or network service. A user has a user account and is identified to the system by a username and password. The user is assigned a user role and user permissions in the Application.
 
-      ⚠️ Warning: Resource is available only in Enterprise interface.
+      ⚠️ Warning: Resource is available only in Enterprise API.
   - name: User roles
     description: |
       User role is a permission set that controls access to Applications, actions and features within the CareCloud Platform. Each User account requires a User role assignment.
 
-      ⚠️ Warning: Resource is available only in Enterprise interface.
+      ⚠️ Warning: Resource is available only in Enterprise API.
   - name: Vouchers
     description: Vouchers are generated by the Rewards for a specific Customer account and they are applied during the purchasing process. They are defined by its value, validity and related Reward. Vouchers can be managed by this resource.
   - name: Voucher properties
@@ -282,12 +282,12 @@ servers:
           - "enterprise-interface"
           - "customer-interface"
         default: "enterprise-interface"
-        description: Two different kinds of interfaces are used depending on the type of data required from CareCloud API and the character of integration (mobile application, webshop, POS, or BI tool).
+        description: Two different APIs are available depending on the type of data required and the character of integration (mobile application, webshop, POS, or BI tool).
       version:
         enum:
           - v1.0
         default: v1.0
-        description: Version of the CareCloud API
+        description: Version of CareCloud APIs
 paths:
   $ref: "./paths/_index.yaml"
 security:
@@ -312,4 +312,4 @@ components:
       type: http
       scheme: basic
       description: |
-        HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both the Enterprise interface and the Customer interface. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.
+        HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both Enterprise API and Customer API. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.

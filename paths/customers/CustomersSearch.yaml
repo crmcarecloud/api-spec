@@ -7,7 +7,7 @@ get:
 
     Searches across customer accounts by name, date of birth, card number, email, phone, or external ID simultaneously. Unlike [GET /customers](https://carecloud.readme.io/reference/getcustomers), this endpoint combines all identifying fields in a single search and is optimised for point-of-sale customer lookup and identification workflows.
 
-    ⚠️ Action method for search customers is available only in Enterprise interface.
+    ⚠️ Action method for search customers is available only in Enterprise API.
   operationId: getCustomerSearch
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

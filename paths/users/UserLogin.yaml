@@ -4,7 +4,7 @@ post:
   summary: User login
   description: |
     User login to external application.
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: postUserLogin
   security: []
   parameters:

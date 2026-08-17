@@ -5,7 +5,7 @@ get:
   description: |
     Get information about a specific audience. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
 
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: getAudience
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

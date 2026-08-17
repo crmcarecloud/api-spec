@@ -4,7 +4,7 @@ post:
   summary: Verify user auth token
   description: |
     Verification of the user auth token.
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: postUserVerifyAuthToken
   requestBody:
     required: true

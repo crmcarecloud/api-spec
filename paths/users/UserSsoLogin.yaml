@@ -4,7 +4,7 @@ post:
   summary: User SSO login
   description: |
     User Signe sign-on login to external application. In this case it is necessary cary SSO token from CareCloud to login user.
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: postUserSsoLogin
   security: []
   parameters:

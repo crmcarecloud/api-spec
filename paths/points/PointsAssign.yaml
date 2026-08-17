@@ -4,7 +4,7 @@ post:
   summary: Assign points
   description: |
     Creates a new point collection record with the corresponding value.
-    ⚠️ Action methods are available only in Enterprise interface.
+    ⚠️ Action methods are available only in Enterprise API.
   operationId: postPointsAssign
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

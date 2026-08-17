@@ -9,7 +9,7 @@ get:
 
     Use this endpoint to retrieve the available credit type IDs when depositing or reducing credits. If no credit type is specified on a deposit or reduction, the project-default credit type is applied automatically.
 
-    Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [GET /credits](https://carecloud.readme.io/reference/getcredits)
+    Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (Enterprise API only), [GET /credits](https://carecloud.readme.io/reference/getcredits)
   operationId: getCreditTypes
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

@@ -1,14 +1,14 @@
 ## HTTP Basic autentication
 HTTP Basic authentication method (https://en.wikipedia.org/wiki/Basic_access_authentication) has to be used to login to API successfully. There are two options to authenticate depending on your kind of integration:
 
--   Enterprise interface authentication  (credentials are necessary to access the data )
--   Customer interface authentication  (mobile/web app integration with partial free access to data)
+-   Enterprise API authentication  (credentials are necessary to access the data )
+-   Customer API authentication  (mobile/web app integration with partial free access to data)
 
-### Enterprise interface authentication
+### Enterprise API authentication
 
-<p class="warning">HTTP BASIC authentication is deprecated for the Enterprise interface. Please look at HTTP Bearer authentification for the Enterprise interface.</p>
+<p class="warning">HTTP BASIC authentication is deprecated for Enterprise API. Please look at HTTP Bearer authentification for Enterprise API.</p>
 
-User name and password have to be used for Enterprise interface authentication. Credentials are BASE64 encoded during HTTP basic authentication. HTTP header will look like the example below.
+User name and password have to be used for Enterprise API authentication. Credentials are BASE64 encoded during HTTP basic authentication. HTTP header will look like the example below.
 
 Before BASE64 encoding:
 
@@ -43,9 +43,9 @@ Result:
 string(64) "c0c0d92061deb13bf34570e513229368979708efcdbc80b8d881e7ef03461a6c"
 ```
 
-### Customer interface authentication
+### Customer API authentication
 
-1. Get `<user name>` from your account manager. It is usually `customer_interface` for the customer interface, but it might be different depending on the project.<br/>
+1. Get `<user name>` from your account manager. It is usually `customer_interface` for Customer API, but it might be different depending on the project.<br/>
 2. Create a token using the method  [[POST] /tokens](#operation/postToken).
    The creation of a token is different from other API calls.  HTTP Authorization header contains only a login name and no token (because it doesn't exist yet).
 ```http request

@@ -1,13 +1,13 @@
-The CareCloud REST API lets you read and write customer data, manage loyalty programs, process transactions, and trigger marketing automation - all from your own applications.
+CareCloud REST APIs let you read and write customer data, manage loyalty programs, process transactions, and trigger marketing automation - all from your own applications.
 
-The API is served through two distinct interfaces, each designed for a different integration context. Choose the one that matches your use case:
+CareCloud offers two distinct APIs, each designed for a different integration context. Choose the one that matches your use case:
 
-- **[Enterprise interface](#enterprise-interface)** - for backend systems, POS integrations, e-commerce platforms, and business intelligence tools.
-- **[Customer interface](#customer-interface)** - for mobile applications, web portals, kiosks, and smart device applications.
+- **[Enterprise API](#enterprise-api)** - for backend systems, POS integrations, e-commerce platforms, and business intelligence tools.
+- **[Customer API](#customer-api)** - for mobile applications, web portals, kiosks, and smart device applications.
 
-Follow the guide for your interface below to make your first API call.
+Follow the guide for your API below to make your first API call.
 
-# Enterprise interface
+# Enterprise API
 
 Use this guide if you are building a POS system, an e-commerce backend, or a business intelligence integration.
 
@@ -122,14 +122,14 @@ A successful response returns a list of customers and the total number of matchi
 ## Step 3: What to do next
 
 - **API overview** - for general and detailed information about the API, see the <a href="https://carecloud.readme.io/reference/getting-started-with-your-api" target="_blank">API overview</a>.
-- **Token validity and re-authentication** - tokens expire after 7 hours by default. For details on expiry handling and re-authentication, see <a href="https://carecloud.readme.io/reference/authentication#enterprise-interface-http-bearer-authentication" target="_blank">Enterprise interface authentication</a>.
+- **Token validity and re-authentication** - tokens expire after 7 hours by default. For details on expiry handling and re-authentication, see <a href="https://carecloud.readme.io/reference/authentication#enterprise-api-http-bearer-authentication" target="_blank">Enterprise API authentication</a>.
 - **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practice-as-an-api-client" target="_blank">Integration best practices</a> page.
 - **Tools** - to explore the API interactively before writing code, import the Postman collection or use the SDK. See <a href="https://carecloud.readme.io/reference/tools" target="_blank">Tools</a>.
-- **Integration use cases** - to see what you can build with the Enterprise interface, browse the <a href="https://www.crmcarecloud.com/build-and-e-shop/#use-cases" target="_blank">integration use cases</a>.
+- **Integration use cases** - to see what you can build with Enterprise API, browse the <a href="https://www.crmcarecloud.com/build-and-e-shop/#use-cases" target="_blank">integration use cases</a>.
 
 ---
 
-# Customer interface
+# Customer API
 
 Use this guide if you are building a mobile application, a web portal, a kiosk, or a smart device application.
 
@@ -270,7 +270,7 @@ A successful response returns the customer record for the logged-in customer:
 ## Step 4: What to do next
 
 - **API overview** - for general and detailed information about the API, see the <a href="https://carecloud.readme.io/reference/getting-started-with-your-api" target="_blank">API overview</a>.
-- **Token behaviour and device identifier requirements** - for details on token lifecycle and how `device_id` affects token validity, see <a href="https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication" target="_blank">Customer interface authentication</a>.
+- **Token behaviour and device identifier requirements** - for details on token lifecycle and how `device_id` affects token validity, see <a href="https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication" target="_blank">Customer API authentication</a>.
 - **Production integration guidance** - before deploying, review the <a href="https://carecloud.readme.io/reference/best-practice-as-an-api-client" target="_blank">Integration best practices</a> page.
 - **Tools** - to explore the API interactively before writing code, import the Postman collection or use the SDK. See <a href="https://carecloud.readme.io/reference/tools" target="_blank">Tools</a>.
-- **Integration use cases** - to see what you can build with the Customer interface, browse the <a href="https://www.crmcarecloud.com/build-a-mobile-app/#use-cases" target="_blank">integration use cases</a>.
+- **Integration use cases** - to see what you can build with Customer API, browse the <a href="https://www.crmcarecloud.com/build-a-mobile-app/#use-cases" target="_blank">integration use cases</a>.

@@ -3,12 +3,12 @@ It contains support tools for PHP developers but also platform-independent tools
 
 ## POSTMAN collection
 
-An easy way to start using CareCloud API. Download the collection and import it into your Postman installation. In minutes you will be able to do API calls on your own.  
+An easy way to start using CareCloud APIs. Download the collection and import it into your Postman installation. In minutes you will be able to do API calls on your own.  
 <https://github.com/crmcarecloud/postman-api-collection>
 
 ## SDK
 
-The SDK for the CareCloud REST API contains a list of resources and uses them with the best practices. That should make your integration easier. SDK was created for PHP developers only, and you can find it with its documentation on our GitHub:
+The SDK for CareCloud REST APIs contains a list of resources and uses them with the best practices. That should make your integration easier. SDK was created for PHP developers only, and you can find it with its documentation on our GitHub:
 
 <https://github.com/crmcarecloud/api-php-sdk>
 
@@ -20,7 +20,7 @@ REST API client was built for developers who don't want to spend time writing th
 
 ## Open API 3.0 specification
 
-We published the Open API 3.0 specification of the CareCloud REST API because we understand all developers need a tool for easier and faster integration with CareCloud REST API. The specification is available on our GitHub:
+We published the Open API 3.0 specification of CareCloud REST APIs because we understand all developers need a tool for easier and faster integration with CareCloud REST APIs. The specification is available on our GitHub:
 
 <https://github.com/crmcarecloud/api-spec>
 

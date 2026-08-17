@@ -5,7 +5,7 @@ post:
   description: |
     Send a message to a customer through one of the configured communication channels (email, SMS, or push notification).
 
-    ⚠️ Action methods are available only in the Enterprise interface.
+    ⚠️ Action methods are available only in Enterprise API.
 
     Before sending, the customer's communication consents for the target channel are checked; if consent is missing, the message is not sent. The message is rendered from its template, with personalisation applied if configured.
 

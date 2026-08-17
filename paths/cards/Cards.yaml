@@ -122,7 +122,7 @@ post:
   description: |
     Add a new customer card.
 
-    ⚠️ Endpoint is available only in the Enterprise interface.
+    ⚠️ Endpoint is available only in Enterprise API.
 
     **What happens when a card is created**
 

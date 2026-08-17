@@ -1,6 +1,6 @@
-# Enterprise interface HTTP Bearer authentication
+# Enterprise API HTTP Bearer authentication
 
-> 👍 If integrating a mobile application or a customer portal, please check [Customer Interface HTTP Bearer authentication](https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication).
+> 👍 If integrating a mobile application or a customer portal, please check [Customer API HTTP Bearer authentication](https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication).
 
 ## Bearer authentication method
 
@@ -10,7 +10,7 @@ Bearer authentication (also called token authentication) is an HTTP authenticati
 Authorization: Bearer <token>
 ```
 
-As described above, you need a bearer token for authentication through the HTTP Bearer method. In CareCloud API, you can get this token as a response from a successful call of [the user login action method](https://carecloud.readme.io/reference/postuserlogin).
+As described above, you need a bearer token for authentication through the HTTP Bearer method. In Enterprise API, you can get this token as a response from a successful call of [the user login action method](https://carecloud.readme.io/reference/postuserlogin).
 
 > 🚧 Bearer token validity has a default value of 7 hours. Every project can customize the validity of the bearer token if needed.
 
@@ -45,11 +45,11 @@ null,
 [/block]
 
 
-> 📘 CareCloud API is available only for users with User Group `webservice`.
+> 📘 CareCloud APIs are available only for users with User Group `webservice`.
 
 ## External applications
 
-The external application represents an application that wants to (or already does) communicate with CDP CareCloud API. Every system must be identified in CareCloud API, so we use the external application ID.  
+The external application represents an application that wants to (or already does) communicate with CDP CareCloud APIs. Every system must be identified in CareCloud APIs, so we use the external application ID.  
 It could be one of the following examples:
 
 - The Cash register system completes the customer's purchase process
@@ -97,7 +97,7 @@ null,
 [/block]
 
 
-> 📘 For CareCloud API usage, please copy and use only the Encoded ID.
+> 📘 For Enterprise API, please copy and use only the Encoded ID.
 
 > 📘 If you don't have direct access to CareCloud, please contact the responsible person in your organization to provide credentials and an external application ID.
 
@@ -140,7 +140,7 @@ The bearer token is provided in the response with other information about the us
 }
 ```
 
-The next step is to add a bearer token to every CareCloud API call with the following syntax:
+The next step is to add a bearer token to every Enterprise API call with the following syntax:
 
 ```http request
 GET https://sandbox.crmcarecloud.com/webservice/rest-api/enterprise-interface/v1.0/customers
@@ -205,9 +205,9 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-# Customer Interface HTTP Bearer authentication
+# Customer API HTTP Bearer authentication
 
-> 👍 If you integrate an e-shop, POS, or Business Intelligence tool, please check [Enterprise interface HTTP Bearer authentication](https://carecloud.readme.io/reference/authentication#enterprise-interface-http-bearer-authentication)
+> 👍 If you integrate an e-shop, POS, or Business Intelligence tool, please check [Enterprise API HTTP Bearer authentication](https://carecloud.readme.io/reference/authentication#enterprise-api-http-bearer-authentication)
 
 ## Bearer authentication method
 
@@ -217,11 +217,11 @@ Bearer authentication (also called token authentication) is an HTTP authenticati
 Authorization: Bearer <access_token_id>
 ```
 
-This process will result in access to CareCloud API for one installation of an application that is (or is not) logged in by a customer. This customer can see only his data and has no available data of other customers.
+This process will result in access to CareCloud APIs for one installation of an application that is (or is not) logged in by a customer. This customer can see only his data and has no available data of other customers.
 
 ## External applications
 
-The external application represents an application that wants to (or already does) communicate with CDP CareCloud API. Every system must be identified in CareCloud API, so we use the external application ID.  
+The external application represents an application that wants to (or already does) communicate with CDP CareCloud APIs. Every system must be identified in CareCloud APIs, so we use the external application ID.  
 It could be one of the following examples:
 
 - Mobile application
@@ -268,13 +268,13 @@ null,
 [/block]
 
 
-> 📘 For CareCloud API usage, please copy and use only the Encoded ID.
+> 📘 For Customer API, please copy and use only the Encoded ID.
 
 > 📘 If you don't have direct access to CareCloud, please contact the responsible person in your organization to provide credentials and an external application ID.
 
 ## Authentication process
 
-To access a CareCloud API, creating an access token using the method  [POST /tokens](https://carecloud.readme.io/reference/posttoken) is necessary. Creating an access token does not require any authentication method in the HTTP header. The request has the following structure:
+To access Customer API, creating an access token using the method  [POST /tokens](https://carecloud.readme.io/reference/posttoken) is necessary. Creating an access token does not require any authentication method in the HTTP header. The request has the following structure:
 
 ```http request
 POST https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0/tokens

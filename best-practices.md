@@ -1,4 +1,4 @@
-This page is a checklist of proven integration practices for CareCloud API clients. It applies regardless of whether you are building a POS system, an e-commerce platform, a mobile application, or a customer portal.
+This page is a checklist of proven integration practices for clients of CareCloud APIs. It applies regardless of whether you are building a POS system, an e-commerce platform, a mobile application, or a customer portal.
 
 The difference between a reliable, maintainable integration and one that causes production incidents is rarely the business logic — it is the handling of edge cases: token expiry, duplicate requests, rate limits, and service unavailability. These topics are covered here.
 
@@ -10,16 +10,16 @@ Read through the full page before writing any integration code. The final two se
 
 Before writing any integration code, read the full [Getting started guide](https://carecloud.readme.io/reference/getting-started-with-your-api). It documents the URI structure, HTTP verbs, headers, status codes, and error response format.
 
-### Choose the correct interface
+### Choose the correct API
 
-CareCloud API provides two HTTP interfaces. Using the wrong one is one of the most common setup errors.
+CareCloud offers two APIs. Using the wrong one is one of the most common setup errors.
 
-| Interface | URL segment | Designed for |
+| API | URL segment | Designed for |
 | --- | --- | --- |
 | Enterprise | `enterprise-interface` | POS, e-commerce backends, BI tools, backend data processing |
 | Customer | `customer-interface` | Mobile apps, web portals, kiosks, smart devices |
 
-The authentication method and available endpoints differ between interfaces. See [Authentication](https://carecloud.readme.io/reference/authentication) for details.
+The authentication method and available endpoints differ between APIs. See [Authentication](https://carecloud.readme.io/reference/authentication) for details.
 
 ### Pin the API version
 
@@ -33,7 +33,7 @@ If the version segment is omitted and the default changes, your integration may 
 
 ### Understand the HTTP verbs
 
-CareCloud API uses `GET`, `POST`, `PUT`, and `DELETE`. The distinction between `POST` and `PUT` is critical:
+CareCloud APIs use `GET`, `POST`, `PUT`, and `DELETE`. The distinction between `POST` and `PUT` is critical:
 
 - `POST` — creates a new resource
 - `PUT` — replaces an entire resource record
@@ -44,15 +44,15 @@ For partial updates to a single field, check whether a dedicated action method (
 
 ### Know the status codes
 
-CareCloud API returns standard HTTP status codes. Familiarise yourself with what each one means before handling errors in your code — see [Status codes](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes).
+CareCloud APIs return standard HTTP status codes. Familiarise yourself with what each one means before handling errors in your code — see [Status codes](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes).
 
 ---
 
 ## 2. Authentication and token security
 
-### Enterprise interface
+### Enterprise API
 
-The enterprise interface uses Bearer token authentication. Tokens are obtained by calling `POST /users/actions/login` with user credentials and an external application ID.
+The Enterprise API uses Bearer token authentication. Tokens are obtained by calling `POST /users/actions/login` with user credentials and an external application ID.
 
 The response includes a `valid_to` timestamp. The default token validity is 7 hours.
 
@@ -62,13 +62,13 @@ When a request returns HTTP `401`, the token has expired or is invalid. Re-authe
 
 > ❗️ Enterprise credentials and Bearer tokens must be stored only on a secured server. Never include them in mobile app binaries, browser JavaScript, kiosk front-end configuration, or any medium accessible to end users. Any person with access to the device can extract credentials stored in a client-side application and make authenticated requests on behalf of your system.
 
-### Customer interface
+### Customer API
 
-The customer interface uses a device token obtained by calling `POST /tokens`. No enterprise credentials are required to create this token.
+The Customer API uses a device token obtained by calling `POST /tokens`. No enterprise credentials are required to create this token.
 
 A token remains valid until a new token is created for the same `device_id` and `external_application_id`. Customer login is optional: it is required only when the customer needs to access personal or purchase data.
 
-See [Customer interface authentication](https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication) for the full authentication flow.
+See [Customer API authentication](https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication) for the full authentication flow.
 
 ### Store tokens securely
 
@@ -84,7 +84,7 @@ Never store tokens in source code repositories. Treat tokens as credentials — 
 
 ### Use pagination
 
-CareCloud API list endpoints return paginated results. Use the `count` and `offset` query parameters to page through results. The `count` parameter defaults to 100; do not assume all records fit in one response.
+List endpoints in CareCloud APIs return paginated results. Use the `count` and `offset` query parameters to page through results. The `count` parameter defaults to 100; do not assume all records fit in one response.
 
 ### Check `total_items` before paginating
 
@@ -112,7 +112,7 @@ Data that changes frequently — a customer's point balance, active vouchers, re
 
 ### Respect server-side caching headers
 
-CareCloud API may return a `Cache-Control` response header containing a `max-age` value (in seconds). If present, the response was cached server-side. Do not poll the endpoint more frequently than this interval.
+CareCloud APIs may return a `Cache-Control` response header containing a `max-age` value (in seconds). If present, the response was cached server-side. Do not poll the endpoint more frequently than this interval.
 
 ```Text HTTP response header
 Cache-Control: max-age=3600
@@ -150,7 +150,7 @@ Without debouncing:
 
 ## 7. Handle rate limiting (HTTP 429)
 
-CareCloud API enforces request rate limits. If you exceed the limit, the API returns HTTP `429 Too Many Requests`.
+CareCloud APIs enforce request rate limits. If you exceed the limit, the API returns HTTP `429 Too Many Requests`.
 
 ### Do not retry immediately
 
@@ -234,7 +234,7 @@ When your application receives a push notification, do not make API calls immedi
 
 ## 10. API compatibility
 
-CareCloud API may be extended at any time with new optional fields in request or response bodies. This is a backward-compatible change — your existing integration must not break when it encounters a field it does not recognise.
+CareCloud APIs may be extended at any time with new optional fields in request or response bodies. This is a backward-compatible change — your existing integration must not break when it encounters a field it does not recognise.
 
 - Parse only the fields your application needs. Silently ignore any unknown fields.
 - Do not validate responses against a hard-coded schema that rejects extra fields.
@@ -282,7 +282,7 @@ SDKs and development tools: [Tools](https://carecloud.readme.io/reference/tools)
 
 ## Summary: server-side integrations (POS, e-commerce, backend systems)
 
-**Use the enterprise interface.** It is designed for server-side systems that manage or process customer data. See [Enterprise interface authentication](https://carecloud.readme.io/reference/authentication#enterprise-interface-http-bearer-authentication).
+**Use Enterprise API.** It is designed for server-side systems that manage or process customer data. See [Enterprise API authentication](https://carecloud.readme.io/reference/authentication#enterprise-api-http-bearer-authentication).
 
 **Keep credentials on the server.** Enterprise credentials and Bearer tokens must never leave a secured server environment. They must not appear in mobile app binaries, browser JavaScript, configuration files committed to a repository, or any medium accessible to end users.
 
@@ -296,7 +296,7 @@ SDKs and development tools: [Tools](https://carecloud.readme.io/reference/tools)
 
 ## Summary: client-side applications (mobile apps, web portals, kiosks, smart devices)
 
-**Use the customer interface.** It is designed for applications that operate on behalf of a single customer and does not require enterprise credentials. See [Customer interface authentication](https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication).
+**Use Customer API.** It is designed for applications that operate on behalf of a single customer and does not require enterprise credentials. See [Customer API authentication](https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication).
 
 **Never include enterprise credentials.** Do not embed enterprise usernames, passwords, or Bearer tokens in a mobile app binary, browser bundle, or kiosk configuration file. Any user with access to the device can extract them.
 

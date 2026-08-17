@@ -3,13 +3,13 @@ info:
   title: REST API Reference
   version: 1.0.0
   description: |
-    CareCloud REST API connects external systems with the CareCloud Customer Data Platform. It is used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
+    CareCloud REST APIs connect external systems with the CareCloud Customer Data Platform. They are used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
 
     For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started) on the documentation portal.
 
-    ## Interfaces
+    ## APIs
 
-    CareCloud API has two interfaces. The choice determines the URL path segment, the authentication scheme, and the available resources.
+    CareCloud has two APIs. The choice determines the URL path segment, the authentication scheme, and the available resources.
 
     - `enterprise-interface` - for backend integrations (POS, e-shop, BI, kiosks). Uses Bearer token authentication.
     - `customer-interface` - for end-user applications (mobile, microsite). Uses Basic authentication with a customer-specific token.
@@ -22,10 +22,10 @@ info:
 
     ## Authentication
 
-    Both interfaces use HTTP Bearer authentication. The token is obtained differently per interface:
+    Both APIs use HTTP Bearer authentication. The token is obtained differently per API:
 
-    - **Enterprise interface** - call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager.
-    - **Customer interface** - call [POST /tokens](https://carecloud.readme.io/reference/posttoken).
+    - **Enterprise API** - call [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager.
+    - **Customer API** - call [POST /tokens](https://carecloud.readme.io/reference/posttoken).
 
     Send the token on every subsequent request as `Authorization: Bearer <token>`.
 
@@ -97,12 +97,12 @@ servers:
           - enterprise-interface
           - customer-interface
         default: enterprise-interface
-        description: Two different kinds of interfaces are used depending on the type of data required from CareCloud API and the character of integration (mobile application, webshop, POS, or BI tool).
+        description: Two different APIs are available depending on the type of data required and the character of integration (mobile application, webshop, POS, or BI tool).
       version:
         enum:
           - v1.0
         default: v1.0
-        description: Version of the CareCloud API
+        description: Version of CareCloud APIs
 security:
   - bearerAuth: []
   - basicAuth: []
@@ -120,7 +120,7 @@ tags:
   - name: Campaigns
     description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
   - name: Campaign products
-    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud API.
+    description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud APIs.
   - name: Cards
     description: The Customer can be recognized by different identifiers - cards related to the account. You can use a credit Card, Loyalty Card, mobile Card, ski pass, virtual Card, or any other kind of unique personal ID or any other identification method like barcodes, QR codes, or another key. This resource can process all the unique customer cards (identifiers) related to the Customer account.
   - name: Card types
@@ -128,7 +128,7 @@ tags:
   - name: Charged entrances
     description: Customized resource contains tickets charged in external production systems
   - name: Communication channels
-    description: CareCloud API allows you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
+    description: CareCloud APIs allow you to communicate with customers on multiple communication channels. This resource contain all communication possibilities.
   - name: Consents
     description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.
   - name: Countries
@@ -152,7 +152,7 @@ tags:
   - name: Customer external applications
     description: An Application also referred to as an Application program, Application software or just an App is a computer software package that performs a specific function directly for an end-user or, in some cases, for another application. An application can be self-contained or a group of programs. CC platform enables you to connect to external Applications. You can get the list of the available customer external applications here.
   - name: Customer properties
-    description: You can store an unlimited amount of linked customer data for each customer account in the CareCloud platform. Standard data structures are available for common customer data. For project-specific data, it is possible to create user-defined data structures called Customer properties. You can customize the Customer properties based on your needs and populate them with data from various sources. You can also work with account properties across the CareCloud ecosystem via the CareCloud API.
+    description: You can store an unlimited amount of linked customer data for each customer account in the CareCloud platform. Standard data structures are available for common customer data. For project-specific data, it is possible to create user-defined data structures called Customer properties. You can customize the Customer properties based on your needs and populate them with data from various sources. You can also work with account properties across the CareCloud ecosystem via CareCloud APIs.
   - name: Customer relation types
     description: It is possible to create different relations between Customer accounts in the CareCloud platform. You can define the principle of the Customer account relation, set the specific properties of the relation type, and create customized Customer relations between two or more customer accounts.
   - name: Customer sources
@@ -271,19 +271,19 @@ tags:
     description: |
       Management of token resources. Tokens are used for identification of the application installation on a device and for setup of basic application parameters (permissions, language, notification identification).
 
-      ⚠️ Warning: Tokens resource is available only in Customer interface.
+      ⚠️ Warning: Tokens resource is available only in Customer API.
 
       Note: The process of authentication and login to customer account using the HTTP methods /tokens and /tokens/{token_id}/actions/login is described in the section [Use cases](https://carecloud.readme.io/reference/use-cases#authentication-and-login-process-for-customer-interface).
   - name: Users
     description: |
       A user is a person who utilizes an Application, a computer or network service. A user has a user account and is identified to the system by a username and password. The user is assigned a user role and user permissions in the Application.
 
-      ⚠️ Warning: Resource is available only in Enterprise interface.
+      ⚠️ Warning: Resource is available only in Enterprise API.
   - name: User roles
     description: |
       User role is a permission set that controls access to Applications, actions and features within the CareCloud Platform. Each User account requires a User role assignment.
 
-      ⚠️ Warning: Resource is available only in Enterprise interface.
+      ⚠️ Warning: Resource is available only in Enterprise API.
   - name: Vouchers
     description: Vouchers are generated by the Rewards for a specific Customer account and they are applied during the purchasing process. They are defined by its value, validity and related Reward. Vouchers can be managed by this resource.
   - name: Voucher properties
@@ -438,7 +438,7 @@ paths:
       description: |
         Get a list of all audiences available in CareCloud. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
 
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getAudiences
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -493,7 +493,7 @@ paths:
       description: |
         Get information about a specific audience. An audience is a group of customers defined as a target group of an omnichannel campaign. Audiences are built by filtering customer data - including demographics, purchase history, campaign responses, consent preferences, and activity events - to define the exact segment to be targeted.
 
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getAudience
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1735,7 +1735,7 @@ paths:
       description: |
         Add a new customer card.
 
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
 
         **What happens when a card is created**
 
@@ -2235,7 +2235,7 @@ paths:
       description: |
         Create multiple customer cards in a single request. Use this endpoint to import a large number of cards efficiently.
         ⚠️ Adjust batch sizes based on processing times. We recommend using a maximum of 1000 records and adjusting the batch size based on processing time.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBatchCards
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3134,7 +3134,7 @@ paths:
         If `credit_type_id` is not provided, the project-default credit type is used. The `note` field is optional and is recorded in the credit history audit log, visible via [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
 
         ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
-        ⚠️ Action methods are available only in the Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
       operationId: postCreditReduction
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3220,7 +3220,7 @@ paths:
         If `credit_type_id` is not provided, the project-default credit type is assigned. If `currency_id` is not provided, the project-default currency is used. The `note` field is optional and is recorded in the credit history audit log, visible via [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory).
 
         ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
-        ⚠️ Action methods are available only in Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
       operationId: postCreditDeposit
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3307,7 +3307,7 @@ paths:
         Related: [GET /credit-history](https://carecloud.readme.io/reference/getcredithistory), [GET /customers](https://carecloud.readme.io/reference/getcustomers)
 
         ⚠️ This action method is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
-        ⚠️ Action methods are available only in the Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
       operationId: postCreditTransfer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3379,7 +3379,7 @@ paths:
 
         The `customer_id` parameter is required. Filter by operation type using `credit_operation_type`, or search within notes using `credit_operation_note`. Use `time_from` and `time_to` to scope results to a date range.
 
-        Related: [GET /credits](https://carecloud.readme.io/reference/getcredits), [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
+        Related: [GET /credits](https://carecloud.readme.io/reference/getcredits), [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (Enterprise API only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (Enterprise API only)
       operationId: getCreditHistory
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3448,7 +3448,7 @@ paths:
 
         Use this endpoint to retrieve the available credit type IDs when depositing or reducing credits. If no credit type is specified on a deposit or reduction, the project-default credit type is applied automatically.
 
-        Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [GET /credits](https://carecloud.readme.io/reference/getcredits)
+        Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (Enterprise API only), [GET /credits](https://carecloud.readme.io/reference/getcredits)
       operationId: getCreditTypes
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3556,7 +3556,7 @@ paths:
 
         Use this endpoint to retrieve valid currency IDs for use in credit operations. Filter by `currency_name` or `currency_code` to locate a specific currency.
 
-        Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (enterprise interface only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (enterprise interface only)
+        Related: [POST /credits/actions/deposit](https://carecloud.readme.io/reference/postcreditdeposit) (Enterprise API only), [POST /credits/actions/reduce](https://carecloud.readme.io/reference/postcreditreduction) (Enterprise API only)
       operationId: getCurrencies
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3668,18 +3668,18 @@ paths:
         - One or more customer-partner relations are created automatically. The assignment depends on the project configuration:
           - If the project is configured for store-based partner assignment and `store_id` is set in `personal_information` - a single relation is created for the partner derived from the store.
           - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
-        - If called from the customer interface with `autologin=true`, the customer is logged in as part of the response.
+        - If called from Customer API with `autologin=true`, the customer is logged in as part of the response.
         - If `referral_code` is provided and valid, a customer relation is created between the new customer and the referral code holder. The relation type used is determined by the referral campaign configuration. See [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers) to view the resulting relation.
         **Conditional requirements**
 
         - When `autologin` is `true`, `password` is required.
         - When `autologin` is `false`, `password` is optional.
 
-        `autologin` is meaningful only when this endpoint is called from the customer interface. In the enterprise interface, `autologin=true` causes the password to be validated but does not log the customer in - the enterprise interface does not establish customer sessions.
+        `autologin` is meaningful only when this endpoint is called from Customer API. In Enterprise API, `autologin=true` causes the password to be validated but does not log the customer in - Enterprise API does not establish customer sessions.
 
         **Related operations**
 
-        - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (enterprise interface only).
+        - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (Enterprise API only).
         - [POST /customers/actions/validate-customer-data](https://carecloud.readme.io/reference/postcustomersvalidatecustomerdata) - validate a referral code before submitting this request.
       operationId: postCustomer
       parameters:
@@ -3794,7 +3794,7 @@ paths:
 
         Supports filtering by email, phone, first name, last name, date of birth, customer source, and a list of customer IDs. Use `email_list` to retrieve multiple customers by email in a single request.
 
-        Related: [POST /customers](https://carecloud.readme.io/reference/postcustomer), [GET /customers/{customer_id}](https://carecloud.readme.io/reference/getcustomer), [GET /customers/actions/search-customers](https://carecloud.readme.io/reference/getcustomersearch) (enterprise interface only)
+        Related: [POST /customers](https://carecloud.readme.io/reference/postcustomer), [GET /customers/{customer_id}](https://carecloud.readme.io/reference/getcustomer), [GET /customers/actions/search-customers](https://carecloud.readme.io/reference/getcustomersearch) (Enterprise API only)
       operationId: getCustomers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4518,7 +4518,7 @@ paths:
 
         Customer statuses represent the customer's standing or tier within a loyalty program - for example, Silver, Gold, or Platinum. Each status record has a validity period; only one status can be active at a time. This endpoint returns all status records, including expired and inactive ones.
 
-        To assign a new status, use [POST /customers/actions/set-status-record](https://carecloud.readme.io/reference/postcustomerssetstatusrecord) (enterprise interface only).
+        To assign a new status, use [POST /customers/actions/set-status-record](https://carecloud.readme.io/reference/postcustomerssetstatusrecord) (Enterprise API only).
       operationId: getSubCustomerStatus
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4951,7 +4951,7 @@ paths:
       tags:
         - Customers
       summary: Create a batch of property records for a customer
-      description: Add a batch of customer property records to a customer account. In case of an existing property record, CareCloud API will update this record. In case of error, CareCloud will cancel the whole transaction, and API will return error information.
+      description: Add a batch of customer property records to a customer account. In case of an existing property record, CareCloud APIs will update this record. In case of error, CareCloud will cancel the whole transaction, and API will return error information.
       operationId: postSubCustomerPropertiesBatch
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5749,7 +5749,7 @@ paths:
 
         Customer-partner relations define which partners (retail chains, brands, or business units) a customer account is associated with. A customer can be assigned to one or more partners. This assignment determines which partner's loyalty programs, communications, and rewards are applicable to the customer.
 
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getSubCustomerPartners
       parameters:
         - $ref: '#/components/parameters/customer_id_path'
@@ -5803,7 +5803,7 @@ paths:
       tags:
         - Customers
       summary: Add a partner to the customer
-      description: Add a new partner to the customer. To replace all partner assignments in a single call, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only) instead.
+      description: Add a new partner to the customer. To replace all partner assignments in a single call, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (Enterprise API only) instead.
       operationId: postSubCustomerPartnerRecord
       parameters:
         - $ref: '#/components/parameters/customer_id_path'
@@ -5863,9 +5863,9 @@ paths:
       description: |
         Delete a specific customer partner record from a customer account.
 
-        Removes the association between a customer and the specified partner. Once deleted, the partner's loyalty programs and communications will no longer apply to the customer. To add or replace partner assignments, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (enterprise interface only).
+        Removes the association between a customer and the specified partner. Once deleted, the partner's loyalty programs and communications will no longer apply to the customer. To add or replace partner assignments, use [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (Enterprise API only).
 
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: deleteSubCustomerPartner
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -5904,7 +5904,7 @@ paths:
 
         Validates a customer's login credentials (email address and password) against their CareCloud account. Returns the customer ID if the credentials are valid. Use this endpoint to authenticate a customer before granting access to a service or application.
 
-        ⚠️ Action method for verification credentials is available only in the Enterprise interface.
+        ⚠️ Action method for verification credentials is available only in Enterprise API.
       operationId: postCustomerVerifyCredentials
       requestBody:
         required: true
@@ -5922,7 +5922,7 @@ paths:
                   example: email
                 login_value:
                   type: string
-                  description: Value of the login for customer interface API.
+                  description: Value of the login for Customer API.
                   example: happy_customer@cortex.cz
                 password:
                   type: string
@@ -5990,7 +5990,7 @@ paths:
             //Set the request body
             $body = new ActionsVerifycredentialsBody();
             $body->setLoginType('email'); // string | The unique ID of the login type (available: card, email)
-            $body->setLoginValue('customer_email@example.com'); // string | Value of the login for customer interface API
+            $body->setLoginValue('customer_email@example.com'); // string | Value of the login for Customer API
             $body->setPassword('customer_password'); // string | Password of the customer.
 
             // Call endpoint and post data
@@ -6014,7 +6014,7 @@ paths:
 
         Validates a customer's social network token against their CareCloud account. Returns the customer ID if the credentials are valid. Use this endpoint to authenticate a customer who has linked a social network account to their CareCloud profile.
 
-        ⚠️ Action method for verification credentials is available only in the Enterprise interface.
+        ⚠️ Action method for verification credentials is available only in Enterprise API.
       operationId: postCustomerVerifySocialNetworkCredentials
       requestBody:
         required: true
@@ -6108,11 +6108,11 @@ paths:
         - Customers actions
       summary: Get authentication token for a customer
       description: |
-        Returns an authentication token for a specific customer. Another application that uses the CareCloud API can use this token to verify the customer's identity or authenticate the customer.
+        Returns an authentication token for a specific customer. Another application that uses the CareCloud APIs can use this token to verify the customer's identity or authenticate the customer.
 
         Typical uses include initiating customer sign-in in another application or portal, or passing a customer's identity to an in-app browser for a different application.
 
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postCustomersAuthToken
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6197,7 +6197,7 @@ paths:
       summary: Verify auth token
       description: |
         Method verifies authentication token created by a specified application. There is the unique ID of the customer as a response.
-        ⚠️ Endpoint method is available only in the Enterprise interface.
+        ⚠️ Endpoint method is available only in Enterprise API.
       operationId: postCustomersVerifyAuthToken
       requestBody:
         required: true
@@ -6343,7 +6343,7 @@ paths:
 
         Searches across customer accounts by name, date of birth, card number, email, phone, or external ID simultaneously. Unlike [GET /customers](https://carecloud.readme.io/reference/getcustomers), this endpoint combines all identifying fields in a single search and is optimised for point-of-sale customer lookup and identification workflows.
 
-        ⚠️ Action method for search customers is available only in Enterprise interface.
+        ⚠️ Action method for search customers is available only in Enterprise API.
       operationId: getCustomerSearch
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6441,9 +6441,9 @@ paths:
       summary: Set one or multiple partners to the customer
       description: |
         Set one or multiple partners to the customer.
-        The method will set all the partners from the request available to the CareCloud API user and delete all that are not present in the request.
+        The method will set all the partners from the request available to the API user and delete all that are not present in the request.
         If customer has a partner that is unavailable to the user, this partner is not going to be modified or deleted.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postSubCustomerSetPartners
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -6502,7 +6502,7 @@ paths:
 
         To view current and past status records on a customer account, use [GET /customers/{customer_id}/statuses](https://carecloud.readme.io/reference/getsubcustomerstatus).
 
-        ⚠️ Action method is available only in the Enterprise interface.
+        ⚠️ Action method is available only in Enterprise API.
       operationId: postCustomersSetStatusRecord
       requestBody:
         required: true
@@ -6569,7 +6569,7 @@ paths:
       summary: Sign up for newsletters
       description: |
         Sign up a contact for the newsletter. The contact does not need to be an existing customer.
-        ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud API.
+        ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud APIs.
 
         **Partner assignment**
 
@@ -6642,9 +6642,9 @@ paths:
 
         Registers a push notification token (Apple or Android) for a customer account and links it to the specified external application and device ID. This enables the CareCloud platform to send push notifications to the customer's device. If a token is already registered for the same device ID, it is replaced.
 
-        To unregister a device, use [POST /customers/actions/cancel-push-notifications](https://carecloud.readme.io/reference/postcustomercancelpushnotifications) (enterprise interface only).
+        To unregister a device, use [POST /customers/actions/cancel-push-notifications](https://carecloud.readme.io/reference/postcustomercancelpushnotifications) (Enterprise API only).
 
-        ⚠️ The endpoint is available only in the Enterprise interface.
+        ⚠️ The endpoint is available only in Enterprise API.
         ⚠️ Please make sure the ID of the device is unique. You will avoid problems with signing off other devices.
       operationId: postCustomerSetPushNotifications
       requestBody:
@@ -6702,9 +6702,9 @@ paths:
 
         Unregisters a customer's push notification token for a specified external application. If `push_token` is provided, only that specific device registration is removed. If `push_token` is omitted, all device registrations for the customer and application are cancelled.
 
-        To register a device for push notifications, use [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (enterprise interface only).
+        To register a device for push notifications, use [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (Enterprise API only).
 
-        ⚠️ The endpoint is available only in the Enterprise interface.
+        ⚠️ The endpoint is available only in Enterprise API.
       operationId: postCustomerCancelPushNotifications
       requestBody:
         required: true
@@ -6757,7 +6757,7 @@ paths:
 
         Determines whether the given identifier is available for new customer registration - for example, whether it is already associated with an existing account. Use this endpoint before submitting a registration form to provide early feedback to the user.
 
-        ⚠️ For use in the Customer interface integration (mobile application, web portal, or kiosk), this action method has to be allowed in CareCloud. Please contact the CareCloud administrator.
+        ⚠️ For use in a Customer API integration (mobile application, web portal, or kiosk), this action method has to be allowed in CareCloud. Please contact the CareCloud administrator.
       operationId: postCustomersCheckRegistrationAbility
       requestBody:
         required: true
@@ -7024,9 +7024,9 @@ paths:
       description: |
         Get a list of customer external applications accepted in the CareCloud platform.
 
-        External applications are third-party or in-house systems registered to interact with the CareCloud API on behalf of customers. They are used for generating authentication tokens and managing push notification registrations. Use the returned IDs in authentication token and push notification requests.
+        External applications are third-party or in-house systems registered to interact with the CareCloud APIs on behalf of customers. They are used for generating authentication tokens and managing push notification registrations. Use the returned IDs in authentication token and push notification requests.
 
-        Related: [POST /customers/actions/auth-token](https://carecloud.readme.io/reference/postcustomersauthtoken) (enterprise interface only), [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (enterprise interface only)
+        Related: [POST /customers/actions/auth-token](https://carecloud.readme.io/reference/postcustomersauthtoken) (Enterprise API only), [POST /customers/actions/set-push-notifications](https://carecloud.readme.io/reference/postcustomersetpushnotifications) (Enterprise API only)
       operationId: getCustomerExternalApps
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -8459,7 +8459,7 @@ paths:
       description: |
         Send a message to a customer through one of the configured communication channels (email, SMS, or push notification).
 
-        ⚠️ Action methods are available only in the Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
 
         Before sending, the customer's communication consents for the target channel are checked; if consent is missing, the message is not sent. The message is rendered from its template, with personalisation applied if configured.
 
@@ -9052,7 +9052,7 @@ paths:
       summary: Get all partner properties
       description: |
         Get information about partner properties.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getPartnerProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -9390,7 +9390,7 @@ paths:
       summary: Points redemption
       description: |
         New point redemption record is created.
-        ⚠️ Action methods are available only in the Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
       operationId: postPointsRedemption
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -9470,7 +9470,7 @@ paths:
       summary: Assign points
       description: |
         Creates a new point collection record with the corresponding value.
-        ⚠️ Action methods are available only in Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
       operationId: postPointsAssign
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10135,7 +10135,7 @@ paths:
         Batch process helps to add multiple products in one request. 
         ⚠️ If a product already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible.
         ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBulkProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10334,7 +10334,7 @@ paths:
       summary: Create a batch of product brands
       description: |
         Batch process helps to add multiple product brands in one request.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBulkProductBrands
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -10485,7 +10485,7 @@ paths:
       summary: Create a batch of product groups. If a group already exists, an update is applied.
       description: |
         Batch process helps to add multiple product groups in one request.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBulkProductGroups
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -11022,7 +11022,7 @@ paths:
         Batch process helps to add and synchronize multiple product reservation prices in one request.
         ⚠️ If a product reservation price already exists, an update is applied. Missing parameters in update will be ignored and will not change. Erasing values is not possible here.
         ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBulkProductReservationPrices
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -11069,7 +11069,7 @@ paths:
       description: |
         Batch process helps to remove multiple product reservation prices in one request.
         ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBulkDeleteProductReservationPrices
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -11579,7 +11579,7 @@ paths:
       summary: Update a purchase
       description: |
         Update a specific purchase.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: putPurchase
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -12159,7 +12159,7 @@ paths:
       summary: Assign customer
       description: |
         The method assigns customer to the existing purchase. If customer could collect points, he is going to gain corresponding amount of points.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postPurchaseAssignCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -12179,7 +12179,7 @@ paths:
                   description: |
                     A unique identifier for an existing purchase in the production system (e.g., E-commerce, POS, ERP). This ID must be unique within the system and reference an actual purchase or order.
 
-                    If the purchase was created in CareCloud using the CareCloud API, use the same value as the bill_id parameter from the [POST /send-purchase](https://carecloud.readme.io/reference/postpurchasesend) endpoint.
+                    If the purchase was created in CareCloud using the CareCloud APIs, use the same value as the bill_id parameter from the [POST /send-purchase](https://carecloud.readme.io/reference/postpurchasesend) endpoint.
                   example: 8fbea1c1eaa8edd35e7f288
                 card_number:
                   type: string
@@ -13717,7 +13717,7 @@ paths:
       description: |
         Batch process helps to set all products in one request. Request needs to contain all the products, because previous products will be erased.
         ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postRewardSynchronizeProducts
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -13833,7 +13833,7 @@ paths:
       summary: Create a Simple reward
       description: |
         Create a new simple reward.
-        ⚠️ Action methods are available only in Enterprise interface.
+        ⚠️ Action methods are available only in Enterprise API.
       operationId: postRewardCreateSimpleReward
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -15895,7 +15895,7 @@ paths:
       summary: Create a task assignee
       description: |
         Add a new assignee to the task.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postTaskAssignee
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -15995,7 +15995,7 @@ paths:
       summary: Delete a task assignee from the task
       description: |
         Delete a new assignee from the task.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: deleteSubTasksAssignee
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16446,17 +16446,17 @@ paths:
       description: |
         Create an authentication token for a client application installation.
 
-        ⚠️ Endpoint is available only in the Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
 
         ⚠️ When creating a new token, the request does not need to contain an Authentication header.
 
-        ⚠️ We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use the CareCloud REST API on one device.
+        ⚠️ We highly recommend filling all identifications in the tokens resource (device and application) to avoid problems if multiple applications use Customer API on one device.
 
         **What happens when a token is created**
 
         - A token record is created and its server-generated `token_id` is returned.
         - The token is bound to the supplied `device` identification and `setup` parameters (language, GPS permission, notifications permission).
-        - The token is used as the credential on subsequent customer-interface requests, sent as `Authorization: Bearer <token_id>`. See [Authentication](https://carecloud.readme.io/reference/authentication) for the full flow.
+        - The token is used as the credential on subsequent Customer API requests, sent as `Authorization: Bearer <token_id>`. See [Authentication](https://carecloud.readme.io/reference/authentication) for the full flow.
       operationId: postToken
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16527,7 +16527,7 @@ paths:
       summary: Edit a push token
       description: |
         Update a push token and installation setup.
-        ⚠️ Endpoint is available only in Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
       operationId: putToken
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16579,7 +16579,7 @@ paths:
       summary: Login to the application
       description: |
         Login of a customer account to client's application.
-        ⚠️ Endpoint is available only in Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
       operationId: postTokenLogin
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16601,7 +16601,7 @@ paths:
                   example: email
                 login_value:
                   type: string
-                  description: Value of the login to Customer interface API.
+                  description: Value of the login to Customer API.
                   example: example@crmcarecloud.com
                 password:
                   type: string
@@ -16647,7 +16647,7 @@ paths:
       x-codeSamples:
         - lang: PHP
           label: CareCloud SDK
-          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsLoginBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Set the request body\n$body = new ActionsLoginBody();\n$body->setLoginType('email'); // string | The unique ID for the login type ('card' or 'email' only)\n$body->setLoginValue('happy_customer@example.com'); // string | Value of the login to Customer interface API\n$body->setPassword('secret_password'); // string | Customer's password\n\n// Call endpoint and post data\ntry\n{\n    $post_token_login = $care_cloud->tokensApi()->postTokenLogin($body, $token_id, $accept_language);\n    $customer_id = $post_token_login->getData()->getCustomerId();\n    var_dump($customer_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
+          source: "use CrmCareCloud\\Webservice\\RestApi\\Client\\ApiException;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\Model\\ActionsLoginBody;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\CareCloud;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Config;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\AuthTypes;\nuse CrmCareCloud\\Webservice\\RestApi\\Client\\SDK\\Data\\Interfaces;\n\nrequire_once '../vendor/autoload.php';\n\n$project_uri = 'https://yourapiurl.com/webservice/rest-api/customer-interface/v1.0';\n$login = 'login';\n$password = 'password';\n$external_app_id = 'application_id';\n$auth_type = AuthTypes::BASIC_AUTH;\n$interface = Interfaces::CUSTOMER;\n$token = 'BASE64_encoded_string_user_name';\n\n$config = new Config($project_uri, $login, $password, $external_app_id, $auth_type, $interface, null, $token);\n\n$care_cloud = new CareCloud($config);\n\n// Set Header parameter Accept-Language\n$accept_language = 'en'; //\tstring | The unique ID of the language code by ISO 639-1 Default: cs, en-gb;q=0.8\n\n// Set path parameters\n$token_id = '702baa4a40a57694831321e5d02605d46c189369126ae43a81030790ea188af87e49578a'; // Client's application token\n\n// Set the request body\n$body = new ActionsLoginBody();\n$body->setLoginType('email'); // string | The unique ID for the login type ('card' or 'email' only)\n$body->setLoginValue('happy_customer@example.com'); // string | Value of the login to Customer API\n$body->setPassword('secret_password'); // string | Customer's password\n\n// Call endpoint and post data\ntry\n{\n    $post_token_login = $care_cloud->tokensApi()->postTokenLogin($body, $token_id, $accept_language);\n    $customer_id = $post_token_login->getData()->getCustomerId();\n    var_dump($customer_id);\n}\ncatch(ApiException $e)\n{\n    die(var_dump($e->getResponseBody() ?: $e->getMessage()));\n}\n"
   /tokens/{token_id}/actions/logout:
     servers:
       - url: https://sandbox.crmcarecloud.com/webservice/rest-api/customer-interface/v1.0
@@ -16691,7 +16691,7 @@ paths:
       description: |
         Log in the customer using the provided authentication token for a seamless and secure login experience.
         The authentication token can be provided in the method [GET /tokens/{token_id}/actions/auth-token](https://carecloud.readme.io/reference/gettokenauthentication)
-        ⚠️ Endpoint is available only in Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
       operationId: postTokenAuthTokenLogin
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16763,7 +16763,7 @@ paths:
       summary: Login via social network
       description: |
         Login of a customer account to client's application via social network.
-        ⚠️ Endpoint is available only in Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
       operationId: postTokenSocialLogin
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16821,7 +16821,7 @@ paths:
       description: |
         Send a message, that contains a link to set up a new customer password.
         The use case [Forgotten password](https://www.crmcarecloud.com/build-a-mobile-app/#accordion-customer-use-case-customer-account-operations-4) shows how to use this action method.
-        ⚠️ Endpoint is available only in the Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
         ⚠️ An extra setup of the Marketing Automation scenario in CareCloud could be necessary to make the endpoint work correctly. If so, don't hesitate to get in touch with the CareCloud administrator in your organization.
       operationId: postTokenSendPasswordSetup
       parameters:
@@ -16839,7 +16839,7 @@ paths:
                   description: |
                     Message with a setup password link will be delivered to this email address.
 
-                    ⚠️This parameter is deprecated and will be removed in the future versions of CareCloud API.If possible do not use it.
+                    ⚠️This parameter is deprecated and will be removed in the future versions of CareCloud APIs.If possible do not use it.
                   example: happy_customer@carecloud.com
                   deprecated: true
                 communication_channel_id:
@@ -16884,8 +16884,8 @@ paths:
         - Tokens
       summary: Get an authentication token for customer login or verification in another application.
       description: |
-        This endpoint returns an authentication token. Another application that uses the CareCloud API can use this token to verify the customer or sign the customer in. Typical uses include redirecting a logged-in customer from one app to another, or completing sign-in in an in-app browser for a different application or portal.
-        ⚠️ Endpoint is available only in Customer interface.
+        This endpoint returns an authentication token. Another application that uses the CareCloud APIs can use this token to verify the customer or sign the customer in. Typical uses include redirecting a logged-in customer from one app to another, or completing sign-in in an in-app browser for a different application or portal.
+        ⚠️ Endpoint is available only in Customer API.
       operationId: getTokenAuthentication
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16945,7 +16945,7 @@ paths:
       summary: Login to the application for test customer
       description: |
         Login of a test customer account to client's application.
-        ⚠️ Endpoint is available only in Customer interface.
+        ⚠️ Endpoint is available only in Customer API.
       operationId: postTokenTestCustomerLogin
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -16993,7 +16993,7 @@ paths:
       summary: Get all users
       description: |
         Get a list of all users in CareCloud.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
         ⚠️ This endpoint is disabled by default. Please contact the CareCloud administrator to allow usage of this method.
       operationId: getUsers
       parameters:
@@ -17056,7 +17056,7 @@ paths:
       summary: Get information about a user
       description: |
         Get information about a specific user.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getUser
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17099,7 +17099,7 @@ paths:
       summary: Verify user auth token
       description: |
         Verification of the user auth token.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postUserVerifyAuthToken
       requestBody:
         required: true
@@ -17153,7 +17153,7 @@ paths:
       summary: User login
       description: |
         User login to external application.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postUserLogin
       security: []
       parameters:
@@ -17246,7 +17246,7 @@ paths:
       summary: User SSO login
       description: |
         User Signe sign-on login to external application. In this case it is necessary cary SSO token from CareCloud to login user.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postUserSsoLogin
       security: []
       parameters:
@@ -17312,7 +17312,7 @@ paths:
       summary: User logout
       description: |
         User logout from external application.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postUserLogout
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17364,7 +17364,7 @@ paths:
       summary: Get all user roles
       description: |
         Get a list of all user roles in CareCloud.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getUserRoles
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17420,7 +17420,7 @@ paths:
       summary: Get information about a user role
       description: |
         Get information about a specific user role.
-        ⚠️ Endpoint is available only in the Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: getUserRole
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -17790,7 +17790,7 @@ paths:
       description: |
         Batch process helps to add multiple vouchers in one request.
         ⚠️ Adjust batch sizes based on processing times. We recommended use maximum amount of 1000 records and adjust the batch size based on processing time.
-        ⚠️ Endpoint is available only in Enterprise interface.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postBulkVouchers
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -18259,10 +18259,10 @@ components:
                     example: interface_not_allowed_exception
                   title:
                     type: string
-                    example: Enterprise interface is not allowed for this resource
+                    example: Enterprise API is not allowed for this resource
                   detail:
                     type: string
-                    example: Resource name "tokens" is not allowed in Enterprise interface
+                    example: Resource name "tokens" is not allowed in Enterprise API
                   error_data:
                     type: object
                     description: Data in case of an exception.
@@ -18471,12 +18471,12 @@ components:
         created_by:
           type: string
           readOnly: true
-          description: The unique ID of the user that created the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+          description: The unique ID of the user that created the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
           example: 8bed991c68a470e7aaeffbf048
         updated_by:
           type: string
           readOnly: true
-          description: The unique ID of the user that last updated the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (enterprise interface only).
+          description: The unique ID of the user that last updated the record. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
           example: 8bed991c68a470e7aaeffbf048
       required:
         - name
@@ -18842,7 +18842,7 @@ components:
           example: '{"en":"evening","cz":"vecer"}'
         resource_record_id:
           type: string
-          description: The ID of the CareCloud REST API resource record is filled when the property is related directly to the CareCloud API resource (for example resource stores). Usually, the data type of the property determines it.
+          description: The ID of the CareCloud API resource record is filled when the property is related directly to a resource in CareCloud APIs (for example resource stores). Usually, the data type of the property determines it.
           example: 67342d3167342d0689c4c00689c4
         state:
           type: integer
@@ -24523,7 +24523,7 @@ components:
       in: query
       description: |
         Include secondary card numbers in search for filters `card_number` and `card_number_list`.
-        *Possible values: true - CareCloud API search only secondary card numbers / false - CareCloud API search only card numbers / default behavior without parameter - CareCloud API search only card numbers*
+        *Possible values: true - only secondary card numbers are searched / false - only card numbers are searched / default behavior without parameter - only card numbers are searched*
       required: false
       schema:
         type: boolean
@@ -25425,7 +25425,7 @@ components:
     language_list_type:
       name: language_list_type
       in: query
-      description: 'Type of language list. All lists can be managed from the CareCloud administration interface. *Possible values: customer-communication - list of languages used for communication with the customer (emails, notifications or text messages) / web-portal - list of languages for CareCloud web portal / carecloud-api - languages supported by CareCloud REST API (API communicates in these languages).*'
+      description: 'Type of language list. All lists can be managed from the CareCloud administration interface. *Possible values: customer-communication - list of languages used for communication with the customer (emails, notifications or text messages) / web-portal - list of languages for CareCloud web portal / carecloud-api - languages supported by CareCloud REST APIs (APIs communicate in these languages).*'
       required: false
       schema:
         type: string
@@ -26198,15 +26198,15 @@ components:
       type: http
       scheme: bearer
       description: |
-        HTTP Bearer authentication. The default authentication scheme for both the Enterprise interface and the Customer interface.
+        HTTP Bearer authentication. The default authentication scheme for both Enterprise API and Customer API.
 
-        **Enterprise interface.** Obtain a token by calling [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager. Send the token on every subsequent request as `Authorization: Bearer <token>`.
+        **Enterprise API.** Obtain a token by calling [POST /users/actions/login](https://carecloud.readme.io/reference/postuserlogin) with the username and password issued by your CareCloud account manager. Send the token on every subsequent request as `Authorization: Bearer <token>`.
 
-        **Customer interface.** Obtain a token by calling [POST /tokens](https://carecloud.readme.io/reference/posttoken). Send the token on every subsequent request as `Authorization: Bearer <token>`.
+        **Customer API.** Obtain a token by calling [POST /tokens](https://carecloud.readme.io/reference/posttoken). Send the token on every subsequent request as `Authorization: Bearer <token>`.
 
         For the full authentication flow, see [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.
     basicAuth:
       type: http
       scheme: basic
       description: |
-        HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both the Enterprise interface and the Customer interface. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.
+        HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both Enterprise API and Customer API. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.

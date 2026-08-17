@@ -1,13 +1,13 @@
 This page documents step-by-step API workflows for common integration scenarios. Each use case lists the API calls in the order they should be made, with links to the full endpoint documentation in the API reference.
 
-Each use case is labelled with the interface it applies to:
+Each use case is labelled with the API it applies to:
 
-| Label | Interface | Typical systems |
+| Label | API | Typical systems |
 | --- | --- | --- |
-| Customer interface | `customer-interface` | Mobile applications, web portals, kiosks, smart devices |
-| Enterprise interface | `enterprise-interface` | POS, e-commerce backends, BI tools, backend data processing |
+| Customer API | `customer-interface` | Mobile applications, web portals, kiosks, smart devices |
+| Enterprise API | `enterprise-interface` | POS, e-commerce backends, BI tools, backend data processing |
 
-For details on authentication for each interface, see [Authentication](https://carecloud.readme.io/reference/authentication).
+For details on authentication for each API, see [Authentication](https://carecloud.readme.io/reference/authentication).
 
 ---
 
@@ -15,9 +15,9 @@ For details on authentication for each interface, see [Authentication](https://c
 
 ### Customer sign-up
 
-> 📘 **Interface:** Customer interface, Enterprise interface
+> 📘 **API:** Customer API, Enterprise API
 
-1. To sign up a customer, collect all necessary customer information first. This may require calling other CareCloud API resources before creating a customer account with [POST /customers](https://carecloud.readme.io/reference/postcustomer).
+1. To sign up a customer, collect all necessary customer information first. This may require calling other resources in CareCloud APIs before creating a customer account with [POST /customers](https://carecloud.readme.io/reference/postcustomer).
 2. For example, to get all available options for `store_id`, call [GET /stores](https://carecloud.readme.io/reference/getstores). The response contains a list of stores and their unique identifiers.
 3. Use these values in the sign-up form so the customer can select the correct store. Save the selected value for the [POST /customers](https://carecloud.readme.io/reference/postcustomer) request.
 4. Determine which customer source to assign to the customer. A customer source identifies the origin of the customer, for example, `e-shop` (registered through an e-shop) or `brick-and-mortar` (registered in a physical store). Each customer source record can include an external ID that represents the customer's identifier in the originating system. You can later search for customers by this external ID to synchronize data between systems. Call [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources) to retrieve the available customer sources. Select the one that fits and include the external ID in the customer creation request.
@@ -27,9 +27,9 @@ For details on authentication for each interface, see [Authentication](https://c
 
 ### Customer credentials verification
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
-This use case applies to e-shop integrations where the application uses the enterprise interface to access a customer's data and needs to verify the customer's identity through a login screen before displaying it.
+This use case applies to e-shop integrations where the application uses Enterprise API to access a customer's data and needs to verify the customer's identity through a login screen before displaying it.
 
 We recommend the following verification flow:
 
@@ -37,17 +37,17 @@ We recommend the following verification flow:
    1. You can let the customer choose the identifier type (email or card number) before entering the value.
    2. Alternatively, you can present a single input field and determine the identifier type in your application before sending the API request (for example, using a regular expression to distinguish an email address from a card number). This simplifies the form for the customer while your application resolves the correct `login_type` value.
 2. Validate the inputs on the client side (email format, card number format, password format) and display an appropriate error message to the customer if any input is invalid.
-3. If all inputs are valid, send the credentials to the CareCloud API using the [POST /customers/actions/verify-credentials](https://carecloud.readme.io/reference/postcustomerverifycredentials) endpoint. The request requires three fields: `login_type` (card or email), `login_value`, and `password`.
+3. If all inputs are valid, send the credentials to CareCloud APIs using the [POST /customers/actions/verify-credentials](https://carecloud.readme.io/reference/postcustomerverifycredentials) endpoint. The request requires three fields: `login_type` (card or email), `login_value`, and `password`.
 4. Handle the API response:
-   1. If the verification is successful, the API returns a customer ID. Use this ID to retrieve the customer's data from other CareCloud API endpoints, such as purchases, reservations, loyalty information, or personal data.
+   1. If the verification is successful, the API returns a customer ID. Use this ID to retrieve the customer's data from other endpoints in CareCloud APIs, such as purchases, reservations, loyalty information, or personal data.
    2. If the verification fails, the API returns an error message describing the reason. Display an appropriate message to the customer in your application.
-5. CareCloud API does not manage customer login sessions. The verify-credentials endpoint only confirms that the provided credentials are valid. After successful verification, your application is responsible for establishing and managing the customer's login session.
+5. CareCloud APIs do not manage customer login sessions. The verify-credentials endpoint only confirms that the provided credentials are valid. After successful verification, your application is responsible for establishing and managing the customer's login session.
 
-> ❗️ This use case cannot be applied using the customer interface. The endpoints used in this flow are available only in the enterprise interface.
+> ❗️ This use case cannot be applied using Customer API. The endpoints used in this flow are available only in Enterprise API.
 
 ### Search customers and get customer personal data
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case applies to e-shop or production system integrations where you need to access data of multiple customers or search for a customer by their identifiers (email, phone number, or name).
 
@@ -64,7 +64,7 @@ We recommend searching for customer data in the following way:
 
 ### Find a customer by production system identification
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case applies when you need to find a customer using an identifier from an external system (other than CareCloud).
 
@@ -76,7 +76,7 @@ This use case applies when you need to find a customer using an identifier from 
 
 ### Synchronize customers between production systems and CareCloud
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case describes synchronizing customer data between CareCloud and other systems (e-shop, POS, ERP, accounting systems, and others).
 
@@ -85,9 +85,9 @@ This use case describes synchronizing customer data between CareCloud and other 
 3. If the customer source record does not exist, create the customer using [POST /customers](https://carecloud.readme.io/reference/postcustomer) with the appropriate identification and customer source.
 4. This use case works only if you synchronize external identifiers from the start. Otherwise, duplicate customer records may occur.
 
-### Get customer personal data (customer interface)
+### Get customer personal data (Customer API)
 
-> 📘 **Interface:** Customer interface
+> 📘 **API:** Customer API
 
 This use case applies to mobile applications or customer portal integrations where you need to access the logged-in customer's data.
 
@@ -95,33 +95,33 @@ We recommend accessing customer data in the following way:
 
 1. The customer must be logged in before accessing their data. If you need to know how to log in a customer, see the [Log in and log out customer](#log-in-and-log-out-customer) use case.
 2. To access the personal data of the customer, use [GET /customers](https://carecloud.readme.io/reference/getcustomers).
-3. You do not need to add any path or query parameters. CareCloud API returns information about the logged-in customer automatically.
+3. You do not need to add any path or query parameters. CareCloud APIs return information about the logged-in customer automatically.
 4. The response contains customer information, including the customer ID, personal data, and consent settings, which you can process as needed.
 5. To access the customer's extended data, such as properties, use [GET /customers/property-records](https://carecloud.readme.io/reference/getsubcustomerproperties).
 
 ### Log in and log out customer
 
-> 📘 **Interface:** Customer interface
+> 📘 **API:** Customer API
 
 This use case applies to mobile applications or customer portal integrations where you need to log in to a customer account to access personal information or other data.
 
-This process requires the device to have an application token to access the CareCloud API. Instructions for obtaining and using application tokens are available in the [Authentication section](https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication).
+This process requires the device to have an application token to access CareCloud APIs. Instructions for obtaining and using application tokens are available in the [Authentication section](https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication).
 
 We recommend the following login process:
 
 1. Collect the customer's login credentials and password through your application's login screen. Credentials are verified on the CareCloud servers, so your application does not need to store the customer's login and password.
-2. After the customer submits the form, validate the login credentials (typically an email address) and password against the requirements described in the CareCloud API documentation.
+2. After the customer submits the form, validate the login credentials (typically an email address) and password against the requirements described in the CareCloud APIs documentation.
 3. After successful validation, call the login action method [POST /tokens/{token_id}/actions/login](https://carecloud.readme.io/reference/posttokenlogin).
 4. If an error is returned, handle it according to the error message.
 5. If the login is successful, the API returns the customer identifier.
-6. When the customer is logged in, you can call most CareCloud API resources without specifying the customer ID. For example, information about the logged-in customer is available at [GET /customers](https://carecloud.readme.io/reference/getcustomers) without providing the customer ID. CareCloud recognizes the customer and returns their information.
+6. When the customer is logged in, you can call most resources in CareCloud APIs without specifying the customer ID. For example, information about the logged-in customer is available at [GET /customers](https://carecloud.readme.io/reference/getcustomers) without providing the customer ID. CareCloud recognizes the customer and returns their information.
 7. Call [POST /tokens/{token_id}/actions/logout](https://carecloud.readme.io/reference/posttokenlogout) if the customer requests a logout.
 8. After logging out, the application can only call resources available without a logged-in customer.
-9. There are only two ways to log out a customer: calling the logout method, or the application token expiring. You can read more about application tokens in the [Authentication section](https://carecloud.readme.io/reference/authentication#customer-interface-http-bearer-authentication).
+9. There are only two ways to log out a customer: calling the logout method, or the application token expiring. You can read more about application tokens in the [Authentication section](https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication).
 
-### Customer personal data update (customer interface)
+### Customer personal data update (Customer API)
 
-> 📘 **Interface:** Customer interface
+> 📘 **API:** Customer API
 
 Updating a customer is a critical process. It is important to follow the correct procedure to preserve the customer's data.
 
@@ -130,9 +130,9 @@ Updating a customer is a critical process. It is important to follow the correct
 3. A successful update returns HTTP status code 204. If an error occurs, the error message explains the issue.
 4. If you need to update customer properties, use [PUT /customers/property-records/{property_record_id}](https://carecloud.readme.io/reference/putsubcustomerproperty).
 
-### Customer personal data update (enterprise interface)
+### Customer personal data update (Enterprise API)
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 Updating a customer is a critical process. It is important to follow the correct procedure to preserve all customer data.
 
@@ -141,9 +141,9 @@ Updating a customer is a critical process. It is important to follow the correct
 3. A successful update returns HTTP status code 204. If an error occurs, the error message explains the issue.
 4. If you need to update customer properties, use [PUT /customers/{customer_id}/property-records/{property_record_id}](https://carecloud.readme.io/reference/putsubcustomerproperty).
 
-### Forgotten password (customer interface)
+### Forgotten password (Customer API)
 
-> 📘 **Interface:** Customer interface
+> 📘 **API:** Customer API
 
 This use case applies to mobile application or customer portal integrations where a customer needs to reset their password in CareCloud.
 
@@ -158,9 +158,9 @@ We recommend the following password reset flow:
 7. The customer fills out the form with a new password. The application validates the password against the character requirements.
 8. After successfully changing the password, the customer is redirected based on the customer source assigned to their account. The redirect URL can be configured in the customer source administration in CareCloud.
 
-### Forgotten password (enterprise interface)
+### Forgotten password (Enterprise API)
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case applies to e-shop or production system integrations where a customer needs to reset their password in CareCloud.
 
@@ -171,7 +171,7 @@ We recommend the following password reset flow:
 3. After validation, the application checks whether the email address exists in CareCloud by calling [GET /customers](https://carecloud.readme.io/reference/getcustomers). If the email address is found, the application sends an email with a link to change the password.
 4. The customer opens the email and clicks the link.
 5. The customer is redirected to the application form for password change.
-6. The customer fills out the form with a new password. The application validates the password against the character requirements defined in the CareCloud API (see the password field in [PUT /customers/{customer_id}](https://carecloud.readme.io/reference/putcustomer)).
+6. The customer fills out the form with a new password. The application validates the password against the character requirements defined in CareCloud APIs (see the password field in [PUT /customers/{customer_id}](https://carecloud.readme.io/reference/putcustomer)).
 7. After successful validation, the application updates the password in the customer's account by calling [PUT /customers/{customer_id}](https://carecloud.readme.io/reference/putcustomer) with the new password.
 8. If successful, the application shows a success message and redirects the customer to the login form.
 
@@ -181,7 +181,7 @@ We recommend the following password reset flow:
 
 ### Assign a card to an existing customer
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case describes the process of assigning existing cards to a customer. It applies when the customer has a physical card and knows the card number. It covers only cards that already exist in the database and are ready to be assigned.
 
@@ -192,7 +192,7 @@ This use case describes the process of assigning existing cards to a customer. I
 
 ### Create a new card in CareCloud
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 If you do not have pre-generated card numbers but you already have cards physically printed, this use case helps you insert a new card into CareCloud.
 
@@ -209,7 +209,7 @@ You can do this through the API. Alternatively, you can import cards manually th
 
 ### Newsletter sign-up
 
-> 📘 **Interface:** Customer interface, Enterprise interface
+> 📘 **API:** Customer API, Enterprise API
 
 CDP CareCloud creates a customer account if one does not exist and adds a customer source dedicated to newsletters. This use case covers both existing customers and new customers.
 
@@ -227,7 +227,7 @@ If a customer has already signed up for the newsletter and later wants to regist
 
 ### Create a marketing automation event
 
-> 📘 **Interface:** Customer interface, Enterprise interface
+> 📘 **API:** Customer API, Enterprise API
 
 Marketing automation events are used to launch a scenario connected to an event. The scenario covers any available automation in the CareCloud platform.
 
@@ -249,7 +249,7 @@ Marketing automation events have the following structure of resources:
 
 ### Abandoned cart
 
-> 📘 **Interface:** Customer interface, Enterprise interface
+> 📘 **API:** Customer API, Enterprise API
 
 If you want to inform a customer about their abandoned cart, you can trigger a scenario in the Marketing Automation application by following the [Create a marketing automation event](#create-a-marketing-automation-event) use case.
 
@@ -266,57 +266,57 @@ There are two options for handling abandoned carts:
 
 ### Application of benefits in the shopping cart
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case applies to an e-shop or POS where a customer wants to use their benefits (rewards, discounts, coupons, or vouchers). This use case describes only the benefit application part. Other parts of the checkout process, such as [sending the final purchase](#send-purchase-simple-checkout) or [identifying the customer](#search-customers-and-get-customer-personal-data), are covered in separate use cases.
 
 To apply benefits correctly, follow these steps:
 
 1. Send the current content of the customer's shopping cart and any voucher codes (in the `benefit_codes` parameter) through [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment). Make sure to set all necessary parameters, including `payment_type` and others as described in the API reference. Different types of benefits may be applied depending on the configuration.
-2. The CareCloud API returns all applicable benefits for the shopping cart, the number of loyalty points that would be gained from the purchase, and the total customer loyalty points after the purchase. If the response does not contain any rewards or discounts, the algorithm found no applicable benefit for the customer.
-3. Keep all the information from the CareCloud API response.
+2. CareCloud APIs return all applicable benefits for the shopping cart, the number of loyalty points that would be gained from the purchase, and the total customer loyalty points after the purchase. If the response does not contain any rewards or discounts, the algorithm found no applicable benefit for the customer.
+3. Keep all the information from the response.
 4. If the customer changes the shopping cart content, repeat the request to [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment) with the updated shopping cart data. The response may differ because the customer might now fulfill certain conditions (product quantity thresholds, spending thresholds, or others).
 
 ### Loyalty points payment
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case allows you to use loyalty points for payments. The POS, e-shop, or other system can process point payments when a customer has available points in their account.
 
 1. First, identify the customer. You can find the customer using the methods described in [Search customers and get customer personal data](#search-customers-and-get-customer-personal-data) or [Find a customer by production system identification](#find-a-customer-by-production-system-identification).
 2. After identifying the customer, check their point balance to determine whether they have enough points to cover the purchase. The available points are at [GET /wallet/actions/points-overview](https://carecloud.readme.io/reference/getwalletpoints).
 3. Depending on the number of available points, send the number of points to use along with all purchase items in the request to [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment).
-4. The CareCloud API responds with a list of recommended benefits and discounts and information about the number of points that can be used with that transaction.
+4. CareCloud APIs respond with a list of recommended benefits and discounts and information about the number of points that can be used with that transaction.
 5. Retain the information about the points used and reduce the final purchase price accordingly. Both values will be used in the following request to [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend).
 6. If the customer wants to modify the shopping cart, you can update the [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment) request and repeat it multiple times before sending the final purchase with [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend).
 
 ### Credit payment
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case allows you to use credits for payments. The POS, e-shop, or other system can process credit payments when a customer has available credits in their account.
 
 1. First, identify the customer. You can find the customer using the methods described in [Search customers and get customer personal data](#search-customers-and-get-customer-personal-data) or [Find a customer by production system identification](#find-a-customer-by-production-system-identification).
 2. After identifying the customer, check their credit balance to determine whether they have enough credit to cover the purchase. The available credits are at [GET /wallet/actions/credits-overview](https://carecloud.readme.io/reference/getwalletcredits).
 3. Depending on the available credit and the customer's decision on how much credit to use, send the amount of credit to use along with all purchase items in the request to [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment). For credit payments, use the appropriate `payment_type` (type `C`; for details, see the `payment_type` parameter in the [API reference](https://carecloud.readme.io/reference/postpurchaseacceptpayment)).
-4. The CareCloud API responds with a list of recommended benefits and discounts and information about the credit that can be used with that transaction.
+4. CareCloud APIs respond with a list of recommended benefits and discounts and information about the credit that can be used with that transaction.
 5. Retain the information about the credit used and reduce the final purchase price accordingly. Both values will be used in the following request to [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend).
 6. If the customer wants to modify the shopping cart, you can update the [POST /purchases/actions/accept-payment](https://carecloud.readme.io/reference/postpurchaseacceptpayment) request and repeat it multiple times before sending the final purchase with [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend).
 
 ### Send purchase (simple checkout)
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case describes the process when the POS, e-shop, or other system needs to send a paid purchase or order to CareCloud. All benefits and discounts have been applied (or not), and the system is ready to finalize the transaction.
 
 1. Before the transaction, ensure your system has synchronized products, product groups, and brands with CareCloud. Depending on your setup, synchronization may be necessary every time your product catalogue changes.
 2. To send the purchase, use [POST /purchases/actions/send-purchase](https://carecloud.readme.io/reference/postpurchasesend).
-3. Ensure all necessary parameters are set and the values match the current purchase: reduce the price based on any points or credits used, apply all benefits returned from the CareCloud API in previous steps (if applicable), and set the `payment_type` parameter appropriately for the type of transaction.
-4. If successful, the CareCloud API returns the purchase ID.
+3. Ensure all necessary parameters are set and the values match the current purchase: reduce the price based on any points or credits used, apply all benefits returned from CareCloud APIs in previous steps (if applicable), and set the `payment_type` parameter appropriately for the type of transaction.
+4. If successful, CareCloud APIs return the purchase ID.
 
 ### Cancel purchase
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 If you need to cancel a purchase already sent to CareCloud, follow these steps:
 
@@ -325,7 +325,7 @@ If you need to cancel a purchase already sent to CareCloud, follow these steps:
 
 ### Synchronize products, product groups, and product brands
 
-> 📘 **Interface:** Enterprise interface
+> 📘 **API:** Enterprise API
 
 This use case describes how to synchronize products from POS, e-shop, or other production systems into CareCloud. We recommend completing this synchronization before you start applying rewards and discounts or sending purchases.
 

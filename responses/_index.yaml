@@ -35,10 +35,10 @@ Forbidden:
                 example: "interface_not_allowed_exception"
               title:
                 type: string
-                example: "Enterprise interface is not allowed for this resource"
+                example: "Enterprise API is not allowed for this resource"
               detail:
                 type: string
-                example: "Resource name \"tokens\" is not allowed in Enterprise interface"
+                example: "Resource name \"tokens\" is not allowed in Enterprise API"
               error_data:
                 type: object
                 description: Data in case of an exception.

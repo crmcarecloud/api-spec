@@ -812,7 +812,7 @@ search_secondary_card_number:
   in: query
   description: |
     Include secondary card numbers in search for filters `card_number` and `card_number_list`.
-    *Possible values: true - CareCloud API search only secondary card numbers / false - CareCloud API search only card numbers / default behavior without parameter - CareCloud API search only card numbers*
+    *Possible values: true - only secondary card numbers are searched / false - only card numbers are searched / default behavior without parameter - only card numbers are searched*
   required: false
   schema:
     type: boolean
@@ -1229,7 +1229,7 @@ interest_id_path:
 language_list_type:
   name: language_list_type
   in: query
-  description: "Type of language list. All lists can be managed from the CareCloud administration interface. *Possible values: customer-communication - list of languages used for communication with the customer (emails, notifications or text messages) / web-portal - list of languages for CareCloud web portal / carecloud-api - languages supported by CareCloud REST API (API communicates in these languages).*"
+  description: "Type of language list. All lists can be managed from the CareCloud administration interface. *Possible values: customer-communication - list of languages used for communication with the customer (emails, notifications or text messages) / web-portal - list of languages for CareCloud web portal / carecloud-api - languages supported by CareCloud REST APIs (APIs communicate in these languages).*"
   required: false
   schema:
     type: string
