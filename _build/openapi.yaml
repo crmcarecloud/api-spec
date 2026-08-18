@@ -19587,7 +19587,7 @@ components:
           readOnly: true
           description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-01-17 00:00:00'
-        purchase_property_records:
+        property_records:
           type: array
           maxItems: 1000
           items:
