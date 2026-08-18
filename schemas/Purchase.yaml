@@ -1,5 +1,5 @@
 type: object
-description: Purchase.
+description: Purchase resource.
 properties:
   purchase_id:
     type: string
@@ -36,11 +36,12 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PurchaseItem'
     readOnly: true
-    description: List of all items of the purchase. Data is returned if query parameter purchase_items_extension has value true in the query string of the request.
+    description: |
+      List of the purchase items. The field is populated only when the `purchase_items_extension` query parameter is set to `true` on [GET /purchases](https://carecloud.readme.io/reference/getpurchases). Otherwise the value is an empty array.
   type_id:
     type: string
     readOnly: true
-    description: "The unique ID of the purchase type. [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes)"
+    description: The unique ID of the purchase type. [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes)
     example: "86e05affc7a7abefcd513ab400"
   total_price:
     type: number
@@ -55,12 +56,12 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   card_number:
     type: string
-    description: Purchasing customer card number.
+    description: The card number of the customer making the purchase.
     example: "1000000000016"
   cashdesk_number:
     type: string
     readOnly: true
-    description: Number of the cash-desk
+    description: Number of the cash desk.
     example: "2a"
   last_change:
     type: string
@@ -73,7 +74,8 @@ properties:
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
     readOnly: true
-    description: List of purchase property records.
+    description: |
+      List of purchase property records. The field is populated only when the `include_property_records` query parameter is set to `true` on [GET /purchases](https://carecloud.readme.io/reference/getpurchases). Otherwise the value is an empty array.
 required:
   - customer_id
   - store_id
