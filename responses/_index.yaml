@@ -50,7 +50,7 @@ Forbidden:
                     type: string
                     example: "Enterprise"
 NotFound:
-  description: The resource was not found.
+  description: The request path does not match any API route, or the addressed resource does not exist.
   content:
     application/json:
       schema:
@@ -63,7 +63,7 @@ NotFound:
                 properties:
                   error_data:
                     type: object
-                    description: Data in case of an exception.
+                    description: Data in case of an exception. The `resource_name` and `resource_id` fields are present only when a specific resource was looked up by its identifier; they are omitted for requests to non-existent paths.
                     properties:
                       resource_name:
                         type: string
@@ -72,7 +72,7 @@ NotFound:
                         type: string
                         example: "84b5e55448fbd6c0b22b4d"
 NotAllowed:
-  description: The resource does not support the specified HTTP method.
+  description: The request path matches a valid route, but the endpoint does not support the HTTP method used in the request.
   content:
     application/json:
       schema:

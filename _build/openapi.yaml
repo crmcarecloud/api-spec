@@ -5,7 +5,7 @@ info:
   description: |
     CareCloud REST APIs connect external systems with the CareCloud Customer Data Platform. They are used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
 
-    For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started) on the documentation portal.
+    For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started-with-your-api) on the documentation portal.
 
     ## APIs
 
@@ -64,7 +64,12 @@ info:
 
     All client-side input failures return HTTP 400. The response body's `error.error_data.invalid_params[].reason` field uses one of the generic reason codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`). Operations that involve domain-specific business rules (for example purchase closure, voucher application) may also return more specific reasons documented at the operation level.
 
-    See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+    The API distinguishes between two path-level error conditions:
+
+    - 404 Not Found is returned when the request path does not match any API route, or when the path is valid but the addressed resource does not exist (for example, a non-existent resource identifier in a path parameter).
+    - 405 Method Not Allowed is returned only when the request path matches a valid route but the endpoint does not support the HTTP method used in the request.
+
+    See the [Status codes section](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes) of the documentation portal for the full taxonomy.
 
     ## Rate limiting and retries
 
@@ -18275,7 +18280,7 @@ components:
                         type: string
                         example: Enterprise
     NotFound:
-      description: The resource was not found.
+      description: The request path does not match any API route, or the addressed resource does not exist.
       content:
         application/json:
           schema:
@@ -18288,7 +18293,7 @@ components:
                     properties:
                       error_data:
                         type: object
-                        description: Data in case of an exception.
+                        description: Data in case of an exception. The `resource_name` and `resource_id` fields are present only when a specific resource was looked up by its identifier; they are omitted for requests to non-existent paths.
                         properties:
                           resource_name:
                             type: string
@@ -18297,7 +18302,7 @@ components:
                             type: string
                             example: 84b5e55448fbd6c0b22b4d
     NotAllowed:
-      description: The resource does not support the specified HTTP method.
+      description: The request path matches a valid route, but the endpoint does not support the HTTP method used in the request.
       content:
         application/json:
           schema:
@@ -18397,7 +18402,7 @@ components:
         - **Generic reasons** (apply across operations): `already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`.
         - **Operation-specific reasons** (apply to endpoints with domain-specific business rules): documented at the operation level. Examples include reasons used by the purchase-closure pipeline such as `voucher_expired`, `voucher_already_used`, `bill_item_id` `item_price_lower_than_paid_amount`.
 
-        See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+        See the [Status codes section](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes) of the documentation portal for the full taxonomy.
       properties:
         error:
           allOf:

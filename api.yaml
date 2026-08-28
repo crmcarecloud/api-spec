@@ -5,7 +5,7 @@ info:
   description: |
     CareCloud REST APIs connect external systems with the CareCloud Customer Data Platform. They are used by backend integrations (e-commerce, point-of-sale, kiosks, booking systems) and by end-user applications (mobile apps, web microsites).
 
-    For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started) on the documentation portal.
+    For the full integration guide, see [Getting started](https://carecloud.readme.io/reference/getting-started-with-your-api) on the documentation portal.
 
     ## APIs
 
@@ -64,7 +64,12 @@ info:
 
     All client-side input failures return HTTP 400. The response body's `error.error_data.invalid_params[].reason` field uses one of the generic reason codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`). Operations that involve domain-specific business rules (for example purchase closure, voucher application) may also return more specific reasons documented at the operation level.
 
-    See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+    The API distinguishes between two path-level error conditions:
+
+    - 404 Not Found is returned when the request path does not match any API route, or when the path is valid but the addressed resource does not exist (for example, a non-existent resource identifier in a path parameter).
+    - 405 Method Not Allowed is returned only when the request path matches a valid route but the endpoint does not support the HTTP method used in the request.
+
+    See the [Status codes section](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes) of the documentation portal for the full taxonomy.
 
     ## Rate limiting and retries
 

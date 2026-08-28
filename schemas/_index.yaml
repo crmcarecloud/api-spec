@@ -326,7 +326,7 @@ BadRequestErrorBody:
     - **Generic reasons** (apply across operations): `already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`.
     - **Operation-specific reasons** (apply to endpoints with domain-specific business rules): documented at the operation level. Examples include reasons used by the purchase-closure pipeline such as `voucher_expired`, `voucher_already_used`, `bill_item_id` `item_price_lower_than_paid_amount`.
 
-    See the [Status codes section](https://carecloud.readme.io/reference/getting-started) of the documentation portal for the full taxonomy.
+    See the [Status codes section](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes) of the documentation portal for the full taxonomy.
   properties:
     error:
       allOf:
