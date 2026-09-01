@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the **specification for CareCloud REST APIs** — a modular OpenAPI 3.0.2 specification for the CareCloud CRM/CDP platform. The spec is maintained as split YAML files and compiled into a single bundled file for validation and documentation.
+This is the **specification for CareCloud REST APIs**, a modular OpenAPI 3.0.2 specification for the CareCloud CRM/CDP platform. The specification is maintained as split YAML files and compiled into a single bundled file for validation and documentation.
 
 ## Commands
 
@@ -26,8 +26,8 @@ The CI pipeline (`.gitlab-ci.yml`) runs `redocly-openapi-cli.sh` against `_build
 ### Workflow after any change
 
 Always run in this order:
-1. `bin/swagger-cli.sh` — bundle the spec
-2. `bin/redocly-openapi-cli.sh` — validate the bundle
+1. `bin/swagger-cli.sh` to bundle the specification
+2. `bin/redocly-openapi-cli.sh` to validate the bundle
 3. Spawn a Sonnet agent to review the language quality of every file that was modified in the current editing session
 
 If step 1 or 2 fails, fix the error and **repeat both steps from the start**. The most common errors are broken `$ref` paths and typos in property names. The validator (Redocly) catches these and will block progress until resolved.
@@ -36,11 +36,7 @@ Run all three steps automatically after **every editing session**, including whe
 
 #### Language review agent (step 3)
 
-Spawn a **Sonnet** agent (`model: sonnet`) that reviews the **full content** of every endpoint, schema, and parameter file modified in the session. The agent checks:
-- Grammar and spelling errors
-- Clarity and readability (short, direct sentences for a technical audience that may not be native English speakers)
-- Adherence to the writing style rules in this file (no unnecessary abbreviations, no marketing language, professional tone)
-- Consistency with how similar fields are described across the specification
+Spawn a **Sonnet** agent (`model: sonnet`) that reviews the **full content** of every endpoint, schema, and parameter file modified in the session against the Writing Style and Grammar rules in this file. The agent checks every rule in that section: grammar, audience and tone, and consistency with neighboring fields.
 
 The agent **reports findings only** and does not apply fixes. Each finding must be a **proposed change** containing:
 - The current text
@@ -52,17 +48,17 @@ Present the proposals to the user for approval. Only apply the changes the user 
 
 ## Architecture
 
-The spec is split into modular files referenced from `api.yaml`:
+The specification is split into modular files referenced from `api.yaml`:
 
 ```
 api.yaml                    ← Entry point; references all sections below
-├── paths/_index.yaml       ← Endpoint definitions (~282 files, organized into subdirectories by resource)
-├── schemas/_index.yaml     ← Reusable data models (~149 files)
-├── parameters/_index.yaml  ← Reusable query/header params (pagination, sorting, filters)
+├── paths/_index.yaml       ← Endpoint definitions (organized into subdirectories by resource)
+├── schemas/_index.yaml     ← Reusable data models
+├── parameters/_index.yaml  ← Reusable query/header parameters (pagination, sorting, filters)
 └── responses/_index.yaml   ← Standard HTTP response templates
 ```
 
-`_build/openapi.yaml` is the compiled output — edit the source files, not this file.
+`_build/openapi.yaml` is the compiled output. Edit the source files, not this file.
 
 Each section uses an `_index.yaml` file as its registry, mapping keys to `$ref` pointers to individual files.
 
@@ -74,8 +70,8 @@ Files under `paths/` are organized into subdirectories by resource type (e.g., `
 
 All endpoints are served under one of two APIs, controlled by the `{api_interface}` server variable:
 
-- **`enterprise-interface`** — For backend/POS/BI integrations. Uses Bearer token auth.
-- **`customer-interface`** — For mobile apps and web microsites. Uses Bearer token auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one API.
+- **`enterprise-interface`**: for backend/POS/BI integrations. Uses Bearer token auth.
+- **`customer-interface`**: for mobile apps and web microsites. Uses Bearer token auth. Some resources (e.g., `Tokens`, `Users`) are exclusive to one API.
 
 API-restricted endpoints include a warning in their `description` field:
 
@@ -88,10 +84,10 @@ API-restricted endpoints include a warning in their `description` field:
 
 Files under `paths/` are named descriptively in PascalCase after the resource or action they represent:
 
-- **List endpoint** — plural resource name, e.g., `Customers.yaml`, `Cards.yaml`
-- **Single resource endpoint** — singular resource name, e.g., `Customer.yaml`, `Card.yaml`
-- **Action endpoint** — descriptive action name, e.g., `CustomerAuthToken.yaml`, `CardAssign.yaml`, `CardGenerateDigital.yaml`
-- **Sub-resource relationship** — `Sub` prefix followed by the relationship name, e.g., `SubCardTypeCards.yaml`, `SubCampaignProductStoreRecords.yaml`
+- **List endpoint**: plural resource name
+- **Single resource endpoint**: singular resource name
+- **Action endpoint**: descriptive action name
+- **Sub-resource relationship**: `Sub` prefix followed by the relationship name
 
 ### Operation IDs
 
@@ -99,83 +95,21 @@ Every endpoint operation must have an `operationId` following this convention: H
 
 ### Standard Error Responses
 
-Error responses reference templates via `api.yaml`, not directly to `responses/_index.yaml`:
-
-```yaml
-$ref: '../../api.yaml#/components/responses/BadRequest'
-$ref: '../../api.yaml#/components/responses/Unauthorized'
-$ref: '../../api.yaml#/components/responses/Forbidden'
-$ref: '../../api.yaml#/components/responses/NotFound'
-$ref: '../../api.yaml#/components/responses/NotAllowed'
-$ref: '../../api.yaml#/components/responses/TooManyRequests'
-$ref: '../../api.yaml#/components/responses/InternalServerError'
-$ref: '../../api.yaml#/components/responses/ServiceUnavailable'
-```
+Error responses reference templates via `api.yaml`, not directly to `responses/_index.yaml`.
 
 ### Patterns and Conventions
 
-Follow existing file and schema patterns strictly. If you notice conflicting patterns across files, **do not guess which one is correct** — flag the conflict to the user and ask how to resolve it. Log conflicts that require a breaking change to resolve (they can be addressed in the next major API version).
-
-### Date and time fields
-
-Use these labels consistently:
-- Date + time field → **Timestamp**
-- Date-only field → **Date**
-- Time-only field → **Time**
-
-**Format conventions:**
-
-| Context | Format |
-|---|---|
-| API response (readOnly) | `YYYY-MM-DD HH:MM:SS` (space-delimited, no timezone indicator) |
-| API request (writable) | Accepts `YYYY-MM-DD HH:MM:SS` or ISO-8601 (`YYYY-MM-DDTHH:MM:SS`) |
-| Date-only | ISO-8601 `YYYY-MM-DD` |
-| Time-only | ISO-8601 `HH:MM:SS` |
-
-All times are always in the **local timezone** — never UTC. State this in every datetime description.
-
-**Description templates:**
-
-Datetime — readOnly:
-```
-Timestamp of [event]. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.
-```
-
-Datetime — writable:
-```
-Timestamp of [event]. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.
-```
-
-Datetime — query parameter:
-```
-[Filter context]. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.
-```
-
-Date only:
-```
-[Description] in ISO-8601 format (`YYYY-MM-DD`).
-```
-
-Time only:
-```
-[Description] in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone.
-```
-
-**Examples:**
-- readOnly datetime → `"2023-03-28 16:59:49"`
-- writable datetime → `"2021-04-14 00:00:00"`
-- query parameter datetime → `"2021-01-05 00:00:00"`
-- date-only → `"2023-04-01"`
+Follow existing file and schema patterns strictly. If you notice conflicting patterns across files, **do not guess which one is correct**. Flag the conflict to the user and ask how to resolve it. Log conflicts that require a breaking change to resolve (they can be addressed in the next major API version).
 
 ### Linking between resources
 
-When a field references an ID or entity from another resource, add a markdown URL link to that endpoint at the end of the field's description. Always link to the list endpoint (e.g., `GET /customers`), not the single-resource endpoint (e.g., `GET /customers/{customer_id}`). Use the full readme.io URL format that is already established across the spec:
+When a field references an ID or entity from another resource, add a markdown URL link to that endpoint at the end of the field's description. Always link to the list endpoint (e.g., `GET /customers`), not the single-resource endpoint (e.g., `GET /customers/{customer_id}`). Use the full readme.io URL format that is already established across the specification:
 
 ```
 [GET /customers](https://carecloud.readme.io/reference/getcustomers)
 ```
 
-The URL slug pattern is: HTTP method + resource name, all lowercase and concatenated — e.g., `getcustomers`, `getstores`, `getbookingticketproperties`, `postpurchasesend`.
+The URL slug pattern is: HTTP method + resource name, all lowercase and concatenated (e.g., `getcustomers`, `getstores`, `getbookingticketproperties`, `postpurchasesend`).
 
 There is no OpenAPI standard for cross-referencing operations in description fields. Full absolute URLs are the most portable format across documentation tools.
 
@@ -205,61 +139,39 @@ Other markdown files in the repository root (`bearerAuth.md`, `basicAuth.md`) ar
 
 ## Writing Style and Grammar
 
-Apply these rules to all description fields across the spec (paths, schemas, parameters, responses).
+Apply these rules to all description fields across the specification (paths, schemas, parameters, responses). The language review agent (step 3 of the post-edit workflow) checks against these same rules.
 
 ### Grammar and spelling
-- Fix typos, grammatical errors, and awkward phrasing throughout the spec
-- If a sentence is unclear or its meaning is ambiguous, **ask before changing it** — do not guess at intent
-- **Never change the meaning of a sentence**, even to improve readability; if a fix would require reinterpreting the original, ask for clarification first
+- Fix typos, grammatical errors, and awkward phrasing.
+- If a sentence is unclear or its meaning is ambiguous, ask before changing it. Do not guess at intent.
+- Never change the meaning of a sentence, even to improve readability. If a fix would require reinterpreting the original, ask for clarification first.
 
-### Language and tone
-- Match the tone already used in the spec: professional, factual, and descriptive
-- Write for a technical business audience that may not be native English speakers — prefer short, direct sentences over complex constructions
-- Spell out terms in full where possible; avoid abbreviations and acronyms unless they are standard in the industry and well-known (for example, API, ID, URL, CRM are acceptable)
-- Avoid buzzwords and marketing language; describe what things do, not how impressive they are
+### Audience and tone
+- Write for a technical business audience that may not be native English speakers. Prefer short, direct sentences over complex constructions.
+- Match the existing tone: professional, factual, and descriptive.
+- Spell out terms in full. Avoid abbreviations and acronyms unless they are industry standard and well-known (API, ID, URL, CRM are acceptable).
+- Avoid buzzwords and marketing language. Describe what things do, not how impressive they are.
 
-### HTML in descriptions
+### Consistency
+- Match how similar fields are described elsewhere in the specification. When adding or editing a field, read neighboring fields in the same schema for phrasing patterns.
 
-If a description field contains inline HTML, replace it with a YAML block scalar (`|`) and reformat the content as equivalent plain text or Markdown, preserving the same visual structure:
-
-- `<br/>` or `<br>` → a blank line between paragraphs, or leave as a line break where appropriate
-- `<p>...</p>` → a plain paragraph (blank line above and below)
-- `<h1>`, `<h2>`, etc. → Markdown headings (`#`, `##`, etc.)
-- `<ul>`/`<li>` → Markdown bullet list (`-`)
-- `<ol>`/`<li>` → Markdown numbered list (`1.`, `2.`, etc.)
-- `<strong>` or `<b>` → `**bold**`
-- `<em>` or `<i>` → `*italic*`
-- Escaped HTML entities (e.g. `\/`) → unescaped equivalents (`/`)
-
-Always use the `|` block scalar style when the description spans multiple lines. Keep the content and meaning identical — do not add, remove, or rephrase anything.
-
-Also replace folded scalar (`>`) style with `|` when the description contains `<br/>` or other HTML, since `>` collapses line breaks and makes HTML invisible.
-
-### Anchor links in descriptions
-
-When a description contains an anchor-style link (e.g., `[here](#section/Authentication)` or `[text](#operation/operationId)`), replace it with the equivalent full readme.io absolute URL. Never remove a link or replace it with plain text — preserve the original meaning and the link itself. Use the URL format:
-- Section links: `https://carecloud.readme.io/reference/<section-name>`
-- Operation links: `https://carecloud.readme.io/reference/<operationId-lowercase>`
-
-If you are unsure of the correct target URL, ask the user rather than removing the link.
-
-### Examples of the target style
-- Instead of: *"Leverage this endpoint to seamlessly sync customer data"* → write: *"Use this endpoint to synchronize customer data"*
-- Instead of: *"Utilize the ID param"* → write: *"Use the ID parameter"*
+### Examples
+- Instead of: "Leverage this endpoint to seamlessly sync customer data" write: "Use this endpoint to synchronize customer data."
+- Instead of: "Utilize the ID param" write: "Use the ID parameter."
 
 ## Common Tasks
 
 ### Backward compatibility (critical)
 
-If a requested change would break backward compatibility, **always notify the user and ask for explicit confirmation before applying it** — even if the user seems to have requested it. It may be a mistake. Only proceed after receiving clear confirmation.
+If a requested change would break backward compatibility, **always notify the user and ask for explicit confirmation before applying it**, even if the user seems to have requested it. It may be a mistake. Only proceed after receiving clear confirmation.
 
 This API must remain backward compatible within the current major version. All changes must follow these rules:
 
-- **Adding query parameters** — always optional, never required; include a description and an example
-- **Extending request/response bodies** — new fields must be optional; do not remove or rename existing fields. Before removing or renaming a field, verify it exists in the committed specification — a field added in the current editing session is not yet published and can be changed freely; a field present in a prior commit cannot be removed or renamed without a breaking change
-- **Deprecating parameters** — mark with `deprecated: true` and add a description explaining the replacement; never remove in the same major version
-- **Modifying descriptions** — safe to change at any time; keep consistent tone and style with surrounding text
-- **Linking resources** — use `$ref` to existing schemas/parameters rather than duplicating definitions; check `schemas/_index.yaml` and `parameters/_index.yaml` before creating anything new
+- **Adding query parameters**: always optional, never required. Include a description and an example.
+- **Extending request/response bodies**: new fields must be optional. Do not remove or rename existing fields. Before removing or renaming a field, verify it exists in the committed specification. A field added in the current editing session is not yet published and can be changed freely. A field present in a prior commit cannot be removed or renamed without a breaking change.
+- **Deprecating parameters**: mark with `deprecated: true` and add a description explaining the replacement. Never remove in the same major version.
+- **Modifying descriptions**: safe to change at any time. Keep consistent tone and style with surrounding text.
+- **Linking resources**: use `$ref` to existing schemas/parameters rather than duplicating definitions. Check `schemas/_index.yaml` and `parameters/_index.yaml` before creating anything new.
 
 ### Key Resource Categories
 
