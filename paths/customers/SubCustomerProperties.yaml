@@ -97,7 +97,10 @@ post:
   tags:
     - Customers
   summary: Add a property to a customer
-  description: Add a new specific customer property record to a customer account.
+  description: |
+    Add a new specific customer property record to a customer account.
+
+    Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
   operationId: postSubCustomerProperties
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

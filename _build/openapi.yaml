@@ -83,6 +83,30 @@ info:
     - Record-level: `POST /{resource}/{resource_id}/actions/{action_name}`
 
     Action method paths always contain an `actions` segment (for example `POST /customers/actions/set-partners`, `POST /purchases/actions/send-purchase`). See the per-operation documentation for what each action does.
+
+    ## Properties
+
+    Resources such as customers, events, stores, and tasks support custom properties. Properties extend standard resource records with project-specific attributes, for example, loyalty tier preferences, subscription levels, or other business-specific data.
+
+    Each property is defined by a **property definition** that specifies its name, data type, and validation rules. The actual data stored on a resource instance is called a **property record**, which links a property definition to its value.
+
+    ### Property categories
+
+    Properties fall into three categories based on their data type. The category determines whether a property can be set via the API.
+
+    - **Standard properties** have a scalar data type: `string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, or `multiselect`. Their values can be read and written via the API. Most properties belong to this category.
+    - **Dynamic properties** have a custom data type with a driver that computes the value automatically (for example, a timestamp driver that records the current date and time). Dynamic properties are read-only. The API rejects attempts to set their value.
+    - **System properties** are managed internally by the platform. System properties are read-only. The API rejects attempts to set their value.
+
+    All three categories are visible in the CareCloud administration interface. A developer may encounter a property identifier there and attempt to use it in an API write request. If the property is dynamic or system, the request fails.
+
+    ### Determining a property's category
+
+    Retrieve the property definition from the corresponding properties endpoint (for example, [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties) for customer properties or [GET /event-properties](https://carecloud.readme.io/reference/geteventproperties) for event properties) and inspect the `data_type` field. If the value is one of the standard types listed above, the property is writable. If it is a custom data type, check whether the property is configured as dynamic or system in the CareCloud administration interface.
+
+    ### Error on write attempts to read-only properties
+
+    When a write request includes a property record for a dynamic or system property, the API returns HTTP 400. The `error.error_data.invalid_params[].reason` field contains the code `not_allowed_value`, and the `message` field explains that the property is read-only and cannot be set via the API.
   license:
     name: EULA
     url: https://www.crmcarecloud.com/
@@ -3714,7 +3738,8 @@ paths:
                 property_records:
                   type: array
                   maxItems: 1000
-                  description: List of customer property records.
+                  description: |
+                    List of customer property records. Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. If a dynamic or system property is included, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
                 referral_code:
@@ -4005,7 +4030,8 @@ paths:
                 property_records:
                   type: array
                   maxItems: 1000
-                  description: List of customer property records.
+                  description: |
+                    List of customer property records. Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. If a dynamic or system property is included, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
               required:
@@ -4819,7 +4845,10 @@ paths:
       tags:
         - Customers
       summary: Add a property to a customer
-      description: Add a new specific customer property record to a customer account.
+      description: |
+        Add a new specific customer property record to a customer account.
+
+        Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
       operationId: postSubCustomerProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4880,6 +4909,8 @@ paths:
         Update a specific customer property record on a customer account.
 
         Replaces the value of a single custom property record on the customer account. To update multiple property records in a single request, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
+
+        Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
       operationId: putSubCustomerProperty
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4972,7 +5003,8 @@ paths:
                 property_records:
                   type: array
                   maxItems: 1000
-                  description: List of property records.
+                  description: |
+                    List of property records. Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. If a dynamic or system property is included, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
                 error_processing:
@@ -7690,7 +7722,8 @@ paths:
                 property_records:
                   type: array
                   maxItems: 1000
-                  description: Additional properties of the event. This parameter contain values in GET response only if query parameter `include_property_records` is set to true.
+                  description: |
+                    Additional properties of the event. This parameter contains values in the GET response only if the query parameter `include_property_records` is set to true. Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. If a dynamic or system property is included, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
               required:
@@ -15101,7 +15134,10 @@ paths:
       tags:
         - Stores
       summary: Add a property to a store
-      description: Add a new store property record to a store.
+      description: |
+        Add a new store property record to a store.
+
+        Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
       operationId: postSubStoreProperties
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -15209,7 +15245,10 @@ paths:
       tags:
         - Stores
       summary: Update a property record of the store
-      description: Update a specific store property record tied to the store.
+      description: |
+        Update a specific store property record tied to the store.
+
+        Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
       operationId: putSubStoreProperty
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -15555,7 +15594,8 @@ paths:
                 property_records:
                   type: array
                   maxItems: 1000
-                  description: List of a task property records
+                  description: |
+                    List of task property records. Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. If a dynamic or system property is included, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
                   items:
                     $ref: '#/components/schemas/PropertyRecord'
                 assignees:
@@ -18633,6 +18673,8 @@ components:
                 "property_value": "{\"street\":\"Main St\",\"city\":\"Prague\"}"
               }
               ```
+
+            **Important:** Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) accept a value in write requests. Properties with dynamic or system data types are read-only. If a write request includes a property record for a read-only property, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for a full explanation of property categories.
           example: '2002-02-02'
         last_change:
           type: string
@@ -18880,7 +18922,17 @@ components:
           example: size
         data_type:
           type: string
-          description: 'Data type of the final value. * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
+          description: |
+            Data type of the property value.
+
+            Standard (writable) data types: `string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`.
+
+            Properties may also have a custom data type. Custom data types fall into two read-only categories:
+
+            - **Dynamic properties** have a driver that computes the value automatically (for example, a timestamp driver that records the current date and time). The value is populated by the system and cannot be set via the API.
+            - **System properties** are managed internally by the platform and cannot be set via the API.
+
+            To determine whether a property is writable, check its `data_type` value. If it is one of the standard types listed above, the property accepts values in write requests. If it is a custom data type, the property may be dynamic or system. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
           example: string
         items:
           type: array

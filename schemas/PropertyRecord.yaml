@@ -103,6 +103,8 @@ properties:
           "property_value": "{\"street\":\"Main St\",\"city\":\"Prague\"}"
         }
         ```
+
+      **Important:** Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) accept a value in write requests. Properties with dynamic or system data types are read-only. If a write request includes a property record for a read-only property, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for a full explanation of property categories.
     example: "2002-02-02"
   last_change:
     type: string

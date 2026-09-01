@@ -16,7 +16,17 @@ properties:
     example: "size"
   data_type:
     type: string
-    description: 'Data type of the final value. * Possible values: string / boolean / integer / date / timestamp / float / customized data types*'
+    description: |
+      Data type of the property value.
+
+      Standard (writable) data types: `string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`.
+
+      Properties may also have a custom data type. Custom data types fall into two read-only categories:
+
+      - **Dynamic properties** have a driver that computes the value automatically (for example, a timestamp driver that records the current date and time). The value is populated by the system and cannot be set via the API.
+      - **System properties** are managed internally by the platform and cannot be set via the API.
+
+      To determine whether a property is writable, check its `data_type` value. If it is one of the standard types listed above, the property accepts values in write requests. If it is a custom data type, the property may be dynamic or system. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
     example: "string"
   items:
     type: array

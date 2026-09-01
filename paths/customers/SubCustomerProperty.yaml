@@ -6,6 +6,8 @@ put:
     Update a specific customer property record on a customer account.
 
     Replaces the value of a single custom property record on the customer account. To update multiple property records in a single request, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
+
+    Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
   operationId: putSubCustomerProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

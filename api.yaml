@@ -83,6 +83,30 @@ info:
     - Record-level: `POST /{resource}/{resource_id}/actions/{action_name}`
 
     Action method paths always contain an `actions` segment (for example `POST /customers/actions/set-partners`, `POST /purchases/actions/send-purchase`). See the per-operation documentation for what each action does.
+
+    ## Properties
+
+    Resources such as customers, events, stores, and tasks support custom properties. Properties extend standard resource records with project-specific attributes, for example, loyalty tier preferences, subscription levels, or other business-specific data.
+
+    Each property is defined by a **property definition** that specifies its name, data type, and validation rules. The actual data stored on a resource instance is called a **property record**, which links a property definition to its value.
+
+    ### Property categories
+
+    Properties fall into three categories based on their data type. The category determines whether a property can be set via the API.
+
+    - **Standard properties** have a scalar data type: `string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, or `multiselect`. Their values can be read and written via the API. Most properties belong to this category.
+    - **Dynamic properties** have a custom data type with a driver that computes the value automatically (for example, a timestamp driver that records the current date and time). Dynamic properties are read-only. The API rejects attempts to set their value.
+    - **System properties** are managed internally by the platform. System properties are read-only. The API rejects attempts to set their value.
+
+    All three categories are visible in the CareCloud administration interface. A developer may encounter a property identifier there and attempt to use it in an API write request. If the property is dynamic or system, the request fails.
+
+    ### Determining a property's category
+
+    Retrieve the property definition from the corresponding properties endpoint (for example, [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties) for customer properties or [GET /event-properties](https://carecloud.readme.io/reference/geteventproperties) for event properties) and inspect the `data_type` field. If the value is one of the standard types listed above, the property is writable. If it is a custom data type, check whether the property is configured as dynamic or system in the CareCloud administration interface.
+
+    ### Error on write attempts to read-only properties
+
+    When a write request includes a property record for a dynamic or system property, the API returns HTTP 400. The `error.error_data.invalid_params[].reason` field contains the code `not_allowed_value`, and the `message` field explains that the property is read-only and cannot be set via the API.
   license:
     name: "EULA"
     url: "https://www.crmcarecloud.com/"

@@ -142,7 +142,8 @@ put:
             property_records:
               type: array
               maxItems: 1000
-              description: List of customer property records.
+              description: |
+                List of customer property records. Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. If a dynamic or system property is included, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
               items:
                 $ref: '../../schemas/_index.yaml#/PropertyRecord'
           required:

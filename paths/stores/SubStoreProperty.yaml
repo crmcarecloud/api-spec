@@ -2,7 +2,10 @@ put:
   tags:
     - Stores
   summary: Update a property record of the store
-  description: Update a specific store property record tied to the store.
+  description: |
+    Update a specific store property record tied to the store.
+
+    Only properties with standard data types (`string`, `integer`, `boolean`, `float`, `date`, `timestamp`, `enum`, `multiselect`) can be set. Dynamic and system properties are read-only. If a read-only property is specified, the API returns HTTP 400 with reason code `not_allowed_value`. See the [Properties](https://carecloud.readme.io/reference/getting-started-with-your-api#properties) section for details.
   operationId: putSubStoreProperty
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
