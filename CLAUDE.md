@@ -42,7 +42,13 @@ Spawn a **Sonnet** agent (`model: sonnet`) that reviews the **full content** of 
 - Adherence to the writing style rules in this file (no unnecessary abbreviations, no marketing language, professional tone)
 - Consistency with how similar fields are described across the specification
 
-The agent **reports findings only** and does not apply fixes. Present the findings to the user for review before proceeding.
+The agent **reports findings only** and does not apply fixes. Each finding must be a **proposed change** containing:
+- The current text
+- The proposed replacement
+- A one-sentence explanation of why the change is needed
+- A scope label: **[new]** if the issue was introduced in the current editing session, or **[pre-existing]** if the text existed before this session
+
+Present the proposals to the user for approval. Only apply the changes the user approves. Drop unapproved findings without further action.
 
 ## Architecture
 
@@ -178,6 +184,24 @@ When linking to another endpoint from a description, read the target endpoint fi
 ```
 [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) (Enterprise API only)
 ```
+
+## Developer Portal Documentation
+
+The repository contains markdown files that are manually uploaded to the [CareCloud developer portal](https://carecloud.readme.io/reference). These files are **not part of the OpenAPI specification** and are not processed by the build or validation pipeline (`swagger-cli.sh`, `redocly-openapi-cli.sh`).
+
+| File | Portal page |
+|---|---|
+| `getting_started.md` | Getting started guide (URI structure, request/response format, pagination, status codes, properties, etc.) |
+| `quick-start.md` | Quick-start tutorial for making the first API call |
+| `use-cases.md` | Common integration use cases and workflows |
+| `best-practices.md` | Integration best practices (rate limiting, error handling, retries) |
+| `faq.md` | Frequently asked questions |
+| `authentication.md` | Authentication flow details |
+| `tools.md` | Developer tools and SDKs |
+
+Some topics are covered in both `api.yaml` `info.description` (rendered by the OpenAPI documentation tool) and a portal markdown file (uploaded separately). When updating such a topic, update both places to keep them consistent.
+
+Other markdown files in the repository root (`bearerAuth.md`, `basicAuth.md`) are referenced via `$ref` from `api.yaml` and are part of the OpenAPI specification. Do not confuse these with the portal files.
 
 ## Writing Style and Grammar
 
