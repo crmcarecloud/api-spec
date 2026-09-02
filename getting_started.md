@@ -101,6 +101,16 @@ Sorting is supported via:
 
 All parameters are optional. Supported parameters for each endpoint are listed in the API reference for that endpoint.
 
+### Filtering
+
+Most list endpoints accept query parameters that filter the returned records. Filters are combined with logical AND: a record must match all provided filters to appear in the result set.
+
+Array-typed filters accept multiple values using the bracket syntax `name[]=value1&name[]=value2`. Within a single array filter, values are combined with logical OR: a record matches if it matches any of the provided values.
+
+Some list endpoints support a strict matching mode via the `mode=strict` query parameter, which makes all declared filters required.
+
+When a filter parameter references a resource that does not exist in the system, the endpoint returns an empty result set with `total_items: 0`. It does not return an error. For array-typed filters, individual values that do not match a valid resource are skipped. If none of the provided values match, the result set is empty.
+
 ### HTTP headers
 
 HTTP headers are an essential part of calls to CareCloud APIs. They are used for language setup, authentication, or content identification.

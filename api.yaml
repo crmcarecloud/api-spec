@@ -40,16 +40,20 @@ info:
 
     Responses include `total_items` at the root of the `data` object. It reflects the total number of records matching the filter across all pages.
 
-    ## Sorting and filtering
+    ## Sorting
 
     Sorting is supported on list endpoints via two query parameters:
 
     - `sort_field` - any first-level field of the response array element.
     - `sort_direction` - `ASC` (default) or `DESC`.
 
-    Filters on a list endpoint are combined with logical AND. Array-typed filters (e.g. `email_list`, `customer_ids`) accept multiple values using the bracket syntax `name[]=value1&name[]=value2`. Within a single array filter, values are combined with logical OR.
+    ## Filtering
+
+    Filters on a list endpoint are combined with logical AND. Array-typed filters (for example `email_list`, `customer_ids`) accept multiple values using the bracket syntax `name[]=value1&name[]=value2`. Within a single array filter, values are combined with logical OR.
 
     Some list endpoints support a strict matching mode via the `mode=strict` query parameter, which makes all declared filters required.
+
+    When a filter parameter references a resource that does not exist in the system, the endpoint returns an empty result set with `total_items: 0`. It does not return an error. For array-typed filters, individual values that do not match a valid resource are skipped. If none of the provided values match, the result set is empty.
 
     ## Date and time
 
