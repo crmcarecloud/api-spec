@@ -31,7 +31,12 @@ post:
               example: 1
             recipient:
               type: string
-              description: Recipient of the message with OTP. The parameter could contain email, phone number or other identifier of the message recipient.
+              description: |
+                Recipient of the one-time password message. The expected format depends on the communication channel:
+                - **Email** (channel 1): a valid email address. The value is validated against the pattern `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
+                - **SMS** (channel 2): a phone number with international prefix, digits only, no leading zero. The value is validated against the pattern `^[1-9][0-9]*$`. Example: `420523828931`.
+
+                Only email (channel 1) and SMS (channel 2) are supported for one-time password delivery.
               example: "happy_customer@crmcarecloud.com"
             otp_type:
               type: integer
@@ -62,7 +67,7 @@ post:
                 properties:
                   request_id:
                     type: string
-                    description: The parameter specifies the request that caused the OTP to be created. The request ID is used as a parameter in [POST /one-time-password/actions/verify](https://carecloud.readme.io/reference/postverifyotp).
+                    description: This field identifies the request that caused the OTP to be created. The request ID is used as a parameter in [POST /one-time-password/actions/verify](https://carecloud.readme.io/reference/postverifyotp).
                     example: "c27c29917a1dec03ef0673d823619b776ab93353"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

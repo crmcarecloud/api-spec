@@ -16,7 +16,7 @@ count:
   description: |
     The number of records to return in API response.
 
-    ⚠️ We recommended adjust the batch size based on processing time. Depending on the response time of the request. Default value of 100 records is used if `count` parameter is not set.
+    ⚠️ We recommend adjusting the batch size based on the response time of the request. The default value of 100 records is used if the `count` parameter is not set.
   required: false
   schema:
     type: integer
@@ -196,7 +196,7 @@ external_id:
   name: external_id
   in: query
   required: false
-  description: The ID from other system than CareCloud. It is usually used for the synchronization or identification of the record in between CareCloud and other system. The ID doesn't need to be necessary unique. Usage of other parameter could be required to return more specific results.
+  description: The ID from another system. It is usually used for synchronization or identification of the record between CareCloud and the other system. The ID does not need to be unique. Using another parameter may be required to return more specific results.
   schema:
     type: string
   example: "18"
@@ -291,10 +291,12 @@ user_role_id_path:
 email:
   name: email
   in: query
-  description: 'Search by email.'
+  description: |
+    Search by email. The value is validated against the email format: `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
   required: false
   schema:
     type: string
+    pattern: ^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
   example: "happy_customer@crmcarecloud.com"
 email_list:
   name: email_list
@@ -314,10 +316,11 @@ email_list:
 phone:
   name: phone
   in: query
-  description: 'Phone number of the customer with international prefix (420000000000).'
+  description: 'Phone number of the customer with international prefix. Digits only, no leading zero. Example: 420523828931.'
   required: false
   schema:
     type: string
+    pattern: ^[1-9][0-9]*$
   example: "420523828931"
 login:
   name: login
@@ -1559,7 +1562,7 @@ external_reservation_code:
 external_reservation_list_type_id:
   name: external_reservation_list_type_id
   in: query
-  description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose. If set, `external_reservation_code` has to be present in request too. [GET /product-reservation-external-list-types](https://carecloud.readme.io/reference/getproductreservationexternallisttypes)
+  description: Every reservation can have more than one external code depending on the business requirements. This parameter selects which list of external codes to use. If set, `external_reservation_code` has to be present in the request too. [GET /product-reservation-external-list-types](https://carecloud.readme.io/reference/getproductreservationexternallisttypes)
   required: false
   schema:
     type: string
@@ -1567,7 +1570,7 @@ external_reservation_list_type_id:
 product_reservation_external_list_type_id_path:
   name: product_reservation_external_list_type_id
   in: path
-  description: Every reservation can have more than one external code depends of the business requirements. This parameter allows to pick from witch list of external codes you want to choose.
+  description: Every reservation can have more than one external code depending on the business requirements. This parameter selects which list of external codes to use.
   required: true
   schema:
     type: string
@@ -2140,7 +2143,7 @@ token_type:
   name: token_type
   in: query
   required: true
-  description: 'Parameter set witch token type should be generated. *Possible values: 1- alphanumeric, 2- numeric*'
+  description: 'Sets which token type should be generated. Possible values: 1 - alphanumeric, 2 - numeric.'
   schema:
     type: integer
     enum:
