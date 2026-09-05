@@ -6621,6 +6621,13 @@ paths:
         - If `partner_records` is an empty array (`[]`) or omitted - relations are created for all partners accessible to the authenticated API user.
 
         Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
+
+        **Agreements**
+
+        The `agreements` parameter is optional. Providing it updates only the consent types listed, leaving all others unchanged:
+
+        - If `agreements` is omitted - the customer's existing consents remain unchanged.
+        - If `agreements` is provided - only the consent types included in the request are updated; consent types not present in the request remain unchanged.
       operationId: postCustomerNewslettersSignUp
       requestBody:
         required: true
@@ -8692,7 +8699,7 @@ paths:
                   example: happy_customer@crmcarecloud.com
                 otp_type:
                   type: integer
-                  description: 'Sets the OTP type to generate. Possible values: 1 - alphanumeric, 2 - numeric.'
+                  description: 'Sets the one-time password type to generate. Possible values: 1 - alphanumeric, 2 - numeric.'
                   enum:
                     - 1
                     - 2
@@ -8700,7 +8707,7 @@ paths:
                   default: 1
                 message_template_id:
                   type: string
-                  description: The unique ID of the message template. If not set, CareCloud uses the default value from the system configuration.
+                  description: The unique ID of the message template. If not set, CareCloud uses the default value from the system configuration. When provided, the template must belong to the same communication channel specified in `communication_channel_id`.
               required:
                 - communication_channel_id
                 - recipient
@@ -12152,11 +12159,11 @@ paths:
                   example: 1
                 card_number:
                   type: string
-                  description: The customer card number.
+                  description: The customer card number. When both `customer_id` and `card_number` are provided, the card must belong to the specified customer.
                   example: '1000000000016'
                 customer_id:
                   type: string
-                  description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
+                  description: ID of the customer that made the purchase. You can search customers using multiple parameters on the customers resource.
                   example: 8ea2591121e636086a4a9c0992
                 bill:
                   $ref: '#/components/schemas/FinalBill'
@@ -19205,7 +19212,7 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         campaign_product_id:
           type: string
-          description: The unique ID of the campaign product. [GET /campaign-products](https://carecloud.readme.io/reference/getcampaignproducts)
+          description: The unique ID of the campaign product. When used in a sub-resource endpoint, this value must match the `campaign_product_id` path parameter. [GET /campaign-products](https://carecloud.readme.io/reference/getcampaignproducts)
           example: 81eaeea13b8984a169c490a325
       required:
         - store_id
@@ -20764,12 +20771,12 @@ components:
           example: 81eaeea13b8984a169c490a325
         customer_id:
           type: string
-          description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+          description: The unique ID of the customer. When used in a sub-resource endpoint, this value must match the `customer_id` path parameter. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
           example: 8ea2591121e636086a4a9c0992
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2023-03-13 17:35:05'
       required:
         - interest_id
@@ -21454,11 +21461,11 @@ components:
           readOnly: true
           description: |
             The status ID of the message.
-            *Possible values are: 0 - message was not sent / 1 - message was sent successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 - Scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status will change to error.)*
+            *Possible values are: 0 - message was not sent / 1 - message was sent successfully / -1 - message was not received (it was returned) / -2 - message was not received (soft bounce) / 2 - an error occurred while sending / 4 - customer has no agreements (GDPR) / 5 - scheduled for retry (the message was not delivered because of an error and will be sent repeatedly. If not successful, the status will change to error.)*
           example: 1
         message_template_id:
           type: string
-          description: The unique ID of the message template. [GET /message-templates](https://carecloud.readme.io/reference/getmessagetemplates)
+          description: The unique ID of the message template. The template must belong to the same communication channel specified in `communication_channel_id`. [GET /message-templates](https://carecloud.readme.io/reference/getmessagetemplates)
           example: 8bed991c68a470e7aaeffbf048
         customer_id:
           type: string
@@ -21466,12 +21473,12 @@ components:
           example: 8ea2591121e636086a4a9c0992
         contact:
           type: string
-          description: Email address or phone number of customer in case of send message to different contact than customer has in database.
+          description: Email address or phone number to use when sending the message to a different contact than the one associated with the customer.
           example: happy_customer@crmcarecloud.com
         title:
           type: string
           readOnly: true
-          description: Subject of the email message/ Title of notification message / Preview of the text message . Mandatory only in case of email template.
+          description: Subject of the email message, title of the notification message, or preview of the text message. Mandatory only for email templates.
           example: Newsletter no. 30
         send_time:
           type: string
@@ -21500,14 +21507,14 @@ components:
             - 2
             - 4
             - 5
-          description: 'The unique ID of the communication channel. *Possible values are: 1 - email / 2- SMS / 4 - PUSH notification (Apple or Google)/ 5 - internal system notification* [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)'
+          description: 'The unique ID of the communication channel. Possible values: 1 - email, 2 - SMS, 4 - push notification (Apple or Google), 5 - internal system notification. [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)'
           example: 1
         message_data:
           type: array
           maxItems: 1000
           items:
             $ref: '#/components/schemas/Parameter'
-          description: Message data could contains array of customized parameters. They may have influence on message display or add values to message.
+          description: Message data can contain an array of customized parameters that influence how the message is displayed or add values to the message.
         attachments:
           type: array
           maxItems: 1000

@@ -12,7 +12,7 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   campaign_product_id:
     type: string
-    description: The unique ID of the campaign product. [GET /campaign-products](https://carecloud.readme.io/reference/getcampaignproducts)
+    description: The unique ID of the campaign product. When used in a sub-resource endpoint, this value must match the `campaign_product_id` path parameter. [GET /campaign-products](https://carecloud.readme.io/reference/getcampaignproducts)
     example: "81eaeea13b8984a169c490a325"
 required:
   - store_id

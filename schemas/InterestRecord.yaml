@@ -12,12 +12,12 @@ properties:
     example: "81eaeea13b8984a169c490a325"
   customer_id:
     type: string
-    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+    description: The unique ID of the customer. When used in a sub-resource endpoint, this value must match the `customer_id` path parameter. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
     example: "8ea2591121e636086a4a9c0992"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2023-03-13 17:35:05"
 required:
   - interest_id

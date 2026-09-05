@@ -38,11 +38,11 @@ post:
               example: 1
             card_number:
               type: string
-              description: The customer card number.
+              description: The customer card number. When both `customer_id` and `card_number` are provided, the card must belong to the specified customer.
               example: "1000000000016"
             customer_id:
                 type: string
-                description: ID of the customer that made the purchase. You can search customers by plenty parameter in the resource customers.
+                description: ID of the customer that made the purchase. You can search customers using multiple parameters on the customers resource.
                 example: "8ea2591121e636086a4a9c0992"
             bill:
               $ref: '../../schemas/_index.yaml#/FinalBill'
