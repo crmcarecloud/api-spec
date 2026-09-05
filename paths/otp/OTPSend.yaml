@@ -40,7 +40,7 @@ post:
               example: "happy_customer@crmcarecloud.com"
             otp_type:
               type: integer
-              description: 'Sets the OTP type to generate. Possible values: 1 - alphanumeric, 2 - numeric.'
+              description: 'Sets the one-time password type to generate. Possible values: 1 - alphanumeric, 2 - numeric.'
               enum:
                 - 1
                 - 2
@@ -48,7 +48,7 @@ post:
               default: 1
             message_template_id:
               type: string
-              description: The unique ID of the message template. If not set, CareCloud uses the default value from the system configuration.
+              description: The unique ID of the message template. If not set, CareCloud uses the default value from the system configuration. When provided, the template must belong to the same communication channel specified in `communication_channel_id`.
           required:
             - communication_channel_id
             - recipient
