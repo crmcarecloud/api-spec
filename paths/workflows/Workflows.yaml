@@ -1,0 +1,58 @@
+get:
+  tags:
+    - Workflows
+  summary: Get all workflows
+  description: |
+    Get a list of all marketing automation workflows. A workflow is a process that guides customers through a sequence of triggers, conditions, and actions. Events recorded on customer accounts are the primary trigger mechanism for workflows.
+
+    ⚠️ There is a logical AND between the query parameters `planned_start` and `planned_end`. When both are provided, only workflows matching both conditions are returned. A workflow is excluded if it has no value in a field that a provided filter uses.
+
+    ⚠️ Endpoint is available only in Enterprise API.
+  operationId: getWorkflows
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/processing_status'
+    - $ref: '../../parameters/_index.yaml#/planned_start'
+    - $ref: '../../parameters/_index.yaml#/planned_end'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetWorkflows200Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  workflows:
+                    type: array
+                    description: List of the workflows.
+                    items:
+                      $ref: '../../schemas/_index.yaml#/Workflow'
+                  total_items:
+                    type: integer
+                    description: The number of all found workflows.
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
