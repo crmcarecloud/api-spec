@@ -1,0 +1,101 @@
+type: object
+description: |
+  An omnichannel campaign is a digital communication campaign that delivers messages to a target audience through a specific communication channel (email, SMS, push notification, or Viber). Each campaign is linked to an audience that defines the recipients and a message template that defines the content. Campaigns can be scheduled for a specific time and tracked through UTM parameters.
+
+  ⚠️ This resource is available only in Enterprise API.
+properties:
+  omnichannel_campaign_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the omnichannel campaign.
+    example: "8bed991c68a470e7aaeffbf048"
+  name:
+    type: string
+    description: Name of the omnichannel campaign.
+    example: "Summer newsletter 2026"
+  communication_channel_id:
+    type: string
+    readOnly: true
+    description: |
+      The unique ID of the communication channel used for this campaign. [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)
+    example: "86e05affc7a7abefcd513ab400"
+  audience_id:
+    type: string
+    readOnly: true
+    description: |
+      The unique ID of the audience targeted by this campaign. [GET /audiences](https://carecloud.readme.io/reference/getaudiences)
+    example: "8bed991c68a470e7aaeffbf048"
+  message_template_id:
+    type: string
+    readOnly: true
+    description: |
+      The unique ID of the message template used by this campaign. [GET /message-templates](https://carecloud.readme.io/reference/getmessagetemplates)
+    example: "8bed991c68a470e7aaeffbf048"
+  sending_time:
+    type: string
+    readOnly: true
+    description: "Timestamp of the scheduled sending time. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2026-09-20 10:00:00"
+  priority:
+    type: integer
+    enum:
+      - 1
+      - 2
+      - 3
+    readOnly: true
+    description: |
+      Priority of the campaign.
+      *Possible values are: 1 - low / 2 - medium / 3 - high*
+    example: 2
+  campaign_type_id:
+    type: integer
+    enum:
+      - 1
+      - 2
+      - 3
+    readOnly: true
+    description: |
+      Type of the omnichannel campaign.
+      *Possible values are: 1 - newsletter / 2 - system / 3 - transactional*
+    example: 1
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    readOnly: true
+    description: |
+      State of the omnichannel campaign.
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1
+  sending_status:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+    readOnly: true
+    description: |
+      Sending status of the campaign.
+      *Possible values are: 0 - scheduled / 1 - sending / 2 - paused / 3 - sent*
+    example: 0
+  comment:
+    type: string
+    description: Comment or note about the campaign.
+    example: "Monthly newsletter for loyalty program members"
+  utm:
+    $ref: '../schemas/_index.yaml#/UTM'
+  created_by:
+    type: string
+    readOnly: true
+    description: The unique ID of the user that created the campaign. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
+    example: "8bed991c68a470e7aaeffbf048"
+  last_change:
+    type: string
+    readOnly: true
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2026-09-14 12:30:00"
+required:
+  - name

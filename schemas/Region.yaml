@@ -1,0 +1,30 @@
+type: object
+description: Region resource.
+properties:
+  region_id:
+    type: string
+    description: The unique ID of the region.
+    example: "8bed991c68a470e7aaeffbf048"
+  name:
+    type: string
+    description: Name of the region. Language depends on the `Accept-Language` header from the request.
+    example: "South Bohemian Region"
+  code:
+    type: string
+    description: ISO 3166-2 subdivision code of the region.
+    example: "CZ-JC"
+  country_id:
+    type: string
+    description: |
+      The unique ID of the country the region belongs to. The list of countries is available at [GET /countries](https://carecloud.readme.io/reference/getcountries).
+    example: "cz"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    description: |
+      State of the region.
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1

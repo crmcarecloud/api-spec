@@ -1,0 +1,89 @@
+type: object
+readOnly: true
+description: |
+  Sociodemographic criteria for audience or segment membership. All specified fields within this category must match (AND logic). Array values within a single field use OR logic (any value in the array matches).
+properties:
+  gender:
+    type: array
+    readOnly: true
+    description: |
+      List of gender values. A customer matches if their gender is any of the listed values.
+
+      *Possible values are: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other*
+    items:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+    example: [1, 2]
+  age_range:
+    type: object
+    readOnly: true
+    description: Age range filter. A customer matches if their age falls within the specified range (inclusive).
+    properties:
+      from:
+        type: integer
+        readOnly: true
+        description: Minimum age (inclusive).
+        example: 18
+      to:
+        type: integer
+        readOnly: true
+        description: Maximum age (inclusive).
+        example: 65
+  birthday_range:
+    type: object
+    readOnly: true
+    description: Birthday date range filter (month and day only, ignoring year). A customer matches if their birthday falls within the specified range.
+    properties:
+      date_from:
+        type: string
+        readOnly: true
+        description: Start of the birthday range in `MM-DD` format.
+        example: "01-01"
+      date_to:
+        type: string
+        readOnly: true
+        description: End of the birthday range in `MM-DD` format.
+        example: "03-31"
+  territory:
+    type: object
+    readOnly: true
+    description: Geographic territory filter. A customer matches if their address falls within any of the specified geographic areas. When multiple levels are specified (countries, regions, districts), all levels must match.
+    properties:
+      country_ids:
+        type: array
+        readOnly: true
+        description: List of country IDs. The list of countries is available at [GET /countries](https://carecloud.readme.io/reference/getcountries).
+        items:
+          type: string
+        example: ["86e05affc7a7abefcd513ab400"]
+      region_ids:
+        type: array
+        readOnly: true
+        description: List of region IDs within the selected countries. The list of regions is available at [GET /regions](https://carecloud.readme.io/reference/getregions).
+        items:
+          type: string
+        example: ["8bed991c68a470e7aaeffbf048"]
+      district_ids:
+        type: array
+        readOnly: true
+        description: List of district IDs within the selected regions. The list of districts is available at [GET /districts](https://carecloud.readme.io/reference/getdistricts).
+        items:
+          type: string
+        example: ["82de12eb8b138791e678fd11c1"]
+  zip_range:
+    type: string
+    readOnly: true
+    description: ZIP code range pattern for filtering customers by postal code. The format depends on the country's postal code system.
+    example: "100 00-199 99"
+  communication_language_ids:
+    type: array
+    readOnly: true
+    description: List of communication language IDs. A customer matches if their preferred communication language is any of the listed values. The list of languages is available at [GET /languages](https://carecloud.readme.io/reference/getlanguages).
+    items:
+      type: string
+    example: ["en", "cs"]

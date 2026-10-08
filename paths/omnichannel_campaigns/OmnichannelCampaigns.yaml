@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Omnichannel campaigns
+  summary: Get all omnichannel campaigns
+  description: |
+    Get a list of all omnichannel campaigns. An omnichannel campaign is a digital communication campaign that delivers messages to a target audience through a specific communication channel (email, SMS, push notification, or Viber).
+
+    ⚠️ Endpoint is available only in Enterprise API.
+  operationId: getOmnichannelCampaigns
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/name'
+    - $ref: '../../parameters/_index.yaml#/communication_channel_id'
+    - $ref: '../../parameters/_index.yaml#/omnichannel_campaign_type_id'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetOmnichannelCampaigns200Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  omnichannel_campaigns:
+                    type: array
+                    maxItems: 1000
+                    description: List of the omnichannel campaigns.
+                    items:
+                      $ref: '../../schemas/_index.yaml#/OmnichannelCampaign'
+                  total_items:
+                    type: integer
+                    description: The number of all found omnichannel campaigns.
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

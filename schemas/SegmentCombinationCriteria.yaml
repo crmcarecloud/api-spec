@@ -1,0 +1,24 @@
+type: object
+readOnly: true
+description: |
+  Segment combination criteria for audience or segment membership. This criterion combines the membership of other segments using a set operation.
+properties:
+  segment_ids:
+    type: array
+    readOnly: true
+    description: List of segment IDs to combine. The list of segments is available at [GET /segments](https://carecloud.readme.io/reference/getsegments).
+    items:
+      type: string
+    example: ["86e05affc7a7abefcd513ab400", "82de12eb8b138791e678fd11c1"]
+  operation:
+    type: integer
+    readOnly: true
+    enum:
+      - 0
+      - 1
+      - 2
+    description: |
+      The set operation used to combine the specified segments.
+
+      *Possible values are: 0 - union (customers in any of the segments) / 1 - intersection (customers in all of the segments) / 2 - exclusive union (customers in exactly one of the segments)*
+    example: 1

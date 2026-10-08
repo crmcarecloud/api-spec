@@ -1,0 +1,19 @@
+type: object
+readOnly: true
+description: |
+  Consent and communication preference criteria for audience or segment membership. All specified fields within this category must match (AND logic). Array values within a single field use OR logic (any value in the array matches).
+properties:
+  consent_type_ids:
+    type: array
+    readOnly: true
+    description: List of consent type IDs. A customer matches if they have granted any of the listed consent types.
+    items:
+      type: string
+    example: ["86e05affc7a7abefcd513ab400"]
+  consent_source_ids:
+    type: array
+    readOnly: true
+    description: List of customer source IDs that represent the origin of the consent. A customer matches if their consent was obtained from any of the listed sources. The list of customer sources is available at [GET /customer-sources](https://carecloud.readme.io/reference/getcustomersources).
+    items:
+      type: string
+    example: ["82de12eb8b138791e678fd11c1"]

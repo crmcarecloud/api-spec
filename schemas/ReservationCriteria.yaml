@@ -1,0 +1,26 @@
+type: object
+readOnly: true
+description: |
+  Reservation criteria for audience or segment membership. All specified fields within this category must match (AND logic). Array values within a single field use OR logic (any value in the array matches).
+properties:
+  product_ids:
+    type: array
+    readOnly: true
+    description: List of reservation product IDs. A customer matches if they have reservations containing any of the listed products.
+    items:
+      type: string
+    example: ["86e05affc7a7abefcd513ab400"]
+  states:
+    type: array
+    readOnly: true
+    description: List of reservation state codes. A customer matches if they have reservations in any of the listed states.
+    items:
+      type: integer
+    example: [1, 2]
+  source_ids:
+    type: array
+    readOnly: true
+    description: List of reservation source IDs. A customer matches if their reservations were created from any of the listed sources. The list of reservation sources is available at [GET /product-reservation-sources](https://carecloud.readme.io/reference/getproductreservationsources).
+    items:
+      type: string
+    example: ["82de12eb8b138791e678fd11c1"]

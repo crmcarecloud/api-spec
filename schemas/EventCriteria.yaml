@@ -1,0 +1,31 @@
+type: object
+readOnly: true
+description: |
+  Event and activity criteria for audience or segment membership. All specified fields within this category must match (AND logic). Array values within a single field use OR logic (any value in the array matches).
+properties:
+  event_type_ids:
+    type: array
+    readOnly: true
+    description: List of event type IDs. A customer matches if they have events of any of the listed types. The list of event types is available at [GET /event-types](https://carecloud.readme.io/reference/geteventtypes).
+    items:
+      type: string
+    example: ["86e05affc7a7abefcd513ab400"]
+  event_properties:
+    type: object
+    readOnly: true
+    description: Event property conditions. Each key represents a property ID and the value specifies the condition that must be met on that property.
+    additionalProperties:
+      type: object
+      readOnly: true
+      properties:
+        value:
+          readOnly: true
+          description: The expected value of the event property.
+        operator:
+          type: string
+          readOnly: true
+          description: |
+            The comparison operator applied to the event property value.
+
+            *Possible values are: `equals`, `not_equals`, `greater_than`, `less_than`, `contains`.*
+          example: "equals"

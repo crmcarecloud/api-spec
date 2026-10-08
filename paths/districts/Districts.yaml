@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Districts
+  summary: Get all districts
+  description: |
+    Get a list of all districts available in the CareCloud platform. District records represent the second level of geographic subdivision within a country (for example, a county within a region). They are used in audience and segment sociodemographic criteria to filter customers by territory.
+
+    Use the `region_id` parameter to retrieve districts within a specific region, or the `district_name` parameter to search by name. The list of regions is available at [GET /regions](https://carecloud.readme.io/reference/getregions).
+  operationId: getDistricts
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/count'
+    - $ref: '../../parameters/_index.yaml#/offset'
+    - $ref: '../../parameters/_index.yaml#/sort_field'
+    - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/region_id'
+    - $ref: '../../parameters/_index.yaml#/district_name'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetDistricts200Response
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  districts:
+                    type: array
+                    maxItems: 1000
+                    description: List of the districts.
+                    items:
+                      $ref: '../../schemas/_index.yaml#/District'
+                  total_items:
+                    type: integer
+                    description: The number of all found districts.
+                    example: 1
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'

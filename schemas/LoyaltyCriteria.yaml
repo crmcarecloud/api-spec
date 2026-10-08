@@ -1,0 +1,52 @@
+type: object
+readOnly: true
+description: |
+  Loyalty program criteria for audience or segment membership. All specified fields within this category must match (AND logic). Array values within a single field use OR logic (any value in the array matches).
+properties:
+  level_ids:
+    type: array
+    readOnly: true
+    description: List of membership level IDs. A customer matches if their current loyalty level is any of the listed values. The list of statuses (levels) is available at [GET /statuses](https://carecloud.readme.io/reference/getstatuses).
+    items:
+      type: string
+    example: ["86e05affc7a7abefcd513ab400"]
+  available_points_range:
+    type: object
+    readOnly: true
+    description: Available loyalty points range filter. A customer matches if their current available point balance falls within the specified range (inclusive).
+    properties:
+      from:
+        type: number
+        readOnly: true
+        description: Minimum available points (inclusive).
+        example: 100
+      to:
+        type: number
+        readOnly: true
+        description: Maximum available points (inclusive).
+        example: 5000
+  turnover_points:
+    type: object
+    readOnly: true
+    description: Points earned within a date range filter. A customer matches if the total number of points they earned during the specified period falls within the specified range.
+    properties:
+      points_from:
+        type: number
+        readOnly: true
+        description: Minimum points earned in the period (inclusive).
+        example: 50
+      points_to:
+        type: number
+        readOnly: true
+        description: Maximum points earned in the period (inclusive).
+        example: 1000
+      date_from:
+        type: string
+        readOnly: true
+        description: "Start of the measurement period. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+        example: "2024-01-01 00:00:00"
+      date_to:
+        type: string
+        readOnly: true
+        description: "End of the measurement period. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+        example: "2024-12-31 23:59:59"
