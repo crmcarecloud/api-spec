@@ -1,0 +1,71 @@
+type: object
+description: |
+  A workflow is a marketing automation process that guides customers through a sequence of triggers, conditions, and actions. Workflows are built in the Marketing Automation application using a visual editor where each step is represented as a node in a flow diagram.
+
+  A workflow typically starts with a trigger node that defines when a customer enters the workflow. Events recorded on a customer account (see [GET /events](https://carecloud.readme.io/reference/getevents)) are the primary trigger mechanism. Once a customer enters a workflow, they are processed through condition nodes that evaluate criteria (for example, segment membership or customer properties). Action nodes then perform operations such as sending a message (see [GET /messages](https://carecloud.readme.io/reference/getmessages)) through a communication channel or adding the customer to a segment (see [GET /segments](https://carecloud.readme.io/reference/getsegments)).
+
+  Workflows can be scheduled for activation and deactivation using the `planned_start` and `planned_end` fields.
+
+  ⚠️ This resource is available only in Enterprise API.
+properties:
+  workflow_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the workflow.
+    example: "8bed991c68a470e7aaeffbf048"
+  name:
+    type: string
+    readOnly: true
+    description: Name of the workflow.
+    example: "Welcome flow"
+  description:
+    type: string
+    readOnly: true
+    description: Description of the workflow.
+    example: "Onboarding process for new loyalty program members"
+  processing_status:
+    type: integer
+    enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+    readOnly: true
+    description: |
+      Processing status of the workflow.
+
+      *Possible values are:*
+      *1 - soft test: the workflow processes designated test customers through the workflow logic but does not trigger external actions (email, SMS, or push notification).*
+      *2 - functional test: the workflow processes designated test customers and triggers all actions including external ones. It behaves like production but is limited to test customers.*
+      *3 - active: the workflow is fully active. It processes all qualifying customers and triggers all actions.*
+      *4 - finishing: the workflow no longer accepts new customers but continues processing customers already in the workflow until they finish.*
+      *5 - inactive: the workflow is paused and does not process any customers.*
+      *6 - archived: the workflow is preserved for historical reference and is not visible in the default workflow list.*
+    example: 3
+  planned_start:
+    type: string
+    readOnly: true
+    description: "Timestamp of the planned activation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2025-01-15 08:00:00"
+  planned_end:
+    type: string
+    readOnly: true
+    description: "Timestamp of the planned deactivation or finishing. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2025-06-30 23:59:59"
+  created_by:
+    type: string
+    readOnly: true
+    description: The unique ID of the user that created the workflow. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
+    example: "8bed991c68a470e7aaeffbf048"
+  create_date:
+    type: string
+    readOnly: true
+    description: "Timestamp of the workflow creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2024-11-20 14:30:00"
+  last_change:
+    type: string
+    readOnly: true
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    example: "2025-01-10 09:15:22"

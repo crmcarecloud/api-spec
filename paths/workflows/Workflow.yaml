@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Workflows
+  summary: Get a workflow
+  description: |
+    Get information about a specific marketing automation workflow.
+
+    ⚠️ Endpoint is available only in Enterprise API.
+  operationId: getWorkflow
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/workflow_id_path'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetWorkflow200Response
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/Workflow'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
