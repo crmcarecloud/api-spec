@@ -218,6 +218,7 @@ Status codes represent the status of the API response.
 | 403 Forbidden             | The client does not exist, or the client tried to access non-authorized property/resource                 |
 | 404 Not Found             | The resource was not found                                                                                |
 | 405 Method Not Allowed    | The resource does not support the specified HTTP method                                                   |
+| 422 Unprocessable Entity  | The request is well-formed but cannot be processed due to a business rule or resource limit. For example, creating a segment when the project has reached its maximum segment limit. |
 | 429 Too Many Requests     | Too many requests - more than the resource limit                                                          |
 | 500 Internal Server Error | The server is not working as expected                                                                     |
 | 503 Service Unavailable   | Temporary state when the service is temporarily unavailable, overloaded, or there is a maintenance window |

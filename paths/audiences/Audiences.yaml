@@ -15,6 +15,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/sort_direction'
     - $ref: '../../parameters/_index.yaml#/name'
     - $ref: '../../parameters/_index.yaml#/communication_channel_id'
+    - $ref: '../../parameters/_index.yaml#/include_customer_count'
   responses:
     '200':
       description: OK

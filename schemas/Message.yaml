@@ -51,12 +51,12 @@ properties:
   mail_client_user_agent:
     type: string
     readOnly: true
-    description: User agent of the mail client application where message was opened.
+    description: User agent of the mail client application where the message was opened.
     example: "Mozilla\/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko\/20100101 Thunderbird\/78.11.0"
   mail_client_language:
     type: string
     readOnly: true
-    description: Language of the mail client application where message was opened.
+    description: Language of the mail client application where the message was opened.
     example: "cs,sk;q=0.8,en-US;q=0.5,en;q=0.3"
   communication_channel_id:
     type: integer
@@ -75,10 +75,10 @@ properties:
     description: Message data can contain an array of customized parameters that influence how the message is displayed or add values to the message.
   attachments:
     type: array
-    maxItems: 1000
+    readOnly: true
     items:
-      $ref: '../schemas/_index.yaml#/Attachment'
-    description: "List of the attachments for the message. A single attachment has a size limit of 1 MB. File type restrictions: .jpg, .jpeg, .png, .gif, and .pdf."
+      $ref: '../schemas/_index.yaml#/AttachmentInfo'
+    description: List of the attachments from the message.
   last_change:
     type: string
     readOnly: true

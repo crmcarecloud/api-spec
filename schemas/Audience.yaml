@@ -14,6 +14,11 @@ properties:
     type: string
     description: The unique ID of the communication channel from CareCloud. The list of communication channels is available at [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels).
     example: "8bed991c68a470e7aaeffbf048"
+  customer_count:
+    type: integer
+    readOnly: true
+    description: The number of customers currently included in the audience. This value is cached and may not reflect real-time membership changes. On the detail endpoint (`GET /audiences/{audience_id}`), this field is always included. On the list endpoint (`GET /audiences`), this field is only included when the query parameter `include_customer_count` is set to `true`.
+    example: 12450
   state:
     type: integer
     enum:

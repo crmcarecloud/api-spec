@@ -258,6 +258,16 @@ include_property_records:
   in: query
   description: "If true, the property record structure will be included in the response. Possible values: true - property records structure will be included / false or not set - property records structure won't be included, and parameter will return null value"
   example: true
+include_customer_count:
+  name: include_customer_count
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  in: query
+  description: "If true, the customer_count field will be included in each record in the response. The count is cached and may not reflect real-time membership changes. *Possible values are: true - customer count will be included / false or not set - customer count will not be included*"
+  example: true
 state:
   name: state
   in: query
@@ -503,6 +513,15 @@ country_name:
   schema:
     type: string
   example: "Finland"
+# Districts
+district_name:
+  name: district_name
+  in: query
+  description: Name or part of the name of the district.
+  required: false
+  schema:
+    type: string
+  example: "Prague 1"
 # Credits
 credit_id_path:
   name: credit_id
@@ -1096,6 +1115,27 @@ campaign_id:
   schema:
     type: string
   example: "81eaeea13b8984a169c490a325"
+omnichannel_campaign_id_path:
+  name: omnichannel_campaign_id
+  in: path
+  description: The unique ID of the omnichannel campaign.
+  required: true
+  schema:
+    type: string
+  example: "81eaeea13b8984a169c490a325"
+omnichannel_campaign_type_id:
+  name: campaign_type_id
+  in: query
+  description: |
+    Filter by the type of the omnichannel campaign.
+    *Possible values are: 1 - newsletter / 2 - system / 3 - transactional*
+  schema:
+    type: integer
+    enum:
+      - 1
+      - 2
+      - 3
+  example: 1
 display_in:
   name: display_in
   in: query
@@ -1139,6 +1179,131 @@ campaign_product_id_path:
   schema:
     type: string
   example: "81eaeea13b8984a169c490a325"
+
+# Charged entrances
+entrance_id_path:
+  name: entrance_id
+  in: path
+  description: The unique ID of the charged entrance.
+  required: true
+  schema:
+    type: string
+  example: "80a7be2e78aabc1454ca817265"
+pos_id:
+  name: pos_id
+  in: query
+  required: false
+  description:  'ID of POS system for tickets. Required with path parameter entrance ID. *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
+  schema:
+    type: integer
+    enum:
+      - 3
+      - 6
+      - 9
+      - 11
+  example: 6
+external_order_id:
+  name: external_order_id
+  in: query
+  required: false
+  description: ID of an external order created in POS system.
+  schema:
+    type: string
+  example: "a23b908eacd2442198e9ab"
+entrance_name:
+  name: name
+  in: query
+  required: false
+  description: Name of the charged entrance (product name is used from resource products).
+  schema:
+    type: string
+  example: "1 day ticket"
+resort_name:
+  name: resort_name
+  in: query
+  required: false
+  description: Name of the resort where is an entrance charged.
+  schema:
+    type: string
+  example: "Jasná"
+customer_category_name:
+  name: customer_category_name
+  in: query
+  required: false
+  description:  Name of the customer category.
+  schema:
+    type: string
+  example: "Adult"
+entrance_card_id:
+  name: card_id
+  in: query
+  required: false
+  description: ID of a card used for charging entrance. [GET /cards](https://carecloud.readme.io/reference/getcards)
+  schema:
+    type: string
+  example: "8c97533b621490a0b211419086"
+entrance_type_id:
+  name: entrance_type_id
+  in: query
+  required: false
+  description: |
+    Type of the entrance.
+    *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+  example: 1
+entrance_state:
+  name: state
+  in: query
+  required: false
+  description: 'State of the entrance. *Possible values are: canceled entrance - 0 / valid entrance -1*'
+  schema:
+    type: integer
+    enum:
+      - 0
+      - 1
+  example: 1
+external_entrance_id:
+  name: external_entrance_id
+  in: query
+  required: false
+  description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
+  schema:
+    type: string
+  example: "EXT-ENT-00123"
+external_turnstile_permission_id:
+  name: external_turnstile_permission_id
+  in: query
+  required: false
+  description: External ID of the turnstile permission. Structure can be different depends of the POS system, that created the permission.
+  schema:
+    type: string
+  example: "EXT-PERM-00456"
+is_cancelled:
+  name: is_cancelled
+  in: query
+  required: false
+  description: |
+    Filter for canceled entrances.
+    *Possible values: true - all cancelled entrances / false - all non cancelled entrances / no value - all entrances*
+  schema:
+    type: boolean
+    enum:
+      - true
+      - false
+  example: false
+entrance_order_item_id:
+  name: order_item_id
+  in: query
+  required: false
+  description: ID of an item from e-shop order.
+  schema:
+    type: string
+  example: "84947e1aa1ad6982cc8188d15c"
 
 # Currencies
 currency_id_path:
@@ -1697,6 +1862,24 @@ recommendation_id_path:
     type: string
   example: "8bed991c68a470e7aaeffbf048"
 
+# Regions
+region_id:
+  name: region_id
+  in: query
+  description: The unique ID of a region.
+  required: false
+  schema:
+    type: string
+  example: "8bed991c68a470e7aaeffbf048"
+region_name:
+  name: region_name
+  in: query
+  description: Name or part of the name of the region.
+  required: false
+  schema:
+    type: string
+  example: "South Bohemian"
+
 # Segment
 segment_id_path:
   name: segment_id
@@ -1737,130 +1920,6 @@ segment_group_name:
   schema:
     type: string
   example:  Badges
-# Charged entrances
-entrance_id_path:
-  name: entrance_id
-  in: path
-  description: The unique ID of the charged entrance.
-  required: true
-  schema:
-    type: string
-  example: "80a7be2e78aabc1454ca817265"
-pos_id:
-  name: pos_id
-  in: query
-  required: false
-  description:  'ID of POS system for tickets. Required with path parameter entrance ID. *Possible values are: EPOS - 3 / skidata - 6 / axess - 9 / base - 11*'
-  schema:
-    type: integer
-    enum:
-      - 3
-      - 6
-      - 9
-      - 11
-  example: 6
-external_order_id:
-  name: external_order_id
-  in: query
-  required: false
-  description: ID of an external order created in POS system.
-  schema:
-    type: string
-  example: "a23b908eacd2442198e9ab"
-entrance_name:
-  name: name
-  in: query
-  required: false
-  description: Name of the charged entrance (product name is used from resource products).
-  schema:
-    type: string
-  example: "1 day ticket"
-resort_name:
-  name: resort_name
-  in: query
-  required: false
-  description: Name of the resort where is an entrance charged.
-  schema:
-    type: string
-  example: "Jasná"
-customer_category_name:
-  name: customer_category_name
-  in: query
-  required: false
-  description:  Name of the customer category.
-  schema:
-    type: string
-  example: "Adult"
-entrance_card_id:
-  name: card_id
-  in: query
-  required: false
-  description: ID of a card used for charging entrance. [GET /cards](https://carecloud.readme.io/reference/getcards)
-  schema:
-    type: string
-  example: "8c97533b621490a0b211419086"
-entrance_type_id:
-  name: entrance_type_id
-  in: query
-  required: false
-  description: |
-    Type of the entrance.
-    *Possible values are: season ticket - 0/ one day ticket -1/ multiple day ticket - 2*
-  schema:
-    type: integer
-    enum:
-      - 0
-      - 1
-      - 2
-  example: 1
-entrance_state:
-  name: state
-  in: query
-  required: false
-  description: 'State of the entrance. *Possible values are: canceled entrance - 0 / valid entrance -1*'
-  schema:
-    type: integer
-    enum:
-      - 0
-      - 1
-  example: 1
-external_entrance_id:
-  name: external_entrance_id
-  in: query
-  required: false
-  description: External ID of the entrance. Structure can be different depends of POS system, that created entrance.
-  schema:
-    type: string
-  example: "EXT-ENT-00123"
-external_turnstile_permission_id:
-  name: external_turnstile_permission_id
-  in: query
-  required: false
-  description: External ID of the turnstile permission. Structure can be different depends of the POS system, that created the permission.
-  schema:
-    type: string
-  example: "EXT-PERM-00456"
-is_cancelled:
-  name: is_cancelled
-  in: query
-  required: false
-  description: |
-    Filter for canceled entrances.
-    *Possible values: true - all cancelled entrances / false - all non cancelled entrances / no value - all entrances*
-  schema:
-    type: boolean
-    enum:
-      - true
-      - false
-  example: false
-entrance_order_item_id:
-  name: order_item_id
-  in: query
-  required: false
-  description: ID of an item from e-shop order.
-  schema:
-    type: string
-  example: "84947e1aa1ad6982cc8188d15c"
 
 #Stamper
 stamper_campaign_id_path:
@@ -2085,6 +2144,62 @@ task_title:
   schema:
     type: string
   example: "Customer invoice"
+
+# Workflow
+workflow_id_path:
+  name: workflow_id
+  in: path
+  required: true
+  description: The unique ID of the workflow.
+  schema:
+    type: string
+  example: "8bed991c68a470e7aaeffbf048"
+processing_status:
+  name: processing_status
+  in: query
+  required: false
+  description: |
+    Filters workflows by their processing status.
+    *Possible values are: 1 - soft test / 2 - functional test / 3 - active / 4 - finishing / 5 - inactive / 6 - archived*
+    To filter by multiple statuses, use array syntax: `processing_status[]=3&processing_status[]=4`
+    Logic OR is used between values.
+  schema:
+    type: array
+    items:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+  example:
+    - 3
+planned_start:
+  name: planned_start
+  in: query
+  required: false
+  description: |
+    Filters workflows by the `planned_start` field. Returns only workflows whose `planned_start` is set and is on or after the specified value. Workflows without a `planned_start` are excluded from results.
+
+    Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.
+  schema:
+    type: string
+  allowReserved: true
+  example: "2025-01-01 00:00:00"
+planned_end:
+  name: planned_end
+  in: query
+  required: false
+  description: |
+    Filters workflows by the `planned_end` field. Returns only workflows whose `planned_end` is set and is on or before the specified value. Workflows without a `planned_end` are excluded from results.
+
+    Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times are in the local timezone.
+  schema:
+    type: string
+  allowReserved: true
+  example: "2025-12-31 23:59:59"
 task_comment_text:
   name: task_comment_text
   in: query

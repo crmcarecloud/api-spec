@@ -29,7 +29,7 @@ post:
           type: object
           properties:
             message:
-              $ref: '../../schemas/_index.yaml#/Message'
+              $ref: '../../schemas/_index.yaml#/MessageSend'
           required:
             - message
   responses:

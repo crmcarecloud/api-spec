@@ -1,7 +1,7 @@
 type: object
 description: Message attachment information structure.
 properties:
-  attachment_format:
+  file_name:
     type: string
-    description: Format of the attachment file.
-    example: "general_terms.pdf"
+    description: File name of the attachment, including the file extension.
+    example: "terms_and_conditions.pdf"

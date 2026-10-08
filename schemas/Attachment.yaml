@@ -1,20 +1,24 @@
 type: object
-description: Message attachment information structure.
+description: Message attachment structure used to upload a file when sending a message.
 properties:
   upload_method:
     type: string
     enum:
       - url
       - base64
-    description: Method how to upload attachment file.
+    description: Method used to upload the attachment file.
     example: "url"
   file_data:
     type: string
-    description: File data to upload. It could URL address of the file or BASE64 encoded file.
+    description: File data to upload. It can be a URL address of the file or a Base64-encoded file.
     example: "https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png"
+  file_name:
+    type: string
+    description: Custom file name for the attachment, without the file extension. The extension is determined automatically from the file data. If the file name is not provided, the system determines it automatically.
+    example: "terms_and_conditions"
   cache_for:
     type: integer
-    description: CareCloud can cache the attachment for a certain amount of minutes. If the cache parameter is not set, the attachment is not cached, and it's deleted after the message is sent.
+    description: CareCloud can cache the attachment for a certain number of minutes. If this parameter is not set, the attachment is not cached and is deleted after the message is sent.
     example: 20
 required:
   - upload_method
