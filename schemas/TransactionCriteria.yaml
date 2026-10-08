@@ -1,0 +1,44 @@
+type: object
+readOnly: true
+description: |
+  Transaction and purchase criteria for audience or segment membership. All specified fields within this category must match (AND logic). Array values within a single field use OR logic (any value in the array matches).
+properties:
+  amount_range:
+    type: object
+    readOnly: true
+    description: Purchase amount range filter. A customer matches if their total purchase amount during the specified period falls within the specified range.
+    properties:
+      from:
+        type: number
+        readOnly: true
+        description: Minimum total purchase amount (inclusive).
+        example: 1000
+      to:
+        type: number
+        readOnly: true
+        description: Maximum total purchase amount (inclusive).
+        example: 50000
+      date_from:
+        type: string
+        readOnly: true
+        description: "Start of the measurement period. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+        example: "2024-01-01 00:00:00"
+      date_to:
+        type: string
+        readOnly: true
+        description: "End of the measurement period. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+        example: "2024-12-31 23:59:59"
+  transaction_type_ids:
+    type: array
+    readOnly: true
+    description: List of transaction type IDs. A customer matches if they have transactions of any of the listed types. The list of purchase types is available at [GET /purchase-types](https://carecloud.readme.io/reference/getpurchasetypes).
+    items:
+      type: string
+    example: ["86e05affc7a7abefcd513ab400"]
+  store_ids:
+    type: array
+    readOnly: true
+    description: List of store IDs. A customer matches if they have transactions at any of the listed stores. The list of stores is available at [GET /stores](https://carecloud.readme.io/reference/getstores).
+    items:
+      type: string
+    example: ["82de12eb8b138791e678fd11c1"]

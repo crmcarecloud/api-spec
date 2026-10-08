@@ -1,0 +1,30 @@
+type: object
+description: District resource.
+properties:
+  district_id:
+    type: string
+    description: The unique ID of the district.
+    example: "82de12eb8b138791e678fd11c1"
+  name:
+    type: string
+    description: Name of the district. Language depends on the `Accept-Language` header from the request.
+    example: "Prague 1"
+  code:
+    type: string
+    description: Subdivision code of the district.
+    example: "CZ-101"
+  region_id:
+    type: string
+    description: |
+      The unique ID of the region the district belongs to. The list of regions is available at [GET /regions](https://carecloud.readme.io/reference/getregions).
+    example: "8bed991c68a470e7aaeffbf048"
+  state:
+    type: integer
+    enum:
+      - 0
+      - 1
+      - 2
+    description: |
+      State of the district.
+      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+    example: 1

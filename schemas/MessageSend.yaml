@@ -1,0 +1,40 @@
+type: object
+description: Request body structure for sending a message to a customer.
+properties:
+  message_template_id:
+    type: string
+    description: The unique ID of the message template. The template must belong to the same communication channel specified in `communication_channel_id`. [GET /message-templates](https://carecloud.readme.io/reference/getmessagetemplates)
+    example: "8bed991c68a470e7aaeffbf048"
+  customer_id:
+    type: string
+    description: The unique ID of the customer. [GET /customers](https://carecloud.readme.io/reference/getcustomers)
+    example: "8ea2591121e636086a4a9c0992"
+  contact:
+    type: string
+    description: Email address or phone number to use when sending the message to a different contact than the one associated with the customer.
+    example: "happy_customer@crmcarecloud.com"
+  communication_channel_id:
+    type: integer
+    enum:
+      - 1
+      - 2
+      - 4
+      - 5
+    description: "The unique ID of the communication channel. Possible values: 1 - email, 2 - SMS, 4 - push notification (Apple or Google), 5 - internal system notification. [GET /communication-channels](https://carecloud.readme.io/reference/getcommunicationchannels)"
+    example: 1
+  message_data:
+    type: array
+    maxItems: 1000
+    items:
+      $ref: '../schemas/_index.yaml#/Parameter'
+    description: Message data can contain an array of customized parameters that influence how the message is displayed or add values to the message.
+  attachments:
+    type: array
+    maxItems: 1000
+    items:
+      $ref: '../schemas/_index.yaml#/Attachment'
+    description: "List of the attachments for the message. A single attachment has a size limit of 1 MB. Allowed file types are .jpg, .jpeg, .png, .gif, and .pdf."
+required:
+  - message_template_id
+  - customer_id
+  - communication_channel_id

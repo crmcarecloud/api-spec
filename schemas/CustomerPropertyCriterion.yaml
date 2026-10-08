@@ -1,0 +1,17 @@
+type: object
+readOnly: true
+description: |
+  A single customer property condition for audience or segment membership. Filters customers based on the value of a dynamic (custom) customer property.
+properties:
+  property_id:
+    type: string
+    readOnly: true
+    description: The unique ID of the customer property. The list of customer properties is available at [GET /customer-properties](https://carecloud.readme.io/reference/getcustomerproperties).
+    example: "86e05affc7a7abefcd513ab400"
+  values:
+    type: array
+    readOnly: true
+    description: List of expected property values. A customer matches if their property value equals any of the listed values (OR logic).
+    items:
+      type: string
+    example: ["value_1", "value_2"]

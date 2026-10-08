@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Segments
+  summary: Get segment criteria
+  description: |
+    Get the selection criteria that define which customers are included in a specific segment. The criteria describe the conditions a customer must meet to be a member of the segment.
+
+    The criteria are organized into categories (sociodemographic, loyalty, transaction, product, event, consent, segment combination, customer properties, reservation). All active categories are combined with AND logic. Within a category, all specified fields must match (AND logic). Array values within a single field use OR logic (any value matches).
+
+    ⚠️ Endpoint is available only in Enterprise API.
+  operationId: getSubSegmentCriteria
+  parameters:
+    - $ref: '../../parameters/_index.yaml#/Accept-Language'
+    - $ref: '../../parameters/_index.yaml#/segment_id_path'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            title: GetSubSegmentCriteria200Response
+            type: object
+            properties:
+              data:
+                $ref: '../../schemas/_index.yaml#/SelectionCriteria'
+    '400':
+      $ref: '../../api.yaml#/components/responses/BadRequest'
+    '401':
+      $ref: '../../api.yaml#/components/responses/Unauthorized'
+    '403':
+      $ref: '../../api.yaml#/components/responses/Forbidden'
+    '404':
+      $ref: '../../api.yaml#/components/responses/NotFound'
+    '405':
+      $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '429':
+      $ref: '../../api.yaml#/components/responses/TooManyRequests'
+    '500':
+      $ref: '../../api.yaml#/components/responses/InternalServerError'
+    '503':
+      $ref: '../../api.yaml#/components/responses/ServiceUnavailable'
