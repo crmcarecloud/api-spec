@@ -6,7 +6,7 @@ properties:
     type: string
     format: byte
     readOnly: true
-    description: Image of the reward encoded in BASE64.
+    description: Image of the reward encoded in Base64.
     example: ""
   valid_time_from:
     type: string

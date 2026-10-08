@@ -26,15 +26,16 @@ The CI pipeline (`.gitlab-ci.yml`) runs `redocly-openapi-cli.sh` against `_build
 ### Workflow after any change
 
 Always run in this order:
-1. `bin/swagger-cli.sh` to bundle the specification
-2. `bin/redocly-openapi-cli.sh` to validate the bundle
-3. Spawn a Sonnet agent to review the language quality of every file that was modified in the current editing session
+1. Spawn a Sonnet agent to review the language quality of every file that was modified in the current editing session
+2. Present findings to the user for approval and apply only the approved changes
+3. `bin/swagger-cli.sh` to bundle the specification
+4. `bin/redocly-openapi-cli.sh` to validate the bundle
 
-If step 1 or 2 fails, fix the error and **repeat both steps from the start**. The most common errors are broken `$ref` paths and typos in property names. The validator (Redocly) catches these and will block progress until resolved.
+If step 3 or 4 fails, fix the error and **repeat steps 3 and 4 from the start**. The most common errors are broken `$ref` paths and typos in property names. The validator (Redocly) catches these and will block progress until resolved.
 
-Run all three steps automatically after **every editing session**, including when the user asks to commit or says they are done.
+Run all four steps automatically after **every editing session**, including when the user asks to commit or says they are done.
 
-#### Language review agent (step 3)
+#### Language review agent (step 1)
 
 Spawn a **Sonnet** agent (`model: sonnet`) that reviews the **full content** of every endpoint, schema, and parameter file modified in the session against the Writing Style and Grammar rules in this file. The agent checks every rule in that section: grammar, audience and tone, and consistency with neighboring fields.
 
@@ -135,11 +136,11 @@ The repository contains markdown files that are manually uploaded to the [CareCl
 
 Some topics are covered in both `api.yaml` `info.description` (rendered by the OpenAPI documentation tool) and a portal markdown file (uploaded separately). When updating such a topic, update both places to keep them consistent.
 
-Other markdown files in the repository root (`bearerAuth.md`, `basicAuth.md`) are referenced via `$ref` from `api.yaml` and are part of the OpenAPI specification. Do not confuse these with the portal files.
+`bearerAuth.md` in the repository root is referenced via `$ref` from `api.yaml` and is part of the OpenAPI specification. Do not confuse it with the portal files. `basicAuth.md` is a standalone deprecated reference document, not referenced from `api.yaml` and not bundled into the specification.
 
 ## Writing Style and Grammar
 
-Apply these rules to all description fields across the specification (paths, schemas, parameters, responses). The language review agent (step 3 of the post-edit workflow) checks against these same rules.
+Apply these rules to all description fields across the specification (paths, schemas, parameters, responses). The language review agent (step 1 of the post-edit workflow) checks against these same rules.
 
 ### Grammar and spelling
 - Fix typos, grammatical errors, and awkward phrasing.

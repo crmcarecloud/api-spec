@@ -686,6 +686,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 
 ### 46. POST /credits/actions/deposit - Partner ACL validation
 
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
+
 **Endpoint**: `POST /credits/actions/deposit`
 **Specification file**: `paths/credits/CreditDeposit.yaml`
 **Controller**: `CrmInterfaceForWebservice.class.php:7595-7603`
@@ -825,6 +827,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 ---
 
 ### 56. GET /credit-history - Partner ACL validation
+
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
 
 **Endpoint**: `GET /credit-history`
 **Specification file**: `paths/credits/CreditHistory.yaml`
@@ -1306,6 +1310,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 
 ### 88. GET /wallet/points - Available points are scoped to API user's partner ACL
 
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
+
 **Endpoint**: `GET /wallet/points`
 **Specification file**: `paths/wallet/WalletPoints.yaml`
 **Controller**: `WalletResourceControllerV1v0.class.php:78`, `CrmInterface.class.php:1919-1931`
@@ -1334,6 +1340,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 
 ### 90. GET /wallet/points-expiration - Expiration data is scoped to API user's partner ACL
 
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
+
 **Endpoint**: `GET /wallet/points-expiration`
 **Specification file**: `paths/wallet/WalletPointsExpiration.yaml`
 **Controller**: `CrmInterface.class.php:1688-1711`
@@ -1361,6 +1369,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 ---
 
 ### 92. GET /wallet/credits - Credits split by currency is restricted to API user's partner ACL
+
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
 
 **Endpoint**: `GET /wallet/credits`
 **Specification file**: `paths/wallet/WalletCredits.yaml`
@@ -1631,6 +1641,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 ## Stamper
 
 ### 110. GET /stamper-campaigns - Partner ACL validation on partner_id filter
+
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
 
 **Endpoint**: `GET /stamper-campaigns`
 **Specification file**: `paths/stamper/StamperCampaigns.yaml`
@@ -2046,6 +2058,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 
 ### 138. POST /customers/{customer_id}/partner-records - Partner ACL validation
 
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
+
 **Endpoint**: `POST /customers/{customer_id}/partner-records`
 **Specification file**: `paths/partners/SubPartnerProperties.yaml`
 **Controller**: `PartnerRecordsResourceControllerV1v0.class.php:163-177`
@@ -2394,6 +2408,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 
 ### 162. DELETE /bookings/{booking_id} - Partner ACL filtering on deletion
 
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
+
 **Endpoint**: `DELETE /bookings/{booking_id}`
 **Specification file**: `paths/bookings/Booking.yaml`
 **Controller**: `BookingsResourceControllerV1v0.class.php:296-301`
@@ -2435,6 +2451,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 ---
 
 ### 165. GET /booking-tickets - Partner ACL filtering on results
+
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
 
 **Endpoint**: `GET /booking-tickets`
 **Specification file**: `paths/bookings/BookingTickets.yaml`
@@ -2652,6 +2670,8 @@ The same validation method (`checkPartnerIdForPoints`) applies to both the assig
 
 ### 178. GET /audiences - ACL-restricted by user
 
+**Status**: Out of scope (Group 2). Partner ACL is transparent to typical single-partner integrators and would add unnecessary complexity to the specification.
+
 **Endpoint**: `GET /audiences`, `GET /audiences/{audience_id}`
 **Specification file**: `paths/audiences/Audiences.yaml`, `paths/audiences/Audience.yaml`
 **Controller**: `AudiencesResourceControllerV1v0.class.php:64,104-105`
@@ -2696,7 +2716,7 @@ Exceptions that return 400 instead (not yet resolved): 44, 112, 180, 181
 
 Endpoints that validate or filter data based on the authenticated API user's partner access control list. Either the request is rejected when the partner is not accessible, or the response data is silently scoped to accessible partners only.
 
-Findings: 46, 56, 88, 90, 92, 110, 138, 162, 165, 178
+Findings (out of scope): 46, 56, 88, 90, 92, 110, 138, 162, 165, 178. Partner ACL is transparent to typical single-partner integrators. Documenting it would introduce the multi-partner architecture concept that most integrators do not need, adding complexity that confuses more than it helps. Multi-partner integrators with partial access are rare and learn the partner model during onboarding, not from the specification.
 
 ### Group 3: Internal events and marketing automation side effects
 

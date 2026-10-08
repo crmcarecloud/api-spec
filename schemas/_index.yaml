@@ -1,5 +1,7 @@
 AcceptedPayment:
   $ref: "./AcceptedPayment.yaml"
+AdditionalAddress:
+  $ref: "./AdditionalAddress.yaml"
 Address:
   $ref: "./Address.yaml"
 Agreement:
@@ -42,10 +44,14 @@ ChartPointData:
   $ref: "./ChartPointData.yaml"
 CommunicationChannel:
   $ref: "./CommunicationChannel.yaml"
+ConsentCriteria:
+  $ref: "./ConsentCriteria.yaml"
 Consents:
   $ref: "./Consents.yaml"
 Country:
   $ref: "./Country.yaml"
+District:
+  $ref: "./District.yaml"
 Credit:
   $ref: "./Credit.yaml"
 CreditHistoryRecord:
@@ -60,6 +66,8 @@ CustomAgreements:
   $ref: "./CustomAgreements.yaml"
 Customer:
   $ref: "./Customer.yaml"
+CustomerPropertyCriterion:
+  $ref: "./CustomerPropertyCriterion.yaml"
 CustomerEngagementSetup:
   $ref: "./CustomerEngagementSetup.yaml"
 CustomerResult:
@@ -76,14 +84,16 @@ Customer-type:
   $ref: "./CustomerType.yaml"
 CustomerAddressType:
   $ref: "./CustomerAddressType.yaml"
-AdditionalAddress:
-  $ref: "./AdditionalAddress.yaml"
 Device:
   $ref: "./Device.yaml"
 DiscountItem:
   $ref: "./DiscountItem.yaml"
+Entrance:
+  $ref: "./Entrance.yaml"
 Event:
   $ref: "./Event.yaml"
+EventCriteria:
+  $ref: "./EventCriteria.yaml"
 EventGroup:
   $ref: "./EventGroup.yaml"
 EventPost:
@@ -106,14 +116,20 @@ InterestRecord:
   $ref: "./InterestRecord.yaml"
 Language:
   $ref: "./Language.yaml"
+LoyaltyCriteria:
+  $ref: "./LoyaltyCriteria.yaml"
 Message:
   $ref: "./Message.yaml"
 MessageDetail:
   $ref: "./MessageDetail.yaml"
+MessageSend:
+  $ref: "./MessageSend.yaml"
 MessageTemplate:
   $ref: "./MessageTemplate.yaml"
 MoneyValue:
   $ref: "./MoneyValue.yaml"
+OmnichannelCampaign:
+  $ref: "./OmnichannelCampaign.yaml"
 OpeningDay:
   $ref: "./OpeningDay.yaml"
 Order:
@@ -152,6 +168,8 @@ Price:
   $ref: "./Price.yaml"
 Product:
   $ref: "./Product.yaml"
+ProductCriteria:
+  $ref: "./ProductCriteria.yaml"
 ProductIdentification:
   $ref: "./ProductIdentification.yaml"
 ProductBatch:
@@ -202,8 +220,12 @@ RecommendedReward:
   $ref: "./RecommendedReward.yaml"
 Referral:
   $ref: "./Referral.yaml"
+Region:
+  $ref: "./Region.yaml"
 RelatedCustomer:
   $ref: "./RelatedCustomer.yaml"
+ReservationCriteria:
+  $ref: "./ReservationCriteria.yaml"
 Reward:
   $ref: "./Reward.yaml"
 RewardProduct:
@@ -230,14 +252,18 @@ SegmentGroup:
   $ref: "./SegmentGroup.yaml"
 SegmentRecord:
   $ref: "./SegmentRecord.yaml"
+SegmentCombinationCriteria:
+  $ref: "./SegmentCombinationCriteria.yaml"
+SelectionCriteria:
+  $ref: "./SelectionCriteria.yaml"
 Setup:
   $ref: "./Setup.yaml"
-Entrance:
-  $ref: "./Entrance.yaml"
 SimpleReward:
   $ref: "./SimpleReward.yaml"
 SocialNetworkCredentials:
   $ref: "./SocialNetworkCredentials.yaml"
+SociodemographicCriteria:
+  $ref: "./SociodemographicCriteria.yaml"
 StamperCampaign:
   $ref: "./StamperCampaign.yaml"
 StamperCard:
@@ -280,6 +306,8 @@ TimeSlot:
   $ref: "./TimeSlot.yaml"
 ThirdPartyRecommendation:
   $ref: "./ThirdPartyRecommendation.yaml"
+TransactionCriteria:
+  $ref: "./TransactionCriteria.yaml"
 UrlLanguageVariant:
   $ref: "./UrlLanguageVariant.yaml"
 User:
@@ -294,6 +322,8 @@ VoucherBatch:
   $ref: "./VoucherBatch.yaml"
 VoucherGiftCardBalance:
   $ref: "./VoucherGiftCardBalance.yaml"
+Workflow:
+  $ref: "./Workflow.yaml"
 
 BasicError:
   type: object

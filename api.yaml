@@ -12,7 +12,7 @@ info:
     CareCloud has two APIs. The choice determines the URL path segment, the authentication scheme, and the available resources.
 
     - `enterprise-interface` - for backend integrations (POS, e-shop, BI, kiosks). Uses Bearer token authentication.
-    - `customer-interface` - for end-user applications (mobile, microsite). Uses Basic authentication with a customer-specific token.
+    - `customer-interface` - for end-user applications (mobile, microsite). Uses Bearer token authentication.
 
     ## Base URL
 
@@ -66,12 +66,14 @@ info:
 
     ## Errors
 
-    All client-side input failures return HTTP 400. The response body's `error.error_data.invalid_params[].reason` field uses one of the generic reason codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`). Operations that involve domain-specific business rules (for example purchase closure, voucher application) may also return more specific reasons documented at the operation level.
+    Most client-side input failures return HTTP 400. The response body's `error.error_data.invalid_params[].reason` field uses one of the generic reason codes (`already_exists`, `empty`, `not_found`, `required`, `not_allowed_value`, `invalid_value_format`, `relation_already_exists`, `not_belong_to_logged_in_customer`, `deleted`). Operations that involve domain-specific business rules (for example, purchase closure, voucher application) may also return more specific reasons documented at the operation level.
 
     The API distinguishes between two path-level error conditions:
 
     - 404 Not Found is returned when the request path does not match any API route, or when the path is valid but the addressed resource does not exist (for example, a non-existent resource identifier in a path parameter).
     - 405 Method Not Allowed is returned only when the request path matches a valid route but the endpoint does not support the HTTP method used in the request.
+
+    422 Unprocessable Entity is returned when the request is well-formed but violates a business rule or resource limit (for example, creating a segment when the project has reached its maximum allowed number of segments).
 
     See the [Status codes section](https://carecloud.readme.io/reference/getting-started-with-your-api#status-codes) of the documentation portal for the full taxonomy.
 
@@ -121,16 +123,16 @@ info:
 tags:
   - name: Audiences
     description: An API resource containing all endpoints related to CareCloud Audiences.
-  - name: Booking tickets
-    description: The Booking Tickets resource provides a list of all available tickets that can be booked through the API. This resource enables users to retrieve detailed information about the tickets.
-  - name: Bookings
-    description: The Bookings API resource allows you to manage booking operations within the reservation system. This resource provides endpoints to list all existing bookings, as well as create, update, and delete individual bookings. Additionally, it offers insights into the busiest times in the reservation system, helping users identify peak periods for better planning and optimization.
   - name: Booking statuses
     description: The Booking Statuses resource provides a comprehensive list of all possible statuses that a booking can have within the system. This resource allows users to understand the various stages and conditions a booking may go through, such as confirmed, pending, canceled, or completed. It ensures clear communication and transparency about the status of each booking, facilitating efficient management and tracking of reservations.
   - name: Booking ticket properties
     description: The Booking Ticket Properties resource provides a detailed list of all possible properties that a booking can have. These properties enable customization of the data collected during the booking process, allowing for a tailored experience based on specific requirements. Users can define and manage various attributes, such as seating preferences, special requests, and personal information, to ensure a seamless and personalized booking experience.
+  - name: Booking tickets
+    description: The Booking Tickets resource provides a list of all available tickets that can be booked through the API. This resource enables users to retrieve detailed information about the tickets.
+  - name: Bookings
+    description: The Bookings API resource allows you to manage booking operations within the reservation system. This resource provides endpoints to list all existing bookings, as well as create, update, and delete individual bookings. Additionally, it offers insights into the busiest times in the reservation system, helping users identify peak periods for better planning and optimization.
   - name: Campaigns
-    description: You can use and coordinate many communication channels to deliver effective results within a personalized omnichannel marketing campaign in the CareCloud platform.
+    description: Campaigns are organizational containers for grouping product discounts and promotional offers. Each campaign can hold multiple campaign products with special pricing conditions. For digital communication campaigns (email, SMS, push notification, or Viber), see [Omnichannel campaigns](/#tag/Omnichannel-campaigns).
   - name: Campaign products
     description: The Campaign products are sets of products that are offered to Customers under special conditions, with different type of benefits. It can be used like a catalogue of discounted products on a special web site/e-shop or a set of special offers distributed to households as leaflet or direct mail. All this kind of campaign product types can be managed in the CareCloud platform directly or via CareCloud APIs.
   - name: Cards
@@ -145,6 +147,8 @@ tags:
     description: Legal standards (e.g., GDPR) restrict the processing of customer personal data and other operations (e.g., profiling) based on the customer consent. You can manage the content and status of Customers' Consent to the Processing of Personal Data using the CareCloud platform. It also enables you to create customized Consents to Data Processing based on the requirements of your project. You can get the list of the available customer consents here.
   - name: Countries
     description: Some data, especially addresses are tied to a Country, which is listed in the CareCloud platform. You can get here the list of countries available.
+  - name: Districts
+    description: Districts represent the second level of geographic subdivision within a country (for example, a county within a region). They are used in audience and segment sociodemographic criteria to filter customers by territory.
   - name: Credits
     description: Resource represents all credit records.
   - name: Credit history
@@ -206,6 +210,8 @@ tags:
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message details and deliver the messages to customers through this resource.
   - name: Message templates
     description: You can create and manage various messages to deliver effective content to customers within a personalized omnichannel marketing communication in the CareCloud platform. You get all the message template details through this resource.
+  - name: Omnichannel campaigns
+    description: Omnichannel campaigns are digital communication campaigns that deliver messages to a target audience through a specific communication channel (email, SMS, push notification, or Viber). Each campaign is linked to an audience that defines the recipients and a message template that defines the content. Campaigns can be scheduled for a specific time and tracked through UTM parameters.
   - name: One Time Password
     description: One Time Password resource provides a complete service of creating and validating one-use passwords. You can use OTP to validate any customer operation through email, SMS, or phone notification.
   - name: Orders
@@ -252,6 +258,8 @@ tags:
     description: You can get the list of the available purchase item types here.
   - name: Purchase types
     description: You can get the list of the available purchase types here.
+  - name: Regions
+    description: Regions represent the first level of geographic subdivision within a country (for example, a state or province). They are used in audience and segment sociodemographic criteria to filter customers by territory.
   - name: Reservable products
     description: The set of Products that could be reserved can be limited. We call this group Reservable Products. You can get the details of Reservable Products and search within this group by this resource.
   - name: Rewards
@@ -302,6 +310,11 @@ tags:
     description:  List of voucher properties
   - name: Wallet
     description: The Wallet in the CareCloud platform contains Rewards Points and Credits. It is assigned to each customer on his customer account. The content of the wallet is available in the Customer 360 View App. You get the Wallet content details included expirations, here.
+  - name: Workflows
+    description: |
+      Workflows are marketing automation processes that guide customers (travelers) through a sequence of triggers, conditions, and actions. Events recorded on customer accounts ([Events](/#tag/Events)) are the primary trigger mechanism for workflows. Action nodes within a workflow can send messages ([Messages](/#tag/Messages)) through communication channels or evaluate customer membership in segments ([Segments](/#tag/Segments)). Workflows are managed in the Marketing Automation application and can be scheduled for activation and deactivation.
+
+      ⚠️ Warning: Resource is available only in Enterprise API.
 
 servers:
   - url: https://{project_url}/webservice/rest-api/{api_interface}/{version}
@@ -344,5 +357,6 @@ components:
     basicAuth:
       type: http
       scheme: basic
+      x-oai-deprecated: true
       description: |
         HTTP Basic authentication. **Deprecated** - retained for backward compatibility only. New integrations must use `bearerAuth` for both Enterprise API and Customer API. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.

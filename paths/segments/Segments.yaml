@@ -2,7 +2,7 @@ get:
   tags:
     - Segments
   summary: Get all segments
-  description: Get information about segments as a list of all segments.
+  description: Get a list of all segments. A segment is a group of customers defined by selection criteria or by manually adding and removing individual customers.
   operationId: getSegments
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -10,7 +10,9 @@ get:
     - $ref: '../../parameters/_index.yaml#/offset'
     - $ref: '../../parameters/_index.yaml#/sort_field'
     - $ref: '../../parameters/_index.yaml#/sort_direction'
+    - $ref: '../../parameters/_index.yaml#/name'
     - $ref: '../../parameters/_index.yaml#/segment_group_ids'
+    - $ref: '../../parameters/_index.yaml#/include_customer_count'
   responses:
     '200':
       description: OK
@@ -30,7 +32,7 @@ get:
                       $ref: '../../schemas/_index.yaml#/Segment'
                   total_items:
                     type: integer
-                    description: The number of all found segments.
+                    description: The total number of segments found.
                     example: 1
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -104,7 +106,7 @@ post:
     - Segments
   summary: Create an empty segment
   description: Create an empty segment.
-  operationId: PostSegment
+  operationId: postSegment
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
   requestBody:
@@ -121,10 +123,10 @@ post:
             note:
               type: string
               description: Description of the empty segment.
-              example: "All customers that fits into criteria for winter campaign."
+              example: "All customers that fit into the criteria for the winter campaign."
             priority:
               type: integer
-              description: The priority of defined segment. The possible value range 0 - 100.
+              description: The priority of the segment. Possible values range from 0 to 100.
               example: 47
           required:
             - name
@@ -142,7 +144,7 @@ post:
                 properties:
                   segment_id:
                     type: string
-                    description: The unique ID of the empty segment in CareCloud
+                    description: The unique ID of the segment.
                     example: "86e05affc7a7abefcd513ab400"
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'
@@ -154,6 +156,22 @@ post:
       $ref: '../../api.yaml#/components/responses/NotFound'
     '405':
       $ref: '../../api.yaml#/components/responses/NotAllowed'
+    '422':
+      description: |
+        The project has reached its maximum limit of segments. To free up capacity, delete unused segments in the CareCloud administration. To request a limit increase, contact your CareCloud representative.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                allOf:
+                  - $ref: '../../schemas/_index.yaml#/BasicError'
+                  - type: object
+                    properties:
+                      error_data:
+                        type: object
+                        description: Empty object.
     '429':
       $ref: '../../api.yaml#/components/responses/TooManyRequests'
     '500':

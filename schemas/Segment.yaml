@@ -1,5 +1,5 @@
 type: object
-description: Segment structure.
+description: A segment is a group of customers defined by selection criteria or by manually adding and removing individual customers. Segments are used for campaign targeting, reward eligibility, and customer analysis.
 properties:
   segment_id:
     type: string
@@ -23,6 +23,11 @@ properties:
     type: string
     description: Short description of the segment.
     example: "VIP customers note test"
+  customer_count:
+    type: integer
+    readOnly: true
+    description: The number of customers currently included in the segment. This value is cached and may not reflect real-time membership changes. On the detail endpoint (`GET /segments/{segment_id}`), this field is always included. On the list endpoint (`GET /segments`), this field is only included when the query parameter `include_customer_count` is set to `true`.
+    example: 12450
   last_change:
     type: string
     readOnly: true

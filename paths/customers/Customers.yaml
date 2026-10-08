@@ -208,10 +208,6 @@ post:
       label: CareCloud Client
       source: |
         require_once(__DIR__ . '/vendor/autoload.php');
-        // Configure HTTP basic authorization: basicAuth
-        $config = CareCloud\Configuration::getDefaultConfiguration()
-                      ->setUsername('YOUR_USERNAME')
-                      ->setPassword('YOUR_PASSWORD');
             // Configure HTTP bearer authorization: bearerAuth
             $config = CareCloud\Configuration::getDefaultConfiguration()
             ->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -363,10 +359,6 @@ get:
       label: CareCloud Client
       source: |
         require_once(__DIR__ . '/vendor/autoload.php');
-        // Configure HTTP basic authorization: basicAuth
-        $config = CareCloud\Configuration::getDefaultConfiguration()
-                      ->setUsername('YOUR_USERNAME')
-                      ->setPassword('YOUR_PASSWORD');
             // Configure HTTP bearer authorization: bearerAuth
             $config = CareCloud\Configuration::getDefaultConfiguration()
             ->setAccessToken('YOUR_ACCESS_TOKEN');

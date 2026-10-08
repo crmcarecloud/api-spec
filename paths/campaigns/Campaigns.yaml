@@ -3,7 +3,7 @@ get:
     - Campaigns
   summary: Get all campaigns
   description: |
-    Get a list of all campaigns in the CareCloud platform. A campaign is a planned sequence of activities that promotes a product or service. Campaigns group related campaign products and messages, and can target customers across multiple communication channels. Use the `name` filter for name-based lookup and `external_id` to retrieve campaigns linked to external systems. See [Campaigns](https://help.crmcarecloud.com/en/campaigns-and-segmentation/e-mailing/campaigns) for details.
+    Get a list of all campaigns in the CareCloud platform. A campaign is an organizational container for grouping product discounts and promotional offers. Each campaign can hold multiple campaign products with special pricing conditions. Use the `name` filter for name-based lookup and `external_id` to retrieve campaigns linked to external systems.
   operationId: getCampaigns
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -100,7 +100,7 @@ post:
     - Campaigns
   summary: Create a campaign
   description: |
-    Create a new campaign. A campaign is a planned sequence of activities that promotes a product or service. After creating a campaign, use [POST /campaign-products](https://carecloud.readme.io/reference/postcampaignproduct) to attach discounted products to it. See [Campaigns](https://help.crmcarecloud.com/en/campaigns-and-segmentation/e-mailing/campaigns) for details.
+    Create a new campaign. A campaign is an organizational container for grouping product discounts and promotional offers. After creating a campaign, use [POST /campaign-products](https://carecloud.readme.io/reference/postcampaignproduct) to attach discounted products to it.
   operationId: postCampaign
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

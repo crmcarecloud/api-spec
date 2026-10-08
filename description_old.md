@@ -198,7 +198,7 @@ Customer interface authentication identifies the application(Google maps) on the
 ```http request
 <user name>:
  ```
-Value of HTTP header Authentication contains BASE64 encoded string `<user name>:`. The request looks like this:
+Value of HTTP header Authentication contains Base64 encoded string `<user name>:`. The request looks like this:
 
 ```http request
 POST <projectURL>/webservice/rest-api/customer-interface/v1.0/tokens

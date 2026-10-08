@@ -9,13 +9,21 @@
   $ref: "./audiences/Audiences.yaml"
 /audiences/{audience_id}:
   $ref: "./audiences/Audience.yaml"
+# Sub-resources of audiences
+/audiences/{audience_id}/criteria:
+  $ref: "./audiences/SubAudienceCriteria.yaml"
 
-#Bookings
-/bookings:
-  $ref: "./bookings/Bookings.yaml"
-/bookings/{booking_id}:
-  $ref: "./bookings/Booking.yaml"
-#Booking tickets
+# Booking statuses
+/booking-statuses:
+  $ref: "./bookings/BookingStatuses.yaml"
+/booking-statuses/{booking_status_id}:
+  $ref: "./bookings/BookingStatus.yaml"
+# Booking ticket properties
+/booking-ticket-properties:
+  $ref: "./bookings/BookingTicketProperties.yaml"
+/booking-ticket-properties/{booking_ticket_property_id}:
+  $ref: "./bookings/BookingTicketProperty.yaml"
+# Booking tickets
 /booking-tickets:
   $ref: "./bookings/BookingTickets.yaml"
 /booking-tickets/{booking_ticket_id}:
@@ -23,19 +31,14 @@
 # Sub-resources
 /booking-tickets/{booking_ticket_id}/time-slots:
   $ref: "./bookings/SubBookingTicketsTimeSlots.yaml"
-#Booking ticket properties
-/booking-ticket-properties:
-  $ref: "./bookings/BookingTicketProperties.yaml"
-/booking-ticket-properties/{booking_ticket_property_id}:
-  $ref: "./bookings/BookingTicketProperty.yaml"
-#Action methods
+# Bookings
+/bookings:
+  $ref: "./bookings/Bookings.yaml"
+/bookings/{booking_id}:
+  $ref: "./bookings/Booking.yaml"
+# Actions
 /bookings/actions/average-booking-busy-times:
   $ref: "./bookings/BookingBusyTimes.yaml"
-#Booking statuses
-/booking-statuses:
-  $ref: "./bookings/BookingStatuses.yaml"
-/booking-statuses/{booking_status_id}:
-  $ref: "./bookings/BookingStatus.yaml"
 # Campaigns
 /campaigns:
   $ref: "./campaigns/Campaigns.yaml"
@@ -235,20 +238,23 @@
   $ref: "./customers/CustomerRelationTypes.yaml"
 /customer-relation-types/{customer_relation_type_id}:
   $ref: "./customers/CustomerRelationType.yaml"
+# Customer source records
+/customer-source-records:
+  $ref: "./customers/CustomerSourceRecord.yaml"
 # Customer sources
 /customer-sources:
   $ref: "./customers/CustomerSources.yaml"
 /customer-sources/{customer_source_id}:
   $ref: "./customers/CustomerSource.yaml"
-
-# Customer source records
-/customer-source-records:
-  $ref: "./customers/CustomerSourceRecord.yaml"
 # Customer types
 /customer-types:
   $ref: "./customers/CustomerTypes.yaml"
 /customer-types/{customer_type_id}:
   $ref: "./customers/CustomerType.yaml"
+
+# Districts
+/districts:
+  $ref: "./districts/Districts.yaml"
 
 # Events
 /events:
@@ -301,6 +307,12 @@
   $ref: "./messages/MessageTemplates.yaml"
 /message-templates/{message_template_id}:
   $ref: "./messages/MessageTemplate.yaml"
+
+# Omnichannel campaigns
+/omnichannel-campaigns:
+  $ref: "./omnichannel_campaigns/OmnichannelCampaigns.yaml"
+/omnichannel-campaigns/{omnichannel_campaign_id}:
+  $ref: "./omnichannel_campaigns/OmnichannelCampaign.yaml"
 
 # One Time Password
 #Actions
@@ -415,6 +427,11 @@
   $ref: "./products/ProductReservationUpdateState.yaml"
 /product-reservations/actions/set-product-reservation-external-codes:
   $ref: "./products/ProductReservationSetExternalReservationCodes.yaml"
+# Product reservation external list types
+/product-reservation-external-list-types:
+  $ref: "./products/ExternalProductReservationListTypes.yaml"
+/product-reservation-external-list-types/{product_reservation_external_list_type_id}:
+  $ref: "./products/ExternalProductReservationListType.yaml"
 # Product reservation prices
 /product-reservation-prices:
   $ref: "./products/ProductReservationPrices.yaml"
@@ -427,11 +444,6 @@
   $ref: "./products/ProductReservationSources.yaml"
 /product-reservation-sources/{product_reservation_source_id}:
   $ref: "./products/ProductReservationSource.yaml"
-# Product reservation external list types
-/product-reservation-external-list-types:
-  $ref: "./products/ExternalProductReservationListTypes.yaml"
-/product-reservation-external-list-types/{product_reservation_external_list_type_id}:
-  $ref: "./products/ExternalProductReservationListType.yaml"
 # Reservable products
 /reservable-products:
   $ref: "./products/ReservableProducts.yaml"
@@ -502,6 +514,10 @@
 /third-party-recommendations/batch:
   $ref: "./recommendations/ThirdPartyRecommendationsBatch.yaml"
 
+# Regions
+/regions:
+  $ref: "./regions/Regions.yaml"
+
 #  Rewards
 /rewards:
   $ref: "./rewards/Rewards.yaml"
@@ -548,6 +564,8 @@
 /segments/{segment_id}:
   $ref: "./segments/Segment.yaml"
 #Sub-resources of segments
+/segments/{segment_id}/criteria:
+  $ref: "./segments/SubSegmentCriteria.yaml"
 /segments/{segment_id}/segment-records:
   $ref: "./segments/SubSegmentRecords.yaml"
 #Actions
@@ -623,19 +641,19 @@
   $ref: "./tasks/TaskTypes.yaml"
 /task-types/{task_type_id}:
   $ref: "./tasks/TaskType.yaml"
+# Task properties
+/task-properties:
+  $ref: "./tasks/TaskProperties.yaml"
+/task-properties/{task_property_id}:
+  $ref: "./tasks/TaskProperty.yaml"
+# Task properties records
+/tasks/{task_id}/property-records:
+  $ref: "./tasks/SubTaskProperties.yaml"
 # Task states
 /task-states:
   $ref: "./tasks/TaskStates.yaml"
 /task-states/{task_state_id}:
   $ref: "./tasks/TaskState.yaml"
-#Task properties
-/task-properties:
-  $ref: "./tasks/TaskProperties.yaml"
-/task-properties/{task_property_id}:
-  $ref: "./tasks/TaskProperty.yaml"
-#Task properties records
-/tasks/{task_id}/property-records:
-  $ref: "./tasks/SubTaskProperties.yaml"
 #  Tests
 /tests/connection:
   $ref: "./tests/Connection.yaml"
@@ -714,3 +732,9 @@
   $ref: "./wallet/WalletPointsExpiration.yaml"
 /wallet/actions/credits-expiration-overview:
   $ref: "./wallet/WalletCreditsExpiration.yaml"
+
+# Workflows
+/workflows:
+  $ref: "./workflows/Workflows.yaml"
+/workflows/{workflow_id}:
+  $ref: "./workflows/Workflow.yaml"

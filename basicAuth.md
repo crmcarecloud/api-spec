@@ -1,16 +1,16 @@
-## HTTP Basic autentication
-HTTP Basic authentication method (https://en.wikipedia.org/wiki/Basic_access_authentication) has to be used to login to API successfully. There are two options to authenticate depending on your kind of integration:
+## HTTP Basic authentication (deprecated)
 
--   Enterprise API authentication  (credentials are necessary to access the data )
--   Customer API authentication  (mobile/web app integration with partial free access to data)
+> **Deprecated.** HTTP Basic authentication is deprecated for both Enterprise API and Customer API. New integrations must use HTTP Bearer authentication. See [Authentication](https://carecloud.readme.io/reference/authentication) on the documentation portal.
 
-### Enterprise API authentication
+This document is retained as a reference for existing integrations that have not yet migrated to Bearer authentication.
 
-<p class="warning">HTTP BASIC authentication is deprecated for Enterprise API. Please look at HTTP Bearer authentification for Enterprise API.</p>
+### Enterprise API authentication (deprecated)
 
-User name and password have to be used for Enterprise API authentication. Credentials are BASE64 encoded during HTTP basic authentication. HTTP header will look like the example below.
+> **Deprecated.** Enterprise API uses HTTP Bearer authentication. See [Enterprise API HTTP Bearer authentication](https://carecloud.readme.io/reference/authentication#enterprise-api-http-bearer-authentication).
 
-Before BASE64 encoding:
+When HTTP Basic was used, the username and password were Base64-encoded and sent in the HTTP header:
+
+Before Base64 encoding:
 
 ```http request
 Content-Type: application/json
@@ -18,7 +18,7 @@ Accept-Language: cs, en-gb;q=0.8
 Authorization: Basic <user name>:<password>
 ```
 
-After BASE64 encoding:
+After Base64 encoding:
 
 ```http request
 Content-Type: application/json
@@ -26,12 +26,12 @@ Accept-Language: cs, en-gb;q=0.8
 Authorization: Basic Zm9vOmJhcg==
 ```
 
-The password is composed of two parts:
+The password was composed of two parts:
 
 -   User password hashed with MD5 algorithm
 -   Time in format YYYYMMDDHH (UTC)
 
-All parts are connected and hashed with SHA-256 algorithm (implementation in PHP):
+All parts were connected and hashed with SHA-256 algorithm (implementation in PHP):
 
 ```http request
 hash('sha256',md5("password")."2019040112");
@@ -43,7 +43,11 @@ Result:
 string(64) "c0c0d92061deb13bf34570e513229368979708efcdbc80b8d881e7ef03461a6c"
 ```
 
-### Customer API authentication
+### Customer API authentication (deprecated)
+
+> **Deprecated.** Customer API uses HTTP Bearer authentication. See [Customer API HTTP Bearer authentication](https://carecloud.readme.io/reference/authentication#customer-api-http-bearer-authentication).
+
+When HTTP Basic was used, the Customer API authentication flow worked as follows:
 
 1. Get `<user name>` from your account manager. It is usually `customer_interface` for Customer API, but it might be different depending on the project.<br/>
 2. Create a token using the method  [[POST] /tokens](#operation/postToken).
@@ -51,7 +55,7 @@ string(64) "c0c0d92061deb13bf34570e513229368979708efcdbc80b8d881e7ef03461a6c"
 ```http request
 <user name>:
  ```
-Value of HTTP header Authentication contains BASE64 encoded string `<user name>:`. The request looks like this:
+Value of HTTP header Authentication contains Base64 encoded string `<user name>:`. The request looks like this:
 
 ```http request
 POST <projectURL>/webservice/rest-api/customer-interface/v1.0/tokens
@@ -67,7 +71,7 @@ Authorization: Basic Y3VzdG9tZXJfaW50ZXJmYWNlOiA=
   }
 }
 ```
-4. The next step is to put together the user name and token in the HTTP Authorization header. The value of the header has to be BASE 64 encoded.
+4. The next step is to put together the user name and token in the HTTP Authorization header. The value of the header has to be Base64 encoded.
 ```http request
 <user name>:<token_id>
 ```

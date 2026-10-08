@@ -14,6 +14,13 @@ post:
     - If `partner_records` is an empty array (`[]`) or omitted - relations are created for all partners accessible to the authenticated API user.
 
     Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
+
+    **Agreements**
+
+    The `agreements` parameter is optional. Providing it updates only the consent types listed, leaving all others unchanged:
+
+    - If `agreements` is omitted - the customer's existing consents remain unchanged.
+    - If `agreements` is provided - only the consent types included in the request are updated; consent types not present in the request remain unchanged.
   operationId: postCustomerNewslettersSignUp
   requestBody:
     required: true
