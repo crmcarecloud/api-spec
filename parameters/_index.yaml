@@ -268,19 +268,6 @@ include_customer_count:
   in: query
   description: "If true, the customer_count field will be included in each record in the response. The count is cached and may not reflect real-time membership changes. *Possible values are: true - customer count will be included / false or not set - customer count will not be included*"
   example: true
-state:
-  name: state
-  in: query
-  description: |
-    State of the resource. *Possible values are: 0 - deleted / 1 - active / 2 - non active*
-  required: false
-  schema:
-    type: integer
-    enum:
-      - 0
-      - 1
-      - 2
-  example: 1
 # Personal parameters
 user_id_path:
   name: user_id
@@ -1480,16 +1467,6 @@ send_time_to:
     type: string
   allowReserved: true
   example: "2015-01-05 23:59:00"
-#Order
-order_id_path:
-  name: order_id
-  in: path
-  description: The unique ID of the order.
-  required: true
-  schema:
-    type: string
-  example: "8bed991c68a470e7aabed9e048"
-
 # Partner
 partner_id_path:
   name: partner_id
@@ -1523,15 +1500,6 @@ partner_property_id_path:
   schema:
     type: string
   example: "direct_contact"
-#Payment types
-payment_type_id_path:
-  name: payment_type_id
-  in: path
-  description: The unique ID of the payment type.
-  required: true
-  schema:
-    type: string
-  example: "86e05affc7a7abefcd513ab400"
 # Points
 point_id_path:
   name: point_id

@@ -321,12 +321,6 @@
 /one-time-password/actions/verify:
   $ref: "./otp/OTPVerify.yaml"
 
-# Orders
-/orders:
-  $ref: "./orders/Orders.yaml"
-/orders/{order_id}:
-  $ref: "./orders/Order.yaml"
-
 # Partners
 /partners:
   $ref: "./partners/Partners.yaml"
@@ -341,12 +335,6 @@
 /partner-properties/{partner_property_id}:
   $ref: "./partners/PartnerProperty.yaml"
 
-
-# Payment types
-/payment-types:
-  $ref: "./payment_types/PaymentTypes.yaml"
-/payment-types/{payment_type_id}:
-  $ref: "./payment_types/PaymentType.yaml"
 
 # Points
 /points:
