@@ -132,14 +132,6 @@ OmnichannelCampaign:
   $ref: "./OmnichannelCampaign.yaml"
 OpeningDay:
   $ref: "./OpeningDay.yaml"
-Order:
-  $ref: "./Order.yaml"
-OrderInvoicing:
-  $ref: "./OrderInvoicing.yaml"
-OrderItem:
-  $ref: "./OrderItem.yaml"
-OrderShipping:
-  $ref: "./OrderShipping.yaml"
 Parameter:
   $ref: "./Parameter.yaml"
 Partner:
@@ -148,8 +140,6 @@ PartnerRecord:
   $ref: "./PartnerRecord.yaml"
 PaymentRecap:
   $ref: "./PaymentRecap.yaml"
-PaymentType:
-  $ref: "./PaymentType.yaml"
 PaymentVoucher:
   $ref: "./PaymentVoucher.yaml"
 PersonalInformation:
