@@ -17,24 +17,24 @@ properties:
     example: "Dessert+Caffe"
   note:
     type: string
-    description: Additional text.
+    description: Additional text of the reward.
     example: ""
   subtitle:
     type: string
-    description: Text of subtitle.
+    description: Subtitle of the reward.
     example: "Valid for all menu items"
   points_cost:
     type: number
     format: float
-    description: Number of points that will be spent by the voucher redemption.
+    description: Number of points spent when the voucher is redeemed.
     example: 200
   valid_time_from:
     type: string
-    description: "Time from which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone."
+    description: "Time from which the reward is valid. Format: `HH:MM:SS`. All times are in the local timezone."
     example: "09:00:00"
   valid_time_to:
     type: string
-    description: "Time until which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone."
+    description: "Time until which the reward is valid. Format: `HH:MM:SS`. All times are in the local timezone."
     example: "22:00:00"
   reward_group:
     type: integer
@@ -88,31 +88,31 @@ properties:
   has_product_condition:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is product condition on reward.
+    description: Indicates whether the reward has a product condition.
     example: true
   has_group_condition:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is group condition on reward.
+    description: Indicates whether the reward has a group condition.
     example: false
   has_brand_condition:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is brand condition on reward.
+    description: Indicates whether the reward has a brand condition.
     example: false
   has_product_bonus:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is product bonus on reward.
+    description: Indicates whether the reward has a product bonus.
     example: true
   has_group_bonus:
     type: boolean
-    description: Parameter says, if there is group bonus on reward.
+    description: Indicates whether the reward has a group bonus.
     example: false
   has_brand_bonus:
     type: boolean
     readOnly: true
-    description: Parameter says, if there is brand bonus on reward.
+    description: Indicates whether the reward has a brand bonus.
     example: false
   reward_product_relation_conditions:
     type: array
@@ -128,7 +128,7 @@ properties:
     description: Bonuses between reward and product.
   is_automated:
     type: boolean
-    description: Parameter says, if reward is automated or not. If the reward is automated, it means it is applied by the rules of the reward. Otherwise, it has to be applied manually.
+    description: Indicates whether the reward is automated. An automated reward is applied by the reward rules. Otherwise, it must be applied manually.
     example: false
   tags:
     type: array
@@ -139,7 +139,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2013-07-24 21:33:33"
   state:
     type: integer

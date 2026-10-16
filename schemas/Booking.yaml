@@ -15,7 +15,7 @@ properties:
     maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/BookingItem'
-    description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`.
+    description: List of the booking items. Included in the response of a GET request only if the query parameter `add_booking_items` is set.
   booking_status:
     type: string
     description: The current status of the booking. If not set, CareCloud uses the default booking status. [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)
@@ -29,7 +29,7 @@ properties:
         items:
           type: string
       - type: object
-    description: Additional data of the booking. Serialized data in JSON.
+    description: Additional data of the booking, serialized as JSON.
     example: '"{\"size\":20, \"unit\": \"cm\"}"'
   created_at:
     type: string
@@ -38,7 +38,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2022-08-11 11:15:33"
   state:
     type: integer

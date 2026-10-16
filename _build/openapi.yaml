@@ -19177,7 +19177,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-09-14 07:39:08.99493'
       required:
         - name
@@ -19251,19 +19251,19 @@ components:
           enum:
             - true
             - false
-          description: The settings whether the property is a required parameter of the specific entity.
+          description: Indicates whether the property is required for the specific entity.
           example: false
         is_unique:
           type: boolean
           enum:
             - true
             - false
-          description: The setting whether the property contains a unique value within the specific entity.
+          description: Indicates whether the property value must be unique within the specific entity.
           example: false
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-20 14:48:09'
         state:
           type: integer
@@ -19316,7 +19316,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-09-16 16:14:41'
       required:
         - name
@@ -19337,12 +19337,12 @@ components:
         valid_from:
           type: string
           readOnly: true
-          description: Date and time when time slot starts. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp when the time slot starts. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-01-09 22:00:00'
         valid_to:
           type: string
           readOnly: true
-          description: Date and time when time slot ends. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp when the time slot ends. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-01-09 22:30:00'
         total_capacity:
           type: integer
@@ -19366,7 +19366,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2015-01-05 11:24:12'
       required:
         - ticket_id
@@ -19485,7 +19485,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2023-02-02 00:00:00'
       required:
         - property_id
@@ -19510,12 +19510,12 @@ components:
         valid_from:
           type: string
           readOnly: true
-          description: Date and time when time slot starts. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp when the time slot starts. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-01-09 22:00:00'
         valid_to:
           type: string
           readOnly: true
-          description: Date and time when time slot ends. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp when the time slot ends. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-01-09 22:30:00'
         capacity_taken:
           type: integer
@@ -19589,7 +19589,7 @@ components:
           maxItems: 1000
           items:
             $ref: '#/components/schemas/BookingItem'
-          description: List of the booking items. Included in response of GET API call only if query parameter `add_booking_items` is `true`.
+          description: List of the booking items. Included in the response of a GET request only if the query parameter `add_booking_items` is set.
         booking_status:
           type: string
           description: The current status of the booking. If not set, CareCloud uses the default booking status. [GET /booking-statuses](https://carecloud.readme.io/reference/getbookingstatuses)
@@ -19603,7 +19603,7 @@ components:
               items:
                 type: string
             - type: object
-          description: Additional data of the booking. Serialized data in JSON.
+          description: Additional data of the booking, serialized as JSON.
           example: '"{\"size\":20, \"unit\": \"cm\"}"'
         created_at:
           type: string
@@ -19612,7 +19612,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-08-11 11:15:33'
         state:
           type: integer
@@ -19860,7 +19860,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-07-15 17:26:34'
         state:
           type: integer
@@ -20583,17 +20583,17 @@ components:
         doi_email:
           type: string
           readOnly: true
-          description: Date and time of obtaining the customer's email consent (Double opt-in confirmation). *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of obtaining the customer''s email consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-23 11:47:22'
         doi_phone:
           type: string
           readOnly: true
-          description: Date and time of obtaining the customer's phone consent (Double opt-in confirmation). *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of obtaining the customer''s phone consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-23 11:47:23'
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-23 11:47:23'
         state:
           type: integer
@@ -20791,7 +20791,7 @@ components:
         phone_number:
           type: string
           pattern: ^[1-9][0-9]*$
-          description: Phone number of the store with international prefix (420000000000).
+          description: Phone number of the store including the international prefix, for example 420000000000.
           example: '420523828931'
         partner_id:
           type: string
@@ -20799,7 +20799,7 @@ components:
           example: 86e05affc7a7abefcd513ab400
         system_id:
           type: string
-          description: The external unique ID of the store in external system.
+          description: The unique ID of the store in the external system.
           example: '2375303497'
         gps_coordinates:
           $ref: '#/components/schemas/GPSCoordinates'
@@ -20845,7 +20845,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2023-03-28 16:12:56'
         state:
           type: integer
@@ -20948,7 +20948,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-01-04 10:31:56'
     Reward:
       type: object
@@ -20970,24 +20970,24 @@ components:
           example: Dessert+Caffe
         note:
           type: string
-          description: Additional text.
+          description: Additional text of the reward.
           example: ''
         subtitle:
           type: string
-          description: Text of subtitle.
+          description: Subtitle of the reward.
           example: Valid for all menu items
         points_cost:
           type: number
           format: float
-          description: Number of points that will be spent by the voucher redemption.
+          description: Number of points spent when the voucher is redeemed.
           example: 200
         valid_time_from:
           type: string
-          description: Time from which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone.
+          description: 'Time from which the reward is valid. Format: `HH:MM:SS`. All times are in the local timezone.'
           example: '09:00:00'
         valid_time_to:
           type: string
-          description: Time until which the reward is valid in ISO-8601 format (`HH:MM:SS`). All times are in the local timezone.
+          description: 'Time until which the reward is valid. Format: `HH:MM:SS`. All times are in the local timezone.'
           example: '22:00:00'
         reward_group:
           type: integer
@@ -21041,31 +21041,31 @@ components:
         has_product_condition:
           type: boolean
           readOnly: true
-          description: Parameter says, if there is product condition on reward.
+          description: Indicates whether the reward has a product condition.
           example: true
         has_group_condition:
           type: boolean
           readOnly: true
-          description: Parameter says, if there is group condition on reward.
+          description: Indicates whether the reward has a group condition.
           example: false
         has_brand_condition:
           type: boolean
           readOnly: true
-          description: Parameter says, if there is brand condition on reward.
+          description: Indicates whether the reward has a brand condition.
           example: false
         has_product_bonus:
           type: boolean
           readOnly: true
-          description: Parameter says, if there is product bonus on reward.
+          description: Indicates whether the reward has a product bonus.
           example: true
         has_group_bonus:
           type: boolean
-          description: Parameter says, if there is group bonus on reward.
+          description: Indicates whether the reward has a group bonus.
           example: false
         has_brand_bonus:
           type: boolean
           readOnly: true
-          description: Parameter says, if there is brand bonus on reward.
+          description: Indicates whether the reward has a brand bonus.
           example: false
         reward_product_relation_conditions:
           type: array
@@ -21081,7 +21081,7 @@ components:
           description: Bonuses between reward and product.
         is_automated:
           type: boolean
-          description: Parameter says, if reward is automated or not. If the reward is automated, it means it is applied by the rules of the reward. Otherwise, it has to be applied manually.
+          description: Indicates whether the reward is automated. An automated reward is applied by the reward rules. Otherwise, it must be applied manually.
           example: false
         tags:
           type: array
@@ -21092,7 +21092,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2013-07-24 21:33:33'
         state:
           type: integer
@@ -21486,22 +21486,22 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         is_leading:
           type: boolean
-          description: 'Parameter says, if related customer is a leader in their relationship. *Example: Parent is a leader, child is a follower*'
+          description: 'Indicates whether the related customer is the leader in the relationship. *Example: Parent is a leader, child is a follower*'
           example: false
         valid_from:
           type: string
           readOnly: true
-          description: Date and time when customer relation starts. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp when the customer relation starts. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-01-09 22:00:00'
         valid_to:
           type: string
           readOnly: true
-          description: Date and time when customer relation ends. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp when the customer relation ends. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-01-09 22:30:00'
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-06-23 11:47:22'
         state:
           type: integer
@@ -21568,7 +21568,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
       required:
         - partner_id
     CustomerResult:
@@ -21637,7 +21637,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2022-07-25 17:57:44.793447'
     CustomerEngagementSetup:
       type: object
@@ -21668,7 +21668,7 @@ components:
       properties:
         external_application_id:
           type: string
-          description: The unique ID of the client external application.
+          description: The unique ID of the external application.
           example: 8bed991c68a470e7aaeffbf048
         text_id:
           type: string
@@ -21682,7 +21682,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-07-26 09:46:59.005819'
         state:
           type: integer
@@ -21709,12 +21709,12 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
-          description: Name of the customer relation type
+          description: Name of the customer relation type.
           example: Family account
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-05-16 13:35:40'
         state:
           type: integer
@@ -21747,7 +21747,7 @@ components:
         customer_source_text_id:
           type: string
           readOnly: true
-          description: It represents unique readable ID of the customer source.
+          description: The unique readable ID of the customer source.
           example: webshop_registration
         state:
           type: integer
@@ -21763,7 +21763,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-01-08 18:34:07'
       required:
         - customer_source_id
@@ -21785,7 +21785,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2017-12-01 14:29:41'
     District:
       type: object
@@ -22021,7 +22021,7 @@ components:
         language_id:
           type: string
           readOnly: true
-          description: The unique ID of the language code by ISO 639-1.
+          description: The unique ID of the language as an ISO 639-1 code.
           example: cs
         state:
           type: integer
@@ -22037,7 +22037,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2017-03-24 15:29:47'
     Parameter:
       type: object
@@ -23066,14 +23066,14 @@ components:
           example: 81eaeea13b8984a169c490a325
         reservable_product_id:
           type: string
-          description: The unique ID of the reservable product. This represents relation in between price and product. Required if `plu_ids` is not set. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts)
+          description: The unique ID of the reservable product. This represents the relation between the price and the product. Required if `plu_ids` is not set. [GET /reservable-products](https://carecloud.readme.io/reference/getreservableproducts)
           example: 8ea2591121e636086a4a9c0992
         plu_ids:
           type: array
           maxItems: 1000
           items:
             $ref: '#/components/schemas/PluId'
-          description: An array of all available pluIDs from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).  This is an alternative to  `reservable_product_id`. It will accept only products that could be reserved.  Required if `reservable_product_id` is not set.
+          description: An array of all available PLU IDs from the particular product lists. The default is the product ID from the global product list, which contains cleaned data with a unique ID for every product across all POS systems. This is an alternative to `reservable_product_id`. Only products that can be reserved are accepted. Required if `reservable_product_id` is not set.
         value:
           type: number
           format: float
@@ -23081,7 +23081,7 @@ components:
           example: 69
         currency_id:
           type: string
-          description: ID of the currency. If total_price is set, then currency_id is mandatory. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
+          description: The unique ID of the currency. If `total_price` is set, `currency_id` is mandatory. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
           example: 8bed991c68a470e7aaeffbf048
         store_id:
           type: string
@@ -23090,7 +23090,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-04-20 11:23:35'
         state:
           type: integer
@@ -23117,12 +23117,12 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
-          description: Name of the product reservation source in defined language(depends on language in http header of the API request).
+          description: Name of the product reservation source. The language depends on the `Accept-Language` HTTP request header.
           example: E-shop
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-09-09 12:32:42.143353'
         state:
           type: integer
@@ -23669,7 +23669,7 @@ components:
           $ref: '#/components/schemas/ProductIdentification'
         recommendation_system_id:
           type: string
-          description: The unique ID of the third party recommendation system from resource recommendation systems.
+          description: The unique ID of the third-party recommendation system.
           example: 89bdac89bdacbfbffb5c82f2c52c
         recommendation_system_dataset_id:
           type: string
@@ -23678,7 +23678,7 @@ components:
         score:
           type: number
           format: float
-          description: Score of the recommendation. Depends of score we will pick products to recommendation. Higher score means better results.
+          description: Score of the recommendation. Products are selected for the recommendation based on this score. A higher score means a better match.
           example: 0.87
         state:
           type: integer
@@ -23694,7 +23694,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-01-04 10:31:56'
       required:
         - products
@@ -24051,7 +24051,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-01-14 09:02:13.235667'
       required:
         - name
@@ -24139,7 +24139,7 @@ components:
         description:
           type: string
           description: |
-            Stamper condition description. The translation is return depending on the language value in the HTTP request header Accept-Language.
+            Stamper condition description. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
           example: Buy 2 doughnuts
     StamperBonusCheckpoint:
       type: object
@@ -24153,7 +24153,7 @@ components:
         description:
           type: string
           description: |
-            Stamper bonus checkpoint description. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+            Stamper bonus checkpoint description. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
           example: 5% off next purchase
         stamp_number:
           type: integer
@@ -24175,11 +24175,11 @@ components:
           example: 8bed991c68a470e7aaeffbf048
         name:
           type: string
-          description: Name of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+          description: Name of the stamper campaign. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
           example: First customers
         description:
           type: string
-          description: Description of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+          description: Description of the stamper campaign. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
           example: |
             Be among the first to join our exclusive loyalty program and start collecting digital stamps! For every purchase, you earn a stamp—collect 10 stamps to unlock a special reward. As a bonus, stamp #5 is a checkpoint that gives you an extra perk along the way! Start stamping today and enjoy exclusive rewards!
         stamp_count:
@@ -24198,7 +24198,7 @@ components:
           example: '2025-07-15 17:00:00'
         count_of_campaign_repetitions:
           type: integer
-          description: The number how many times can be campaign repeated. The number says how many stamper cards could be filled by customer in that campaign.
+          description: Number of times the campaign can be repeated. It determines how many stamper cards a customer can fill in the campaign.
           example: 3
         stamper_conditions:
           type: array
@@ -24213,7 +24213,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2024-07-15 17:26:34'
         state:
           type: integer
@@ -24251,12 +24251,12 @@ components:
         stamp_order:
           type: integer
           readOnly: true
-          description: An order of the stamp in the card. If null, the stamp is not assign to any stamper card.
+          description: Position of the stamp in the card. If null, the stamp is not assigned to any stamper card.
           example: 7
         stamper_condition_id:
           type: string
           readOnly: true
-          description: The unique ID of the stamper condition. An information about condition is available at the stamper campaign that stamp is part of.
+          description: The unique ID of the stamper condition. Information about the condition is available in the stamper campaign that the stamp is part of.
           example: 8bed991c68a470e7aaeffbf048
         created_at:
           type: string
@@ -24265,7 +24265,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2025-03-15 17:26:34'
         state:
           type: integer
@@ -24439,7 +24439,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-02-08 15:35:09'
       required:
         - store_id
@@ -24460,7 +24460,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2020-08-24 10:14:00'
       required:
         - name
@@ -24531,7 +24531,7 @@ components:
         - task_priority
     TaskAssignee:
       type: object
-      description: Task comment.
+      description: Task assignee.
       properties:
         task_assignee_id:
           type: string
@@ -24550,7 +24550,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last comment change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-06-20 16:59:49'
       required:
         - user_id
@@ -24575,7 +24575,7 @@ components:
         last_change:
           type: string
           readOnly: true
-          description: Date and time of the last comment change. *(YYYY-MM-DD HH:MM:SS)*
+          description: 'Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2021-06-20 16:59:49'
         state:
           type: integer
@@ -24904,7 +24904,7 @@ components:
           readOnly: true
           description: The unique ID of the user that created the workflow. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
           example: 8bed991c68a470e7aaeffbf048
-        create_date:
+        created_at:
           type: string
           readOnly: true
           description: 'Timestamp of the workflow creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'

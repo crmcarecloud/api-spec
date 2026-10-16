@@ -9,7 +9,7 @@ properties:
   description:
     type: string
     description: |
-      Stamper bonus checkpoint description. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+      Stamper bonus checkpoint description. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
     example: "5% off next purchase"
   stamp_number:
     type: integer

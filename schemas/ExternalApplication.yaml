@@ -3,7 +3,7 @@ description: External application structure.
 properties:
   external_application_id:
     type: string
-    description: The unique ID of the client external application.
+    description: The unique ID of the external application.
     example: "8bed991c68a470e7aaeffbf048"
   text_id:
     type: string
@@ -17,7 +17,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-07-26 09:46:59.005819"
   state:
     type: integer

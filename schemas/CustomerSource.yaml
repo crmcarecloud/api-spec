@@ -15,7 +15,7 @@ properties:
   customer_source_text_id:
     type: string
     readOnly: true
-    description: It represents unique readable ID of the customer source.
+    description: The unique readable ID of the customer source.
     example: webshop_registration
   state:
     type: integer
@@ -31,7 +31,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-01-08 18:34:07"
 required:
   - customer_source_id

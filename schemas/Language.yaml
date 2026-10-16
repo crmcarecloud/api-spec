@@ -4,7 +4,7 @@ properties:
   language_id:
     type: string
     readOnly: true
-    description: The unique ID of the language code by ISO 639-1.
+    description: The unique ID of the language as an ISO 639-1 code.
     example: "cs"
   state:
     type: integer
@@ -20,5 +20,5 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2017-03-24 15:29:47"

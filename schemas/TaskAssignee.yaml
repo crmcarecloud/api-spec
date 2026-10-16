@@ -1,5 +1,5 @@
 type: object
-description: Task comment.
+description: Task assignee.
 properties:
   task_assignee_id:
     type: string
@@ -18,7 +18,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last comment change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2021-06-20 16:59:49"
 required:
   - user_id

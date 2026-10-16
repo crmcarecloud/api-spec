@@ -8,12 +8,12 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
-    description: Name of the customer relation type
+    description: Name of the customer relation type.
     example: "Family account"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-05-16 13:35:40"
   state:
     type: integer
