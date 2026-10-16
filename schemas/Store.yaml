@@ -27,7 +27,7 @@ properties:
   phone_number:
     type: string
     pattern: ^[1-9][0-9]*$
-    description: Phone number of the store with international prefix (420000000000).
+    description: Phone number of the store including the international prefix, for example 420000000000.
     example: "420523828931"
   partner_id:
     type: string
@@ -35,7 +35,7 @@ properties:
     example: "86e05affc7a7abefcd513ab400"
   system_id:
     type: string
-    description: The external unique ID of the store in external system.
+    description: The unique ID of the store in the external system.
     example: "2375303497"
   gps_coordinates:
     $ref: '../schemas/_index.yaml#/GPSCoordinates'
@@ -81,7 +81,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2023-03-28 16:12:56"
   state:
     type: integer

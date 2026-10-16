@@ -24,12 +24,12 @@ properties:
   stamp_order:
     type: integer
     readOnly: true
-    description: An order of the stamp in the card. If null, the stamp is not assign to any stamper card.
+    description: Position of the stamp in the card. If null, the stamp is not assigned to any stamper card.
     example: 7
   stamper_condition_id:
     type: string
     readOnly: true
-    description: The unique ID of the stamper condition. An information about condition is available at the stamper campaign that stamp is part of.
+    description: The unique ID of the stamper condition. Information about the condition is available in the stamper campaign that the stamp is part of.
     example: "8bed991c68a470e7aaeffbf048"
   created_at:
     type: string
@@ -38,7 +38,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2025-03-15 17:26:34"
   state:
     type: integer

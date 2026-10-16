@@ -39,19 +39,19 @@ properties:
     enum:
       - true
       - false
-    description: The settings whether the property is a required parameter of the specific entity.
+    description: Indicates whether the property is required for the specific entity.
     example: false
   is_unique:
     type: boolean
     enum:
       - true
       - false
-    description: The setting whether the property contains a unique value within the specific entity.
+    description: Indicates whether the property value must be unique within the specific entity.
     example: false
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-20 14:48:09"
   state:
     type: integer

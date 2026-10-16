@@ -21,22 +21,22 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   is_leading:
     type: boolean
-    description: 'Parameter says, if related customer is a leader in their relationship. *Example: Parent is a leader, child is a follower*'
+    description: 'Indicates whether the related customer is the leader in the relationship. *Example: Parent is a leader, child is a follower*'
     example: false
   valid_from:
     type: string
     readOnly: true
-    description: Date and time when customer relation starts. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp when the customer relation starts. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2022-01-09 22:00:00"
   valid_to:
     type: string
     readOnly: true
-    description: Date and time when customer relation ends. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp when the customer relation ends. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2022-01-09 22:30:00"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2022-06-23 11:47:22"
   state:
     type: integer

@@ -19,7 +19,7 @@ properties:
     $ref: '../schemas/_index.yaml#/ProductIdentification'
   recommendation_system_id:
     type: string
-    description: The unique ID of the third party recommendation system from resource recommendation systems.
+    description: The unique ID of the third-party recommendation system.
     example: "89bdac89bdacbfbffb5c82f2c52c"
   recommendation_system_dataset_id:
     type: string
@@ -28,7 +28,7 @@ properties:
   score:
     type: number
     format: float
-    description: 'Score of the recommendation. Depends of score we will pick products to recommendation. Higher score means better results.'
+    description: 'Score of the recommendation. Products are selected for the recommendation based on this score. A higher score means a better match.'
     example: 0.87
   state:
     type: integer
@@ -44,7 +44,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-01-04 10:31:56"
 required:
   - products

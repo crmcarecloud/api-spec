@@ -59,7 +59,7 @@ properties:
     readOnly: true
     description: The unique ID of the user that created the workflow. The list of users is available at [GET /users](https://carecloud.readme.io/reference/getusers) (Enterprise API only).
     example: "8bed991c68a470e7aaeffbf048"
-  create_date:
+  created_at:
     type: string
     readOnly: true
     description: "Timestamp of the workflow creation. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."

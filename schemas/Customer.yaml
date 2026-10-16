@@ -11,17 +11,17 @@ properties:
   doi_email:
     type: string
     readOnly: true
-    description: Date and time of obtaining the customer's email consent (Double opt-in confirmation). *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of obtaining the customer's email consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-23 11:47:22"
   doi_phone:
     type: string
     readOnly: true
-    description: Date and time of obtaining the customer's phone consent (Double opt-in confirmation). *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of obtaining the customer's phone consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-23 11:47:23"
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-23 11:47:23"
   state:
     type: integer

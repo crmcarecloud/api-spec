@@ -13,11 +13,11 @@ properties:
     example: "8bed991c68a470e7aaeffbf048"
   name:
     type: string
-    description: Name of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+    description: Name of the stamper campaign. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
     example: "First customers"
   description:
     type: string
-    description: Description of the stamper campaign. The translation is return depending on the language value in the HTTP request header `Accept-Language`.
+    description: Description of the stamper campaign. The translation is returned depending on the language value in the HTTP request header `Accept-Language`.
     example: |
       Be among the first to join our exclusive loyalty program and start collecting digital stamps! For every purchase, you earn a stamp—collect 10 stamps to unlock a special reward. As a bonus, stamp #5 is a checkpoint that gives you an extra perk along the way! Start stamping today and enjoy exclusive rewards!
   stamp_count:
@@ -36,7 +36,7 @@ properties:
     example: "2025-07-15 17:00:00"
   count_of_campaign_repetitions:
     type: integer
-    description: The number how many times can be campaign repeated. The number says how many stamper cards could be filled by customer in that campaign.
+    description: Number of times the campaign can be repeated. It determines how many stamper cards a customer can fill in the campaign.
     example: 3
   stamper_conditions:
     type: array
@@ -51,7 +51,7 @@ properties:
   last_change:
     type: string
     readOnly: true
-    description: Date and time of the last change. *(YYYY-MM-DD HH:MM:SS)*
+    description: "Timestamp of the last change. Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2024-07-15 17:26:34"
   state:
     type: integer
