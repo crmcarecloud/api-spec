@@ -8882,7 +8882,7 @@ paths:
                   description: |
                     Recipient of the one-time password message. The expected format depends on the communication channel:
                     - **Email** (channel 1): a valid email address. The value is validated against the pattern `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
-                    - **SMS** (channel 2): a phone number with international prefix, digits only, no leading zero. The value is validated against the pattern `^[1-9][0-9]*$`. Example: `420523828931`.
+                    - **SMS** (channel 2): a mobile phone number starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces. The value is validated against the pattern `^[1-9][0-9]*$`. For example `420523828931`.
 
                     Only email (channel 1) and SMS (channel 2) are supported for one-time password delivery.
                   example: happy_customer@crmcarecloud.com
@@ -20539,7 +20539,7 @@ components:
         phone:
           type: string
           pattern: ^[1-9][0-9]*$
-          description: Phone number of the customer with international prefix (420000000000).
+          description: Mobile phone number of the customer starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces (for example 420523828931).
           example: '420523828931'
         language_id:
           type: string
@@ -22224,7 +22224,9 @@ components:
           example: 8ea2591121e636086a4a9c0992
         contact:
           type: string
-          description: Email address or phone number to use when sending the message to a different contact than the one associated with the customer.
+          description: |
+            Email address or mobile phone number to use when sending the message to a different contact than the one associated with the customer.
+            For the email channel, provide a valid email address. For the SMS channel, provide a mobile phone number starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces (for example 420601123456).
           example: happy_customer@crmcarecloud.com
         communication_channel_id:
           type: integer
@@ -22240,13 +22242,13 @@ components:
           maxItems: 1000
           items:
             $ref: '#/components/schemas/Parameter'
-          description: Message data can contain an array of customized parameters that influence how the message is displayed or add values to the message.
+          description: Array of custom parameters that change how the message is displayed or add values to the message.
         attachments:
           type: array
           maxItems: 1000
           items:
             $ref: '#/components/schemas/Attachment'
-          description: List of the attachments for the message. A single attachment has a size limit of 1 MB. Allowed file types are .jpg, .jpeg, .png, .gif, and .pdf.
+          description: List of attachments for the message. A single attachment has a size limit of 1 MB. Allowed file types are .jpg, .jpeg, .png, .gif, and .pdf.
       required:
         - message_template_id
         - customer_id
@@ -24702,7 +24704,7 @@ components:
           example: happy_user@crmcarcloud.com
         phone:
           type: string
-          description: Phone number of the user with international prefix (420000000).
+          description: Mobile phone number of the user starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces (for example 420523828931).
           example: '420523828931'
         user_role_ids:
           type: array

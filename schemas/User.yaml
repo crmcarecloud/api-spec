@@ -24,7 +24,7 @@ properties:
     example: "happy_user@crmcarcloud.com"
   phone:
     type: string
-    description: Phone number of the user with international prefix (420000000).
+    description: Mobile phone number of the user starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces (for example 420523828931).
     example: "420523828931"
   user_role_ids:
     type: array

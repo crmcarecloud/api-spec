@@ -48,7 +48,7 @@ properties:
   phone:
     type: string
     pattern: ^[1-9][0-9]*$
-    description: Phone number of the customer with international prefix (420000000000).
+    description: Mobile phone number of the customer starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces (for example 420523828931).
     example: "420523828931"
   language_id:
     type: string

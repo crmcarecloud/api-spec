@@ -11,7 +11,9 @@ properties:
     example: "8ea2591121e636086a4a9c0992"
   contact:
     type: string
-    description: Email address or phone number to use when sending the message to a different contact than the one associated with the customer.
+    description: |
+      Email address or mobile phone number to use when sending the message to a different contact than the one associated with the customer.
+      For the email channel, provide a valid email address. For the SMS channel, provide a mobile phone number starting with the country calling code, digits only, without a plus sign, leading zeros, or spaces (for example 420601123456).
     example: "happy_customer@crmcarecloud.com"
   communication_channel_id:
     type: integer
@@ -27,13 +29,13 @@ properties:
     maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/Parameter'
-    description: Message data can contain an array of customized parameters that influence how the message is displayed or add values to the message.
+    description: Array of custom parameters that change how the message is displayed or add values to the message.
   attachments:
     type: array
     maxItems: 1000
     items:
       $ref: '../schemas/_index.yaml#/Attachment'
-    description: "List of the attachments for the message. A single attachment has a size limit of 1 MB. Allowed file types are .jpg, .jpeg, .png, .gif, and .pdf."
+    description: "List of attachments for the message. A single attachment has a size limit of 1 MB. Allowed file types are .jpg, .jpeg, .png, .gif, and .pdf."
 required:
   - message_template_id
   - customer_id
