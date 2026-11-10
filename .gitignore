@@ -1,5 +1,4 @@
 .idea
 /vendor/
 composer.lock
-docs/notes.md
-/docs/
+/artefacts/
