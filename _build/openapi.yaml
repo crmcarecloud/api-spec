@@ -20094,7 +20094,7 @@ components:
           example: 86e05affc7a7abefcd513ab400
         partner_id:
           type: string
-          description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
+          description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
           example: 86e05affc7a7abefcd513ab400
         valid_to:
           type: string
@@ -20102,7 +20102,6 @@ components:
           example: '2027-12-12 00:00:00'
         currency_id:
           type: string
-          readOnly: true
           description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
           example: 86e05affc7a7abefcd513ab400
         state:
@@ -20118,8 +20117,7 @@ components:
           example: 1
         note:
           type: string
-          readOnly: true
-          description: Note of the credit record.
+          description: Note about the credit record.
           example: Black Friday 2024 promotion
       required:
         - customer_id
@@ -20585,10 +20583,10 @@ components:
           readOnly: true
           description: 'Timestamp of obtaining the customer''s email consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-23 11:47:22'
-        doi_phone:
+        doi_sms:
           type: string
           readOnly: true
-          description: 'Timestamp of obtaining the customer''s phone consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
+          description: 'Timestamp of obtaining the customer''s SMS consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone.'
           example: '2019-06-23 11:47:23'
         last_change:
           type: string
@@ -22588,15 +22586,15 @@ components:
           example: '2021-04-16 13:47:53'
     PluId:
       type: object
-      description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set or not requested in the request.
+      description: PLU ID from a product list. The default value is the product ID from the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems. This field is required when the `product_id` field is not set or not included in the request.
       properties:
         list_code:
           type: string
-          description: Code of the particular product list (basic is code of Global product list (consist cleaned data - unique ID of every product across all POS systems)). For example, “GLOBAL”, “SKU”, “PLU”, etc.
+          description: Code of the product list. The default value is the code of the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems. For example, “GLOBAL”, “SKU”, “PLU”, etc.
           example: GLOBAL
         code:
           type: string
-          description: Code of product from the product list (basic is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
+          description: Code of the product from the product list. The default value is the product ID from the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems.
           example: abc
       required:
         - list_code
@@ -22636,14 +22634,14 @@ components:
           example: '649'
         external_id:
           type: string
-          description: The external unique ID of the product. This parameter is deprecated. Please use parameter `plu_ids`.
+          description: The external unique ID of the product. This field is deprecated. Use the `plu_ids` field instead.
           example: NKBD7TB
           deprecated: true
         plu_ids:
           type: array
           items:
             $ref: '#/components/schemas/PluId'
-          description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
+          description: An array of all available PLU IDs from the product lists. The default value is the product ID from the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems.
         product_group_id:
           type: string
           description: The unique ID of the product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
@@ -22660,11 +22658,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Price'
+          description: List of product prices.
         additional_properties:
           type: array
           items:
             $ref: '#/components/schemas/PropertyRecord'
-          description: List of additional properties.
+          description: List of the additional properties.
         image_urls:
           type: array
           items:
@@ -22681,7 +22680,6 @@ components:
           enum:
             - 0
             - 1
-            - 2
           readOnly: true
           description: |
             State of the product.

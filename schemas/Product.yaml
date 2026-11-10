@@ -16,14 +16,14 @@ properties:
     example: "649"
   external_id:
     type: string
-    description: The external unique ID of the product. This parameter is deprecated. Please use parameter `plu_ids`.
+    description: The external unique ID of the product. This field is deprecated. Use the `plu_ids` field instead.
     example: "NKBD7TB"
     deprecated: true
   plu_ids:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PluId'
-    description: An array of all available pluIds from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
+    description: An array of all available PLU IDs from the product lists. The default value is the product ID from the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems.
   product_group_id:
     type: string
     description: The unique ID of the product group. [GET /product-groups](https://carecloud.readme.io/reference/getproductgroups)
@@ -40,11 +40,12 @@ properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/Price'
+    description: List of product prices.
   additional_properties:
     type: array
     items:
       $ref: '../schemas/_index.yaml#/PropertyRecord'
-    description: List of additional properties.
+    description: List of the additional properties.
   image_urls:
     type: array
     items:
@@ -61,7 +62,6 @@ properties:
     enum:
       - 0
       - 1
-      - 2
     readOnly: true
     description: |
       State of the product.

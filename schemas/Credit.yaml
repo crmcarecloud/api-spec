@@ -28,7 +28,7 @@ properties:
     example: "86e05affc7a7abefcd513ab400"
   partner_id:
     type: string
-    description: The unique ID of the partner company. [GET /partners](https://carecloud.readme.io/reference/getpartners)
+    description: The unique ID of the partner. [GET /partners](https://carecloud.readme.io/reference/getpartners)
     example: "86e05affc7a7abefcd513ab400"
   valid_to:
     type: string
@@ -36,7 +36,6 @@ properties:
     example: "2027-12-12 00:00:00"
   currency_id:
     type: string
-    readOnly: true
     description: The unique ID of the currency. [GET /currencies](https://carecloud.readme.io/reference/getcurrencies)
     example: "86e05affc7a7abefcd513ab400"
   state:
@@ -52,8 +51,7 @@ properties:
     example: 1
   note:
     type: string
-    readOnly: true
-    description: Note of the credit record.
+    description: Note about the credit record.
     example: "Black Friday 2024 promotion"
 required:
   - customer_id

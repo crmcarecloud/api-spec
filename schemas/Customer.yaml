@@ -13,10 +13,10 @@ properties:
     readOnly: true
     description: "Timestamp of obtaining the customer's email consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-23 11:47:22"
-  doi_phone:
+  doi_sms:
     type: string
     readOnly: true
-    description: "Timestamp of obtaining the customer's phone consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
+    description: "Timestamp of obtaining the customer's SMS consent (double opt-in confirmation). Format: `YYYY-MM-DD HH:MM:SS`. All times are in the local timezone."
     example: "2019-06-23 11:47:23"
   last_change:
     type: string

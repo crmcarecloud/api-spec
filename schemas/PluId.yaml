@@ -1,13 +1,13 @@
 type: object
-description: PLU ID from the particular product lists (default is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)). Parameter is required when parameter `product_id` is not set or not requested in the request.
+description: PLU ID from a product list. The default value is the product ID from the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems. This field is required when the `product_id` field is not set or not included in the request.
 properties:
   list_code:
     type: string
-    description: Code of the particular product list (basic is code of Global product list (consist cleaned data - unique ID of every product across all POS systems)). For example, “GLOBAL”, “SKU”, “PLU”, etc.
+    description: Code of the product list. The default value is the code of the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems. For example, “GLOBAL”, “SKU”, “PLU”, etc.
     example: "GLOBAL"
   code:
     type: string
-    description: Code of product from the product list (basic is Product ID from Global product list (consist cleaned data - unique ID of every product across all POS systems)).
+    description: Code of the product from the product list. The default value is the product ID from the global product list, which contains deduplicated data and provides a unique ID for every product across all POS systems.
     example: "abc"
 required:
   - list_code
