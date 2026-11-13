@@ -3,8 +3,18 @@ description: Personal information of the customer.
 properties:
   salutation:
     type: string
-    description: Customer's salutation. If it is not set in POST or PUT calls, it will be generated automatically.
-    example: "Dear Mr. Smith"
+    description: |
+      Customer's salutation. When the field is not provided in a POST or PUT request, the system generates a salutation automatically. The generated value depends on the available customer data:
+
+      - When a last name and a recognized gender (Male, Female, or Miss, values 1 to 3) are present, the salutation is derived from the name, gender, and communication language.
+      - When the last name is missing but a valid gender is present, a default salutation for the gender and language is used.
+      - When neither qualifies, a project-configured default salutation for the communication language is used.
+
+      The generated salutation always ends with a trailing comma. On update, the salutation is regenerated in either of these cases:
+
+      - The field is omitted or empty.
+      - The gender or last name has changed, and the current salutation matches the one the system previously generated.
+    example: "Dear Mr. Smith,"
   gender:
     type: integer
     nullable: true
@@ -14,7 +24,8 @@ properties:
       - 3
       - 4
       - 5
-    description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
+    description: |
+      Gender of the customer. *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other.* When omitted or set to null, the system attempts to detect the gender from the customer's name. Values outside the range 1 to 5 are treated as null, which also triggers auto-detection.
     example: 1
   first_name:
     type: string
@@ -26,11 +37,11 @@ properties:
     example: "Smith"
   pre_nominals:
     type: string
-    description: Academic degrees, academic titles, other titles of customer placed before name.
+    description: Academic degrees, academic titles, and other titles of the customer placed before the name.
     example: "Dr."
   post_nominals:
     type: string
-    description: Academic degrees, academic titles, other titles of customer placed after name.
+    description: Academic degrees, academic titles, and other titles of the customer placed after the name.
     example: "Ph.D"
   birthdate:
     type: string
@@ -41,9 +52,9 @@ properties:
     type: string
     pattern: ^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
     description: |
-      Email of the customer.
+      Email address of the customer.
       If you provide an email address, CareCloud validates its format and the validity of the domain.
-      Here is the general regular expression that is used for validation: `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
+      The regular expression used for validation: `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
     example: "happy_customer@crmcarecloud.com"
   phone:
     type: string
@@ -57,12 +68,13 @@ properties:
   store_id:
     type: string
     description: |
-      The unique ID of the original customer account store of registration. In case of customer update, the value can only be updated, not removed. When provided during customer registration and the project is configured for store-based partner assignment, the system derives the partner from the store and creates a single customer-partner relation. [GET /stores](https://carecloud.readme.io/reference/getstores)
+      The unique ID of the original customer account store of registration. In a customer update, the value can only be changed, not removed. Omitting `store_id` in a PUT request preserves the existing value. When provided during customer registration and the project is configured for store-based partner assignment, the system derives the partner from the store and creates a single customer-partner relation. [GET /stores](https://carecloud.readme.io/reference/getstores)
     example: "8bed991c68a4"
   photo_url:
     type: string
     readOnly: true
-    description: URL address of the customer photo. If customer has no photo, this parameter is not send.
+    description: |
+      URL of the customer photo. Read-only. If the customer has no photo, this field is not returned. To set a customer photo, use [POST /customers/{customer_id}/actions/upload-photo](https://carecloud.readme.io/reference/postcustomersuploadphoto). Including `photo_url` in a POST or PUT request body returns HTTP 400.
     example: "https://example.com/photos/customer.jpg"
   address:
     $ref: '../schemas/_index.yaml#/Address'

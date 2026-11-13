@@ -3756,6 +3756,7 @@ paths:
           - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
         - If called from Customer API with `autologin=true`, the customer is logged in as part of the response.
         - If `referral_code` is provided and valid, a customer relation is created between the new customer and the referral code holder. The relation type used is determined by the referral campaign configuration. See [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers) to view the resulting relation.
+
         **Conditional requirements**
 
         - When `autologin` is `true`, `password` is required.
@@ -3767,6 +3768,14 @@ paths:
 
         - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (Enterprise API only).
         - [POST /customers/actions/validate-customer-data](https://carecloud.readme.io/reference/postcustomersvalidatecustomerdata) - validate a referral code before submitting this request.
+
+        **Non-club account merge**
+
+        If the provided email address belongs to an existing non-club (non-loyalty) account, CareCloud does not create a new account. Instead, it reuses the existing account record and merges the input data into it. Fields not provided in the request are populated from the existing account's personal information. The account is upgraded to a club account and the returned `customer_id` refers to the pre-existing account.
+
+        **Virtual card auto-assignment**
+
+        After registration, a virtual card may be automatically assigned to the new customer. Whether this happens depends on the project configuration and the customer's membership level. If no virtual card is available, registration succeeds without a card.
       operationId: postCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -3784,11 +3793,11 @@ paths:
                 password:
                   type: string
                   format: password
-                  description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum lenght of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345). If parameter `autologin=true`, password is required, otherwise is optional.'
+                  description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum length of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345). If the parameter `autologin` is `true`, the password is required. Otherwise, it is optional.'
                   example: password_example
                 autologin:
                   type: boolean
-                  description: If true, password is required and customer is logged in. Otherwise password is optional.
+                  description: If `true`, the password is required and the customer is logged in. Otherwise, the password is optional.
                 social_network_credentials:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
                 property_records:
@@ -4051,6 +4060,10 @@ paths:
         Replaces the customer's personal information, contact details, address, consent records, and optional property records with the values provided in the request body. The customer password is changed only if a new password is provided; omitting the password field leaves it unchanged.
 
         To update multiple custom property records in bulk without affecting other customer data, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
+
+        **Non-club account merge**
+
+        If the updated email address belongs to a different non-club (non-loyalty) account, CareCloud merges that account into the account being updated. The merge includes the non-club account's data, purchase history, and card associations.
       operationId: putCustomer
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -4067,7 +4080,8 @@ paths:
                 password:
                   type: string
                   format: password
-                  description: This is the customer’s password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.
+                  description: |
+                    The customer's password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.
                   example: fbsdfbkjebf$2,4d4fnb#,ds4@fnm,2dsf6sa
                 social_network_credentials:
                   $ref: '#/components/schemas/SocialNetworkCredentials'
@@ -6574,13 +6588,13 @@ paths:
         - Customers actions
       summary: Set a new customer status
       description: |
-        The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
+        This endpoint sets a new customer status. CareCloud deactivates any other valid status on the account.
 
-        Customer statuses represent the customer's tier or standing within a loyalty program. Only one status can be active at a time. Setting a new status automatically deactivates any currently active status on the account. The response returns the ID of the created status record.
+        Customer statuses represent the customer's tier or standing within a loyalty program. Only one status can be active at a time. The response returns the ID of the created status record.
 
         To view current and past status records on a customer account, use [GET /customers/{customer_id}/statuses](https://carecloud.readme.io/reference/getsubcustomerstatus).
 
-        ⚠️ Action method is available only in Enterprise API.
+        ⚠️ Endpoint is available only in Enterprise API.
       operationId: postCustomersSetStatusRecord
       requestBody:
         required: true
@@ -6599,11 +6613,13 @@ paths:
                   example: 89ac83ca207a820c62c79bf03a
                 valid_from:
                   type: string
-                  description: Date and time of the status record starts its validity. If not set, current date and time is applied. *(YYYY-MM-DD HH:MM:SS)*
+                  description: |
+                    Timestamp of when the status record starts its validity. If not set, the current date and time is applied. The value must not be in the future. A future value is rejected with HTTP 400. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.
                   example: '2021-01-28 00:00:00'
                 valid_to:
                   type: string
-                  description: Date and time of the record valid to. If not set, validity from the status definition is applied. *(YYYY-MM-DD HH:MM:SS)*
+                  description: |
+                    Timestamp of when the status record validity ends. If not set, the validity from the status definition is applied. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.
                   example: '2021-05-28 23:59:59'
               required:
                 - status_id
@@ -6647,13 +6663,14 @@ paths:
       summary: Sign up for newsletters
       description: |
         Sign up a contact for the newsletter. The contact does not need to be an existing customer.
+
         ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud APIs.
 
         **Partner assignment**
 
         When a contact is signed up, CareCloud creates one or more customer-partner relations. The assignment is determined as follows:
 
-        - If `partner_records` is provided (non-empty array) - relations are created for exactly those partners.
+        - If `partner_records` is provided (non-empty array) - relations are created for the listed partners without removing existing relations.
         - If `partner_records` is an empty array (`[]`) or omitted - relations are created for all partners accessible to the authenticated API user.
 
         Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
@@ -6664,6 +6681,14 @@ paths:
 
         - If `agreements` is omitted - the customer's existing consents remain unchanged.
         - If `agreements` is provided - only the consent types included in the request are updated; consent types not present in the request remain unchanged.
+
+        **Behavior based on account state**
+
+        The endpoint behaves differently depending on whether the contact already has an account:
+
+        - **No existing account**: A new non-club account is created with the provided data. The membership level is determined by the customer source configuration. If the customer source does not specify one, the project's non-club membership level is used.
+        - **Existing active account**: No new account is created. Consents are set as provided. Partners are added, and existing partner relations are not removed. The customer source is linked to the account if it is not already linked. If the account is non-club and the customer source has a linked membership level, the membership level is updated.
+        - **Existing deleted account**: Returns HTTP 400 with reason code `deleted`.
       operationId: postCustomerNewslettersSignUp
       requestBody:
         required: true
@@ -6674,7 +6699,7 @@ paths:
               properties:
                 contact:
                   type: string
-                  description: The parameter could contain email, phone number or other identifier of the contact.
+                  description: The parameter can contain an email address, a phone number, or another identifier of the contact.
                   example: happy_customer@crmcarecloud.com
                 customer_source_id:
                   type: string
@@ -6684,7 +6709,8 @@ paths:
                   $ref: '#/components/schemas/Agreement'
                 language_id:
                   type: string
-                  description: The unique ID of the language by ISO 639-1 code.
+                  description: |
+                    The unique ID of the language by ISO 639-1 code. When omitted, the project's default communication language is used for new accounts. For existing accounts, omitting `language_id` leaves the current language unchanged. [GET /languages](https://carecloud.readme.io/reference/getlanguages)
                   example: en
                 partner_records:
                   type: array
@@ -20492,8 +20518,18 @@ components:
       properties:
         salutation:
           type: string
-          description: Customer's salutation. If it is not set in POST or PUT calls, it will be generated automatically.
-          example: Dear Mr. Smith
+          description: |
+            Customer's salutation. When the field is not provided in a POST or PUT request, the system generates a salutation automatically. The generated value depends on the available customer data:
+
+            - When a last name and a recognized gender (Male, Female, or Miss, values 1 to 3) are present, the salutation is derived from the name, gender, and communication language.
+            - When the last name is missing but a valid gender is present, a default salutation for the gender and language is used.
+            - When neither qualifies, a project-configured default salutation for the communication language is used.
+
+            The generated salutation always ends with a trailing comma. On update, the salutation is regenerated in either of these cases:
+
+            - The field is omitted or empty.
+            - The gender or last name has changed, and the current salutation matches the one the system previously generated.
+          example: Dear Mr. Smith,
         gender:
           type: integer
           nullable: true
@@ -20503,7 +20539,8 @@ components:
             - 3
             - 4
             - 5
-          description: 'Gender of the customer *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other *'
+          description: |
+            Gender of the customer. *Possible values: 1 - Male / 2 - Female / 3 - Miss / 4 - Private / 5 - Other.* When omitted or set to null, the system attempts to detect the gender from the customer's name. Values outside the range 1 to 5 are treated as null, which also triggers auto-detection.
           example: 1
         first_name:
           type: string
@@ -20515,11 +20552,11 @@ components:
           example: Smith
         pre_nominals:
           type: string
-          description: Academic degrees, academic titles, other titles of customer placed before name.
+          description: Academic degrees, academic titles, and other titles of the customer placed before the name.
           example: Dr.
         post_nominals:
           type: string
-          description: Academic degrees, academic titles, other titles of customer placed after name.
+          description: Academic degrees, academic titles, and other titles of the customer placed after the name.
           example: Ph.D
         birthdate:
           type: string
@@ -20530,9 +20567,9 @@ components:
           type: string
           pattern: ^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$
           description: |
-            Email of the customer.
+            Email address of the customer.
             If you provide an email address, CareCloud validates its format and the validity of the domain.
-            Here is the general regular expression that is used for validation: `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
+            The regular expression used for validation: `^[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+(\\.[-a-z0-9!#$%&'*+\\/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\\.)+[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])$`
           example: happy_customer@crmcarecloud.com
         phone:
           type: string
@@ -20546,12 +20583,13 @@ components:
         store_id:
           type: string
           description: |
-            The unique ID of the original customer account store of registration. In case of customer update, the value can only be updated, not removed. When provided during customer registration and the project is configured for store-based partner assignment, the system derives the partner from the store and creates a single customer-partner relation. [GET /stores](https://carecloud.readme.io/reference/getstores)
+            The unique ID of the original customer account store of registration. In a customer update, the value can only be changed, not removed. Omitting `store_id` in a PUT request preserves the existing value. When provided during customer registration and the project is configured for store-based partner assignment, the system derives the partner from the store and creates a single customer-partner relation. [GET /stores](https://carecloud.readme.io/reference/getstores)
           example: 8bed991c68a4
         photo_url:
           type: string
           readOnly: true
-          description: URL address of the customer photo. If customer has no photo, this parameter is not send.
+          description: |
+            URL of the customer photo. Read-only. If the customer has no photo, this field is not returned. To set a customer photo, use [POST /customers/{customer_id}/actions/upload-photo](https://carecloud.readme.io/reference/postcustomersuploadphoto). Including `photo_url` in a POST or PUT request body returns HTTP 400.
           example: https://example.com/photos/customer.jpg
         address:
           $ref: '#/components/schemas/Address'

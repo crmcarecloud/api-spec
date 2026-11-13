@@ -13,6 +13,7 @@ post:
       - If the project is not configured for store-based partner assignment - relations are created for all partners accessible to the authenticated API user. The `store_id`, if set, is still recorded on the customer account but does not determine partner assignment.
     - If called from Customer API with `autologin=true`, the customer is logged in as part of the response.
     - If `referral_code` is provided and valid, a customer relation is created between the new customer and the referral code holder. The relation type used is determined by the referral campaign configuration. See [GET /customers/{customer_id}/related-customers](https://carecloud.readme.io/reference/getsubcustomerrelatedcustomers) to view the resulting relation.
+
     **Conditional requirements**
 
     - When `autologin` is `true`, `password` is required.
@@ -24,6 +25,14 @@ post:
 
     - [POST /customers/actions/set-partners](https://carecloud.readme.io/reference/postsubcustomersetpartners) - replace all partner assignments on a customer in a single call (Enterprise API only).
     - [POST /customers/actions/validate-customer-data](https://carecloud.readme.io/reference/postcustomersvalidatecustomerdata) - validate a referral code before submitting this request.
+
+    **Non-club account merge**
+
+    If the provided email address belongs to an existing non-club (non-loyalty) account, CareCloud does not create a new account. Instead, it reuses the existing account record and merges the input data into it. Fields not provided in the request are populated from the existing account's personal information. The account is upgraded to a club account and the returned `customer_id` refers to the pre-existing account.
+
+    **Virtual card auto-assignment**
+
+    After registration, a virtual card may be automatically assigned to the new customer. Whether this happens depends on the project configuration and the customer's membership level. If no virtual card is available, registration succeeds without a card.
   operationId: postCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -41,11 +50,11 @@ post:
             password:
               type: string
               format: password
-              description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum lenght of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345). If parameter `autologin=true`, password is required, otherwise is optional.'
+              description: 'Password of the customer. Password must satisfy the following criteria and contain: At least one number (Example: 1 2 3); At least one uppercase letter (Example: A B C); Minimum length of password is 8 characters; Password is not part of a common password list (Example: abc123, password, 12345). If the parameter `autologin` is `true`, the password is required. Otherwise, it is optional.'
               example: password_example
             autologin:
               type: boolean
-              description: If true, password is required and customer is logged in. Otherwise password is optional.
+              description: If `true`, the password is required and the customer is logged in. Otherwise, the password is optional.
             social_network_credentials:
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'
             property_records:

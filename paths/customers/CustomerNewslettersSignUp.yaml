@@ -4,13 +4,14 @@ post:
   summary: Sign up for newsletters
   description: |
     Sign up a contact for the newsletter. The contact does not need to be an existing customer.
+
     ⚠️ We strongly recommend verifying the contact with CAPTCHA before sending a request to CareCloud APIs.
 
     **Partner assignment**
 
     When a contact is signed up, CareCloud creates one or more customer-partner relations. The assignment is determined as follows:
 
-    - If `partner_records` is provided (non-empty array) - relations are created for exactly those partners.
+    - If `partner_records` is provided (non-empty array) - relations are created for the listed partners without removing existing relations.
     - If `partner_records` is an empty array (`[]`) or omitted - relations are created for all partners accessible to the authenticated API user.
 
     Because this endpoint returns no customer ID, partner assignment cannot be managed after the call. Use `partner_records` to control assignment at sign-up time.
@@ -21,6 +22,14 @@ post:
 
     - If `agreements` is omitted - the customer's existing consents remain unchanged.
     - If `agreements` is provided - only the consent types included in the request are updated; consent types not present in the request remain unchanged.
+
+    **Behavior based on account state**
+
+    The endpoint behaves differently depending on whether the contact already has an account:
+
+    - **No existing account**: A new non-club account is created with the provided data. The membership level is determined by the customer source configuration. If the customer source does not specify one, the project's non-club membership level is used.
+    - **Existing active account**: No new account is created. Consents are set as provided. Partners are added, and existing partner relations are not removed. The customer source is linked to the account if it is not already linked. If the account is non-club and the customer source has a linked membership level, the membership level is updated.
+    - **Existing deleted account**: Returns HTTP 400 with reason code `deleted`.
   operationId: postCustomerNewslettersSignUp
   requestBody:
     required: true
@@ -31,7 +40,7 @@ post:
           properties:
             contact:
               type: string
-              description: 'The parameter could contain email, phone number or other identifier of the contact.'
+              description: 'The parameter can contain an email address, a phone number, or another identifier of the contact.'
               example: "happy_customer@crmcarecloud.com"
             customer_source_id:
               type: string
@@ -41,7 +50,8 @@ post:
               $ref: '../../schemas/_index.yaml#/Agreement'
             language_id:
               type: string
-              description: The unique ID of the language by ISO 639-1 code.
+              description: |
+                The unique ID of the language by ISO 639-1 code. When omitted, the project's default communication language is used for new accounts. For existing accounts, omitting `language_id` leaves the current language unchanged. [GET /languages](https://carecloud.readme.io/reference/getlanguages)
               example: "en"
             partner_records:
               type: array

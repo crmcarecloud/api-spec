@@ -115,6 +115,10 @@ put:
     Replaces the customer's personal information, contact details, address, consent records, and optional property records with the values provided in the request body. The customer password is changed only if a new password is provided; omitting the password field leaves it unchanged.
 
     To update multiple custom property records in bulk without affecting other customer data, use [POST /customers/{customer_id}/properties/batch](https://carecloud.readme.io/reference/postsubcustomerpropertiesbatch).
+
+    **Non-club account merge**
+
+    If the updated email address belongs to a different non-club (non-loyalty) account, CareCloud merges that account into the account being updated. The merge includes the non-club account's data, purchase history, and card associations.
   operationId: putCustomer
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -131,7 +135,8 @@ put:
             password:
               type: string
               format: password
-              description: 'This is the customer’s password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.'
+              description: |
+                The customer's password. The parameter does not follow the usual PUT request rules. If you do not include it, the password will not change.
               example: "fbsdfbkjebf$2,4d4fnb#,ds4@fnm,2dsf6sa"
             social_network_credentials:
               $ref: '../../schemas/_index.yaml#/SocialNetworkCredentials'

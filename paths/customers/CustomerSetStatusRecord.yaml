@@ -3,13 +3,13 @@ post:
     - Customers actions
   summary: Set a new customer status
   description: |
-    The method sets a new customer status. If another valid status exists, CareCloud deactivates it.
+    This endpoint sets a new customer status. CareCloud deactivates any other valid status on the account.
 
-    Customer statuses represent the customer's tier or standing within a loyalty program. Only one status can be active at a time. Setting a new status automatically deactivates any currently active status on the account. The response returns the ID of the created status record.
+    Customer statuses represent the customer's tier or standing within a loyalty program. Only one status can be active at a time. The response returns the ID of the created status record.
 
     To view current and past status records on a customer account, use [GET /customers/{customer_id}/statuses](https://carecloud.readme.io/reference/getsubcustomerstatus).
 
-    ⚠️ Action method is available only in Enterprise API.
+    ⚠️ Endpoint is available only in Enterprise API.
   operationId: postCustomersSetStatusRecord
   requestBody:
     required: true
@@ -28,11 +28,13 @@ post:
               example: "89ac83ca207a820c62c79bf03a"
             valid_from:
               type: string
-              description: Date and time of the status record starts its validity. If not set, current date and time is applied. *(YYYY-MM-DD HH:MM:SS)*
+              description: |
+                Timestamp of when the status record starts its validity. If not set, the current date and time is applied. The value must not be in the future. A future value is rejected with HTTP 400. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.
               example: "2021-01-28 00:00:00"
             valid_to:
               type: string
-              description: Date and time of the record valid to. If not set, validity from the status definition is applied. *(YYYY-MM-DD HH:MM:SS)*
+              description: |
+                Timestamp of when the status record validity ends. If not set, the validity from the status definition is applied. Accepts the format `YYYY-MM-DD HH:MM:SS` or ISO-8601 format (`YYYY-MM-DDTHH:MM:SS`). All times must be in the local timezone.
               example: "2021-05-28 23:59:59"
           required:
             - status_id
