@@ -1929,7 +1929,10 @@ paths:
       tags:
         - Cards
       summary: Update a card
-      description: Update a specific customer card. Use this endpoint to change the card's validity period, state, or assigned customer.
+      description: |
+        Update a specific customer card. Use this endpoint to change the card's validity period, state, or assigned customer.
+
+        ⚠️ In Customer API, blocking a card (setting state to 0) is subject to a rate limit per card type. If the customer blocked another card of the same type within a configured time window, the request is rejected with HTTP 400.
       operationId: putCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -1975,7 +1978,9 @@ paths:
       summary: Assign free card
       description: |
         Assign a free card to a customer.
+
         This action is limited to one card per card type per customer. If your project allows customers to have multiple cards of one type, use [PUT /cards/{card_id}](https://carecloud.readme.io/reference/putcard) instead.
+
         See [Assign card to customer](https://help.crmcarecloud.com/en/marketing-automation/actions/assign-card-to-customer) for details.
       operationId: postAssignCard
       parameters:
@@ -1997,7 +2002,8 @@ paths:
                   example: 8ea2591121e636086a4a9c0992
                 card_number:
                   type: string
-                  description: Card number.
+                  description: |
+                    Number of the card to assign. If provided, the card must be of the type specified in `card_type_id`. If omitted, an unassigned card of that type is selected automatically.
                   example: '1000000000016'
               required:
                 - card_type_id
@@ -2109,6 +2115,8 @@ paths:
       summary: Generate virtual card file
       description: |
         Generate a virtual card file. The file can be a PNG image (barcode or QR code) or a pass package for Apple Wallet. Use the returned URL to display or distribute the digital card in a mobile application or by email.
+
+        The card must be assigned to a customer. Unassigned cards are rejected with HTTP 400.
       operationId: postGenerateDigitalCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2124,7 +2132,7 @@ paths:
                   type: string
                   example: 8fd73167342d06899c4c015320
                 file_type:
-                  description: 'Type of the final file. *Possible values: png - generates picture of barcode in png format / qr-png - generates picture of QR code in png format /wallet - generates pass package file for Apple Wallet*'
+                  description: 'Type of the final file. *Possible values: png - generates an image of a barcode in PNG format / qr-png - generates an image of a QR code in PNG format / wallet - generates a pass package file for Apple Wallet*'
                   type: string
                   enum:
                     - png
@@ -2147,7 +2155,7 @@ paths:
                     type: object
                     properties:
                       file_url:
-                        description: URL address of the final virtual card file.
+                        description: URL of the final virtual card file.
                         type: string
                         example: https://dev-carecloud.cortex.cz//crm/scripts/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8
         '400':
@@ -2174,8 +2182,9 @@ paths:
     post:
       tags:
         - Cards
-      summary: Get a PassMachine digital card
-      description: Generate a PassMachine link for a customer's digital card. The customer must have an existing card; if no card exists, the link cannot be generated.
+      summary: Generate a PassMachine digital card
+      description: |
+        Generate a PassMachine link for a customer's digital card. The customer must have an existing card. If no card exists, the link cannot be generated.
       operationId: postGeneratePassMachine
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2188,11 +2197,12 @@ paths:
               properties:
                 customer_id:
                   type: string
-                  description: The unique ID of the customer with PassMachine.
+                  description: The unique ID of the customer.
                   example: 8ea2591121e636086a4a9c0992
                 passmachine_template_id:
                   type: string
-                  description: ID of a template from PassMachine. The ID is available in administration environment of PassMachine. If the parameter is not set, the default template is used.
+                  description: |
+                    ID of a template from PassMachine. The ID is available in the PassMachine administration environment. If the parameter is not set, the project's default template is used. If no default template is configured, the request is rejected with HTTP 400. The template ID is validated against the PassMachine service. An unknown template ID is also rejected with HTTP 400.
                   example: 8ea2591121e636086a4a9c0992
               required:
                 - customer_id
@@ -2209,7 +2219,7 @@ paths:
                     type: object
                     properties:
                       file_url:
-                        description: URL address of the PassMachine card.
+                        description: URL of the PassMachine card.
                         type: string
                         example: https://dev-carecloud.cortex.cz//crm/scripts/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8
         '400':
@@ -2234,7 +2244,7 @@ paths:
         - Cards
       summary: Validate ISIC card
       description: |
-        Validates whether a card is a valid ISIC card. Optionally checks whether the card is already present in the CareCloud database.
+        Validate whether a card is a valid ISIC card. Optionally, check whether the card is already present in the CareCloud database.
       operationId: postValidateIsicCard
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -2258,7 +2268,7 @@ paths:
                   enum:
                     - true
                     - false
-                  description: If true, checks whether the card can be used in CareCloud, or whether an ISIC card with this number already exists. If not set, this check is ignored.
+                  description: If true, checks whether the card can be used in CareCloud, or whether an ISIC card with this number already exists. If not set, this check is skipped.
                   example: true
                   default: false
               required:
@@ -2282,7 +2292,7 @@ paths:
                           - true
                           - false
                         readOnly: true
-                        description: An information if ISIC card is valid.
+                        description: Indicates whether the card is a valid ISIC card.
                         example: false
                       is_free_to_use:
                         type: boolean
@@ -2290,7 +2300,8 @@ paths:
                           - true
                           - false
                         readOnly: true
-                        description: An information if the card is free to use in CareCloud. If the request parameter `check_usage` is not set or false, the value is not set.
+                        description: |
+                          Indicates whether the card can be used in CareCloud. The field is returned only when `check_usage` is true. The value is `true` if the card is unassigned in CareCloud or its number has not been imported into CareCloud. The value is `false` if the card is already assigned to a customer.
                         example: false
         '400':
           $ref: '#/components/responses/BadRequest'

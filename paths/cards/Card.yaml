@@ -77,7 +77,10 @@ put:
   tags:
     - Cards
   summary: Update a card
-  description: Update a specific customer card. Use this endpoint to change the card's validity period, state, or assigned customer.
+  description: |
+    Update a specific customer card. Use this endpoint to change the card's validity period, state, or assigned customer.
+
+    ⚠️ In Customer API, blocking a card (setting state to 0) is subject to a rate limit per card type. If the customer blocked another card of the same type within a configured time window, the request is rejected with HTTP 400.
   operationId: putCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'

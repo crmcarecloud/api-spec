@@ -3,7 +3,7 @@ post:
     - Cards
   summary: Validate ISIC card
   description: |
-    Validates whether a card is a valid ISIC card. Optionally checks whether the card is already present in the CareCloud database.
+    Validate whether a card is a valid ISIC card. Optionally, check whether the card is already present in the CareCloud database.
 
   operationId: postValidateIsicCard
   parameters:
@@ -28,7 +28,7 @@ post:
               enum:
                 - true
                 - false
-              description: If true, checks whether the card can be used in CareCloud, or whether an ISIC card with this number already exists. If not set, this check is ignored.
+              description: If true, checks whether the card can be used in CareCloud, or whether an ISIC card with this number already exists. If not set, this check is skipped.
               example: true
               default: false
           required:
@@ -52,7 +52,7 @@ post:
                       - true
                       - false
                     readOnly: true
-                    description: An information if ISIC card is valid.
+                    description: Indicates whether the card is a valid ISIC card.
                     example: false
                   is_free_to_use:
                     type: boolean
@@ -60,7 +60,8 @@ post:
                       - true
                       - false
                     readOnly: true
-                    description: An information if the card is free to use in CareCloud. If the request parameter `check_usage` is not set or false, the value is not set.
+                    description: |
+                      Indicates whether the card can be used in CareCloud. The field is returned only when `check_usage` is true. The value is `true` if the card is unassigned in CareCloud or its number has not been imported into CareCloud. The value is `false` if the card is already assigned to a customer.
                     example: false
     '400':
       $ref: '../../api.yaml#/components/responses/BadRequest'

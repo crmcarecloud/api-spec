@@ -4,6 +4,8 @@ post:
   summary: Generate virtual card file
   description: |
     Generate a virtual card file. The file can be a PNG image (barcode or QR code) or a pass package for Apple Wallet. Use the returned URL to display or distribute the digital card in a mobile application or by email.
+
+    The card must be assigned to a customer. Unassigned cards are rejected with HTTP 400.
   operationId: postGenerateDigitalCard
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -19,7 +21,7 @@ post:
               type: string
               example: "8fd73167342d06899c4c015320"
             file_type:
-              description: "Type of the final file. *Possible values: png - generates picture of barcode in png format / qr-png - generates picture of QR code in png format /wallet - generates pass package file for Apple Wallet*"
+              description: "Type of the final file. *Possible values: png - generates an image of a barcode in PNG format / qr-png - generates an image of a QR code in PNG format / wallet - generates a pass package file for Apple Wallet*"
               type: string
               enum:
                 - png
@@ -42,7 +44,7 @@ post:
                 type: object
                 properties:
                   file_url:
-                    description: URL address of the final virtual card file.
+                    description: URL of the final virtual card file.
                     type: string
                     example: "https:\/\/dev-carecloud.cortex.cz\/\/crm\/scripts\/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8"
     '400':

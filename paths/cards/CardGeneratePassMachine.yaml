@@ -1,8 +1,9 @@
 post:
   tags:
     - Cards
-  summary: Get a PassMachine digital card
-  description: Generate a PassMachine link for a customer's digital card. The customer must have an existing card; if no card exists, the link cannot be generated.
+  summary: Generate a PassMachine digital card
+  description: |
+    Generate a PassMachine link for a customer's digital card. The customer must have an existing card. If no card exists, the link cannot be generated.
   operationId: postGeneratePassMachine
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -15,11 +16,12 @@ post:
           properties:
             customer_id:
               type: string
-              description: The unique ID of the customer with PassMachine.
+              description: The unique ID of the customer.
               example: "8ea2591121e636086a4a9c0992"
             passmachine_template_id:
               type: string
-              description: ID of a template from PassMachine. The ID is available in administration environment of PassMachine. If the parameter is not set, the default template is used.
+              description: |
+                ID of a template from PassMachine. The ID is available in the PassMachine administration environment. If the parameter is not set, the project's default template is used. If no default template is configured, the request is rejected with HTTP 400. The template ID is validated against the PassMachine service. An unknown template ID is also rejected with HTTP 400.
               example: "8ea2591121e636086a4a9c0992"
           required:
             - customer_id
@@ -36,7 +38,7 @@ post:
                 type: object
                 properties:
                   file_url:
-                    description: URL address of the PassMachine card.
+                    description: URL of the PassMachine card.
                     type: string
                     example: "https:\/\/dev-carecloud.cortex.cz\/\/crm\/scripts\/generate_mobile_card.php?account=80c4d97a736d98a90badb5128&card=8bd4811700646e0b1788109b8"
     '400':
