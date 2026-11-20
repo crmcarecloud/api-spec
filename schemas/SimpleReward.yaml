@@ -163,7 +163,7 @@ properties:
       - 2
     description: |
       State of the simple reward.
-      *Possible values are: 1 - active / 2 - non active *
+      *Possible values are: 1 - active / 2 - inactive *
     example: 1
 required:
   - code

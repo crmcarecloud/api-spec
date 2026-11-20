@@ -28,7 +28,7 @@ properties:
     readOnly: true
     description: |
       State of the external application.
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
     example: 1
 required:
   - external_application_id

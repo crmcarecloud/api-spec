@@ -67,7 +67,7 @@ properties:
     readOnly: true
     description: |
       State of the omnichannel campaign.
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
     example: 1
   sending_status:
     type: integer
@@ -87,6 +87,12 @@ properties:
     example: "Monthly newsletter for loyalty program members"
   utm:
     $ref: '../schemas/_index.yaml#/UTM'
+  tags:
+    type: array
+    items:
+      $ref: '../schemas/_index.yaml#/Tag'
+    readOnly: true
+    description: List of the tags assigned to the omnichannel campaign. The list of available tags is at [GET /omnichannel-campaigns/tags](https://carecloud.readme.io/reference/getsubomnichannelcampaigntags) (Enterprise API only).
   created_by:
     type: string
     readOnly: true

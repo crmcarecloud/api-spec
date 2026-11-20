@@ -26,5 +26,5 @@ properties:
       - 2
     description: |
       State of the region.
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
     example: 1

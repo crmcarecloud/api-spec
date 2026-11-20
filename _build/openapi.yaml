@@ -8804,6 +8804,7 @@ paths:
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/communication_channel_id'
         - $ref: '#/components/parameters/omnichannel_campaign_type_id'
+        - $ref: '#/components/parameters/tag_id_arr'
       responses:
         '200':
           description: OK
@@ -8866,6 +8867,61 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/OmnichannelCampaign'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          $ref: '#/components/responses/NotAllowed'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /omnichannel-campaigns/tags:
+    get:
+      tags:
+        - Omnichannel campaigns
+      summary: Get all tags for resource omnichannel campaigns
+      description: |
+        Get a list of all tags of resource omnichannel campaigns. Tags from the list can be used for omnichannel campaign filtering.
+
+        ⚠️ Endpoint is available only in Enterprise API.
+      operationId: getSubOmnichannelCampaignTags
+      parameters:
+        - $ref: '#/components/parameters/Accept-Language'
+        - $ref: '#/components/parameters/count'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/sort_field'
+        - $ref: '#/components/parameters/sort_direction'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/text_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: GetSubOmnichannelCampaignTags200Response
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      tags:
+                        type: array
+                        description: List of all tags assigned to the resource omnichannel campaigns.
+                        items:
+                          $ref: '#/components/schemas/Tag'
+                      total_items:
+                        type: integer
+                        description: The number of all found tags.
+                        example: 1
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -13627,7 +13683,7 @@ paths:
       tags:
         - Rewards
       summary: Get all tags for resource rewards
-      description: Get information as a list of all tags of resource rewards. Tags from the list could be use for reward filtering.
+      description: Get a list of all tags of resource rewards. Tags from the list can be used for reward filtering.
       operationId: getSubRewardTags
       parameters:
         - $ref: '#/components/parameters/Accept-Language'
@@ -13651,7 +13707,7 @@ paths:
                     properties:
                       tags:
                         type: array
-                        description: List of the all tags assigned to the resource rewards.
+                        description: List of all tags assigned to the resource rewards.
                         items:
                           $ref: '#/components/schemas/Tag'
                       total_items:
@@ -19244,7 +19300,7 @@ components:
           readOnly: true
           description: |
             State of the property item.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
     Property:
       type: object
@@ -19582,7 +19638,7 @@ components:
           readOnly: true
           description: |
             State of the booking item record.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         last_change:
           type: string
@@ -19660,7 +19716,7 @@ components:
           readOnly: true
           description: |
             State of the booking record.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - booking_items
@@ -19722,7 +19778,7 @@ components:
           readOnly: true
           description: |
             State of the campaign.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - name
@@ -20098,7 +20154,7 @@ components:
             - 2
           description: |
             State of the country.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
     Credit:
       type: object
@@ -20150,7 +20206,7 @@ components:
           readOnly: true
           description: |
             State of the credit record.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         note:
           type: string
@@ -20649,7 +20705,7 @@ components:
             - 1
             - 2
           readOnly: true
-          description: 'State of the customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+          description: 'State of the customer. *Possible values are: 0 - deleted / 1 - active / 2 - inactive*'
           example: 1
       required:
         - personal_information
@@ -20746,7 +20802,7 @@ components:
           readOnly: true
           description: |
             State of the point record.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         created_at:
           type: string
@@ -20903,7 +20959,7 @@ components:
           readOnly: true
           description: |
             State of the store
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - store_id
@@ -20990,7 +21046,7 @@ components:
           readOnly: true
           description: |
             State of the tag.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         last_change:
           type: string
@@ -21150,7 +21206,7 @@ components:
           readOnly: true
           description: |
             State of the reward
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - code
@@ -21225,7 +21281,7 @@ components:
           readOnly: true
           description: |
             State of the voucher.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - customer_id
@@ -21349,7 +21405,7 @@ components:
           readOnly: true
           description: |
             State of the reward.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - status_id
@@ -21403,7 +21459,7 @@ components:
           readOnly: true
           description: |
             State of the recommendation.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - name
@@ -21496,7 +21552,7 @@ components:
           readOnly: true
           description: |
             State of the event.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         property_records:
           type: array
@@ -21557,7 +21613,7 @@ components:
             - 1
             - 2
           readOnly: true
-          description: 'State of the related customer. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+          description: 'State of the related customer. *Possible values are: 0 - deleted / 1 - active / 2 - inactive*'
           example: 1
       required:
         - related_customer_id
@@ -21707,7 +21763,7 @@ components:
             - 1
             - 2
           readOnly: true
-          description: 'State of the customer engagement setup. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+          description: 'State of the customer engagement setup. *Possible values are: 0 - deleted / 1 - active / 2 - inactive*'
           example: 1
     ExternalApplication:
       type: object
@@ -21740,7 +21796,7 @@ components:
           readOnly: true
           description: |
             State of the external application.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - external_application_id
@@ -21772,7 +21828,7 @@ components:
           readOnly: true
           description: |
             State of the customer relation type.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - name
@@ -21805,7 +21861,7 @@ components:
           readOnly: true
           description: |
             State of the customer source.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         last_change:
           type: string
@@ -21863,7 +21919,7 @@ components:
             - 2
           description: |
             State of the district.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
     EventPost:
       type: object
@@ -21968,7 +22024,7 @@ components:
           readOnly: true
           description: |
             State of the event.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - event_type_id
@@ -21999,7 +22055,7 @@ components:
           readOnly: true
           description: |
             State of the event group.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - event_group_id
@@ -22042,7 +22098,7 @@ components:
           readOnly: true
           description: |
             State of the property.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - event_type_id
@@ -22079,7 +22135,7 @@ components:
           readOnly: true
           description: |
             State of the event type.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         last_change:
           type: string
@@ -22449,7 +22505,7 @@ components:
           readOnly: true
           description: |
             State of the omnichannel campaign.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         sending_status:
           type: integer
@@ -22469,6 +22525,12 @@ components:
           example: Monthly newsletter for loyalty program members
         utm:
           $ref: '#/components/schemas/UTM'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+          readOnly: true
+          description: List of the tags assigned to the omnichannel campaign. The list of available tags is at [GET /omnichannel-campaigns/tags](https://carecloud.readme.io/reference/getsubomnichannelcampaigntags) (Enterprise API only).
         created_by:
           type: string
           readOnly: true
@@ -22604,7 +22666,7 @@ components:
           readOnly: true
           description: |
             State of the point reservation.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active(expired)*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive(expired)*
           example: 1
         expiration:
           type: string
@@ -23738,7 +23800,7 @@ components:
           readOnly: true
           description: |
             State of the recommendation.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
         last_change:
           type: string
@@ -23780,7 +23842,7 @@ components:
             - 2
           description: |
             State of the region.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
     RewardProduct:
       allOf:
@@ -24073,7 +24135,7 @@ components:
             - 2
           description: |
             State of the simple reward.
-            *Possible values are: 1 - active / 2 - non active *
+            *Possible values are: 1 - active / 2 - inactive *
           example: 1
       required:
         - code
@@ -24570,7 +24632,7 @@ components:
           readOnly: true
           description: |
             State of the task.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - task_type_id
@@ -24635,7 +24697,7 @@ components:
           readOnly: true
           description: |
             State of the event type.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - task_id
@@ -24667,7 +24729,7 @@ components:
           readOnly: true
           description: |
             State of the task type.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - name
@@ -24699,7 +24761,7 @@ components:
           readOnly: true
           description: |
             State of the task state.
-            *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+            *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
           example: 1
       required:
         - name

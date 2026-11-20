@@ -53,7 +53,7 @@ properties:
     readOnly: true
     description: |
       State of the booking item record.
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
     example: 1
   last_change:
     type: string

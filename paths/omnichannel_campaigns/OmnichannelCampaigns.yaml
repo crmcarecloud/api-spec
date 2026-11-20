@@ -16,6 +16,7 @@ get:
     - $ref: '../../parameters/_index.yaml#/name'
     - $ref: '../../parameters/_index.yaml#/communication_channel_id'
     - $ref: '../../parameters/_index.yaml#/omnichannel_campaign_type_id'
+    - $ref: '../../parameters/_index.yaml#/tag_id_arr'
   responses:
     '200':
       description: OK

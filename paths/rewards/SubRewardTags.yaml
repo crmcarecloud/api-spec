@@ -2,7 +2,7 @@ get:
   tags:
     - Rewards
   summary: Get all tags for resource rewards
-  description: Get information as a list of all tags of resource rewards. Tags from the list could be use for reward filtering.
+  description: Get a list of all tags of resource rewards. Tags from the list can be used for reward filtering.
   operationId: getSubRewardTags
   parameters:
     - $ref: '../../parameters/_index.yaml#/Accept-Language'
@@ -26,7 +26,7 @@ get:
                 properties:
                   tags:
                     type: array
-                    description: List of the all tags assigned to the resource rewards.
+                    description: List of all tags assigned to the resource rewards.
                     items:
                       $ref: '../../schemas/_index.yaml#/Tag'
                   total_items:

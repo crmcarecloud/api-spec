@@ -36,7 +36,7 @@ properties:
     readOnly: true
     description: |
       State of the property.
-      *Possible values are: 0 - deleted / 1 - active / 2 - non active*
+      *Possible values are: 0 - deleted / 1 - active / 2 - inactive*
     example: 1
 required:
   - event_type_id

@@ -18,5 +18,5 @@ properties:
       - 1
       - 2
     readOnly: true
-    description: 'State of the customer engagement setup. *Possible values are: 0 - deleted / 1 - active / 2 - non active*'
+    description: 'State of the customer engagement setup. *Possible values are: 0 - deleted / 1 - active / 2 - inactive*'
     example: 1

@@ -313,6 +313,8 @@
   $ref: "./omnichannel_campaigns/OmnichannelCampaigns.yaml"
 /omnichannel-campaigns/{omnichannel_campaign_id}:
   $ref: "./omnichannel_campaigns/OmnichannelCampaign.yaml"
+/omnichannel-campaigns/tags:
+  $ref: "./omnichannel_campaigns/SubOmnichannelCampaignTags.yaml"
 
 # One Time Password
 #Actions
